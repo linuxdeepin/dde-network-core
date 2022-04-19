@@ -34,6 +34,7 @@ namespace network {
 
 class DSLItem;
 class NetworkDeviceBase;
+class NetworkDBusProxy;
 
 class DSLController : public QObject
 {
@@ -55,7 +56,7 @@ Q_SIGNALS:
     void activeConnectionChanged();                                       // 连接状态发生变化
 
 protected:
-    explicit DSLController(NetworkInter *networkInter, QObject *parent = Q_NULLPTR);
+    explicit DSLController(NetworkDBusProxy *networkInter, QObject *parent = Q_NULLPTR);
     ~DSLController();
 
     void updateDevice(const QList<NetworkDeviceBase *> &devices);
@@ -68,7 +69,7 @@ private:
 
 private:
     QList<DSLItem *> m_items;
-    NetworkInter *m_networkInter;
+    NetworkDBusProxy *m_networkInter;
     QMap<QString, QString> m_deviceInfo;
     QString m_activePath;
 };
@@ -80,14 +81,6 @@ class DSLItem : public ControllItems
 protected:
     DSLItem();
     ~DSLItem();
-
-    void setConnectionStatus(ConnectionStatus connectStatus);
-
-public:
-    ConnectionStatus status() const;                             // 当前连接的连接状态
-
-private:
-    ConnectionStatus m_connectStatus;
 };
 
 }

@@ -29,7 +29,6 @@
 
 #include <DHiDPIHelper>
 #include <DApplicationHelper>
-#include <DDBusSender>
 #include <DGuiApplicationHelper>
 #include <DSwitchButton>
 #include <dloadingindicator.h>
@@ -41,11 +40,13 @@
 #include <QWidget>
 #include <QDialog>
 #include <QScopedPointer>
+#include <QtMath>
 
 #include <networkcontroller.h>
 #include <networkdevicebase.h>
 #include <wireddevice.h>
 #include <wirelessdevice.h>
+#include <networkdbusproxy.h>
 
 #define SWITCH_WIDTH 50
 #define SWITCH_HEIGHT 24
@@ -57,7 +58,7 @@ NetworkPanel::NetworkPanel(QObject *parent)
     , m_applet(new QScrollArea())
     , m_centerWidget(new QWidget(m_applet))
     , m_netListView(new DListView(m_centerWidget))
-    , m_airplaneMode(new DBusAirplaneMode("com.deepin.daemon.AirplaneMode", "/com/deepin/daemon/AirplaneMode", QDBusConnection::systemBus(), this))
+    , m_airplaneMode(new NetworkDBusProxy(this))
     , m_updateTimer(new QTimer(this))
 {
     initUi();
@@ -368,7 +369,7 @@ void NetworkPanel::updateItems()
                 if (!apCtrl) {
                     apCtrl = new WirelessItem(m_netListView->viewport(), device, ap);
                     connect(apCtrl, &WirelessItem::sizeChanged, this, &NetworkPanel::refreshItems);
-                    connect(m_airplaneMode, &DBusAirplaneMode::EnabledChanged, apCtrl, &WirelessItem::onAirplaneModeChanged);
+                    connect(m_airplaneMode, &NetworkDBusProxy::EnabledChanged, apCtrl, &WirelessItem::onAirplaneModeChanged);
                 }
                 apCtrl->updateView();
                 apCtrl->onAirplaneModeChanged(m_airplaneMode->enabled());
@@ -770,7 +771,7 @@ NetworkDelegate::~NetworkDelegate()
         m_refreshTimer->stop();
 }
 
-void NetworkDelegate::setDBusAirplaneMode(DBusAirplaneMode *airplane)
+void NetworkDelegate::setDBusAirplaneMode(NetworkDBusProxy *airplane)
 {
     m_airplaneMode = airplane;
 }

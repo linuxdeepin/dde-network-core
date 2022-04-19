@@ -17,8 +17,6 @@ find_package(Qt5Svg REQUIRED)
 find_package(DtkWidget REQUIRED)
 find_package(KF5NetworkManagerQt REQUIRED)
 
-pkg_check_modules(DFrameworkDBus REQUIRED dframeworkdbus)
-
 file(GLOB TS_FILES "translations/*.ts")
 qt5_add_translation(QM_FILES ${TS_FILES})
 add_custom_target(${TARGET_NAME}_language ALL DEPENDS ${QM_FILES})
@@ -44,7 +42,6 @@ target_include_directories(${TARGET_NAME} PUBLIC
     ${NETWORKINTERFACE}
     ${DtkWidget_INCLUDE_DIRS}
     ${Qt5DBus_INCLUDE_DIRS}
-    ${DFrameworkDBus_INCLUDE_DIRS}
     ${QGSettings_INCLUDE_DIRS}
     #${DDE-Network-Core_INCLUDE_DIRS}
     ${Qt5Network_INCLUDE_DIRS}
@@ -58,7 +55,6 @@ target_link_libraries(${TARGET_NAME} PRIVATE
     ${Qt5DBus_LIBRARIES}
     ${QGSettings_LIBRARIES}
     #${DDE-Network-Core_LIBRARIES}
-    ${DFrameworkDBus_LIBRARIES}
     ${KF5_QT_LIBRARIES}
     ${Qt5Network_LIBRARIES}
 )

@@ -16,7 +16,6 @@ find_package(Qt5 COMPONENTS Core DBus Network REQUIRED)
 find_package(PkgConfig REQUIRED)
 find_package(KF5NetworkManagerQt REQUIRED)
 
-pkg_check_modules(DFrameworkDBus REQUIRED dframeworkdbus)
 pkg_check_modules(QGSettings REQUIRED gsettings-qt)
 
 get_target_property(KF5_QT_INCLUDE_DIRS KF5::NetworkManagerQt INTERFACE_INCLUDE_DIRECTORIES)
@@ -33,7 +32,6 @@ endif()
 target_include_directories(${PROJECT_NAME} PUBLIC
     realize
     ${Qt5DBus_INCLUDE_DIRS}
-    ${DFrameworkDBus_INCLUDE_DIRS}
     ${QGSettings_INCLUDE_DIRS}
     ${LibNM_INCLUDE_DIRS}
     ${Qt5Network_INCLUDE_DIRS}
@@ -42,7 +40,6 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 target_link_libraries(${PROJECT_NAME} PRIVATE
     ${Qt5Core_LIBRARIES}
     ${LibNM_LIBRARIES}
-    ${DFrameworkDBus_LIBRARIES}
     ${Qt5DBus_LIBRARIES}
     ${Qt5Network_LIBRARIES}
     ${QGSettings_LIBRARIES}

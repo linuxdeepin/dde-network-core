@@ -61,17 +61,10 @@ class WiredConnection : public ControllItems
     friend class WiredDeviceInterRealize;
     friend class DeviceManagerRealize;
 
-public:
-    bool connected();                                                   //网络是否连接成功
-    ConnectionStatus status() const;                             // 当前连接的连接状态
-
 protected:
     WiredConnection();
     ~WiredConnection();
-    void setConnectionStatus(const ConnectionStatus &status);
 
-private:
-    ConnectionStatus m_status;
 };
 
 }

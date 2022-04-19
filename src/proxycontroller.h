@@ -30,6 +30,7 @@
 namespace dde {
 
 namespace network {
+class NetworkDBusProxy;
 
 class ProxyController : public QObject
 {
@@ -70,14 +71,8 @@ Q_SIGNALS:
     void appPortChanged(const uint &port);                                  // 应用代理端口发生变化
 
 protected:
-    explicit ProxyController(NetworkInter *networkInter, QObject *parent = Q_NULLPTR);
+    explicit ProxyController(NetworkDBusProxy *networkInter, QObject *parent = Q_NULLPTR);
     ~ProxyController();
-
-    void queryAutoProxy();                                                  // 查询自动代理的URL
-    void queryProxyMethod();                                                // 查询自动代理模式
-    void queryProxyIgnoreHosts();                                           // 查询代理忽略的主机
-
-    void queryProxyDataByType(const QString &type);                         // 查询代理数据
 
     ProxyMethod convertProxyMethod(const QString &method);                  // 将代理模式字符串转换为枚举
     QString convertProxyMethod(const ProxyMethod &method);                  // 将代理模式枚举转换为字符串
@@ -95,9 +90,17 @@ private Q_SLOTS:
     void onUserChanged(const QString &value);
     void onPortChanged(uint value);
 
+    void queryAutoProxy();                                                  // 查询自动代理的URL
+    void queryProxyMethod();                                                // 查询自动代理模式
+    void queryProxyIgnoreHosts();                                           // 查询代理忽略的主机
+    void queryProxyDataByType(const QString &type);                         // 查询代理数据
+
+    void queryProxyDataByFtp();
+    void queryProxyDataByHttp();
+    void queryProxyDataByHttps();
+    void queryProxyDataBySocks();
 private:
-    NetworkInter *m_networkInter;
-    ProxyChains *m_chainsInter;
+    NetworkDBusProxy *m_networkInter;
     QList<SysProxyConfig> m_sysProxyConfig;
     QString m_autoProxyURL;
     ProxyMethod m_proxyMothod;

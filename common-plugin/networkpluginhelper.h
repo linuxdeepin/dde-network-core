@@ -28,7 +28,6 @@
 
 #include <NetworkManagerQt/Device>
 
-#include <com_deepin_daemon_network.h>
 
 DGUI_USE_NAMESPACE
 

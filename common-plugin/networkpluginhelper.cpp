@@ -27,13 +27,11 @@
 
 #include <DHiDPIHelper>
 #include <DApplicationHelper>
-#include <DDBusSender>
 #include <DMenu>
 
 #include <QTimer>
 #include <QVBoxLayout>
 #include <QAction>
-#include <QDBusConnection>
 
 #include <networkcontroller.h>
 #include <networkdevicebase.h>
@@ -47,7 +45,7 @@
 #include <NetworkManagerQt/WirelessSecuritySetting>
 #include <NetworkManagerQt/WirelessSetting>
 
-#include <com_deepin_daemon_airplanemode.h>
+#include "networkdbusproxy.h"
 
 enum MenuItemKey : int {
     MenuSettings = 1,
@@ -60,8 +58,6 @@ enum MenuItemKey : int {
 };
 
 NETWORKPLUGIN_USE_NAMESPACE
-
-using DBusAirplaneMode = com::deepin::daemon::AirplaneMode;
 
 NetworkPluginHelper::NetworkPluginHelper(NetworkDialog *networkDialog, QObject *parent)
     : QObject(parent)
@@ -286,13 +282,7 @@ void NetworkPluginHelper::invokeMenuItem(const QString &menuId)
             setDeviceEnabled(DeviceType::Wireless, false);
         break;
     case MenuItemKey::MenuSettings:
-        DDBusSender()
-            .service("com.deepin.dde.ControlCenter")
-            .interface("com.deepin.dde.ControlCenter")
-            .path("/com/deepin/dde/ControlCenter")
-            .method(QString("ShowModule"))
-            .arg(QString("network"))
-            .call();
+        NetworkDBusProxy::showModule("network");
         break;
     default:
         break;
@@ -345,8 +335,9 @@ void NetworkPluginHelper::setDeviceEnabled(const DeviceType &deviceType, bool en
 
 bool NetworkPluginHelper::wirelessIsActive() const
 {
-    static DBusAirplaneMode airplaneMode("com.deepin.daemon.AirplaneMode", "/com/deepin/daemon/AirplaneMode", QDBusConnection::systemBus());
-    return (!airplaneMode.enabled());
+    dde::network::NetworkDBusProxy *networkInter = new dde::network::NetworkDBusProxy();
+    networkInter->deleteLater();
+    return !networkInter->enabled();
 }
 
 const QString NetworkPluginHelper::contextMenu(bool hasSetting) const

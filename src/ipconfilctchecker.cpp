@@ -1,6 +1,7 @@
 ﻿#include "ipconfilctchecker.h"
 #include "networkdevicebase.h"
 #include "realize/netinterface.h"
+#include "networkdbusproxy.h"
 
 #include <QtMath>
 
@@ -14,7 +15,7 @@ using namespace dde::network;
 
 IPConfilctChecker::IPConfilctChecker(NetworkProcesser *networkProcesser, const bool ipChecked, QObject *parent)
     : QObject(parent)
-    , m_networkInter(new NetworkInter(networkService, networkPath, QDBusConnection::sessionBus(), this))
+    , m_networkInter(new NetworkDBusProxy(this))
     , m_networkProcesser(networkProcesser)
     , m_ipNeedCheck(ipChecked)
     , m_thread(new QThread(this))
@@ -22,7 +23,7 @@ IPConfilctChecker::IPConfilctChecker(NetworkProcesser *networkProcesser, const b
     this->moveToThread(m_thread);
 
     Q_ASSERT(m_networkProcesser);
-    connect(m_networkInter, &NetworkInter::IPConflict, this, &IPConfilctChecker::onIPConfilct);                      // IP冲突发出的信号
+    connect(m_networkInter, &NetworkDBusProxy::IPConflict, this, &IPConfilctChecker::onIPConfilct);                      // IP冲突发出的信号
     // 构造所有的设备冲突检测对象
     connect(m_networkProcesser, &NetworkProcesser::deviceAdded, this, &IPConfilctChecker::onDeviceAdded, Qt::QueuedConnection);
     m_thread->start();
@@ -61,13 +62,8 @@ void IPConfilctChecker::onIPConfilct(const QString &ip, const QString &macAddres
     PRINT_INFO_MESSAGE(QString("received:ip %1, macaddress %2").arg(ip).arg(macAddress));
     // 此处通过调用后台获取IP地址，如果直接使用当前网络库中设备的IP地址，就有如下问题
     // 如果是在控制中心修改手动IP的话，从当前库中获取到的IP地址就不是最新的地址，因此此处需要从后台获取实时IP
-    QDBusPendingCallWatcher *w = new QDBusPendingCallWatcher(m_networkInter->GetActiveConnectionInfo(), this);
-    connect(w, &QDBusPendingCallWatcher::finished, w, &QDBusPendingCallWatcher::deleteLater);
-    connect(w, &QDBusPendingCallWatcher::finished, this, [ = ](QDBusPendingCallWatcher * w) {
-        QDBusPendingReply<QString> reply = *w;
-        QString activeConnectionInfo = reply.value();
-        handlerIpConflict(ip, macAddress, activeConnectionInfo);
-    });
+    QString activeConnectionInfo =m_networkInter->GetActiveConnectionInfo();
+    handlerIpConflict(ip, macAddress, activeConnectionInfo);
 }
 
 void IPConfilctChecker::onSenderIPInfo(const QStringList &ips)
@@ -173,7 +169,7 @@ QMap<QString, NetworkDeviceBase *> IPConfilctChecker::parseDeviceIp(const QStrin
  * @param netInter
  * @param parent
  */
-DeviceIPChecker::DeviceIPChecker(NetworkDeviceBase *device, NetworkInter *netInter, QObject *parent)
+DeviceIPChecker::DeviceIPChecker(NetworkDeviceBase *device, NetworkDBusProxy *netInter, QObject *parent)
     : QObject(parent)
     , m_device(device)
     , m_networkInter(netInter)

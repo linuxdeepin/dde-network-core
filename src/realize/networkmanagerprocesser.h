@@ -33,6 +33,7 @@ namespace network {
 
 class NetworkDeviceBase;
 class IPConfilctChecker;
+class NetworkDBusProxy;
 
 class NetworkManagerProcesser : public NetworkProcesser
 {
@@ -54,7 +55,7 @@ protected:
 private:
     void initConnections();
     NetworkDeviceBase *findDevice(const QString devicePath);
-    NetworkInter *networkInter();
+    NetworkDBusProxy *networkInter();
     void sortDevice();
 
 private slots:
@@ -70,7 +71,7 @@ private:
     VPNController *m_vpnController;
     DSLController *m_dslController;
     HotspotController *m_hotspotController;
-    NetworkInter *m_networkInter;
+    NetworkDBusProxy *m_networkInter;
     dde::network::Connectivity m_connectivity;
     IPConfilctChecker *m_ipChecker;
 };

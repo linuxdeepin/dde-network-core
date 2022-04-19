@@ -21,6 +21,7 @@
 
 #include "hotspotcontroller.h"
 #include "wirelessdevice.h"
+#include "networkdbusproxy.h"
 
 #include <QDebug>
 
@@ -29,7 +30,7 @@
 using namespace dde::network;
 using namespace NetworkManager;
 
-HotspotController::HotspotController(NetworkInter *networkInter, QObject *parent)
+HotspotController::HotspotController(NetworkDBusProxy *networkInter, QObject *parent)
     : QObject(parent)
     , m_networkInter(networkInter)
 {
@@ -333,17 +334,11 @@ HotspotItem::HotspotItem(WirelessDevice *device)
     : ControllItems()
     , m_device(device)
     , m_devicePath(m_device->path())
-    , m_connectionStatus(ConnectionStatus::Unknown)
 {
 }
 
 HotspotItem::~HotspotItem()
 {
-}
-
-void HotspotItem::setConnectionStatus(const ConnectionStatus &status)
-{
-    m_connectionStatus = status;
 }
 
 QString HotspotItem::name() const
@@ -359,9 +354,4 @@ WirelessDevice *HotspotItem::device() const
 QString HotspotItem::devicePath() const
 {
     return m_devicePath;
-}
-
-ConnectionStatus HotspotItem::status() const
-{
-    return m_connectionStatus;
 }

@@ -12,6 +12,7 @@ namespace network {
 class NetworkDeviceBase;
 class NetworkProcesser;
 class DeviceIPChecker;
+class NetworkDBusProxy;
 
 class IPConfilctChecker : public QObject
 {
@@ -35,7 +36,7 @@ private:
     void clearUnExistDevice();
 
 private:
-    NetworkInter *m_networkInter;
+    NetworkDBusProxy *m_networkInter;
     NetworkProcesser *m_networkProcesser;
     QList<DeviceIPChecker *> m_deviceCheckers;
     bool m_ipNeedCheck;
@@ -51,7 +52,7 @@ Q_SIGNALS:
     void ipConflictCheck(const QStringList &);
 
 public:
-    explicit DeviceIPChecker(NetworkDeviceBase *device, NetworkInter *netInter, QObject *parent);
+    explicit DeviceIPChecker(NetworkDeviceBase *device, NetworkDBusProxy *netInter, QObject *parent);
     ~DeviceIPChecker();
     NetworkDeviceBase *device();
     void setDeviceInfo(const QStringList &ipv4, const QString &macAddress);
@@ -60,7 +61,7 @@ public:
 
 private:
     NetworkDeviceBase *m_device;
-    NetworkInter *m_networkInter;
+    NetworkDBusProxy *m_networkInter;
     QStringList m_ipV4;
     QString m_macAddress;
     int m_conflictCount;

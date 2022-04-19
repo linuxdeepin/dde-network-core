@@ -4,21 +4,23 @@ set(PLUGIN_NAME "dcc-network-plugin")
 
 project(${PLUGIN_NAME})
 
-# 启用 qt moc 的支持
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
-# 启用 qrc 资源文件的支持
 set(CMAKE_AUTORCC ON)
+set(CMAKE_CXX_FLAGS "-g -Wall")
+
+# 增加安全编译参数
+ADD_DEFINITIONS("-fstack-protector-strong -D_FORTITY_SOURCE=1 -z noexecstack -pie -fPIC -z lazy")
 
 # 指定所有源码文件
 file(GLOB_RECURSE SRCS "*.h"
     "*.cpp"
-    "icons/*"
     "../src/*.h"
     "../src/*.cpp"
-    "icons/dcc-network-plugin.qrc"
-    "translations/translations.qrc"
-    "icons/actions/*.svg"
-    "icons/icons/*.svg")
+    "*.qrc"
+    "*.svg"
+)
 
 # 指定要用到的库
 find_package(Qt5 COMPONENTS Core Widgets DBus Network LinguistTools REQUIRED)
@@ -28,8 +30,6 @@ find_package(DtkWidget REQUIRED)
 find_package(KF5NetworkManagerQt REQUIRED)
 
 #pkg_check_modules(DDE-Network-Core REQUIRED dde-network-core)
-pkg_check_modules(DFrameworkDBus REQUIRED dframeworkdbus)
-pkg_check_modules(QGSettings REQUIRED gsettings-qt)
 
 get_target_property(KF5_QT_INCLUDE_DIRS KF5::NetworkManagerQt INTERFACE_INCLUDE_DIRECTORIES)
 
@@ -58,11 +58,11 @@ add_library(${PLUGIN_NAME} SHARED ${SRCS})
 target_include_directories(${PLUGIN_NAME} PUBLIC
     ../src
     ../src/realize
+    window
+    operation
     ${Qt5Widgets_INCLUDE_DIRS}
     ${DtkWidget_INCLUDE_DIRS}
     ${DdeControlCenter_INCLUDE_DIR}
-    ${DFrameworkDBus_INCLUDE_DIRS}
-    ${QGSettings_INCLUDE_DIRS}
     ${Qt5DBus_INCLUDE_DIRS}
     ${KF5_QT_INCLUDE_DIRS}
     ${Qt5Network_INCLUDE_DIRS}
@@ -76,11 +76,10 @@ target_link_libraries(${PLUGIN_NAME} PRIVATE
     ${Qt5Widgets_LIBRARIES}
     ${DtkWidget_LIBRARIES}
     ${DdeControlCenter_LIBRARIES}
-    ${DFrameworkDBus_LIBRARIES}
-    ${QGSettings_LIBRARIES}
     ${Qt5DBus_LIBRARIES}
     ${KF5_QT_LIBRARIES}
     ${Qt5Network_LIBRARIES}
+    ${DCC_WIDGETS_LIBRARIES}
 #    ${DDE-Network-Core_LIBRARIES}
 )
 

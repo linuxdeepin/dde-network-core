@@ -33,25 +33,18 @@
 #include <QTimer>
 #include <QDebug>
 #include <QScreen>
-#include <QDBusContext>
 #include <QDateTime>
 #include <QGSettings>
 #include <QDesktopWidget>
+#include <QPointer>
+#include <QFile>
+#include <QDir>
+#include <QPropertyAnimation>
 
 #include <algorithm>
 
-#include <com_deepin_daemon_display.h>
-#include <com_deepin_daemon_display_monitor.h>
-
-using DisplayInter = com::deepin::daemon::Display;
-using MonitorInter = com::deepin::daemon::display::Monitor;
-
 BubbleManager::BubbleManager(QObject *parent)
     : QObject(parent)
-    , m_gestureInter(new GestureInter("com.deepin.daemon.Gesture"
-                                      , "/com/deepin/daemon/Gesture"
-                                      , QDBusConnection::systemBus()
-                                      , this))
     , m_trickTimer(new QTimer(this))
 {
     m_trickTimer->setInterval(300);
@@ -70,11 +63,6 @@ BubbleManager::~BubbleManager()
 
 void BubbleManager::CloseNotification(uint id)
 {
-#if defined (QT_DEBUG) && !defined (GTEST)
-    QDBusReply<uint> reply = connection().interface()->servicePid(message().service());
-    qDebug() << "PID:" << reply.value();//关闭通知的进程
-#endif
-
     QString str_id = QString::number(id);
     foreach (auto bubble, m_bubbleList) {
         if (bubble->entity()->replacesId() == str_id) {

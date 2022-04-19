@@ -31,12 +31,12 @@
 #include <DListView>
 #include <DStyledItemDelegate>
 
-#include <com_deepin_daemon_airplanemode.h>
 
 namespace dde {
   namespace network {
     enum class DeviceType;
     class NetworkDeviceBase;
+    class NetworkDBusProxy;
   }
 }
 
@@ -45,7 +45,6 @@ class QStandardItemModel;
 class QTimer;
 class QScrollArea;
 
-using DBusAirplaneMode = com::deepin::daemon::AirplaneMode;
 using namespace dde::network;
 
 DGUI_USE_NAMESPACE
@@ -107,7 +106,7 @@ private:
     QSet<QString> m_wirelessDevicePath;
     QString m_reconnectDev;
     QString m_reconnectSsid;
-    DBusAirplaneMode *m_airplaneMode;
+    NetworkDBusProxy *m_airplaneMode;
     QTimer *m_updateTimer;
 };
 
@@ -118,7 +117,7 @@ class NetworkDelegate : public DStyledItemDelegate
 public:
     explicit NetworkDelegate(QAbstractItemView *parent = Q_NULLPTR);
     ~NetworkDelegate() Q_DECL_OVERRIDE;
-    void setDBusAirplaneMode(DBusAirplaneMode *airplane);
+    void setDBusAirplaneMode(NetworkDBusProxy *airplane);
 
 Q_SIGNALS:
     void refreshClicked(const QModelIndex &);
@@ -152,7 +151,7 @@ private:
     QTimer *m_refreshIconTimer;
     mutable double m_currentDegree;
     QTimer *m_refreshTimer;
-    DBusAirplaneMode *m_airplaneMode;
+    NetworkDBusProxy *m_airplaneMode;
     mutable QList<QModelIndex> m_ConnectioningIndexs;
     mutable QMap<QModelIndex, int> m_refreshAngle;
 };

@@ -27,6 +27,7 @@
 #include "proxycontroller.h"
 #include "vpncontroller.h"
 #include "ipconfilctchecker.h"
+#include "networkdbusproxy.h"
 
 #include <networkmanagerqt/wireddevice.h>
 #include <networkmanagerqt/wirelessdevice.h>
@@ -313,10 +314,10 @@ NetworkDeviceBase *NetworkManagerProcesser::findDevice(const QString devicePath)
     return Q_NULLPTR;
 }
 
-NetworkInter *NetworkManagerProcesser::networkInter()
+NetworkDBusProxy *NetworkManagerProcesser::networkInter()
 {
     if (!m_networkInter)
-        m_networkInter = new NetworkInter(networkService, networkPath, QDBusConnection::sessionBus(), this);
+        m_networkInter = new NetworkDBusProxy(this);
 
     return m_networkInter;
 }

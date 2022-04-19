@@ -30,6 +30,7 @@
 #include <QTimer>
 #include <QProcess>
 #include <QFile>
+#include <QTranslator>
 
 #include <networkcontroller.h>
 

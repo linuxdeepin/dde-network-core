@@ -6,8 +6,6 @@
 #include <QDebug>
 #include <QJsonObject>
 
-#include "com_deepin_daemon_network.h"
-#include "com_deepin_daemon_network_proxychains.h"
 
 namespace dde {
 namespace network {
@@ -27,8 +25,6 @@ namespace network {
 // wifi6的标记
 #define AP_FLAGS_HE 0x10
 
-using NetworkInter = com::deepin::daemon::Network;
-using ProxyChains = com::deepin::daemon::network::ProxyChains;
 
 Connectivity connectivityValue(uint sourceConnectivity);
 DeviceStatus convertDeviceStatus(int sourceDeviceStatus);

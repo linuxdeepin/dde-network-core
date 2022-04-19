@@ -32,9 +32,6 @@
 #include "realize/networkmanagerprocesser.h"
 #include "realize/networkinterprocesser.h"
 
-const static QString networkService = "com.deepin.daemon.Network";
-const static QString networkPath = "/com/deepin/daemon/Network";
-
 using namespace dde::network;
 
 // 默认是异步方式

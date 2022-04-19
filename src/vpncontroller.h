@@ -30,7 +30,7 @@
 namespace dde {
 
 namespace network {
-
+class NetworkDBusProxy;
 class VPNItem;
 
 class VPNController : public QObject
@@ -56,7 +56,7 @@ Q_SIGNALS:
     void activeConnectionChanged();                                                              // 活动连接发生变化的时候发出的信号
 
 protected:
-    explicit VPNController(NetworkInter *networkInter, QObject *parent = Q_NULLPTR);
+    explicit VPNController(NetworkDBusProxy *networkInter, QObject *parent = Q_NULLPTR);
     ~VPNController();
 
     void updateVPNItems(const QJsonArray &vpnArrays);
@@ -70,7 +70,7 @@ private Q_SLOTS:
     void onEnableChanged(const bool enabled);
 
 private:
-    NetworkInter *m_networkInter;
+    NetworkDBusProxy *m_networkInter;
     bool m_enabled;
     QList<VPNItem *> m_vpnItems;
     QString m_activePath;
@@ -80,17 +80,9 @@ class VPNItem : public ControllItems
 {
     friend class VPNController;
 
-public:
-    ConnectionStatus status() const;                                              // 当前连接的连接状态
-
 protected:
     VPNItem();
     ~VPNItem();
-
-    void setConnectionStatus(ConnectionStatus status);
-
-private:
-    ConnectionStatus m_connectionStatus;
 };
 
 }

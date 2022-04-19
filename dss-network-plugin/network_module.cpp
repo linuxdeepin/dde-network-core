@@ -33,8 +33,6 @@
 #include <networkcontroller.h>
 #include <networkdevicebase.h>
 
-#include <com_deepin_daemon_accounts_user.h>
-
 #include <NetworkManagerQt/WirelessDevice>
 #include <NetworkManagerQt/WiredDevice>
 #include <NetworkManagerQt/Settings>
@@ -175,8 +173,8 @@ void NetworkModule::onUserChanged(QString json)
     if (!doc.isObject())
         return;
     int uid = doc.object().value("Uid").toInt();
-    com::deepin::daemon::accounts::User user("com.deepin.daemon.Accounts", QString("/com/deepin/daemon/Accounts/User%1").arg(uid), QDBusConnection::systemBus());
-    installTranslator(user.locale().split(".").first());
+    QDBusInterface user("com.deepin.daemon.Accounts", QString("/com/deepin/daemon/Accounts/User%1").arg(uid), "com.deepin.daemon.Accounts.User", QDBusConnection::systemBus());
+    installTranslator(user.property("Locale").toString().split(".").first());
 }
 
 void NetworkModule::installTranslator(QString locale)

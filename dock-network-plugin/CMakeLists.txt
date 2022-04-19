@@ -18,7 +18,6 @@ find_package(DtkWidget REQUIRED)
 find_package(DdeDock REQUIRED)
 find_package(KF5NetworkManagerQt REQUIRED)
 
-pkg_check_modules(DFrameworkDBus REQUIRED dframeworkdbus)
 pkg_check_modules(QGSettings REQUIRED gsettings-qt)
 pkg_check_modules(DDE-Dock REQUIRED dde-dock)
 
@@ -47,7 +46,6 @@ target_include_directories(${PLUGIN_NAME} PUBLIC
     ${NETWORKINTERFACE}
     ${DtkWidget_INCLUDE_DIRS}
     ${Qt5DBus_INCLUDE_DIRS}
-    ${DFrameworkDBus_INCLUDE_DIRS}
     ${QGSettings_INCLUDE_DIRS}
     #${DDE-Network-Core_INCLUDE_DIRS}
     ${DDE_DOCK_INCLUDE_DIR}
@@ -63,7 +61,6 @@ target_link_libraries(${PLUGIN_NAME} PRIVATE
     ${Qt5DBus_LIBRARIES}
     ${QGSettings_LIBRARIES}
     #${DDE-Network-Core_LIBRARIES}
-    ${DFrameworkDBus_LIBRARIES}
     ${KF5_QT_LIBRARIES}
     ${Qt5Network_LIBRARIES}
 )

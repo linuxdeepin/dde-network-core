@@ -50,6 +50,7 @@ void Connection::updateConnection(const QJsonObject &data)
 // 连接具体项的基类
 ControllItems::ControllItems()
     : m_connection(new Connection)
+    , m_status(ConnectionStatus::Unknown)
 {
 }
 
@@ -76,6 +77,21 @@ void ControllItems::setConnection(const QJsonObject &jsonObj)
 void ControllItems::setActiveConnection(const QString &activeConnection)
 {
     m_activeConnection = activeConnection;
+}
+
+ConnectionStatus ControllItems::status() const
+{
+    return m_status;
+}
+
+bool ControllItems::connected() const
+{
+    return (status() == ConnectionStatus::Activated);
+}
+
+void ControllItems::setConnectionStatus(const ConnectionStatus &status)
+{
+    m_status = status;
 }
 
 }

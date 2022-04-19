@@ -21,13 +21,14 @@
 
 #include "dslcontroller.h"
 #include "networkdevicebase.h"
+#include "networkdbusproxy.h"
 
 #include <networkmanagerqt/manager.h>
 
 using namespace dde::network;
 using namespace NetworkManager;
 
-DSLController::DSLController(NetworkInter *networkInter, QObject *parent)
+DSLController::DSLController(NetworkDBusProxy *networkInter, QObject *parent)
     : QObject(parent)
     , m_networkInter(networkInter)
 {
@@ -185,7 +186,6 @@ DSLItem *DSLController::findDSLItemByUuid(const QString &uuid)
  */
 DSLItem::DSLItem()
     : ControllItems()
-    , m_connectStatus(ConnectionStatus::Unknown)
 {
 }
 
@@ -193,12 +193,3 @@ DSLItem::~DSLItem()
 {
 }
 
-void DSLItem::setConnectionStatus(ConnectionStatus connectStatus)
-{
-    m_connectStatus = connectStatus;
-}
-
-ConnectionStatus DSLItem::status() const
-{
-    return m_connectStatus;
-}

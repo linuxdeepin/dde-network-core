@@ -30,9 +30,6 @@
 #include <DBlurEffectWidget>
 
 #include <memory>
-#include <com_deepin_sessionmanager.h>
-
-using UserInter = com::deepin::SessionManager;
 
 DWIDGET_USE_NAMESPACE
 

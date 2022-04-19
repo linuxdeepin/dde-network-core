@@ -27,6 +27,8 @@
 
 #include <QJsonArray>
 
+class QTimer;
+
 namespace dde {
 namespace network {
 
@@ -37,6 +39,7 @@ class DSLController;
 class HotspotController;
 class NetworkDetails;
 class IPConfilctChecker;
+class NetworkDBusProxy;
 
 class NetworkInterProcesser : public NetworkProcesser
 {
@@ -52,7 +55,7 @@ protected:
 
     void initDeviceService();
     void initConnection();
-    void initNetData(NetworkInter *networkInt);                                    // 填充基本数据
+    void initNetData(NetworkDBusProxy *networkInt);                                // 填充基本数据
 
     void updateSync(const bool sync);
 
@@ -95,7 +98,7 @@ private:
     DSLController *m_dslController;
     HotspotController *m_hotspotController;
     QList<NetworkDeviceBase *> m_devices;
-    NetworkInter *m_networkInter;
+    NetworkDBusProxy *m_networkInter;
     QJsonObject m_connections;
     Connectivity m_connectivity;
     QJsonArray m_activeConnectionInfo;

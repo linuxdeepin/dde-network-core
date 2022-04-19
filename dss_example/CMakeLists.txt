@@ -70,7 +70,6 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     ${Qt5Core_INCLUDE_DIRS}
     ${Qt5DBus_INCLUDE_DIRS}
     ${Qt5Widget_INCLUDE_DIRS}
-    ${DFrameworkDBus_INCLUDE_DIRS}
     ${QGSettings_INCLUDE_DIRS}
     ${LibNM_INCLUDE_DIRS}
     ${Qt5Network_INCLUDE_DIRS}
@@ -84,7 +83,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     ${Qt5Widgets_LIBRARIES}
     ${LibNM_LIBRARIES}
     ${Qt5Svg_LIBRARIES}
-    ${DFrameworkDBus_LIBRARIES}
     ${Qt5DBus_LIBRARIES}
     ${Qt5Network_LIBRARIES}
     ${QGSettings_LIBRARIES}

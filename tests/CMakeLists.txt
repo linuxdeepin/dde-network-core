@@ -45,7 +45,6 @@ aux_source_directory(../src/realize REALIZEDIR)
 add_executable(${PROJECT_NAME} ${FILES} ${NETWORKDIR} ${REALIZEDIR})
 
 target_include_directories(${PROJECT_NAME} PUBLIC
-    ${DFrameworkDBus_INCLUDE_DIRS}
     ${QGSettings_INCLUDE_DIRS}
     ${LibNM_INCLUDE_DIRS}
     ${Qt5Network_INCLUDE_DIRS}
@@ -58,7 +57,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     ${Qt5Widgets_LIBRARIES}
     ${LibNM_LIBRARIES}
     ${Qt5Network_LIBRARIES}
-    ${DFrameworkDBus_LIBRARIES}
     ${Qt5DBus_LIBRARIES}
     ${Qt5Test_LIBRARIES}
     ${Qt5Network_LIBRARIES}
