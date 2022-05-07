@@ -31,6 +31,8 @@
 
 #include <QLayout>
 #include <QMap>
+#include <QEvent>
+#include <QTimer>
 
 #include <networkcontroller.h>
 #include <networkdevicebase.h>

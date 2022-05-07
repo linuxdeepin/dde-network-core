@@ -33,13 +33,14 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     realize
     ${Qt5DBus_INCLUDE_DIRS}
     ${QGSettings_INCLUDE_DIRS}
-    ${LibNM_INCLUDE_DIRS}
+    #${LibNM_INCLUDE_DIRS}
     ${Qt5Network_INCLUDE_DIRS}
-    ${KF5_QT_INCLUDE_DIRS})
+    ${KF5_QT_INCLUDE_DIRS}
+    ${NETINTERFACEINCLUDE})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     ${Qt5Core_LIBRARIES}
-    ${LibNM_LIBRARIES}
+    #${LibNM_LIBRARIES}
     ${Qt5DBus_LIBRARIES}
     ${Qt5Network_LIBRARIES}
     ${QGSettings_LIBRARIES}

@@ -11,6 +11,7 @@ find_package(Qt5 COMPONENTS Core DBus Network REQUIRED)
 find_package(GTest REQUIRED)
 find_package(KF5NetworkManagerQt REQUIRED)
 find_package(Qt5Widgets REQUIRED)
+find_package(PkgConfig REQUIRED)
 
 get_target_property(KF5_QT_INCLUDE_DIRS KF5::NetworkManagerQt INTERFACE_INCLUDE_DIRECTORIES)
 
@@ -46,16 +47,17 @@ add_executable(${PROJECT_NAME} ${FILES} ${NETWORKDIR} ${REALIZEDIR})
 
 target_include_directories(${PROJECT_NAME} PUBLIC
     ${QGSettings_INCLUDE_DIRS}
-    ${LibNM_INCLUDE_DIRS}
+    #${LibNM_INCLUDE_DIRS}
     ${Qt5Network_INCLUDE_DIRS}
     ${Qt5Widget_INCLUDE_DIRS}
     ${KF5_QT_INCLUDE_DIRS}
+    ${NETINTERFACEINCLUDE}
     ../src)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     ${Qt5Core_LIBRARIES}
     ${Qt5Widgets_LIBRARIES}
-    ${LibNM_LIBRARIES}
+    #${LibNM_LIBRARIES}
     ${Qt5Network_LIBRARIES}
     ${Qt5DBus_LIBRARIES}
     ${Qt5Test_LIBRARIES}

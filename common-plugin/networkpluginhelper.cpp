@@ -32,6 +32,7 @@
 #include <QTimer>
 #include <QVBoxLayout>
 #include <QAction>
+#include <QJsonDocument>
 
 #include <networkcontroller.h>
 #include <networkdevicebase.h>

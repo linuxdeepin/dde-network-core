@@ -24,6 +24,8 @@
 #include "wireddevice.h"
 #include "wirelessdevice.h"
 
+#include <QJsonArray>
+
 #include <networkmanagerqt/settings.h>
 #include <networkmanagerqt/connection.h>
 #include <networkmanagerqt/connectionsettings.h>

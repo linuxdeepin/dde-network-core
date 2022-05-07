@@ -70,7 +70,7 @@ SecretWirelessSection::SecretWirelessSection(WirelessSecuritySetting::Ptr wsSeti
             }
         }
     } else if (m_currentKeyMgmt == WirelessSecuritySetting::KeyMgmt::WpaPsk ||
-               m_currentKeyMgmt == NetworkManager::WirelessSecuritySetting::KeyMgmt::WpaSae) {
+               m_currentKeyMgmt == NetworkManager::WirelessSecuritySetting::KeyMgmt::SAE) {
         NetworkManager::Setting::SecretFlags passwordFlags = m_wsSetting->pskFlags();
         QString strKey = m_wsSetting->psk();
         for (auto it = PasswordFlagsStrMap.cbegin(); it != PasswordFlagsStrMap.cend(); ++it) {
@@ -109,7 +109,7 @@ bool SecretWirelessSection::allInputValid()
     }
 
     if (m_currentKeyMgmt == WirelessSecuritySetting::KeyMgmt::WpaPsk ||
-            m_currentKeyMgmt == NetworkManager::WirelessSecuritySetting::KeyMgmt::WpaSae) {
+            m_currentKeyMgmt == NetworkManager::WirelessSecuritySetting::KeyMgmt::SAE) {
         if (m_currentPasswordType != Setting::NotSaved) {
             valid = wpaPskIsValid(m_passwdEdit->text());
             m_passwdEdit->setIsErr(!valid);
@@ -141,7 +141,7 @@ void SecretWirelessSection::saveSettings()
         m_wsSetting->setPskFlags(Setting::NotRequired);
         m_wsSetting->setAuthAlg(m_currentAuthAlg);
     } else if (m_currentKeyMgmt == WirelessSecuritySetting::KeyMgmt::WpaPsk ||
-               m_currentKeyMgmt == NetworkManager::WirelessSecuritySetting::KeyMgmt::WpaSae) {
+               m_currentKeyMgmt == NetworkManager::WirelessSecuritySetting::KeyMgmt::SAE) {
         m_wsSetting->setPskFlags(m_currentPasswordType);
         if (m_currentPasswordType != Setting::NotSaved)
             m_wsSetting->setPsk(m_passwdEdit->text());
@@ -166,7 +166,7 @@ void SecretWirelessSection::initStrMaps()
         { tr("WEP"), WirelessSecuritySetting::KeyMgmt::Wep },
         { tr("WPA/WPA2 Personal"), WirelessSecuritySetting::KeyMgmt::WpaPsk },
         { tr("WPA/WPA2 Enterprise"), WirelessSecuritySetting::KeyMgmt::WpaEap },
-        { tr("WPA3 Personal"), NetworkManager::WirelessSecuritySetting::KeyMgmt::WpaSae }
+        { tr("WPA3 Personal"), NetworkManager::WirelessSecuritySetting::KeyMgmt::SAE }
     };
 
     AuthAlgStrMap = {
@@ -252,7 +252,7 @@ void SecretWirelessSection::initConnection()
             break;
         }
         case WirelessSecuritySetting::KeyMgmt::WpaPsk:
-        case WirelessSecuritySetting::KeyMgmt::WpaSae:{
+        case WirelessSecuritySetting::KeyMgmt::SAE:{
             m_passwdEdit->setText(m_wsSetting->psk());
             m_passwdEdit->setTitle(tr("Password"));
             m_passwdEdit->setVisible(enabled);
@@ -312,7 +312,7 @@ void SecretWirelessSection::onKeyMgmtChanged(WirelessSecuritySetting::KeyMgmt ke
         m_authAlgChooser->setVisible(false);
         break;
     }
-    case WirelessSecuritySetting::KeyMgmt::WpaSae: {
+    case WirelessSecuritySetting::KeyMgmt::SAE: {
         if (m_currentPasswordType != NetworkManager::Setting::NotSaved) {
             m_passwdEdit->setText(m_wsSetting->psk());
             m_passwdEdit->setTitle(tr("Password"));

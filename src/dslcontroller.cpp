@@ -23,6 +23,8 @@
 #include "networkdevicebase.h"
 #include "networkdbusproxy.h"
 
+#include <QJsonArray>
+
 #include <networkmanagerqt/manager.h>
 
 using namespace dde::network;
@@ -95,8 +97,6 @@ void DSLController::updateDSLItems(const QJsonArray &dsljson)
         item->setConnection(dsl);
         paths << path;
     }
-
-    PRINT_DEBUG_MESSAGE(QString("change DSL size: %1, new DSL size: %2, remove DSL size: %3").arg(changeItems.size()).arg(newItems.size()));
 
     // 如果ID发生变化的数量大于0，则向外抛出连接变化的信号
     if (changeItems.size())

@@ -30,6 +30,8 @@
 #include <QPushButton>
 #include <QScrollArea>
 #include <QVBoxLayout>
+#include <QDBusMetaType>
+#include <QEvent>
 
 #include <interface/namespace.h>
 #include <widgets/buttontuple.h>

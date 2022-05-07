@@ -34,6 +34,9 @@
 #include <QApplication>
 #include <QFileDialog>
 #include <DDialog>
+#include <QStandardPaths>
+#include <QProcess>
+#include <QTimer>
 
 #include <networkcontroller.h>
 #include <vpncontroller.h>

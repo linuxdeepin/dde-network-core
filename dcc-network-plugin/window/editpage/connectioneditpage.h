@@ -40,6 +40,8 @@ class ButtonTuple;
 DCC_END_NAMESPACE
 
 class QPushButton;
+class QEvent;
+
 class QVBoxLayout;
 
 class ConnectionEditPage : public QDialog

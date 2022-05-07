@@ -27,6 +27,8 @@
 
 #include <QWidget>
 #include <QTime>
+#include <QDBusConnection>
+#include <QDBusInterface>
 
 #include <DArrowRectangle>
 

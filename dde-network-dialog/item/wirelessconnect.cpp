@@ -19,8 +19,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "wirelessconnect.h"
+#include "wirelessdevice.h"
 
-#include <wirelessdevice.h>
+#include <QDBusMetaType>
 
 #include <NetworkManagerQt/AccessPoint>
 #include <NetworkManagerQt/Settings>
@@ -94,8 +95,8 @@ WirelessSecuritySetting::KeyMgmt WirelessConnect::getKeyMgmtByAp(dde::network::A
     }
 
     // 判断是否是wpa3加密的，因为wpa3加密方式，实际上是wpa2的扩展，所以其中会包含KeyMgmtPsk枚举值
-    if (wpaFlags.testFlag(NetworkManager::AccessPoint::WpaFlag::keyMgmtSae) || rsnFlags.testFlag(NetworkManager::AccessPoint::WpaFlag::keyMgmtSae)) {
-        keyMgmt = NetworkManager::WirelessSecuritySetting::KeyMgmt::WpaSae;
+    if (wpaFlags.testFlag(NetworkManager::AccessPoint::WpaFlag::KeyMgmtSAE) || rsnFlags.testFlag(NetworkManager::AccessPoint::WpaFlag::KeyMgmtSAE)) {
+        keyMgmt = NetworkManager::WirelessSecuritySetting::KeyMgmt::SAE;
     }
 
     if (wpaFlags.testFlag(AccessPoint::WpaFlag::KeyMgmt8021x) || rsnFlags.testFlag(AccessPoint::WpaFlag::KeyMgmt8021x)) {
@@ -169,7 +170,7 @@ void WirelessConnect::initConnection()
                 if (keyMgmt == WirelessSecuritySetting::KeyMgmt::Wep) {
                     wsSetting->setWepKeyFlags(Setting::None);
                 } else if (keyMgmt == WirelessSecuritySetting::KeyMgmt::WpaPsk
-                           || keyMgmt == WirelessSecuritySetting::KeyMgmt::WpaSae) {
+                           || keyMgmt == WirelessSecuritySetting::KeyMgmt::SAE) {
                     wsSetting->setPskFlags(Setting::None);
                 }
                 wsSetting->setInitialized(true);
@@ -191,7 +192,7 @@ void WirelessConnect::setPassword(const QString &password)
     if (keyMgmt == WirelessSecuritySetting::KeyMgmt::Wep) {
         wsSetting->setWepKey0(password);
     } else if (keyMgmt == WirelessSecuritySetting::KeyMgmt::WpaPsk
-               || keyMgmt == WirelessSecuritySetting::KeyMgmt::WpaSae) {
+               || keyMgmt == WirelessSecuritySetting::KeyMgmt::SAE) {
         wsSetting->setPsk(password);
     }
     wsSetting->setInitialized(true);

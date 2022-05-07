@@ -6,6 +6,8 @@
 
 #include "networkconst.h"
 
+class QThread;
+
 namespace dde {
 namespace network {
 

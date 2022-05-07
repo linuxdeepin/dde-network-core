@@ -3,15 +3,10 @@
 
 #include "networkconst.h"
 
-#include <QDebug>
 #include <QJsonObject>
-
 
 namespace dde {
 namespace network {
-
-#define PRINT_INFO_MESSAGE(msg) qInfo() << __FILE__ << "line:" << __LINE__ << "function:" << __FUNCTION__ << "Message:" << msg
-#define PRINT_DEBUG_MESSAGE(msg) qDebug() << __FILE__ << "line:" << __LINE__ << "function:" << __FUNCTION__ << "Message:" << msg
 
 // an alias for numeric zero, no flags set.
 #define DEVICE_INTERFACE_FLAG_NONE 0
@@ -25,11 +20,9 @@ namespace network {
 // wifi6的标记
 #define AP_FLAGS_HE 0x10
 
-
 Connectivity connectivityValue(uint sourceConnectivity);
 DeviceStatus convertDeviceStatus(int sourceDeviceStatus);
 ConnectionStatus convertConnectionStatus(int sourceConnectionStatus);
-
 
 }
 }

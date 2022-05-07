@@ -36,6 +36,9 @@
 #include <wireddevice.h>
 #include <wirelessdevice.h>
 
+#include <QDBusConnection>
+#include <QDBusObjectPath>
+
 using namespace dde::network;
 using namespace NetworkManager;
 

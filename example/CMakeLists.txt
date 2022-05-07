@@ -8,6 +8,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 find_package(DdeControlCenter REQUIRED)
+find_package(PkgConfig REQUIRED)
 
 aux_source_directory(../dcc-network-plugin DCCPLUGINDIR)
 aux_source_directory(../dcc-network-plugin/window DCCPLUGINWINDOWDIR)
@@ -85,9 +86,10 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     ${Qt5Widget_INCLUDE_DIRS}
     Qt5::Concurrent
     ${QGSettings_INCLUDE_DIRS}
-    ${LibNM_INCLUDE_DIRS}
+    #${LibNM_INCLUDE_DIRS}
     ${Qt5Network_INCLUDE_DIRS}
-    ${KF5_QT_INCLUDE_DIRS})
+    ${KF5_QT_INCLUDE_DIRS}
+    ${NETINTERFACEINCLUDE})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     ${DdeControlCenter_LIBRARIES}
@@ -97,7 +99,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     ${Qt5Core_LIBRARIES}
     ${Qt5Widgets_LIBRARIES}
     Qt5::Concurrent
-    ${LibNM_LIBRARIES}
+    #${LibNM_LIBRARIES}
     ${Qt5DBus_LIBRARIES}
     ${Qt5Network_LIBRARIES}
     ${QGSettings_LIBRARIES}

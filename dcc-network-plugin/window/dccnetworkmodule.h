@@ -31,6 +31,8 @@ class NetworkDeviceBase;
 }
 }
 
+class QEvent;
+
 class NetworkModule : public DCC_NAMESPACE::ModuleObject
 {
     Q_OBJECT
@@ -52,7 +54,6 @@ private:
     QList<DCC_NAMESPACE::ModuleObject *> m_wiredModules;
     QList<DCC_NAMESPACE::ModuleObject *> m_wirelessModules;
     QMap<dde::network::NetworkDeviceBase *, DCC_NAMESPACE::ModuleObject *> m_deviceMap;
-//    QTimer *m_timer;
 };
 
 class DccNetworkPlugin : public DCC_NAMESPACE::PluginInterface

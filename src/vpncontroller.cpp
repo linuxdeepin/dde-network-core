@@ -25,6 +25,8 @@
 
 #include "networkmanagerqt/manager.h"
 
+#include <QJsonArray>
+
 using namespace dde::network;
 using namespace NetworkManager;
 

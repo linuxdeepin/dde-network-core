@@ -24,6 +24,8 @@
 #include "networkdbusproxy.h"
 
 #include <QDebug>
+#include <QJsonArray>
+#include <QJsonObject>
 
 #include <networkmanagerqt/manager.h>
 
@@ -253,7 +255,6 @@ void HotspotController::updateDevices(const QList<NetworkDeviceBase *> &devices)
 
 void HotspotController::updateConnections(const QJsonArray &jsons)
 {
-    PRINT_INFO_MESSAGE(jsons);
     // 筛选出通用的(HwAddress为空)热点和指定HwAddress的热点
     QList<QJsonObject> commonConnections;
     QMap<QString, QList<QJsonObject>> deviceConnections;

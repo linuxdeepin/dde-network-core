@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.7)
 
 project(dde-network-core)
 
+set(NETINTERFACEINCLUDE "/usr/include/libnm;/usr/include/libmount;/usr/include/blkid;/usr/include/uuid;/usr/include/glib-2.0;/usr/lib/${CMAKE_LIBRARY_ARCHITECTURE}/glib-2.0/include")
+
 # 增加安全编译参数
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fstack-protector-all")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fstack-protector-all")

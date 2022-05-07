@@ -46,6 +46,7 @@ target_include_directories(${TARGET_NAME} PUBLIC
     #${DDE-Network-Core_INCLUDE_DIRS}
     ${Qt5Network_INCLUDE_DIRS}
     ${KF5_QT_INCLUDE_DIRS}
+    ${NETINTERFACEINCLUDE}
 )
 
 target_link_libraries(${TARGET_NAME} PRIVATE

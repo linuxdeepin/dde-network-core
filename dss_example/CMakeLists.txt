@@ -15,6 +15,7 @@ find_package(KF5NetworkManagerQt REQUIRED)
 find_package(DtkWidget REQUIRED)
 find_package(DdeDock REQUIRED)
 find_package(DdeSessionShell REQUIRED)
+find_package(PkgConfig REQUIRED)
 
 aux_source_directory(../dss-network-plugin DSSPLUGINTHEMES)
 aux_source_directory(../dss-network-plugin/notification DSSPLUGINNOTIFICATION)
@@ -71,9 +72,10 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     ${Qt5DBus_INCLUDE_DIRS}
     ${Qt5Widget_INCLUDE_DIRS}
     ${QGSettings_INCLUDE_DIRS}
-    ${LibNM_INCLUDE_DIRS}
+    #${LibNM_INCLUDE_DIRS}
     ${Qt5Network_INCLUDE_DIRS}
-    ${KF5_QT_INCLUDE_DIRS})
+    ${KF5_QT_INCLUDE_DIRS}
+    ${NETINTERFACEINCLUDE})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     ${DdeControlCenter_LIBRARIES}
@@ -81,7 +83,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     ${DtkWidget_LIBRARIES}
     ${Qt5Core_LIBRARIES}
     ${Qt5Widgets_LIBRARIES}
-    ${LibNM_LIBRARIES}
+    #${LibNM_LIBRARIES}
     ${Qt5Svg_LIBRARIES}
     ${Qt5DBus_LIBRARIES}
     ${Qt5Network_LIBRARIES}

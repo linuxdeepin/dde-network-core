@@ -28,7 +28,6 @@ find_package(DdeControlCenter REQUIRED)
 find_package(PkgConfig REQUIRED)
 find_package(DtkWidget REQUIRED)
 find_package(KF5NetworkManagerQt REQUIRED)
-
 #pkg_check_modules(DDE-Network-Core REQUIRED dde-network-core)
 
 get_target_property(KF5_QT_INCLUDE_DIRS KF5::NetworkManagerQt INTERFACE_INCLUDE_DIRECTORIES)
@@ -66,9 +65,9 @@ target_include_directories(${PLUGIN_NAME} PUBLIC
     ${Qt5DBus_INCLUDE_DIRS}
     ${KF5_QT_INCLUDE_DIRS}
     ${Qt5Network_INCLUDE_DIRS}
+    ${NETINTERFACEINCLUDE}
 #    ${DDE-Network-Core_INCLUDE_DIRS}
 )
-
 # 设置目标要使用的链接库
 # 变量 ${DtkWidget_LIBRARIES} 和 ${Qt5Widgets_LIBRARIES} 是在前面执行 find_package 命令时引入的
 # 当出现运行时错误提示某些符号没有定义时应该检查此处是否将所有用的库都写在了这里
