@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (C) 2011 ~ 2018 Deepin Technology Co., Ltd.
  *
  * Author:     sbw <sbw@sbw.so>
@@ -31,6 +31,7 @@
 #include <QAccessible>
 #include <QAccessibleEvent>
 #include <QString>
+#include <QPainterPath>
 
 #include <iostream>
 
