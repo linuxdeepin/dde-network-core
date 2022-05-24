@@ -105,6 +105,7 @@ public:
     QWidget *itemTipsWidget() const override;
     const QString itemContextMenu() const override;
     void invokedMenuItem(const QString &menuId, const bool checked) const override;
+    bool isNeedInitPlugin() const override { return true; }
 
 private:
     void initUI();
