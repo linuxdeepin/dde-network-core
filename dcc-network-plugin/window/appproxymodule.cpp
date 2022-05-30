@@ -46,7 +46,7 @@ const QStringList c_ProxyTypeList = {
 AppProxyModule::AppProxyModule(QObject *parent)
     : ModuleObject("applicationProxy", tr("Application Proxy"), tr("Application Proxy"), QIcon::fromTheme("dcc_app_proxy"), parent)
 {
-    setChildType(ModuleObject::ChildType::Page);
+    setChildType(ModuleObject::Page);
     deactive();
 
     appendChild(new WidgetModule<ComboxWidget>("app_proxy_type", tr("Proxy Type"), [this](ComboxWidget *proxyType) {
@@ -143,24 +143,20 @@ AppProxyModule::AppProxyModule(QObject *parent)
         tip->setAlignment(Qt::AlignLeft);
         tip->setMargin(8);
     }));
-}
-
-QWidget *AppProxyModule::extraButton()
-{
-    QWidget *w = new QWidget;
-    QHBoxLayout *layout = new QHBoxLayout(w);
-    m_btns = new ButtonTuple(ButtonTuple::Save, w);
-    m_btns->leftButton()->setText(tr("Cancel", "button"));
-    m_btns->rightButton()->setText(tr("Save", "button"));
-    m_btns->setEnabled(false);
-    connect(m_btns->leftButton(), &QPushButton::clicked, m_btns, [this]() {
+    ModuleObject *extra = new WidgetModule<ButtonTuple>("save", tr("Save", "button"), [this](ButtonTuple *btns) {
+        m_btns = btns;
+        m_btns->setButtonType(ButtonTuple::Save);
+        m_btns->leftButton()->setText(tr("Cancel", "button"));
+        m_btns->rightButton()->setText(tr("Save", "button"));
         m_btns->setEnabled(false);
-        emit resetData();
+        connect(m_btns->leftButton(), &QPushButton::clicked, m_btns, [this]() {
+            m_btns->setEnabled(false);
+            emit resetData();
+        });
+        connect(m_btns->rightButton(), &QPushButton::clicked, this, &AppProxyModule::onCheckValue);
     });
-    connect(m_btns->rightButton(), &QPushButton::clicked, this, &AppProxyModule::onCheckValue);
-    layout->setMargin(0);
-    layout->addWidget(m_btns, 0, Qt::AlignBottom);
-    return w;
+    extra->setExtra();
+    appendChild(extra);
 }
 
 void AppProxyModule::deactive()

@@ -48,7 +48,6 @@ class SysProxyModule : public DCC_NAMESPACE::ModuleObject
 public:
     explicit SysProxyModule(QObject *parent = nullptr);
 
-    virtual QWidget *extraButton() override;
     virtual void active() override;
     virtual void deactive() override;
 

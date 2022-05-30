@@ -53,7 +53,7 @@ SysProxyModule::SysProxyModule(QObject *parent)
     , m_ProxyMethodList({ tr("manual"), tr("auto") })
     , m_uiMethod(dde::network::ProxyMethod::Init)
 {
-    setChildType(ModuleObject::ChildType::Page);
+    setChildType(ModuleObject::Page);
     deactive();
     m_modules.append(new WidgetModule<SwitchWidget>("system_proxy", tr("System Proxy"), [this](SwitchWidget *proxySwitch) {
         m_proxySwitch = proxySwitch;
@@ -129,31 +129,26 @@ SysProxyModule::SysProxyModule(QObject *parent)
     }));
     m_modules.append(new WidgetModule<QWidget>("system_proxy_manual_group", QString(), this, &SysProxyModule::initManualView));
     m_modules.append(new WidgetModule<QWidget>); // 加个空的保证下面有弹簧
+    ModuleObject *extra = new WidgetModule<ButtonTuple>("save", tr("Save", "button"), [this](ButtonTuple *buttonTuple) {
+        m_buttonTuple = buttonTuple;
+        m_buttonTuple->leftButton()->setText(tr("Cancel", "button"));
+        m_buttonTuple->rightButton()->setText(tr("Save", "button"));
+        m_buttonTuple->setVisible(NetworkController::instance()->proxyController()->proxyMethod() != ProxyMethod::None);
+        m_buttonTuple->setEnabled(false);
+
+        connect(m_buttonTuple->rightButton(), &QPushButton::clicked, this, &SysProxyModule::applySettings);
+        connect(m_buttonTuple->leftButton(), &QPushButton::clicked, this, [this]() {
+            m_buttonTuple->setEnabled(false);
+            if (m_proxyTypeBox->comboBox()->currentIndex() == ProxyMethodIndex::Auto)
+                resetData(ProxyMethod::Auto);
+            else
+                resetData(ProxyMethod::Manual);
+        });
+    });
+    extra->setExtra();
+    m_modules.append(extra);
     NetworkController::instance()->proxyController()->querySysProxyData();
     uiMethodChanged(NetworkController::instance()->proxyController()->proxyMethod());
-}
-
-QWidget *SysProxyModule::extraButton()
-{
-    QWidget *w = new QWidget;
-    QHBoxLayout *layout = new QHBoxLayout(w);
-    m_buttonTuple = new ButtonTuple(ButtonTuple::Save, w);
-    m_buttonTuple->leftButton()->setText(tr("Cancel", "button"));
-    m_buttonTuple->rightButton()->setText(tr("Save", "button"));
-    m_buttonTuple->setVisible(NetworkController::instance()->proxyController()->proxyMethod() != ProxyMethod::None);
-    m_buttonTuple->setEnabled(false);
-
-    connect(m_buttonTuple->rightButton(), &QPushButton::clicked, this, &SysProxyModule::applySettings);
-    connect(m_buttonTuple->leftButton(), &QPushButton::clicked, this, [this]() {
-        m_buttonTuple->setEnabled(false);
-        if (m_proxyTypeBox->comboBox()->currentIndex() == ProxyMethodIndex::Auto)
-            resetData(ProxyMethod::Auto);
-        else
-            resetData(ProxyMethod::Manual);
-    });
-    layout->setMargin(0);
-    layout->addWidget(m_buttonTuple);
-    return w;
 }
 
 void SysProxyModule::active()

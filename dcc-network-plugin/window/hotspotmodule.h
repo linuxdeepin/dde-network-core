@@ -70,8 +70,6 @@ class HotspotModule : public DCC_NAMESPACE::ModuleObject
 public:
     explicit HotspotModule(QObject *parent = nullptr);
 
-    virtual QWidget *extraButton() override;
-
 Q_SIGNALS:
     void updateItemOnlyOne(bool visiable);
 

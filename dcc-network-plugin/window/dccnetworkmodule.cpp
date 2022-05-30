@@ -47,9 +47,9 @@ DCC_USE_NAMESPACE
 using namespace dde::network;
 
 NetworkModule::NetworkModule(QObject *parent)
-    : ModuleObject("Network", tr("Network"), tr("Network"), QIcon::fromTheme("dcc_nav_network"), parent)
+    : ModuleObject("network", tr("Network"), tr("Network"), QIcon::fromTheme("dcc_nav_network"), parent)
 {
-    setChildType(ModuleObject::ChildType::HList);
+    setChildType(ModuleObject::HList);
 }
 void NetworkModule::init()
 {
@@ -79,19 +79,23 @@ void NetworkModule::updateVisiable()
     int i = 1;
     bool emptyHotspot = NetworkController::instance()->hotspotController()->devices().isEmpty();
     for (ModuleObject *&module : m_wiredModules) {
-        module->moduleData()->DisplayName = tr("Wired %1").arg(i++);
+//        module->moduleData()->DisplayName = tr("Wired %1").arg(i++);
+        module->setDisplayName(tr("Wired %1").arg(i++));
         insertChild(row++, module);
     }
     if (m_wiredModules.size() == 1) {
-        m_wiredModules.first()->moduleData()->DisplayName = tr("Wired");
+//        m_wiredModules.first()->moduleData()->DisplayName = tr("Wired");
+        m_wiredModules.first()->setDisplayName(tr("Wired"));
     }
     i = 1;
     for (ModuleObject *&module : m_wirelessModules) {
-        module->moduleData()->DisplayName = tr("Wireless %1").arg(i++);
+//        module->moduleData()->DisplayName = tr("Wireless %1").arg(i++);
+        module->setDisplayName(tr("Wireless %1").arg(i++));
         insertChild(row++, module);
     }
     if (m_wirelessModules.size() == 1) {
-        m_wirelessModules.first()->moduleData()->DisplayName = tr("Wireless");
+//        m_wirelessModules.first()->moduleData()->DisplayName = tr("Wireless");
+        m_wiredModules.first()->setDisplayName(tr("Wireless"));
     }
     for (ModuleObject *&module : m_modules) {
         if (emptyHotspot && module->name() == QStringLiteral("personalHotspot")) { // 热点根据设备显示
@@ -184,4 +188,9 @@ ModuleObject *DccNetworkPlugin::module()
 
     m_moduleRoot = new NetworkModule;
     return m_moduleRoot;
+}
+
+int DccNetworkPlugin::location() const
+{
+    return 6;
 }

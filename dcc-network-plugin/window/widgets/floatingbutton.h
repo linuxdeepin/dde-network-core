@@ -18,31 +18,19 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#ifndef DSLMODULE_H
-#define DSLMODULE_H
-#include "interface/moduleobject.h"
-
-#include <dtkwidget_global.h>
-
-DWIDGET_BEGIN_NAMESPACE
-class DListView;
-DWIDGET_END_NAMESPACE
+#ifndef FLOATINGBUTTON_H
+#define FLOATINGBUTTON_H
+#include <DFloatingButton>
 
 namespace dde {
 namespace network {
-class ControllItems;
-}
-}
-
-class DSLModule : public DCC_NAMESPACE::ModuleObject
+class FloatingButton : public DTK_WIDGET_NAMESPACE::DFloatingButton
 {
-    Q_OBJECT
 public:
-    explicit DSLModule(QObject *parent = nullptr);
-
-private Q_SLOTS:
-    void initDSLList(DTK_WIDGET_NAMESPACE::DListView *lvsettings);
-    void editConnection(dde::network::ControllItems *item);
+    explicit FloatingButton()
+        : DFloatingButton(nullptr) {}
 };
+}
+}
 
-#endif // DSLMODULE_H
+#endif // FLOATINGBUTTON_H

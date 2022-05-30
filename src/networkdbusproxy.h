@@ -67,7 +67,7 @@ public:
     Q_PROPERTY(bool Enabled READ enabled NOTIFY EnabledChanged)
     bool enabled();
 
-    static void showModule(const QString &module);
+    static void ShowPage(const QString &url);
 
 Q_SIGNALS: // SIGNALS
     // networkInter

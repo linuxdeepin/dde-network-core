@@ -33,7 +33,7 @@ DCC_USE_NAMESPACE
 NetworkInfoModule::NetworkInfoModule(QObject *parent)
     : ModuleObject("networkDetails", tr("Network Details"), tr("Network Details"), QIcon::fromTheme("dcc_network"), parent)
 {
-    setChildType(ModuleObject::ChildType::Page);
+    setChildType(ModuleObject::Page);
 
     connect(NetworkController::instance(), &NetworkController::activeConnectionChange, this, &NetworkInfoModule::onUpdateNetworkInfo);
 

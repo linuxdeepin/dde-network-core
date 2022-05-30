@@ -21,6 +21,7 @@
 #include "controllitemsmodel.h"
 #include "vpnmodule.h"
 #include "editpage/connectionvpneditpage.h"
+#include "widgets/floatingbutton.h"
 
 #include <widgets/switchwidget.h>
 #include <widgets/widgetmodule.h>
@@ -69,7 +70,7 @@ QString vpnConfigType(const QString &path)
 VPNModule::VPNModule(QObject *parent)
     : ModuleObject("networkVpn", tr("VPN"), tr("VPN"), QIcon::fromTheme("dcc_vpn"), parent)
 {
-    setChildType(ModuleObject::ChildType::Page);
+    setChildType(ModuleObject::Page);
 
     m_modules.append(new WidgetModule<SwitchWidget>("wired_adapter", tr("Wired Network Adapter"), [](SwitchWidget *vpnSwitch) {
         QLabel *lblTitle = new QLabel(tr("VPN Status"));
@@ -92,35 +93,29 @@ VPNModule::VPNModule(QObject *parent)
         connect(NetworkController::instance()->vpnController(), &VPNController::itemRemoved, vpnSwitch, updateVisible);
     }));
     m_modules.append(new WidgetModule<DListView>("List_wirelesslist", tr("Wired List"), this, &VPNModule::initVPNList));
-
+    ModuleObject *extraCreate = new WidgetModule<FloatingButton>("addWired", tr("Add Network Connection"), [this](FloatingButton *createVpnBtn) {
+        createVpnBtn->setIcon(DStyle::StandardPixmap::SP_IncreaseElement);
+        createVpnBtn->setMinimumSize(QSize(47, 47));
+        createVpnBtn->setToolTip(tr("Create VPN"));
+        createVpnBtn->setAccessibleName(tr("Create VPN"));
+        connect(createVpnBtn, &DFloatingButton::clicked, this, [this]() {
+            editConnection(nullptr);
+        });
+    });
+    extraCreate->setExtra();
+    m_modules.append(extraCreate);
+    ModuleObject *extraImport = new WidgetModule<FloatingButton>("addWired", tr("Add Network Connection"), [this](FloatingButton *importVpnBtn) {
+        importVpnBtn->QAbstractButton::setText("\342\206\223");
+        importVpnBtn->setMinimumSize(QSize(47, 47));
+        importVpnBtn->setToolTip(tr("Import VPN"));
+        importVpnBtn->setAccessibleName(tr("Import VPN"));
+        connect(importVpnBtn, &DFloatingButton::clicked, this, &VPNModule::importVPN);
+    });
+    extraImport->setExtra();
+    m_modules.append(extraImport);
     for (auto &it : m_modules) {
         appendChild(it);
     }
-}
-
-QWidget *VPNModule::extraButton()
-{
-    QWidget *w = new QWidget;
-    QHBoxLayout *layout = new QHBoxLayout(w);
-    DFloatingButton *createVpnBtn = new DFloatingButton(DStyle::StandardPixmap::SP_IncreaseElement);
-    createVpnBtn->setMinimumSize(QSize(47, 47));
-    createVpnBtn->setToolTip(tr("Create VPN"));
-    createVpnBtn->setAccessibleName(tr("Create VPN"));
-    connect(createVpnBtn, &DFloatingButton::clicked, this, [this]() {
-        editConnection(nullptr);
-    });
-
-    DFloatingButton *importVpnBtn = new DFloatingButton("\342\206\223");
-    importVpnBtn->setMinimumSize(QSize(47, 47));
-    importVpnBtn->setToolTip(tr("Import VPN"));
-    importVpnBtn->setAccessibleName(tr("Import VPN"));
-    connect(importVpnBtn, &DFloatingButton::clicked, this, &VPNModule::importVPN);
-    layout->setSpacing(30);
-    layout->addStretch();
-    layout->addWidget(createVpnBtn, 0, Qt::AlignmentFlag::AlignHCenter);
-    layout->addWidget(importVpnBtn, 0, Qt::AlignmentFlag::AlignHCenter);
-    layout->addStretch();
-    return w;
 }
 
 void VPNModule::initVPNList(DListView *vpnView)

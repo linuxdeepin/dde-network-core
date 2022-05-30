@@ -283,7 +283,7 @@ void NetworkPluginHelper::invokeMenuItem(const QString &menuId)
             setDeviceEnabled(DeviceType::Wireless, false);
         break;
     case MenuItemKey::MenuSettings:
-        NetworkDBusProxy::showModule("network");
+        NetworkDBusProxy::ShowPage("network");
         break;
     default:
         break;

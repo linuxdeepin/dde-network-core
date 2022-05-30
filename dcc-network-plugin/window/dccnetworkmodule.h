@@ -59,7 +59,7 @@ private:
 class DccNetworkPlugin : public DCC_NAMESPACE::PluginInterface
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID PluginInterface_iid FILE "network.json")
+    Q_PLUGIN_METADATA(IID "com.deepin.dde.network.dcc" FILE "network.json")
     Q_INTERFACES(DCC_NAMESPACE::PluginInterface)
 public:
     explicit DccNetworkPlugin(QObject *parent = nullptr);
@@ -67,6 +67,7 @@ public:
 
     virtual QString name() const override;
     virtual DCC_NAMESPACE::ModuleObject *module() override;
+    virtual int location() const override;
 
 private:
     DCC_NAMESPACE::ModuleObject *m_moduleRoot;

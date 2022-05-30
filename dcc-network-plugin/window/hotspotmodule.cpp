@@ -21,6 +21,7 @@
 #include "controllitemsmodel.h"
 #include "hotspotmodule.h"
 #include "editpage/connectionhotspoteditpage.h"
+#include "widgets/floatingbutton.h"
 
 #include <DFloatingButton>
 #include <DFontSizeManager>
@@ -149,29 +150,29 @@ void HotspotDeviceItem::openEditPage(ControllItems *item)
 HotspotModule::HotspotModule(QObject *parent)
     : ModuleObject("personalHotspot", tr("Personal Hotspot"), tr("Personal Hotspot"), QIcon::fromTheme("dcc_hotspot"), parent)
 {
-    setChildType(ModuleObject::ChildType::Page);
+    setChildType(ModuleObject::Page);
 
     HotspotController *hotspotController = NetworkController::instance()->hotspotController();
     onDeviceAdded(hotspotController->devices());
     connect(hotspotController, &HotspotController::deviceAdded, this, &HotspotModule::onDeviceAdded);
     connect(hotspotController, &HotspotController::deviceRemove, this, &HotspotModule::onDeviceRemove);
-}
+    ModuleObject *extra = new WidgetModule<FloatingButton>("createHotspot", tr("Create Hotspot"), [this](FloatingButton *newprofile) {
+        newprofile->setIcon(DStyle::StandardPixmap::SP_IncreaseElement);
+        newprofile->setMinimumSize(QSize(47, 47));
 
-QWidget *HotspotModule::extraButton()
-{
-    QWidget *w = new QWidget;
-    QHBoxLayout *layout = new QHBoxLayout(w);
-    DFloatingButton *m_newprofile = new DFloatingButton(DStyle::StandardPixmap::SP_IncreaseElement);
-    m_newprofile->setToolTip(tr("Create Hotspot"));
-    connect(m_newprofile, &QAbstractButton::clicked, this, [this] {
-        if (m_items.empty())
-            return;
+        newprofile->setToolTip(tr("Create Hotspot"));
+        connect(newprofile, &QAbstractButton::clicked, this, [this] {
+            if (m_items.empty())
+                return;
 
-        m_items.front()->openEditPage(nullptr);
+            m_items.front()->openEditPage(nullptr);
+        });
     });
-    connect(this, &HotspotModule::updateItemOnlyOne, w, &QWidget::setVisible);
-    layout->addWidget(m_newprofile, 0, Qt::AlignmentFlag::AlignHCenter);
-    return w;
+    extra->setExtra();
+    connect(this, &HotspotModule::updateItemOnlyOne, extra, [extra](bool visiable){
+        extra->setHiden(!visiable);
+    });
+    appendChild(extra);
 }
 
 void HotspotModule::onDeviceAdded(const QList<WirelessDevice *> &devices)

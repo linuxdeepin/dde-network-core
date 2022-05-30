@@ -47,19 +47,13 @@ class AppProxyModule : public DCC_NAMESPACE::ModuleObject
     Q_OBJECT
 public:
     explicit AppProxyModule(QObject *parent = nullptr);
-
-    virtual QWidget *extraButton() override;
-//    virtual void active() override;
     virtual void deactive() override;
+
 Q_SIGNALS:
     void resetData();
 
 private Q_SLOTS:
     void onCheckValue();
-//    void initManualView(QWidget *w);
-//    void applySettings();
-//    void uiMethodChanged(dde::network::ProxyMethod uiMethod);
-//    void resetData(dde::network::ProxyMethod uiMethod);
 
 private:
     virtual bool eventFilter(QObject *watched, QEvent *event) override;
@@ -71,7 +65,6 @@ private:
     DCC_NAMESPACE::LineEditWidget *m_port;
     DCC_NAMESPACE::LineEditWidget *m_username;
     DCC_NAMESPACE::LineEditWidget *m_password;
-    //    QComboBox *m_comboBox;
     DCC_NAMESPACE::ButtonTuple *m_btns;
 };
 

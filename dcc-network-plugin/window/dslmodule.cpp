@@ -30,6 +30,7 @@
 #include <QApplication>
 
 #include <widgets/widgetmodule.h>
+#include "widgets/floatingbutton.h"
 
 #include <networkcontroller.h>
 #include <dslcontroller.h>
@@ -41,25 +42,21 @@ DWIDGET_USE_NAMESPACE
 DSLModule::DSLModule(QObject *parent)
     : ModuleObject("networkDsl", tr("DSL"), tr("DSL"), QIcon::fromTheme("dcc_dsl"), parent)
 {
-    setChildType(ModuleObject::ChildType::Page);
+    setChildType(ModuleObject::Page);
 
     appendChild(new WidgetModule<DListView>("List_pppoelist", tr("Wired List"), this, &DSLModule::initDSLList));
-}
+    ModuleObject *extra = new WidgetModule<FloatingButton>("createDSL", tr("Create PPPoE Connection"), [this](FloatingButton *createBtn) {
+        createBtn->setIcon(DStyle::StandardPixmap::SP_IncreaseElement);
+        createBtn->setMinimumSize(QSize(47, 47));
 
-QWidget *DSLModule::extraButton()
-{
-    QWidget *w = new QWidget;
-    QHBoxLayout *layout = new QHBoxLayout(w);
-    DFloatingButton *createBtn = new DFloatingButton(DStyle::StandardPixmap::SP_IncreaseElement, w);
-    createBtn->setMinimumSize(QSize(47, 47));
-
-    createBtn->setToolTip(tr("Create PPPoE Connection"));
-    createBtn->setAccessibleName(tr("Create PPPoE Connection"));
-    connect(createBtn, &DFloatingButton::clicked, this, [this]() {
-        editConnection(nullptr);
+        createBtn->setToolTip(tr("Create PPPoE Connection"));
+        createBtn->setAccessibleName(tr("Create PPPoE Connection"));
+        connect(createBtn, &DFloatingButton::clicked, this, [this]() {
+            editConnection(nullptr);
+        });
     });
-    layout->addWidget(createBtn, 0, Qt::AlignmentFlag::AlignHCenter);
-    return w;
+    extra->setExtra();
+    appendChild(extra);
 }
 
 void DSLModule::initDSLList(DListView *lvsettings)

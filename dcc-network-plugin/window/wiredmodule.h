@@ -46,8 +46,6 @@ class WiredModule : public DCC_NAMESPACE::ModuleObject
 public:
     explicit WiredModule(dde::network::WiredDevice *dev, QObject *parent = nullptr);
 
-    virtual QWidget *extraButton() override;
-
 public Q_SLOTS:
     void onDeviceStatusChanged(const dde::network::DeviceStatus &stat);
 

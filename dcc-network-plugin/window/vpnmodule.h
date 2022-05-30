@@ -40,8 +40,6 @@ class VPNModule : public DCC_NAMESPACE::ModuleObject
 public:
     explicit VPNModule(QObject *parent = nullptr);
 
-    virtual QWidget *extraButton() override;
-
 private Q_SLOTS:
     void initVPNList(DTK_WIDGET_NAMESPACE::DListView *vpnView);
     void editConnection(dde::network::ControllItems *item);

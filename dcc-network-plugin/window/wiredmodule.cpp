@@ -24,6 +24,7 @@
 #include "widgets/widgetmodule.h"
 #include "widgets/switchwidget.h"
 #include "widgets/settingsgroup.h"
+#include "widgets/floatingbutton.h"
 
 #include <DFloatingButton>
 #include <DFontSizeManager>
@@ -43,7 +44,7 @@ WiredModule::WiredModule(WiredDevice *dev, QObject *parent)
     : ModuleObject("networkWired", tr("Wired"), tr("Wired"), QIcon::fromTheme("dcc_ethernet"), parent)
     , m_device(dev)
 {
-    setChildType(ModuleObject::ChildType::Page);
+    setChildType(ModuleObject::Page);
 
     m_modules.append(new WidgetModule<SwitchWidget>("wired_adapter", tr("Wired Network Adapter"), [this](SwitchWidget *devEnabled) {
         QLabel *lblTitle = new QLabel(tr("Wired Network Adapter")); // 无线网卡
@@ -68,23 +69,19 @@ WiredModule::WiredModule(WiredDevice *dev, QObject *parent)
     }));
     m_modules.append(new WidgetModule<DListView>("List_wirelesslist", tr("Wired List"), this, &WiredModule::initWirelessList));
     m_modules.append(new WidgetModule<QWidget>); // 加个空的保证下面有弹簧
+    ModuleObject *extra = new WidgetModule<FloatingButton>("addWired", tr("Add Network Connection"), [this](FloatingButton *createBtn) {
+        createBtn->setIcon(DStyle::StandardPixmap::SP_IncreaseElement);
+        createBtn->setMinimumSize(QSize(47, 47));
+
+        createBtn->setToolTip(tr("Add Network Connection"));
+        connect(createBtn, &FloatingButton::clicked, this, [this]() {
+            editConnection(nullptr);
+        });
+    });
+    extra->setExtra();
+    m_modules.append(extra);
     onDeviceStatusChanged(m_device->deviceStatus());
     connect(m_device, &WiredDevice::deviceStatusChanged, this, &WiredModule::onDeviceStatusChanged);
-}
-
-QWidget *WiredModule::extraButton()
-{
-    QWidget *w = new QWidget;
-    QHBoxLayout *layout = new QHBoxLayout(w);
-    DFloatingButton *createBtn = new DFloatingButton(DStyle::StandardPixmap::SP_IncreaseElement, w);
-    createBtn->setMinimumSize(QSize(47, 47));
-
-    createBtn->setToolTip(tr("Add Network Connection"));
-    connect(createBtn, &DFloatingButton::clicked, this, [this]() {
-        editConnection(nullptr);
-    });
-    layout->addWidget(createBtn, 0, Qt::AlignmentFlag::AlignHCenter);
-    return w;
 }
 
 void WiredModule::onDeviceStatusChanged(const DeviceStatus &stat)

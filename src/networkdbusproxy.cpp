@@ -147,10 +147,10 @@ bool NetworkDBusProxy::enabled()
     return qvariant_cast<bool>(m_airplaneModeInter->property("Enabled"));
 }
 
-void NetworkDBusProxy::showModule(const QString &module)
+void NetworkDBusProxy::ShowPage(const QString &url)
 {
     QDBusInterface ControlCenter("com.deepin.dde.ControlCenter", "/com/deepin/dde/ControlCenter", "com.deepin.dde.ControlCenter", QDBusConnection::sessionBus());
-    ControlCenter.call("ShowModule", QVariant::fromValue(module));
+    ControlCenter.call("ShowPage", QVariant::fromValue(url));
 }
 // networkInter property
 void NetworkDBusProxy::EnableDevice(const QDBusObjectPath &devPath, bool enabled)
