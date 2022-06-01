@@ -30,6 +30,7 @@ private:
     void saveValue(PluginsItemInterface * const itemInter, const QString &key, const QVariant &value) override;
     const QVariant getValue(PluginsItemInterface *const itemInter, const QString &key, const QVariant& fallback = QVariant()) override;
     void removeValue(PluginsItemInterface *const itemInter, const QStringList &keyList) override;
+    void updateDockInfo(const DockPart &) override {}
 
 private:
     NetworkPlugin *m_networkPlugin;
