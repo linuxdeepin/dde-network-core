@@ -26,6 +26,7 @@
 
 #include <QWidget>
 #include <QVariantMap>
+#include <QPixmap>
 
 namespace dde {
 namespace network {
@@ -49,10 +50,12 @@ class TrayIcon : public QWidget
 
 Q_SIGNALS:
     void signalShowNetworkDialog(QWidget *w);
+    void iconUpdate();
 
 public:
     explicit TrayIcon(NetworkPluginHelper *networkHelper);
     void setGreeterStyle(bool greeterStyle);
+    QPixmap pixmap() const;
 
 protected:
     void paintEvent(QPaintEvent *e);

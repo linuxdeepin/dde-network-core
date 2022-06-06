@@ -2,10 +2,12 @@
 #include "networkplugin.h"
 
 #include <QHBoxLayout>
+#include <QLabel>
 
 DockTestWidget::DockTestWidget(QWidget *parent)
     : QWidget(parent)
     , m_networkPlugin(new NetworkPlugin(this))
+    , m_iconWidget(new QLabel(this))
 {
     initDock();
 }
@@ -18,10 +20,10 @@ void DockTestWidget::initDock()
 {
     m_networkPlugin->init(this);
     QWidget *pluginWidget = m_networkPlugin->itemWidget(NETWORK_KEY);
-    QHBoxLayout *layout = new QHBoxLayout(this);
-    layout->setContentsMargins(20, 0, 20, 0);
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(pluginWidget);
-    layout->addStretch();
+    layout->addWidget(m_iconWidget);
     pluginWidget->installEventFilter(this);
 }
 
@@ -108,4 +110,9 @@ void DockTestWidget::removeValue(PluginsItemInterface * const itemInter, const Q
 {
     Q_UNUSED(itemInter);
     Q_UNUSED(keyList);
+}
+
+void DockTestWidget::updateDockInfo(PluginsItemInterface * const itemInter, const DockPart &part)
+{
+    m_iconWidget->setPixmap(itemInter->icon(part).pixmap(16, 16));
 }

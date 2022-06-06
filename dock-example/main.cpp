@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
     QDesktopWidget *deskdop = QApplication::desktop();
     testPluginWidget.move((deskdop->width() - testPluginWidget.width()) / 2, (deskdop->height() - testPluginWidget.height()) / 2);
 
+    testPluginWidget.resize(200, 200);
     testPluginWidget.show();
 
     return app.exec();

@@ -172,10 +172,12 @@ void TrayIcon::refreshIcon()
     case PluginState::Disabled:
     case PluginState::WirelessDisabled:
         stateString = "disabled";
+        localPath = QString(":/wireless6/resources/wireless/");
         iconString = QString("wireless-%1-symbolic").arg(stateString);
         break;
     case PluginState::WiredDisabled:
         stateString = "disabled";
+        localPath = QString(":/wired/resources/wired/");
         iconString = QString("network-%1-symbolic").arg(stateString);
         break;
     case PluginState::Connected:
@@ -192,21 +194,25 @@ void TrayIcon::refreshIcon()
             localPath = QString(":/wireless6/resources/wireless6/");
             iconString = QString("wireless6-%1-symbolic").arg(stateString);
         } else {
+            localPath = QString(":/wireless/resources/wireless/");
             iconString = QString("wireless-%1-symbolic").arg(stateString);
         }
     }
         break;
     case PluginState::WiredConnected:
         stateString = "online";
+        localPath = QString(":/wired/resources/wired/");
         iconString = QString("network-%1-symbolic").arg(stateString);
         break;
     case PluginState::Disconnected:
     case PluginState::WirelessDisconnected:
         stateString = "0";
+        localPath = QString(":/wireless/resources/wireless/");
         iconString = QString("wireless-%1-symbolic").arg(stateString);
         break;
     case PluginState::WiredDisconnected:
         stateString = "none";
+        localPath = QString(":/wired/resources/wired/");
         iconString = QString("network-%1-symbolic").arg(stateString);
         break;
     case PluginState::Connecting: {
@@ -214,6 +220,7 @@ void TrayIcon::refreshIcon()
         if (QTime::currentTime().second() & 2) {
             strength = QTime::currentTime().msec() / 10 % 100;
             stateString = getStrengthStateString(strength);
+            localPath = QString(":/wireless/resources/wireless/");
             iconString = QString("wireless-%1-symbolic").arg(stateString);
             if (useDarkIcon)
                 iconString.append(PLUGIN_MIN_ICON_NAME);
@@ -224,6 +231,7 @@ void TrayIcon::refreshIcon()
             m_refreshIconTimer->start(200);
             const int index = QTime::currentTime().msec() / 200 % 10;
             const int num = index + 1;
+            localPath = QString(":/wired/resources/wired/");
             iconString = QString("network-wired-symbolic-connecting%1").arg(num);
             if (useDarkIcon)
                 iconString.append(PLUGIN_MIN_ICON_NAME);
@@ -236,6 +244,7 @@ void TrayIcon::refreshIcon()
         m_refreshIconTimer->start();
         strength = QTime::currentTime().msec() / 10 % 100;
         stateString = getStrengthStateString(strength);
+        localPath = QString(":/wireless/resources/wireless/");
         iconString = QString("wireless-%1-symbolic").arg(stateString);
         if (useDarkIcon)
             iconString.append(PLUGIN_MIN_ICON_NAME);
@@ -247,6 +256,7 @@ void TrayIcon::refreshIcon()
         m_refreshIconTimer->start(200);
         const int index = QTime::currentTime().msec() / 200 % 10;
         const int num = index + 1;
+        localPath = QString(":/wired/resources/wired/");
         iconString = QString("network-wired-symbolic-connecting%1").arg(num);
         if (useDarkIcon)
             iconString.append(PLUGIN_MIN_ICON_NAME);
@@ -269,34 +279,40 @@ void TrayIcon::refreshIcon()
             localPath = QString(":/wireless6/resources/wireless6/");
             iconString = QString("wireless6-%1-symbolic").arg(stateString);
         } else {
+            localPath = QString(":/wired/resources/wired/");
             iconString = QString("network-wireless-%1-symbolic").arg(stateString);
         }
         break;
     }
     case PluginState::WiredConnectNoInternet: {
         stateString = "warning";
+        localPath = QString(":/wired/resources/wired/");
         iconString = QString("network-%1-symbolic").arg(stateString);
         break;
     }
     case PluginState::WiredFailed: {
         // 有线连接失败none变为offline
         stateString = "offline";
+        localPath = QString(":/wired/resources/wired/");
         iconString = QString("network-%1-symbolic").arg(stateString);
         break;
     }
     case PluginState::Unknow:
     case PluginState::Nocable: {
         stateString = "error"; // 待图标 暂用错误图标
+        localPath = QString(":/wired/resources/wired/");
         iconString = QString("network-%1-symbolic").arg(stateString);
         break;
     }
     case PluginState::WirelessIpConflicted: {
         stateString = "offline";
+        localPath = QString(":/wired/resources/wired/");
         iconString = QString("network-wireless-%1-symbolic").arg(stateString);
         break;
     }
     case PluginState::WiredIpConflicted: {
         stateString = "offline";
+        localPath = QString(":/wired/resources/wired/");
         iconString = QString("network-%1-symbolic").arg(stateString);
         break;
     }
@@ -304,6 +320,7 @@ void TrayIcon::refreshIcon()
     case PluginState::Failed: {
         // 无线连接失败改为 disconnect
         stateString = "disconnect";
+        localPath = QString(":/wireless/resources/wireless/");
         iconString = QString("wireless-%1").arg(stateString);
         break;
     }
@@ -317,9 +334,16 @@ void TrayIcon::refreshIcon()
     m_iconPixmap = ImageUtil::loadSvg(iconString, localPath, iconSize, ratio);
 
     update();
+
+    Q_EMIT iconUpdate();
 }
 
 void TrayIcon::setGreeterStyle(bool greeterStyle)
 {
     m_greeterStyle = greeterStyle;
+}
+
+QPixmap TrayIcon::pixmap() const
+{
+    return m_iconPixmap;
 }

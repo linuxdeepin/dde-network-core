@@ -5,6 +5,7 @@
 #include <pluginproxyinterface.h>
 
 class NetworkPlugin;
+class QLabel;
 
 class DockTestWidget : public QWidget, public PluginProxyInterface
 {
@@ -17,8 +18,8 @@ public:
 private:
     void initDock();
 
-    bool eventFilter(QObject *object, QEvent *event);
-    void enterEvent(QEvent *event);
+    bool eventFilter(QObject *object, QEvent *event) override;
+    void enterEvent(QEvent *event) override;
 
 private:
     void itemAdded(PluginsItemInterface * const itemInter, const QString &itemKey) override;
@@ -30,10 +31,11 @@ private:
     void saveValue(PluginsItemInterface * const itemInter, const QString &key, const QVariant &value) override;
     const QVariant getValue(PluginsItemInterface *const itemInter, const QString &key, const QVariant& fallback = QVariant()) override;
     void removeValue(PluginsItemInterface *const itemInter, const QStringList &keyList) override;
-    void updateDockInfo(const DockPart &) override {}
+    void updateDockInfo(PluginsItemInterface *const itemInter, const DockPart &part) override;
 
 private:
     NetworkPlugin *m_networkPlugin;
+    QLabel *m_iconWidget;
 };
 
 #endif // DOCKTESTWIDGET_H

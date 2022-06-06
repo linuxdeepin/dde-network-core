@@ -30,6 +30,7 @@
 NETWORKPLUGIN_BEGIN_NAMESPACE
 class NetworkPluginHelper;
 class NetworkDialog;
+class TrayIcon;
 NETWORKPLUGIN_END_NAMESPACE
 
 class NetworkPlugin : public QObject, PluginsItemInterface
@@ -71,13 +72,24 @@ public:
     void pluginSettingsChanged() override;
     void positionChanged(const Dock::Position position) override;
 
+protected:
+    QIcon icon(const DockPart &) override;
+    PluginStatus status() const override;
+    bool isPrimary() const override;
+    QString description() const override;
+
 private:
     void loadPlugin();
     void refreshPluginItemsVisible();
+    QString getConnectionName() const;
+
+private Q_SLOTS:
+    void onIconUpdated();
 
 private:
     QScopedPointer<NETWORKPLUGIN_NAMESPACE::NetworkPluginHelper> m_networkHelper;
     NETWORKPLUGIN_NAMESPACE::NetworkDialog *m_networkDialog;
+    NETWORKPLUGIN_NAMESPACE::TrayIcon *m_trayIcon;
     int m_clickTime;
 };
 
