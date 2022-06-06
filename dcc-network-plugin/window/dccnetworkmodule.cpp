@@ -76,27 +76,23 @@ void NetworkModule::active()
 void NetworkModule::updateVisiable()
 {
     int row = 0;
-    int i = 1;
+    int index = 1;
     bool emptyHotspot = NetworkController::instance()->hotspotController()->devices().isEmpty();
     for (ModuleObject *&module : m_wiredModules) {
-//        module->moduleData()->DisplayName = tr("Wired %1").arg(i++);
-        module->setDisplayName(tr("Wired %1").arg(i++));
+        module->setDisplayName(tr("Wired %1").arg(index++));
         insertChild(row++, module);
     }
-    if (m_wiredModules.size() == 1) {
-//        m_wiredModules.first()->moduleData()->DisplayName = tr("Wired");
+    if (m_wiredModules.size() == 1)
         m_wiredModules.first()->setDisplayName(tr("Wired"));
-    }
-    i = 1;
+
+    index = 1;
     for (ModuleObject *&module : m_wirelessModules) {
-//        module->moduleData()->DisplayName = tr("Wireless %1").arg(i++);
-        module->setDisplayName(tr("Wireless %1").arg(i++));
+        module->setDisplayName(tr("Wireless %1").arg(index++));
         insertChild(row++, module);
     }
-    if (m_wirelessModules.size() == 1) {
-//        m_wirelessModules.first()->moduleData()->DisplayName = tr("Wireless");
-        m_wiredModules.first()->setDisplayName(tr("Wireless"));
-    }
+    if (m_wirelessModules.size() == 1)
+        m_wirelessModules.first()->setDisplayName(tr("Wireless"));
+
     for (ModuleObject *&module : m_modules) {
         if (emptyHotspot && module->name() == QStringLiteral("personalHotspot")) { // 热点根据设备显示
             removeChild(module);
