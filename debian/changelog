@@ -1,3 +1,9 @@
+dde-network-core (1.0.17.4) unstable; urgency=low
+
+ * release Tag 1.0.17.4
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Mon, 6 June 2022 14:40:48 +0800
+
 dde-network-core (1.0.17.3) unstable; urgency=low
 
  * release Tag 1.0.17.3
