@@ -233,14 +233,15 @@ void VPNModule::importVPN()
             qDebug() << stat << ",output:" << output << ",err:" << error;
 
             if (stat) {
-                const auto ratio = qApp->activeWindow()->devicePixelRatioF();
-                QPixmap icon = QIcon::fromTheme("dialog-error").pixmap(QSize(48, 48) * ratio);
-                icon.setDevicePixelRatio(ratio);
-
                 DDialog dialog(qApp->activeWindow());
                 dialog.setTitle(tr("Import Error"));
                 dialog.setMessage(tr("File error"));
                 dialog.addButton(tr("OK"));
+
+                const auto ratio = dialog.devicePixelRatioF();
+                QPixmap icon = QIcon::fromTheme("dialog-error").pixmap(QSize(48, 48) * ratio);
+                icon.setDevicePixelRatio(ratio);
+
                 dialog.setIcon(icon);
                 dialog.exec();
                 return;
