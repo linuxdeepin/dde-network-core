@@ -68,11 +68,11 @@ QVariant ModuleDataModel::data(const QModelIndex &index, int role) const
     ModuleObject *data = m_data->children(row);
     switch (role) {
     case Qt::DisplayRole:
-        return data->moduleData()->DisplayName;
+        return data->displayName();
     case Qt::DecorationRole:
-        return data->moduleData()->Icon;
+        return data->icon();
     case Qt::StatusTipRole:
-        return data->moduleData()->Description;
+        return data->description();
     case Dtk::RightActionListRole:
         return 0;
     default:

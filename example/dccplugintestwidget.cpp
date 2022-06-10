@@ -149,10 +149,10 @@ void DccPluginTestWidget::showPage(ModuleObject *const module, const QString &ur
         if (uType == UrlType::Name)
             childName = child->name();
         if (uType == UrlType::DisplayName)
-            childName = child->moduleData()->DisplayName;
-        if (childName == name || child->moduleData()->ContentText.contains(name)) {
+            childName = child->displayName();
+        if (childName == name || child->contentText().contains(name)) {
             index = module->childrens().indexOf(child);
-            Q_EMIT module->activeChild(index);
+            //Q_EMIT module->activeChild(index);
             return showPage(child, names.join('/'), uType);
         }
     }
@@ -237,7 +237,7 @@ void DccPluginTestWidget::loadModules()
 
 void DccPluginTestWidget::toHome()
 {
-    m_rootModule->setChildType(ModuleObject::ChildType::MainIcon);
+    m_rootModule->setChildType(ModuleObject::Main);
     setCurrentModule(nullptr);
     showModule(m_rootModule, m_contentWidget);
 }
@@ -299,22 +299,19 @@ void DccPluginTestWidget::showModule(ModuleObject *const module, QWidget *const 
 
     switch (module->childType())
     {
-    case ModuleObject::ChildType::MainIcon:
-        showModuleMainIcon(module, parent, index);
-        break;
-    case ModuleObject::ChildType::MainList:
+    case ModuleObject::Main:
         setCurrentModule(module);
         showModuleMainList(module, parent, index);
         break;
-    case ModuleObject::ChildType::HList:
+    case ModuleObject::HList:
         setCurrentModule(module);
         showModuleHList(module, parent, index);
         break;
-    case ModuleObject::ChildType::VList:
+    case ModuleObject::VList:
         setCurrentModule(module);
         showModuleVList(module, parent, index);
         break;
-    case ModuleObject::ChildType::Page:
+    case ModuleObject::Page:
         setCurrentModule(module);
         showModulePage(module, parent, index);
     default:
@@ -356,7 +353,7 @@ void DccPluginTestWidget::showModuleMainIcon(ModuleObject *const module, QWidget
     m_backwardBtn->setEnabled(false);
 
     auto onClicked = [this, module, parent] (const QModelIndex &index) {
-        module->setChildType(ModuleObject::ChildType::MainList);
+        module->setChildType(ModuleObject::Main);
         m_backwardBtn->setEnabled(true);
         // 展开主菜单时，原来的主菜单被析构，需清空其指针
         m_mainView->deleteLater();
@@ -366,9 +363,9 @@ void DccPluginTestWidget::showModuleMainIcon(ModuleObject *const module, QWidget
 
     connect(view, &ListView::activated, view, &ListView::clicked);
     connect(view, &ListView::clicked, view, onClicked);
-    connect(module, &ModuleObject::activeChild, this , [onClicked, model] (const int index) {
+    /*connect(module, &ModuleObject::activeChild, this , [onClicked, model] (const int index) {
         onClicked(model->index(index, 0));
-    });
+    });*/
     connect(view, &ListView::destroyed, module, &ModuleObject::deactive);
     if (index < 0)
         return;
@@ -416,9 +413,9 @@ void DccPluginTestWidget::showModuleMainList(ModuleObject *const module, QWidget
 
     connect(view, &ListView::activated, view, &ListView::clicked);
     connect(view, &ListView::clicked, view, onClicked);
-    connect(module, &ModuleObject::activeChild, view, [onClicked, model] (const int index) {
+    /*connect(module, &ModuleObject::activeChild, view, [onClicked, model] (const int index) {
         onClicked(model->index(index, 0));
-    });
+    });*/
     connect(view, &ListView::destroyed, module, &ModuleObject::deactive);
     connect(module, &ModuleObject::removedChild, childWdiget, [this](ModuleObject *const childModule) {
         if (childModule->findChild(currentModule()) >= 0) {
@@ -468,7 +465,7 @@ void DccPluginTestWidget::showModuleHList(ModuleObject *const module, QWidget *c
         // 判断子项是否为垂直菜单，如果是则需要加上Frame
         if (vlayout->count() >= 2)
             vlayout->takeAt(vlayout->count() - 1);
-        if (module->childrens()[row]->childType() == ModuleObject::ChildType::VList) {
+        if (module->childrens()[row]->childType() == ModuleObject::VList) {
             vlayout->addWidget(childFrame, 6);
             childFrame->show();
             childWdiget->hide();
@@ -483,9 +480,9 @@ void DccPluginTestWidget::showModuleHList(ModuleObject *const module, QWidget *c
 
     connect(view, &TabView::activated, view, &TabView::clicked);
     connect(view, &TabView::clicked, this, onClicked);
-    connect(module, &ModuleObject::activeChild, view, [onClicked, model] (const int index) {
+    /*connect(module, &ModuleObject::activeChild, view, [onClicked, model] (const int index) {
         onClicked(model->index(index, 0));
-    });
+    });*/
     connect(view, &ListView::destroyed, module, &ModuleObject::deactive);
     if (index < 0)
         return;
@@ -505,9 +502,9 @@ void DccPluginTestWidget::showModuleVList(ModuleObject *const module, QWidget *c
     QVBoxLayout *vlayout = new QVBoxLayout;
     widget->setLayout(vlayout);
     vlayout->addWidget(view);
-    QWidget *extraButton = module->extraButton();
+    /*QWidget *extraButton = module->extraButton();
     if (extraButton)
-        vlayout->addWidget(getExtraPage(extraButton));
+        vlayout->addWidget(getExtraPage(extraButton));*/
     hlayout->addWidget(widget, 1);
     hlayout->addWidget(new DVerticalLine);
 
@@ -539,7 +536,7 @@ void DccPluginTestWidget::showModuleVList(ModuleObject *const module, QWidget *c
 
     connect(view, &ListView::activated, view, &ListView::clicked);
     connect(view, &ListView::clicked, view, onClicked);
-    connect(module, &ModuleObject::activeChild, view, [onClicked, model] (const int index) {
+    /*connect(module, &ModuleObject::activeChild, view, [onClicked, model] (const int index) {
         onClicked(model->index(index, 0));
     });
     connect(module, &ModuleObject::extraButtonClicked, childWidget, [this, childWidget, module] {
@@ -549,7 +546,7 @@ void DccPluginTestWidget::showModuleVList(ModuleObject *const module, QWidget *c
         configLayout(tempLayout);
         childWidget->setLayout(tempLayout);
         tempLayout->addWidget(module->page());
-    });
+    });*/
     connect(view, &ListView::destroyed, module, &ModuleObject::deactive);
 
     if (index < 0)
@@ -577,7 +574,7 @@ void DccPluginTestWidget::showModulePage(ModuleObject *const module, QWidget *co
 
     m_pages.clear();
     for (auto child : module->childrens()) {
-        auto page = getPage(child->page(), child->moduleData()->DisplayName);
+        auto page = getPage(child->page(), child->displayName());
         if (page) {
             m_pages << page;
             vlayout->addWidget(page);
@@ -589,7 +586,7 @@ void DccPluginTestWidget::showModulePage(ModuleObject *const module, QWidget *co
             const int index = m_pages.indexOf(page);
             m_pages.removeOne(page);
             page->deleteLater();
-            auto newPage = getPage(child->page(), child->moduleData()->DisplayName);
+            auto newPage = getPage(child->page(), child->displayName());
             if (newPage) {
                 m_pages.insert(index, newPage);
                 vlayout->insertWidget(index, newPage);
@@ -599,14 +596,14 @@ void DccPluginTestWidget::showModulePage(ModuleObject *const module, QWidget *co
     if (m_pages.count() > 1)
         vlayout->addStretch(1);
 
-    QWidget *extraButton = module->extraButton();
+    /*QWidget *extraButton = module->extraButton();
     if (extraButton)
         vlayout->addWidget(getExtraPage(extraButton), 0, Qt::AlignBottom);
     area->verticalScrollBar()->setSliderPosition(getScrollPos(index));
 
     connect(module, &ModuleObject::activeChild, area, [this, area] (const int index) {
         area->verticalScrollBar()->setSliderPosition(getScrollPos(index));
-    });
+    });*/
 
     connect(module, &ModuleObject::removedChild, area, [this, module, vlayout](ModuleObject *const childModule) {
         int index = module->childrens().indexOf(childModule);
@@ -617,7 +614,7 @@ void DccPluginTestWidget::showModulePage(ModuleObject *const module, QWidget *co
     });
     auto addChild = [this, module, vlayout](ModuleObject *const childModule) {
         int index = module->childrens().indexOf(childModule);
-        auto newPage = getPage(childModule->page(), childModule->moduleData()->DisplayName);
+        auto newPage = getPage(childModule->page(), childModule->displayName());
         if (newPage) {
             m_pages.insert(index, newPage);
             vlayout->insertWidget(index, newPage);
