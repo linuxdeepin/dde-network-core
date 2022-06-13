@@ -1,23 +1,23 @@
 /*
-* Copyright (C) 2021 ~ 2023 Deepin Technology Co., Ltd.
-*
-* Author:     caixiangrong <caixiangrong@uniontech.com>
-*
-* Maintainer: caixiangrong <caixiangrong@uniontech.com>
-*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ * Copyright (C) 2021 ~ 2023 Deepin Technology Co., Ltd.
+ *
+ * Author:     caixiangrong <caixiangrong@uniontech.com>
+ *
+ * Maintainer: caixiangrong <caixiangrong@uniontech.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 #ifndef NETWORKDBUSPROXY_H
 #define NETWORKDBUSPROXY_H
 #include <QDBusObjectPath>
@@ -27,6 +27,8 @@ class QDBusMessage;
 
 namespace dde {
 namespace network {
+
+class DCCDBusInterface;
 
 class NetworkDBusProxy : public QObject
 {
@@ -78,14 +80,14 @@ Q_SIGNALS: // SIGNALS
     void DeviceEnabled(const QString &device, bool enabled);
     void IPConflict(const QString &in0, const QString &in1);
     // begin property changed signals
-    void ActiveConnectionsChanged(const QString & value) const;
-    void ConnectionsChanged(const QString & value) const;
-    void ConnectivityChanged(uint  value) const;
-    void DevicesChanged(const QString & value) const;
-    void NetworkingEnabledChanged(bool  value) const;
-    void StateChanged(uint  value) const;
-    void VpnEnabledChanged(bool  value) const;
-    void WirelessAccessPointsChanged(const QString & value) const;
+    void ActiveConnectionsChanged(const QString &value) const;
+    void ConnectionsChanged(const QString &value) const;
+    void ConnectivityChanged(uint value) const;
+    void DevicesChanged(const QString &value) const;
+    void NetworkingEnabledChanged(bool value) const;
+    void StateChanged(uint value) const;
+    void VpnEnabledChanged(bool value) const;
+    void WirelessAccessPointsChanged(const QString &value) const;
     // proxyChains
     // begin property changed signals
     void IPChanged(const QString &value) const;
@@ -95,9 +97,9 @@ Q_SIGNALS: // SIGNALS
     void UserChanged(const QString &value) const;
     // airplaneMode
     // begin property changed signals
-    void BluetoothEnabledChanged(bool  value) const;
-    void EnabledChanged(bool  value) const;
-    void WifiEnabledChanged(bool  value) const;
+    void BluetoothEnabledChanged(bool value) const;
+    void EnabledChanged(bool value) const;
+    void WifiEnabledChanged(bool value) const;
 
 public Q_SLOTS:
     // networkInter
@@ -126,15 +128,12 @@ public Q_SLOTS:
     // proxyChains
     void Set(const QString &type0, const QString &ip, uint port, const QString &user, const QString &password);
     // Notifications
-    uint Notify(const QString &in0, uint in1, const QString &in2, const QString &in3, const QString &in4, const QStringList &in5, const QVariantMap &in6, int in7);
-private Q_SLOTS:
-    void onPropertiesChanged(const QDBusMessage &message);
+    static uint Notify(const QString &in0, uint in1, const QString &in2, const QString &in3, const QString &in4, const QStringList &in5, const QVariantMap &in6, int in7);
 
 private:
-    QDBusInterface *m_networkInter;
-    QDBusInterface *m_proxyChainsInter;
-    QDBusInterface *m_notificationsInter;
-    QDBusInterface *m_airplaneModeInter;
+    DCCDBusInterface *m_networkInter;
+    DCCDBusInterface *m_proxyChainsInter;
+    DCCDBusInterface *m_airplaneModeInter;
 };
 
 }

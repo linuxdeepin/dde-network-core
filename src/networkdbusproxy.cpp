@@ -1,29 +1,31 @@
 /*
-* Copyright (C) 2021 ~ 2023 Deepin Technology Co., Ltd.
-*
-* Author:     caixiangrong <caixiangrong@uniontech.com>
-*
-* Maintainer: caixiangrong <caixiangrong@uniontech.com>
-*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ * Copyright (C) 2021 ~ 2023 Deepin Technology Co., Ltd.
+ *
+ * Author:     caixiangrong <caixiangrong@uniontech.com>
+ *
+ * Maintainer: caixiangrong <caixiangrong@uniontech.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 #include "networkdbusproxy.h"
+#include "dccdbusinterface.h"
 
 #include <QMetaObject>
 #include <QDBusConnection>
 #include <QDBusInterface>
 #include <QDBusPendingReply>
+#include <QDebug>
 
 const QString NetworkService = QStringLiteral("com.deepin.daemon.Network");
 const QString NetworkPath = QStringLiteral("/com/deepin/daemon/Network");
@@ -45,29 +47,12 @@ using namespace dde::network;
 
 NetworkDBusProxy::NetworkDBusProxy(QObject *parent)
     : QObject(parent)
-    , m_networkInter(new QDBusInterface(NetworkService, NetworkPath, NetworkInterface, QDBusConnection::sessionBus(), this))
-    , m_proxyChainsInter(new QDBusInterface(ProxyChainsService, ProxyChainsPath, ProxyChainsInterface, QDBusConnection::sessionBus(), this))
-    , m_airplaneModeInter(new QDBusInterface(AirplaneModeService, AirplaneModePath, AirplaneModeInterface, QDBusConnection::systemBus(), this))
+    , m_networkInter(new DCCDBusInterface(NetworkService, NetworkPath, NetworkInterface, QDBusConnection::sessionBus(), this))
+    , m_proxyChainsInter(new DCCDBusInterface(ProxyChainsService, ProxyChainsPath, ProxyChainsInterface, QDBusConnection::sessionBus(), this))
+    , m_airplaneModeInter(new DCCDBusInterface(AirplaneModeService, AirplaneModePath, AirplaneModeInterface, QDBusConnection::systemBus(), this))
 {
-    QDBusConnection::sessionBus().connect(NetworkService, NetworkPath, PropertiesInterface, PropertiesChanged, this, SLOT(onPropertiesChanged(QDBusMessage)));
-    QDBusConnection::sessionBus().connect(ProxyChainsService, ProxyChainsPath, PropertiesInterface, PropertiesChanged, this, SLOT(onPropertiesChanged(QDBusMessage)));
-    QDBusConnection::systemBus().connect(AirplaneModeService, AirplaneModePath, PropertiesInterface, PropertiesChanged, this, SLOT(onPropertiesChanged(QDBusMessage)));
-
-    connect(m_networkInter, SIGNAL(AccessPointAdded(const QString &, const QString &)), this, SIGNAL(AccessPointAdded(const QString &, const QString &)));
-    connect(m_networkInter, SIGNAL(AccessPointPropertiesChanged(const QString &, const QString &)), this, SIGNAL(AccessPointPropertiesChanged(const QString &, const QString &)));
-    connect(m_networkInter, SIGNAL(AccessPointRemoved(const QString &, const QString &)), this, SIGNAL(AccessPointRemoved(const QString &, const QString &)));
-    connect(m_networkInter, SIGNAL(ActiveConnectionInfoChanged()), this, SIGNAL(ActiveConnectionInfoChanged()));
-    connect(m_networkInter, SIGNAL(DeviceEnabled(const QString &, bool)), this, SIGNAL(DeviceEnabled(const QString &, bool)));
-    connect(m_networkInter, SIGNAL(IPConflict(const QString &, const QString &)), this, SIGNAL(IPConflict(const QString &, const QString &)));
 }
 
-void NetworkDBusProxy::onPropertiesChanged(const QDBusMessage &message)
-{
-    QVariantMap changedProps = qdbus_cast<QVariantMap>(message.arguments().at(1).value<QDBusArgument>());
-    for (QVariantMap::const_iterator it = changedProps.cbegin(); it != changedProps.cend(); ++it) {
-        QMetaObject::invokeMethod(this, it.key().toLatin1() + "Changed", Qt::DirectConnection, QGenericArgument(it.value().typeName(), it.value().data()));
-    }
-}
 // networkInter property
 QString NetworkDBusProxy::activeConnections()
 {
@@ -149,8 +134,9 @@ bool NetworkDBusProxy::enabled()
 
 void NetworkDBusProxy::ShowPage(const QString &url)
 {
-    QDBusInterface ControlCenter("com.deepin.dde.ControlCenter", "/com/deepin/dde/ControlCenter", "com.deepin.dde.ControlCenter", QDBusConnection::sessionBus());
-    ControlCenter.call("ShowPage", QVariant::fromValue(url));
+    QDBusMessage message = QDBusMessage::createMethodCall("com.deepin.dde.ControlCenter", "/com/deepin/dde/ControlCenter", "com.deepin.dde.ControlCenter", "ShowPage");
+    message << QVariant::fromValue(url);
+    QDBusConnection::sessionBus().asyncCall(message);
 }
 // networkInter property
 void NetworkDBusProxy::EnableDevice(const QDBusObjectPath &devPath, bool enabled)
@@ -281,5 +267,7 @@ void NetworkDBusProxy::Set(const QString &type0, const QString &ip, uint port, c
 
 uint NetworkDBusProxy::Notify(const QString &in0, uint in1, const QString &in2, const QString &in3, const QString &in4, const QStringList &in5, const QVariantMap &in6, int in7)
 {
-    return QDBusPendingReply<uint>(m_notificationsInter->asyncCall(QStringLiteral("Notify"), QVariant::fromValue(in0), QVariant::fromValue(in1), QVariant::fromValue(in2), QVariant::fromValue(in3), QVariant::fromValue(in4), QVariant::fromValue(in5), QVariant::fromValue(in6), QVariant::fromValue(in7)));
+    QDBusMessage message = QDBusMessage::createMethodCall("org.freedesktop.Notifications", "/org/freedesktop/Notifications", "org.freedesktop.Notifications", "Notify");
+    message << QVariant::fromValue(in0) << QVariant::fromValue(in1) << QVariant::fromValue(in2) << QVariant::fromValue(in3) << QVariant::fromValue(in4) << QVariant::fromValue(in5) << QVariant::fromValue(in6) << QVariant::fromValue(in7);
+    return QDBusPendingReply<uint>(QDBusConnection::sessionBus().asyncCall(message));
 }
