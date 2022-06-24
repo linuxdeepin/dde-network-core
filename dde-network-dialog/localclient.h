@@ -97,6 +97,7 @@ private:
     QTranslator *m_translator;
     QString m_locale;
     bool m_popopNeedShow;
+    int m_reason;
 };
 
 #endif // LOCALCLIENT_H

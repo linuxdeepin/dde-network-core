@@ -51,6 +51,7 @@ LocalClient::LocalClient(QObject *parent)
     , m_panel(nullptr)
     , m_translator(nullptr)
     , m_popopNeedShow(false)
+    , m_reason(Greeter)
 {
     m_clinet = new QLocalSocket(this);
     connect(m_clinet, SIGNAL(connected()), this, SLOT(connectedHandler()));
@@ -164,7 +165,7 @@ void LocalClient::showPopupWindow()
     static bool isShowing = false;
     QPoint pt = m_popopWindow->property("localpos").toPoint();
     if (pt.x() >= 0 && pt.y() >= 0 && m_popopNeedShow && !isShowing) {
-        m_popopWindow->show(pt, true);
+        m_popopWindow->show(pt, m_reason != Greeter);
         isShowing = true;
     }
 }
@@ -207,7 +208,7 @@ void LocalClient::showPosition(QLocalSocket *socket, const QByteArray &data)
         QJsonObject obj = doc.object();
         int x = obj.value("x").toInt();
         int y = obj.value("y").toInt();
-        int reason = obj.value("reason").toInt();
+        m_reason = obj.value("reason").toInt();
         int position = obj.value("position").toInt();
         QString locale = obj.value("locale").toString();
         if (locale.isEmpty())
@@ -216,7 +217,7 @@ void LocalClient::showPosition(QLocalSocket *socket, const QByteArray &data)
         updateTranslator(locale);
 
         QPixmap pixmap;
-        switch (reason) {
+        switch (m_reason) {
         case Greeter:
             dde::network::NetworkController::setServiceType(dde::network::ServiceLoadType::LoadFromManager);
             ThemeManager::instance()->setThemeType(ThemeManager::GreeterType);
@@ -233,7 +234,7 @@ void LocalClient::showPosition(QLocalSocket *socket, const QByteArray &data)
         if (!pixmap.isNull()) {
             m_popopWindow->setBackground(pixmap.toImage());
         }
-        if (reason != Dock) {
+        if (m_reason != Dock) {
             m_popopWindow->setWindowFlag(Qt::Popup);
         }
         m_popopWindow->setArrowDirection(static_cast<DArrowRectangle::ArrowDirection>(position));
