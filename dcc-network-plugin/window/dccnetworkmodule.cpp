@@ -77,7 +77,9 @@ void NetworkModule::updateVisiable()
 {
     int row = 0;
     int index = 1;
-    bool emptyHotspot = NetworkController::instance()->hotspotController()->devices().isEmpty();
+    auto &&devices = NetworkController::instance()->devices();
+    bool supportHotspot = std::any_of(devices.cbegin(), devices.cend(), [](NetworkDeviceBase *device) { return device->supportHotspot(); });
+
     for (ModuleObject *&module : m_wiredModules) {
         module->setDisplayName(tr("Wired %1").arg(index++));
         insertChild(row++, module);
@@ -94,7 +96,7 @@ void NetworkModule::updateVisiable()
         m_wirelessModules.first()->setDisplayName(tr("Wireless"));
 
     for (ModuleObject *&module : m_modules) {
-        if (emptyHotspot && module->name() == QStringLiteral("personalHotspot")) { // 热点根据设备显示
+        if (!supportHotspot && module->name() == QStringLiteral("personalHotspot")) { // 热点根据设备显示
             removeChild(module);
         } else {
             insertChild(row++, module);

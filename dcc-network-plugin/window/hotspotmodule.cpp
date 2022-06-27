@@ -1,23 +1,23 @@
 /*
-* Copyright (C) 2021 ~ 2023 Deepin Technology Co., Ltd.
-*
-* Author:     caixiangrong <caixiangrong@uniontech.com>
-*
-* Maintainer: caixiangrong <caixiangrong@uniontech.com>
-*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ * Copyright (C) 2021 ~ 2023 Deepin Technology Co., Ltd.
+ *
+ * Author:     caixiangrong <caixiangrong@uniontech.com>
+ *
+ * Maintainer: caixiangrong <caixiangrong@uniontech.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 #include "controllitemsmodel.h"
 #include "hotspotmodule.h"
 #include "editpage/connectionhotspoteditpage.h"
@@ -153,7 +153,6 @@ HotspotModule::HotspotModule(QObject *parent)
     setChildType(ModuleObject::Page);
 
     HotspotController *hotspotController = NetworkController::instance()->hotspotController();
-    onDeviceAdded(hotspotController->devices());
     connect(hotspotController, &HotspotController::deviceAdded, this, &HotspotModule::onDeviceAdded);
     connect(hotspotController, &HotspotController::deviceRemove, this, &HotspotModule::onDeviceRemove);
     ModuleObject *extra = new WidgetModule<FloatingButton>("createHotspot", tr("Create Hotspot"), [this](FloatingButton *newprofile) {
@@ -169,10 +168,11 @@ HotspotModule::HotspotModule(QObject *parent)
         });
     });
     extra->setExtra();
-    connect(this, &HotspotModule::updateItemOnlyOne, extra, [extra](bool visiable){
+    connect(this, &HotspotModule::updateItemOnlyOne, extra, [extra](bool visiable) {
         extra->setHiden(!visiable);
     });
     appendChild(extra);
+    onDeviceAdded(hotspotController->devices());
 }
 
 void HotspotModule::onDeviceAdded(const QList<WirelessDevice *> &devices)
@@ -187,7 +187,7 @@ void HotspotModule::onDeviceAdded(const QList<WirelessDevice *> &devices)
     }
     HotspotController *hotspotController = NetworkController::instance()->hotspotController();
     QList<WirelessDevice *> hotspotDevices = hotspotController->devices();
-    qSort(m_items.begin(), m_items.end(), [=](HotspotDeviceItem *item1, HotspotDeviceItem *item2) {
+    std::sort(m_items.begin(), m_items.end(), [=](HotspotDeviceItem *item1, HotspotDeviceItem *item2) {
         return hotspotDevices.indexOf(item1->device()) < hotspotDevices.indexOf(item2->device());
     });
     updateVisiable();
