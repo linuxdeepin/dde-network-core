@@ -158,9 +158,11 @@ void WirelessModule::onApWidgetEditRequested(AccessPoints *ap)
     QString uuid;
     QString apPath;
     QString ssid;
+    bool isHidden = true;
     if (ap) {
         ssid = ap->ssid();
         apPath = ap->path();
+        isHidden = ap->hidden();
 
         for (auto conn : NetworkManager::activeConnections()) {
             if (conn->type() != NetworkManager::ConnectionSettings::ConnectionType::Wireless || conn->id() != ssid)
@@ -192,13 +194,13 @@ void WirelessModule::onApWidgetEditRequested(AccessPoints *ap)
             }
         }
     }
-    ConnectionWirelessEditPage *m_apEditPage = new ConnectionWirelessEditPage(m_device->path(), uuid, apPath, ap, qApp->activeWindow());
+    ConnectionWirelessEditPage *m_apEditPage = new ConnectionWirelessEditPage(m_device->path(), uuid, apPath, isHidden, qApp->activeWindow());
 
     connect(m_apEditPage, &ConnectionWirelessEditPage::disconnect, this, [this] {
         m_device->disconnectNetwork();
     });
 
-    if (!uuid.isEmpty()) {
+    if (!uuid.isEmpty() || !ap) {
         //        m_editingUuid = uuid;
         m_apEditPage->initSettingsWidget();
     } else {
