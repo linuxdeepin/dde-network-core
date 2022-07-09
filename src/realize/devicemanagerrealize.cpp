@@ -377,7 +377,7 @@ void DeviceManagerRealize::changeWirelessStatus(Device::State newstate)
         if (m_activeWirelessConnection) {
             AccessPoints *ap = findAccessPoints(m_activeWirelessConnection->connection()->ssid());
             if (ap)
-                ap->m_status = ConnectionStatus::Deactivated;
+                ap->updateConnectionStatus(ConnectionStatus::Deactivated);
 
             m_activeWirelessConnection = nullptr;
             Q_EMIT activeConnectionChanged();
@@ -394,7 +394,7 @@ void DeviceManagerRealize::changeWirelessStatus(Device::State newstate)
     if (m_activeWirelessConnection && m_activeWirelessConnection != currentConnection) {
         AccessPoints *ap = findAccessPoints(m_activeWirelessConnection->connection()->ssid());
         if (ap)
-            ap->m_status = ConnectionStatus::Deactivated;
+            ap->updateConnectionStatus(ConnectionStatus::Deactivated);
         oldStatus = ConnectionStatus::Unknown;
     }
 
@@ -403,7 +403,7 @@ void DeviceManagerRealize::changeWirelessStatus(Device::State newstate)
         m_activeWirelessConnection = currentConnection;
         AccessPoints *ap = findAccessPoints(currentConnection->connection()->ssid());
         if (ap) {
-            ap->m_status = newStatus;
+            ap->updateConnectionStatus(newStatus);
             Q_EMIT activeConnectionChanged();
         }
     }
