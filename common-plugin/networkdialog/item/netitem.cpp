@@ -478,17 +478,16 @@ void WirelessItem::expandWidget(ExpandWidget type, bool autoDisconnect)
         QTimer::singleShot(50, m_ssidEdit->lineEdit(), SLOT(setFocus()));
         break;
     case ExpandWidget::ShowPassword:
-// TODO: AccessPoints::connectionStatusChanged 信号未同步过来
-//        // 如果当前需要输入密码的ap不是处理正在连接状态，则隐藏起来，目的是为了处理在控制中心快速切换ap导致连接状态错误的问题
-//        const QString ssidWaitingForPassword = m_panel->ssidWaitingForPassword();
-//        if (m_accessPoint && ssidWaitingForPassword == m_accessPoint->ssid()) {
-//            if (m_accessPoint->status() != ConnectionStatus::Activating) {
-//                expandWidget(ExpandWidget::Hide);
-//                break;
-//            }
-//            // 有时候显示密码输入框时, ap的status还没有来得变更，有可能会在几毫秒(不确定)后变更，需要绑定信号进行处理
-//            connect(m_accessPoint, &AccessPoints::connectionStatusChanged, this, &WirelessItem::onApConnectionStatusChanged, Qt::UniqueConnection);
-//        }
+        // 如果当前需要输入密码的ap不是处理正在连接状态，则隐藏起来，目的是为了处理在控制中心快速切换ap导致连接状态错误的问题
+        const QString ssidWaitingForPassword = m_panel->ssidWaitingForPassword();
+        if (m_accessPoint && ssidWaitingForPassword == m_accessPoint->ssid()) {
+            if (m_accessPoint->status() != ConnectionStatus::Activating) {
+                expandWidget(ExpandWidget::Hide);
+                break;
+            }
+            // 有时候显示密码输入框时, ap的status还没有来得变更，有可能会在几毫秒(不确定)后变更，需要绑定信号进行处理
+            connect(m_accessPoint, &AccessPoints::connectionStatusChanged, this, &WirelessItem::onApConnectionStatusChanged, Qt::UniqueConnection);
+        }
         m_expandItem->setVisible(true);
         m_topItem->setVisible(true);
         standardItem()->setSizeHint(QSize(-1, 130));
