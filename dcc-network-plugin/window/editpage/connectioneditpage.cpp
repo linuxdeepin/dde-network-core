@@ -230,9 +230,19 @@ void ConnectionEditPage::initConnection()
 
     connect(m_removeBtn, &QPushButton::clicked, this, &ConnectionEditPage::onRemoveButton);
 
-    connect(m_disconnectBtn, &QPushButton::clicked, this, [=]() {
-        Q_EMIT disconnect(m_disconnectBtn->property("connectionUuid").toString());
-        close();
+    connect(m_disconnectBtn, &QPushButton::clicked, this, [ = ]() {
+        NetworkManager::Connection::Ptr con = NetworkManager::findConnection(m_connection->path());
+        if (!con) {
+            qWarning() << "Not possible to deactivate this connection";
+        } else {
+            for (const NetworkManager::ActiveConnection::Ptr &active : NetworkManager::activeConnections()) {
+                if (active->uuid() == con->uuid()) {
+                    qDebug() << "deactivate connection: " << active->path();
+                    NetworkManager::deactivateConnection(active->path());
+                }
+            }
+        }
+        Q_EMIT close();
     });
 }
 
