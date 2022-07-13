@@ -62,7 +62,6 @@ void VpnPPTPSettings::initSections()
 
     vpnPPPSection->setSupportOptions(supportOptions);
     IpvxSection *ipv4Section = new IpvxSection(m_connSettings->setting(Setting::SettingType::Ipv4).staticCast<Ipv4Setting>());
-    ipv4Section->setIpv4ConfigMethodEnable(Ipv4Setting::ConfigMethod::Manual, false);
     ipv4Section->setNeverDefaultEnable(true);
     DNSSection *dnsSection = new DNSSection(m_connSettings, false);
 
