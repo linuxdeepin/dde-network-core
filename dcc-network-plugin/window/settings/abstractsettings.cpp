@@ -64,6 +64,9 @@ bool AbstractSettings::isAutoConnect()
 
 void AbstractSettings::resetConnectionInterfaceName()
 {
+    if (!m_connSettings->interfaceName().isEmpty())
+        return;
+
     if (ConnectionEditPage::devicePath().isEmpty() || clearInterfaceName()) {
         m_connSettings->setInterfaceName(QString());
         return;
