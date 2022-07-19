@@ -14,12 +14,15 @@ class LineEditWidget;
 class ComboxWidget;
 class SwitchWidget;
 }
+#include <networkmanagerqt/connectionsettings.h>
 
 namespace dcc {
 namespace network {
 class SpinBoxWidget;
 }
 }
+
+using namespace NetworkManager;
 
 class QComboBox;
 
@@ -28,7 +31,7 @@ class WirelessSection : public AbstractSection
     Q_OBJECT
 
 public:
-    explicit WirelessSection(NetworkManager::WirelessSetting::Ptr wiredSetting, bool isHotSpot = false, QFrame *parent = nullptr);
+    explicit WirelessSection(ConnectionSettings::Ptr connSettings, WirelessSetting::Ptr wiredSetting, QString devPath, bool isHotSpot = false, QFrame *parent = nullptr);
     virtual ~WirelessSection() Q_DECL_OVERRIDE;
 
     bool allInputValid() Q_DECL_OVERRIDE;
@@ -56,10 +59,11 @@ private:
     DCC_NAMESPACE::SwitchWidget *m_customMtuSwitch;
     dcc::network::SpinBoxWidget *m_customMtu;
 
-    NetworkManager::WirelessSetting::Ptr m_wirelessSetting;
+    ConnectionSettings::Ptr m_connSettings;
+    WirelessSetting::Ptr m_wirelessSetting;
 
     QRegExp m_macAddrRegExp;
-    QMap<QString, QString> m_macStrMap;
+    QMap<QString, QPair<QString, QString>> m_macStrMap;
 };
 
 #endif /* WIRELESSSECTION_H */

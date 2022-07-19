@@ -9,6 +9,7 @@
 #include "sections/dnssection.h"
 #include "sections/wirelesssection.h"
 //#include "window/gsettingwatcher.h"
+#include "editpage/connectioneditpage.h"
 
 #include <widgets/switchwidget.h>
 
@@ -41,7 +42,7 @@ void WirelessSettings::initSections()
 
     DNSSection *dnsSection = new DNSSection(m_connSettings);
 
-    WirelessSection *wirelessSection = new WirelessSection(m_connSettings->setting(Setting::SettingType::Wireless).staticCast<WirelessSetting>());
+    WirelessSection *wirelessSection = new WirelessSection(m_connSettings, m_connSettings->setting(Setting::SettingType::Wireless).staticCast<WirelessSetting>(), ConnectionEditPage::devicePath());
     // we need enable ssid text edit since it is a hidden wifi edit page if ssid is empty
     if (!wirelessSection->ssid().isEmpty())
         wirelessSection->setSsidEditable(false);
