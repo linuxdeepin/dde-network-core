@@ -1,3 +1,10 @@
+dde-network-core (2.0.1) unstable; urgency=medium
+
+  [ donghualin ]
+  * UNRELEASED
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Mon, 25 Jul 2022 13:06:44 +0800
+
 dde-network-core (2.0.0.1) unstable; urgency=low
 
  * release Tag 2.0.0.1
