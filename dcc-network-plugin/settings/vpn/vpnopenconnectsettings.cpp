@@ -54,11 +54,9 @@ void VpnOpenConnectSettings::initSections()
     VpnOpenConnectSection *vpnOpenConnectSection = new VpnOpenConnectSection(vpnSetting);
 
     IpvxSection *ipv4Section = new IpvxSection(m_connSettings->setting(Setting::SettingType::Ipv4).staticCast<Ipv4Setting>());
-    ipv4Section->setIpv4ConfigMethodEnable(Ipv4Setting::ConfigMethod::Manual, false);
     ipv4Section->setNeverDefaultEnable(true);
 
     IpvxSection *ipv6Section = new IpvxSection(m_connSettings->setting(Setting::SettingType::Ipv6).staticCast<Ipv6Setting>());
-    ipv6Section->setIpv6ConfigMethodEnable(Ipv6Setting::ConfigMethod::Manual, false);
     ipv6Section->setNeverDefaultEnable(true);
     DNSSection *dnsSection = new DNSSection(m_connSettings);
 
