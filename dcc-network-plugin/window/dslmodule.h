@@ -20,7 +20,7 @@
 */
 #ifndef DSLMODULE_H
 #define DSLMODULE_H
-#include "interface/moduleobject.h"
+#include "interface/pagemodule.h"
 
 #include <dtkwidget_global.h>
 
@@ -34,7 +34,7 @@ class ControllItems;
 }
 }
 
-class DSLModule : public DCC_NAMESPACE::ModuleObject
+class DSLModule : public DCC_NAMESPACE::PageModule
 {
     Q_OBJECT
 public:

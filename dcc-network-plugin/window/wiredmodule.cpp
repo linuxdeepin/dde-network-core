@@ -41,11 +41,9 @@ DCC_USE_NAMESPACE
 DWIDGET_USE_NAMESPACE
 
 WiredModule::WiredModule(WiredDevice *dev, QObject *parent)
-    : ModuleObject("networkWired", tr("Wired"), tr("Wired"), QIcon::fromTheme("dcc_ethernet"), parent)
+    : PageModule("networkWired", tr("Wired"), tr("Wired"), QIcon::fromTheme("dcc_ethernet"), parent)
     , m_device(dev)
 {
-    setChildType(ModuleObject::Page);
-
     m_modules.append(new WidgetModule<SwitchWidget>("wired_adapter", tr("Wired Network Adapter"), [this](SwitchWidget *devEnabled) {
         QLabel *lblTitle = new QLabel(tr("Wired Network Adapter")); // 无线网卡
         DFontSizeManager::instance()->bind(lblTitle, DFontSizeManager::T5, QFont::DemiBold);

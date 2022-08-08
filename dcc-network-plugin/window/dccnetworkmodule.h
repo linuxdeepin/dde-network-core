@@ -22,7 +22,7 @@
 #ifndef NETWORKINTERFACE_H
 #define NETWORKINTERFACE_H
 
-#include "interface/moduleobject.h"
+#include "interface/hlistmodule.h"
 #include "interface/plugininterface.h"
 
 namespace dde {
@@ -33,7 +33,7 @@ class NetworkDeviceBase;
 
 class QEvent;
 
-class NetworkModule : public DCC_NAMESPACE::ModuleObject
+class NetworkModule : public DCC_NAMESPACE::HListModule
 {
     Q_OBJECT
 public:
@@ -67,7 +67,7 @@ public:
 
     virtual QString name() const override;
     virtual DCC_NAMESPACE::ModuleObject *module() override;
-    virtual int location() const override;
+    virtual QString location() const override;
 
 private:
     DCC_NAMESPACE::ModuleObject *m_moduleRoot;

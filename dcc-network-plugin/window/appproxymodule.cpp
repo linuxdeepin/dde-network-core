@@ -44,9 +44,8 @@ const QStringList c_ProxyTypeList = {
 };
 
 AppProxyModule::AppProxyModule(QObject *parent)
-    : ModuleObject("applicationProxy", tr("Application Proxy"), tr("Application Proxy"), QIcon::fromTheme("dcc_app_proxy"), parent)
+    : PageModule("applicationProxy", tr("Application Proxy"), tr("Application Proxy"), QIcon::fromTheme("dcc_app_proxy"), parent)
 {
-    setChildType(ModuleObject::Page);
     deactive();
 
     appendChild(new WidgetModule<ComboxWidget>("app_proxy_type", tr("Proxy Type"), [this](ComboxWidget *proxyType) {

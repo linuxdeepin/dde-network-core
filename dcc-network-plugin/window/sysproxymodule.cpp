@@ -49,11 +49,10 @@ enum ProxyMethodIndex : int {
 };
 
 SysProxyModule::SysProxyModule(QObject *parent)
-    : ModuleObject("systemProxy", tr("System Proxy"), tr("System Proxy"), QIcon::fromTheme("dcc_system_agent"), parent)
+    : PageModule("systemProxy", tr("System Proxy"), tr("System Proxy"), QIcon::fromTheme("dcc_system_agent"), parent)
     , m_ProxyMethodList({ tr("manual"), tr("auto") })
     , m_uiMethod(dde::network::ProxyMethod::Init)
 {
-    setChildType(ModuleObject::Page);
     deactive();
     m_modules.append(new WidgetModule<SwitchWidget>("system_proxy", tr("System Proxy"), [this](SwitchWidget *proxySwitch) {
         m_proxySwitch = proxySwitch;

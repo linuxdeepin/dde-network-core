@@ -47,9 +47,9 @@ DCC_USE_NAMESPACE
 using namespace dde::network;
 
 NetworkModule::NetworkModule(QObject *parent)
-    : ModuleObject("network", tr("Network"), tr("Network"), QIcon::fromTheme("dcc_nav_network"), parent)
+    : HListModule("network", tr("Network"), tr("Network"), QIcon::fromTheme("dcc_nav_network"), parent)
 {
-    setChildType(ModuleObject::HList);
+
 }
 void NetworkModule::init()
 {
@@ -188,7 +188,7 @@ ModuleObject *DccNetworkPlugin::module()
     return m_moduleRoot;
 }
 
-int DccNetworkPlugin::location() const
+QString DccNetworkPlugin::location() const
 {
-    return 6;
+    return "6";
 }

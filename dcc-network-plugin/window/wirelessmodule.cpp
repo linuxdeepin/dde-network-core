@@ -47,11 +47,9 @@ DCC_USE_NAMESPACE
 DWIDGET_USE_NAMESPACE
 
 WirelessModule::WirelessModule(WirelessDevice *dev, QObject *parent)
-    : ModuleObject("Wireless", tr("Wireless"), tr("Wireless"), QIcon::fromTheme("dcc_wifi"), parent)
+    : PageModule("Wireless", tr("Wireless"), tr("Wireless"), QIcon::fromTheme("dcc_wifi"), parent)
     , m_device(dev)
 {
-    setChildType(ModuleObject::Page);
-
     m_modules.append(new WidgetModule<SwitchWidget>("wireless_adapter", tr("Wireless Network Adapter"), [this](SwitchWidget *devEnabled) {
         QLabel *lblTitle = new QLabel(tr("Wireless Network Adapter")); // 无线网卡
         DFontSizeManager::instance()->bind(lblTitle, DFontSizeManager::T5, QFont::DemiBold);

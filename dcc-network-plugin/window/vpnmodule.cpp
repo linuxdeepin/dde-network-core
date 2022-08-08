@@ -68,10 +68,8 @@ QString vpnConfigType(const QString &path)
 }
 
 VPNModule::VPNModule(QObject *parent)
-    : ModuleObject("networkVpn", tr("VPN"), tr("VPN"), QIcon::fromTheme("dcc_vpn"), parent)
+    : PageModule("networkVpn", tr("VPN"), tr("VPN"), QIcon::fromTheme("dcc_vpn"), parent)
 {
-    setChildType(ModuleObject::Page);
-
     m_modules.append(new WidgetModule<SwitchWidget>("wired_adapter", tr("Wired Network Adapter"), [](SwitchWidget *vpnSwitch) {
         QLabel *lblTitle = new QLabel(tr("VPN Status"));
         DFontSizeManager::instance()->bind(lblTitle, DFontSizeManager::T5, QFont::DemiBold);

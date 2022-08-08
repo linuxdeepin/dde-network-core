@@ -48,6 +48,39 @@ DWIDGET_END_NAMESPACE
 DWIDGET_USE_NAMESPACE
 DCC_USE_NAMESPACE
 
+DCC_BEGIN_NAMESPACE
+
+class MainModulePrivate;
+
+class MainModule : public ModuleObject
+{
+    Q_OBJECT
+
+public:
+    explicit MainModule(QObject *parent = nullptr);
+    MainModule(const QString &name, const QString &displayName = QString(), QObject *parent = nullptr);
+    MainModule(const QString &name, const QStringList &contentText, QObject *parent = nullptr);
+    MainModule(const QString &name, const QString &displayName, const QStringList &contentText, QObject *parent = nullptr);
+    MainModule(const QString &name, const QString &displayName, const QVariant &icon, QObject *parent = nullptr);
+    MainModule(const QString &name, const QString &displayName, const QString &description, QObject *parent = nullptr);
+    MainModule(const QString &name, const QString &displayName, const QString &description, const QVariant &icon, QObject *parent = nullptr);
+    MainModule(const QString &name, const QString &displayName, const QString &description, const QIcon &icon, QObject *parent = nullptr);
+    MainModule(const QString &name, const QString &displayName, const QString &description, const QStringList &contentText, const QVariant &icon, QObject *parent = nullptr);
+    ~MainModule() override;
+
+    void appendChild(ModuleObject *const module) override;
+    QWidget *page() override;
+    ModuleObject *defultModule() const override;
+    inline DCC_MODULE_TYPE getClassID() const override { return MAINLAYOUT; }
+
+private:
+    QScopedPointer<MainModulePrivate> d_ptr;
+    Q_DECLARE_PRIVATE(MainModule)
+    Q_DISABLE_COPY(MainModule)
+};
+
+DCC_END_NAMESPACE
+
 class DccPluginTestWidget : public DMainWindow
 {
     Q_OBJECT
@@ -59,7 +92,6 @@ public:
     };
     explicit DccPluginTestWidget(QWidget *parent = nullptr);
     ~DccPluginTestWidget();
-
 
     /**
      * @brief 显示路径请求的页面，用于搜索或DBus接口
@@ -80,31 +112,23 @@ private:
     void clearPage(QWidget *const widget);
     void configLayout(QBoxLayout *const layout);
     int getScrollPos(const int index);
-    void showPage(ModuleObject *const module, const QString &url, const UrlType &uType);
-    void showModule(ModuleObject *const module, QWidget *const parent, const int index = -1);
-    void showModuleMainIcon(ModuleObject *const module, QWidget *const parent, const int index = -1);
-    void showModuleMainList(ModuleObject *const module, QWidget *const parent, const int index = -1);
-    void showModuleHList(ModuleObject *const module, QWidget *const parent, const int index = -1);
-    void showModuleVList(ModuleObject *const module, QWidget *const parent, const int index = -1);
-    void showModulePage(ModuleObject *const module, QWidget *const parent, const int index = -1);
+    void showPage(ModuleObject *module, const QString &url, const UrlType &uType);
+    void showModule(ModuleObject *module, const int index = -1);
     QWidget *getPage(QWidget *const widget, const QString &title);
     QWidget *getExtraPage(QWidget *const widget);
 
-    inline void setCurrentModule(ModuleObject *const module) { m_currentModule = module; }
-    inline ModuleObject *currentModule() const { return m_currentModule; }
+private Q_SLOTS:
+    void onAddModule(ModuleObject *module);
+    void onRemoveModule(ModuleObject *module);
+    void onTriggered();
+    void onChildStateChanged(ModuleObject *child, uint32_t flag, bool state);
 
 private:
-    QWidget                             *m_contentWidget;
-    Dtk::Widget::DIconButton            *m_backwardBtn;         //回退按钮
-//    Dtk::Core::DConfig                  *m_dconfig;             //配置
-//    SearchWidget                        *m_searchWidget;        //搜索框
-    ModuleObject                        *m_rootModule;
-    ModuleObject                        *m_currentModule;
-//    PluginManager                       *m_pluginManager;
-    QAbstractItemView                   *m_mainView;            //保存主菜单view, 方便改变背景
-    QList<QWidget*>                     m_pages;                //保存终点的页面
+    Dtk::Widget::DIconButton *m_backwardBtn; //回退按钮
+    ModuleObject *m_rootModule;
+    QList<ModuleObject *> m_currentModule;
+    QAbstractItemView *m_mainView; //保存主菜单view, 方便改变背景
+    QList<QWidget *> m_pages;      //保存终点的页面
 };
-
-
 
 #endif // DCCPLUGINTESTWIDGET_H

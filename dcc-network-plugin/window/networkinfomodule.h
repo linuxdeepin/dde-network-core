@@ -20,7 +20,7 @@
 */
 #ifndef NETWORKINFOMODULE_H
 #define NETWORKINFOMODULE_H
-#include "interface/moduleobject.h"
+#include "interface/pagemodule.h"
 
 #include <dtkwidget_global.h>
 
@@ -34,7 +34,7 @@ class ControllItems;
 }
 }
 
-class NetworkInfoModule : public DCC_NAMESPACE::ModuleObject
+class NetworkInfoModule : public DCC_NAMESPACE::PageModule
 {
     Q_OBJECT
 public:

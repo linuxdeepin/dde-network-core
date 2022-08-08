@@ -21,7 +21,7 @@
 #ifndef WIREDMODULE_H
 #define WIREDMODULE_H
 
-#include "interface/moduleobject.h"
+#include "interface/pagemodule.h"
 
 #include <dtkwidget_global.h>
 
@@ -40,7 +40,7 @@ enum class DeviceStatus;
 }
 }
 
-class WiredModule : public DCC_NAMESPACE::ModuleObject
+class WiredModule : public DCC_NAMESPACE::PageModule
 {
     Q_OBJECT
 public:

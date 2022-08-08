@@ -31,10 +31,8 @@ using namespace dde::network;
 DCC_USE_NAMESPACE
 
 NetworkInfoModule::NetworkInfoModule(QObject *parent)
-    : ModuleObject("networkDetails", tr("Network Details"), tr("Network Details"), QIcon::fromTheme("dcc_network"), parent)
+    : PageModule("networkDetails", tr("Network Details"), tr("Network Details"), QIcon::fromTheme("dcc_network"), parent)
 {
-    setChildType(ModuleObject::Page);
-
     connect(NetworkController::instance(), &NetworkController::activeConnectionChange, this, &NetworkInfoModule::onUpdateNetworkInfo);
 
     onUpdateNetworkInfo();

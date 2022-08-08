@@ -40,10 +40,8 @@ DCC_USE_NAMESPACE
 DWIDGET_USE_NAMESPACE
 
 DSLModule::DSLModule(QObject *parent)
-    : ModuleObject("networkDsl", tr("DSL"), tr("DSL"), QIcon::fromTheme("dcc_dsl"), parent)
+    : PageModule("networkDsl", tr("DSL"), tr("DSL"), QIcon::fromTheme("dcc_dsl"), parent)
 {
-    setChildType(ModuleObject::Page);
-
     appendChild(new WidgetModule<DListView>("List_pppoelist", tr("Wired List"), this, &DSLModule::initDSLList));
     ModuleObject *extra = new WidgetModule<FloatingButton>("createDSL", tr("Create PPPoE Connection"), [this](FloatingButton *createBtn) {
         createBtn->setIcon(DStyle::StandardPixmap::SP_IncreaseElement);

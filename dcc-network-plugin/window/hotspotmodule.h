@@ -20,7 +20,7 @@
 */
 #ifndef HOTSPOTMODULE_H
 #define HOTSPOTMODULE_H
-#include "interface/moduleobject.h"
+#include "interface/pagemodule.h"
 
 #include <dtkwidget_global.h>
 
@@ -64,7 +64,7 @@ private:
     QList<DCC_NAMESPACE::ModuleObject *> m_modules;
 };
 
-class HotspotModule : public DCC_NAMESPACE::ModuleObject
+class HotspotModule : public DCC_NAMESPACE::PageModule
 {
     Q_OBJECT
 public:

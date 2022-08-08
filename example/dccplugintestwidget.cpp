@@ -41,7 +41,6 @@
 
 #include "dccnetworkmodule.h"
 #include "moduledatamodel.h"
-//#include <widgets/multiselectlistview.h>
 #include <DBackgroundGroup>
 #include <DListView>
 #include <DStyledItemDelegate>
@@ -49,23 +48,9 @@
 #include <QScreen>
 #include <QScrollBar>
 #include <QLabel>
-typedef  DListView ListView;
-//typedef  QListView TabView;
-typedef  DStyledItemDelegate ListItemDelegate;
-typedef  DStyledItemDelegate TabItemDelegate;
-class TabView : public QListView
-{
-public:
-    explicit TabView(QWidget *parent = nullptr)
-        : QListView(parent)
-    {
-        setViewMode(QListView::ListMode);
-        setFlow(QListView::LeftToRight);
-        setResizeMode(QListView::Adjust);
-        setMinimumSize(700,30);
-        setMaximumHeight(50);
-    }
-};
+
+typedef DListView ListView;
+typedef DStyledItemDelegate ListItemDelegate;
 
 const QSize MainWindowMininumSize(QSize(800, 600));
 const QMargins ZeroMargins(0, 0, 0, 0);
@@ -84,26 +69,187 @@ const int third_widget_min_width = 340;
 const int widget_total_min_width = 820;
 const int four_widget_min_widget = widget_total_min_width + third_widget_min_width + 40;
 const int first_widget_min_width = 188;
-const qint32 ActionIconSize = 30;//大图标角标大小
+const qint32 ActionIconSize = 30; //大图标角标大小
 
-const QSize ListViweItemIconSize(84,84);
-const QSize ListViweItemSize(170,168);
+const QSize ListViweItemIconSize(84, 84);
+const QSize ListViweItemSize(170, 168);
 
 Q_DECLARE_METATYPE(QMargins)
 const QMargins navItemMargin(5, 3, 5, 3);
 const QVariant NavItemMargin = QVariant::fromValue(navItemMargin);
 
+//////////////////////////////////////////
+DCC_BEGIN_NAMESPACE
+
+class MainModulePrivate
+{
+public:
+    explicit MainModulePrivate(MainModule *parent = nullptr)
+        : q_ptr(parent)
+        , m_view(nullptr)
+        , m_layout(nullptr)
+    {
+    }
+
+    void onCurrentModuleChanged(ModuleObject *child)
+    {
+        if (!m_layout)
+            return;
+        if (m_layout->count() > 1) {
+            QLayoutItem *item = m_layout->takeAt(1);
+            delete item->widget();
+            delete item;
+        }
+        if (child) {
+            m_view->setViewMode(QListView::ListMode);
+            m_view->setIconSize(ListViweItemIconSize_ListMode);
+            m_view->setGridSize(ListViweItemSize_ListMode);
+            m_view->setSpacing(0);
+            m_layout->addWidget(child->activePage(), 5);
+            ModuleDataModel *model = static_cast<ModuleDataModel *>(m_view->model());
+        } else {
+            m_view->setViewMode(QListView::IconMode);
+            m_view->setIconSize(ListViweItemIconSize_IconMode);
+            m_view->setGridSize(ListViweItemSize_IconMode);
+            m_view->setSpacing(20);
+        }
+    }
+
+    QWidget *page()
+    {
+        Q_Q(MainModule);
+        QWidget *parentWidget = new QWidget();
+        m_layout = new QHBoxLayout(parentWidget);
+        m_layout->setContentsMargins(0, 0, 0, 0);
+        m_layout->setSpacing(0);
+        parentWidget->setLayout(m_layout);
+
+        m_view = new ListView(parentWidget);
+        ListItemDelegate *delegate = new ListItemDelegate(m_view);
+        m_view->setItemDelegate(delegate);
+        ModuleDataModel *model = new ModuleDataModel(m_view);
+        model->setModuleObject(q);
+        QObject::connect(q, &MainModule::currentModuleChanged, m_layout, [this](ModuleObject *child) {
+            onCurrentModuleChanged(child);
+        });
+        m_view->setModel(model);
+        m_view->setFrameShape(QFrame::Shape::NoFrame);
+        m_view->setAutoScroll(true);
+        m_view->setDragEnabled(false);
+        m_view->setMaximumWidth(NavViewMaximumWidth);
+        m_view->setMinimumWidth(NavViewMinimumWidth);
+        m_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        m_view->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        m_view->setSelectionMode(QAbstractItemView::SingleSelection);
+        m_view->setAcceptDrops(false);
+
+        auto onClicked = [](const QModelIndex &index) {
+            ModuleObject *obj = static_cast<ModuleObject *>(index.internalPointer());
+            if (obj)
+                obj->trigger();
+        };
+
+        QObject::connect(m_view, &ListView::activated, m_view, &ListView::clicked);
+        QObject::connect(m_view, &ListView::clicked, m_view, onClicked);
+        m_layout->addWidget(m_view, 1);
+
+        onCurrentModuleChanged(q->currentModule());
+        return parentWidget;
+    }
+
+private:
+    MainModule *q_ptr;
+    Q_DECLARE_PUBLIC(MainModule)
+
+    DListView *m_view;
+    QHBoxLayout *m_layout;
+};
+
+DCC_END_NAMESPACE
+
+MainModule::MainModule(QObject *parent)
+    : ModuleObject(parent)
+    , d_ptr(new MainModulePrivate(this))
+{
+}
+
+MainModule::MainModule(const QString &name, const QString &displayName, QObject *parent)
+    : ModuleObject(name, displayName, parent)
+    , d_ptr(new MainModulePrivate(this))
+{
+}
+
+MainModule::MainModule(const QString &name, const QStringList &contentText, QObject *parent)
+    : ModuleObject(name, contentText, parent)
+    , d_ptr(new MainModulePrivate(this))
+{
+}
+
+MainModule::MainModule(const QString &name, const QString &displayName, const QStringList &contentText, QObject *parent)
+    : ModuleObject(name, displayName, contentText, parent)
+    , d_ptr(new MainModulePrivate(this))
+{
+}
+
+MainModule::MainModule(const QString &name, const QString &displayName, const QVariant &icon, QObject *parent)
+    : ModuleObject(name, displayName, icon, parent)
+    , d_ptr(new MainModulePrivate(this))
+{
+}
+
+MainModule::MainModule(const QString &name, const QString &displayName, const QString &description, QObject *parent)
+    : ModuleObject(name, displayName, description, parent)
+    , d_ptr(new MainModulePrivate(this))
+{
+}
+
+MainModule::MainModule(const QString &name, const QString &displayName, const QString &description, const QVariant &icon, QObject *parent)
+    : ModuleObject(name, displayName, description, icon, parent)
+    , d_ptr(new MainModulePrivate(this))
+{
+}
+
+MainModule::MainModule(const QString &name, const QString &displayName, const QString &description, const QIcon &icon, QObject *parent)
+    : ModuleObject(name, displayName, description, icon, parent)
+    , d_ptr(new MainModulePrivate(this))
+{
+}
+
+MainModule::MainModule(const QString &name, const QString &displayName, const QString &description, const QStringList &contentText, const QVariant &icon, QObject *parent)
+    : ModuleObject(name, displayName, description, contentText, icon, parent)
+    , d_ptr(new MainModulePrivate(this))
+{
+}
+
+MainModule::~MainModule()
+{
+}
+
+void MainModule::appendChild(ModuleObject *const module)
+{
+    ModuleObject::appendChild(module);
+}
+
+QWidget *MainModule::page()
+{
+    Q_D(MainModule);
+    return d->page();
+}
+
+ModuleObject *MainModule::defultModule() const
+{
+    return nullptr;
+}
+//////////////////////////////////////////
+
 DccPluginTestWidget::DccPluginTestWidget(QWidget *parent)
     : DMainWindow(parent)
-    , m_contentWidget(new QWidget(this))
     , m_backwardBtn(new DIconButton(QStyle::SP_ArrowBack, this))
-//    , m_dconfig(new DConfig(ControlCenterConfig, QString(), this))
-//    , m_searchWidget(new SearchWidget(this))
-    , m_rootModule(nullptr)
-    , m_currentModule(nullptr)
-//    , m_pluginManager(nullptr)
+    , m_rootModule(new MainModule())
     , m_mainView(nullptr)
 {
+    qRegisterMetaType<ModuleObject *>("ModuleObject *");
+
     initUI();
     initConfig();
     loadModules();
@@ -111,9 +257,7 @@ DccPluginTestWidget::DccPluginTestWidget(QWidget *parent)
 
 DccPluginTestWidget::~DccPluginTestWidget()
 {
-
 }
-
 
 int DccPluginTestWidget::getScrollPos(const int index)
 {
@@ -131,7 +275,7 @@ void DccPluginTestWidget::showPage(const QString &url, const UrlType &uType)
         toHome();
     }
     if (!m_rootModule) {
-        QTimer::singleShot(10, this, [ = ] {
+        QTimer::singleShot(10, this, [=] {
             showPage(url, uType);
         });
         return;
@@ -139,7 +283,7 @@ void DccPluginTestWidget::showPage(const QString &url, const UrlType &uType)
     showPage(m_rootModule, url, uType);
 }
 
-void DccPluginTestWidget::showPage(ModuleObject *const module, const QString &url, const UrlType &uType)
+void DccPluginTestWidget::showPage(ModuleObject *module, const QString &url, const UrlType &uType)
 {
     QStringList names = url.split('/');
     const QString &name = names.takeFirst();
@@ -152,7 +296,6 @@ void DccPluginTestWidget::showPage(ModuleObject *const module, const QString &ur
             childName = child->displayName();
         if (childName == name || child->contentText().contains(name)) {
             index = module->childrens().indexOf(child);
-            //Q_EMIT module->activeChild(index);
             return showPage(child, names.join('/'), uType);
         }
     }
@@ -169,14 +312,11 @@ void DccPluginTestWidget::changeEvent(QEvent *event)
 void DccPluginTestWidget::initUI()
 {
     setMinimumSize(MainWindowMininumSize);
-    m_contentWidget->setAccessibleName("contentwindow");
-    m_contentWidget->setObjectName("contentwindow");
-    setCentralWidget(m_contentWidget);
+    setCentralWidget(m_rootModule->activePage());
 
     layout()->setMargin(0);
     layout()->setSpacing(0);
     layout()->setContentsMargins(ZeroMargins);
-
 
     auto menu = titlebar()->menu();
     if (!menu) {
@@ -198,48 +338,33 @@ void DccPluginTestWidget::initUI()
     titlebar()->setIcon(QIcon::fromTheme("preferences-system"));
 
     connect(m_backwardBtn, &DIconButton::clicked, this, &DccPluginTestWidget::toHome);
-
-//    m_searchWidget->setMinimumSize(300, 36);
-//    m_searchWidget->setAccessibleName("SearchModule");
-//    m_searchWidget->lineEdit()->setAccessibleName("SearchModuleLineEdit");
-//    titlebar()->addWidget(m_searchWidget, Qt::AlignCenter);
 }
 
 void DccPluginTestWidget::initConfig()
 {
-//    if (!m_dconfig->isValid()) {
-//        qWarning() << QString("DConfig is invalide, name:[%1], subpath[%2].").arg(m_dconfig->name(), m_dconfig->subpath());
-//        return;
-//    }
-
-//    auto w = m_dconfig->value(WidthConfig).toInt();
-//    auto h = m_dconfig->value(HeightConfig).toInt();
-//    resize(w, h);
-//    Dtk::Widget::moveToCenter(this);
 }
 
 void DccPluginTestWidget::loadModules()
 {
-    QFutureWatcher<void> *watcher= new QFutureWatcher<void>(this);
-    connect(watcher, &QFutureWatcher<void>::finished, this, [this] {
-        showModule(m_rootModule, m_contentWidget);
-//            m_searchWidget->setModuleObject(m_rootModule);
+    QFutureWatcher<ModuleObject *> *watcher = new QFutureWatcher<ModuleObject *>(this);
+    connect(watcher, &QFutureWatcher<void>::finished, this, [this, watcher] {
+        onAddModule(m_rootModule);
+        m_rootModule->appendChild(watcher->result());
+        showModule(m_rootModule);
     });
 
-    QFuture<void> future = QtConcurrent::run([this] {
-        m_rootModule = new ModuleObject();
+    QFuture<ModuleObject *> future = QtConcurrent::run([this] {
         DccNetworkPlugin *net = new DccNetworkPlugin();
-        m_rootModule->appendChild(net->module());
-        m_rootModule->moveToThread(qApp->thread());
+        ModuleObject *module = net->module();
+        module->moveToThread(qApp->thread());
+        return module;
     });
     watcher->setFuture(future);
 }
 
 void DccPluginTestWidget::toHome()
 {
-    m_rootModule->setChildType(ModuleObject::Main);
-    setCurrentModule(nullptr);
-    showModule(m_rootModule, m_contentWidget);
+    showModule(m_rootModule);
 }
 
 void DccPluginTestWidget::updateMainView()
@@ -252,8 +377,7 @@ void DccPluginTestWidget::updateMainView()
     DGuiApplicationHelper::ColorType ct = DGuiApplicationHelper::toColorType(baseColor);
     if (ct == DGuiApplicationHelper::LightType) {
         pa.setBrush(DPalette::ItemBackground, palette().base());
-    }
-    else {
+    } else {
         baseColor = DGuiApplicationHelper::adjustColor(baseColor, 0, 0, +5, 0, 0, 0, 0);
         pa.setColor(DPalette::ItemBackground, baseColor);
     }
@@ -267,8 +391,7 @@ void DccPluginTestWidget::clearPage(QWidget *const widget)
     if (area)
         area->widget()->deleteLater();
     if (layout) {
-        while (QLayoutItem *child = layout->takeAt(0))
-        {
+        while (QLayoutItem *child = layout->takeAt(0)) {
             layout->removeWidget(child->widget());
             child->widget()->deleteLater();
             layout->removeItem(child);
@@ -284,354 +407,31 @@ void DccPluginTestWidget::configLayout(QBoxLayout *const layout)
     layout->setSpacing(0);
 }
 
-void DccPluginTestWidget::showModule(ModuleObject *const module, QWidget *const parent, const int index)
+void DccPluginTestWidget::showModule(ModuleObject *module, const int index)
 {
-    if (!module || !parent)
-        return;
-    module->active();
-    if (module->childrens().isEmpty())
-        return;
-    if (module->findChild(currentModule()) >= 0)
+    if (m_currentModule.contains(module) && module->defultModule())
         return;
 
-    qDebug() << QString("module name:%1, index:%2, children size:%3").arg(module->name()).arg(index).arg(module->childrens().size());
-    clearPage(parent);
-
-    switch (module->childType())
-    {
-    case ModuleObject::Main:
-        setCurrentModule(module);
-        showModuleMainList(module, parent, index);
-        break;
-    case ModuleObject::HList:
-        setCurrentModule(module);
-        showModuleHList(module, parent, index);
-        break;
-    case ModuleObject::VList:
-        setCurrentModule(module);
-        showModuleVList(module, parent, index);
-        break;
-    case ModuleObject::Page:
-        setCurrentModule(module);
-        showModulePage(module, parent, index);
-    default:
-        break;
+    m_backwardBtn->setEnabled(module != m_rootModule);
+    QList<ModuleObject *> modules;
+    ModuleObject *child = module;
+    while (child) {
+        child->setCurrentModule(child->defultModule());
+        modules.append(child);
+        child = child->currentModule();
     }
-}
-
-void DccPluginTestWidget::showModuleMainIcon(ModuleObject *const module, QWidget *const parent, const int index)
-{
-    QVBoxLayout *vlayout = new QVBoxLayout(parent);
-    configLayout(vlayout);
-    parent->setLayout(vlayout);
-
-    ModuleDataModel *model = new ModuleDataModel(parent);
-    model->setData(module);
-
-    ListView *view = new ListView(parent);
-    ListItemDelegate *delegate = new ListItemDelegate(view);
-    view->setItemDelegate(delegate);
-    vlayout->addWidget(view);
-    view->setModel(model);
-    view->setFrameShape(QFrame::Shape::NoFrame);
-    view->setAutoScroll(true);
-    view->setDragEnabled(false);
-    view->setMaximumWidth(NavViewMaximumWidth);
-    view->setMinimumWidth(NavViewMinimumWidth);
-    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    view->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    view->setIconSize(ListViweItemIconSize_IconMode);
-    view->setGridSize(ListViweItemSize_IconMode);
-    view->setSpacing(20);
-    view->setSelectionMode(QAbstractItemView::SingleSelection);
-    view->setViewMode(ListView::IconMode);
-    view->setAcceptDrops(false);
-//    view->setAlignment(Qt::AlignCenter);
-    m_mainView = view;
-    updateMainView();
-
-    m_backwardBtn->setEnabled(false);
-
-    auto onClicked = [this, module, parent] (const QModelIndex &index) {
-        module->setChildType(ModuleObject::Main);
-        m_backwardBtn->setEnabled(true);
-        // 展开主菜单时，原来的主菜单被析构，需清空其指针
-        m_mainView->deleteLater();
-        m_mainView = nullptr;
-        showModule(module, parent, index.row());
-    };
-
-    connect(view, &ListView::activated, view, &ListView::clicked);
-    connect(view, &ListView::clicked, view, onClicked);
-    /*connect(module, &ModuleObject::activeChild, this , [onClicked, model] (const int index) {
-        onClicked(model->index(index, 0));
-    });*/
-    connect(view, &ListView::destroyed, module, &ModuleObject::deactive);
-    if (index < 0)
-        return;
-    onClicked(model->index(index, 0));
-}
-
-void DccPluginTestWidget::showModuleMainList(ModuleObject *const module, QWidget *const parent, const int index)
-{
-    QHBoxLayout *hlayout = new QHBoxLayout(parent);
-    configLayout(hlayout);
-    parent->setLayout(hlayout);
-
-    ModuleDataModel *model = new ModuleDataModel(parent);
-    model->setData(module);
-
-    ListView *view = new ListView(parent);
-    ListItemDelegate *delegate = new ListItemDelegate(view);
-    view->setItemDelegate(delegate);
-    QWidget *childWdiget = new QWidget(parent);
-    hlayout->addWidget(view, 1);
-    hlayout->addWidget(childWdiget, 5);
-
-    view->setModel(model);
-    view->setFrameShape(QFrame::Shape::NoFrame);
-    view->setAutoScroll(true);
-    view->setDragEnabled(false);
-    view->setMaximumWidth(NavViewMaximumWidth);
-    view->setMinimumWidth(NavViewMinimumWidth);
-    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    view->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
-    view->setIconSize(ListViweItemIconSize_ListMode);
-    view->setGridSize(ListViweItemSize_ListMode);
-    view->setSpacing(0);
-    view->setSelectionMode(QAbstractItemView::SingleSelection);
-
-    auto onClicked = [ = ] (const QModelIndex &index) {
-        const int row = index.row();
-        if (module->childrens().size() <= row) {
-            qWarning() << "activated not exist item!";
-            return;
-        }
-        view->setCurrentIndex(index);
-        showModule(module->childrens()[row], childWdiget, 0);
-    };
-
-    connect(view, &ListView::activated, view, &ListView::clicked);
-    connect(view, &ListView::clicked, view, onClicked);
-    /*connect(module, &ModuleObject::activeChild, view, [onClicked, model] (const int index) {
-        onClicked(model->index(index, 0));
-    });*/
-    connect(view, &ListView::destroyed, module, &ModuleObject::deactive);
-    connect(module, &ModuleObject::removedChild, childWdiget, [this](ModuleObject *const childModule) {
-        if (childModule->findChild(currentModule()) >= 0) {
-            toHome();
-        }
-    });
-    if (index < 0)
-        return;
-    Q_EMIT view->clicked(model->index(index, 0));
-}
-
-void DccPluginTestWidget::showModuleHList(ModuleObject *const module, QWidget *const parent, const int index)
-{
-    QVBoxLayout *vlayout = new QVBoxLayout(parent);
-    parent->setLayout(vlayout);
-
-    DFrame *dframeTab = new DFrame(parent);
-    QHBoxLayout *hlayout = new QHBoxLayout(dframeTab);
-    hlayout->setMargin(3);
-    hlayout->setSpacing(0);
-    TabView *view = new TabView(parent);
-    hlayout->addWidget(view);
-    ModuleDataModel *model = new ModuleDataModel(view);
-    TabItemDelegate *delegate = new TabItemDelegate(view);
-    model->setData(module);
-    view->setModel(model);
-    view->setItemDelegate(delegate);
-    vlayout->addWidget(dframeTab, 1, Qt::AlignCenter);
-
-    QWidget *childWdiget = new QWidget(parent);
-    DFrame *childFrame = new DFrame(parent);
-
-    connect(module, &ModuleObject::removedChild, this, [this] (ModuleObject *const module) {
-        if (module->findChild(currentModule()) >= 0) {
-            toHome();
-        }
-    });
-
-    auto onClicked = [ = ] (const QModelIndex &index) {
-        const int row = index.row();
-        if (module->childrens().size() <= row) {
-            qWarning() << "activated not exist item!";
-            return;
-        }
-        view->setCurrentIndex(index);
-
-        // 判断子项是否为垂直菜单，如果是则需要加上Frame
-        if (vlayout->count() >= 2)
-            vlayout->takeAt(vlayout->count() - 1);
-        if (module->childrens()[row]->childType() == ModuleObject::VList) {
-            vlayout->addWidget(childFrame, 6);
-            childFrame->show();
-            childWdiget->hide();
-            showModule(module->childrens()[row], childFrame, 0);
-        } else {
-            childFrame->hide();
-            childWdiget->show();
-            vlayout->addWidget(childWdiget, 6);
-            showModule(module->childrens()[row], childWdiget, 0);
-        }
-    };
-
-    connect(view, &TabView::activated, view, &TabView::clicked);
-    connect(view, &TabView::clicked, this, onClicked);
-    /*connect(module, &ModuleObject::activeChild, view, [onClicked, model] (const int index) {
-        onClicked(model->index(index, 0));
-    });*/
-    connect(view, &ListView::destroyed, module, &ModuleObject::deactive);
-    if (index < 0)
-        return;
-    Q_EMIT view->clicked(model->index(index, 0));
-}
-
-void DccPluginTestWidget::showModuleVList(ModuleObject *const module, QWidget *const parent, const int index)
-{
-    QHBoxLayout *hlayout = new QHBoxLayout(parent);
-    configLayout(hlayout);
-    parent->setLayout(hlayout);
-
-    ModuleDataModel *model = new ModuleDataModel(parent);
-    model->setData(module);
-    DListView *view = new DListView(parent);
-    QWidget *widget = new QWidget(parent);
-    QVBoxLayout *vlayout = new QVBoxLayout;
-    widget->setLayout(vlayout);
-    vlayout->addWidget(view);
-    /*QWidget *extraButton = module->extraButton();
-    if (extraButton)
-        vlayout->addWidget(getExtraPage(extraButton));*/
-    hlayout->addWidget(widget, 1);
-    hlayout->addWidget(new DVerticalLine);
-
-    QWidget *childWidget = new QWidget(parent);
-    hlayout->addWidget(childWidget, 5);
-
-    view->setModel(model);
-    view->setFrameShape(QFrame::NoFrame);
-    view->setAutoScroll(true);
-    view->setDragEnabled(false);
-    view->setMaximumWidth(NavViewMaximumWidth);
-    view->setMinimumWidth(NavViewMinimumWidth);
-    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    view->setIconSize(ListViweItemIconSize_ListMode);
-    view->setItemSize(ListViweItemSize_ListMode);
-    view->setSpacing(0);
-    view->setItemSpacing(2);
-    view->setSelectionMode(QAbstractItemView::SingleSelection);
-
-    auto onClicked = [this, module, childWidget, view] (const QModelIndex &index) {
-        const int row = index.row();
-        if (module->childrens().size() <= row) {
-            qWarning() << "activated not exist item!";
-            return;
-        }
-        view->setCurrentIndex(index);
-        showModule(module->childrens()[row], childWidget, 0);
-    };
-
-    connect(view, &ListView::activated, view, &ListView::clicked);
-    connect(view, &ListView::clicked, view, onClicked);
-    /*connect(module, &ModuleObject::activeChild, view, [onClicked, model] (const int index) {
-        onClicked(model->index(index, 0));
-    });
-    connect(module, &ModuleObject::extraButtonClicked, childWidget, [this, childWidget, module] {
-        clearPage(childWidget);
-        setCurrentModule(nullptr);
-        QVBoxLayout *tempLayout = new QVBoxLayout;
-        configLayout(tempLayout);
-        childWidget->setLayout(tempLayout);
-        tempLayout->addWidget(module->page());
-    });*/
-    connect(view, &ListView::destroyed, module, &ModuleObject::deactive);
-
-    if (index < 0)
-        return;
-    Q_EMIT view->clicked(model->index(index, 0));
-}
-
-void DccPluginTestWidget::showModulePage(ModuleObject *const module, QWidget *const parent, const int index)
-{
-    QScrollArea *area = new QScrollArea(parent);
-    QVBoxLayout *mainLayout = new QVBoxLayout;
-    configLayout(mainLayout);
-    parent->setLayout(mainLayout);
-    mainLayout->addWidget(area);
-
-    area->setFrameShape(QFrame::NoFrame);
-    area->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    area->setWidgetResizable(true);
-
-    QWidget *areaWidget = new QWidget(area);
-    area->setWidget(areaWidget);
-    QVBoxLayout *vlayout = new QVBoxLayout(areaWidget);
-    configLayout(vlayout);
-    areaWidget->setLayout(vlayout);
-
-    m_pages.clear();
-    for (auto child : module->childrens()) {
-        auto page = getPage(child->page(), child->displayName());
-        if (page) {
-            m_pages << page;
-            vlayout->addWidget(page);
-        }
-        child->active();
-
-        connect(child, &ModuleObject::moduleDataChanged, area, [ = ] {
-            vlayout->removeWidget(page);
-            const int index = m_pages.indexOf(page);
-            m_pages.removeOne(page);
-            page->deleteLater();
-            auto newPage = getPage(child->page(), child->displayName());
-            if (newPage) {
-                m_pages.insert(index, newPage);
-                vlayout->insertWidget(index, newPage);
-            }
-        });
+    child = module;
+    ModuleObject *parent = module->getParent();
+    while (parent) {
+        parent->setCurrentModule(child);
+        modules.prepend(parent);
+        child = parent;
+        parent = parent->getParent();
     }
-    if (m_pages.count() > 1)
-        vlayout->addStretch(1);
-
-    /*QWidget *extraButton = module->extraButton();
-    if (extraButton)
-        vlayout->addWidget(getExtraPage(extraButton), 0, Qt::AlignBottom);
-    area->verticalScrollBar()->setSliderPosition(getScrollPos(index));
-
-    connect(module, &ModuleObject::activeChild, area, [this, area] (const int index) {
-        area->verticalScrollBar()->setSliderPosition(getScrollPos(index));
-    });*/
-
-    connect(module, &ModuleObject::removedChild, area, [this, module, vlayout](ModuleObject *const childModule) {
-        int index = module->childrens().indexOf(childModule);
-        QWidget *w = m_pages.at(index);
-        vlayout->removeWidget(w);
-        w->deleteLater();
-        m_pages.removeAt(index);
-    });
-    auto addChild = [this, module, vlayout](ModuleObject *const childModule) {
-        int index = module->childrens().indexOf(childModule);
-        auto newPage = getPage(childModule->page(), childModule->displayName());
-        if (newPage) {
-            m_pages.insert(index, newPage);
-            vlayout->insertWidget(index, newPage);
-        }
-    };
-    connect(module, &ModuleObject::insertedChild, area, addChild);
-    connect(module, &ModuleObject::appendedChild, area, addChild);
-
-    connect(areaWidget, &QWidget::destroyed, module, [module] {
-        for (auto child : module->childrens()) {
-            child->deactive();
-        }
-        module->deactive();
-    });
+    m_currentModule = modules;
 }
 
-QWidget* DccPluginTestWidget::getPage(QWidget *const widget, const QString &title)
+QWidget *DccPluginTestWidget::getPage(QWidget *const widget, const QString &title)
 {
     if (!widget)
         return nullptr;
@@ -647,7 +447,7 @@ QWidget* DccPluginTestWidget::getPage(QWidget *const widget, const QString &titl
     return page;
 }
 
-QWidget* DccPluginTestWidget::getExtraPage(QWidget *const widget)
+QWidget *DccPluginTestWidget::getExtraPage(QWidget *const widget)
 {
     QWidget *tmpWidget = new QWidget(this);
     QVBoxLayout *vLayout = new QVBoxLayout(tmpWidget);
@@ -657,22 +457,56 @@ QWidget* DccPluginTestWidget::getExtraPage(QWidget *const widget)
     return tmpWidget;
 }
 
+void DccPluginTestWidget::onAddModule(ModuleObject *const module)
+{
+    QString url;
+
+    QList<QPair<QString, ModuleObject *>> modules = { { url, module } };
+    while (!modules.isEmpty()) {
+        auto it = modules.takeFirst();
+        ModuleObject *moduleObject = it.second;
+        connect(moduleObject, &ModuleObject::appendedChild, this, &DccPluginTestWidget::onAddModule);
+        connect(moduleObject, &ModuleObject::insertedChild, this, &DccPluginTestWidget::onAddModule);
+        connect(moduleObject, &ModuleObject::removedChild, this, &DccPluginTestWidget::onRemoveModule);
+        connect(moduleObject, &ModuleObject::childStateChanged, this, &DccPluginTestWidget::onChildStateChanged);
+        connect(moduleObject, &ModuleObject::triggered, this, &DccPluginTestWidget::onTriggered, Qt::QueuedConnection);
+        for (auto &&tmpObj : moduleObject->childrens()) {
+            modules.append({ it.first + "/" + tmpObj->name(), tmpObj });
+        }
+    }
+}
+
+void DccPluginTestWidget::onRemoveModule(ModuleObject *module)
+{
+    QList<ModuleObject *> modules;
+    modules.append(module);
+    while (!modules.isEmpty()) {
+        ModuleObject *moduleObject = modules.takeFirst();
+        disconnect(moduleObject, nullptr, this, nullptr);
+        modules.append(moduleObject->childrens());
+    }
+    // 最后一个是滚动到，不参与比较
+    if (!m_currentModule.isEmpty() && std::any_of(m_currentModule.cbegin(), m_currentModule.cend() - 1, [module](ModuleObject *data) { return data == module; }))
+        toHome();
+}
+
+void DccPluginTestWidget::onTriggered()
+{
+    ModuleObject *module = qobject_cast<ModuleObject *>(sender());
+    if (module)
+        showModule(module);
+}
+
+void DccPluginTestWidget::onChildStateChanged(ModuleObject *child, uint32_t flag, bool state)
+{
+    if (ModuleObject::IsHidenFlag(flag)) {
+        if (state)
+            onRemoveModule(child);
+        else
+            onAddModule(child);
+    }
+}
+
 void DccPluginTestWidget::openManual()
 {
-    QString helpTitle;
-    if (currentModule())
-        helpTitle = currentModule()->name();
-    if (helpTitle.isEmpty())
-        helpTitle = "controlcenter";
-
-//    const QString &dmanInterface = "com.deepin.Manual.Open";
-//    QDBusInterface interface(dmanInterface,
-//                             "/com/deepin/Manual/Open",
-//                             dmanInterface,
-//                             QDBusConnection::sessionBus());
-
-//    QDBusMessage reply = interface.call("OpenTitle", "dde", helpTitle);
-//    if (reply.type() == QDBusMessage::ErrorMessage) {
-//        qWarning() << "Open manual failed, error message:" << reply.errorMessage();
-//    }
 }

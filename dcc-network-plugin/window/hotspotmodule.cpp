@@ -148,10 +148,8 @@ void HotspotDeviceItem::openEditPage(ControllItems *item)
 }
 ///////////////////////////////////////////////////////////////////////////
 HotspotModule::HotspotModule(QObject *parent)
-    : ModuleObject("personalHotspot", tr("Personal Hotspot"), tr("Personal Hotspot"), QIcon::fromTheme("dcc_hotspot"), parent)
+    : PageModule("personalHotspot", tr("Personal Hotspot"), tr("Personal Hotspot"), QIcon::fromTheme("dcc_hotspot"), parent)
 {
-    setChildType(ModuleObject::Page);
-
     HotspotController *hotspotController = NetworkController::instance()->hotspotController();
     connect(hotspotController, &HotspotController::deviceAdded, this, &HotspotModule::onDeviceAdded);
     connect(hotspotController, &HotspotController::deviceRemove, this, &HotspotModule::onDeviceRemove);

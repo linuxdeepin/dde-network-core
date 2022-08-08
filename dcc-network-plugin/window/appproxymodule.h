@@ -20,7 +20,7 @@
 */
 #ifndef APPPROXYMODULE_H
 #define APPPROXYMODULE_H
-#include "interface/moduleobject.h"
+#include "interface/pagemodule.h"
 
 #include <dtkwidget_global.h>
 
@@ -42,7 +42,7 @@ enum class ProxyMethod;
 }
 }
 
-class AppProxyModule : public DCC_NAMESPACE::ModuleObject
+class AppProxyModule : public DCC_NAMESPACE::PageModule
 {
     Q_OBJECT
 public:
