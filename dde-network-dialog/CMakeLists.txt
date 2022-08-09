@@ -59,6 +59,8 @@ target_link_libraries(${TARGET_NAME} PRIVATE
     ${Qt5Network_LIBRARIES}
 )
 
-install(TARGETS ${TARGET_NAME} DESTINATION /usr/bin)
+set(CMAKE_INSTALL_PREFIX "/usr")
+
+install(TARGETS ${TARGET_NAME} DESTINATION bin)
 # 安装 .qm 文件
-install(FILES ${QM_FILES} DESTINATION /usr/share/${TARGET_NAME}/translations)
+install(FILES ${QM_FILES} DESTINATION share/${TARGET_NAME}/translations)
