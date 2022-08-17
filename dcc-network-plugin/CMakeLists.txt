@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.7)
 
 set(PLUGIN_NAME "dcc-network-plugin")
 
-project(${PLUGIN_NAME})
+project(${PLUGIN_NAME} CXX)
 
 # 启用 qt moc 的支持
 set(CMAKE_AUTOMOC ON)
@@ -82,6 +82,20 @@ target_link_libraries(${PLUGIN_NAME} PRIVATE
 
 # 设置安装路径的前缀(默认为"/usr/local")
 set(CMAKE_INSTALL_PREFIX "/usr")
+
+# test networkmanagetqt
+try_compile(DEEPIN_NMQT_TEST
+              ${CMAKE_CURRENT_BINARY_DIR}/try_compile
+            SOURCES
+              ${CMAKE_CURRENT_SOURCE_DIR}/tests/networkmanagerqt.cc
+            LINK_LIBRARIES
+              ${Qt5Network_LIBRARIES}
+              Qt5::Core
+)
+
+if (DEEPIN_NMQT_TEST)
+    add_definitions(-DUSE_DEEPIN_NMQT)
+endif()
 
 # 设置执行 make install 时哪个目标应该被 install 到哪个位置
 install(TARGETS ${PLUGIN_NAME} LIBRARY DESTINATION lib/dde-control-center/modules)
