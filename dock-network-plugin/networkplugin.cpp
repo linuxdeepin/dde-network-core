@@ -261,11 +261,6 @@ PluginsItemInterface::PluginStatus NetworkPlugin::status() const
     return PluginStatus::Active;
 }
 
-bool NetworkPlugin::isPrimary() const
-{
-    return true;
-}
-
 QString NetworkPlugin::description() const
 {
     PluginState plugState = m_networkHelper->getPluginState();

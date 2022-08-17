@@ -75,7 +75,6 @@ public:
 protected:
     QIcon icon(const DockPart &) override;
     PluginStatus status() const override;
-    bool isPrimary() const;
     QString description() const override;
 
 private:
