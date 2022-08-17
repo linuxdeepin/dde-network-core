@@ -5,3 +5,8 @@ export QT_SELECT = qt5
 
 %:
 	dh $@ --parallel
+
+override_dh_auto_configure:
+        dh_auto_configure -- \
+                -DDCC_DISABLE_WPA=YES \
+                -DDCC_DISABLE_INTERFACEFLAGS=YES
