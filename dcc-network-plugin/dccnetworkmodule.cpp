@@ -133,16 +133,15 @@ void DCCNetworkModule::active()
     initListConfig();
     m_indexWidget->showDefaultWidget();
 
-    if (supportAirplaneMode()) {
+    if (getAirplaneDconfig()) {
         m_networkInter = new NetworkInter("com.deepin.daemon.Network", "/com/deepin/daemon/Network", QDBusConnection::sessionBus(), this);
         connect(m_networkInter, &NetworkInter::WirelessAccessPointsChanged, this, &DCCNetworkModule::onWirelessAccessPointsOrAdapterChange);
 
         m_bluetoothInter = new BluetoothInter("com.deepin.daemon.Bluetooth", "/com/deepin/daemon/Bluetooth", QDBusConnection::sessionBus(), this);
         connect(m_bluetoothInter, &BluetoothInter::AdapterAdded, this, &DCCNetworkModule::onWirelessAccessPointsOrAdapterChange);
         connect(m_bluetoothInter, &BluetoothInter::AdapterRemoved, this, &DCCNetworkModule::onWirelessAccessPointsOrAdapterChange);
-    } else {
-        onWirelessAccessPointsOrAdapterChange();
     }
+    onWirelessAccessPointsOrAdapterChange();
 }
 
 QStringList DCCNetworkModule::availPage() const
@@ -351,6 +350,15 @@ bool DCCNetworkModule::supportAirplaneMode() const
     }
 
     return false;
+}
+
+bool DCCNetworkModule::getAirplaneDconfig() const
+{
+    bool bAirplane = false;
+    if (m_dconfig && m_dconfig->isValid()) {
+        bAirplane = m_dconfig->value("networkAirplaneMode", false).toBool();
+    }
+    return bAirplane;
 }
 
 void DCCNetworkModule::initSearchData()
