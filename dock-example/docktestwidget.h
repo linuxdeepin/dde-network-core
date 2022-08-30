@@ -18,7 +18,7 @@ class DockTestWidget : public QWidget, public PluginProxyInterface
 
 public:
     explicit DockTestWidget(QWidget *parent = nullptr);
-    ~DockTestWidget();
+    ~DockTestWidget() override;
 
 private:
     void initDock();

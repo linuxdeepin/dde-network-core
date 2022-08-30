@@ -80,13 +80,18 @@ private:
     dde::network::AccessPoints *getStrongestAp() const;
     dde::network::AccessPoints *getConnectedAp() const;
 
+    void handleAccessPointSecure(AccessPoints *accessPoint);
+
     int deviceCount(const DeviceType &devType) const;
     QList<QPair<QString, QStringList>> ipTipsMessage(const DeviceType &devType);
+    bool needSetPassword(AccessPoints *accessPoint) const;
 
 private Q_SLOTS:
     void onDeviceAdded(QList<NetworkDeviceBase *> devices);
     void onUpdatePlugView();
     void onActiveConnectionChanged();
+
+    void onAccessPointsAdded(QList<AccessPoints *> newAps);
 
 private:
     PluginState m_pluginState;
