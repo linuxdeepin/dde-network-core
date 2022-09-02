@@ -11,6 +11,7 @@
 
 namespace NetworkManager {
 class WirelessNetwork;
+class AccessPoint;
 }
 
 using namespace NetworkManager;
@@ -71,7 +72,7 @@ private:
     void syncWlanAndConnections(QList<WirelessConnection *> &allConnections);
 
     AccessPoints *findAccessPoints(const QString &ssid);
-    QJsonObject createWlanJson(QSharedPointer<NetworkManager::WirelessNetwork> network);
+    QJsonObject createWlanJson(QSharedPointer<NetworkManager::AccessPoint> ap);
     QJsonObject createConnectionJson(QSharedPointer<NetworkManager::Connection> networkConnection);
     WirelessConnection *findConnectionByAccessPoint(const AccessPoints *accessPoint, QList<WirelessConnection *> &allConnections);
 
