@@ -16,6 +16,7 @@
 #include <QVBoxLayout>
 #include <QAction>
 #include <QJsonDocument>
+#include <QDBusMetaType>
 
 #include <networkcontroller.h>
 #include <networkdevicebase.h>
@@ -44,6 +45,7 @@ NetworkPluginHelper::NetworkPluginHelper(NetworkDialog *networkDialog, QObject *
     , m_refreshIconTimer(new QTimer(this))
     , m_trayIcon(new QIcon(QIcon::fromTheme(":/light/wireless-disabled-symbolic")))
 {
+    qDBusRegisterMetaType<NMVariantMapMap>();
     initUi();
     initConnection();
 }
