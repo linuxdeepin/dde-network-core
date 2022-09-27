@@ -1,23 +1,6 @@
-/*
- * Copyright (C) 2011 ~ 2021 Deepin Technology Co., Ltd.
- *
- * Author:     donghualin <donghualin@uniontech.com>
- *
- * Maintainer: donghualin <donghualin@uniontech.com>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+//
+// SPDX-License-Identifier: GPL-3.0-or-later
 
 #ifndef DEVICEINTERREALIZE_H
 #define DEVICEINTERREALIZE_H
@@ -60,6 +43,7 @@ public:
     QJsonObject activeConnectionInfo() const override;                                                       // 获取当前活动连接的信息
     void setEnabled(bool enabled) override;                                                                  // 开启或禁用网卡
     Connectivity connectivity();
+    DeviceStatus deviceStatus() const override;
 
 protected:
     explicit DeviceInterRealize(IPConfilctChecker *ipChecker, NetworkInter *networkInter, QObject *parent = Q_NULLPTR);
@@ -75,7 +59,6 @@ protected:
     virtual void setDeviceEnabledStatus(const bool &enabled);
     virtual void updateActiveInfo(const QList<QJsonObject> &) {}                                        // 当前连接发生变化，例如从一个连接切换到另外一个连接
     virtual void updateActiveConnectionInfo(const QList<QJsonObject> &infos);                               // 当前连接发生变化后，获取设备的活动信息，例如IP等
-    void setDeviceStatus(const DeviceStatus &status) override;
     int mode() const;
 
 private:
