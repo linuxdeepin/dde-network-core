@@ -53,23 +53,32 @@ NetworkModule::NetworkModule(QObject *parent)
 }
 void NetworkModule::init()
 {
-    connect(NetworkController::instance(), &NetworkController::deviceAdded, this, &NetworkModule::updateModel);
-    connect(NetworkController::instance(), &NetworkController::deviceRemoved, this, &NetworkModule::updateModel);
-    connect(NetworkController::instance()->hotspotController(), &HotspotController::deviceAdded, this, &NetworkModule::updateVisiable);
-    connect(NetworkController::instance()->hotspotController(), &HotspotController::deviceRemove, this, &NetworkModule::updateVisiable);
+    if (m_modules.isEmpty()) {
+        connect(NetworkController::instance(), &NetworkController::deviceAdded, this, &NetworkModule::updateModel);
+        connect(NetworkController::instance(), &NetworkController::deviceRemoved, this, &NetworkModule::updateModel);
+        connect(NetworkController::instance()->hotspotController(), &HotspotController::deviceAdded, this, &NetworkModule::updateVisiable);
+        connect(NetworkController::instance()->hotspotController(), &HotspotController::deviceRemove, this, &NetworkModule::updateVisiable);
 
-    m_modules.append(new DSLModule(this));         // DSL
-    m_modules.append(new VPNModule(this));         // VPN
-    m_modules.append(new SysProxyModule(this));    // 代理
-    m_modules.append(new AppProxyModule(this));    // 应用代理
-    m_modules.append(new HotspotModule(this));     // 热点
-    m_modules.append(new NetworkInfoModule(this)); // 网络详情
+        m_modules.append(new DSLModule(this));         // DSL
+        m_modules.append(new VPNModule(this));         // VPN
+        m_modules.append(new SysProxyModule(this));    // 代理
+        m_modules.append(new AppProxyModule(this));    // 应用代理
+        m_modules.append(new HotspotModule(this));     // 热点
+        m_modules.append(new NetworkInfoModule(this)); // 网络详情
+    }
+    updateModel();
+}
+
+ModuleObject *NetworkModule::defultModule()
+{
+    active();
+    return HListModule::defultModule();
 }
 
 void NetworkModule::active()
 {
     if (childrens().isEmpty()) {
-        updateModel();
+        init();
     }
 }
 
@@ -154,7 +163,6 @@ bool NetworkModule::event(QEvent *ev)
         QTimer *timer = new QTimer(this);
         connect(timer, &QTimer::timeout, this, [this]() {
             init();
-            updateModel();
         });
         connect(timer, &QTimer::timeout, timer, &QTimer::deleteLater);
         timer->setSingleShot(true);

@@ -70,7 +70,7 @@ public:
 
     void appendChild(ModuleObject *const module) override;
     QWidget *page() override;
-    ModuleObject *defultModule() const override;
+    ModuleObject *defultModule() override;
     inline DCC_MODULE_TYPE getClassID() const override { return MAINLAYOUT; }
 
 private:

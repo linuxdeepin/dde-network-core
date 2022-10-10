@@ -48,6 +48,7 @@ private Q_SLOTS:
 protected:
     bool event(QEvent *ev) override;
     void init();
+    ModuleObject *defultModule() override;
 
 private:
     QList<DCC_NAMESPACE::ModuleObject *> m_modules;

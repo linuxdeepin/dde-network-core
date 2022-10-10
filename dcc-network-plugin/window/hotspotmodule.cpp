@@ -167,7 +167,7 @@ HotspotModule::HotspotModule(QObject *parent)
     });
     extra->setExtra();
     connect(this, &HotspotModule::updateItemOnlyOne, extra, [extra](bool visiable) {
-        extra->setHiden(!visiable);
+        extra->setHidden(!visiable);
     });
     appendChild(extra);
     onDeviceAdded(hotspotController->devices());

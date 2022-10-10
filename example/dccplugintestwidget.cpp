@@ -236,7 +236,7 @@ QWidget *MainModule::page()
     return d->page();
 }
 
-ModuleObject *MainModule::defultModule() const
+ModuleObject *MainModule::defultModule()
 {
     return nullptr;
 }
@@ -465,7 +465,6 @@ void DccPluginTestWidget::onAddModule(ModuleObject *const module)
     while (!modules.isEmpty()) {
         auto it = modules.takeFirst();
         ModuleObject *moduleObject = it.second;
-        connect(moduleObject, &ModuleObject::appendedChild, this, &DccPluginTestWidget::onAddModule);
         connect(moduleObject, &ModuleObject::insertedChild, this, &DccPluginTestWidget::onAddModule);
         connect(moduleObject, &ModuleObject::removedChild, this, &DccPluginTestWidget::onRemoveModule);
         connect(moduleObject, &ModuleObject::childStateChanged, this, &DccPluginTestWidget::onChildStateChanged);
@@ -499,7 +498,7 @@ void DccPluginTestWidget::onTriggered()
 
 void DccPluginTestWidget::onChildStateChanged(ModuleObject *child, uint32_t flag, bool state)
 {
-    if (ModuleObject::IsHidenFlag(flag)) {
+    if (ModuleObject::IsHiddenFlag(flag)) {
         if (state)
             onRemoveModule(child);
         else
