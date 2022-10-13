@@ -79,7 +79,7 @@ const QMargins navItemMargin(5, 3, 5, 3);
 const QVariant NavItemMargin = QVariant::fromValue(navItemMargin);
 
 //////////////////////////////////////////
-DCC_BEGIN_NAMESPACE
+namespace DCC_NAMESPACE {
 
 class MainModulePrivate
 {
@@ -165,7 +165,7 @@ private:
     QHBoxLayout *m_layout;
 };
 
-DCC_END_NAMESPACE
+}
 
 MainModule::MainModule(QObject *parent)
     : ModuleObject(parent)

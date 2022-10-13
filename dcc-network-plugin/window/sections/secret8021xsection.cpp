@@ -33,7 +33,7 @@
 
 using namespace NetworkManager;
 using namespace dcc::network;
-DCC_USE_NAMESPACE
+using namespace DCC_NAMESPACE;
 DWIDGET_USE_NAMESPACE
 
 Secret8021xSection::Secret8021xSection(Security8021xSetting::Ptr sSetting, QFrame *parent)

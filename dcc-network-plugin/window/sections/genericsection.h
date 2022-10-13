@@ -26,10 +26,10 @@
 
 #include <networkmanagerqt/connectionsettings.h>
 
-DCC_BEGIN_NAMESPACE
+namespace DCC_NAMESPACE {
 class LineEditWidget;
 class SwitchWidget;
-DCC_END_NAMESPACE
+}
 
 class GenericSection : public AbstractSection
 {

@@ -46,9 +46,11 @@ class DBackgroundGroup;
 DWIDGET_END_NAMESPACE
 
 DWIDGET_USE_NAMESPACE
-DCC_USE_NAMESPACE
 
-DCC_BEGIN_NAMESPACE
+using namespace DCC_NAMESPACE;
+
+namespace DCC_NAMESPACE {
+
 
 class MainModulePrivate;
 
@@ -79,7 +81,7 @@ private:
     Q_DISABLE_COPY(MainModule)
 };
 
-DCC_END_NAMESPACE
+}
 
 class DccPluginTestWidget : public DMainWindow
 {

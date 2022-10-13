@@ -26,9 +26,9 @@
 
 #include <networkmanagerqt/pppoesetting.h>
 
-DCC_BEGIN_NAMESPACE
+namespace DCC_NAMESPACE {
 class LineEditWidget;
-DCC_END_NAMESPACE
+}
 
 class PPPOESection : public AbstractSection
 {

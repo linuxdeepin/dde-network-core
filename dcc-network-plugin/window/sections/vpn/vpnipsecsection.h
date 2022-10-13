@@ -26,10 +26,10 @@
 
 #include <networkmanagerqt/vpnsetting.h>
 
-DCC_BEGIN_NAMESPACE
+namespace DCC_NAMESPACE {
 class SwitchWidget;
 class LineEditWidget;
-DCC_END_NAMESPACE
+}
 
 class VpnIpsecSection : public AbstractSection
 {

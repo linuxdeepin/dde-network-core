@@ -28,10 +28,10 @@
 
 #include <networkmanagerqt/wirelesssecuritysetting.h>
 
-DCC_BEGIN_NAMESPACE
+namespace DCC_NAMESPACE {
 class ComboxWidget;
 class LineEditWidget;
-DCC_END_NAMESPACE
+}
 
 class SecretWirelessSection : public Secret8021xSection
 {

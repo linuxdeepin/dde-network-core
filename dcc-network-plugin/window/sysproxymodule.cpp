@@ -40,7 +40,7 @@
 #include <proxycontroller.h>
 
 using namespace dde::network;
-DCC_USE_NAMESPACE
+using namespace DCC_NAMESPACE;
 DWIDGET_USE_NAMESPACE
 // 与m_ProxyMethodList对应
 enum ProxyMethodIndex : int {

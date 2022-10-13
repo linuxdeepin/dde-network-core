@@ -31,9 +31,10 @@ namespace network {
 class FileChooseWidget;
 }
 }
-DCC_BEGIN_NAMESPACE
+
+namespace DCC_NAMESPACE {
 class SwitchWidget;
-DCC_END_NAMESPACE
+}
 
 class VpnSSTPSection : public VpnSection
 {

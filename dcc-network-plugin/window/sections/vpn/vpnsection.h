@@ -26,10 +26,10 @@
 
 #include <networkmanagerqt/vpnsetting.h>
 
-DCC_BEGIN_NAMESPACE
+namespace DCC_NAMESPACE {
 class LineEditWidget;
 class ComboxWidget;
-DCC_END_NAMESPACE
+}
 
 class VpnSection : public AbstractSection
 {

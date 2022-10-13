@@ -25,7 +25,7 @@
 #include <QLineEdit>
 
 using namespace NetworkManager;
-DCC_USE_NAMESPACE
+using namespace DCC_NAMESPACE;
 
 GenericHotspotSection::GenericHotspotSection(ConnectionSettings::Ptr connSettings, QFrame *parent)
     : AbstractSection(tr("General"), parent)

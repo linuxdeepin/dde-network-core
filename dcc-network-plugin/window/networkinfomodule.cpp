@@ -28,7 +28,7 @@
 #include <widgets/titlevalueitem.h>
 
 using namespace dde::network;
-DCC_USE_NAMESPACE
+using namespace DCC_NAMESPACE;
 
 NetworkInfoModule::NetworkInfoModule(QObject *parent)
     : PageModule("networkDetails", tr("Network Details"), tr("Network Details"), QIcon::fromTheme("dcc_network"), parent)

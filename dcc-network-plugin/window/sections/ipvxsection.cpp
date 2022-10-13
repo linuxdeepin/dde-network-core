@@ -38,7 +38,7 @@
 #include <widgets/lineeditwidget.h>
 #include <widgets/switchwidget.h>
 
-DCC_USE_NAMESPACE
+using namespace DCC_NAMESPACE;
 using namespace dde::network;
 using namespace NetworkManager;
 

@@ -28,7 +28,7 @@
 #include <QComboBox>
 #include <QLineEdit>
 
-DCC_USE_NAMESPACE
+using namespace DCC_NAMESPACE;
 using namespace NetworkManager;
 
 static const QList<WirelessSecuritySetting::KeyMgmt> KeyMgmtList {

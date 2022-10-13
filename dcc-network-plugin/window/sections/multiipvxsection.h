@@ -34,12 +34,12 @@ namespace network {
 class SpinBoxWidget;
 }
 }
-DCC_BEGIN_NAMESPACE
+namespace DCC_NAMESPACE {
 class ComboxWidget;
 class LineEditWidget;
 class SwitchWidget;
 class SettingsHead;
-DCC_END_NAMESPACE
+}
 
 DWIDGET_BEGIN_NAMESPACE
 class DIconButton;

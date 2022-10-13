@@ -27,7 +27,7 @@
 
 #include <QHostAddress>
 
-DCC_USE_NAMESPACE
+using namespace DCC_NAMESPACE;
 using namespace dcc::network;
 using namespace NetworkManager;
 

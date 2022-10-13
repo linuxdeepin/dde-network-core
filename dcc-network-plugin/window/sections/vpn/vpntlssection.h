@@ -26,11 +26,12 @@
 
 #include <networkmanagerqt/vpnsetting.h>
 
-DCC_BEGIN_NAMESPACE
+namespace DCC_NAMESPACE {
 class LineEditWidget;
 class ComboxWidget;
 class SwitchWidget;
-DCC_END_NAMESPACE
+}
+
 namespace dcc {
 namespace network {
 class FileChooseWidget;

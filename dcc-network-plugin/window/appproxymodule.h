@@ -27,13 +27,13 @@
 DWIDGET_BEGIN_NAMESPACE
 class DTextEdit;
 DWIDGET_END_NAMESPACE
-DCC_BEGIN_NAMESPACE
+namespace DCC_NAMESPACE {
 class SettingsGroup;
 class LineEditWidget;
 class ButtonTuple;
 class SwitchWidget;
 class ComboxWidget;
-DCC_END_NAMESPACE
+}
 
 namespace dde {
 namespace network {

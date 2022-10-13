@@ -26,7 +26,7 @@
 
 class QSignalMapper;
 
-DCC_BEGIN_NAMESPACE
+namespace DCC_NAMESPACE {
 
 class ModuleObject;
 
@@ -58,6 +58,7 @@ private:
     QList<ModuleObject *> m_data;
     ModuleObject *m_parentObject;
 };
-DCC_END_NAMESPACE
+
+}
 
 #endif // MODULEDATAMODEL_H

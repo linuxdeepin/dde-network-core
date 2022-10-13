@@ -34,11 +34,12 @@ namespace network {
 class SpinBoxWidget;
 }
 }
-DCC_BEGIN_NAMESPACE
+
+namespace DCC_NAMESPACE {
 class ComboxWidget;
 class LineEditWidget;
 class SwitchWidget;
-DCC_END_NAMESPACE
+}
 
 class EthernetSection : public AbstractSection
 {

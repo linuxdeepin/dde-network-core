@@ -26,10 +26,10 @@
 
 #include <networkmanagerqt/security8021xsetting.h>
 
-DCC_BEGIN_NAMESPACE
+namespace DCC_NAMESPACE {
 class ComboxWidget;
 class LineEditWidget;
-DCC_END_NAMESPACE
+}
 
 using namespace NetworkManager;
 

@@ -26,9 +26,9 @@
 
 #include <networkmanagerqt/pppsetting.h>
 
-DCC_BEGIN_NAMESPACE
+namespace DCC_NAMESPACE {
 class SwitchWidget;
-DCC_END_NAMESPACE
+}
 
 class PPPSection : public AbstractSection
 {

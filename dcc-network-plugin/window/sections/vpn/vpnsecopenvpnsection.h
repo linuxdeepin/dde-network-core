@@ -26,9 +26,9 @@
 
 #include <networkmanagerqt/vpnsetting.h>
 
-DCC_BEGIN_NAMESPACE
+namespace DCC_NAMESPACE {
 class ComboxWidget;
-DCC_END_NAMESPACE
+}
 
 using namespace NetworkManager;
 

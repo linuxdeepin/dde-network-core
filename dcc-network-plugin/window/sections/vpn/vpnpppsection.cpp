@@ -26,7 +26,7 @@
 #include <widgets/switchwidget.h>
 #include <widgets/comboxwidget.h>
 
-DCC_USE_NAMESPACE
+using namespace DCC_NAMESPACE;
 using namespace NetworkManager;
 
 VpnPPPSection::VpnPPPSection(VpnSetting::Ptr vpnSetting, QFrame *parent)

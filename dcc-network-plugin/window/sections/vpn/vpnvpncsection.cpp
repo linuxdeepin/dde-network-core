@@ -29,7 +29,7 @@
 #include <widgets/switchwidget.h>
 #include <widgets/filechoosewidget.h>
 
-DCC_USE_NAMESPACE
+using namespace DCC_NAMESPACE;
 using namespace NetworkManager;
 
 VpnVPNCSection::VpnVPNCSection(VpnSetting::Ptr vpnSetting, QFrame *parent)

@@ -35,9 +35,9 @@
 #include <networkmanagerqt/connection.h>
 #include <networkmanagerqt/connectionsettings.h>
 
-DCC_BEGIN_NAMESPACE
+namespace DCC_NAMESPACE {
 class ButtonTuple;
-DCC_END_NAMESPACE
+}
 
 class QPushButton;
 class QEvent;

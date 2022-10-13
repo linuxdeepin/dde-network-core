@@ -45,7 +45,7 @@
 #include <networkmanagerqt/settings.h>
 
 using namespace dde::network;
-DCC_USE_NAMESPACE
+using namespace DCC_NAMESPACE;
 DWIDGET_USE_NAMESPACE
 
 QString vpnConfigType(const QString &path)

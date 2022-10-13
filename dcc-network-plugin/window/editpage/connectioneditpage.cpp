@@ -44,7 +44,7 @@
 
 #include <settings/wiredsettings.h>
 
-DCC_USE_NAMESPACE
+using namespace DCC_NAMESPACE;
 using namespace NetworkManager;
 DWIDGET_USE_NAMESPACE
 

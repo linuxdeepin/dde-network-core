@@ -29,7 +29,7 @@
 #include <widgets/settingshead.h>
 #include <widgets/settingsgroup.h>
 
-DCC_USE_NAMESPACE
+using namespace DCC_NAMESPACE;
 DWIDGET_USE_NAMESPACE
 
 AbstractSection::AbstractSection(QFrame *parent)

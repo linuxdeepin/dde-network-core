@@ -24,9 +24,9 @@
 
 #include "widgets/settingshead.h"
 
-DCC_BEGIN_NAMESPACE
+namespace DCC_NAMESPACE {
 class SettingsGroup;
-DCC_END_NAMESPACE
+}
 
 DWIDGET_BEGIN_NAMESPACE
 class DStyleOptionButton;

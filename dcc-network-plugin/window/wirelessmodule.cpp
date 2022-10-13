@@ -43,7 +43,7 @@
 #include <networkmanagerqt/setting.h>
 
 using namespace dde::network;
-DCC_USE_NAMESPACE
+using namespace DCC_NAMESPACE;
 DWIDGET_USE_NAMESPACE
 
 WirelessModule::WirelessModule(WirelessDevice *dev, QObject *parent)

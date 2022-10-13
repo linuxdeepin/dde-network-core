@@ -33,7 +33,7 @@
 #include <QDebug>
 #include <QFileDialog>
 
-DCC_USE_NAMESPACE
+using namespace DCC_NAMESPACE;
 DWIDGET_USE_NAMESPACE
 
 namespace dcc {

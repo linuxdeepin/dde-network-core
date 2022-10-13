@@ -29,7 +29,7 @@
 #include <widgets/switchwidget.h>
 #include <widgets/spinboxwidget.h>
 
-DCC_USE_NAMESPACE
+using namespace DCC_NAMESPACE;
 using namespace NetworkManager;
 using namespace dcc::network;
 

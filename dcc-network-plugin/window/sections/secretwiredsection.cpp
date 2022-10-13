@@ -23,7 +23,7 @@
 
 #include "widgets/switchwidget.h"
 
-DCC_USE_NAMESPACE
+using namespace DCC_NAMESPACE;
 using namespace NetworkManager;
 
 SecretWiredSection::SecretWiredSection(Security8021xSetting::Ptr sSetting, QFrame *parent)

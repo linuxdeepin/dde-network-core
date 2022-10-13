@@ -27,7 +27,7 @@
 #include <networkmanagerqt/manager.h>
 #include <networkmanagerqt/wireddevice.h>
 
-DCC_USE_NAMESPACE
+using namespace DCC_NAMESPACE;
 using namespace NetworkManager;
 
 PPPOESection::PPPOESection(PppoeSetting::Ptr pppoeSetting, QFrame *parent)

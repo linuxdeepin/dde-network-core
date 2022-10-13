@@ -29,7 +29,7 @@
 #include "widgets/switchwidget.h"
 
 using namespace NetworkManager;
-DCC_USE_NAMESPACE
+using namespace DCC_NAMESPACE;
 
 GenericSection::GenericSection(ConnectionSettings::Ptr connSettings, QFrame *parent)
     : AbstractSection(tr("General"), parent)

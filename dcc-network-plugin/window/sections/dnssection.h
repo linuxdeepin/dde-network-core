@@ -30,9 +30,9 @@ QT_BEGIN_NAMESPACE
 class QHostAddress;
 QT_END_NAMESPACE
 
-DCC_BEGIN_NAMESPACE
+namespace DCC_NAMESPACE {
 class SettingsHead;
-DCC_END_NAMESPACE
+}
 namespace dcc {
 namespace network {
 class ButtonEditWidget;

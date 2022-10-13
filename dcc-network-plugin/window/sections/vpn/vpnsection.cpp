@@ -28,7 +28,7 @@
 
 #include <DLineEdit>
 
-DCC_USE_NAMESPACE
+using namespace DCC_NAMESPACE;
 using namespace NetworkManager;
 
 VpnSection::VpnSection(VpnSetting::Ptr vpnSetting, QFrame *parent)

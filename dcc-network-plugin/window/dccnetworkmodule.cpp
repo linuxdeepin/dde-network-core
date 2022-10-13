@@ -43,7 +43,7 @@
 
 #include <NetworkManagerQt/Manager>
 
-DCC_USE_NAMESPACE
+using namespace DCC_NAMESPACE;
 using namespace dde::network;
 
 NetworkModule::NetworkModule(QObject *parent)

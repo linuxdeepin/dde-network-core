@@ -24,9 +24,9 @@
 
 #include "secret8021xsection.h"
 
-DCC_BEGIN_NAMESPACE
+namespace DCC_NAMESPACE {
 class SwitchWidget;
-DCC_END_NAMESPACE
+}
 
 class SecretWiredSection : public Secret8021xSection
 {

@@ -32,11 +32,11 @@ class SpinBoxWidget;
 }
 }
 
-DCC_BEGIN_NAMESPACE
+namespace DCC_NAMESPACE {
 class LineEditWidget;
 class ComboxWidget;
 class SwitchWidget;
-DCC_END_NAMESPACE
+}
 
 class VpnAdvVPNCSection : public AbstractSection
 {

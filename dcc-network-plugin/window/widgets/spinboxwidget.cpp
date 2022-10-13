@@ -31,7 +31,7 @@
 #include <QEvent>
 
 DWIDGET_USE_NAMESPACE
-DCC_USE_NAMESPACE
+using namespace DCC_NAMESPACE;
 using namespace dcc::network;
 
 SpinBoxWidget::SpinBoxWidget(QWidget *parent)

@@ -47,7 +47,7 @@
 #include <widgets/settingsgroup.h>
 #include <widgets/comboxwidget.h>
 
-DCC_USE_NAMESPACE
+using namespace DCC_NAMESPACE;
 using namespace NetworkManager;
 
 const QList<ConnectionVpnEditPage::VpnType> SupportedExportVpnList {

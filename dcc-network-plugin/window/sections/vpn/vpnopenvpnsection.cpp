@@ -31,7 +31,7 @@
 
 using namespace dcc::network;
 using namespace NetworkManager;
-DCC_USE_NAMESPACE
+using namespace DCC_NAMESPACE;
 
 VpnOpenVPNSection::VpnOpenVPNSection(VpnSetting::Ptr vpnSetting, QFrame *parent)
     : AbstractSection(tr("VPN"), parent)
