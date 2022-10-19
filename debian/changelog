@@ -1,3 +1,13 @@
+dde-network-core (2.0.2) unstable; urgency=medium
+
+  [ Deepin Packages Builder ]
+  * fix(dcc-network-plugin): 网络插件适配控制中心接口变更(Task: 176337)(Influence: 控制中心-网络插件)
+  * fix(dcc-network-plugin): 修改通过网络设置唤起控制中心，网络二级菜单显示异常问题(Bug: 154259)(Influence: 任务栏右击网络图标打开网络设置，查看网络界面)
+  * fix: 网络适配控制中心的接口(Task: 198123)(Influence: 网络库编译打包)
+  * fix: 适配任务栏最新接口(Task: 121387)(Influence: 安装网络插件，查看网络插件是否在快捷设置面板中显示两列图标)
+
+ -- baodi <baodi@uniontech.com>  Wed, 19 Oct 2022 12:43:45 +0800
+
 dde-network-core (2.0.1) unstable; urgency=medium
 
   [ donghualin ]
