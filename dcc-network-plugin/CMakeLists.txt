@@ -64,6 +64,7 @@ target_include_directories(${PLUGIN_NAME} PUBLIC
     ${KF5_QT_INCLUDE_DIRS}
     ${Qt5Network_INCLUDE_DIRS}
     ${DDE-Network-Core_INCLUDE_DIRS}
+    ${Qt5Gui_PRIVATE_INCLUDE_DIRS}
 )
 
 # 设置目标要使用的链接库

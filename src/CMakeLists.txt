@@ -47,6 +47,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     ${QGSettings_INCLUDE_DIRS}
     ${Qt5Network_INCLUDE_DIRS}
     ${KF5_QT_INCLUDE_DIRS}
+    ${Qt5Gui_PRIVATE_INCLUDE_DIRS}
     PkgConfig::LibNM
 )
 
