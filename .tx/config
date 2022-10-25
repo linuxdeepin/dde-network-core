@@ -26,3 +26,4 @@ file_filter = dss-network-plugin/translations/dss-network-plugin_<lang>.ts
 source_file = dss-network-plugin/translations/dss-network-plugin.ts
 source_lang = en
 type = QT
+

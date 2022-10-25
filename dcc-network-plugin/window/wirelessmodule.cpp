@@ -47,7 +47,7 @@ using namespace DCC_NAMESPACE;
 DWIDGET_USE_NAMESPACE
 
 WirelessModule::WirelessModule(WirelessDevice *dev, QObject *parent)
-    : PageModule("Wireless", tr("Wireless"), tr("Wireless"), QIcon::fromTheme("dcc_wifi"), parent)
+    : PageModule("Wireless", dev->deviceName(), dev->deviceName(), QIcon::fromTheme("dcc_wifi"), parent)
     , m_device(dev)
 {
     m_modules.append(new WidgetModule<SwitchWidget>("wireless_adapter", tr("Wireless Network Adapter"), [this](SwitchWidget *devEnabled) {
@@ -62,7 +62,7 @@ WirelessModule::WirelessModule(WirelessDevice *dev, QObject *parent)
             devEnabled->blockSignals(false);
         });
     }));
-    m_modules.append(new WidgetModule<DListView>("List_wirelesslist", tr("Wireless List"), this, &WirelessModule::initWirelessList));
+    m_modules.append(new WidgetModule<DListView>("List_wirelesslist", QString(), this, &WirelessModule::initWirelessList));
     m_modules.append(new WidgetModule<SettingsGroup>("hotspot_tips", tr("Disable hotspot first if you want to connect to a wireless network"), [](SettingsGroup *tipsGroup) {
         QLabel *tips = new QLabel;
         tips->setAlignment(Qt::AlignCenter);

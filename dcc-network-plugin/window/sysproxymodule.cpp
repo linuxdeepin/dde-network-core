@@ -43,14 +43,12 @@ using namespace dde::network;
 using namespace DCC_NAMESPACE;
 DWIDGET_USE_NAMESPACE
 // 与m_ProxyMethodList对应
-enum ProxyMethodIndex : int {
-    Manual,
-    Auto,
-};
+#define ProxyMethodIndex_Manual 0
+#define ProxyMethodIndex_Auto 1
 
 SysProxyModule::SysProxyModule(QObject *parent)
     : PageModule("systemProxy", tr("System Proxy"), tr("System Proxy"), QIcon::fromTheme("dcc_system_agent"), parent)
-    , m_ProxyMethodList({ tr("manual"), tr("auto") })
+    , m_ProxyMethodList({ tr("Manual"), tr("Auto") })
     , m_uiMethod(dde::network::ProxyMethod::Init)
 {
     deactive();
@@ -92,10 +90,10 @@ SysProxyModule::SysProxyModule(QObject *parent)
             proxyTypeBox->comboBox()->blockSignals(true);
             switch (method) {
             case ProxyMethod::Auto:
-                proxyTypeBox->comboBox()->setCurrentIndex(ProxyMethodIndex::Auto);
+                proxyTypeBox->comboBox()->setCurrentIndex(ProxyMethodIndex_Auto);
                 break;
             case ProxyMethod::Manual:
-                proxyTypeBox->comboBox()->setCurrentIndex(ProxyMethodIndex::Manual);
+                proxyTypeBox->comboBox()->setCurrentIndex(ProxyMethodIndex_Manual);
                 break;
             default:
                 break;
@@ -106,10 +104,10 @@ SysProxyModule::SysProxyModule(QObject *parent)
         connect(NetworkController::instance()->proxyController(), &ProxyController::proxyMethodChanged, proxyTypeBox, updateBox);
         connect(proxyTypeBox->comboBox(), static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, [this](int index) {
             switch (index) {
-            case ProxyMethodIndex::Auto:
+            case ProxyMethodIndex_Auto:
                 uiMethodChanged(ProxyMethod::Auto);
                 break;
-            case ProxyMethodIndex::Manual:
+            case ProxyMethodIndex_Manual:
                 uiMethodChanged(ProxyMethod::Manual);
                 break;
             }
@@ -138,7 +136,7 @@ SysProxyModule::SysProxyModule(QObject *parent)
         connect(m_buttonTuple->rightButton(), &QPushButton::clicked, this, &SysProxyModule::applySettings);
         connect(m_buttonTuple->leftButton(), &QPushButton::clicked, this, [this]() {
             m_buttonTuple->setEnabled(false);
-            if (m_proxyTypeBox->comboBox()->currentIndex() == ProxyMethodIndex::Auto)
+            if (m_proxyTypeBox->comboBox()->currentIndex() == ProxyMethodIndex_Auto)
                 resetData(ProxyMethod::Auto);
             else
                 resetData(ProxyMethod::Manual);
@@ -253,14 +251,14 @@ void SysProxyModule::applySettings()
     m_buttonTuple->setEnabled(false);
     if (!m_proxySwitch->checked()) {
         proxyController->setProxyMethod(ProxyMethod::None);
-    } else if (m_proxyTypeBox->comboBox()->currentIndex() == ProxyMethodIndex::Manual) {
+    } else if (m_proxyTypeBox->comboBox()->currentIndex() == ProxyMethodIndex_Manual) {
         proxyController->setProxy(SysProxyType::Http, m_httpAddr->text(), m_httpPort->text());
         proxyController->setProxy(SysProxyType::Https, m_httpsAddr->text(), m_httpsPort->text());
         proxyController->setProxy(SysProxyType::Ftp, m_ftpAddr->text(), m_ftpPort->text());
         proxyController->setProxy(SysProxyType::Socks, m_socksAddr->text(), m_socksPort->text());
         proxyController->setProxyIgnoreHosts(m_ignoreList->toPlainText());
         proxyController->setProxyMethod(ProxyMethod::Manual);
-    } else if (m_proxyTypeBox->comboBox()->currentIndex() == ProxyMethodIndex::Auto) {
+    } else if (m_proxyTypeBox->comboBox()->currentIndex() == ProxyMethodIndex_Auto) {
         proxyController->setAutoProxy(m_autoUrl->text());
         proxyController->setProxyMethod(ProxyMethod::Auto);
     }

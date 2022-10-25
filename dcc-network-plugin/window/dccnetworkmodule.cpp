@@ -90,19 +90,13 @@ void NetworkModule::updateVisiable()
     bool supportHotspot = std::any_of(devices.cbegin(), devices.cend(), [](NetworkDeviceBase *device) { return device->supportHotspot(); });
 
     for (ModuleObject *&module : m_wiredModules) {
-        module->setDisplayName(tr("Wired %1").arg(index++));
         insertChild(row++, module);
     }
-    if (m_wiredModules.size() == 1)
-        m_wiredModules.first()->setDisplayName(tr("Wired"));
 
     index = 1;
     for (ModuleObject *&module : m_wirelessModules) {
-        module->setDisplayName(tr("Wireless %1").arg(index++));
         insertChild(row++, module);
     }
-    if (m_wirelessModules.size() == 1)
-        m_wirelessModules.first()->setDisplayName(tr("Wireless"));
 
     for (ModuleObject *&module : m_modules) {
         if (!supportHotspot && module->name() == QStringLiteral("personalHotspot")) { // 热点根据设备显示

@@ -41,7 +41,7 @@ using namespace DCC_NAMESPACE;
 DWIDGET_USE_NAMESPACE
 
 WiredModule::WiredModule(WiredDevice *dev, QObject *parent)
-    : PageModule("networkWired", tr("Wired"), tr("Wired"), QIcon::fromTheme("dcc_ethernet"), parent)
+    : PageModule("networkWired", dev->deviceName(), dev->deviceName(), QIcon::fromTheme("dcc_ethernet"), parent)
     , m_device(dev)
 {
     m_modules.append(new WidgetModule<SwitchWidget>("wired_adapter", tr("Wired Network Adapter"), [this](SwitchWidget *devEnabled) {
@@ -65,7 +65,7 @@ WiredModule::WiredModule(WiredDevice *dev, QObject *parent)
         tipsGroup->setBackgroundStyle(SettingsGroup::GroupBackground);
         tipsGroup->insertWidget(tips);
     }));
-    m_modules.append(new WidgetModule<DListView>("List_wirelesslist", tr("Wired List"), this, &WiredModule::initWirelessList));
+    m_modules.append(new WidgetModule<DListView>("List_wirelesslist", QString(), this, &WiredModule::initWirelessList));
     m_modules.append(new WidgetModule<QWidget>); // 加个空的保证下面有弹簧
     ModuleObject *extra = new WidgetModule<FloatingButton>("addWired", tr("Add Network Connection"), [this](FloatingButton *createBtn) {
         createBtn->setIcon(DStyle::StandardPixmap::SP_IncreaseElement);

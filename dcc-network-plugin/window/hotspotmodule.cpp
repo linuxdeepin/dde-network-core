@@ -59,7 +59,7 @@ HotspotDeviceItem::HotspotDeviceItem(WirelessDevice *dev, QObject *parent)
         //            hotspotSwitch->blockSignals(false);
         //        });
     }));
-    m_modules.append(new WidgetModule<DListView>("list_hotspot", tr("Hotspot List"), this, &HotspotDeviceItem::initHotspotList));
+    m_modules.append(new WidgetModule<DListView>("list_hotspot", QString(), this, &HotspotDeviceItem::initHotspotList));
     m_modules.append(new WidgetModule<QPushButton>("hotspot_createBtn", tr("Add Settings"), [this](QPushButton *createBtn) {
         createBtn->setText(tr("Add Settings"));
         connect(createBtn, &QPushButton::clicked, this, [this]() {
