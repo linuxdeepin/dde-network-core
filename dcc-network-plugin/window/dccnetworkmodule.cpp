@@ -33,6 +33,8 @@
 #include <QMap>
 #include <QEvent>
 #include <QTimer>
+#include <QTranslator>
+#include <QCoreApplication>
 
 #include <networkcontroller.h>
 #include <networkdevicebase.h>
@@ -185,6 +187,10 @@ ModuleObject *DccNetworkPlugin::module()
 {
     if (m_moduleRoot)
         return m_moduleRoot;
+
+    QTranslator * translator = new QTranslator(this);
+    translator->load("/usr/share/dcc-network-plugin/translations/dcc-network-plugin_" + QLocale::system().name());
+    qApp->installTranslator(translator);
 
     m_moduleRoot = new NetworkModule;
     return m_moduleRoot;
