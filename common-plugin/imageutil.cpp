@@ -23,10 +23,11 @@
 
 #include <QIcon>
 #include <QPainter>
+#include <QDebug>
 
 const QPixmap ImageUtil::loadSvg(const QString &iconName, const QString &localPath, const int size, const qreal ratio)
 {
-    QIcon icon = QIcon::fromTheme(iconName);
+    QIcon icon = QIcon::fromTheme(localPath + iconName);
     if (!icon.isNull()) {
         QPixmap pixmap = icon.pixmap(QCoreApplication::testAttribute(Qt::AA_UseHighDpiPixmaps) ? size : int(size * ratio));
         pixmap.setDevicePixelRatio(ratio);
@@ -34,7 +35,7 @@ const QPixmap ImageUtil::loadSvg(const QString &iconName, const QString &localPa
     }
 
     QPixmap pixmap(int(size * ratio), int(size * ratio));
-    QString localIcon = QString("%1%2%3").arg(localPath).arg(iconName).arg(iconName.contains(".svg") ? "" : ".svg");
+    QString localIcon = QString("%1%2").arg(localPath).arg(iconName);
     QSvgRenderer renderer(localIcon);
     pixmap.fill(Qt::transparent);
 

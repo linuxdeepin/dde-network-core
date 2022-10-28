@@ -24,6 +24,7 @@
 
 #include <QString>
 
+class QObject;
 class BubbleManager;
 
 class NotificationManager
@@ -45,6 +46,7 @@ public:
     };
     static uint Notify(const QString &icon, const QString &body);
     static uint NetworkNotify(NetworkNotifyType type, const QString &name);
+    static void InstallEventFilter(QObject *obj);
 
 protected:
     static BubbleManager *BubbleManagerinstance();

@@ -49,7 +49,6 @@ class TrayIcon : public QWidget
     Q_OBJECT
 
 Q_SIGNALS:
-    void signalShowNetworkDialog(QWidget *w);
     void iconUpdate();
 
 public:
@@ -66,7 +65,6 @@ protected:
     bool isDarkIcon() const;
 
 public Q_SLOTS:
-    void showNetworkDialog();
     void refreshIcon();
 
 protected:

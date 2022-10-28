@@ -34,6 +34,7 @@
 #include <QApplication>
 #include <QGuiApplication>
 #include <QTimer>
+#include <QPointer>
 
 class AbstractPersistence;
 class AbstractNotifySetting;
@@ -166,14 +167,13 @@ private:
     QRect getBubbleGeometry(int index);                     //根据索引获取气泡的矩形大小
     // Get the last unanimated bubble rect
     QRect getLastStableRect(int index);                     //得到最后一个没有动画的矩形气泡
-    QRect calcDisplayRect();
     /**
      * @brief getBubbleHeightBefore 获取序号小于index的气泡的高度之和
      * @param index 当前的气泡序号
      * @return 气泡高度之和
      */
     int getBubbleHeightBefore(const int index);
-    QWidget *parentWidget();
+    bool eventFilter(QObject *watched, QEvent *e) override;
 
 private:
     int m_replaceCount = 0;
@@ -189,6 +189,7 @@ private:
     // 手指划入距离，任务栏在右侧时，需大于任务栏最大宽度100，其它情况没有设限大于0即可
     int m_slideWidth;
     QTimer* m_trickTimer; // 防止300ms内重复按键
+    QPointer<QWidget> m_parentWidget; // 父窗口，取图标按钮的父窗口
 };
 
 #endif // BUBBLEMANAGER_H

@@ -12,16 +12,17 @@ find_package(Qt5 COMPONENTS Core DBus Network REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Svg REQUIRED)
 find_package(KF5NetworkManagerQt REQUIRED)
+find_package(DtkCore REQUIRED)
 find_package(DtkWidget REQUIRED)
+
+set(DTKCORE_INCLUDE_DIR DTKCORE_INCLUDE_DIRS)
+
 find_package(DdeDock REQUIRED)
 find_package(PkgConfig REQUIRED)
 
 aux_source_directory(../dock-network-plugin DOCKPLUGINDIR)
-aux_source_directory(../common-plugin COMMONPLUGINS)
-aux_source_directory(../common-plugin/widgets COMMONPLUGINWIDGET)
-aux_source_directory(../common-plugin/item COMMONPLUGINITEM)
-aux_source_directory(../src NETWORKDIR)
-aux_source_directory(../src/realize REALIZEDIR)
+aux_source_directory(../common-plugin/* COMMONPLUGINS)
+
 aux_source_directory(. COMPILEFILES)
 file(GLOB_RECURSE QRCFILES "../common-plugin/network.qrc"
     "../common-plugin/resources/common/*.svg"
@@ -31,14 +32,15 @@ file(GLOB_RECURSE QRCFILES "../common-plugin/network.qrc"
 
 get_target_property(KF5_QT_INCLUDE_DIRS KF5::NetworkManagerQt INTERFACE_INCLUDE_DIRECTORIES)
 
+file(GLOB_RECURSE COMMONPLUGINS_SRCS
+    ../common-plugin/*
+    ../dss-network-plugin/dockpopupwindow.h
+    ../dss-network-plugin/dockpopupwindow.cpp
+)
 add_executable(${PROJECT_NAME}
     ${COMPILEFILES}
-    ${NETWORKDIR}
     ${DOCKPLUGINDIR}
-    ${COMMONPLUGINS}
-    ${COMMONPLUGINWIDGET}
-    ${COMMONPLUGINITEM}
-    ${REALIZEDIR}
+    ${COMMONPLUGINS_SRCS}
     ${QRCFILES})
 
 get_target_property(KF5_QT_INCLUDE_DIRS KF5::NetworkManagerQt INTERFACE_INCLUDE_DIRECTORIES)
@@ -59,8 +61,6 @@ IMPORTED_LOCATION_NOCONFIG
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC
-    ../src
-    ../src/realize
     ../dock-network-plugin
     ../common-plugin
     ../common-plugin/widgets
@@ -68,6 +68,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     ../common-plugin/resources/common/
     ../common-plugin/resources/wired/
     ../common-plugin/resources/wireless/
+    ../dss-network-plugin
     ${DdeControlCenter_INCLUDE_DIR}
     ${DDE_DOCK_INCLUDE_DIR}
     ${DtkWidget_INCLUDE_DIRS}
@@ -78,7 +79,8 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     #${LibNM_INCLUDE_DIRS}
     ${Qt5Network_INCLUDE_DIRS}
     ${KF5_QT_INCLUDE_DIRS}
-    ${NETINTERFACEINCLUDE})
+    ${DDE-Network-Core_INCLUDE_DIRS}
+)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     ${DdeControlCenter_LIBRARIES}
@@ -91,7 +93,9 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     ${Qt5DBus_LIBRARIES}
     ${Qt5Network_LIBRARIES}
     ${QGSettings_LIBRARIES}
-    ${KF5_QT_LIBRARIES})
+    ${KF5_QT_LIBRARIES}
+    ${DDE-Network-Core_LIBRARIES}
+)
 
 add_custom_command(
     OUTPUT path.pb.cc path.pb.h

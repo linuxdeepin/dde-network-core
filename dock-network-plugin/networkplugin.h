@@ -40,13 +40,8 @@ class NetworkPlugin : public QObject, PluginsItemInterface
     Q_INTERFACES(PluginsItemInterface)
     Q_PLUGIN_METADATA(IID "com.deepin.dock.PluginsItemInterface" FILE "network.json")
 
-Q_SIGNALS:
-    void signalShowNetworkDialog();
-
 public Q_SLOTS:
-    void showNetworkDialog(QWidget *w)  const;
-    void updatePoint();
-    void lockFrontVisible(bool visible);
+    void showNetworkDialog();
 
 public:
     explicit NetworkPlugin(QObject *parent = Q_NULLPTR);
@@ -70,7 +65,6 @@ public:
     void setSortKey(const QString &itemKey, const int order) override;
 
     void pluginSettingsChanged() override;
-    void positionChanged(const Dock::Position position) override;
 
 protected:
     QIcon icon(const DockPart &) override;
@@ -88,7 +82,7 @@ private Q_SLOTS:
 private:
     QScopedPointer<NETWORKPLUGIN_NAMESPACE::NetworkPluginHelper> m_networkHelper;
     NETWORKPLUGIN_NAMESPACE::NetworkDialog *m_networkDialog;
-    NETWORKPLUGIN_NAMESPACE::TrayIcon *m_trayIcon;
+    QScopedPointer<NETWORKPLUGIN_NAMESPACE::TrayIcon> m_trayIcon;
     int m_clickTime;
 };
 

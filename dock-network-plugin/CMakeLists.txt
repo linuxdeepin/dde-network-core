@@ -9,12 +9,16 @@ set(CMAKE_AUTOMOC ON)
 # 启用 qrc 资源文件的支持
 set(CMAKE_AUTORCC ON)
 
-file(GLOB_RECURSE SRCS "*.h" "*.cpp" "item/*.h" "item/*.cpp" "../src/*.h" "../src/*.cpp" "../common-plugin/*.h" "../common-plugin/*.cpp")
+file(GLOB_RECURSE SRCS "*.h" "*.cpp" "item/*.h" "item/*.cpp" "../common-plugin/*.h" "../common-plugin/*.cpp")
 
 find_package(Qt5 COMPONENTS Core Widgets DBus Network LinguistTools REQUIRED)
 find_package(PkgConfig REQUIRED)
 find_package(Qt5Svg REQUIRED)
+find_package(DtkCore REQUIRED)
 find_package(DtkWidget REQUIRED)
+
+set(DTKCORE_INCLUDE_DIR DTKCORE_INCLUDE_DIRS)
+
 find_package(DdeDock REQUIRED)
 find_package(KF5NetworkManagerQt REQUIRED)
 
@@ -27,9 +31,6 @@ add_custom_target(language ALL DEPENDS ${QM_FILES})
 
 add_definitions("${QT_DEFINITIONS} -DQT_PLUGIN")
 add_library(${PLUGIN_NAME} SHARED ${SRCS} ../common-plugin/network.qrc)
-
-set(NETWORKINTERFACE "../src")
-list(REMOVE_ITEM NETWORKINTERFACE "utils.h")
 
 get_target_property(KF5_QT_INCLUDE_DIRS KF5::NetworkManagerQt INTERFACE_INCLUDE_DIRECTORIES)
 
@@ -47,7 +48,7 @@ target_include_directories(${PLUGIN_NAME} PUBLIC
     ${DtkWidget_INCLUDE_DIRS}
     ${Qt5DBus_INCLUDE_DIRS}
     ${QGSettings_INCLUDE_DIRS}
-    #${DDE-Network-Core_INCLUDE_DIRS}
+    ${DDE-Network-Core_INCLUDE_DIRS}
     ${DDE_DOCK_INCLUDE_DIR}
     ${Qt5Network_INCLUDE_DIRS}
     ${KF5_QT_INCLUDE_DIRS}
@@ -61,7 +62,7 @@ target_link_libraries(${PLUGIN_NAME} PRIVATE
     ${Qt5Svg_LIBRARIES}
     ${Qt5DBus_LIBRARIES}
     ${QGSettings_LIBRARIES}
-    #${DDE-Network-Core_LIBRARIES}
+    ${DDE-Network-Core_LIBRARIES}
     ${KF5_QT_LIBRARIES}
     ${Qt5Network_LIBRARIES}
 )

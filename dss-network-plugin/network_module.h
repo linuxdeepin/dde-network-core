@@ -31,11 +31,13 @@
 NETWORKPLUGIN_BEGIN_NAMESPACE
 class NetworkPluginHelper;
 class NetworkDialog;
+class SecretAgent;
+class TrayIcon;
 NETWORKPLUGIN_END_NAMESPACE
 
 namespace dss {
 namespace module {
-
+class PopupAppletManager;
 /**
  * @brief The NetworkModule class
  * 用于处理插件差异
@@ -45,20 +47,19 @@ class NetworkModule : public QObject
 {
     Q_OBJECT
 
-Q_SIGNALS:
-    void signalShowNetworkDialog();
-
 public:
     explicit NetworkModule(QObject *parent = nullptr);
 
     QWidget *content();
-    QWidget *itemWidget() const;
     QWidget *itemTipsWidget() const;
     const QString itemContextMenu() const;
     void invokedMenuItem(const QString &menuId, const bool checked) const;
 
-public Q_SLOTS:
-    void showNetworkDialog(QWidget *w) const;
+    NETWORKPLUGIN_NAMESPACE::NetworkPluginHelper *networkHelper() const { return m_networkHelper; }
+
+protected:
+    bool eventFilter(QObject *watched, QEvent *e) override;
+
     void updateLockScreenStatus(bool visible);
     void onDeviceStatusChanged(NetworkManager::Device::State newstate, NetworkManager::Device::State oldstate, NetworkManager::Device::StateChangeReason reason);
     void onAddDevice(const QString &path);
@@ -69,10 +70,12 @@ private:
     bool hasConnection(NetworkManager::WiredDevice *nmDevice, NetworkManager::Connection::List &unSaveDevices);
     const QString connectionMatchName() const;
     void installTranslator(QString locale);
+    bool needPopupNetworkDialog() const;
 
-public:
+private:
     NETWORKPLUGIN_NAMESPACE::NetworkPluginHelper *m_networkHelper;
     NETWORKPLUGIN_NAMESPACE::NetworkDialog *m_networkDialog;
+    NETWORKPLUGIN_NAMESPACE::SecretAgent *m_secretAgent;
 
     bool m_isLockModel;  // 锁屏 or greeter
     bool m_isLockScreen; // 锁屏显示
@@ -80,8 +83,11 @@ public:
     QSet<QString> m_devicePaths; // 记录无线设备Path,防止信号重复连接
     QString m_lastActiveWirelessDevicePath;
     QString m_lastConnection;
+    QString m_lastConnectionUuid;
     NetworkManager::Device::State m_lastState;
     int m_clickTime;
+
+    PopupAppletManager *m_popupAppletManager;
 };
 
 class NetworkPlugin : public QObject
@@ -96,6 +102,7 @@ public:
     explicit NetworkPlugin(QObject *parent = nullptr);
     ~NetworkPlugin() override { }
     void init() override;
+    bool isNeedInitPlugin() const override { return true; }
 
     inline QString key() const override { return objectName(); }
     QWidget *content() override;
@@ -105,7 +112,6 @@ public:
     QWidget *itemTipsWidget() const override;
     const QString itemContextMenu() const override;
     void invokedMenuItem(const QString &menuId, const bool checked) const override;
-    bool isNeedInitPlugin() const override { return true; }
 
 private:
     void initUI();

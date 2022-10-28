@@ -27,6 +27,7 @@
 #include <DFloatingButton>
 #include <QMouseEvent>
 
+#include <QHBoxLayout>
 #include <networkcontroller.h>
 
 using namespace dss::module;
@@ -55,7 +56,17 @@ void DssTestWidget::loadDssPlugin()
 {
     NetworkController::setServiceType(ServiceLoadType::LoadFromManager);
     m_pModule->init();
-    m_button->setIcon(QIcon(m_pModule->icon()));
+    if (QWidget *trayWidget = m_pModule->itemWidget()) {
+        trayWidget->setParent(this);
+        QHBoxLayout *layout = new QHBoxLayout(this);
+        layout->setSpacing(0);
+        layout->setMargin(0);
+        layout->addWidget(trayWidget);
+
+        m_button->setLayout(layout);
+    } else {
+        m_button->setIcon(QIcon(m_pModule->icon()));
+    }
 }
 
 bool DssTestWidget::eventFilter(QObject *watched, QEvent *event)
@@ -67,8 +78,14 @@ bool DssTestWidget::eventFilter(QObject *watched, QEvent *event)
                 if (mouseEvent->button() == Qt::RightButton) {
                     const QString itemMenu = m_pModule->itemContextMenu();
                     qInfo() << itemMenu;
+                } else if (mouseEvent->button() == Qt::LeftButton) {
+                    m_pModule->content();
                 }
             }
+            break;
+        case QEvent::Enter:
+                break;
+        case QEvent::Leave:
             break;
         default: break;
         }

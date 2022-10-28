@@ -13,7 +13,6 @@ find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Svg REQUIRED)
 find_package(KF5NetworkManagerQt REQUIRED)
 find_package(DtkWidget REQUIRED)
-find_package(DdeDock REQUIRED)
 find_package(DdeSessionShell REQUIRED)
 find_package(PkgConfig REQUIRED)
 
@@ -22,22 +21,20 @@ aux_source_directory(../dss-network-plugin/notification DSSPLUGINNOTIFICATION)
 aux_source_directory(../common-plugin COMMONPLUGINS)
 aux_source_directory(../common-plugin/widgets COMMONPLUGINWIDGET)
 aux_source_directory(../common-plugin/item COMMONPLUGINITEM)
-aux_source_directory(../src NETWORKDIR)
-aux_source_directory(../src/realize REALIZEDIR)
 aux_source_directory(. COMPILEFILES)
 
 get_target_property(KF5_QT_INCLUDE_DIRS KF5::NetworkManagerQt INTERFACE_INCLUDE_DIRECTORIES)
 
 #set(COMPILEFILES ./*.h ./*.cpp)
-
+file(GLOB_RECURSE COMMONPLUGINS_SRCS
+    ../common-plugin/*
+)
 add_executable(${PROJECT_NAME}
     ${COMPILEFILES}
     ${NETWORKDIR}
     ${DSSPLUGINTHEMES}
     ${DSSPLUGINNOTIFICATION}
-    ${COMMONPLUGINS}
-    ${COMMONPLUGINWIDGET}
-    ${COMMONPLUGINITEM}
+    ${COMMONPLUGINS_SRCS}
     ${REALIZEDIR})
 
 get_target_property(KF5_QT_INCLUDE_DIRS KF5::NetworkManagerQt INTERFACE_INCLUDE_DIRECTORIES)
@@ -58,8 +55,6 @@ IMPORTED_LOCATION_NOCONFIG
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC
-    ../src
-    ../src/realize
     ../dss-network-plugin
     ../common-plugin
     ../common-plugin/widgets
@@ -72,10 +67,11 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     ${Qt5DBus_INCLUDE_DIRS}
     ${Qt5Widget_INCLUDE_DIRS}
     ${QGSettings_INCLUDE_DIRS}
-    #${LibNM_INCLUDE_DIRS}
+    ${LibNM_INCLUDE_DIRS}
     ${Qt5Network_INCLUDE_DIRS}
     ${KF5_QT_INCLUDE_DIRS}
-    ${NETINTERFACEINCLUDE})
+    ${DDE-Network-Core_INCLUDE_DIRS}
+)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     ${DdeControlCenter_LIBRARIES}
@@ -88,7 +84,9 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     ${Qt5DBus_LIBRARIES}
     ${Qt5Network_LIBRARIES}
     ${QGSettings_LIBRARIES}
-    ${KF5_QT_LIBRARIES})
+    ${KF5_QT_LIBRARIES}
+    ${DDE-Network-Core_LIBRARIES}
+)
 
 add_custom_command(
     OUTPUT path.pb.cc path.pb.h

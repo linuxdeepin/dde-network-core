@@ -693,12 +693,12 @@ ConnectionStatus DeviceManagerRealize::convertStatus(Device::State state)
 {
     switch (state) {
     case Device::State::Failed:
-    case Device::State::NeedAuth:
     case Device::State::Unmanaged:
     case Device::State::Unavailable:
     case Device::State::Disconnected:
         return ConnectionStatus::Deactivated;
     case Device::State::Preparing:
+    case Device::State::NeedAuth:
     case Device::State::CheckingIp:
     case Device::State::ConfiguringIp:
     case Device::State::ConfiguringHardware:
