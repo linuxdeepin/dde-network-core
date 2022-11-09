@@ -1,9 +1,73 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="en" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="en">
+<context>
+    <name>DeviceControllItem</name>
+    <message>
+        <source>Wireless Network</source>
+        <translation>Wireless Network</translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Wired Network</translation>
+    </message>
+</context>
 <context>
     <name>NetworkPlugin</name>
     <message>
         <source>Network</source>
         <translation>Network</translation>
+    </message>
+    <message>
+        <source>Device disabled</source>
+        <translation>Device disabled</translation>
+    </message>
+    <message>
+        <source>Network cable unplugged</source>
+        <translation>Network cable unplugged</translation>
+    </message>
+    <message>
+        <source>Not connected</source>
+        <translation>Not connected</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation>Connecting</translation>
+    </message>
+    <message>
+        <source>Connected but no Internet access</source>
+        <translation>Connected but no Internet access</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation>Connection failed</translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation>IP conflict</translation>
+    </message>
+</context>
+<context>
+    <name>WirelessItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation>Connect to hidden network</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Password</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Cancel</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <comment>button</comment>
+        <translation>Connect</translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation>Name (SSID)</translation>
     </message>
 </context>
 <context>

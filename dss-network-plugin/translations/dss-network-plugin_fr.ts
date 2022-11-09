@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fr">
 <context>
     <name>Bubble</name>
     <message>
@@ -7,10 +7,21 @@
     </message>
 </context>
 <context>
+    <name>DeviceControllItem</name>
+    <message>
+        <source>Wireless Network</source>
+        <translation>Réseau sans fil</translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Réseau filaire</translation>
+    </message>
+</context>
+<context>
     <name>QObject</name>
     <message>
         <source>Connecting %1</source>
-        <translation type="unfinished"/>
+        <translation>Connexion %1</translation>
     </message>
     <message>
         <source>%1 connected</source>
@@ -18,34 +29,52 @@
     </message>
     <message>
         <source>%1 disconnected</source>
-        <translation type="unfinished"/>
+        <translation>%1 déconnecté</translation>
     </message>
     <message>
         <source>Unable to connect %1, please check your router or net cable.</source>
-        <translation type="unfinished"/>
+        <translation>Impossible de se connecter à %1, veuillez vérifier votre routeur ou votre câble réseau.</translation>
     </message>
     <message>
         <source>Unable to connect %1, please keep closer to the wireless router</source>
-        <translation type="unfinished"/>
+        <translation>Impossible de se connecter à %1, veuillez vous rapprocher du routeur sans fil</translation>
     </message>
     <message>
         <source>Connection failed, unable to connect %1, wrong password</source>
-        <translation type="unfinished"/>
+        <translation>La connexion a échoué, impossible de se connecter à %1, mot de passe erroné</translation>
     </message>
     <message>
         <source>Password is required to connect %1</source>
-        <translation type="unfinished"/>
+        <translation>Le mot de passe est requis pour se connecter à %1</translation>
     </message>
     <message>
         <source>The %1 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"/>
+        <translation>Le réseau WLAN %1 802.11 est introuvable</translation>
     </message>
 </context>
 <context>
-    <name>dss::module::NetworkModule</name>
+    <name>WirelessItem</name>
     <message>
-        <source>Wired Connection</source>
-        <translation>Connexion filaire</translation>
+        <source>Connect to hidden network</source>
+        <translation>Se connecter à un réseau caché</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Mot de passe</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Annuler</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <comment>button</comment>
+        <translation>Relier</translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation>Nom (SSID)</translation>
     </message>
 </context>
 <context>
@@ -151,7 +180,7 @@
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"/>
+        <translation>Conflit IP</translation>
     </message>
     <message>
         <source>Failed</source>
@@ -159,7 +188,7 @@
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation type="unfinished"/>
+        <translation>Obtenir l&apos;adresse</translation>
     </message>
 </context>
 <context>
@@ -209,7 +238,7 @@
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"/>
+        <translation>Conflit IP</translation>
     </message>
     <message>
         <source>Disable wired connection</source>
@@ -238,6 +267,13 @@
     <message>
         <source>Network settings</source>
         <translation>Paramètres réseau</translation>
+    </message>
+</context>
+<context>
+    <name>dss::module::NetworkModule</name>
+    <message>
+        <source>Wired Connection</source>
+        <translation>Connexion filaire</translation>
     </message>
 </context>
 </TS>

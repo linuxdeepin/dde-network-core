@@ -1,9 +1,73 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ms" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ms">
+<context>
+    <name>DeviceControllItem</name>
+    <message>
+        <source>Wireless Network</source>
+        <translation>Rangkaian Tanpa Wayar</translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Rangkaian Berwayar</translation>
+    </message>
+</context>
 <context>
     <name>NetworkPlugin</name>
     <message>
         <source>Network</source>
         <translation>Rangkaian</translation>
+    </message>
+    <message>
+        <source>Device disabled</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network cable unplugged</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Not connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connected but no Internet access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>WirelessItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation>Sambung ke rangkaian tersembunyi</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Kata Laluan</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Batal</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <comment>button</comment>
+        <translation>Sambung</translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

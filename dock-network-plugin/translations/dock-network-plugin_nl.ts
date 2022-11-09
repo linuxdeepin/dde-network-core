@@ -1,9 +1,73 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="nl" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="nl">
+<context>
+    <name>DeviceControllItem</name>
+    <message>
+        <source>Wireless Network</source>
+        <translation>Draadloos netwerk</translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Bekabeld netwerk</translation>
+    </message>
+</context>
 <context>
     <name>NetworkPlugin</name>
     <message>
         <source>Network</source>
         <translation>Netwerk</translation>
+    </message>
+    <message>
+        <source>Device disabled</source>
+        <translation>Apparaat uitgeschakeld</translation>
+    </message>
+    <message>
+        <source>Network cable unplugged</source>
+        <translation>Geen netwerkkabel aangesloten</translation>
+    </message>
+    <message>
+        <source>Not connected</source>
+        <translation>Niet verbonden</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation>Bezig met verbinden…</translation>
+    </message>
+    <message>
+        <source>Connected but no Internet access</source>
+        <translation>Verbonden, maar geen internettoegang</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation>Verbinding mislukt</translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation>IP-conflict</translation>
+    </message>
+</context>
+<context>
+    <name>WirelessItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation>Verbinden met verborgen netwerk</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Wachtwoord</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Annuleren</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <comment>button</comment>
+        <translation>Verbinden</translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation>Naam (SSID)</translation>
     </message>
 </context>
 <context>
@@ -89,7 +153,7 @@
     </message>
     <message>
         <source>Connecting</source>
-        <translation>Bezig met verbinden</translation>
+        <translation>Bezig met verbinden…</translation>
     </message>
     <message>
         <source>Authenticating</source>

@@ -1,9 +1,73 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="pl" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pl">
+<context>
+    <name>DeviceControllItem</name>
+    <message>
+        <source>Wireless Network</source>
+        <translation>Sieć bezprzewodowa</translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Sieć przewodowa</translation>
+    </message>
+</context>
 <context>
     <name>NetworkPlugin</name>
     <message>
         <source>Network</source>
         <translation>Sieć</translation>
+    </message>
+    <message>
+        <source>Device disabled</source>
+        <translation>Urządzenie wyłączone</translation>
+    </message>
+    <message>
+        <source>Network cable unplugged</source>
+        <translation>Kabel sieciowy odłączony</translation>
+    </message>
+    <message>
+        <source>Not connected</source>
+        <translation>Nie połączono</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation>Łączenie</translation>
+    </message>
+    <message>
+        <source>Connected but no Internet access</source>
+        <translation>Połączono, brak dostępu do Internetu</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation>Połączenie nieudane</translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation>Konflikt adresów IP</translation>
+    </message>
+</context>
+<context>
+    <name>WirelessItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation>Połącz z siecią ukrytą</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Hasło</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Anuluj</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <comment>button</comment>
+        <translation>Połącz</translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation>Nazwa (SSID)</translation>
     </message>
 </context>
 <context>

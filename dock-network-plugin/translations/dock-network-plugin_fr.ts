@@ -1,9 +1,73 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fr">
+<context>
+    <name>DeviceControllItem</name>
+    <message>
+        <source>Wireless Network</source>
+        <translation>Réseau sans fil</translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Réseau filaire</translation>
+    </message>
+</context>
 <context>
     <name>NetworkPlugin</name>
     <message>
         <source>Network</source>
         <translation>Réseau</translation>
+    </message>
+    <message>
+        <source>Device disabled</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network cable unplugged</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Not connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connected but no Internet access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>WirelessItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation>Se connecter à un réseau caché</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Mot de passe</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Annuler</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <comment>button</comment>
+        <translation>Relier</translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation>Nom (SSID)</translation>
     </message>
 </context>
 <context>
@@ -109,7 +173,7 @@
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"/>
+        <translation>Conflit IP</translation>
     </message>
     <message>
         <source>Failed</source>
@@ -117,7 +181,7 @@
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation type="unfinished"/>
+        <translation>Obtenir l&apos;adresse</translation>
     </message>
 </context>
 <context>
@@ -167,7 +231,7 @@
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"/>
+        <translation>Conflit IP</translation>
     </message>
     <message>
         <source>Disable wired connection</source>

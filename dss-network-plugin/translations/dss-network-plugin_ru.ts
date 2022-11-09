@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ru" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ru">
 <context>
     <name>Bubble</name>
     <message>
@@ -7,10 +7,21 @@
     </message>
 </context>
 <context>
+    <name>DeviceControllItem</name>
+    <message>
+        <source>Wireless Network</source>
+        <translation>Беспроводная сеть</translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Проводная сеть</translation>
+    </message>
+</context>
+<context>
     <name>QObject</name>
     <message>
         <source>Connecting %1</source>
-        <translation type="unfinished"/>
+        <translation>Соединение с %1</translation>
     </message>
     <message>
         <source>%1 connected</source>
@@ -34,18 +45,36 @@
     </message>
     <message>
         <source>Password is required to connect %1</source>
-        <translation type="unfinished"/>
+        <translation>Для соединения с %1 требуется пароль</translation>
     </message>
     <message>
         <source>The %1 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось найти сеть WLAN 802.11 %1</translation>
     </message>
 </context>
 <context>
-    <name>dss::module::NetworkModule</name>
+    <name>WirelessItem</name>
     <message>
-        <source>Wired Connection</source>
-        <translation>Проводное Соединение</translation>
+        <source>Connect to hidden network</source>
+        <translation>Подключиться к скрытой сети</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Пароль</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Отмена</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <comment>button</comment>
+        <translation>Подключить</translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation>Имя (SSID)</translation>
     </message>
 </context>
 <context>
@@ -151,7 +180,7 @@
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"/>
+        <translation>Конфликт IP-адресов</translation>
     </message>
     <message>
         <source>Failed</source>
@@ -159,7 +188,7 @@
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation type="unfinished"/>
+        <translation>Получение адреса</translation>
     </message>
 </context>
 <context>
@@ -209,7 +238,7 @@
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"/>
+        <translation>Конфликт IP-адресов</translation>
     </message>
     <message>
         <source>Disable wired connection</source>
@@ -238,6 +267,13 @@
     <message>
         <source>Network settings</source>
         <translation>Настройки сети</translation>
+    </message>
+</context>
+<context>
+    <name>dss::module::NetworkModule</name>
+    <message>
+        <source>Wired Connection</source>
+        <translation>Проводное Соединение</translation>
     </message>
 </context>
 </TS>

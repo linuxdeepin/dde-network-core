@@ -1,59 +1,59 @@
 <?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ja">
 <context>
-    <name>ChainsProxyPage</name>
+    <name>AppProxyModule</name>
     <message>
         <source>Application Proxy</source>
-        <translation>アプリケーションプロキシ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Proxy Type</source>
-        <translation>プロキシの種類</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>IP Address</source>
-        <translation>IP アドレス</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Required</source>
-        <translation>必須</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Port</source>
-        <translation>ポート</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Username</source>
-        <translation>ユーザー名</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Optional</source>
-        <translation>省略可能</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Password</source>
-        <translation>パスワード</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Check &quot;Use a proxy&quot; in application context menu in Launcher after configured</source>
-        <translation>設定後にランチャのアプリケーションコンテキストメニューで「プロキシーを使う」をクリックしてください</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>キャンセル</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save</source>
         <comment>button</comment>
-        <translation>保存</translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invalid IP address</source>
-        <translation>無効なIPアドレスです</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invalid port</source>
-        <translation>無効なポートです</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -164,201 +164,6 @@
     </message>
 </context>
 <context>
-    <name>DCCNetworkModule</name>
-    <message>
-        <source>Network</source>
-        <translation>ネットワーク</translation>
-    </message>
-    <message>
-        <source>Application Proxy</source>
-        <translation>アプリケーションプロキシ</translation>
-    </message>
-    <message>
-        <source>Personal Hotspot</source>
-        <translation>個人的なホットスポット</translation>
-    </message>
-    <message>
-        <source>Network Details</source>
-        <translation>ネットワークの詳細</translation>
-    </message>
-    <message>
-        <source>System Proxy</source>
-        <translation>システムプロキシ</translation>
-    </message>
-    <message>
-        <source>Wired Network</source>
-        <translation>有線ネットワーク</translation>
-    </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation>無線ネットワーク</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>VPN</translation>
-    </message>
-    <message>
-        <source>Wired Network Adapter</source>
-        <translation>有線ネットワークアダプター</translation>
-        <extra-child_page>Wired Network</extra-child_page>
-        <extra-contents_path>/network/Wired Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Add Network Connection</source>
-        <translation>ネットワーク接続を追加</translation>
-        <extra-child_page>Wired Network</extra-child_page>
-        <extra-contents_path>/network/Wired Network/addWiredConnection</extra-contents_path>
-    </message>
-    <message>
-        <source>Wireless Network Adapter</source>
-        <translation>無線ネットワークアダプター</translation>
-        <extra-child_page>Wireless Network</extra-child_page>
-        <extra-contents_path>/network/Wireless Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>非表示のネットワークへ接続</translation>
-        <extra-child_page>Wireless Network</extra-child_page>
-        <extra-contents_path>/network/Wireless Network/Connect to hidden network</extra-contents_path>
-    </message>
-    <message>
-        <source>DSL</source>
-        <translation>DSL</translation>
-        <extra-child_page_hide>DSL</extra-child_page_hide>
-        <extra-contents_path>/network/DSL</extra-contents_path>
-    </message>
-    <message>
-        <source>Create PPPoE Connection</source>
-        <translation>PPPoE 接続を作成</translation>
-        <extra-child_page>DSL</extra-child_page>
-        <extra-contents_path>/network/DSL/Create PPPoE Connection</extra-contents_path>
-    </message>
-    <message>
-        <source>VPN Status</source>
-        <translation>VPN の状態</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Create VPN</source>
-        <translation>VPN を作成</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN/Create VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation>VPN をインポート</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN/Import VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation>プロキシの種類</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation>設定 URL</translation>
-    </message>
-    <message>
-        <source>IP Address</source>
-        <translation>IP アドレス</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>ポート</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>ユーザー名</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>パスワード</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Hotspot</source>
-        <translation>ホットスポット</translation>
-        <extra-child_page>Personal Hotspot</extra-child_page>
-        <extra-contents_path>/network/Personal Hotspot</extra-contents_path>
-    </message>
-    <message>
-        <source>Create Hotspot</source>
-        <translation>ホットスポットを作成</translation>
-        <extra-child_page>Personal Hotspot</extra-child_page>
-        <extra-contents_path>/network/Personal Hotspot/Create Hotspot</extra-contents_path>
-    </message>
-    <message>
-        <source>Interface</source>
-        <translation>インターフェース</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>MAC</source>
-        <translation>MAC</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation>バンド</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>IPv4</source>
-        <translation>IPv4</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>ゲートウェイ</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Primary DNS</source>
-        <translation>プライマリ DNS</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Netmask</source>
-        <translation>ネットマスク</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>IPv6</source>
-        <translation>IPv6</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Prefix</source>
-        <translation>プレフィックス</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation>速度</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-</context>
-<context>
     <name>DNSSection</name>
     <message>
         <source>DNS</source>
@@ -367,6 +172,17 @@
     <message>
         <source>Invalid DNS address</source>
         <translation>無効なDNSアドレスです</translation>
+    </message>
+</context>
+<context>
+    <name>DSLModule</name>
+    <message>
+        <source>DSL</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create PPPoE Connection</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -435,21 +251,25 @@
     </message>
 </context>
 <context>
-    <name>HotspotDeviceWidget</name>
+    <name>HotspotDeviceItem</name>
     <message>
         <source>Hotspot</source>
-        <translation>ホットスポット</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add Settings</source>
-        <translation>設定を追加</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>HotspotPage</name>
+    <name>HotspotModule</name>
+    <message>
+        <source>Personal Hotspot</source>
+        <translation type="unfinished"/>
+    </message>
     <message>
         <source>Create Hotspot</source>
-        <translation>ホットスポットを作成</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -620,61 +440,17 @@
     </message>
 </context>
 <context>
-    <name>NetworkDetailPage</name>
+    <name>NetworkInfoModule</name>
     <message>
         <source>Network Details</source>
-        <translation>ネットワークの詳細</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>NetworkModuleWidget</name>
-    <message>
-        <source>DSL</source>
-        <translation>DSL</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>VPN</translation>
-    </message>
-    <message>
-        <source>System Proxy</source>
-        <translation>システムプロキシ</translation>
-    </message>
-    <message>
-        <source>Application Proxy</source>
-        <translation>アプリケーションプロキシ</translation>
-    </message>
-    <message>
-        <source>Network Details</source>
-        <translation>ネットワークの詳細</translation>
-    </message>
+    <name>NetworkModule</name>
     <message>
         <source>Network</source>
-        <translation>ネットワーク</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>無効</translation>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>手動</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>自動</translation>
-    </message>
-    <message>
-        <source>Configure by Network Manager</source>
-        <translation>ネットワークマネージャーで設定</translation>
-    </message>
-    <message>
-        <source>Personal Hotspot</source>
-        <translation>個人的なホットスポット</translation>
     </message>
 </context>
 <context>
@@ -761,82 +537,6 @@
     <message>
         <source>Stateful MPPE</source>
         <translation>Stateful MPPE</translation>
-    </message>
-</context>
-<context>
-    <name>PppoePage</name>
-    <message>
-        <source>Create PPPoE Connection</source>
-        <translation>PPPoE 接続を作成</translation>
-    </message>
-    <message>
-        <source>PPP</source>
-        <translation>PPP</translation>
-    </message>
-</context>
-<context>
-    <name>ProxyPage</name>
-    <message>
-        <source>System Proxy</source>
-        <translation>システムプロキシ</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>キャンセル</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <comment>button</comment>
-        <translation>保存</translation>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation>プロキシの種類</translation>
-        <extra-child_page>System Proxy</extra-child_page>
-        <extra-contents_path>/network/System Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>手動</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>自動</translation>
-    </message>
-    <message>
-        <source>Optional</source>
-        <translation>省略可能</translation>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>ポート</translation>
-    </message>
-    <message>
-        <source>HTTP Proxy</source>
-        <translation>HTTP プロキシ</translation>
-    </message>
-    <message>
-        <source>HTTPS Proxy</source>
-        <translation>HTTPS プロキシ</translation>
-    </message>
-    <message>
-        <source>FTP Proxy</source>
-        <translation>FTP プロキシ</translation>
-    </message>
-    <message>
-        <source>SOCKS Proxy</source>
-        <translation>SOCKS プロキシ</translation>
-    </message>
-    <message>
-        <source>Ignore the proxy configurations for the above hosts and domains</source>
-        <translation>上記のホストとドメインでプロキシ設定を無視</translation>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation>設定 URL</translation>
-        <extra-child_page>System Proxy</extra-child_page>
-        <extra-contents_path>/network/System Proxy</extra-contents_path>
     </message>
 </context>
 <context>
@@ -1065,6 +765,106 @@
     <message>
         <source>Password</source>
         <translation>パスワード</translation>
+    </message>
+</context>
+<context>
+    <name>SysProxyModule</name>
+    <message>
+        <source>System Proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Proxy Type</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optional</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration URL</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save</source>
+        <comment>button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HTTP Proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HTTPS Proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>FTP Proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>SOCKS Proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ignore the proxy configurations for the above hosts and domains</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>VPNModule</name>
+    <message>
+        <source>VPN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Wired Network Adapter</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VPN Status</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add Network Connection</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create VPN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import VPN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import Error</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File error</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1470,33 +1270,6 @@
     </message>
 </context>
 <context>
-    <name>VpnPage</name>
-    <message>
-        <source>VPN Status</source>
-        <translation>VPN の状態</translation>
-    </message>
-    <message>
-        <source>Create VPN</source>
-        <translation>VPN を作成</translation>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation>VPN をインポート</translation>
-    </message>
-    <message>
-        <source>Import Error</source>
-        <translation>インポートエラー</translation>
-    </message>
-    <message>
-        <source>File error</source>
-        <translation>ファイルエラー</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>OK</translation>
-    </message>
-</context>
-<context>
     <name>VpnProxySection</name>
     <message>
         <source>VPN Proxy</source>
@@ -1833,44 +1606,40 @@
     </message>
 </context>
 <context>
-    <name>WiredPage</name>
-    <message>
-        <source>Plug in the network cable first</source>
-        <translation>始めに、ネットワークケーブルを接続してください</translation>
-    </message>
+    <name>WiredModule</name>
     <message>
         <source>Wired Network Adapter</source>
-        <translation>有線ネットワークアダプター</translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plug in the network cable first</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add Network Connection</source>
-        <translation>ネットワーク接続を追加</translation>
-    </message>
-    <message>
-        <source>Select Settings</source>
-        <translation>設定を選択</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>WirelessPage</name>
+    <name>WirelessDeviceModel</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>WirelessModule</name>
     <message>
         <source>Wireless Network Adapter</source>
-        <translation>無線ネットワークアダプター</translation>
-        <extra-contents_path>/network/Wireless Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Close Hotspot</source>
-        <translation>ホットスポットを閉じる</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disable hotspot first if you want to connect to a wireless network</source>
-        <translation>無線ネットワークに接続したい場合は、まずホットスポットを無効にしてください</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Connect to hidden network</source>
-        <translation>非表示のネットワークへ接続</translation>
-        <extra-child_page>WirelessPage</extra-child_page>
-        <extra-contents_path>/network/Connect to hidden network</extra-contents_path>
+        <source>Close Hotspot</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

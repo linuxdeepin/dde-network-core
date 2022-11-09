@@ -1,6 +1,6 @@
 <?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="nl">
 <context>
-    <name>ChainsProxyPage</name>
+    <name>AppProxyModule</name>
     <message>
         <source>Application Proxy</source>
         <translation>Programmaproxy</translation>
@@ -38,14 +38,14 @@
         <translation>Kruis na het instellen de optie ‘Proxy gebruiken’ aan in het rechtermuisknopmenu van de programmastarter</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Annuleren</translation>
-    </message>
-    <message>
         <source>Save</source>
         <comment>button</comment>
         <translation>Opslaan</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Annuleren</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
@@ -164,201 +164,6 @@
     </message>
 </context>
 <context>
-    <name>DCCNetworkModule</name>
-    <message>
-        <source>Network</source>
-        <translation>Netwerk</translation>
-    </message>
-    <message>
-        <source>Application Proxy</source>
-        <translation>Programmaproxy</translation>
-    </message>
-    <message>
-        <source>Personal Hotspot</source>
-        <translation>Persoonlijke hotspot</translation>
-    </message>
-    <message>
-        <source>Network Details</source>
-        <translation>Netwerkinformatie</translation>
-    </message>
-    <message>
-        <source>System Proxy</source>
-        <translation>Systeemproxy</translation>
-    </message>
-    <message>
-        <source>Wired Network</source>
-        <translation>Bekabeld netwerk</translation>
-    </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation>Draadloos netwerk</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>VPN</translation>
-    </message>
-    <message>
-        <source>Wired Network Adapter</source>
-        <translation>Bekabelde netwerkadapter</translation>
-        <extra-child_page>Wired Network</extra-child_page>
-        <extra-contents_path>/network/Wired Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Add Network Connection</source>
-        <translation>Netwerkverbinding toevoegen</translation>
-        <extra-child_page>Wired Network</extra-child_page>
-        <extra-contents_path>/network/Wired Network/addWiredConnection</extra-contents_path>
-    </message>
-    <message>
-        <source>Wireless Network Adapter</source>
-        <translation>Draadloze netwerkadapter</translation>
-        <extra-child_page>Wireless Network</extra-child_page>
-        <extra-contents_path>/network/Wireless Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>Verbinden met verborgen netwerk</translation>
-        <extra-child_page>Wireless Network</extra-child_page>
-        <extra-contents_path>/network/Wireless Network/Connect to hidden network</extra-contents_path>
-    </message>
-    <message>
-        <source>DSL</source>
-        <translation>DSL</translation>
-        <extra-child_page_hide>DSL</extra-child_page_hide>
-        <extra-contents_path>/network/DSL</extra-contents_path>
-    </message>
-    <message>
-        <source>Create PPPoE Connection</source>
-        <translation>PPPoE-verbinding opzetten</translation>
-        <extra-child_page>DSL</extra-child_page>
-        <extra-contents_path>/network/DSL/Create PPPoE Connection</extra-contents_path>
-    </message>
-    <message>
-        <source>VPN Status</source>
-        <translation>VPN-status</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Create VPN</source>
-        <translation>VPN toevoegen</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN/Create VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation>VPN importeren</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN/Import VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation>Soort proxy</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation>Configuratie-url</translation>
-    </message>
-    <message>
-        <source>IP Address</source>
-        <translation>IP-adres</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>Poort</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>Gebruikersnaam</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Wachtwoord</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Hotspot</source>
-        <translation>Hotspot</translation>
-        <extra-child_page>Personal Hotspot</extra-child_page>
-        <extra-contents_path>/network/Personal Hotspot</extra-contents_path>
-    </message>
-    <message>
-        <source>Create Hotspot</source>
-        <translation>Hotspot opzetten</translation>
-        <extra-child_page>Personal Hotspot</extra-child_page>
-        <extra-contents_path>/network/Personal Hotspot/Create Hotspot</extra-contents_path>
-    </message>
-    <message>
-        <source>Interface</source>
-        <translation>Uiterlijk</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>MAC</source>
-        <translation>MAC</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation>Band</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>IPv4</source>
-        <translation>IPv4</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Gateway</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Primary DNS</source>
-        <translation>Primaire dns-server</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Netmask</source>
-        <translation>Netmasker</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>IPv6</source>
-        <translation>IPv6</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Prefix</source>
-        <translation>Voorvoegsel</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation>Snelheid</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-</context>
-<context>
     <name>DNSSection</name>
     <message>
         <source>DNS</source>
@@ -367,6 +172,17 @@
     <message>
         <source>Invalid DNS address</source>
         <translation>Ongeldig dns-adres</translation>
+    </message>
+</context>
+<context>
+    <name>DSLModule</name>
+    <message>
+        <source>DSL</source>
+        <translation>DSL</translation>
+    </message>
+    <message>
+        <source>Create PPPoE Connection</source>
+        <translation>PPPoE-verbinding opzetten</translation>
     </message>
 </context>
 <context>
@@ -435,7 +251,7 @@
     </message>
 </context>
 <context>
-    <name>HotspotDeviceWidget</name>
+    <name>HotspotDeviceItem</name>
     <message>
         <source>Hotspot</source>
         <translation>Hotspot</translation>
@@ -446,7 +262,11 @@
     </message>
 </context>
 <context>
-    <name>HotspotPage</name>
+    <name>HotspotModule</name>
+    <message>
+        <source>Personal Hotspot</source>
+        <translation>Persoonlijke hotspot</translation>
+    </message>
     <message>
         <source>Create Hotspot</source>
         <translation>Hotspot opzetten</translation>
@@ -620,61 +440,17 @@
     </message>
 </context>
 <context>
-    <name>NetworkDetailPage</name>
+    <name>NetworkInfoModule</name>
     <message>
         <source>Network Details</source>
         <translation>Netwerkinformatie</translation>
     </message>
 </context>
 <context>
-    <name>NetworkModuleWidget</name>
-    <message>
-        <source>DSL</source>
-        <translation>DSL</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>VPN</translation>
-    </message>
-    <message>
-        <source>System Proxy</source>
-        <translation>Systeemproxy</translation>
-    </message>
-    <message>
-        <source>Application Proxy</source>
-        <translation>Programmaproxy</translation>
-    </message>
-    <message>
-        <source>Network Details</source>
-        <translation>Netwerkinformatie</translation>
-    </message>
+    <name>NetworkModule</name>
     <message>
         <source>Network</source>
         <translation>Netwerk</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>IP-conflict</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Uitgeschakeld</translation>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>Handmatig</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Automatisch</translation>
-    </message>
-    <message>
-        <source>Configure by Network Manager</source>
-        <translation>Ingesteld door NetworkManager</translation>
-    </message>
-    <message>
-        <source>Personal Hotspot</source>
-        <translation>Persoonlijke hotspot</translation>
     </message>
 </context>
 <context>
@@ -761,82 +537,6 @@
     <message>
         <source>Stateful MPPE</source>
         <translation>Stateful MPPE</translation>
-    </message>
-</context>
-<context>
-    <name>PppoePage</name>
-    <message>
-        <source>Create PPPoE Connection</source>
-        <translation>PPPoE-verbinding opzetten</translation>
-    </message>
-    <message>
-        <source>PPP</source>
-        <translation>PPP</translation>
-    </message>
-</context>
-<context>
-    <name>ProxyPage</name>
-    <message>
-        <source>System Proxy</source>
-        <translation>Systeemproxy</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Annuleren</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <comment>button</comment>
-        <translation>Opslaan</translation>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation>Soort proxy</translation>
-        <extra-child_page>System Proxy</extra-child_page>
-        <extra-contents_path>/network/System Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>Handmatig</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Automatisch</translation>
-    </message>
-    <message>
-        <source>Optional</source>
-        <translation>Optioneel</translation>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>Poort</translation>
-    </message>
-    <message>
-        <source>HTTP Proxy</source>
-        <translation>HTTP-proxy</translation>
-    </message>
-    <message>
-        <source>HTTPS Proxy</source>
-        <translation>HTTPS-proxy</translation>
-    </message>
-    <message>
-        <source>FTP Proxy</source>
-        <translation>FTP-proxy</translation>
-    </message>
-    <message>
-        <source>SOCKS Proxy</source>
-        <translation>SOCKS-proxy</translation>
-    </message>
-    <message>
-        <source>Ignore the proxy configurations for the above hosts and domains</source>
-        <translation>Negeer de proxy-instellingen voor bovenstaande hosts en domeinen</translation>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation>Configuratie-url</translation>
-        <extra-child_page>System Proxy</extra-child_page>
-        <extra-contents_path>/network/System Proxy</extra-contents_path>
     </message>
 </context>
 <context>
@@ -1065,6 +765,106 @@
     <message>
         <source>Password</source>
         <translation>Wachtwoord</translation>
+    </message>
+</context>
+<context>
+    <name>SysProxyModule</name>
+    <message>
+        <source>System Proxy</source>
+        <translation>Systeemproxy</translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation>Handmatig</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Automatisch</translation>
+    </message>
+    <message>
+        <source>Proxy Type</source>
+        <translation>Soort proxy</translation>
+    </message>
+    <message>
+        <source>Optional</source>
+        <translation>Optioneel</translation>
+    </message>
+    <message>
+        <source>Configuration URL</source>
+        <translation>Configuratie-url</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <comment>button</comment>
+        <translation>Opslaan</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Annuleren</translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation>Poort</translation>
+    </message>
+    <message>
+        <source>HTTP Proxy</source>
+        <translation>HTTP-proxy</translation>
+    </message>
+    <message>
+        <source>HTTPS Proxy</source>
+        <translation>HTTPS-proxy</translation>
+    </message>
+    <message>
+        <source>FTP Proxy</source>
+        <translation>FTP-proxy</translation>
+    </message>
+    <message>
+        <source>SOCKS Proxy</source>
+        <translation>SOCKS-proxy</translation>
+    </message>
+    <message>
+        <source>Ignore the proxy configurations for the above hosts and domains</source>
+        <translation>Negeer de proxy-instellingen voor bovenstaande hosts en domeinen</translation>
+    </message>
+</context>
+<context>
+    <name>VPNModule</name>
+    <message>
+        <source>VPN</source>
+        <translation>VPN</translation>
+    </message>
+    <message>
+        <source>Wired Network Adapter</source>
+        <translation>Bekabelde netwerkadapter</translation>
+    </message>
+    <message>
+        <source>VPN Status</source>
+        <translation>VPN-status</translation>
+    </message>
+    <message>
+        <source>Add Network Connection</source>
+        <translation>Netwerkverbinding toevoegen</translation>
+    </message>
+    <message>
+        <source>Create VPN</source>
+        <translation>VPN toevoegen</translation>
+    </message>
+    <message>
+        <source>Import VPN</source>
+        <translation>VPN importeren</translation>
+    </message>
+    <message>
+        <source>Import Error</source>
+        <translation>Importfout</translation>
+    </message>
+    <message>
+        <source>File error</source>
+        <translation>Bestandsfout</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>Oké</translation>
     </message>
 </context>
 <context>
@@ -1470,33 +1270,6 @@
     </message>
 </context>
 <context>
-    <name>VpnPage</name>
-    <message>
-        <source>VPN Status</source>
-        <translation>VPN-status</translation>
-    </message>
-    <message>
-        <source>Create VPN</source>
-        <translation>VPN toevoegen</translation>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation>VPN importeren</translation>
-    </message>
-    <message>
-        <source>Import Error</source>
-        <translation>Importfout</translation>
-    </message>
-    <message>
-        <source>File error</source>
-        <translation>Bestandsfout</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>Oké</translation>
-    </message>
-</context>
-<context>
     <name>VpnProxySection</name>
     <message>
         <source>VPN Proxy</source>
@@ -1833,44 +1606,40 @@
     </message>
 </context>
 <context>
-    <name>WiredPage</name>
-    <message>
-        <source>Plug in the network cable first</source>
-        <translation>Sluit eerst de netwerkkabel aan</translation>
-    </message>
+    <name>WiredModule</name>
     <message>
         <source>Wired Network Adapter</source>
         <translation>Bekabelde netwerkadapter</translation>
     </message>
     <message>
+        <source>Plug in the network cable first</source>
+        <translation>Sluit eerst de netwerkkabel aan</translation>
+    </message>
+    <message>
         <source>Add Network Connection</source>
         <translation>Netwerkverbinding toevoegen</translation>
     </message>
+</context>
+<context>
+    <name>WirelessDeviceModel</name>
     <message>
-        <source>Select Settings</source>
-        <translation>Instellingen selecteren</translation>
+        <source>Connect to hidden network</source>
+        <translation>Verbinden met verborgen netwerk</translation>
     </message>
 </context>
 <context>
-    <name>WirelessPage</name>
+    <name>WirelessModule</name>
     <message>
         <source>Wireless Network Adapter</source>
         <translation>Draadloze netwerkadapter</translation>
-        <extra-contents_path>/network/Wireless Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Close Hotspot</source>
-        <translation>Hotspot uitschakelen</translation>
     </message>
     <message>
         <source>Disable hotspot first if you want to connect to a wireless network</source>
         <translation>Schakel de hotspot uit om verbinding te kunnen maken met een draadloos netwerk</translation>
     </message>
     <message>
-        <source>Connect to hidden network</source>
-        <translation>Verbinden met verborgen netwerk</translation>
-        <extra-child_page>WirelessPage</extra-child_page>
-        <extra-contents_path>/network/Connect to hidden network</extra-contents_path>
+        <source>Close Hotspot</source>
+        <translation>Hotspot uitschakelen</translation>
     </message>
 </context>
 <context>

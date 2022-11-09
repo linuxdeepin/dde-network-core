@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="pl" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pl">
 <context>
     <name>Bubble</name>
     <message>
@@ -7,10 +7,21 @@
     </message>
 </context>
 <context>
+    <name>DeviceControllItem</name>
+    <message>
+        <source>Wireless Network</source>
+        <translation>Sieć bezprzewodowa</translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Sieć przewodowa</translation>
+    </message>
+</context>
+<context>
     <name>QObject</name>
     <message>
         <source>Connecting %1</source>
-        <translation>Łączenie %1</translation>
+        <translation>Łączenie z %1</translation>
     </message>
     <message>
         <source>%1 connected</source>
@@ -30,7 +41,7 @@
     </message>
     <message>
         <source>Connection failed, unable to connect %1, wrong password</source>
-        <translation>Połączenie nie powiodło się, nie udało połączyć się z %1, nieprawidłowe hasło</translation>
+        <translation>Połączenie nieudane, nie można połączyć się z %1, błędne hasło</translation>
     </message>
     <message>
         <source>Password is required to connect %1</source>
@@ -42,10 +53,28 @@
     </message>
 </context>
 <context>
-    <name>dss::module::NetworkModule</name>
+    <name>WirelessItem</name>
     <message>
-        <source>Wired Connection</source>
-        <translation>Połączenie przewodowe</translation>
+        <source>Connect to hidden network</source>
+        <translation>Połącz z siecią ukrytą</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Hasło</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Anuluj</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <comment>button</comment>
+        <translation>Połącz</translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation>Nazwa (SSID)</translation>
     </message>
 </context>
 <context>
@@ -238,6 +267,13 @@
     <message>
         <source>Network settings</source>
         <translation>Ustawienia sieci</translation>
+    </message>
+</context>
+<context>
+    <name>dss::module::NetworkModule</name>
+    <message>
+        <source>Wired Connection</source>
+        <translation>Połączenie przewodowe</translation>
     </message>
 </context>
 </TS>

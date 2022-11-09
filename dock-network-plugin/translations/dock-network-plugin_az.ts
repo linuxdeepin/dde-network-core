@@ -1,9 +1,73 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="az" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="az">
+<context>
+    <name>DeviceControllItem</name>
+    <message>
+        <source>Wireless Network</source>
+        <translation>Simsiz şəbəkə</translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Naqilli şəbəkə</translation>
+    </message>
+</context>
 <context>
     <name>NetworkPlugin</name>
     <message>
         <source>Network</source>
         <translation>Şəbəkə</translation>
+    </message>
+    <message>
+        <source>Device disabled</source>
+        <translation>Cihaz söndürülüb</translation>
+    </message>
+    <message>
+        <source>Network cable unplugged</source>
+        <translation>Şəbəkə kabeli çıxarılıb</translation>
+    </message>
+    <message>
+        <source>Not connected</source>
+        <translation>Bağlantı yoxdur</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation>Qoşulur</translation>
+    </message>
+    <message>
+        <source>Connected but no Internet access</source>
+        <translation>Qoşulub, lakin internetə giriş yoxdur</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation>Qoşulma alınmadı</translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation>İP ziddiyyəti</translation>
+    </message>
+</context>
+<context>
+    <name>WirelessItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation>Gizli şəbəkəyə qoşulun</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Şifrə</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>İmtina</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <comment>button</comment>
+        <translation>Qoşulun</translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation>Ad (SSİD)</translation>
     </message>
 </context>
 <context>

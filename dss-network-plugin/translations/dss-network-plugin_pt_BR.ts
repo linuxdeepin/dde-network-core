@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="pt_BR" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pt_BR">
 <context>
     <name>Bubble</name>
     <message>
@@ -7,10 +7,21 @@
     </message>
 </context>
 <context>
+    <name>DeviceControllItem</name>
+    <message>
+        <source>Wireless Network</source>
+        <translation>Rede Wi-Fi</translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Rede Cabeada</translation>
+    </message>
+</context>
+<context>
     <name>QObject</name>
     <message>
         <source>Connecting %1</source>
-        <translation type="unfinished"/>
+        <translation>Conectando %1</translation>
     </message>
     <message>
         <source>%1 connected</source>
@@ -18,34 +29,52 @@
     </message>
     <message>
         <source>%1 disconnected</source>
-        <translation type="unfinished"/>
+        <translation>%1 desconectado</translation>
     </message>
     <message>
         <source>Unable to connect %1, please check your router or net cable.</source>
-        <translation type="unfinished"/>
+        <translation>Falha ao conectar %1, por favor verifique o seu roteador ou cabo de internet.</translation>
     </message>
     <message>
         <source>Unable to connect %1, please keep closer to the wireless router</source>
-        <translation type="unfinished"/>
+        <translation>Falha ao conectar %1, por favor mantenha-se próximo do seu roteador wireless</translation>
     </message>
     <message>
         <source>Connection failed, unable to connect %1, wrong password</source>
-        <translation type="unfinished"/>
+        <translation>Falha de conexão, erro ao conectar %1, senha incorreta</translation>
     </message>
     <message>
         <source>Password is required to connect %1</source>
-        <translation type="unfinished"/>
+        <translation>Uma senha é necessária para conectar-se à %1</translation>
     </message>
     <message>
         <source>The %1 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"/>
+        <translation>A rede WLAN 802.11 %1 não pode ser encontrada</translation>
     </message>
 </context>
 <context>
-    <name>dss::module::NetworkModule</name>
+    <name>WirelessItem</name>
     <message>
-        <source>Wired Connection</source>
-        <translation>Conexão Cabeada</translation>
+        <source>Connect to hidden network</source>
+        <translation>Conectar-se à rede oculta</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Senha</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Cancelar</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <comment>button</comment>
+        <translation>Conectar</translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation>Nome (SSID)</translation>
     </message>
 </context>
 <context>
@@ -166,19 +195,19 @@
     <name>dde::network::NetworkProcesser</name>
     <message>
         <source>Wired Network</source>
-        <translation>Rede via Cabo</translation>
+        <translation>Rede Cabeada</translation>
     </message>
     <message>
         <source>Wired Network %1</source>
-        <translation>Rede via Cabo %1</translation>
+        <translation>Rede Cabeada %1</translation>
     </message>
     <message>
         <source>Wireless Network</source>
-        <translation>Rede sem fio</translation>
+        <translation>Rede Wi-Fi</translation>
     </message>
     <message>
         <source>Wireless Network %1</source>
-        <translation>Rede sem fio %1</translation>
+        <translation>Rede Wi-Fi %1</translation>
     </message>
 </context>
 <context>
@@ -238,6 +267,13 @@
     <message>
         <source>Network settings</source>
         <translation>Configurações de rede</translation>
+    </message>
+</context>
+<context>
+    <name>dss::module::NetworkModule</name>
+    <message>
+        <source>Wired Connection</source>
+        <translation>Conexão Cabeada</translation>
     </message>
 </context>
 </TS>

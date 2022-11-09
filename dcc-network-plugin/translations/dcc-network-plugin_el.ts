@@ -1,59 +1,59 @@
 <?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="el">
 <context>
-    <name>ChainsProxyPage</name>
+    <name>AppProxyModule</name>
     <message>
         <source>Application Proxy</source>
-        <translation>Διακομιστής Μεσολάβησης Εφαρμογής</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Proxy Type</source>
-        <translation>Τύπος Διακομιστή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>IP Address</source>
-        <translation>Διεύθυνση IP</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Required</source>
-        <translation>Απαιτείται</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Port</source>
-        <translation>Θύρα</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Username</source>
-        <translation>Όνομα χρήστη</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Optional</source>
-        <translation>Προαιρετικό</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Password</source>
-        <translation>Κωδικός πρόσβασης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Check &quot;Use a proxy&quot; in application context menu in Launcher after configured</source>
-        <translation>Ελέγξτε το &quot;Χρήση Διακομιστή Μεσολάβησης&quot; στο πλαίσιο του μενού εφαρμογών στον Εκκινητή μετά την ρύθμιση</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Ακύρωση</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save</source>
         <comment>button</comment>
-        <translation>Αποθήκευση</translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invalid IP address</source>
-        <translation>Μη έγκυρη διεύθυνση IP</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invalid port</source>
-        <translation>Μη έγκυρη θύρα</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -164,201 +164,6 @@
     </message>
 </context>
 <context>
-    <name>DCCNetworkModule</name>
-    <message>
-        <source>Network</source>
-        <translation>Δίκτυο</translation>
-    </message>
-    <message>
-        <source>Application Proxy</source>
-        <translation>Διακομιστής Μεσολάβησης Εφαρμογής</translation>
-    </message>
-    <message>
-        <source>Personal Hotspot</source>
-        <translation>Προσωπικό Hotspot</translation>
-    </message>
-    <message>
-        <source>Network Details</source>
-        <translation>Λεπτομέριες Δικτύου</translation>
-    </message>
-    <message>
-        <source>System Proxy</source>
-        <translation>Σύστημα μεσολάβησης</translation>
-    </message>
-    <message>
-        <source>Wired Network</source>
-        <translation>Ενσύρματο Δίκτυο</translation>
-    </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation>Ασύρματο Δίκτυο</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>VPN</translation>
-    </message>
-    <message>
-        <source>Wired Network Adapter</source>
-        <translation>Υποδοχέας Δικτύου Ενσύρματης Σύνδεσης</translation>
-        <extra-child_page>Wired Network</extra-child_page>
-        <extra-contents_path>/network/Wired Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Add Network Connection</source>
-        <translation>Προσθήκη Σύνδεσης Δικτύου</translation>
-        <extra-child_page>Wired Network</extra-child_page>
-        <extra-contents_path>/network/Wired Network/addWiredConnection</extra-contents_path>
-    </message>
-    <message>
-        <source>Wireless Network Adapter</source>
-        <translation>Υποδοχέας Δικτύου Ασύρματης Σύνδεσης</translation>
-        <extra-child_page>Wireless Network</extra-child_page>
-        <extra-contents_path>/network/Wireless Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>Σύνδεση σε κρυφό δίκτυο</translation>
-        <extra-child_page>Wireless Network</extra-child_page>
-        <extra-contents_path>/network/Wireless Network/Connect to hidden network</extra-contents_path>
-    </message>
-    <message>
-        <source>DSL</source>
-        <translation>DSL</translation>
-        <extra-child_page_hide>DSL</extra-child_page_hide>
-        <extra-contents_path>/network/DSL</extra-contents_path>
-    </message>
-    <message>
-        <source>Create PPPoE Connection</source>
-        <translation>Δημιουργία Σύνδεσης PPPoE</translation>
-        <extra-child_page>DSL</extra-child_page>
-        <extra-contents_path>/network/DSL/Create PPPoE Connection</extra-contents_path>
-    </message>
-    <message>
-        <source>VPN Status</source>
-        <translation>Κατάσταση VPN</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Create VPN</source>
-        <translation>Δημιουργία VPN</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN/Create VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation>Εισαγωγή VPN</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN/Import VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation>Τύπος διακομιστή</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation>URL ρύθμισης παραμέτρων</translation>
-    </message>
-    <message>
-        <source>IP Address</source>
-        <translation>Διεύθυνση IP</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>Θύρα</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>Όνομα χρήστη</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Κωδικός πρόσβασης</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Hotspot</source>
-        <translation>Hotspot</translation>
-        <extra-child_page>Personal Hotspot</extra-child_page>
-        <extra-contents_path>/network/Personal Hotspot</extra-contents_path>
-    </message>
-    <message>
-        <source>Create Hotspot</source>
-        <translation>Δημιουργία Hotspot</translation>
-        <extra-child_page>Personal Hotspot</extra-child_page>
-        <extra-contents_path>/network/Personal Hotspot/Create Hotspot</extra-contents_path>
-    </message>
-    <message>
-        <source>Interface</source>
-        <translation>Διεπαφή</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>MAC</source>
-        <translation>MAC</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation>Mπάντα</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>IPv4</source>
-        <translation>IPv4</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Gateway</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Primary DNS</source>
-        <translation>Πρωτεύον DNS</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Netmask</source>
-        <translation>Μάσκα Δικτύου</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>IPv6</source>
-        <translation>IPv6</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Prefix</source>
-        <translation>Πρόθεμα</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation>Ταχύτητα</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-</context>
-<context>
     <name>DNSSection</name>
     <message>
         <source>DNS</source>
@@ -367,6 +172,17 @@
     <message>
         <source>Invalid DNS address</source>
         <translation>Μη έγκυρη διεύθυνση DNS</translation>
+    </message>
+</context>
+<context>
+    <name>DSLModule</name>
+    <message>
+        <source>DSL</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create PPPoE Connection</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -435,21 +251,25 @@
     </message>
 </context>
 <context>
-    <name>HotspotDeviceWidget</name>
+    <name>HotspotDeviceItem</name>
     <message>
         <source>Hotspot</source>
-        <translation>Hotspot</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add Settings</source>
-        <translation>Προσθήκη Ρυθμίσεων</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>HotspotPage</name>
+    <name>HotspotModule</name>
+    <message>
+        <source>Personal Hotspot</source>
+        <translation type="unfinished"/>
+    </message>
     <message>
         <source>Create Hotspot</source>
-        <translation>Δημιουργία Hotspot</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -620,61 +440,17 @@
     </message>
 </context>
 <context>
-    <name>NetworkDetailPage</name>
+    <name>NetworkInfoModule</name>
     <message>
         <source>Network Details</source>
-        <translation>Λεπτομέριες Δικτύου</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>NetworkModuleWidget</name>
-    <message>
-        <source>DSL</source>
-        <translation>DSL</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>VPN</translation>
-    </message>
-    <message>
-        <source>System Proxy</source>
-        <translation>Σύστημα μεσολάβησης</translation>
-    </message>
-    <message>
-        <source>Application Proxy</source>
-        <translation>Διακομιστής Μεσολάβησης Εφαρμογής</translation>
-    </message>
-    <message>
-        <source>Network Details</source>
-        <translation>Λεπτομέριες Δικτύου</translation>
-    </message>
+    <name>NetworkModule</name>
     <message>
         <source>Network</source>
-        <translation>Δίκτυο</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>Αντιτίθεση IP </translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Απενεργοποιημένο</translation>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>Μη αυτόματα</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Αυτόματο</translation>
-    </message>
-    <message>
-        <source>Configure by Network Manager</source>
-        <translation>Ρύθμιση με τον Διαχειριστή Δικτύου</translation>
-    </message>
-    <message>
-        <source>Personal Hotspot</source>
-        <translation>Προσωπικό Hotspot</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -761,82 +537,6 @@
     <message>
         <source>Stateful MPPE</source>
         <translation>MPPE με επίβλεψη κατάστασης</translation>
-    </message>
-</context>
-<context>
-    <name>PppoePage</name>
-    <message>
-        <source>Create PPPoE Connection</source>
-        <translation>Δημιουργία Σύνδεσης PPPoE</translation>
-    </message>
-    <message>
-        <source>PPP</source>
-        <translation>PPP</translation>
-    </message>
-</context>
-<context>
-    <name>ProxyPage</name>
-    <message>
-        <source>System Proxy</source>
-        <translation>Σύστημα μεσολάβησης</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Ακύρωση</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <comment>button</comment>
-        <translation>Αποθήκευση</translation>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation>Τύπος διακομιστή</translation>
-        <extra-child_page>System Proxy</extra-child_page>
-        <extra-contents_path>/network/System Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>Μη αυτόματα</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Αυτόματο</translation>
-    </message>
-    <message>
-        <source>Optional</source>
-        <translation>Προαιρετικό</translation>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>Θύρα</translation>
-    </message>
-    <message>
-        <source>HTTP Proxy</source>
-        <translation>HTTP Διακομιστής Μεσολάβησης</translation>
-    </message>
-    <message>
-        <source>HTTPS Proxy</source>
-        <translation>HTTPS Διακομιστής Μεσολάβησης</translation>
-    </message>
-    <message>
-        <source>FTP Proxy</source>
-        <translation>FTP Διακομιστής Μεσολάβησης</translation>
-    </message>
-    <message>
-        <source>SOCKS Proxy</source>
-        <translation>SOCKS Proxy</translation>
-    </message>
-    <message>
-        <source>Ignore the proxy configurations for the above hosts and domains</source>
-        <translation>Αγνοήστε τις παραπάνω ρυθμίσεις proxy για hosts και domains</translation>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation>URL ρύθμισης παραμέτρων</translation>
-        <extra-child_page>System Proxy</extra-child_page>
-        <extra-contents_path>/network/System Proxy</extra-contents_path>
     </message>
 </context>
 <context>
@@ -1065,6 +765,106 @@
     <message>
         <source>Password</source>
         <translation>Κωδικός πρόσβασης</translation>
+    </message>
+</context>
+<context>
+    <name>SysProxyModule</name>
+    <message>
+        <source>System Proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Proxy Type</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optional</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration URL</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save</source>
+        <comment>button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HTTP Proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HTTPS Proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>FTP Proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>SOCKS Proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ignore the proxy configurations for the above hosts and domains</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>VPNModule</name>
+    <message>
+        <source>VPN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Wired Network Adapter</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VPN Status</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add Network Connection</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create VPN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import VPN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import Error</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File error</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1470,33 +1270,6 @@
     </message>
 </context>
 <context>
-    <name>VpnPage</name>
-    <message>
-        <source>VPN Status</source>
-        <translation>Κατάσταση VPN</translation>
-    </message>
-    <message>
-        <source>Create VPN</source>
-        <translation>Δημιουργία VPN</translation>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation>Εισαγωγή VPN</translation>
-    </message>
-    <message>
-        <source>Import Error</source>
-        <translation>Σφάλμα Εισαγωγής</translation>
-    </message>
-    <message>
-        <source>File error</source>
-        <translation>Σφάλμα αρχείου</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>OK</translation>
-    </message>
-</context>
-<context>
     <name>VpnProxySection</name>
     <message>
         <source>VPN Proxy</source>
@@ -1833,44 +1606,40 @@
     </message>
 </context>
 <context>
-    <name>WiredPage</name>
-    <message>
-        <source>Plug in the network cable first</source>
-        <translation>Συνδέστε το καλώδιο δικτύου πρώτα</translation>
-    </message>
+    <name>WiredModule</name>
     <message>
         <source>Wired Network Adapter</source>
-        <translation>Υποδοχέας Δικτύου Ενσύρματης Σύνδεσης</translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plug in the network cable first</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add Network Connection</source>
-        <translation>Προσθήκη Σύνδεσης Δικτύου</translation>
-    </message>
-    <message>
-        <source>Select Settings</source>
-        <translation>Επιλογή Ρυθμίσεων</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>WirelessPage</name>
+    <name>WirelessDeviceModel</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>WirelessModule</name>
     <message>
         <source>Wireless Network Adapter</source>
-        <translation>Υποδοχέας Δικτύου Ασύρματης Σύνδεσης</translation>
-        <extra-contents_path>/network/Wireless Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Close Hotspot</source>
-        <translation>Απενεργοποίηση Φορητού Σημείου Πρόσβασης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disable hotspot first if you want to connect to a wireless network</source>
-        <translation>Απενεργοποιήστε το φορήτο σημείο πρόσβασης πρώτα, εαν θέλετε να συνδεθείτε σε ένα δίκτυο ασύρματης σύνδεσης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Connect to hidden network</source>
-        <translation>Σύνδεση σε κρυφό δίκτυο</translation>
-        <extra-child_page>WirelessPage</extra-child_page>
-        <extra-contents_path>/network/Connect to hidden network</extra-contents_path>
+        <source>Close Hotspot</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

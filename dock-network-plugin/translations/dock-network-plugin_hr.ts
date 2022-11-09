@@ -1,9 +1,73 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="hr" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="hr">
+<context>
+    <name>DeviceControllItem</name>
+    <message>
+        <source>Wireless Network</source>
+        <translation>Bežična mreža</translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Žična mreža</translation>
+    </message>
+</context>
 <context>
     <name>NetworkPlugin</name>
     <message>
         <source>Network</source>
         <translation>Mreža</translation>
+    </message>
+    <message>
+        <source>Device disabled</source>
+        <translation>Uređaj je onemogućen</translation>
+    </message>
+    <message>
+        <source>Network cable unplugged</source>
+        <translation>Mrežni kabel je isključen</translation>
+    </message>
+    <message>
+        <source>Not connected</source>
+        <translation>Nije spojeno</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation>Povezujem se</translation>
+    </message>
+    <message>
+        <source>Connected but no Internet access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>WirelessItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation>Poveži na skrivenu mrežu</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Lozinka</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Otkaži</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <comment>button</comment>
+        <translation>Poveži</translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation>Ime (SSID)</translation>
     </message>
 </context>
 <context>

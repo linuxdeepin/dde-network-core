@@ -1,59 +1,59 @@
 <?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ms">
 <context>
-    <name>ChainsProxyPage</name>
+    <name>AppProxyModule</name>
     <message>
         <source>Application Proxy</source>
-        <translation>Proksi Aplikasi</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Proxy Type</source>
-        <translation>Jenis Proksi</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>IP Address</source>
-        <translation>Alamat IP</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Required</source>
-        <translation>Diperlukan</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Port</source>
-        <translation>Port</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Username</source>
-        <translation>Nama Pengguna</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Optional</source>
-        <translation>Pilihan</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Password</source>
-        <translation>Kata Laluan</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Check &quot;Use a proxy&quot; in application context menu in Launcher after configured</source>
-        <translation>Tanda &quot;Guna satu proksi&quot; pada menu konteks aplikasi di dalam Pelancar selepas dikonfigurkan</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Batal</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save</source>
         <comment>button</comment>
-        <translation>Simpan</translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invalid IP address</source>
-        <translation>Alamat IP tidak sah</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invalid port</source>
-        <translation>Port tidak sah</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -164,201 +164,6 @@
     </message>
 </context>
 <context>
-    <name>DCCNetworkModule</name>
-    <message>
-        <source>Network</source>
-        <translation>Rangkaian</translation>
-    </message>
-    <message>
-        <source>Application Proxy</source>
-        <translation>Proksi Aplikasi</translation>
-    </message>
-    <message>
-        <source>Personal Hotspot</source>
-        <translation>Kawasan Khas Peribadi</translation>
-    </message>
-    <message>
-        <source>Network Details</source>
-        <translation>Perincian Rangkaian</translation>
-    </message>
-    <message>
-        <source>System Proxy</source>
-        <translation>Proksi Sistem</translation>
-    </message>
-    <message>
-        <source>Wired Network</source>
-        <translation>Rangkaian Berwayar</translation>
-    </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation>Rangkaian Tanpa Wayar</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>VPN</translation>
-    </message>
-    <message>
-        <source>Wired Network Adapter</source>
-        <translation>Penyesuai Rangkaian Berwayar</translation>
-        <extra-child_page>Wired Network</extra-child_page>
-        <extra-contents_path>/network/Wired Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Add Network Connection</source>
-        <translation>Tambah Sambungan Rangkaian</translation>
-        <extra-child_page>Wired Network</extra-child_page>
-        <extra-contents_path>/network/Wired Network/addWiredConnection</extra-contents_path>
-    </message>
-    <message>
-        <source>Wireless Network Adapter</source>
-        <translation>Penyesuai Rangkaian Tanpa Wayar</translation>
-        <extra-child_page>Wireless Network</extra-child_page>
-        <extra-contents_path>/network/Wireless Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>Sambung ke rangkaian tersembunyi</translation>
-        <extra-child_page>Wireless Network</extra-child_page>
-        <extra-contents_path>/network/Wireless Network/Connect to hidden network</extra-contents_path>
-    </message>
-    <message>
-        <source>DSL</source>
-        <translation>DSL</translation>
-        <extra-child_page_hide>DSL</extra-child_page_hide>
-        <extra-contents_path>/network/DSL</extra-contents_path>
-    </message>
-    <message>
-        <source>Create PPPoE Connection</source>
-        <translation>Cipta Sambungan PPPoE</translation>
-        <extra-child_page>DSL</extra-child_page>
-        <extra-contents_path>/network/DSL/Create PPPoE Connection</extra-contents_path>
-    </message>
-    <message>
-        <source>VPN Status</source>
-        <translation>Status VPN</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Create VPN</source>
-        <translation>Cipta VPN</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN/Create VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation>Import VPN</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN/Import VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation>Jenis Proksi</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation>Konfigurasi URL</translation>
-    </message>
-    <message>
-        <source>IP Address</source>
-        <translation>Alamat IP</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>Port</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>Nama Pengguna</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Kata Laluan</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Hotspot</source>
-        <translation>Kawasan Khas</translation>
-        <extra-child_page>Personal Hotspot</extra-child_page>
-        <extra-contents_path>/network/Personal Hotspot</extra-contents_path>
-    </message>
-    <message>
-        <source>Create Hotspot</source>
-        <translation>Cipta Kawasan Khas</translation>
-        <extra-child_page>Personal Hotspot</extra-child_page>
-        <extra-contents_path>/network/Personal Hotspot/Create Hotspot</extra-contents_path>
-    </message>
-    <message>
-        <source>Interface</source>
-        <translation>Antara Muka</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>MAC</source>
-        <translation>MAC</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation>Jalur</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>IPv4</source>
-        <translation>IPv4</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Get Laluan</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Primary DNS</source>
-        <translation>DNS Utama</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Netmask</source>
-        <translation>Topeng Rangkaian</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>IPv6</source>
-        <translation>IPv6</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Prefix</source>
-        <translation>Awalan</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation>Kelajuan</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-</context>
-<context>
     <name>DNSSection</name>
     <message>
         <source>DNS</source>
@@ -367,6 +172,17 @@
     <message>
         <source>Invalid DNS address</source>
         <translation>Alamat DNS tidak sah</translation>
+    </message>
+</context>
+<context>
+    <name>DSLModule</name>
+    <message>
+        <source>DSL</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create PPPoE Connection</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -435,21 +251,25 @@
     </message>
 </context>
 <context>
-    <name>HotspotDeviceWidget</name>
+    <name>HotspotDeviceItem</name>
     <message>
         <source>Hotspot</source>
-        <translation>Kawasan Khas</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add Settings</source>
-        <translation>Tambah Tetapan</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>HotspotPage</name>
+    <name>HotspotModule</name>
+    <message>
+        <source>Personal Hotspot</source>
+        <translation type="unfinished"/>
+    </message>
     <message>
         <source>Create Hotspot</source>
-        <translation>Cipta Kawasan Khas</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -620,61 +440,17 @@
     </message>
 </context>
 <context>
-    <name>NetworkDetailPage</name>
+    <name>NetworkInfoModule</name>
     <message>
         <source>Network Details</source>
-        <translation>Perincian Rangkaian</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>NetworkModuleWidget</name>
-    <message>
-        <source>DSL</source>
-        <translation>DSL</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>VPN</translation>
-    </message>
-    <message>
-        <source>System Proxy</source>
-        <translation>Proksi Sistem</translation>
-    </message>
-    <message>
-        <source>Application Proxy</source>
-        <translation>Proksi Aplikasi</translation>
-    </message>
-    <message>
-        <source>Network Details</source>
-        <translation>Perincian Rangkaian</translation>
-    </message>
+    <name>NetworkModule</name>
     <message>
         <source>Network</source>
-        <translation>Rangkaian</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>IP berkonflik</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Dilumpuhkan</translation>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>Manual</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Auto</translation>
-    </message>
-    <message>
-        <source>Configure by Network Manager</source>
-        <translation>Dikonfigut oleh Pengurus Rangkaian</translation>
-    </message>
-    <message>
-        <source>Personal Hotspot</source>
-        <translation>Kawasan Khas Peribadi</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -761,82 +537,6 @@
     <message>
         <source>Stateful MPPE</source>
         <translation>MPPE Berkeadaan</translation>
-    </message>
-</context>
-<context>
-    <name>PppoePage</name>
-    <message>
-        <source>Create PPPoE Connection</source>
-        <translation>Cipta Sambungan PPPoE</translation>
-    </message>
-    <message>
-        <source>PPP</source>
-        <translation>PPP</translation>
-    </message>
-</context>
-<context>
-    <name>ProxyPage</name>
-    <message>
-        <source>System Proxy</source>
-        <translation>Proksi Sistem</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Batal</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <comment>button</comment>
-        <translation>Simpan</translation>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation>Jenis Proksi</translation>
-        <extra-child_page>System Proxy</extra-child_page>
-        <extra-contents_path>/network/System Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>Manual</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Auto</translation>
-    </message>
-    <message>
-        <source>Optional</source>
-        <translation>Pilihan</translation>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>Port</translation>
-    </message>
-    <message>
-        <source>HTTP Proxy</source>
-        <translation>Proksi HTTP</translation>
-    </message>
-    <message>
-        <source>HTTPS Proxy</source>
-        <translation>Proksi HTTPS</translation>
-    </message>
-    <message>
-        <source>FTP Proxy</source>
-        <translation>Proksi FTP</translation>
-    </message>
-    <message>
-        <source>SOCKS Proxy</source>
-        <translation>Proksi SOCKS</translation>
-    </message>
-    <message>
-        <source>Ignore the proxy configurations for the above hosts and domains</source>
-        <translation>Abai konfigurasi proksi untuk hos dan domain di atas</translation>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation>Konfigurasi URL</translation>
-        <extra-child_page>System Proxy</extra-child_page>
-        <extra-contents_path>/network/System Proxy</extra-contents_path>
     </message>
 </context>
 <context>
@@ -1065,6 +765,106 @@
     <message>
         <source>Password</source>
         <translation>Kata Laluan</translation>
+    </message>
+</context>
+<context>
+    <name>SysProxyModule</name>
+    <message>
+        <source>System Proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Proxy Type</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optional</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration URL</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save</source>
+        <comment>button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HTTP Proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HTTPS Proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>FTP Proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>SOCKS Proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ignore the proxy configurations for the above hosts and domains</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>VPNModule</name>
+    <message>
+        <source>VPN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Wired Network Adapter</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VPN Status</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add Network Connection</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create VPN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import VPN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import Error</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File error</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1470,33 +1270,6 @@
     </message>
 </context>
 <context>
-    <name>VpnPage</name>
-    <message>
-        <source>VPN Status</source>
-        <translation>Status VPN</translation>
-    </message>
-    <message>
-        <source>Create VPN</source>
-        <translation>Cipta VPN</translation>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation>Import VPN</translation>
-    </message>
-    <message>
-        <source>Import Error</source>
-        <translation>Ralat Import</translation>
-    </message>
-    <message>
-        <source>File error</source>
-        <translation>Ralat fail</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>OK</translation>
-    </message>
-</context>
-<context>
     <name>VpnProxySection</name>
     <message>
         <source>VPN Proxy</source>
@@ -1833,44 +1606,40 @@
     </message>
 </context>
 <context>
-    <name>WiredPage</name>
-    <message>
-        <source>Plug in the network cable first</source>
-        <translation>Palamkan dahulu kabel rangkaian</translation>
-    </message>
+    <name>WiredModule</name>
     <message>
         <source>Wired Network Adapter</source>
-        <translation>Penyesuai Rangkaian Berwayar</translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plug in the network cable first</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add Network Connection</source>
-        <translation>Tambah Sambungan Rangkaian</translation>
-    </message>
-    <message>
-        <source>Select Settings</source>
-        <translation>Pilih Tetapan</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>WirelessPage</name>
+    <name>WirelessDeviceModel</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>WirelessModule</name>
     <message>
         <source>Wireless Network Adapter</source>
-        <translation>Penyesuai Rangkaian Tanpa Wayar</translation>
-        <extra-contents_path>/network/Wireless Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Close Hotspot</source>
-        <translation>Tutup Kawasan Khas</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disable hotspot first if you want to connect to a wireless network</source>
-        <translation>Lumpuhkan kawasan khas jika anda mahu bersambung dengan rangkaian tanpa wayar.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Connect to hidden network</source>
-        <translation>Sambung ke rangkaian tersembunyi</translation>
-        <extra-child_page>WirelessPage</extra-child_page>
-        <extra-contents_path>/network/Connect to hidden network</extra-contents_path>
+        <source>Close Hotspot</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
