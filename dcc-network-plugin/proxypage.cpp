@@ -12,6 +12,7 @@
 #include "widgets/switchwidget.h"
 #include "widgets/comboxwidget.h"
 #include "window/utils.h"
+#include "widgets/passwdlineeditwidget.h"
 
 #include <DPalette>
 #include <DApplicationHelper>
@@ -88,18 +89,51 @@ ProxyPage::ProxyPage(QWidget *parent)
         });
     };
 
+    auto initAuthEditGroup = [ this ](SwitchWidget *&switchWidget, LineEditWidget *&userNameEdit, PasswdLineEditWidget *&passwordEdit, SettingsGroup *&group) {
+        switchWidget = new SwitchWidget(group);
+        switchWidget->setTitle(tr("Need auth"));
+        switchWidget->setChecked(false);
+        group->appendItem(switchWidget);
+
+        userNameEdit = new LineEditWidget(group);
+        userNameEdit->setTitle(tr("Username"));
+        userNameEdit->setPlaceholderText(tr("Required"));
+        userNameEdit->textEdit()->installEventFilter(this);
+        userNameEdit->setVisible(false);
+        group->appendItem(userNameEdit);
+
+        passwordEdit = new PasswdLineEditWidget(group);
+        passwordEdit->setTitle(tr("Password"));
+        passwordEdit->setPlaceholderText(tr("Required"));
+        passwordEdit->textEdit()->setEchoMode(QLineEdit::Password);
+        passwordEdit->textEdit()->installEventFilter(this);
+        passwordEdit->textEdit()->setValidator(new QRegExpValidator(QRegExp("^\\S+$"), this));
+        passwordEdit->setVisible(false);
+        group->appendItem(passwordEdit);
+
+        connect(switchWidget, &SwitchWidget::checkedChanged, this, [ = ](const bool checked) {
+            userNameEdit->setVisible(checked);
+            passwordEdit->setVisible(checked);
+            m_buttonTuple->setEnabled(true);
+        });
+    };
+
     //  手动代理编辑界面控件初始化
     SettingsGroup *httpGroup = new SettingsGroup(contentFrame);
     initProxyGroup(m_httpAddr, m_httpPort, tr("HTTP Proxy"), httpGroup);
+    initAuthEditGroup(m_httpAuthSwitch, m_httpUserName, m_httpPassword, httpGroup);
 
     SettingsGroup *httpsGroup = new SettingsGroup(contentFrame);
     initProxyGroup(m_httpsAddr, m_httpsPort, tr("HTTPS Proxy"), httpsGroup);
+    initAuthEditGroup(m_httpsAuthSwitch, m_httpsUserName, m_httpsPassword, httpsGroup);
 
     SettingsGroup *ftpGroup = new SettingsGroup(contentFrame);
     initProxyGroup(m_ftpAddr, m_ftpPort, tr("FTP Proxy"), ftpGroup);
+    initAuthEditGroup(m_ftpAuthSwitch, m_ftpUserName, m_ftpPassword, ftpGroup);
 
     SettingsGroup *socksGroup = new SettingsGroup(contentFrame);
     initProxyGroup(m_socksAddr, m_socksPort, tr("SOCKS Proxy"), socksGroup);
+    initAuthEditGroup(m_socksAuthSwitch, m_socksUserName, m_socksPassword, socksGroup);
 
     // 手动代理界面忽略主机编辑框初始化
     m_ignoreList = new DTextEdit(contentFrame);
@@ -172,6 +206,7 @@ ProxyPage::ProxyPage(QWidget *parent)
     connect(proxyController, &ProxyController::proxyMethodChanged, this, &ProxyPage::onProxyMethodChanged);
     connect(proxyController, &ProxyController::proxyIgnoreHostsChanged, this, &ProxyPage::onIgnoreHostsChanged);
     connect(proxyController, &ProxyController::proxyChanged, this, &ProxyPage::onProxyChanged);
+    connect(proxyController, &ProxyController::proxyAuthChanged, this, &ProxyPage::onProxyAuthChanged);
     connect(proxyController, &ProxyController::autoProxyChanged, m_autoUrl, &LineEditWidget::setText);
 
     onProxyMethodChanged(proxyController->proxyMethod());
@@ -282,10 +317,18 @@ void ProxyPage::applySettings()
     if (!m_proxySwitch->checked()) {
         proxyController->setProxyMethod(ProxyMethod::None);
     } else if (m_proxyTypeBox->comboBox()->currentIndex() == ProxyMethodList.indexOf(MANUAL)) {
+        if (!checkValue()) {
+            return;
+        }
+
         proxyController->setProxy(SysProxyType::Http, m_httpAddr->text(), m_httpPort->text());
+        proxyController->setProxyAuth(SysProxyType::Http, m_httpUserName->text(), m_httpPassword->text(), m_httpAuthSwitch->checked());
         proxyController->setProxy(SysProxyType::Https, m_httpsAddr->text(), m_httpsPort->text());
+        proxyController->setProxyAuth(SysProxyType::Https, m_httpsUserName->text(), m_httpsPassword->text(), m_httpsAuthSwitch->checked());
         proxyController->setProxy(SysProxyType::Ftp, m_ftpAddr->text(), m_ftpPort->text());
+        proxyController->setProxyAuth(SysProxyType::Ftp, m_ftpUserName->text(), m_ftpPassword->text(), m_ftpAuthSwitch->checked());
         proxyController->setProxy(SysProxyType::Socks, m_socksAddr->text(), m_socksPort->text());
+        proxyController->setProxyAuth(SysProxyType::Socks, m_socksUserName->text(), m_socksPassword->text(), m_socksAuthSwitch->checked());
         proxyController->setProxyIgnoreHosts(m_ignoreList->toPlainText());
         proxyController->setProxyMethod(ProxyMethod::Manual);
     } else if (m_proxyTypeBox->comboBox()->currentIndex() == ProxyMethodList.indexOf(AUTO)) {
@@ -322,6 +365,40 @@ void ProxyPage::onProxyChanged(const SysProxyConfig &config)
     case SysProxyType::Socks:
         m_socksAddr->setText(config.url);
         m_socksPort->setText(QString::number(config.port));
+        break;
+    }
+}
+
+void ProxyPage::onProxyAuthChanged(const SysProxyConfig &config)
+{
+    switch (config.type) {
+    case SysProxyType::Http:
+        m_httpAuthSwitch->setChecked(config.enableAuth);
+        m_httpUserName->setVisible(config.enableAuth);
+        m_httpPassword->setVisible(config.enableAuth);
+        m_httpUserName->setText(config.userName);
+        m_httpPassword->setText(config.password);
+        break;
+    case SysProxyType::Https:
+        m_httpsAuthSwitch->setChecked(config.enableAuth);
+        m_httpsUserName->setVisible(config.enableAuth);
+        m_httpsPassword->setVisible(config.enableAuth);
+        m_httpsUserName->setText(config.userName);
+        m_httpsPassword->setText(config.password);
+        break;
+    case SysProxyType::Ftp:
+        m_ftpAuthSwitch->setChecked(config.enableAuth);
+        m_ftpUserName->setVisible(config.enableAuth);
+        m_ftpPassword->setVisible(config.enableAuth);
+        m_ftpUserName->setText(config.userName);
+        m_ftpPassword->setText(config.password);
+        break;
+    case SysProxyType::Socks:
+        m_socksAuthSwitch->setChecked(config.enableAuth);
+        m_socksUserName->setVisible(config.enableAuth);
+        m_socksPassword->setVisible(config.enableAuth);
+        m_socksUserName->setText(config.userName);
+        m_socksPassword->setText(config.password);
         break;
     }
 }
@@ -368,4 +445,53 @@ void ProxyPage::clearLineEditWidgetFocus()
 
     if (m_ignoreList)
         m_ignoreList->clearFocus();
+}
+
+bool ProxyPage::checkValue()
+{
+    if (m_httpAuthSwitch->checked()) {
+        if (m_httpUserName->text().isEmpty()) {
+            m_httpUserName->setIsErr(true);
+            return false;
+        }
+        if (m_httpPassword->text().isEmpty()) {
+            m_httpPassword->setIsErr(true);
+            return false;
+        }
+    }
+
+    if (m_httpsAuthSwitch->checked()) {
+        if (m_httpsUserName->text().isEmpty()) {
+            m_httpsUserName->setIsErr(true);
+            return false;
+        }
+        if (m_httpsPassword->text().isEmpty()) {
+            m_httpsPassword->setIsErr(true);
+            return false;
+        }
+    }
+
+    if (m_ftpAuthSwitch->checked()) {
+        if (m_ftpUserName->text().isEmpty()) {
+            m_ftpUserName->setIsErr(true);
+            return false;
+        }
+        if (m_ftpPassword->text().isEmpty()) {
+            m_ftpPassword->setIsErr(true);
+            return false;
+        }
+    }
+
+    if (m_socksAuthSwitch->checked()) {
+        if (m_socksUserName->text().isEmpty()) {
+            m_socksUserName->setIsErr(true);
+            return false;
+        }
+        if (m_socksPassword->text().isEmpty()) {
+            m_socksPassword->setIsErr(true);
+            return false;
+        }
+    }
+
+    return true;
 }
