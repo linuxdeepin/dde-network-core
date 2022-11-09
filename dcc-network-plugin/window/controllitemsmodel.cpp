@@ -1,23 +1,23 @@
 /*
-* Copyright (C) 2021 ~ 2023 Deepin Technology Co., Ltd.
-*
-* Author:     caixiangrong <caixiangrong@uniontech.com>
-*
-* Maintainer: caixiangrong <caixiangrong@uniontech.com>
-*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ * Copyright (C) 2021 ~ 2023 Deepin Technology Co., Ltd.
+ *
+ * Author:     caixiangrong <caixiangrong@uniontech.com>
+ *
+ * Maintainer: caixiangrong <caixiangrong@uniontech.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 #include "controllitemsmodel.h"
 #include "wireddevice.h"
 
@@ -41,23 +41,27 @@ struct ControllItemsAction
     DSpinner *loadingIndicator;
     DViewItemActionList rightList;
     ControllItems *conn;
+    DStandardItem *item;
+
     explicit ControllItemsAction(ControllItems *_conn)
         : iconAction(new DViewItemAction(Qt::AlignCenter | Qt::AlignRight, QSize(), QSize(), true))
         , spinnerAction(new DViewItemAction(Qt::AlignCenter | Qt::AlignRight, QSize(), QSize(), false))
         , loadingIndicator(nullptr)
         , conn(_conn)
+        , item(new DStandardItem())
     {
         iconAction->setData(QVariant::fromValue(conn));
+        rightList.append(spinnerAction);
         rightList.append(iconAction);
         spinnerAction->setVisible(false);
+        item->setActionList(Qt::RightEdge, rightList);
     }
+
     ~ControllItemsAction()
     {
-        delete iconAction;
-        delete spinnerAction;
-        if (loadingIndicator)
-            delete loadingIndicator;
+        delete item;
     }
+
     void setLoading(bool isLoading, QWidget *parentView)
     {
         if (spinnerAction->isVisible() == isLoading)
@@ -77,7 +81,6 @@ struct ControllItemsAction
         }
         spinnerAction->setVisible(isLoading);
         iconAction->setVisible(!isLoading);
-        rightList[0] = isLoading ? spinnerAction : iconAction;
     }
     Q_DISABLE_COPY(ControllItemsAction)
 };
@@ -91,9 +94,7 @@ ControllItemsModel::ControllItemsModel(QWidget *parent)
 
 ControllItemsModel::~ControllItemsModel()
 {
-    for (auto it = m_data.begin(); it != m_data.end(); ++it) {
-        delete (*it);
-    }
+    qDeleteAll(m_data);
 }
 
 // Basic functionality:
@@ -106,6 +107,7 @@ QModelIndex ControllItemsModel::index(int row, int column, const QModelIndex &pa
         return createIndex(row, column, nullptr);
     return createIndex(row, column, const_cast<ControllItems *>(m_data.at(row)->conn));
 }
+
 QModelIndex ControllItemsModel::parent(const QModelIndex &index) const
 {
     Q_UNUSED(index)
@@ -117,6 +119,7 @@ int ControllItemsModel::rowCount(const QModelIndex &parent) const
     Q_UNUSED(parent)
     return m_data.size();
 }
+
 int ControllItemsModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent)
@@ -142,10 +145,8 @@ QVariant ControllItemsModel::data(const QModelIndex &index, int role) const
         }
     case Qt::CheckStateRole:
         return item->connected() ? Qt::CheckState::Checked : Qt::CheckState::Unchecked;
-    case Dtk::RightActionListRole:
-        return QVariant::fromValue(m_data.at(row)->rightList);
     default:
-        return QVariant();
+        return m_data.at(row)->item->data(role);
     }
 }
 

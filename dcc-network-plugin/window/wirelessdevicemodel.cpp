@@ -1,23 +1,23 @@
 /*
-* Copyright (C) 2021 ~ 2023 Deepin Technology Co., Ltd.
-*
-* Author:     caixiangrong <caixiangrong@uniontech.com>
-*
-* Maintainer: caixiangrong <caixiangrong@uniontech.com>
-*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ * Copyright (C) 2021 ~ 2023 Deepin Technology Co., Ltd.
+ *
+ * Author:     caixiangrong <caixiangrong@uniontech.com>
+ *
+ * Maintainer: caixiangrong <caixiangrong@uniontech.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 #include "wirelessdevicemodel.h"
 #include "wirelessdevice.h"
 
@@ -43,26 +43,30 @@ struct ItemAction
     DViewItemActionList leftList;
     DViewItemActionList rightList;
     AccessPoints *ap;
+    DStandardItem *item;
+
     explicit ItemAction(AccessPoints *_ap)
         : secureAction(new DViewItemAction(Qt::AlignCenter, QSize(), QSize(), false))
         , iconAction(new DViewItemAction(Qt::AlignCenter | Qt::AlignRight, QSize(), QSize(), true))
         , spinnerAction(new DViewItemAction(Qt::AlignCenter | Qt::AlignRight, QSize(), QSize(), false))
         , loadingIndicator(nullptr)
         , ap(_ap)
+        , item(new DStandardItem())
     {
         iconAction->setData(QVariant::fromValue(ap));
         leftList.append(secureAction);
+        rightList.append(spinnerAction);
         rightList.append(iconAction);
         spinnerAction->setVisible(false);
+        item->setActionList(Qt::LeftEdge, leftList);
+        item->setActionList(Qt::RightEdge, rightList);
     }
+
     ~ItemAction()
     {
-        delete secureAction;
-        delete iconAction;
-        delete spinnerAction;
-        if (loadingIndicator)
-            delete loadingIndicator;
+        delete item;
     }
+
     void setLoading(bool isLoading, QWidget *parentView)
     {
         if (spinnerAction->isVisible() == isLoading)
@@ -80,7 +84,6 @@ struct ItemAction
         }
         spinnerAction->setVisible(isLoading);
         iconAction->setVisible(!isLoading);
-        rightList[0] = isLoading ? spinnerAction : iconAction;
     }
     Q_DISABLE_COPY(ItemAction)
 };
@@ -93,6 +96,7 @@ WirelessDeviceModel::WirelessDeviceModel(const WirelessDevice *dev, QWidget *par
 {
     m_hiddenItem->iconAction->setIcon(m_parent->style()->standardIcon(QStyle::SP_ArrowRight));
     connect(m_hiddenItem->iconAction, &DViewItemAction::triggered, this, &WirelessDeviceModel::onDetailTriggered);
+    m_hiddenItem->item->setText(tr("Connect to hidden network"));
 
     addAccessPoints(m_device->accessPointItems());
     connect(m_device, &WirelessDevice::networkAdded, this, &WirelessDeviceModel::addAccessPoints);
@@ -106,9 +110,7 @@ WirelessDeviceModel::WirelessDeviceModel(const WirelessDevice *dev, QWidget *par
 
 WirelessDeviceModel::~WirelessDeviceModel()
 {
-    for (auto it = m_data.begin(); it != m_data.end(); ++it) {
-        delete (*it);
-    }
+    qDeleteAll(m_data);
     delete m_hiddenItem;
 }
 
@@ -134,6 +136,7 @@ QModelIndex WirelessDeviceModel::index(int row, int column, const QModelIndex &p
         return createIndex(row, column, nullptr);
     return createIndex(row, column, const_cast<AccessPoints *>(m_data.at(row)->ap));
 }
+
 QModelIndex WirelessDeviceModel::parent(const QModelIndex &index) const
 {
     Q_UNUSED(index)
@@ -145,6 +148,7 @@ int WirelessDeviceModel::rowCount(const QModelIndex &parent) const
     Q_UNUSED(parent)
     return m_data.size() + 1;
 }
+
 int WirelessDeviceModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent)
@@ -159,15 +163,7 @@ QVariant WirelessDeviceModel::data(const QModelIndex &index, int role) const
     int row = index.row();
 
     if (row >= m_data.size()) {
-        switch (role) {
-        case Qt::DisplayRole:
-            return tr("Connect to hidden network");
-        case Dtk::LeftActionListRole:
-            return QVariant::fromValue(m_hiddenItem->leftList);
-        case Dtk::RightActionListRole:
-            return QVariant::fromValue(m_hiddenItem->rightList);
-        }
-        return QVariant();
+        return m_hiddenItem->item->data(role);
     }
     const AccessPoints *ap = m_data.at(row)->ap;
     switch (role) {
@@ -192,12 +188,8 @@ QVariant WirelessDeviceModel::data(const QModelIndex &index, int role) const
     }
     case Qt::CheckStateRole:
         return ap->connected() ? Qt::CheckState::Checked : Qt::CheckState::Unchecked;
-    case Dtk::LeftActionListRole:
-        return QVariant::fromValue(m_data.at(row)->leftList);
-    case Dtk::RightActionListRole:
-        return QVariant::fromValue(m_data.at(row)->rightList);
     default:
-        return QVariant();
+        return m_data.at(row)->item->data(role);
     }
 }
 
@@ -224,6 +216,7 @@ void WirelessDeviceModel::addAccessPoints(QList<AccessPoints *> aps)
     beginResetModel();
     endResetModel();
 }
+
 void WirelessDeviceModel::removeAccessPoints(QList<dde::network::AccessPoints *> aps)
 {
     for (AccessPoints *ap : aps) {
