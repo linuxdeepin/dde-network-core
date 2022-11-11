@@ -126,9 +126,9 @@ const QString NetworkPlugin::itemCommand(const QString &itemKey)
     Q_UNUSED(itemKey)
     if (m_networkHelper->needShowControlCenter()) {
         return QString("dbus-send --print-reply "
-                       "--dest=com.deepin.dde.ControlCenter "
-                       "/com/deepin/dde/ControlCenter "
-                       "com.deepin.dde.ControlCenter.ShowModule "
+                       "--dest=org.deepin.dde.ControlCenter1"
+                       "/org/deepin/dde/ControlCenter1"
+                       "org.deepin.dde.ControlCenter1.ShowModule "
                        "\"string:network\"");
     }
 

@@ -42,8 +42,8 @@
 using namespace dde::network;
 using namespace NetworkManager;
 
-const static QString networkService = "com.deepin.daemon.Network";
-const static QString networkPath = "/com/deepin/daemon/Network";
+const static QString networkService = "org.deepin.dde.Network1";
+const static QString networkPath = "/org/deepin/dde/Network1";
 
 NetworkManagerProcesser::NetworkManagerProcesser(QObject *parent)
     : NetworkProcesser(parent)
@@ -76,7 +76,7 @@ void NetworkManagerProcesser::initConnections()
     connect(m_ipChecker, &IPConfilctChecker::conflictStatusChanged, this, [ ] (NetworkDeviceBase *device, const bool confilct) {
         Q_EMIT device->deviceStatusChanged(confilct ? DeviceStatus::IpConfilct : device->deviceStatus());
     });
-    QDBusConnection::systemBus().connect("com.deepin.system.Network", "/com/deepin/system/Network", "com.deepin.system.Network", "DeviceEnabled", this, SLOT(onDeviceEnabledChanged(QDBusObjectPath, bool)));
+    QDBusConnection::systemBus().connect("org.deepin.dde.Network1", "/org/deepin/dde/Network1", "org.deepin.dde.Network1", "DeviceEnabled", this, SLOT(onDeviceEnabledChanged(QDBusObjectPath, bool)));
 }
 
 QList<NetworkDeviceBase *> NetworkManagerProcesser::devices()

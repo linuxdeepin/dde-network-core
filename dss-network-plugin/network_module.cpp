@@ -187,7 +187,7 @@ NetworkModule::NetworkModule(QObject *parent)
     : QObject(parent)
     , m_lastState(NetworkManager::Device::State::UnknownState)
 {
-    QDBusConnection::sessionBus().connect("com.deepin.dde.lockFront", "/com/deepin/dde/lockFront", "com.deepin.dde.lockFront", "Visible", this, SLOT(updateLockScreenStatus(bool)));
+    QDBusConnection::sessionBus().connect("org.deepin.dde.LockFront1", "/org/deepin/dde/LockFront1", "org.deepin.dde.LockFront1", "Visible", this, SLOT(updateLockScreenStatus(bool)));
     m_isLockModel = (-1 == qAppName().indexOf("greeter"));
     if (!m_isLockModel) {
         dde::network::NetworkController::setServiceType(dde::network::ServiceLoadType::LoadFromManager);
@@ -203,9 +203,9 @@ NetworkModule::NetworkModule(QObject *parent)
     if (m_isLockModel) {
         m_networkDialog->setServerName("dde-network-dialog" + QString::number(getuid()) + "lock");
     } else {
-        QDBusMessage lock = QDBusMessage::createMethodCall("com.deepin.dde.LockService", "/com/deepin/dde/LockService", "com.deepin.dde.LockService", "CurrentUser");
+        QDBusMessage lock = QDBusMessage::createMethodCall("org.deepin.dde.LockService1", "/org/deepin/dde/LockService1", "org.deepin.dde.LockService1", "CurrentUser");
         QDBusConnection::systemBus().callWithCallback(lock, this, SLOT(onUserChanged(QString)));
-        QDBusConnection::systemBus().connect("com.deepin.dde.LockService", "/com/deepin/dde/LockService", "com.deepin.dde.LockService", "UserChanged", this, SLOT(onUserChanged(QString)));
+        QDBusConnection::systemBus().connect("org.deepin.dde.LockService1", "/org/deepin/dde/LockService1", "org.deepin.dde.LockService1", "UserChanged", this, SLOT(onUserChanged(QString)));
 
         connect(m_networkHelper, &NetworkPluginHelper::addDevice, this, &NetworkModule::onAddDevice);
         for (dde::network::NetworkDeviceBase *device : dde::network::NetworkController::instance()->devices()) {
@@ -319,7 +319,7 @@ void NetworkModule::onUserChanged(QString json)
     if (!doc.isObject())
         return;
     int uid = doc.object().value("Uid").toInt();
-    QDBusInterface user("com.deepin.daemon.Accounts", QString("/com/deepin/daemon/Accounts/User%1").arg(uid), "com.deepin.daemon.Accounts.User", QDBusConnection::systemBus());
+    QDBusInterface user("org.deepin.dde.Accounts1", QString("/org/deepin/dde/Accounts1/User%1").arg(uid), "org.deepin.dde.Accounts1.User", QDBusConnection::systemBus());
     installTranslator(user.property("Locale").toString().split(".").first());
 }
 

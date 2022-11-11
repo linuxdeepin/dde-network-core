@@ -85,7 +85,7 @@ DeviceManagerRealize::~DeviceManagerRealize()
 
 bool DeviceManagerRealize::isEnabled() const
 {
-    QDBusInterface dbusInter("com.deepin.system.Network", "/com/deepin/system/Network", "com.deepin.system.Network", QDBusConnection::systemBus());
+    QDBusInterface dbusInter("org.deepin.dde.Network1", "/org/deepin/dde/Network1", "org.deepin.dde.Network1", QDBusConnection::systemBus());
     QDBusPendingCall reply = dbusInter.asyncCall("IsDeviceEnabled", m_wDevice->uni());
     reply.waitForFinished();
     QDBusPendingReply<bool> replyResult = reply.reply();
@@ -205,7 +205,7 @@ void DeviceManagerRealize::setEnabled(bool enabled)
     bool currentEnabled = isEnabled();
     if (currentEnabled != enabled) {
         qInfo() << "set Device " << m_wDevice->uni() << " enabled:" << (enabled ? "true" : "false");
-        QDBusInterface dbusInter("com.deepin.system.Network", "/com/deepin/system/Network", "com.deepin.system.Network", QDBusConnection::systemBus());
+        QDBusInterface dbusInter("org.deepin.dde.Network1", "/org/deepin/dde/Network1", "org.deepin.dde.Network1", QDBusConnection::systemBus());
         QDBusReply<QDBusObjectPath> reply = dbusInter.call("EnableDevice", m_wDevice->uni(), enabled);
         if (enabled) {
             // 如果是开启，则让其自动连接

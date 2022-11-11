@@ -12,8 +12,8 @@
 #include <networkmanagerqt/manager.h>
 #include <networkmanagerqt/device.h>
 
-const static QString networkService = "com.deepin.daemon.Network";
-const static QString networkPath = "/com/deepin/daemon/Network";
+const static QString networkService = "org.deepin.dde.Network1";
+const static QString networkPath = "/org/deepin/dde/Network1";
 
 using namespace dde::network;
 

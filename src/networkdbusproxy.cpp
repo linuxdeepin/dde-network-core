@@ -27,23 +27,21 @@
 #include <QDBusPendingReply>
 #include <QDebug>
 
-const QString NetworkService = QStringLiteral("com.deepin.daemon.Network");
-const QString NetworkPath = QStringLiteral("/com/deepin/daemon/Network");
-const QString NetworkInterface = QStringLiteral("com.deepin.daemon.Network");
+const QString NetworkService = QStringLiteral("org.deepin.dde.Network1");
+const QString NetworkPath = QStringLiteral("/org/deepin/dde/Network1");
+const QString NetworkInterface = QStringLiteral("org.deepin.dde.Network1");
 
-const QString ProxyChainsService = QStringLiteral("com.deepin.daemon.Network");
-const QString ProxyChainsPath = QStringLiteral("/com/deepin/daemon/Network/ProxyChains");
-const QString ProxyChainsInterface = QStringLiteral("com.deepin.daemon.Network.ProxyChains");
+const QString ProxyChainsService = QStringLiteral("org.deepin.dde.Network1");
+const QString ProxyChainsPath = QStringLiteral("/org/deepin/dde/Network1/ProxyChains");
+const QString ProxyChainsInterface = QStringLiteral("org.deepin.dde.Network1.ProxyChains");
 
-const QString AirplaneModeService = QStringLiteral("com.deepin.daemon.AirplaneMode");
-const QString AirplaneModePath = QStringLiteral("/com/deepin/daemon/AirplaneMode");
-const QString AirplaneModeInterface = QStringLiteral("com.deepin.daemon.AirplaneMode");
+const QString AirplaneModeService = QStringLiteral("org.deepin.dde.AirplaneMode1");
+const QString AirplaneModePath = QStringLiteral("/org/deepin/dde/AirplaneMode1");
+const QString AirplaneModeInterface = QStringLiteral("org.deepin.dde.AirplaneMode1");
 
 const QString PropertiesInterface = QStringLiteral("org.freedesktop.DBus.Properties");
 const QString PropertiesChanged = QStringLiteral("PropertiesChanged");
 using namespace dde::network;
-
-//"com.deepin.daemon.AirplaneMode", "/com/deepin/daemon/AirplaneMode", "com.deepin.daemon.AirplaneMode", QDBusConnection::systemBus());
 
 NetworkDBusProxy::NetworkDBusProxy(QObject *parent)
     : QObject(parent)
@@ -134,7 +132,7 @@ bool NetworkDBusProxy::enabled()
 
 void NetworkDBusProxy::ShowPage(const QString &url)
 {
-    QDBusMessage message = QDBusMessage::createMethodCall("com.deepin.dde.ControlCenter", "/com/deepin/dde/ControlCenter", "com.deepin.dde.ControlCenter", "ShowPage");
+    QDBusMessage message = QDBusMessage::createMethodCall("org.deepin.dde.ControlCenter1", "/org/deepin/dde/ControlCenter1", "org.deepin.dde.ControlCenter1", "ShowPage");
     message << QVariant::fromValue(url);
     QDBusConnection::sessionBus().asyncCall(message);
 }
