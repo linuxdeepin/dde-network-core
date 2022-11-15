@@ -17,6 +17,14 @@
         <translation>Netwerk</translation>
     </message>
     <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Bekabeld netwerk</translation>
+    </message>
+    <message>
         <source>Device disabled</source>
         <translation>Apparaat uitgeschakeld</translation>
     </message>
@@ -37,12 +45,12 @@
         <translation>Verbonden, maar geen internettoegang</translation>
     </message>
     <message>
-        <source>Connection failed</source>
-        <translation>Verbinding mislukt</translation>
-    </message>
-    <message>
         <source>IP conflict</source>
         <translation>IP-conflict</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation>Verbinding mislukt</translation>
     </message>
 </context>
 <context>

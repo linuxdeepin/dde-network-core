@@ -17,6 +17,14 @@
         <translation>Xarxa</translation>
     </message>
     <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Xarxa amb fil</translation>
+    </message>
+    <message>
         <source>Device disabled</source>
         <translation>Dispositiu inhabilitat</translation>
     </message>
@@ -37,12 +45,12 @@
         <translation>Connectat però sense accés a Internet</translation>
     </message>
     <message>
-        <source>Connection failed</source>
-        <translation>Ha fallat la connexió.</translation>
-    </message>
-    <message>
         <source>IP conflict</source>
         <translation>Conflicte d&apos;IP</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation>Ha fallat la connexió.</translation>
     </message>
 </context>
 <context>

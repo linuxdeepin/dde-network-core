@@ -17,6 +17,14 @@
         <translation>Sieć</translation>
     </message>
     <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Sieć przewodowa</translation>
+    </message>
+    <message>
         <source>Device disabled</source>
         <translation>Urządzenie wyłączone</translation>
     </message>
@@ -37,12 +45,12 @@
         <translation>Połączono, brak dostępu do Internetu</translation>
     </message>
     <message>
-        <source>Connection failed</source>
-        <translation>Połączenie nieudane</translation>
-    </message>
-    <message>
         <source>IP conflict</source>
         <translation>Konflikt adresów IP</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation>Połączenie nieudane</translation>
     </message>
 </context>
 <context>

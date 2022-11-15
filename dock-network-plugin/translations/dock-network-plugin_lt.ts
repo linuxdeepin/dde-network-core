@@ -17,31 +17,39 @@
         <translation>Tinklas</translation>
     </message>
     <message>
-        <source>Device disabled</source>
+        <source>Wireless Network</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Laidinis tinklas</translation>
+    </message>
+    <message>
+        <source>Device disabled</source>
+        <translation>Įrenginys išjungtas</translation>
     </message>
     <message>
         <source>Network cable unplugged</source>
-        <translation type="unfinished"/>
+        <translation>Atjungtas tinklo laidas</translation>
     </message>
     <message>
         <source>Not connected</source>
-        <translation type="unfinished"/>
+        <translation>Neprijungta</translation>
     </message>
     <message>
         <source>Connecting</source>
-        <translation type="unfinished"/>
+        <translation>Jungiamasi</translation>
     </message>
     <message>
         <source>Connected but no Internet access</source>
+        <translation>Prisijungta, bet nėra prieigos prie interneto</translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Connection failed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>IP conflict</source>
         <translation type="unfinished"/>
     </message>
 </context>

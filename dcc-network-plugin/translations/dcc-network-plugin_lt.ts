@@ -579,7 +579,7 @@
     </message>
     <message>
         <source>Ask me always</source>
-        <translation type="unfinished"/>
+        <translation>Visada klausti</translation>
     </message>
     <message>
         <source>Disabled</source>

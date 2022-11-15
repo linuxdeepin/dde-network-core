@@ -17,11 +17,15 @@
         <translation>Rete</translation>
     </message>
     <message>
-        <source>Device disabled</source>
+        <source>Wireless Network</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Network cable unplugged</source>
+        <source>Wired Network</source>
+        <translation>Connessione cablata</translation>
+    </message>
+    <message>
+        <source>Device disabled</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -37,11 +41,11 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Connection failed</source>
+        <source>IP conflict</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>IP conflict</source>
+        <source>Connection failed</source>
         <translation type="unfinished"/>
     </message>
 </context>

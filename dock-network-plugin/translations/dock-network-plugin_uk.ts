@@ -17,6 +17,14 @@
         <translation>Мережа</translation>
     </message>
     <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Провідна мережа</translation>
+    </message>
+    <message>
         <source>Device disabled</source>
         <translation>Пристрій вимкнено</translation>
     </message>
@@ -37,12 +45,12 @@
         <translation>З&apos;єднано, але немає доступу до інтернету</translation>
     </message>
     <message>
-        <source>Connection failed</source>
-        <translation>Не вдалося встановити з&apos;єднання</translation>
-    </message>
-    <message>
         <source>IP conflict</source>
         <translation>Конфлікт IP</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation>Не вдалося встановити з&apos;єднання</translation>
     </message>
 </context>
 <context>

@@ -17,6 +17,14 @@
         <translation>Mreža</translation>
     </message>
     <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Žična mreža</translation>
+    </message>
+    <message>
         <source>Device disabled</source>
         <translation>Uređaj je onemogućen</translation>
     </message>
@@ -37,11 +45,11 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Connection failed</source>
+        <source>IP conflict</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>IP conflict</source>
+        <source>Connection failed</source>
         <translation type="unfinished"/>
     </message>
 </context>

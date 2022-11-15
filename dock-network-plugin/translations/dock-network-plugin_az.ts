@@ -17,6 +17,14 @@
         <translation>Şəbəkə</translation>
     </message>
     <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Naqilli şəbəkə</translation>
+    </message>
+    <message>
         <source>Device disabled</source>
         <translation>Cihaz söndürülüb</translation>
     </message>
@@ -37,12 +45,12 @@
         <translation>Qoşulub, lakin internetə giriş yoxdur</translation>
     </message>
     <message>
-        <source>Connection failed</source>
-        <translation>Qoşulma alınmadı</translation>
-    </message>
-    <message>
         <source>IP conflict</source>
         <translation>İP ziddiyyəti</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation>Qoşulma alınmadı</translation>
     </message>
 </context>
 <context>

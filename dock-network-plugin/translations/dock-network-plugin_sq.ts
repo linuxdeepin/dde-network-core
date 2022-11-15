@@ -17,6 +17,14 @@
         <translation>Rrjet</translation>
     </message>
     <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Rrjet Me Fill</translation>
+    </message>
+    <message>
         <source>Device disabled</source>
         <translation>Pajisje e çaktivizuar</translation>
     </message>
@@ -37,12 +45,12 @@
         <translation>E lidhur, por pa hyrje Internet</translation>
     </message>
     <message>
-        <source>Connection failed</source>
-        <translation>Lidhja dështoi</translation>
-    </message>
-    <message>
         <source>IP conflict</source>
         <translation>Përplasje IP-sh</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation>Lidhja dështoi</translation>
     </message>
 </context>
 <context>

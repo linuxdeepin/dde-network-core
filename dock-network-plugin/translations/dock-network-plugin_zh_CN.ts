@@ -17,6 +17,14 @@
         <translation>网络</translation>
     </message>
     <message>
+        <source>Wireless Network</source>
+        <translation>无线网络</translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>有线网络</translation>
+    </message>
+    <message>
         <source>Device disabled</source>
         <translation>设备已禁用</translation>
     </message>
@@ -37,12 +45,12 @@
         <translation>已连接网络但无法访问互联网</translation>
     </message>
     <message>
-        <source>Connection failed</source>
-        <translation>连接失败</translation>
-    </message>
-    <message>
         <source>IP conflict</source>
         <translation>IP地址冲突</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation>连接失败</translation>
     </message>
 </context>
 <context>

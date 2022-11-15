@@ -17,6 +17,14 @@
         <translation>Hálózat</translation>
     </message>
     <message>
+        <source>Wireless Network</source>
+        <translation>Vezeték nélküli hálózat</translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Vezetékes hálózat </translation>
+    </message>
+    <message>
         <source>Device disabled</source>
         <translation>Eszköz letiltva</translation>
     </message>
@@ -37,12 +45,12 @@
         <translation>Csatlakoztatva, de nincs internet hozzáférés</translation>
     </message>
     <message>
-        <source>Connection failed</source>
-        <translation>A kapcsolódás sikertelen</translation>
-    </message>
-    <message>
         <source>IP conflict</source>
         <translation>IP cím ütközés</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation>A kapcsolódás sikertelen</translation>
     </message>
 </context>
 <context>

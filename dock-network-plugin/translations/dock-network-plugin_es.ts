@@ -17,6 +17,14 @@
         <translation>Red</translation>
     </message>
     <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Red cableada</translation>
+    </message>
+    <message>
         <source>Device disabled</source>
         <translation>Dispositivo deshabilitado</translation>
     </message>
@@ -37,12 +45,12 @@
         <translation>Conectado pero sin acceso a Internet</translation>
     </message>
     <message>
-        <source>Connection failed</source>
-        <translation>Conexión fallida</translation>
-    </message>
-    <message>
         <source>IP conflict</source>
         <translation>Conflicto de IP</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation>Conexión fallida</translation>
     </message>
 </context>
 <context>
