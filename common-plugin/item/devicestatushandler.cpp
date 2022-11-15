@@ -174,7 +174,7 @@ NetDeviceStatus DeviceStatusHandler::wirelessStatus(const QList<WirelessDevice *
 PluginState DeviceStatusHandler::plugState(const NetDeviceStatus &wiredStatus, const NetDeviceStatus &wirelessStatus)
 {
     if (isUnknow(wiredStatus, wirelessStatus))
-        return PluginState::Unknow;
+        return PluginState::Unknown;
 
     if (isDisabled(wiredStatus, wirelessStatus))
         return PluginState::Disabled;

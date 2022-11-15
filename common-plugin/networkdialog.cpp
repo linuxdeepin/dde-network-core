@@ -3,7 +3,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "networkdialog.h"
-#include "trayicon.h"
 #include "networkdialog/networkpanel.h"
 
 #include <QApplication>

@@ -1,23 +1,23 @@
 /*
-* Copyright (C) 2021 ~ 2021 Uniontech Software Technology Co.,Ltd.
-*
-* Author:     Zhang Qipeng <zhangqipeng@uniontech.com>
-*
-* Maintainer: Zhang Qipeng <zhangqipeng@uniontech.com>
-*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ * Copyright (C) 2021 ~ 2021 Uniontech Software Technology Co.,Ltd.
+ *
+ * Author:     Zhang Qipeng <zhangqipeng@uniontech.com>
+ *
+ * Maintainer: Zhang Qipeng <zhangqipeng@uniontech.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #ifndef LOGIN_MODULE_H
 #define LOGIN_MODULE_H
@@ -32,7 +32,6 @@ NETWORKPLUGIN_BEGIN_NAMESPACE
 class NetworkPluginHelper;
 class NetworkDialog;
 class SecretAgent;
-class TrayIcon;
 NETWORKPLUGIN_END_NAMESPACE
 
 namespace dss {
@@ -57,10 +56,12 @@ public:
 
     NETWORKPLUGIN_NAMESPACE::NetworkPluginHelper *networkHelper() const { return m_networkHelper; }
 
+protected Q_SLOTS:
+    void updateLockScreenStatus(bool visible);
+
 protected:
     bool eventFilter(QObject *watched, QEvent *e) override;
 
-    void updateLockScreenStatus(bool visible);
     void onDeviceStatusChanged(NetworkManager::Device::State newstate, NetworkManager::Device::State oldstate, NetworkManager::Device::StateChangeReason reason);
     void onAddDevice(const QString &path);
     void onUserChanged(QString json);
@@ -90,8 +91,7 @@ private:
     PopupAppletManager *m_popupAppletManager;
 };
 
-class NetworkPlugin : public QObject
-    , public TrayModuleInterface
+class NetworkPlugin : public QObject, public TrayModuleInterface
 {
     Q_OBJECT
 

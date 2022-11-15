@@ -482,13 +482,6 @@ void NetworkPanel::updateView()
     updateItems();
     refreshItems();
     passwordError(QString(), QString());
-    if (m_items.isEmpty()) {
-        // 1s后依旧无网络设备则退出
-        QTimer::singleShot(1000, this, [ this ] {
-            if (m_items.isEmpty())
-                qApp->quit();
-        });
-    }
     // 网络设备数量大于1时，需要延迟发送信号，确保数据初始化完成，避免网络面板闪烁，解决bug119717
     QTimer::singleShot(200, this, [ this ] {
         if (m_model->rowCount() > 0)

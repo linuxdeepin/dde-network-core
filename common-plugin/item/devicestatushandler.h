@@ -51,7 +51,7 @@ enum class NetDeviceStatus {
 
 enum class PluginState
 {
-    Unknow = 0,
+    Unknown = 0,
     Disabled,
     Connected,
     Disconnected,
@@ -85,15 +85,15 @@ public:
     // 获取当前所有的设备列表的状态
     static PluginState pluginState();
 
-private:
-    explicit DeviceStatusHandler(QObject *parent = Q_NULLPTR);
-    ~DeviceStatusHandler();
-
     static NetDeviceStatus wiredStatus(WiredDevice * device);
     static NetDeviceStatus wiredStatus(const QList<WiredDevice *> &devices);
     static NetDeviceStatus wirelessStatus(WirelessDevice *device);
     static NetDeviceStatus wirelessStatus(const QList<WirelessDevice *> &devices);
     static PluginState plugState(const NetDeviceStatus &wiredStatus, const NetDeviceStatus &wirelessStatus);
+
+private:
+    explicit DeviceStatusHandler(QObject *parent = Q_NULLPTR);
+    ~DeviceStatusHandler();
 
 private:
     DECLARE_STATIC_CHECKSTATUS(isUnknow)

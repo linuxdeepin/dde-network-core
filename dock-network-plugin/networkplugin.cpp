@@ -21,8 +21,10 @@
 
 #include "networkplugin.h"
 #include "networkpluginhelper.h"
-#include "trayicon.h"
 #include "networkdialog.h"
+#include "quickpanel.h"
+#include "item/devicestatushandler.h"
+#include "networkdialog/thememanager.h"
 
 #include <DDBusSender>
 
@@ -41,7 +43,7 @@ NetworkPlugin::NetworkPlugin(QObject *parent)
     : QObject(parent)
     , m_networkHelper(Q_NULLPTR)
     , m_networkDialog(Q_NULLPTR)
-    , m_trayIcon(Q_NULLPTR)
+    , m_quickPanel(Q_NULLPTR)
     , m_clickTime(-10000)
 {
     NetworkController::setIPConflictCheck(true);
@@ -73,11 +75,24 @@ void NetworkPlugin::init(PluginProxyInterface *proxyInter)
     m_networkDialog = new NetworkDialog(this);
     m_networkDialog->setServerName("dde-network-dialog" + QString::number(getuid()) + "dock");
     m_networkHelper.reset(new NetworkPluginHelper(m_networkDialog));
+    connect(m_networkHelper.data(), &NetworkPluginHelper::iconChanged, this, &NetworkPlugin::onIconUpdated);
+    m_quickPanel = new QuickPanel();
 
     if (!pluginIsDisable())
         loadPlugin();
 
     connect(m_networkDialog, &NetworkDialog::requestShow, this, &NetworkPlugin::showNetworkDialog);
+
+    connect(m_quickPanel, &QuickPanel::iconClick, this, [this]() {
+        m_networkHelper->invokeMenuItem(m_quickPanel->userData().toString());
+    });
+    connect(m_quickPanel, &QuickPanel::panelClick, this, &NetworkPlugin::showNetworkDialog);
+
+    m_networkHelper->setIconDark(Dtk::Gui::DGuiApplicationHelper::instance()->themeType() == DGuiApplicationHelper::DarkType);
+    // 主题发生变化触发的信号
+    connect(Dtk::Gui::DGuiApplicationHelper::instance(), &Dtk::Gui::DGuiApplicationHelper::themeTypeChanged, this, [this]() {
+        m_networkHelper->setIconDark(Dtk::Gui::DGuiApplicationHelper::instance()->themeType() == DGuiApplicationHelper::DarkType);
+    });
 }
 
 void NetworkPlugin::invokedMenuItem(const QString &itemKey, const QString &menuId, const bool checked)
@@ -130,13 +145,9 @@ const QString NetworkPlugin::itemContextMenu(const QString &itemKey)
 
 QWidget *NetworkPlugin::itemWidget(const QString &itemKey)
 {
-    if (itemKey == NETWORK_KEY) {
-        if (m_trayIcon.isNull()) {
-            m_trayIcon.reset(new TrayIcon(m_networkHelper.data()));
-        }
-        return m_trayIcon.data();
+    if (itemKey == QUICK_ITEM_KEY) {
+        return m_quickPanel;
     }
-
     return Q_NULLPTR;
 }
 
@@ -184,31 +195,99 @@ void NetworkPlugin::refreshPluginItemsVisible()
         m_proxyInter->itemAdded(this, NETWORK_KEY);
 }
 
-QString NetworkPlugin::getConnectionName() const
+void NetworkPlugin::updateQuickPanel()
 {
     QList<NetworkDeviceBase *> devices = NetworkController::instance()->devices();
+    QString wirelessConnection;
+    QString wiredConnection;
+    QList<WiredDevice *> wiredList;
+    QList<WirelessDevice *> wirelessList;
+
     for (NetworkDeviceBase *device : devices) {
-        if (device->deviceType() == DeviceType::Wired) {
+        switch (device->deviceType()) {
+        case DeviceType::Wired: {
             WiredDevice *wiredDevice = static_cast<WiredDevice *>(device);
+            wiredList.append(wiredDevice);
             if (wiredDevice->isConnected()) {
                 QList<WiredConnection *> items = wiredDevice->items();
                 for (WiredConnection *item : items) {
                     if (item->status() == ConnectionStatus::Activated)
-                        return item->connection()->id();
+                        wiredConnection = item->connection()->id();
                 }
             }
-        } else if (device->deviceType() == DeviceType::Wireless) {
+        } break;
+        case DeviceType::Wireless: {
             WirelessDevice *wirelessDevice = static_cast<WirelessDevice *>(device);
+            wirelessList.append(wirelessDevice);
             if (wirelessDevice->isConnected()) {
                 QList<WirelessConnection *> items = wirelessDevice->items();
                 for (WirelessConnection *item : items) {
                     if (item->status() == ConnectionStatus::Activated)
-                        return item->connection()->ssid();
+                        wirelessConnection = item->connection()->ssid();
                 }
             }
+        } break;
+        default:
+            break;
         }
     }
 
+    if (!wirelessList.isEmpty()) {
+        NetDeviceStatus status = DeviceStatusHandler::wirelessStatus(wirelessList);
+        QString statusName = networkStateName(status);
+        bool isEnabled = (status != NetDeviceStatus::Disabled
+                          && status != NetDeviceStatus::Unknown
+                          && status != NetDeviceStatus::Nocable);
+
+        m_quickPanel->setText(tr("Wireless Network"));
+        m_quickPanel->setDescription(statusName.isEmpty() ? wirelessConnection : statusName);
+        m_quickPanel->setActive(isEnabled);
+        m_quickPanel->setUserData(isEnabled ? NetworkPluginHelper::MenuWirelessDisable : NetworkPluginHelper::MenuWirelessEnable); // 对应菜单项值
+        m_quickPanel->setIcon(QIcon::fromTheme(ThemeManager::instance()->getIcon("wireless-80-symbolic")));
+    } else if (wiredList.isEmpty()) {
+        NetDeviceStatus status = DeviceStatusHandler::wiredStatus(wiredList);
+        QString statusName = networkStateName(status);
+        bool isEnabled = (status != NetDeviceStatus::Disabled
+                          && status != NetDeviceStatus::Unknown
+                          && status != NetDeviceStatus::Nocable);
+
+        m_quickPanel->setText(tr("Wired Network"));
+        m_quickPanel->setDescription(statusName.isEmpty() ? wiredConnection : statusName);
+        m_quickPanel->setActive(isEnabled);
+        m_quickPanel->setUserData(isEnabled ? NetworkPluginHelper::MenuWiredDisable : NetworkPluginHelper::MenuWiredEnable);
+        m_quickPanel->setIcon(QIcon::fromTheme(ThemeManager::instance()->getIcon("network-wired-symbolic")));
+    } else {
+        m_quickPanel->setText(pluginDisplayName());
+        m_quickPanel->setDescription(description());
+        m_quickPanel->setActive(false);
+        m_quickPanel->setUserData(NetworkPluginHelper::MenuSettings);
+        m_quickPanel->setIcon(QIcon::fromTheme(ThemeManager::instance()->getIcon("wireless-disconnect")));
+    }
+}
+
+QString NetworkPlugin::networkStateName(NetDeviceStatus status) const
+{
+    switch (status) {
+    case NetDeviceStatus::Unknown:
+    case NetDeviceStatus::Disabled:
+    case NetDeviceStatus::Nocable:
+        return tr("Device disabled");
+    case NetDeviceStatus::Disconnected:
+        return tr("Not connected");
+    case NetDeviceStatus::Connecting:
+    case NetDeviceStatus::Authenticating:
+    case NetDeviceStatus::ObtainingIP:
+    case NetDeviceStatus::ObtainIpFailed:
+        return tr("Connecting");
+    case NetDeviceStatus::ConnectNoInternet:
+        return tr("Connected but no Internet access");
+    case NetDeviceStatus::IpConflicted:
+        return tr("IP conflict");
+    case NetDeviceStatus::ConnectFailed:
+        return tr("Connection failed");
+    default:
+        break;
+    }
     return QString();
 }
 
@@ -218,13 +297,19 @@ void NetworkPlugin::onIconUpdated()
     m_proxyInter->updateDockInfo(this, DockPart::QuickPanel);
     // update quick plugin area
     m_proxyInter->updateDockInfo(this, DockPart::QuickShow);
+
+    updateQuickPanel();
 }
 
-QIcon NetworkPlugin::icon(const DockPart &)
+QIcon NetworkPlugin::icon(const DockPart &dockPart)
 {
-    TrayIcon *trayIcon = static_cast<TrayIcon *>(itemWidget(NETWORK_KEY));
-    QPixmap pixmap = trayIcon->pixmap();
-    return QIcon(pixmap);
+    switch (dockPart) {
+    case DockPart::QuickShow:
+        return *m_networkHelper->trayIcon();
+    default:
+        break;
+    }
+    return PluginsItemInterface::icon(dockPart);
 }
 
 PluginsItemInterface::PluginStatus NetworkPlugin::status() const
@@ -232,7 +317,7 @@ PluginsItemInterface::PluginStatus NetworkPlugin::status() const
     // get the plugin status
     PluginState plugState = m_networkHelper->getPluginState();
     switch (plugState) {
-    case PluginState::Unknow:
+    case PluginState::Unknown:
     case PluginState::Disabled:
     case PluginState::Nocable:
         return PluginStatus::Disabled;
@@ -245,44 +330,12 @@ PluginsItemInterface::PluginStatus NetworkPlugin::status() const
 
 QString NetworkPlugin::description() const
 {
-    PluginState plugState = m_networkHelper->getPluginState();
-    switch (plugState) {
-    case PluginState::Disabled:
-    case PluginState::WirelessDisabled:
-    case PluginState::WiredDisabled:
-            return tr("Device disabled");
-    case PluginState::Unknow:
-    case PluginState::Nocable:
-            return tr("Network cable unplugged");
-    case PluginState::Disconnected:
-    case PluginState::WirelessDisconnected:
-    case PluginState::WiredDisconnected:
-            return tr("Not connected");
-    case PluginState::Connecting:
-    case PluginState::WirelessConnecting:
-    case PluginState::WiredConnecting:
-            return tr("Connecting");
-    case PluginState::ConnectNoInternet:
-    case PluginState::WirelessConnectNoInternet:
-    case PluginState::WiredConnectNoInternet:
-            return tr("Connected but no Internet access");
-    case PluginState::Failed:
-    case PluginState::WirelessFailed:
-    case PluginState::WiredFailed:
-            return tr("Connection failed");
-    case PluginState::WiredIpConflicted:
-    case PluginState::WirelessIpConflicted:
-            return tr("IP conflict");
-    default:
-            break;
-    }
-
-    return getConnectionName();
+    return m_quickPanel ? m_quickPanel->description() : QString();
 }
 
 void NetworkPlugin::showNetworkDialog()
 {
-    if (m_trayIcon.isNull() || m_networkDialog->panel()->isVisible())
+    if (m_networkDialog->panel()->isVisible())
         return;
     m_proxyInter->requestSetAppletVisible(this, NETWORK_KEY, true);
 }

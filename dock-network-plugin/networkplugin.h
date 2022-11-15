@@ -33,6 +33,9 @@ class NetworkDialog;
 class TrayIcon;
 NETWORKPLUGIN_END_NAMESPACE
 
+class QuickPanel;
+enum class NetDeviceStatus;
+
 class NetworkPlugin : public QObject, PluginsItemInterface
 {
     Q_OBJECT
@@ -67,14 +70,15 @@ public:
     void pluginSettingsChanged() override;
 
 protected:
-    QIcon icon(const DockPart &) override;
+    QIcon icon(const DockPart &dockPart) override;
     PluginStatus status() const override;
     QString description() const override;
 
 private:
     void loadPlugin();
     void refreshPluginItemsVisible();
-    QString getConnectionName() const;
+    void updateQuickPanel();
+    QString networkStateName(NetDeviceStatus status) const;
 
 private Q_SLOTS:
     void onIconUpdated();
@@ -82,7 +86,7 @@ private Q_SLOTS:
 private:
     QScopedPointer<NETWORKPLUGIN_NAMESPACE::NetworkPluginHelper> m_networkHelper;
     NETWORKPLUGIN_NAMESPACE::NetworkDialog *m_networkDialog;
-    QScopedPointer<NETWORKPLUGIN_NAMESPACE::TrayIcon> m_trayIcon;
+    QuickPanel *m_quickPanel;
     int m_clickTime;
 };
 
