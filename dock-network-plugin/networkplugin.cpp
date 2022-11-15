@@ -268,10 +268,11 @@ void NetworkPlugin::updateQuickPanel()
 QString NetworkPlugin::networkStateName(NetDeviceStatus status) const
 {
     switch (status) {
-    case NetDeviceStatus::Unknown:
     case NetDeviceStatus::Disabled:
-    case NetDeviceStatus::Nocable:
         return tr("Device disabled");
+    case NetDeviceStatus::Unknown:
+    case NetDeviceStatus::Nocable:
+        return tr("Network cable unplugged");
     case NetDeviceStatus::Disconnected:
         return tr("Not connected");
     case NetDeviceStatus::Connecting:

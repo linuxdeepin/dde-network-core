@@ -156,9 +156,10 @@ void QuickPanel::initUi()
     QFont nameFont = DFontSizeManager::instance()->t6();
     nameFont.setBold(true);
     m_text->setFont(nameFont);
+    m_text->setElideMode(Qt::ElideRight);
     layout->addWidget(m_description, 0, Qt::AlignLeft | Qt::AlignVCenter);
     m_description->setFont(DFontSizeManager::instance()->t10());
-    m_description->setMaximumWidth(80);
+    m_description->setElideMode(Qt::ElideRight);
 
     setFixedSize(150, 60);
     labelWidget->setGeometry(46, 5, 80, 50);
