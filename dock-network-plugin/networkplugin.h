@@ -78,6 +78,7 @@ private:
     void loadPlugin();
     void refreshPluginItemsVisible();
     void updateQuickPanel();
+    void updateQuickPanelDescription(NetDeviceStatus status, int connectionCount, const QString &Connection, int enableMenu);
     QString networkStateName(NetDeviceStatus status) const;
 
 private Q_SLOTS:

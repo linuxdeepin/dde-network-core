@@ -83,10 +83,10 @@ void NetworkPlugin::init(PluginProxyInterface *proxyInter)
 
     connect(m_networkDialog, &NetworkDialog::requestShow, this, &NetworkPlugin::showNetworkDialog);
 
-    connect(m_quickPanel, &QuickPanel::iconClick, this, [this]() {
+    connect(m_quickPanel, &QuickPanel::iconClicked, this, [this]() {
         m_networkHelper->invokeMenuItem(m_quickPanel->userData().toString());
     });
-    connect(m_quickPanel, &QuickPanel::panelClick, this, &NetworkPlugin::showNetworkDialog);
+    connect(m_quickPanel, &QuickPanel::panelClicked, this, &NetworkPlugin::showNetworkDialog);
 
     m_networkHelper->setIconDark(Dtk::Gui::DGuiApplicationHelper::instance()->themeType() == DGuiApplicationHelper::DarkType);
     // 主题发生变化触发的信号
@@ -137,9 +137,6 @@ const QString NetworkPlugin::itemCommand(const QString &itemKey)
 
 const QString NetworkPlugin::itemContextMenu(const QString &itemKey)
 {
-    if (itemKey == NETWORK_KEY)
-        return m_networkHelper->contextMenu(true);
-
     return QString();
 }
 
@@ -198,8 +195,10 @@ void NetworkPlugin::refreshPluginItemsVisible()
 void NetworkPlugin::updateQuickPanel()
 {
     QList<NetworkDeviceBase *> devices = NetworkController::instance()->devices();
-    QString wirelessConnection;
+    int wiredConnectionCount = 0;
+    int wirelessConnectionCount = 0;
     QString wiredConnection;
+    QString wirelessConnection;
     QList<WiredDevice *> wiredList;
     QList<WirelessDevice *> wirelessList;
 
@@ -211,8 +210,10 @@ void NetworkPlugin::updateQuickPanel()
             if (wiredDevice->isConnected()) {
                 QList<WiredConnection *> items = wiredDevice->items();
                 for (WiredConnection *item : items) {
-                    if (item->status() == ConnectionStatus::Activated)
+                    if (item->status() == ConnectionStatus::Activated) {
+                        wiredConnectionCount++;
                         wiredConnection = item->connection()->id();
+                    }
                 }
             }
         } break;
@@ -222,8 +223,10 @@ void NetworkPlugin::updateQuickPanel()
             if (wirelessDevice->isConnected()) {
                 QList<WirelessConnection *> items = wirelessDevice->items();
                 for (WirelessConnection *item : items) {
-                    if (item->status() == ConnectionStatus::Activated)
+                    if (item->status() == ConnectionStatus::Activated) {
+                        wirelessConnectionCount++;
                         wirelessConnection = item->connection()->ssid();
+                    }
                 }
             }
         } break;
@@ -234,27 +237,13 @@ void NetworkPlugin::updateQuickPanel()
 
     if (!wirelessList.isEmpty()) {
         NetDeviceStatus status = DeviceStatusHandler::wirelessStatus(wirelessList);
-        QString statusName = networkStateName(status);
-        bool isEnabled = (status != NetDeviceStatus::Disabled
-                          && status != NetDeviceStatus::Unknown
-                          && status != NetDeviceStatus::Nocable);
-
+        updateQuickPanelDescription(status, wirelessConnectionCount, wirelessConnection, NetworkPluginHelper::MenuWirelessEnable);
         m_quickPanel->setText(tr("Wireless Network"));
-        m_quickPanel->setDescription(statusName.isEmpty() ? wirelessConnection : statusName);
-        m_quickPanel->setActive(isEnabled);
-        m_quickPanel->setUserData(isEnabled ? NetworkPluginHelper::MenuWirelessDisable : NetworkPluginHelper::MenuWirelessEnable); // 对应菜单项值
         m_quickPanel->setIcon(QIcon::fromTheme(ThemeManager::instance()->getIcon("wireless-80-symbolic")));
     } else if (wiredList.isEmpty()) {
         NetDeviceStatus status = DeviceStatusHandler::wiredStatus(wiredList);
-        QString statusName = networkStateName(status);
-        bool isEnabled = (status != NetDeviceStatus::Disabled
-                          && status != NetDeviceStatus::Unknown
-                          && status != NetDeviceStatus::Nocable);
-
+        updateQuickPanelDescription(status, wiredConnectionCount, wiredConnection, NetworkPluginHelper::MenuWiredEnable);
         m_quickPanel->setText(tr("Wired Network"));
-        m_quickPanel->setDescription(statusName.isEmpty() ? wiredConnection : statusName);
-        m_quickPanel->setActive(isEnabled);
-        m_quickPanel->setUserData(isEnabled ? NetworkPluginHelper::MenuWiredDisable : NetworkPluginHelper::MenuWiredEnable);
         m_quickPanel->setIcon(QIcon::fromTheme(ThemeManager::instance()->getIcon("network-wired-symbolic")));
     } else {
         m_quickPanel->setText(pluginDisplayName());
@@ -263,6 +252,26 @@ void NetworkPlugin::updateQuickPanel()
         m_quickPanel->setUserData(NetworkPluginHelper::MenuSettings);
         m_quickPanel->setIcon(QIcon::fromTheme(ThemeManager::instance()->getIcon("wireless-disconnect")));
     }
+}
+
+void NetworkPlugin::updateQuickPanelDescription(NetDeviceStatus status, int connectionCount, const QString &Connection, int enableMenu)
+{
+    QString statusName = networkStateName(status);
+    bool isEnabled = (status != NetDeviceStatus::Disabled
+                      && status != NetDeviceStatus::Unknown
+                      && status != NetDeviceStatus::Nocable);
+
+    if (statusName.isEmpty() && connectionCount != 0) {
+        if (connectionCount == 1) {
+            m_quickPanel->setDescription(Connection);
+        } else {
+            m_quickPanel->setDescription(tr("Connected") + QString(" (%1)").arg(connectionCount));
+        }
+    } else {
+        m_quickPanel->setDescription(statusName);
+    }
+    m_quickPanel->setActive(isEnabled);
+    m_quickPanel->setUserData(isEnabled ? (enableMenu + 1) : enableMenu);
 }
 
 QString NetworkPlugin::networkStateName(NetDeviceStatus status) const
@@ -277,9 +286,10 @@ QString NetworkPlugin::networkStateName(NetDeviceStatus status) const
         return tr("Not connected");
     case NetDeviceStatus::Connecting:
     case NetDeviceStatus::Authenticating:
+        return tr("Connecting");
     case NetDeviceStatus::ObtainingIP:
     case NetDeviceStatus::ObtainIpFailed:
-        return tr("Connecting");
+        return tr("Obtaining address");
     case NetDeviceStatus::ConnectNoInternet:
         return tr("Connected but no Internet access");
     case NetDeviceStatus::IpConflicted:

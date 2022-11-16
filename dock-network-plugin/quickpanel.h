@@ -28,6 +28,7 @@
 namespace Dtk {
 namespace Widget {
 class DLabel;
+class DIconButton;
 }
 }
 
@@ -49,33 +50,32 @@ public Q_SLOTS:
     void setActive(bool active);
 
 Q_SIGNALS:
-    void panelClick();
-    void iconClick();
+    void panelClicked();
+    void iconClicked();
 
 protected:
     void paintEvent(QPaintEvent *event) override;
-    void mouseMoveEvent(QMouseEvent *event) override;
-    void mousePressEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
+    void enterEvent(QEvent *event) override;
     void leaveEvent(QEvent *event) override;
+    bool eventFilter(QObject *watched, QEvent *event) override;
 
 private:
     void initUi();
+    void initConnect();
     void updateIconPixmap();
-    void updateExpandPixmap();
+    void setHover(bool hover);
 
 private:
     QIcon m_icon;
     QVariant m_userData;
 
+    Dtk::Widget::DIconButton *m_iconButton;
     Dtk::Widget::DLabel *m_text;
     Dtk::Widget::DLabel *m_description;
     QPixmap m_iconPixmap;
-    QPixmap m_expandPixmap;
-    bool m_clickIcon;
-    bool m_clickExpand;
-    bool m_hoverIcon;
-    bool m_hoverExpand;
+
+    bool m_hover;
     bool m_active;
 };
 

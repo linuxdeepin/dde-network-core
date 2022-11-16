@@ -22,30 +22,25 @@
 
 #include <DLabel>
 #include <DFontSizeManager>
-#include <QMouseEvent>
+#include <DIconButton>
 
+#include <QMouseEvent>
 #include <QVBoxLayout>
 
 DWIDGET_USE_NAMESPACE
 
-const QSize IconSize(24, 24);            // 图标大小
-const QSize ExpandSize(16, 16);          // 展开图标大小
-const QRect IconRect(10, 12, 36, 36);    // 图标位置
-const QRect ExpandRect(127, 22, 16, 16); // 展开图标位置
-// 图标绘制坐标
-const QRect PixmapIconRect(IconRect.x() + (IconRect.width() - IconSize.width()) / 2, IconRect.y() + (IconRect.height() - IconSize.height()) / 2, IconSize.width(), IconSize.height());
+const QSize IconSize(24, 24); // 图标大小
 
 QuickPanel::QuickPanel(QWidget *parent)
     : QWidget(parent)
+    , m_iconButton(new DIconButton(this))
     , m_text(new DLabel(this))
     , m_description(new DLabel(this))
-    , m_clickIcon(false)
-    , m_clickExpand(false)
-    , m_hoverIcon(false)
-    , m_hoverExpand(false)
+    , m_hover(false)
     , m_active(false)
 {
     initUi();
+    initConnect();
 }
 
 const QVariant &QuickPanel::userData() const
@@ -72,7 +67,6 @@ void QuickPanel::setIcon(const QIcon &icon)
 {
     m_icon = icon;
     updateIconPixmap();
-    update();
 }
 
 void QuickPanel::setText(const QString &text)
@@ -90,66 +84,53 @@ void QuickPanel::setActive(bool active)
 {
     m_active = active;
     updateIconPixmap();
-    update();
 }
 
 void QuickPanel::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
     painter.setRenderHint(QPainter::RenderHint::Antialiasing);
-
-    painter.save();
+    const DPalette &dp = palette();
     painter.setPen(Qt::NoPen);
-    painter.setBrush(palette().brush(m_hoverIcon ? DPalette::Active : DPalette::Disabled, DPalette::ColorRole::Button));
-    painter.drawEllipse(IconRect);
-    painter.restore();
-    painter.drawPixmap(PixmapIconRect, m_iconPixmap);
-    painter.drawPixmap(ExpandRect, m_expandPixmap);
-}
-
-void QuickPanel::mouseMoveEvent(QMouseEvent *event)
-{
-    m_hoverIcon = IconRect.contains(event->pos());
-    bool hoverExpand = ExpandRect.contains(event->pos());
-    if (m_hoverExpand != hoverExpand) {
-        m_hoverExpand = hoverExpand;
-        updateExpandPixmap();
-    }
-    update();
-}
-
-void QuickPanel::mousePressEvent(QMouseEvent *event)
-{
-    if (IconRect.contains(event->pos())) {
-        m_clickIcon = true;
-    } else if (ExpandRect.contains(event->pos())) {
-        m_clickExpand = true;
-    }
+    painter.setBrush(dp.brush(m_hover ? DPalette::ObviousBackground : DPalette::ItemBackground));
+    painter.drawRoundedRect(rect(), 8, 8);
 }
 
 void QuickPanel::mouseReleaseEvent(QMouseEvent *event)
 {
-    if (m_clickIcon && IconRect.contains(event->pos())) {
-        emit iconClick();
-    } else if (m_clickExpand && ExpandRect.contains(event->pos())) {
-        emit panelClick();
+    if (!m_iconButton->rect().contains(event->pos()) && rect().contains(event->pos())) {
+        emit panelClicked();
     }
-    m_clickIcon = false;
-    m_clickExpand = false;
+}
+
+void QuickPanel::enterEvent(QEvent *event)
+{
+    setHover(true);
 }
 
 void QuickPanel::leaveEvent(QEvent *event)
 {
-    m_hoverIcon = false;
-    if (m_hoverExpand != false) {
-        m_hoverExpand = false;
-        updateExpandPixmap();
+    setHover(false);
+}
+
+bool QuickPanel::eventFilter(QObject *watched, QEvent *event)
+{
+    switch (event->type()) {
+    case QEvent::Enter:
+        setHover(false);
+        break;
+    case QEvent::Leave:
+        setHover(true);
+        break;
+    default:
+        break;
     }
-    update();
+    return QWidget::eventFilter(watched, event);
 }
 
 void QuickPanel::initUi()
 {
+    // 文本
     QWidget *labelWidget = new QWidget(this);
     QVBoxLayout *layout = new QVBoxLayout(labelWidget);
     layout->addWidget(m_text, 0, Qt::AlignLeft | Qt::AlignVCenter);
@@ -160,11 +141,27 @@ void QuickPanel::initUi()
     layout->addWidget(m_description, 0, Qt::AlignLeft | Qt::AlignVCenter);
     m_description->setFont(DFontSizeManager::instance()->t10());
     m_description->setElideMode(Qt::ElideRight);
+    labelWidget->setGeometry(46, 5, 80, 50);
+    // 图标
+    m_iconButton->setEnabledCircle(true);
+    m_iconButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    m_iconButton->setIconSize(IconSize);
+    m_iconButton->setGeometry(8, 10, 36, 36);
+    m_iconButton->installEventFilter(this);
+    // 进入图标
+    QLabel *enterIcon = new QLabel(this);
+    qreal ratio = devicePixelRatioF();
+    QPixmap enterPixmap = DStyle::standardIcon(style(), DStyle::SP_ArrowEnter).pixmap(QSize(16, 16) * ratio);
+    enterPixmap.setDevicePixelRatio(ratio);
+    enterIcon->setPixmap(enterPixmap);
+    enterIcon->setGeometry(127, 22, 16, 16);
 
     setFixedSize(150, 60);
-    labelWidget->setGeometry(46, 5, 80, 50);
-    setMouseTracking(true);
-    updateExpandPixmap();
+}
+
+void QuickPanel::initConnect()
+{
+    connect(m_iconButton, &DIconButton::clicked, this, &QuickPanel::iconClicked);
 }
 
 void QuickPanel::updateIconPixmap()
@@ -177,16 +174,14 @@ void QuickPanel::updateIconPixmap()
         pa.setCompositionMode(QPainter::CompositionMode_SourceIn);
         pa.fillRect(m_iconPixmap.rect(), palette().highlight());
     }
+    m_iconButton->setIcon(QIcon(m_iconPixmap));
 }
 
-void QuickPanel::updateExpandPixmap()
+void QuickPanel::setHover(bool hover)
 {
-    qreal ratio = devicePixelRatioF();
-    m_expandPixmap = DStyle::standardIcon(style(), DStyle::SP_ArrowEnter).pixmap(ExpandSize * ratio);
-    m_expandPixmap.setDevicePixelRatio(ratio);
-    if (m_hoverExpand) {
-        QPainter expandPainter(&m_expandPixmap);
-        expandPainter.setCompositionMode(QPainter::CompositionMode_SourceIn);
-        expandPainter.fillRect(m_expandPixmap.rect(), palette().highlight());
-    }
+    if (hover == m_hover)
+        return;
+
+    m_hover = hover;
+    update();
 }
