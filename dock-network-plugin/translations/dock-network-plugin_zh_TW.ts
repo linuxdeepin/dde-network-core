@@ -25,6 +25,10 @@
         <translation>有線網路</translation>
     </message>
     <message>
+        <source>Connected</source>
+        <translation>已連接</translation>
+    </message>
+    <message>
         <source>Device disabled</source>
         <translation>裝置已禁用</translation>
     </message>
@@ -39,6 +43,10 @@
     <message>
         <source>Connecting</source>
         <translation>正在連線</translation>
+    </message>
+    <message>
+        <source>Obtaining address</source>
+        <translation>獲取地址中</translation>
     </message>
     <message>
         <source>Connected but no Internet access</source>

@@ -18,11 +18,15 @@
     </message>
     <message>
         <source>Wireless Network</source>
-        <translation type="unfinished"/>
+        <translation>Xarxa sense fil</translation>
     </message>
     <message>
         <source>Wired Network</source>
         <translation>Xarxa amb fil</translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Device disabled</source>
@@ -39,6 +43,10 @@
     <message>
         <source>Connecting</source>
         <translation>Es connecta</translation>
+    </message>
+    <message>
+        <source>Obtaining address</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connected but no Internet access</source>

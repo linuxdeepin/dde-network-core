@@ -18,11 +18,15 @@
     </message>
     <message>
         <source>Wireless Network</source>
-        <translation type="unfinished"/>
+        <translation>Wireless Network</translation>
     </message>
     <message>
         <source>Wired Network</source>
         <translation>Wired Network</translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation>Connected</translation>
     </message>
     <message>
         <source>Device disabled</source>
@@ -39,6 +43,10 @@
     <message>
         <source>Connecting</source>
         <translation>Connecting</translation>
+    </message>
+    <message>
+        <source>Obtaining address</source>
+        <translation>Obtaining address</translation>
     </message>
     <message>
         <source>Connected but no Internet access</source>
