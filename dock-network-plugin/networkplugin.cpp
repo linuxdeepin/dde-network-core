@@ -240,7 +240,7 @@ void NetworkPlugin::updateQuickPanel()
         updateQuickPanelDescription(status, wirelessConnectionCount, wirelessConnection, NetworkPluginHelper::MenuWirelessEnable);
         m_quickPanel->setText(tr("Wireless Network"));
         m_quickPanel->setIcon(QIcon::fromTheme(ThemeManager::instance()->getIcon("wireless-80-symbolic")));
-    } else if (wiredList.isEmpty()) {
+    } else if (!wiredList.isEmpty()) {
         NetDeviceStatus status = DeviceStatusHandler::wiredStatus(wiredList);
         updateQuickPanelDescription(status, wiredConnectionCount, wiredConnection, NetworkPluginHelper::MenuWiredEnable);
         m_quickPanel->setText(tr("Wired Network"));
@@ -257,9 +257,7 @@ void NetworkPlugin::updateQuickPanel()
 void NetworkPlugin::updateQuickPanelDescription(NetDeviceStatus status, int connectionCount, const QString &Connection, int enableMenu)
 {
     QString statusName = networkStateName(status);
-    bool isEnabled = (status != NetDeviceStatus::Disabled
-                      && status != NetDeviceStatus::Unknown
-                      && status != NetDeviceStatus::Nocable);
+    bool isEnabled = (status != NetDeviceStatus::Disabled);
 
     if (statusName.isEmpty() && connectionCount != 0) {
         if (connectionCount == 1) {
