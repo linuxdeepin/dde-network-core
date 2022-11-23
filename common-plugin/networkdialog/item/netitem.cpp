@@ -492,6 +492,7 @@ void WirelessItem::expandWidget(ExpandWidget type, bool autoDisconnect)
         standardItem()->setSizeHint(QSize(-1, 130));
         m_stackWidget->setCurrentIndex(type);
         m_ssidEdit->lineEdit()->setFocus();
+        QTimer::singleShot(50, m_ssidEdit->lineEdit(), SLOT(setFocus()));
         break;
     case ExpandWidget::ShowPassword:
 // TODO: AccessPoints::connectionStatusChanged 信号未同步过来
@@ -512,6 +513,7 @@ void WirelessItem::expandWidget(ExpandWidget type, bool autoDisconnect)
         m_passwdEdit->lineEdit()->setFocus();
         checkInputValid();
         m_passwdEdit->setAlert(!m_passwdEdit->text().isEmpty());
+        QTimer::singleShot(50, m_passwdEdit->lineEdit(), SLOT(setFocus()));
         break;
     }
     emit sizeChanged();
