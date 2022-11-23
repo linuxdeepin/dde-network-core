@@ -691,14 +691,9 @@ void NetworkPanel::passwordError(const QString &dev, const QString &ssid, bool w
     }
 }
 
-bool NetworkPanel::changePassword(const QString &key, const QString &password, bool input)
+void NetworkPanel::changePassword(const QString &key, const QString &password, bool input)
 {
-    if (m_waitPassword) {
-        Q_EMIT passwordChanged(key, password, input);
-        m_waitPassword = false;
-        return true;
-    }
-    return false;
+    Q_EMIT passwordChanged(key,password,input);
 }
 
 QString NetworkPanel::ssidWaitingForPassword() const
