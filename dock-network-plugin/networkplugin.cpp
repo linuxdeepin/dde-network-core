@@ -321,6 +321,19 @@ QIcon NetworkPlugin::icon(const DockPart &dockPart)
     return PluginsItemInterface::icon(dockPart);
 }
 
+QIcon NetworkPlugin::icon(const DockPart &dockPart, int themeType)
+{
+    switch(dockPart) {
+    case DockPart::DCCSetting:
+    case DockPart::QuickShow:
+        return m_networkHelper->icon(themeType);
+    default:
+        break;
+    }
+
+    return QIcon();
+}
+
 PluginsItemInterface::PluginStatus NetworkPlugin::status() const
 {
     // get the plugin status

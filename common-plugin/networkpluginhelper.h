@@ -82,6 +82,7 @@ public:
     void updateTooltips(); // 更新提示的内容
 
     QIcon *trayIcon() const;
+    QIcon icon(int colorType) const;
     void refreshIcon();
     void setIconDark(bool isDark);
 
