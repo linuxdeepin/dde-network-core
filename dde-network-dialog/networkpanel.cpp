@@ -665,7 +665,8 @@ void NetworkPanel::passwordError(const QString &dev, const QString &ssid)
         m_reconnectDev = dev;
     }
     if (!m_reconnectSsid.isEmpty()) {
-        QTimer::singleShot(0, this, &NetworkPanel::expandPasswordInput);
+        // 需要延时一段时间再展开密码输入框，否则界面和列表还没有显示出来时，输入框无法获得焦点
+        QTimer::singleShot(150, this, &NetworkPanel::expandPasswordInput);
     }
 }
 
