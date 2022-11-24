@@ -26,10 +26,52 @@
 
 #include <QMouseEvent>
 #include <QVBoxLayout>
+#include <QApplication>
 
 DWIDGET_USE_NAMESPACE
 
 const QSize IconSize(24, 24); // 图标大小
+
+class HighlightIconEngine : public QIconEngine
+{
+public:
+    explicit HighlightIconEngine(QIcon icon = QIcon())
+        : QIconEngine()
+        , m_icon(icon)
+    {
+    }
+
+    virtual void paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state)
+    {
+        QSize pixmapSize = rect.size();
+        qreal scale = 1;
+        if (painter->device())
+            scale = painter->device()->devicePixelRatioF();
+
+        pixmapSize *= scale;
+
+        QPixmap pm = m_icon.pixmap(pixmapSize, mode, state);
+        if (pm.isNull())
+            return;
+
+        if (state == QIcon::On) {
+            QPainter pa(&pm);
+            pa.setCompositionMode(QPainter::CompositionMode_SourceIn);
+            pa.fillRect(pm.rect(), qApp->palette().highlight());
+        }
+
+        pm.setDevicePixelRatio(scale);
+        painter->drawPixmap(rect, pm);
+    }
+
+    virtual QIconEngine *clone() const
+    {
+        return new HighlightIconEngine(m_icon);
+    }
+
+private:
+    QIcon m_icon;
+};
 
 QuickPanel::QuickPanel(QWidget *parent)
     : QWidget(parent)
@@ -37,7 +79,6 @@ QuickPanel::QuickPanel(QWidget *parent)
     , m_text(new DLabel(this))
     , m_description(new DLabel(this))
     , m_hover(false)
-    , m_active(false)
 {
     initUi();
     initConnect();
@@ -65,8 +106,7 @@ const QString QuickPanel::description() const
 
 void QuickPanel::setIcon(const QIcon &icon)
 {
-    m_icon = icon;
-    updateIconPixmap();
+    m_iconButton->setIcon(QIcon(new HighlightIconEngine(icon)));
 }
 
 void QuickPanel::setText(const QString &text)
@@ -82,8 +122,7 @@ void QuickPanel::setDescription(const QString &description)
 
 void QuickPanel::setActive(bool active)
 {
-    m_active = active;
-    updateIconPixmap();
+    m_iconButton->setChecked(active);
 }
 
 void QuickPanel::paintEvent(QPaintEvent *event)
@@ -148,6 +187,7 @@ void QuickPanel::initUi()
     m_iconButton->setIconSize(IconSize);
     m_iconButton->setGeometry(8, 10, 36, 36);
     m_iconButton->installEventFilter(this);
+    m_iconButton->setCheckable(true);
     // 进入图标
     QLabel *enterIcon = new QLabel(this);
     qreal ratio = devicePixelRatioF();
@@ -162,19 +202,6 @@ void QuickPanel::initUi()
 void QuickPanel::initConnect()
 {
     connect(m_iconButton, &DIconButton::clicked, this, &QuickPanel::iconClicked);
-}
-
-void QuickPanel::updateIconPixmap()
-{
-    qreal ratio = devicePixelRatioF();
-    m_iconPixmap = m_icon.pixmap(IconSize * ratio);
-    m_iconPixmap.setDevicePixelRatio(ratio);
-    if (m_active) {
-        QPainter pa(&m_iconPixmap);
-        pa.setCompositionMode(QPainter::CompositionMode_SourceIn);
-        pa.fillRect(m_iconPixmap.rect(), palette().highlight());
-    }
-    m_iconButton->setIcon(QIcon(m_iconPixmap));
 }
 
 void QuickPanel::setHover(bool hover)

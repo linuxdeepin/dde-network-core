@@ -63,20 +63,16 @@ protected:
 private:
     void initUi();
     void initConnect();
-    void updateIconPixmap();
     void setHover(bool hover);
 
 private:
-    QIcon m_icon;
     QVariant m_userData;
 
     Dtk::Widget::DIconButton *m_iconButton;
     Dtk::Widget::DLabel *m_text;
     Dtk::Widget::DLabel *m_description;
-    QPixmap m_iconPixmap;
 
     bool m_hover;
-    bool m_active;
 };
 
 #endif // QUICKPANEL_H
