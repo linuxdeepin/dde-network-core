@@ -126,7 +126,7 @@ QColor ThemeManager::backgroundColor()
     case LockType:
         return QColor(235, 235, 235, static_cast<int>(0.05 * 255));
     default:
-        return QColor(255, 255, 255, alpha);
+        return QColor(255, 255, 255, 255);
     }
     Q_UNREACHABLE();
     return QColor(255, 255, 255, alpha);
