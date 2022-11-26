@@ -179,6 +179,11 @@ void NetworkPlugin::pluginSettingsChanged()
     refreshPluginItemsVisible();
 }
 
+PluginFlags NetworkPlugin::flags() const
+{
+    return PluginFlag::Type_Common | PluginFlag::Quick_Multi | PluginFlag::Attribute_CanDrag | PluginFlag::Attribute_CanInsert | PluginFlag::Attribute_CanSetting;
+}
+
 void NetworkPlugin::loadPlugin()
 {
     m_proxyInter->itemAdded(this, NETWORK_KEY);
