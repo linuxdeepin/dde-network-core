@@ -150,7 +150,7 @@ void SecretWirelessSection::saveSettings()
         } else {
             m_wsSetting->setAuthAlg(WirelessSecuritySetting::AuthAlg::None);
         }
-    } else if (m_currentKeyMgmt == WirelessSecuritySetting::KeyMgmt::WpaEap) {
+    } else if (m_currentKeyMgmt == WirelessSecuritySetting::KeyMgmt::WpaEap || m_currentKeyMgmt == WirelessSecuritySetting::KeyMgmt::WpaEapSuiteB192) {
         m_wsSetting->setAuthAlg(WirelessSecuritySetting::AuthAlg::None);
     }
 
@@ -167,10 +167,11 @@ void SecretWirelessSection::initStrMaps()
         { tr("WPA/WPA2 Personal"), WirelessSecuritySetting::KeyMgmt::WpaPsk },
         { tr("WPA/WPA2 Enterprise"), WirelessSecuritySetting::KeyMgmt::WpaEap },
 #ifdef USE_DEEPIN_NMQT
-        { tr("WPA3 Personal"), NetworkManager::WirelessSecuritySetting::KeyMgmt::WpaSae }
+        { tr("WPA3 Personal"), NetworkManager::WirelessSecuritySetting::KeyMgmt::WpaSae },
 #else
-        { tr("WPA3 Personal"), NetworkManager::WirelessSecuritySetting::KeyMgmt::SAE }
+        { tr("WPA3 Personal"), NetworkManager::WirelessSecuritySetting::KeyMgmt::SAE },
 #endif
+        { tr("WPA3 Enterprise"), NetworkManager::WirelessSecuritySetting::KeyMgmt::WpaEapSuiteB192 }
     };
 
     AuthAlgStrMap = {
@@ -193,7 +194,7 @@ void SecretWirelessSection::initUI()
 
     m_passwdEdit->setPlaceholderText(tr("Required"));
 
-    m_enableWatcher->setSecretEnable(m_currentKeyMgmt == WirelessSecuritySetting::KeyMgmt::WpaEap);
+    m_enableWatcher->setSecretEnable(m_currentKeyMgmt == WirelessSecuritySetting::KeyMgmt::WpaEap || m_currentKeyMgmt == WirelessSecuritySetting::KeyMgmt::WpaEapSuiteB192);
 
     QList<Security8021xSetting::EapMethod> eapMethodsWantedList;
     eapMethodsWantedList.append(Security8021xSetting::EapMethod::EapMethodTls);
@@ -251,6 +252,10 @@ void SecretWirelessSection::initConnection()
         switch (m_currentKeyMgmt) {
         case WirelessSecuritySetting::KeyMgmt::WpaNone:
         case WirelessSecuritySetting::KeyMgmt::WpaEap: {
+            m_passwdEdit->setVisible(false);
+            break;
+        }
+        case WirelessSecuritySetting::KeyMgmt::WpaEapSuiteB192: {
             m_passwdEdit->setVisible(false);
             break;
         }
@@ -320,6 +325,12 @@ void SecretWirelessSection::onKeyMgmtChanged(WirelessSecuritySetting::KeyMgmt ke
         break;
     }
     case WirelessSecuritySetting::KeyMgmt::WpaEap: {
+        m_passwdEdit->setVisible(false);
+        m_enableWatcher->setSecretEnable(true);
+        m_authAlgChooser->setVisible(false);
+        break;
+    }
+    case WirelessSecuritySetting::KeyMgmt::WpaEapSuiteB192: {
         m_passwdEdit->setVisible(false);
         m_enableWatcher->setSecretEnable(true);
         m_authAlgChooser->setVisible(false);

@@ -91,6 +91,10 @@ WirelessSecuritySetting::KeyMgmt WirelessConnect::getKeyMgmtByAp(dde::network::A
     if (wpaFlags.testFlag(AccessPoint::WpaFlag::KeyMgmt8021x) || rsnFlags.testFlag(AccessPoint::WpaFlag::KeyMgmt8021x)) {
         keyMgmt = WirelessSecuritySetting::KeyMgmt::WpaEap;
     }
+
+    if (wpaFlags.testFlag(AccessPoint::WpaFlag::KeyMgmtEapSuiteB192) || rsnFlags.testFlag(AccessPoint::WpaFlag::KeyMgmtEapSuiteB192)) {
+        keyMgmt = WirelessSecuritySetting::KeyMgmt::WpaEapSuiteB192;
+    }
     return keyMgmt;
 }
 

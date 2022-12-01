@@ -313,9 +313,10 @@ void ConnectionEditPage::initConnectionSecrets()
         if (keyMgmt == WirelessSecuritySetting::KeyMgmt::WpaNone || keyMgmt == WirelessSecuritySetting::KeyMgmt::Unknown)
             break;
 
-        if (keyMgmt == WirelessSecuritySetting::KeyMgmt::WpaEap) {
+        if (keyMgmt == WirelessSecuritySetting::KeyMgmt::WpaEap || keyMgmt == WirelessSecuritySetting::KeyMgmt::WpaEapSuiteB192) {
             sType = Setting::SettingType::Security8021x;
         }
+
         sSecretsMapMap = secretsMapMapBySettingType(sType);
         setSecretsFromMapMap<WirelessSecuritySetting>(sType, sSecretsMapMap);
         break;

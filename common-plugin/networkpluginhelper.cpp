@@ -491,7 +491,7 @@ bool NetworkPluginHelper::needSetPassword(AccessPoints *accessPoint) const
         return true;
 
     NetworkManager::Setting::SettingType sType = NetworkManager::Setting::SettingType::WirelessSecurity;
-    if (keyMgmt == NetworkManager::WirelessSecuritySetting::KeyMgmt::WpaEap)
+    if (keyMgmt == NetworkManager::WirelessSecuritySetting::KeyMgmt::WpaEap || keyMgmt == NetworkManager::WirelessSecuritySetting::KeyMgmt::WpaEapSuiteB192)
         sType = NetworkManager::Setting::SettingType::Security8021x;
 
     QDBusPendingReply<NMVariantMapMap> reply;

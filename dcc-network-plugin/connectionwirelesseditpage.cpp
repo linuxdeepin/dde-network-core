@@ -99,5 +99,10 @@ void ConnectionWirelessEditPage::initApSecretType(AccessPoint::Ptr nmAp)
         keyMgmt = WirelessSecuritySetting::KeyMgmt::WpaEap;
     }
 
+    if (wpaFlags.testFlag(AccessPoint::WpaFlag::KeyMgmtEapSuiteB192) ||
+            rsnFlags.testFlag(AccessPoint::WpaFlag::KeyMgmtEapSuiteB192)) {
+        keyMgmt = WirelessSecuritySetting::KeyMgmt::WpaEapSuiteB192;
+    }
+
     wirelessSecuritySetting->setKeyMgmt(keyMgmt);
 }
