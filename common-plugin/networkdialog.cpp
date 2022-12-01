@@ -93,6 +93,13 @@ void NetworkDialog::requestFocus()
         // 释放grab的时候可能会让隐藏的屏幕抓取键盘，显示登陆界面的屏幕无法获取到焦点
         if (QString("FullscreenBackground") == w->metaObject()->superClass()->className() && w->property("contentVisible").toBool()) {
             w->installEventFilter(this);
+            // 不能依赖dde-session-shell的实现，如果某些控件吞掉了事件，
+            // 鼠标点击这些控件不会隐藏网络弹窗
+            if (Greeter == m_runReason) {
+                for (auto child : w->findChildren<QWidget*>())
+                    child->installEventFilter(this);
+            }
+
             if (w->window() && w->window()->windowHandle()->setKeyboardGrabEnabled(false)) {
                 qInfo() << "requestFocus true";
             }
@@ -105,6 +112,10 @@ void NetworkDialog::freeFocus()
 {
     if (m_focusWidget) {
         m_focusWidget->removeEventFilter(this);
+        if (Greeter == m_runReason) {
+            for (auto child : m_focusWidget->findChildren<QWidget*>())
+                child->removeEventFilter(this);
+        }
         if (m_focusWidget->window() && m_focusWidget->window()->windowHandle()->setKeyboardGrabEnabled(true)) {
             qInfo() << "freeFocus true";
         }
