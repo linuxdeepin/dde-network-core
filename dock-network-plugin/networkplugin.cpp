@@ -315,18 +315,7 @@ void NetworkPlugin::onIconUpdated()
     updateQuickPanel();
 }
 
-QIcon NetworkPlugin::icon(const DockPart &dockPart)
-{
-    switch (dockPart) {
-    case DockPart::QuickShow:
-        return *m_networkHelper->trayIcon();
-    default:
-        break;
-    }
-    return PluginsItemInterface::icon(dockPart);
-}
-
-QIcon NetworkPlugin::icon(const DockPart &dockPart, int themeType)
+QIcon NetworkPlugin::icon(const DockPart &dockPart, DGuiApplicationHelper::ColorType themeType)
 {
     switch(dockPart) {
     case DockPart::DCCSetting:
@@ -339,7 +328,7 @@ QIcon NetworkPlugin::icon(const DockPart &dockPart, int themeType)
     return QIcon();
 }
 
-PluginsItemInterface::PluginStatus NetworkPlugin::status() const
+PluginsItemInterface::PluginMode NetworkPlugin::status() const
 {
     // get the plugin status
     PluginState plugState = m_networkHelper->getPluginState();
@@ -347,12 +336,12 @@ PluginsItemInterface::PluginStatus NetworkPlugin::status() const
     case PluginState::Unknown:
     case PluginState::Disabled:
     case PluginState::Nocable:
-        return PluginStatus::Disabled;
+        return PluginMode::Disabled;
     default:
         break;
     }
 
-    return PluginStatus::Active;
+    return PluginMode::Active;
 }
 
 QString NetworkPlugin::description() const
