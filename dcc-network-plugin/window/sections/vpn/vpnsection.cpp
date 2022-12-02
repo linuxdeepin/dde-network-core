@@ -7,6 +7,7 @@
 #include <widgets/lineeditwidget.h>
 #include <widgets/comboxwidget.h>
 
+#include <QHostInfo>
 #include <QHostAddress>
 
 #include <DLineEdit>
@@ -48,7 +49,15 @@ bool VpnSection::allInputValid()
         m_gateway->setIsErr(true);
         m_gateway->dTextEdit()->showAlertMessage(tr("Invalid gateway"), parentWidget(), 2000);
     } else {
-        m_gateway->setIsErr(false);
+        QHostAddress addr(m_gateway->text());
+        if (addr.protocol() == QAbstractSocket::IPv6Protocol) {
+            // ipv6 不支持，这里过滤掉，不然后面host 会反向解析浪费时间。
+            valid = false;
+            m_gateway->setIsErr(true);
+            m_gateway->dTextEdit()->showAlertMessage(tr("Invalid gateway"), parentWidget(), 2000);
+        } else {
+            m_gateway->setIsErr(false);
+        }
     }
 
     if (m_userName->text().isEmpty()) {
@@ -75,7 +84,19 @@ void VpnSection::saveSettings()
     m_dataMap = m_vpnSetting->data();
     m_secretMap = m_vpnSetting->secrets();
 
-    m_dataMap.insert("gateway", m_gateway->text());
+    auto addr = m_gateway->text();
+    if (!isIpv4Address(addr)) {
+        // 非ipv4的地址，看下能否转为ipv4的地址。
+        QHostInfo hostInfo = QHostInfo::fromName(addr);
+        for (const auto& v : hostInfo.addresses()) {
+            if (v.protocol() == QAbstractSocket::IPv4Protocol) {
+                addr = v.toString();
+                break;
+            }
+        }
+    }
+
+    m_dataMap.insert("gateway", addr);
     m_dataMap.insert("user", m_userName->text());
     m_dataMap.insert("password-flags", QString::number(m_currentPasswordType));
     if (m_currentPasswordType == Setting::SecretFlagType::None)
