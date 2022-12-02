@@ -7,7 +7,6 @@ set(CMAKE_PREFIX_PATH $ENV{Qt5_DIR})
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(DdeControlCenter REQUIRED)
 find_package(Qt5 COMPONENTS Core DBus Network REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Svg REQUIRED)
@@ -83,7 +82,6 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
-    ${DdeControlCenter_LIBRARIES}
     ${DDE_DOCK_LIBRARIES}
     ${DtkWidget_LIBRARIES}
     ${Qt5Core_LIBRARIES}

@@ -62,10 +62,10 @@ public:
     ~NetworkPanel() override;
 
     QWidget *itemApplet();
-    void passwordError(const QString &dev, const QString &ssid);
+    void passwordError(const QString &dev, const QString &ssid, bool wait = true);
 
     bool changePassword(const QString &key, const QString &password, bool input);
-    QString ssidWaitingForPassword();
+    QString ssidWaitingForPassword() const;
     bool closeOnClear() const;
     void setCloseOnClear(bool closeOnClear);
     void clear();

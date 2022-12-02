@@ -668,7 +668,7 @@ void WirelessItem::onConnectHidden()
     QString ssid = m_ssidEdit->text();
     if (!ssid.isEmpty()) {
         expandWidget(ExpandWidget::Hide, false);
-        m_wirelessConnect->setSsid(m_ssidEdit->text());
+        m_wirelessConnect->setSsid(ssid);
         m_wirelessConnect->connectNetwork();
     }
 }
