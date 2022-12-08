@@ -29,7 +29,11 @@ TrayIcon::TrayIcon(NetworkPluginHelper *networkHelper)
 
     m_refreshIconTimer->setInterval(100);
     connect(m_refreshIconTimer, &QTimer::timeout, this, &TrayIcon::refreshIcon);
-    connect(m_networkHelper, &NetworkPluginHelper::viewUpdate, this, &TrayIcon::refreshIcon);
+    connect(m_networkHelper, &NetworkPluginHelper::viewUpdate, this, [this]{
+        if (!m_refreshIconTimer->isActive()) {
+            m_refreshIconTimer->start(500);
+        }
+    });
     connect(Dtk::Gui::DGuiApplicationHelper::instance(), &Dtk::Gui::DGuiApplicationHelper::themeTypeChanged, this, &TrayIcon::refreshIcon);
     // 在初始化的时候，需要更新本地图标信息，否则可能会出现图标状态显示不正确
     QTimer::singleShot(0, this, [ this ] {
