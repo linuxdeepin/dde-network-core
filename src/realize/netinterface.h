@@ -107,6 +107,7 @@ public:
     virtual void setEnabled(bool enabled);                                               // 开启或禁用网卡
     virtual void disconnectNetwork();                                                    // 断开网络连接，该方法是一个虚方法，具体在子类
     Connectivity connectivity();
+    bool ipConflicted();
     virtual DeviceStatus deviceStatus() const;
 
     // 无线网络接口

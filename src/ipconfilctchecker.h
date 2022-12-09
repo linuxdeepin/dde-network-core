@@ -73,6 +73,7 @@ private:
     int m_count;
     bool m_ipConflicted;
     QList<QStringList> m_changeIpv4s;
+    QTime m_requestTime;
 };
 
 }

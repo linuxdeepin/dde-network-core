@@ -192,11 +192,13 @@ Connectivity NetworkDeviceRealize::connectivity()
     return m_connectivity;
 }
 
+bool NetworkDeviceRealize::ipConflicted()
+{
+    return m_ipConflicted;
+}
+
 DeviceStatus NetworkDeviceRealize::deviceStatus() const
 {
-    if (m_ipConflicted)
-        return DeviceStatus::IpConfilct;
-
     return m_deviceStatus;
 }
 
