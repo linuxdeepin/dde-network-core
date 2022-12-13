@@ -71,10 +71,6 @@ private:
 
 void ScrollArea::setVisible(bool visible)
 {
-    QWidget *w = qobject_cast<QWidget *>(parent());
-    if (w) {
-        w->setWindowFlag(Qt::WindowDoesNotAcceptFocus, !visible);
-    }
     if (!visible && m_panel->closeOnClear()) {
         m_panel->clear();
     }

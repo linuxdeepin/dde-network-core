@@ -188,16 +188,16 @@ void ConnectionEditPage::initSettingsWidget()
 
     switch (m_connType) {
     case ConnectionSettings::ConnectionType::Wired: {
-        m_settingsWidget = new WiredSettings(m_connectionSettings, DevicePath);
+        m_settingsWidget = new WiredSettings(m_connectionSettings, DevicePath, this);
         break;
     }
     case ConnectionSettings::ConnectionType::Wireless: {
-        m_settingsWidget = new WirelessSettings(m_connectionSettings, m_tempParameter);
+        m_settingsWidget = new WirelessSettings(m_connectionSettings, m_tempParameter, this);
         break;
     }
 
     case ConnectionSettings::ConnectionType::Pppoe: {
-        m_settingsWidget = new DslPppoeSettings(m_connectionSettings, DevicePath);
+        m_settingsWidget = new DslPppoeSettings(m_connectionSettings, DevicePath, this);
         break;
     }
     default:
