@@ -1,3 +1,29 @@
+dde-network-core (2.0.3.1) unstable; urgency=medium
+
+  [ TagBuilder ]
+  * fix: 更新网络翻译文件(Bug: 165783)(Influence: 控制中心-网络-翻译)
+  * fix: 网络面板改为插件内窗口(Task: 196767)(Influence: 登录、锁屏、任务栏网络面板弹窗)
+  * fix: 网络插件适配DTK接口更新(Task: 112061)(Influence: 控制中心-网络-各项网络列表)
+  * chore: 更新翻译文件(Task: 196767)(Influence: 网络面板翻译)
+  * fix: 修改网络图标为空问题(Task: 208067)(Influence: 任务栏、锁屏-网络图标显示)
+  * fix: 添加network-manager-integration-plugins依赖(Task: 196767)(Influence: 控制中心-网络-有线网络EAP认证)
+  * fix: 适配任务栏网络插件(Task: 208067)(Influence: 任务栏、锁屏界面、登录界面-网络图标，任务栏网络快捷面板)
+  * chore: 更新翻译文件(Task: 208067)(Influence: 任务栏网络快捷面板)
+  * fix: 网络快捷面板增加长文本处理(Task: 208067)(Influence: 任务栏网络快捷面板)
+  * fix: 网络快捷面板文本修改(Task: 208067)(Influence: 任务栏网络快捷面板)
+  * chore: 更新翻译文件(Task: 208067)(Influence: 任务栏网络快捷面板)
+  * fix: 修改只有有线时，网络快捷面板网络状态错误问题(Task: 208067)(Influence: 只有有线时，任务栏-网络-网络快捷面板状态)
+  * fix: 增加控制中心个性化的图标定制(Bug: 172365)(Influence: 控制中心-个性化，查看插件区域，观察网络图标是否跟随主题变化)
+  * fix: 修改网络面板焦点问题(Bug: 146615)(Influence: 登陆/锁屏/任务栏-网络面板-输入焦点)
+  * fix: 修改网络快捷面板图标缩放适配(Bug: 173395)(Influence: 任务栏-网络快捷面板界面)
+  * feat: 增加任务栏可识别插件属性(Task: 220099)(Influence: 观察插件是否在任务栏快捷面板中)
+  * fix: 修复任务栏不能连接隐藏网络问题(Bug: 173619)(Influence: 任务栏-连接隐藏网络)
+  * fix: 适配基类接口(Task: 222025)(Influence: 无)
+  * chore: V23接口改造适配(Task: 207483)(Influence: 无)
+  * fix: 处理创建DSL点击保存后未触发主动连接问题(Bug: 132667)(Influence: 创建DSL点击保存后触发主动连接)
+
+ -- zhaoyingzhen <zhaoyingzhen@uniontech.com>  Tue, 13 Dec 2022 19:01:51 +0800
+
 dde-network-core (2.0.2) unstable; urgency=medium
 
   [ Deepin Packages Builder ]
