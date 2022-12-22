@@ -122,6 +122,17 @@ void NetworkInterProcesser::initConnection()
     connect(m_networkInter, &NetworkInter::DeviceEnabled, this, &NetworkInterProcesser::onDeviceEnableChanged);                        // 关闭设备或启用设备
 
     connect(m_networkInter, &NetworkInter::ConnectivityChanged, this, &NetworkInterProcesser::onConnectivityChanged);                  // 网络状态发生变化
+
+    connect(m_networkInter, &NetworkInter::ActiveConnectionInfoChanged, this, [this] {
+        // 同步IP地址等信息
+        QDBusPendingCallWatcher *w = new QDBusPendingCallWatcher(m_networkInter->GetActiveConnectionInfo(), this);
+        connect(w, &QDBusPendingCallWatcher::finished, w, &QDBusPendingCallWatcher::deleteLater);
+        connect(w, &QDBusPendingCallWatcher::finished, this, [ this ](QDBusPendingCallWatcher * w) {
+            QDBusPendingReply<QString> reply = *w;
+            QString activeConnectionInfo = reply.value();
+            activeConnInfoChanged(activeConnectionInfo);
+        });
+    });
 }
 
 NetworkDeviceBase *NetworkInterProcesser::findDevices(const QString &path) const

@@ -109,8 +109,7 @@ NetworkModuleWidget::NetworkModuleWidget(QWidget *parent)
     NetworkController *pNetworkController = NetworkController::instance();
     connect(pNetworkController, &NetworkController::activeConnectionChange, this, &NetworkModuleWidget::onDeviceStatusChanged);
     connect(pNetworkController, &NetworkController::deviceRemoved, this, &NetworkModuleWidget::onDeviceChanged);
-    connect(pNetworkController, &NetworkController::deviceAdded, this, [ = ] (QList<NetworkDeviceBase *> devices) {
-        initIpConflictInfo(devices);
+    connect(pNetworkController, &NetworkController::deviceAdded, this, [ = ] () {
         onDeviceChanged();
         if (m_isFirstEnter) {
             showDefaultWidget();
@@ -121,7 +120,6 @@ NetworkModuleWidget::NetworkModuleWidget(QWidget *parent)
     ProxyController *proxyController = pNetworkController->proxyController();
     connect(proxyController, &ProxyController::proxyMethodChanged, this, &NetworkModuleWidget::onProxyMethodChanged);
 
-    initIpConflictInfo(pNetworkController->devices());
     onDeviceChanged();
 
     DStandardItem *infoit = new DStandardItem(tr("Network Details"));

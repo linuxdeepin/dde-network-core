@@ -11,6 +11,8 @@
 #include <networkmanagerqt/manager.h>
 #include <networkmanagerqt/device.h>
 
+#include <org_freedesktop_notifications.h>
+
 const static QString networkService = "com.deepin.daemon.Network";
 const static QString networkPath = "/com/deepin/daemon/Network";
 
@@ -101,7 +103,7 @@ void IPConfilctChecker::handlerIpConflict(const QString &ip, const QString &macA
                     // 已经没有checker 对应的device 了，应该销毁这个checker
                     m_deviceCheckers.removeOne(checker);
                     if (checker->ipConflicted()) {
-                        conflictStatusChanged(checker->device(), false);
+                        Q_EMIT conflictStatusChanged(checker->device(), false);
                     }
                     checker->deleteLater();
                 } else {
@@ -209,17 +211,17 @@ DeviceIPChecker::DeviceIPChecker(NetworkDeviceBase *device, NetworkInter *netInt
     , m_ipConflicted(false)
 {
     auto requestConflictCheck = [ this ] () {
-        // 当设备的IP地址发生变化的时候，请求IP冲突， 只有在上一次请求和该次请求发生的时间大于2秒，才发出信号
+        // 当设备的IP地址发生变化的时候，请求IP冲突， 只有在上一次请求和该次请求发生的时间大于3秒，才发出信号
         m_ipV4 = m_device->ipv4();
-        if (!m_ipV4.isEmpty()) {
+        auto now = QTime::currentTime();
+        if (!m_ipV4.isEmpty() && m_requestTime < now) {
             PRINT_INFO_MESSAGE(QString("request Device:%1, IP: %2").arg(m_device->deviceName()).arg(m_ipV4.join(",")));
             m_changeIpv4s << m_ipV4;
-            QTimer::singleShot(800, this, [ this ] {
-                if (m_changeIpv4s.size() > 0) {
-                    emit ipConflictCheck(m_changeIpv4s[m_changeIpv4s.size() - 1]);
-                    m_changeIpv4s.clear();
-                }
-            });
+            m_requestTime = now.addSecs(3);
+            if (m_changeIpv4s.size() > 0) {
+                emit ipConflictCheck(m_changeIpv4s[m_changeIpv4s.size() - 1]);
+                m_changeIpv4s.clear();
+            }
         }
     };
     connect(device, &NetworkDeviceBase::ipV4Changed, this, requestConflictCheck);
@@ -233,6 +235,13 @@ DeviceIPChecker::DeviceIPChecker(NetworkDeviceBase *device, NetworkInter *netInt
             PRINT_INFO_MESSAGE(QString("[on] check ip conflict:%1").arg(m_ipV4.join(",")));
             emit ipConflictCheck(m_ipV4);
         } else {
+            if ((m_count++ % 2) == 0) {
+                if (m_device->deviceStatus() == DeviceStatus::Activated && m_device->connectivity() == Connectivity::Limited) {
+                    PRINT_INFO_MESSAGE(QString("[off] limit check ip conflict:%1").arg(m_ipV4.join(",")));
+                    emit ipConflictCheck(m_ipV4);
+                    return;
+                }
+            }
             // 如果无冲突, 则冷却至少180秒检测一次。
             if ((m_count++ % 36) == 0) {
                 PRINT_INFO_MESSAGE(QString("[off] check ip conflict:%1").arg(m_ipV4.join(",")));
@@ -264,7 +273,8 @@ void DeviceIPChecker::handlerIpConflict()
         m_conflictCount = 0;
         // 如果MAC地址为空，则表示IP冲突已经解决，则让每个网卡恢复之前的状态
         if (m_clearCount < 3 && m_ipConflicted) {
-            emit ipConflictCheck(m_ipV4);
+            // 当对方主机不积极争抢时，ip 冲突很容易被解除，所以不主动发起请求。
+            //emit ipConflictCheck(m_ipV4);
         } else {
             // 拿到最后一次设备冲突的状态
             bool lastConfilctStatus = m_ipConflicted;
@@ -288,8 +298,20 @@ void DeviceIPChecker::handlerIpConflict()
             m_ipConflicted = true;
 
             // 最后一次IP不冲突，本次IP冲突的时候才发送设备状态变化的信号
-            if (!lastConflictStatus)
+            if (!lastConflictStatus) {
                 Q_EMIT conflictStatusChanged(m_device, true);
+
+                if (m_requestTime > QTime::currentTime()) {
+                    // ip 地址变化 3 秒内，发送通知
+                    using Notifications = org::freedesktop::Notifications;
+                    Notifications notifications("org.freedesktop.Notifications", "/org/freedesktop/Notifications", QDBusConnection::sessionBus());
+                    notifications.Notify("dde-control-center",
+                                         static_cast<uint>(QDateTime::currentMSecsSinceEpoch()),
+                                         "preferences-system",
+                                         tr("Network"),
+                                         tr("IP conflict"), QStringList(), QVariantMap(), 3000);
+                }
+            }
         }
         m_conflictCount++;
     }
