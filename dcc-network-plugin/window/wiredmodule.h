@@ -52,6 +52,7 @@ public Q_SLOTS:
 private Q_SLOTS:
     void initWirelessList(DTK_WIDGET_NAMESPACE::DListView *lvProfiles);
     void editConnection(dde::network::ControllItems *item);
+    void onNameChanged(const QString &name);
 
 private:
     dde::network::WiredDevice *m_device;

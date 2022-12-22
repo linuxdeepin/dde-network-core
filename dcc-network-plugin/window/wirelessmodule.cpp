@@ -47,9 +47,11 @@ using namespace DCC_NAMESPACE;
 DWIDGET_USE_NAMESPACE
 
 WirelessModule::WirelessModule(WirelessDevice *dev, QObject *parent)
-    : PageModule("Wireless", dev->deviceName(), dev->deviceName(), QIcon::fromTheme("dcc_wifi"), parent)
+    : PageModule("wireless", dev->deviceName(), QString(), QIcon::fromTheme("dcc_wifi"), parent)
     , m_device(dev)
 {
+    onNameChanged(m_device->deviceName());
+    connect(m_device, &WirelessDevice::nameChanged, this, &WirelessModule::onNameChanged);
     m_modules.append(new WidgetModule<SwitchWidget>("wireless_adapter", tr("Wireless Network Adapter"), [this](SwitchWidget *devEnabled) {
         QLabel *lblTitle = new QLabel(tr("Wireless Network Adapter")); // 无线网卡
         DFontSizeManager::instance()->bind(lblTitle, DFontSizeManager::T5, QFont::DemiBold);
@@ -62,7 +64,7 @@ WirelessModule::WirelessModule(WirelessDevice *dev, QObject *parent)
             devEnabled->blockSignals(false);
         });
     }));
-    m_modules.append(new WidgetModule<DListView>("List_wirelesslist", QString(), this, &WirelessModule::initWirelessList));
+    m_modules.append(new WidgetModule<DListView>("wirelesslist", QString(), this, &WirelessModule::initWirelessList));
     m_modules.append(new WidgetModule<SettingsGroup>("hotspot_tips", tr("Disable hotspot first if you want to connect to a wireless network"), [](SettingsGroup *tipsGroup) {
         QLabel *tips = new QLabel;
         tips->setAlignment(Qt::AlignCenter);
@@ -115,6 +117,17 @@ void WirelessModule::initWirelessList(DListView *lvAP)
             return;
         m_device->connectNetwork(ap);
     });
+}
+
+void WirelessModule::onNameChanged(const QString &name)
+{
+    QString tmp;
+    for (auto it = name.begin(); it != name.end(); ++it) {
+        if ((*it) >= '0' && (*it) <= '9')
+            tmp.append((*it));
+    }
+    setName("wireless" + tmp);
+    setDisplayName(name);
 }
 
 void WirelessModule::updateVisible()

@@ -41,9 +41,11 @@ using namespace DCC_NAMESPACE;
 DWIDGET_USE_NAMESPACE
 
 WiredModule::WiredModule(WiredDevice *dev, QObject *parent)
-    : PageModule("networkWired", dev->deviceName(), dev->deviceName(), QIcon::fromTheme("dcc_ethernet"), parent)
+    : PageModule("wired", dev->deviceName(), QString(), QIcon::fromTheme("dcc_ethernet"), parent)
     , m_device(dev)
 {
+    onNameChanged(m_device->deviceName());
+    connect(m_device, &WiredDevice::nameChanged, this, &WiredModule::onNameChanged);
     m_modules.append(new WidgetModule<SwitchWidget>("wired_adapter", tr("Wired Network Adapter"), [this](SwitchWidget *devEnabled) {
         QLabel *lblTitle = new QLabel(tr("Wired Network Adapter")); // 无线网卡
         DFontSizeManager::instance()->bind(lblTitle, DFontSizeManager::T5, QFont::DemiBold);
@@ -65,7 +67,7 @@ WiredModule::WiredModule(WiredDevice *dev, QObject *parent)
         tipsGroup->setBackgroundStyle(SettingsGroup::GroupBackground);
         tipsGroup->insertWidget(tips);
     }));
-    m_modules.append(new WidgetModule<DListView>("List_wirelesslist", QString(), this, &WiredModule::initWirelessList));
+    m_modules.append(new WidgetModule<DListView>("wiredlist", QString(), this, &WiredModule::initWirelessList));
     m_modules.append(new WidgetModule<QWidget>); // 加个空的保证下面有弹簧
     ModuleObject *extra = new WidgetModule<FloatingButton>("addWired", tr("Add Network Connection"), [this](FloatingButton *createBtn) {
         createBtn->setIcon(DStyle::StandardPixmap::SP_IncreaseElement);
@@ -156,4 +158,15 @@ void WiredModule::editConnection(dde::network::ControllItems *item)
     connect(m_editPage, &ConnectionEditPage::disconnect, m_device, &NetworkDeviceBase::disconnectNetwork);
     m_editPage->exec();
     m_editPage->deleteLater();
+}
+
+void WiredModule::onNameChanged(const QString &name)
+{
+    QString tmp;
+    for (auto it = name.begin(); it != name.end(); ++it) {
+        if ((*it) >= '0' && (*it) <= '9')
+            tmp.append((*it));
+    }
+    setName("wired" + tmp);
+    setDisplayName(name);
 }

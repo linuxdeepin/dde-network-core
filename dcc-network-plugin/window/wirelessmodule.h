@@ -47,6 +47,7 @@ private Q_SLOTS:
     void updateVisible();
     void onApWidgetEditRequested(dde::network::AccessPoints *ap);
     void initWirelessList(DTK_WIDGET_NAMESPACE::DListView *lvAP);
+    void onNameChanged(const QString &name);
 
 private:
     dde::network::WirelessDevice *m_device;

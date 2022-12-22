@@ -90,7 +90,7 @@ VPNModule::VPNModule(QObject *parent)
         connect(NetworkController::instance()->vpnController(), &VPNController::itemAdded, vpnSwitch, updateVisible);
         connect(NetworkController::instance()->vpnController(), &VPNController::itemRemoved, vpnSwitch, updateVisible);
     }));
-    m_modules.append(new WidgetModule<DListView>("List_wirelesslist", QString(), this, &VPNModule::initVPNList));
+    m_modules.append(new WidgetModule<DListView>("vpnlist", QString(), this, &VPNModule::initVPNList));
     ModuleObject *extraCreate = new WidgetModule<FloatingButton>("addWired", tr("Add Network Connection"), [this](FloatingButton *createVpnBtn) {
         createVpnBtn->setIcon(DStyle::StandardPixmap::SP_IncreaseElement);
         createVpnBtn->setMinimumSize(QSize(47, 47));
