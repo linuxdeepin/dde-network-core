@@ -118,7 +118,7 @@ void NetworkDetails::updateData(const QJsonObject &info)
 
         // 频段
         const QString &band = hotspotInfo.value("Band").toString();
-        QString bandInfo = band == "a" ? "5G" : (band == "bg" ? "2.4G" : "automatic");
+        QString bandInfo = band == "a" ? "5GHz" : (band == "bg" ? "2.4GHz" : "automatic");
         appendInfo(tr("Band"), bandInfo);
 
         // 网络通道
