@@ -42,7 +42,12 @@ NetworkPanel::NetworkPanel(QObject *parent)
     , m_netListView(new DListView(m_centerWidget))
     , m_airplaneMode(new DBusAirplaneMode("com.deepin.daemon.AirplaneMode", "/com/deepin/daemon/AirplaneMode", QDBusConnection::systemBus(), this))
     , m_updateTimer(new QTimer(this))
+    , m_blurEffect(new DBlurEffectWidget(m_applet))
 {
+    m_blurEffect->setAccessibleName("blurEffect");
+    m_blurEffect->setBlendMode(DBlurEffectWidget::BehindWindowBlend);
+    m_blurEffect->setMaskColor(DBlurEffectWidget::AutoColor);
+
     initUi();
     if (NetworkController::instance()->devices().isEmpty()) {
         // 当关闭网络后，不会收到activeConnectionChange信号，需要监听deviceAdded信号初始化连接
@@ -518,6 +523,11 @@ bool NetworkPanel::eventFilter(QObject *obj, QEvent *event)
         default:
             break;
         }
+    }
+
+    if (obj == m_applet && event->type() == QEvent::Resize) {
+        m_blurEffect->resize(m_applet->size());
+        m_blurEffect->lower();
     }
 
     return QObject::eventFilter(obj, event);
