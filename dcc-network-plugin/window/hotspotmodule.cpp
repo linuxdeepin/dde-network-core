@@ -51,13 +51,15 @@ HotspotDeviceItem::HotspotDeviceItem(WirelessDevice *dev, QObject *parent)
         DFontSizeManager::instance()->bind(lblTitle, DFontSizeManager::T5, QFont::DemiBold);
         hotspotSwitch->setLeftWidget(lblTitle);
         hotspotSwitch->setChecked(NetworkController::instance()->hotspotController()->enabled(m_device));
+
         connect(hotspotSwitch, &SwitchWidget::checkedChanged, this, &HotspotDeviceItem::onSwitchToggled);
-        // 连接时会禁用1s
-        //        connect(m_device, &WirelessDevice::hotspotEnableChanged, hotspotSwitch, [hotspotSwitch, this](const bool & enable) {
-        //            hotspotSwitch->blockSignals(true);
-        //            hotspotSwitch->setChecked(NetworkController::instance()->hotspotController()->enabled(m_device));
-        //            hotspotSwitch->blockSignals(false);
-        //        });
+
+        connect(m_device, &WirelessDevice::hotspotEnableChanged, hotspotSwitch, [hotspotSwitch, this](const bool &enable) {
+            hotspotSwitch->blockSignals(true);
+            hotspotSwitch->setChecked(NetworkController::instance()->hotspotController()->enabled(m_device));
+            hotspotSwitch->blockSignals(false);
+        });
+        connect(NetworkController::instance()->hotspotController(), &HotspotController::enableHotspotSwitch, hotspotSwitch, &SwitchWidget::setEnabled);
     }));
     m_modules.append(new WidgetModule<DListView>("list_hotspot", QString(), this, &HotspotDeviceItem::initHotspotList));
     m_modules.append(new WidgetModule<QPushButton>("hotspot_createBtn", tr("Add Settings"), [this](QPushButton *createBtn) {
@@ -109,8 +111,13 @@ void HotspotDeviceItem::initHotspotList(DListView *lvProfiles)
 
 void HotspotDeviceItem::onSwitchToggled(const bool checked)
 {
+    SwitchWidget *switchWidget = qobject_cast<SwitchWidget *>(sender());
+    if (!switchWidget)
+        return;
+
+    switchWidget->setEnabled(false);
     if (checked) {
-        openHotspot();
+        openHotspot(switchWidget);
     } else {
         closeHotspot();
     }
@@ -123,11 +130,13 @@ void HotspotDeviceItem::closeHotspot()
     hotspotController->setEnabled(m_device, false);
 }
 
-void HotspotDeviceItem::openHotspot()
+void HotspotDeviceItem::openHotspot(SwitchWidget *switchWidget)
 {
     HotspotController *hotspotController = NetworkController::instance()->hotspotController();
     QList<HotspotItem *> items = hotspotController->items(m_device);
     if (items.isEmpty()) {
+        switchWidget->setChecked(false);
+        switchWidget->setEnabled(true);
         openEditPage(nullptr);
     } else {
         // 开启热点

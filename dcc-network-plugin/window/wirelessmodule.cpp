@@ -52,7 +52,7 @@ WirelessModule::WirelessModule(WirelessDevice *dev, QObject *parent)
 {
     onNameChanged(m_device->deviceName());
     connect(m_device, &WirelessDevice::nameChanged, this, &WirelessModule::onNameChanged);
-    m_modules.append(new WidgetModule<SwitchWidget>("wireless_adapter", tr("Wireless Network Adapter"), [this](SwitchWidget *devEnabled) {
+    appendChild(new WidgetModule<SwitchWidget>("wireless_adapter", tr("Wireless Network Adapter"), [this](SwitchWidget *devEnabled) {
         QLabel *lblTitle = new QLabel(tr("Wireless Network Adapter")); // 无线网卡
         DFontSizeManager::instance()->bind(lblTitle, DFontSizeManager::T5, QFont::DemiBold);
         devEnabled->setLeftWidget(lblTitle);
@@ -64,26 +64,37 @@ WirelessModule::WirelessModule(WirelessDevice *dev, QObject *parent)
             devEnabled->blockSignals(false);
         });
     }));
-    m_modules.append(new WidgetModule<DListView>("wirelesslist", QString(), this, &WirelessModule::initWirelessList));
-    m_modules.append(new WidgetModule<SettingsGroup>("hotspot_tips", tr("Disable hotspot first if you want to connect to a wireless network"), [](SettingsGroup *tipsGroup) {
+    ModuleObject *wirelesslist = new WidgetModule<DListView>("wirelesslist", QString(), this, &WirelessModule::initWirelessList);
+    appendChild(wirelesslist);
+    ModuleObject *hotspotTips = new WidgetModule<SettingsGroup>("hotspot_tips", tr("Disable hotspot first if you want to connect to a wireless network"), [](SettingsGroup *tipsGroup) {
         QLabel *tips = new QLabel;
         tips->setAlignment(Qt::AlignCenter);
         tips->setWordWrap(true);
         tips->setText(tr("Disable hotspot first if you want to connect to a wireless network"));
         tipsGroup->insertWidget(tips);
-    }));
-    m_modules.append(new WidgetModule<QPushButton>("close_hotspot", tr("Close Hotspot"), [this](QPushButton *closeHotspotBtn) {
+    });
+    appendChild(hotspotTips);
+    ModuleObject *closeHotspot = new WidgetModule<QPushButton>("close_hotspot", tr("Close Hotspot"), [this](QPushButton *closeHotspotBtn) {
         closeHotspotBtn->setText(tr("Close Hotspot"));
         connect(closeHotspotBtn, &QPushButton::clicked, this, [=] {
             // 此处抛出这个信号是为了让外面记录当前关闭热点的设备，因为在关闭热点过程中，当前设备会移除一次，然后又会添加一次，相当于触发了两次信号，
             // 此时外面就会默认选中第一个设备而无法选中当前设备，因此在此处抛出信号是为了让外面能记住当前选择的设备
             NetworkController::instance()->hotspotController()->setEnabled(m_device, false);
         });
-    }));
-    m_modules.append(new WidgetModule<QWidget>); // 加个空的保证下面有弹簧
+    });
+    appendChild(closeHotspot);
+
+    auto updateVisible = [this, wirelesslist, hotspotTips, closeHotspot] {
+        bool devEnable = m_device->isEnabled();
+        bool hotspotEnable = devEnable && m_device->hotspotEnabled();
+        wirelesslist->setVisible(devEnable && !hotspotEnable);
+        hotspotTips->setVisible(hotspotEnable);
+        closeHotspot->setVisible(hotspotEnable);
+    };
+
     updateVisible();
-    connect(m_device, &WirelessDevice::enableChanged, this, &WirelessModule::updateVisible);
-    connect(m_device, &WirelessDevice::hotspotEnableChanged, this, &WirelessModule::updateVisible);
+    connect(m_device, &WirelessDevice::enableChanged, this, updateVisible);
+    connect(m_device, &WirelessDevice::hotspotEnableChanged, this, updateVisible);
 }
 
 void WirelessModule::initWirelessList(DListView *lvAP)
@@ -130,32 +141,6 @@ void WirelessModule::onNameChanged(const QString &name)
     setDisplayName(name);
 }
 
-void WirelessModule::updateVisible()
-{
-    bool devEnable = m_device->isEnabled();
-    bool hotspotEnable = devEnable && m_device->hotspotEnabled();
-    int i = 0;
-    for (ModuleObject *module : m_modules) {
-        if (module->name() == "List_wirelesslist") {
-            if (devEnable && !hotspotEnable)
-                insertChild(i++, module);
-            else
-                removeChild(module);
-        } else if (module->name() == "hotspot_tips") {
-            if (hotspotEnable)
-                insertChild(i++, module);
-            else
-                removeChild(module);
-        } else if (module->name() == "close_hotspot") {
-            if (hotspotEnable)
-                insertChild(i++, module);
-            else
-                removeChild(module);
-        } else {
-            insertChild(i++, module);
-        }
-    }
-}
 void WirelessModule::onNetworkAdapterChanged(bool checked)
 {
     m_device->setEnabled(checked);

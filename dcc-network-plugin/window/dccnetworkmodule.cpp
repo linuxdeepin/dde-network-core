@@ -87,7 +87,6 @@ void NetworkModule::active()
 void NetworkModule::updateVisiable()
 {
     int row = 0;
-    int index = 1;
     auto &&devices = NetworkController::instance()->devices();
     bool supportHotspot = std::any_of(devices.cbegin(), devices.cend(), [](NetworkDeviceBase *device) { return device->supportHotspot(); });
 
@@ -95,7 +94,6 @@ void NetworkModule::updateVisiable()
         insertChild(row++, module);
     }
 
-    index = 1;
     for (ModuleObject *&module : m_wirelessModules) {
         insertChild(row++, module);
     }

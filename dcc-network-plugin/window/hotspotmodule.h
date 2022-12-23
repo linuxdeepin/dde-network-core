@@ -28,6 +28,10 @@ DWIDGET_BEGIN_NAMESPACE
 class DListView;
 DWIDGET_END_NAMESPACE
 
+namespace DCC_NAMESPACE {
+class SwitchWidget;
+}
+
 namespace dde {
 namespace network {
 class NetworkDeviceBase;
@@ -57,7 +61,7 @@ private:
 private Q_SLOTS:
     void onSwitchToggled(const bool checked);
     void closeHotspot();
-    void openHotspot();
+    void openHotspot(DCC_NAMESPACE::SwitchWidget *switchWidget);
 
 private:
     dde::network::WirelessDevice *m_device;

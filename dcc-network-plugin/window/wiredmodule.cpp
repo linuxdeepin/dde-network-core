@@ -46,7 +46,7 @@ WiredModule::WiredModule(WiredDevice *dev, QObject *parent)
 {
     onNameChanged(m_device->deviceName());
     connect(m_device, &WiredDevice::nameChanged, this, &WiredModule::onNameChanged);
-    m_modules.append(new WidgetModule<SwitchWidget>("wired_adapter", tr("Wired Network Adapter"), [this](SwitchWidget *devEnabled) {
+    appendChild(new WidgetModule<SwitchWidget>("wired_adapter", tr("Wired Network Adapter"), [this](SwitchWidget *devEnabled) {
         QLabel *lblTitle = new QLabel(tr("Wired Network Adapter")); // 无线网卡
         DFontSizeManager::instance()->bind(lblTitle, DFontSizeManager::T5, QFont::DemiBold);
         devEnabled->setLeftWidget(lblTitle);
@@ -58,7 +58,7 @@ WiredModule::WiredModule(WiredDevice *dev, QObject *parent)
             devEnabled->blockSignals(false);
         });
     }));
-    m_modules.append(new WidgetModule<SettingsGroup>("nocable_tips", tr("Plug in the network cable first"), [](SettingsGroup *tipsGroup) {
+    ModuleObject *nocableTips = new WidgetModule<SettingsGroup>("nocable_tips", tr("Plug in the network cable first"), [](SettingsGroup *tipsGroup) {
         QLabel *tips = new QLabel;
         tips->setAlignment(Qt::AlignCenter);
         tips->setWordWrap(true);
@@ -66,9 +66,14 @@ WiredModule::WiredModule(WiredDevice *dev, QObject *parent)
         tips->setText(tr("Plug in the network cable first"));
         tipsGroup->setBackgroundStyle(SettingsGroup::GroupBackground);
         tipsGroup->insertWidget(tips);
-    }));
-    m_modules.append(new WidgetModule<DListView>("wiredlist", QString(), this, &WiredModule::initWirelessList));
-    m_modules.append(new WidgetModule<QWidget>); // 加个空的保证下面有弹簧
+    });
+    nocableTips->setVisible(m_device->deviceStatus() <= DeviceStatus::Unavailable);
+    connect(m_device, &WiredDevice::deviceStatusChanged, nocableTips, [this, nocableTips]() {
+        nocableTips->setVisible(m_device->deviceStatus() <= DeviceStatus::Unavailable);
+    });
+    appendChild(nocableTips);
+    appendChild(new WidgetModule<DListView>("wiredlist", QString(), this, &WiredModule::initWirelessList));
+
     ModuleObject *extra = new WidgetModule<FloatingButton>("addWired", tr("Add Network Connection"), [this](FloatingButton *createBtn) {
         createBtn->setIcon(DStyle::StandardPixmap::SP_IncreaseElement);
         createBtn->setMinimumSize(QSize(47, 47));
@@ -79,25 +84,7 @@ WiredModule::WiredModule(WiredDevice *dev, QObject *parent)
         });
     });
     extra->setExtra();
-    m_modules.append(extra);
-    onDeviceStatusChanged(m_device->deviceStatus());
-    connect(m_device, &WiredDevice::deviceStatusChanged, this, &WiredModule::onDeviceStatusChanged);
-}
-
-void WiredModule::onDeviceStatusChanged(const DeviceStatus &stat)
-{
-    const bool unavailable = stat <= DeviceStatus::Unavailable;
-    int i = 0;
-    for (ModuleObject *module : m_modules) {
-        if (module->name() == "nocable_tips") {
-            if (unavailable)
-                insertChild(i++, module);
-            else
-                removeChild(module);
-        } else {
-            insertChild(i++, module);
-        }
-    }
+    appendChild(extra);
 }
 
 void WiredModule::initWirelessList(DListView *lvProfiles)

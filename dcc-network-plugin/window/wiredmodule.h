@@ -46,9 +46,6 @@ class WiredModule : public DCC_NAMESPACE::PageModule
 public:
     explicit WiredModule(dde::network::WiredDevice *dev, QObject *parent = nullptr);
 
-public Q_SLOTS:
-    void onDeviceStatusChanged(const dde::network::DeviceStatus &stat);
-
 private Q_SLOTS:
     void initWirelessList(DTK_WIDGET_NAMESPACE::DListView *lvProfiles);
     void editConnection(dde::network::ControllItems *item);
@@ -56,7 +53,6 @@ private Q_SLOTS:
 
 private:
     dde::network::WiredDevice *m_device;
-    QList<DCC_NAMESPACE::ModuleObject *> m_modules;
     QString m_newConnectionPath;
 };
 
