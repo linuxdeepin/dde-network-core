@@ -13,6 +13,7 @@
 
 #include <DListView>
 #include <DStyledItemDelegate>
+#include <DBlurEffectWidget>
 
 #include <com_deepin_daemon_airplanemode.h>
 
@@ -92,6 +93,7 @@ private:
     QString m_reconnectSsid;
     DBusAirplaneMode *m_airplaneMode;
     QTimer *m_updateTimer;
+    DBlurEffectWidget *m_blurEffect;
 };
 
 class NetworkDelegate : public DStyledItemDelegate
