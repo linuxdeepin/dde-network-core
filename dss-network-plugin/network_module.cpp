@@ -117,6 +117,11 @@ public:
         }
     }
 
+    QList<QPair<QPointer<NETWORKPLUGIN_NAMESPACE::TrayIcon>, QPointer<DockPopupWindow>>> getApplets()
+    {
+        return m_applets;
+    }
+
 protected:
     // qApp的事件较多，固单独一个类监听其事件
     bool eventFilter(QObject *watched, QEvent *e) override
@@ -187,9 +192,24 @@ NetworkModule::NetworkModule(QObject *parent)
 QWidget *NetworkModule::content()
 {
     int msec = QTime::currentTime().msecsSinceStartOfDay();
+    static bool isPopupDisplay = false;
     if (!m_popupAppletManager->popupShown() && abs(msec - m_clickTime) > 200) {
         m_clickTime = msec;
-        m_popupAppletManager->showPopupApplet();
+        QList<QPair<QPointer<NETWORKPLUGIN_NAMESPACE::TrayIcon>, QPointer<DockPopupWindow>>> list = m_popupAppletManager->getApplets();
+        for (auto &&it : list) {
+            if (it.first->isVisible()) {
+                if (it.second.isNull()) {
+                    QWidget *pWidget = it.first->window();
+                    it.second = new DockPopupWindow(pWidget);
+                }
+            }
+            isPopupDisplay = it.second->getIsVisible();
+            if (isPopupDisplay) {
+                m_popupAppletManager->hidePopup();
+            } else {
+                m_popupAppletManager->showPopupApplet();
+            }
+        }
     }
     return nullptr;
 }

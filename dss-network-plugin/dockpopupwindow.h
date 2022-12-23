@@ -23,6 +23,8 @@ public:
     bool model() const;
 
     void setContent(QWidget *content);
+    bool getIsVisible();
+    void setTimerInterval(int msec);
 
 public slots:
     void show(const QPoint &pos, const bool model = false);
@@ -55,6 +57,8 @@ private:
     DRegionMonitor *m_regionInter;
     DWindowManagerHelper *m_wmHelper;
     bool m_enableMouseRelease;
+    QTimer *m_timer;
+    bool m_isVisible;
 };
 
 #endif // DOCKPOPUPWINDOW_H

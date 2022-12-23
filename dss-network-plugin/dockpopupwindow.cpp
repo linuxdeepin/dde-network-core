@@ -19,6 +19,8 @@ DockPopupWindow::DockPopupWindow(QWidget *parent)
     , m_model(false)
     , m_regionInter(new DRegionMonitor(this))
     , m_enableMouseRelease(true)
+    , m_timer(new QTimer)
+    , m_isVisible(isVisible())
 {
     setMargin(0);
     m_wmHelper = DWindowManagerHelper::instance();
@@ -36,6 +38,11 @@ DockPopupWindow::DockPopupWindow(QWidget *parent)
 
     connect(m_wmHelper, &DWindowManagerHelper::hasCompositeChanged, this, &DockPopupWindow::compositeChanged);
     connect(m_regionInter, &DRegionMonitor::buttonRelease, this, &DockPopupWindow::onGlobMouseRelease);
+
+    m_timer->start(500);
+    connect(m_timer, &QTimer::timeout, this, [this] {
+        m_isVisible = isVisible();
+    });
 }
 
 DockPopupWindow::~DockPopupWindow()
@@ -61,6 +68,23 @@ void DockPopupWindow::setContent(QWidget *content)
         setAccessibleName(content->objectName() + "-popup");
 
     DArrowRectangle::setContent(content);
+}
+
+bool DockPopupWindow::getIsVisible()
+{
+    return m_isVisible;
+}
+
+void DockPopupWindow::setTimerInterval(int msec)
+{
+    if (!m_timer) {
+        return ;
+    }
+    if (msec == -1) {
+        m_timer->stop();
+    } else {
+        m_timer->start(msec);
+    }
 }
 
 void DockPopupWindow::show(const QPoint &pos, const bool model)
