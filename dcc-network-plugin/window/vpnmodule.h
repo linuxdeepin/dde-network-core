@@ -42,7 +42,7 @@ public:
 
 private Q_SLOTS:
     void initVPNList(DTK_WIDGET_NAMESPACE::DListView *vpnView);
-    void editConnection(dde::network::ControllItems *item);
+    void editConnection(dde::network::ControllItems *item, QWidget *parent);
     void importVPN();
     void changeVpnId();
 

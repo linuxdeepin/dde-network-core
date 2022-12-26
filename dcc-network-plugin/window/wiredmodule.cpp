@@ -80,7 +80,7 @@ WiredModule::WiredModule(WiredDevice *dev, QObject *parent)
 
         createBtn->setToolTip(tr("Add Network Connection"));
         connect(createBtn, &FloatingButton::clicked, this, [this]() {
-            editConnection(nullptr);
+            editConnection(nullptr, qobject_cast<QWidget *>(sender()));
         });
     });
     extra->setExtra();
@@ -131,20 +131,20 @@ void WiredModule::initWirelessList(DListView *lvProfiles)
     });
 }
 
-void WiredModule::editConnection(dde::network::ControllItems *item)
+void WiredModule::editConnection(dde::network::ControllItems *item, QWidget *parent)
 {
     QString uuid = item ? item->connection()->uuid() : QString();
-    ConnectionEditPage *m_editPage = new ConnectionEditPage(ConnectionEditPage::WiredConnection, m_device->path(), uuid, qApp->activeWindow());
-    m_editPage->initSettingsWidget();
-    m_editPage->setButtonTupleEnable(!item);
-    connect(m_editPage, &ConnectionEditPage::activateWiredConnection, this, [this](const QString &connectPath, const QString &uuid) {
+    ConnectionEditPage *editPage = new ConnectionEditPage(ConnectionEditPage::WiredConnection, m_device->path(), uuid, parent);
+    editPage->initSettingsWidget();
+    editPage->setAttribute(Qt::WA_DeleteOnClose);
+    editPage->setButtonTupleEnable(!item);
+    connect(editPage, &ConnectionEditPage::activateWiredConnection, this, [this](const QString &connectPath, const QString &uuid) {
         Q_UNUSED(uuid);
         if (!m_device->connectNetwork(connectPath))
             m_newConnectionPath = connectPath;
     });
-    connect(m_editPage, &ConnectionEditPage::disconnect, m_device, &NetworkDeviceBase::disconnectNetwork);
-    m_editPage->exec();
-    m_editPage->deleteLater();
+    connect(editPage, &ConnectionEditPage::disconnect, m_device, &NetworkDeviceBase::disconnectNetwork);
+    editPage->exec();
 }
 
 void WiredModule::onNameChanged(const QString &name)

@@ -50,7 +50,7 @@ DSLModule::DSLModule(QObject *parent)
         createBtn->setToolTip(tr("Create PPPoE Connection"));
         createBtn->setAccessibleName(tr("Create PPPoE Connection"));
         connect(createBtn, &DFloatingButton::clicked, this, [this]() {
-            editConnection(nullptr);
+            editConnection(nullptr, qobject_cast<QWidget *>(sender()));
         });
     });
     extra->setExtra();
@@ -94,7 +94,7 @@ void DSLModule::initDSLList(DListView *lvsettings)
     });
 }
 
-void DSLModule::editConnection(dde::network::ControllItems *item)
+void DSLModule::editConnection(dde::network::ControllItems *item, QWidget *parent)
 {
     QString devPath = "/";
     QString connUuid;
@@ -109,17 +109,17 @@ void DSLModule::editConnection(dde::network::ControllItems *item)
             }
         }
     }
-    ConnectionEditPage *m_editPage = new ConnectionEditPage(ConnectionEditPage::ConnectionType::PppoeConnection, devPath, connUuid, qApp->activeWindow());
-    m_editPage->initSettingsWidget();
-    connect(m_editPage, &ConnectionEditPage::disconnect, m_editPage, [] {
+    ConnectionEditPage *editPage = new ConnectionEditPage(ConnectionEditPage::ConnectionType::PppoeConnection, devPath, connUuid, parent);
+    editPage->initSettingsWidget();
+    editPage->setAttribute(Qt::WA_DeleteOnClose);
+    connect(editPage, &ConnectionEditPage::disconnect, editPage, [] {
         NetworkController::instance()->dslController()->disconnectItem();
     });
 
     if (item) {
-        m_editPage->setLeftButtonEnable(true);
+        editPage->setLeftButtonEnable(true);
     } else {
-        m_editPage->setButtonTupleEnable(true);
+        editPage->setButtonTupleEnable(true);
     }
-    m_editPage->exec();
-    m_editPage->deleteLater();
+    editPage->exec();
 }

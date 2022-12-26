@@ -235,7 +235,7 @@ void WirelessDeviceModel::removeAccessPoints(QList<dde::network::AccessPoints *>
 void WirelessDeviceModel::onDetailTriggered()
 {
     DViewItemAction *action = qobject_cast<DViewItemAction *>(sender());
-    emit detailClick(action->data().value<AccessPoints *>());
+    emit detailClick(action->data().value<AccessPoints *>(), m_parent);
 }
 
 void WirelessDeviceModel::updateApStatus()

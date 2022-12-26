@@ -241,7 +241,7 @@ void ControllItemsModel::removeConnection(QList<ControllItems *> conns)
 void ControllItemsModel::onDetailTriggered()
 {
     DViewItemAction *action = qobject_cast<DViewItemAction *>(sender());
-    emit detailClick(action->data().value<ControllItems *>());
+    emit detailClick(action->data().value<ControllItems *>(), m_parentWidget);
 }
 
 void ControllItemsModel::updateStatus()

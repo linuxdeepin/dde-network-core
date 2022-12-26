@@ -121,7 +121,7 @@ void WirelessModule::initWirelessList(DListView *lvAP)
     connect(lvAP, &DListView::clicked, this, [this](const QModelIndex &index) {
         AccessPoints *ap = static_cast<AccessPoints *>(index.internalPointer());
         if (!ap) { // nullptr 为隐藏网络
-            onApWidgetEditRequested(nullptr);
+            onApWidgetEditRequested(nullptr, qobject_cast<QWidget *>(sender()));
             return;
         }
         if (ap->connected())
@@ -149,7 +149,7 @@ void WirelessModule::onNetworkAdapterChanged(bool checked)
     }
 }
 
-void WirelessModule::onApWidgetEditRequested(AccessPoints *ap)
+void WirelessModule::onApWidgetEditRequested(AccessPoints *ap, QWidget *parent)
 {
     QString uuid;
     QString apPath;
@@ -190,31 +190,29 @@ void WirelessModule::onApWidgetEditRequested(AccessPoints *ap)
             }
         }
     }
-    ConnectionWirelessEditPage *m_apEditPage = new ConnectionWirelessEditPage(m_device->path(), uuid, apPath, isHidden, qApp->activeWindow());
-
-    connect(m_apEditPage, &ConnectionWirelessEditPage::disconnect, this, [this] {
+    ConnectionWirelessEditPage *apEditPage = new ConnectionWirelessEditPage(m_device->path(), uuid, apPath, isHidden, parent);
+    apEditPage->setAttribute(Qt::WA_DeleteOnClose);
+    connect(apEditPage, &ConnectionWirelessEditPage::disconnect, this, [this] {
         m_device->disconnectNetwork();
     });
 
     if (!uuid.isEmpty() || !ap) {
-        //        m_editingUuid = uuid;
-        m_apEditPage->initSettingsWidget();
+        apEditPage->initSettingsWidget();
     } else {
-        m_apEditPage->initSettingsWidgetFromAp();
+        apEditPage->initSettingsWidgetFromAp();
     }
-    m_apEditPage->setLeftButtonEnable(true);
+    apEditPage->setLeftButtonEnable(true);
 
-    auto devChange = [this, m_apEditPage]() {
+    auto devChange = [this, apEditPage]() {
         bool devEnable = m_device->isEnabled();
         bool hotspotEnable = devEnable && m_device->hotspotEnabled();
         if (!devEnable || hotspotEnable) {
-            m_apEditPage->close();
+            apEditPage->close();
         }
     };
 
-    connect(m_device, &WirelessDevice::enableChanged, m_apEditPage, devChange);
-    connect(m_device, &WirelessDevice::hotspotEnableChanged, m_apEditPage, devChange);
+    connect(m_device, &WirelessDevice::enableChanged, apEditPage, devChange);
+    connect(m_device, &WirelessDevice::hotspotEnableChanged, apEditPage, devChange);
 
-    m_apEditPage->exec();
-    m_apEditPage->deleteLater();
+    apEditPage->exec();
 }

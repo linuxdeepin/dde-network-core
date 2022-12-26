@@ -53,7 +53,7 @@ public:
     inline QList<DCC_NAMESPACE::ModuleObject *> &modules() { return m_modules; }
 
 public Q_SLOTS:
-    void openEditPage(dde::network::ControllItems *item);
+    void openEditPage(dde::network::ControllItems *item, QWidget *parent);
 
 private:
     void initHotspotList(DTK_WIDGET_NAMESPACE::DListView *lvProfiles);

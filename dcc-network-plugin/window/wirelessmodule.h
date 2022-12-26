@@ -44,7 +44,7 @@ public:
 
 private Q_SLOTS:
     void onNetworkAdapterChanged(bool checked);
-    void onApWidgetEditRequested(dde::network::AccessPoints *ap);
+    void onApWidgetEditRequested(dde::network::AccessPoints *ap, QWidget *parent);
     void initWirelessList(DTK_WIDGET_NAMESPACE::DListView *lvAP);
     void onNameChanged(const QString &name);
 

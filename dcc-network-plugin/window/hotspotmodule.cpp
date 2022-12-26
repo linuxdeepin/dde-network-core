@@ -65,7 +65,7 @@ HotspotDeviceItem::HotspotDeviceItem(WirelessDevice *dev, QObject *parent)
     m_modules.append(new WidgetModule<QPushButton>("hotspot_createBtn", tr("Add Settings"), [this](QPushButton *createBtn) {
         createBtn->setText(tr("Add Settings"));
         connect(createBtn, &QPushButton::clicked, this, [this]() {
-            openEditPage(nullptr);
+            openEditPage(nullptr, qobject_cast<QWidget *>(sender()));
         });
     }));
 }
@@ -137,23 +137,23 @@ void HotspotDeviceItem::openHotspot(SwitchWidget *switchWidget)
     if (items.isEmpty()) {
         switchWidget->setChecked(false);
         switchWidget->setEnabled(true);
-        openEditPage(nullptr);
+        openEditPage(nullptr, switchWidget);
     } else {
         // 开启热点
         hotspotController->setEnabled(m_device, true);
     }
 }
 
-void HotspotDeviceItem::openEditPage(ControllItems *item)
+void HotspotDeviceItem::openEditPage(ControllItems *item, QWidget *parent)
 {
     QString uuid;
     if (item)
         uuid = item->connection()->uuid();
-    ConnectionHotspotEditPage *m_editPage = new ConnectionHotspotEditPage(m_device->path(), uuid, qApp->activeWindow());
-    m_editPage->initSettingsWidget();
-    m_editPage->setButtonTupleEnable(true);
-    m_editPage->exec();
-    m_editPage->deleteLater();
+    ConnectionHotspotEditPage *editPage = new ConnectionHotspotEditPage(m_device->path(), uuid, parent);
+    editPage->initSettingsWidget();
+    editPage->setAttribute(Qt::WA_DeleteOnClose);
+    editPage->setButtonTupleEnable(true);
+    editPage->exec();
 }
 ///////////////////////////////////////////////////////////////////////////
 HotspotModule::HotspotModule(QObject *parent)
@@ -171,7 +171,7 @@ HotspotModule::HotspotModule(QObject *parent)
             if (m_items.empty())
                 return;
 
-            m_items.front()->openEditPage(nullptr);
+            m_items.front()->openEditPage(nullptr, qobject_cast<QWidget *>(sender()));
         });
     });
     extra->setExtra();

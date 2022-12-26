@@ -57,8 +57,7 @@ public:
     virtual Qt::ItemFlags flags(const QModelIndex &index) const override;
 
 Q_SIGNALS:
-    void detailClick(dde::network::AccessPoints *ap);
-//    void requestSetDevAlias(const dde::network::AccessPoints *ap, const QString &devAlias);
+    void detailClick(dde::network::AccessPoints *ap, QWidget *parent);
 
 public Q_SLOTS:
     void updateApStatus();

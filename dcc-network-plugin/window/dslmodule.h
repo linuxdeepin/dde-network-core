@@ -42,7 +42,7 @@ public:
 
 private Q_SLOTS:
     void initDSLList(DTK_WIDGET_NAMESPACE::DListView *lvsettings);
-    void editConnection(dde::network::ControllItems *item);
+    void editConnection(dde::network::ControllItems *item, QWidget *parent);
 };
 
 #endif // DSLMODULE_H

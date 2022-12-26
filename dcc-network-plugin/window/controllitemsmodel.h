@@ -63,7 +63,7 @@ public:
     void setDisplayRole(DisplayRole role);
 
 Q_SIGNALS:
-    void detailClick(dde::network::ControllItems *conn);
+    void detailClick(dde::network::ControllItems *conn, QWidget *parent);
 
 public Q_SLOTS:
     void updateDate(QList<dde::network::ControllItems *> conns);

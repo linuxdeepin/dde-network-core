@@ -27,10 +27,9 @@
 
 #include "interface/namespace.h"
 
-#include <QDialog>
 #include <QPointer>
 
-//#include <widgets/contentwidget.h>
+#include <DAbstractDialog>
 
 #include <networkmanagerqt/connection.h>
 #include <networkmanagerqt/connectionsettings.h>
@@ -44,7 +43,7 @@ class QEvent;
 
 class QVBoxLayout;
 
-class ConnectionEditPage : public QDialog
+class ConnectionEditPage : public DTK_WIDGET_NAMESPACE::DAbstractDialog
 {
     Q_OBJECT
 
@@ -111,6 +110,7 @@ private:
 
 protected Q_SLOTS:
     void onRequestNextPage(QWidget *const page);
+    void onRemoveButton();
 
 protected:
     QVBoxLayout *m_settingsLayout;

@@ -32,6 +32,7 @@
 #include <QVBoxLayout>
 #include <QDBusMetaType>
 #include <QEvent>
+#include <DTitlebar>
 
 #include <interface/namespace.h>
 #include <widgets/buttontuple.h>
@@ -51,7 +52,7 @@ DWIDGET_USE_NAMESPACE
 static QString DevicePath = "";
 
 ConnectionEditPage::ConnectionEditPage(ConnectionType connType, const QString &devPath, const QString &connUuid, QWidget *parent, bool isHotSpot)
-    : QDialog(parent)
+    : DAbstractDialog(false, parent)
     , m_settingsLayout(new QVBoxLayout())
     , m_connection(nullptr)
     , m_connectionSettings(nullptr)
@@ -126,8 +127,14 @@ void ConnectionEditPage::initUI()
     m_buttonTuple->leftButton()->setEnabled(false);
     m_buttonTuple->rightButton()->setEnabled(false);
 
-    m_mainLayout->setContentsMargins(10, 10, 10, 10);
-    m_mainLayout->addSpacing(10);
+    DTitlebar *titleIcon = new DTitlebar();
+    titleIcon->setFrameStyle(QFrame::NoFrame);
+    titleIcon->setBackgroundTransparent(true);
+    titleIcon->setMenuVisible(false);
+    titleIcon->setIcon(qApp->windowIcon());
+
+    m_mainLayout->addWidget(titleIcon);
+    m_mainLayout->setContentsMargins(10, 0, 10, 10);
     m_mainLayout->addWidget(m_buttonTuple_conn);
     m_mainLayout->addWidget(area);
     m_mainLayout->addStretch();
@@ -141,6 +148,7 @@ void ConnectionEditPage::initUI()
     qobject_cast<QVBoxLayout *>(layout())->addLayout(btnTupleLayout);
 
     setMinimumWidth(380);
+    area->setFocus();
 }
 
 bool ConnectionEditPage::isConnected()
@@ -236,20 +244,7 @@ void ConnectionEditPage::initConnection()
     connect(this, &ConnectionEditPage::saveSettingsDone, this, &ConnectionEditPage::prepareConnection);
     connect(this, &ConnectionEditPage::prepareConnectionDone, this, &ConnectionEditPage::updateConnection);
 
-    connect(m_removeBtn, &QPushButton::clicked, this, [=] {
-        DDialog dialog(this);
-        dialog.setAccessibleName("Form_delete_configuration?");
-        dialog.setTitle(tr("Are you sure you want to delete this configuration?"));
-        QStringList btns;
-        btns << tr("Cancel", "button");
-        btns << tr("Delete", "button");
-        dialog.addButtons(btns);
-        int ret = dialog.exec();
-        if (ret == QDialog::Accepted) {
-            m_connection->remove();
-            close();
-        }
-    });
+    connect(m_removeBtn, &QPushButton::clicked, this, &ConnectionEditPage::onRemoveButton);
 
     connect(m_disconnectBtn, &QPushButton::clicked, this, [=]() {
         Q_EMIT disconnect(m_disconnectBtn->property("connectionUuid").toString());
@@ -281,6 +276,22 @@ void ConnectionEditPage::onRequestNextPage(QWidget *const page)
 {
     m_subPage = page;
     Q_EMIT requestNextPage(page);
+}
+
+void ConnectionEditPage::onRemoveButton()
+{
+    DDialog *dialog = new DDialog(qobject_cast<QWidget *>(sender()));
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    dialog->setAccessibleName("Form_delete_configuration?");
+    dialog->setTitle(tr("Are you sure you want to delete this configuration?"));
+    QStringList btns;
+    btns << tr("Cancel", "button");
+    btns << tr("Delete", "button");
+    dialog->addButtons(btns);
+    if (dialog->exec() == QDialog::Accepted) {
+        m_connection->remove();
+        close();
+    }
 }
 
 void ConnectionEditPage::initConnectionSecrets()
