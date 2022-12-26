@@ -71,7 +71,10 @@ void NetworkDialog::setConnectWireless(const QString &dev, const QString &ssid, 
     m_connectDev = dev;
     m_connectSsid = ssid;
     Q_EMIT requestShow();
-    m_panel->passwordError(dev, ssid, wait);
+    // 先响应requestShow将界面显示后再显示密码输入框，否则输入框无焦点
+    QTimer::singleShot(100, this, [ = ]{
+        m_panel->passwordError(dev, ssid, wait);
+    });
 }
 
 void NetworkDialog::newConnectionHandler()
