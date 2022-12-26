@@ -45,7 +45,7 @@ public:
     {
         QSize pixmapSize = rect.size();
         qreal scale = 1;
-        if (painter->device() && (!QCoreApplication::testAttribute(Qt::AA_UseHighDpiPixmaps)))
+        if (painter->device())
             scale = painter->device()->devicePixelRatioF();
 
         pixmapSize *= scale;
@@ -191,8 +191,7 @@ void QuickPanel::initUi()
     // 进入图标
     QLabel *enterIcon = new QLabel(this);
     qreal ratio = devicePixelRatioF();
-    QSize size = QCoreApplication::testAttribute(Qt::AA_UseHighDpiPixmaps) ? QSize(16, 16) : QSize(16, 16) * ratio;
-    QPixmap enterPixmap = DStyle::standardIcon(style(), DStyle::SP_ArrowEnter).pixmap(size);
+    QPixmap enterPixmap = DStyle::standardIcon(style(), DStyle::SP_ArrowEnter).pixmap(QSize(16, 16) * ratio);
     enterPixmap.setDevicePixelRatio(ratio);
     enterIcon->setPixmap(enterPixmap);
     enterIcon->setGeometry(127, 22, 16, 16);
