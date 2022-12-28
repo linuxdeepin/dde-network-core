@@ -95,6 +95,7 @@ private slots:
     void onWiredConnectionChanged();
     void onWirelessConnectionChanged();
     void onStatusChanged(NetworkManager::Device::State newstate, NetworkManager::Device::State oldstate, NetworkManager::Device::StateChangeReason reason);
+    void onDeviceEnabledChanged(QDBusObjectPath path, bool enabled);
 
 private:
     QSharedPointer<Device> m_wDevice;

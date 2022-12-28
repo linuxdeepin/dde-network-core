@@ -61,6 +61,8 @@ void DeviceManagerRealize::initSigSlotConnection()
             });
         }
     }
+
+    QDBusConnection::systemBus().connect("org.deepin.dde.Network1", "/org/deepin/dde/Network1", "org.deepin.dde.Network1", "DeviceEnabled", this, SLOT(onDeviceEnabledChanged(QDBusObjectPath, bool)));
 }
 
 DeviceManagerRealize::~DeviceManagerRealize()
@@ -455,6 +457,13 @@ void DeviceManagerRealize::onStatusChanged(Device::State newstate, Device::State
     Q_UNUSED(reason);
 
     changeStatus(newstate);
+}
+
+void DeviceManagerRealize::onDeviceEnabledChanged(QDBusObjectPath path, bool enabled)
+{
+    if (m_wDevice && m_wDevice->uni() == path.path()) {
+        Q_EMIT enableChanged(enabled);
+    }
 }
 
 WiredConnection *DeviceManagerRealize::findWiredConnectionByUuid(const QString &uuid)
