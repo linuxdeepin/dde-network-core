@@ -194,8 +194,10 @@ void DeviceManagerRealize::setEnabled(bool enabled)
         if (enabled) {
             // 如果是开启，则让其自动连接
             QString activeConnectionPath = reply.value().path();
-            NetworkManager::activateConnection(activeConnectionPath, m_wDevice->uni(), QString());
-            qInfo() << "connected:" << activeConnectionPath;
+            if (activeConnectionPath != "/") {
+                NetworkManager::activateConnection(activeConnectionPath, m_wDevice->uni(), QString());
+                qInfo() << "connected:" << activeConnectionPath;
+            }
         }
     }
 }
