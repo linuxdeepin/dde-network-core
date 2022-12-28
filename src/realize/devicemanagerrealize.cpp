@@ -19,6 +19,9 @@
 using namespace dde::network;
 using namespace NetworkManager;
 
+#define SYS_NETWORK_INTER "com.deepin.system.Network"
+#define SYS_NETWORK_PATH "/com/deepin/system/Network"
+
 DeviceManagerRealize::DeviceManagerRealize(IPConfilctChecker *ipChecker, QSharedPointer<Device> device, QObject *parent)
     : NetworkDeviceRealize(ipChecker, parent)
     , m_wDevice(device)
@@ -58,6 +61,8 @@ void DeviceManagerRealize::initSigSlotConnection()
             });
         }
     }
+
+    QDBusConnection::systemBus().connect(SYS_NETWORK_INTER, SYS_NETWORK_PATH, SYS_NETWORK_INTER, "DeviceEnabled", this, SLOT(onDeviceEnabledChanged(QDBusObjectPath, bool)));
 }
 
 DeviceManagerRealize::~DeviceManagerRealize()
@@ -66,7 +71,7 @@ DeviceManagerRealize::~DeviceManagerRealize()
 
 bool DeviceManagerRealize::isEnabled() const
 {
-    QDBusInterface dbusInter("com.deepin.system.Network", "/com/deepin/system/Network", "com.deepin.system.Network", QDBusConnection::systemBus());
+    QDBusInterface dbusInter(SYS_NETWORK_INTER, SYS_NETWORK_PATH, SYS_NETWORK_INTER, QDBusConnection::systemBus());
     QDBusPendingCall reply = dbusInter.asyncCall("IsDeviceEnabled", m_wDevice->uni());
     reply.waitForFinished();
     QDBusPendingReply<bool> replyResult = reply.reply();
@@ -186,7 +191,7 @@ void DeviceManagerRealize::setEnabled(bool enabled)
     bool currentEnabled = isEnabled();
     if (currentEnabled != enabled) {
         qInfo() << "set Device " << m_wDevice->uni() << " enabled:" << (enabled ? "true" : "false");
-        QDBusInterface dbusInter("com.deepin.system.Network", "/com/deepin/system/Network", "com.deepin.system.Network", QDBusConnection::systemBus());
+        QDBusInterface dbusInter(SYS_NETWORK_INTER, SYS_NETWORK_PATH, SYS_NETWORK_INTER, QDBusConnection::systemBus());
         QDBusReply<QDBusObjectPath> reply = dbusInter.call("EnableDevice", m_wDevice->uni(), enabled);
         if (enabled) {
             // 如果是开启，则让其自动连接
@@ -472,6 +477,13 @@ void DeviceManagerRealize::onStatusChanged(Device::State newstate, Device::State
     Q_UNUSED(reason);
 
     changeStatus(newstate);
+}
+
+void DeviceManagerRealize::onDeviceEnabledChanged(QDBusObjectPath path, bool enabled)
+{
+    if (m_wDevice && m_wDevice->uni() == path.path()) {
+        Q_EMIT enableChanged(enabled);
+    }
 }
 
 WiredConnection *DeviceManagerRealize::findWiredConnectionByUuid(const QString &uuid)
