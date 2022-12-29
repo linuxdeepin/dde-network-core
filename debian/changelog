@@ -1,3 +1,14 @@
+dde-network-core (2.0.4.1) unstable; urgency=medium
+
+  [ TagBuilder ]
+  * fix: 修改网卡名刷新不及时问题(Task: 224813)(Influence: 控制中心-网络-多网卡插拔，网卡名正常)
+  * fix: 修改热点开关状态错误(Task: 224819)(Influence: 控制中心-网络-开启热点)
+  * fix: 修改应用代理无输入时无错误提示(Task: 224769)(Influence: 控制中心-网络-应用代理-无输入时点保存)
+  * fix: 修改频段单位为GHz(Bug: 176471)(Influence: 控制中心-网络-网络详情-wifi频段)
+  * fix: 修改控制中心弹窗title为控制中心<2>问题(Task: 230721)(Influence: 控制中心-网络-网络设置弹窗标题)
+
+ -- zhaoyingzhen <zhaoyingzhen@uniontech.com>  Thu, 29 Dec 2022 15:14:28 +0800
+
 dde-network-core (2.0.3.1) unstable; urgency=medium
 
   [ TagBuilder ]
