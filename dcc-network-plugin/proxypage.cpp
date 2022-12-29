@@ -42,6 +42,7 @@ ProxyPage::ProxyPage(QWidget *parent)
     : QWidget(parent)
     , m_autoWidget(new TranslucentFrame(this))
     , m_buttonTuple(new ButtonTuple(ButtonTuple::Save, this))
+    , m_dconfig(DConfig::create("org.deepin.dde.network", "org.deepin.dde.network", QString(), this))
 {
     ContentWidget *conentwidget = new ContentWidget(this);
     conentwidget->setAccessibleName("ProxyPage_ContentWidget");
@@ -224,8 +225,8 @@ ProxyPage::ProxyPage(QWidget *parent)
     connect(m_proxySwitch, &SwitchWidget::checkedChanged, m_proxyTypeBox, [ = ](const bool checked) {
         m_buttonTuple->setEnabled(checked);
         if (checked) {
-            // 打开代理默认手动
-            onProxyMethodChanged(ProxyMethod::Manual);
+            // 根据最后设置的代理类型重置界面
+            onProxyMethodChanged(getProxyMethod());
         } else {
             // 关闭代理
             proxyController->setProxyMethod(ProxyMethod::None);
@@ -338,9 +339,13 @@ void ProxyPage::applySettings()
         proxyController->setProxyAuth(SysProxyType::Socks, m_socksUserName->text(), m_socksPassword->text(), m_socksAuthSwitch->checked());
         proxyController->setProxyIgnoreHosts(m_ignoreList->toPlainText());
         proxyController->setProxyMethod(ProxyMethod::Manual);
+        // 保存上一次设置的代理类型
+        saveProxyMethod("manual");
     } else if (m_proxyTypeBox->comboBox()->currentIndex() == ProxyMethodList.indexOf(AUTO)) {
         proxyController->setAutoProxy(m_autoUrl->text());
         proxyController->setProxyMethod(ProxyMethod::Auto);
+        // 保存上一次设置的代理类型
+        saveProxyMethod("auto");
     }
 }
 
@@ -547,4 +552,23 @@ bool ProxyPage::checkValue()
     }
 
     return true;
+}
+
+void ProxyPage::saveProxyMethod(const QString &method)
+{
+    if (m_dconfig && m_dconfig->isValid()) {
+        m_dconfig->setValue("lastProxyMethod", method);
+    }
+}
+
+ProxyMethod ProxyPage::getProxyMethod()
+{
+    if (m_dconfig && m_dconfig->isValid()) {
+        const QString method = m_dconfig->value("lastProxyMethod", "manual").toString();
+
+        if (method == "auto")
+            return ProxyMethod::Auto;
+    }
+
+    return ProxyMethod::Manual;
 }

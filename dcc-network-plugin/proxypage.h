@@ -8,6 +8,10 @@
 #include "widgets/contentwidget.h"
 #include "interface/namespace.h"
 
+#include <DConfig>
+
+DCORE_USE_NAMESPACE
+
 namespace dde {
   namespace network {
     class SysProxyConfig;
@@ -60,6 +64,9 @@ private:
     void clearLineEditWidgetFocus();
     bool checkValue();
 
+    void saveProxyMethod(const QString &method);
+    ProxyMethod getProxyMethod();
+
 private:
     QWidget *m_autoWidget;
     QWidget *m_manualWidget;
@@ -94,6 +101,8 @@ private:
 
     SwitchWidget* m_proxySwitch;
     ComboxWidget* m_proxyTypeBox;
+
+    DConfig *m_dconfig;
 };
 
 #endif // PROXYPAGE_H
