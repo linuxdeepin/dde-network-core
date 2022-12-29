@@ -114,6 +114,14 @@ public:
         }
         if (trayIcon) {
             m_applets.append({ QPointer<TrayIcon>(trayIcon), QPointer<DockPopupWindow>(nullptr) });
+            connect(trayIcon, &QObject::destroyed, this, [trayIcon, this] {
+                for (auto pair : m_applets) {
+                    if (pair.first.data() == trayIcon) {
+                        m_applets.removeAll(pair);
+                        break;
+                    }
+                }
+            });
         }
     }
 
