@@ -21,7 +21,7 @@
             "permissions": "readwrite",
             "visibility": "public"
         },
-	 "networkAirplaneMode": {
+        "networkAirplaneMode": {
             "value": false,
             "serial": 0,
             "flags": [],
@@ -30,6 +30,16 @@
             "description": "控制中心-网络模块是否显示飞行模式页面，默认不显示。",
             "permissions": "readwrite",
             "visibility": "private"
+        },
+        "lastProxyMethod": {
+               "value": "manual",
+               "serial": 0,
+               "flags": [],
+               "name": "LastProxyMethod",
+               "name[zh_CN]": "最后一次设置的代理类型",
+               "description": "控制中心-网络模块最后一次设置的代理类型，默认手动。",
+               "permissions": "readwrite",
+               "visibility": "private"
         }
     }
 }
