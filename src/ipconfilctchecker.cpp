@@ -236,7 +236,7 @@ DeviceIPChecker::DeviceIPChecker(NetworkDeviceBase *device, NetworkInter *netInt
             emit ipConflictCheck(m_ipV4);
         } else {
             if ((m_count++ % 2) == 0) {
-                if (m_device->deviceStatus() == DeviceStatus::Activated && m_device->connectivity() == Connectivity::Limited) {
+                if (!m_device.isNull() && m_device->deviceStatus() == DeviceStatus::Activated && m_device->connectivity() == Connectivity::Limited) {
                     PRINT_INFO_MESSAGE(QString("[off] limit check ip conflict:%1").arg(m_ipV4.join(",")));
                     emit ipConflictCheck(m_ipV4);
                     return;
