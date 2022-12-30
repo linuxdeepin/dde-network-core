@@ -5,10 +5,11 @@
 #ifndef IPCONFILCTCHECKER_H
 #define IPCONFILCTCHECKER_H
 
-#include <QObject>
 #include "netutils.h"
-
 #include "networkconst.h"
+
+#include <QObject>
+#include <QPointer>
 
 namespace dde {
 namespace network {
@@ -64,7 +65,7 @@ public:
     bool ipConflicted();
 
 private:
-    NetworkDeviceBase *m_device;
+    QPointer<NetworkDeviceBase> m_device;
     NetworkInter *m_networkInter;
     QStringList m_ipV4;
     QString m_macAddress;
