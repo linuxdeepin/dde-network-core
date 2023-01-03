@@ -1,3 +1,9 @@
+dde-network-core (1.0.77) unstable; urgency=low
+
+  * bump version to 1.0.77
+
+-- yinjie <yinjie@uniontech.com>  Tue, 3 Jan 2023 16:04:21 +0000
+
 dde-network-core (1.0.0.1) stable; urgency=medium
 
  -- donghualin <donghualin@uniontech.com> (1.0.0.1) stable; urgency=medium
