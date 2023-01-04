@@ -234,7 +234,7 @@ QWidget *NetworkModule::itemTipsWidget() const
     QWidget *itemTips = m_networkHelper->itemTips();
     if (itemTips) {
         QPalette palette = itemTips->palette();
-        palette.setColor(QPalette::BrightText, Qt::black);
+        palette.setColor(QPalette::BrightText, Qt::white);
         itemTips->setPalette(palette);
     }
     return itemTips;
