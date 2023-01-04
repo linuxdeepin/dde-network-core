@@ -632,7 +632,7 @@ void NetworkPanel::onClickListView(const QModelIndex &index)
     NetItem *newSelectItem = m_items.at(index.row());
     if (newSelectItem != oldSelectItem && oldSelectItem) {
         WirelessItem *item = static_cast<WirelessItem *>(oldSelectItem);
-        item->expandWidget(WirelessItem::Hide); // 选择切换时隐藏输入框
+        item->expandWidget(WirelessItem::Hide, false); // 选择切换时隐藏输入框
     }
     switch (type) {
     case WirelessHiddenViewItem:
