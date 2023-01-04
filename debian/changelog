@@ -1,3 +1,11 @@
+dde-network-core (1.1.8) UNRELEASED; urgency=medium
+
+  * update changelog for tag 1.1.8
+
+ -- Deepin Packages Builder <packages@deepin.com>  Mon, 01 Jan 2023 15:26:28 +0800
+
 dde-network-core (1.0.0.1) stable; urgency=medium
 
- -- donghualin <donghualin@uniontech.com> (1.0.0.1) stable; urgency=medium
+  * init release
+
+ -- donghualin <donghualin@uniontech.com>  Mon, 02 Jul 2021 10:20:20 +0800
