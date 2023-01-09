@@ -1,3 +1,9 @@
+dde-network-core (1.0.78) unstable; urgency=low
+
+  * bump version to 1.0.78
+
+-- lichangze <lichangze@uniontech.com>  Mon, 9 Jan 2023 09:51:27 +0000
+
 dde-network-core (1.0.77) unstable; urgency=low
 
   * bump version to 1.0.77
