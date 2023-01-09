@@ -195,7 +195,7 @@ public:
     void updateView() Q_DECL_OVERRIDE;
     NetItemType itemType() Q_DECL_OVERRIDE;
     static QString getStrengthStateString(int strength);
-    void expandWidget(ExpandWidget type, bool autoDisconnect = true);
+    void expandWidget(ExpandWidget type, bool autoDisconnect = false);
     void connectNetwork();
     void expandPasswordInput();
     bool expandVisible();
