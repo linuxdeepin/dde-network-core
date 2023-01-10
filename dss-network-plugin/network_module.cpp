@@ -136,6 +136,7 @@ public:
         if (trayIcon) {
             trayIcon->setAlignment(Qt::AlignCenter);
             m_applets.append({ QPointer<QLabel>(trayIcon), QPointer<DockPopupWindow>(nullptr) });
+            connect(trayIcon, &QObject::destroyed, this, &PopupAppletManager::removerTrayIcon);
             updateIcon();
         }
     }
@@ -174,6 +175,17 @@ protected:
             break;
         }
         return QObject::eventFilter(watched, e);
+    }
+
+    void removerTrayIcon()
+    {
+        QObject *o = sender();
+        for (auto it = m_applets.begin(); it != m_applets.end(); ++it) {
+            if (it->first == o) {
+                m_applets.erase(it);
+                break;
+            }
+        }
     }
 
 public:
