@@ -1,3 +1,10 @@
+dde-network-core (2.0.4.2) unstable; urgency=medium
+
+  [ Deepin Packages Builder ]
+  * fix: 修改仅X屏模式，登录界面崩溃问题(Bug: 182829)(Influence: 仅X屏模式-注销或重启进入登录界面)
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Tue, 10 Jan 2023 21:37:42 +0800
+
 dde-network-core (2.0.4.1) unstable; urgency=medium
 
   [ TagBuilder ]
