@@ -1,6 +1,6 @@
 <?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="sq">
 <context>
-    <name>ChainsProxyPage</name>
+    <name>AppProxyModule</name>
     <message>
         <source>Application Proxy</source>
         <translation>Ndërmjetës Aplikacioni</translation>
@@ -35,17 +35,17 @@
     </message>
     <message>
         <source>Check &quot;Use a proxy&quot; in application context menu in Launcher after configured</source>
-        <translation>Pas formësimit, i vini shenjë “Përdor ndërmjetës” te menuja e kontekstit të aplikacionit te Nisësi</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Anuloje</translation>
+        <translation>Pasi të jetë formësuar, te menuja e kontekstit të aplikacionit i vini shenjë “Përdor një ndërmjetës”</translation>
     </message>
     <message>
         <source>Save</source>
         <comment>button</comment>
         <translation>Ruaje</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Anuloje</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
@@ -168,218 +168,6 @@
     </message>
 </context>
 <context>
-    <name>DCCNetworkModule</name>
-    <message>
-        <source>Network</source>
-        <translation>Rrjet</translation>
-    </message>
-    <message>
-        <source>Application Proxy</source>
-        <translation>Ndërmjetës Aplikacioni</translation>
-    </message>
-    <message>
-        <source>Personal Hotspot</source>
-        <translation>Hotspot Personal</translation>
-    </message>
-    <message>
-        <source>Network Details</source>
-        <translation>Hollësi Rrjeti</translation>
-    </message>
-    <message>
-        <source>System Proxy</source>
-        <translation>Ndërmjetës Sistemi</translation>
-    </message>
-    <message>
-        <source>Wired Network</source>
-        <translation>Rrjet Me Fill</translation>
-    </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation>Rrjet Pa Fill</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>VPN</translation>
-    </message>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>Mënyra Aeroplan</translation>
-        <extra-child_page>Airplane Mode</extra-child_page>
-        <extra-contents_path>/network/Airplane Mode</extra-contents_path>
-    </message>
-    <message>
-        <source>Wired Network Adapter</source>
-        <translation>Përshtatës Rrjeti Me Fill</translation>
-        <extra-child_page>Wired Network</extra-child_page>
-        <extra-contents_path>/network/Wired Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Add Network Connection</source>
-        <translation>Shtoni Lidhje Rrjeti</translation>
-        <extra-child_page>Wired Network</extra-child_page>
-        <extra-contents_path>/network/Wired Network/addWiredConnection</extra-contents_path>
-    </message>
-    <message>
-        <source>Wireless Network Adapter</source>
-        <translation>Përshtatës Rrjeti Pa Fill</translation>
-        <extra-child_page>Wireless Network</extra-child_page>
-        <extra-contents_path>/network/Wireless Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>Lidhu në rrjet të fshehtë</translation>
-        <extra-child_page>Wireless Network</extra-child_page>
-        <extra-contents_path>/network/Wireless Network/Connect to hidden network</extra-contents_path>
-    </message>
-    <message>
-        <source>DSL</source>
-        <translation>DSL</translation>
-        <extra-child_page_hide>DSL</extra-child_page_hide>
-        <extra-contents_path>/network/DSL</extra-contents_path>
-    </message>
-    <message>
-        <source>Create PPPoE Connection</source>
-        <translation>Krijoni Lidhje PPPoE</translation>
-        <extra-child_page>DSL</extra-child_page>
-        <extra-contents_path>/network/DSL/Create PPPoE Connection</extra-contents_path>
-    </message>
-    <message>
-        <source>VPN Status</source>
-        <translation>Gjendje VPN-je</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Create VPN</source>
-        <translation>Krijoni VPN</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN/Create VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation>Importo VPN</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN/Import VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation>Lloj Ndërmjetësi</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation>URL Formësimi</translation>
-    </message>
-    <message>
-        <source>IP Address</source>
-        <translation>Adresë IP</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>Portë</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>Emër përdoruesi</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Fjalëkalim</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Hotspot</source>
-        <translation>Hotspot</translation>
-        <extra-child_page>Personal Hotspot</extra-child_page>
-        <extra-contents_path>/network/Personal Hotspot</extra-contents_path>
-    </message>
-    <message>
-        <source>Create Hotspot</source>
-        <translation>Krijoni Hotspot</translation>
-        <extra-child_page>Personal Hotspot</extra-child_page>
-        <extra-contents_path>/network/Personal Hotspot/Create Hotspot</extra-contents_path>
-    </message>
-    <message>
-        <source>Interface</source>
-        <translation>Ndërfaqe</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>MAC</source>
-        <translation>MAC</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation>Bandë</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>IPv4</source>
-        <translation>IPv4</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Kanal</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Primary DNS</source>
-        <translation>DNS Parësore</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Netmask</source>
-        <translation>NetMask-ë</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>IPv6</source>
-        <translation>IPv6</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Prefix</source>
-        <translation>Parashtesë</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation>Shpejtësi</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-</context>
-<context>
-    <name>dccV20::network::AirplaneModepage</name>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>Mënyra Aeroplan</translation>
-    </message>
-    <message>
-        <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
-        <translation>Aktivizimi i mënyrës aeroplan çaktivizon rrjetin pa fill, hotspot-in personal dhe Bluetooth-in</translation>
-    </message>
-</context>
-<context>
     <name>DNSSection</name>
     <message>
         <source>DNS</source>
@@ -388,6 +176,17 @@
     <message>
         <source>Invalid DNS address</source>
         <translation>Adresë DNS e pavlefshme</translation>
+    </message>
+</context>
+<context>
+    <name>DSLModule</name>
+    <message>
+        <source>DSL</source>
+        <translation>DSL</translation>
+    </message>
+    <message>
+        <source>Create PPPoE Connection</source>
+        <translation>Krijoni Lidhje PPPoE</translation>
     </message>
 </context>
 <context>
@@ -460,7 +259,7 @@
     </message>
 </context>
 <context>
-    <name>HotspotDeviceWidget</name>
+    <name>HotspotDeviceItem</name>
     <message>
         <source>Hotspot</source>
         <translation>Hotspot</translation>
@@ -471,7 +270,11 @@
     </message>
 </context>
 <context>
-    <name>HotspotPage</name>
+    <name>HotspotModule</name>
+    <message>
+        <source>Personal Hotspot</source>
+        <translation>Hotspot Personal</translation>
+    </message>
     <message>
         <source>Create Hotspot</source>
         <translation>Krijoni Hotspot</translation>
@@ -645,66 +448,17 @@
     </message>
 </context>
 <context>
-    <name>NetworkDetailPage</name>
+    <name>NetworkInfoModule</name>
     <message>
         <source>Network Details</source>
         <translation>Hollësi Rrjeti</translation>
     </message>
 </context>
 <context>
-    <name>NetworkModuleWidget</name>
-    <message>
-        <source>DSL</source>
-        <translation>DSL</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>VPN</translation>
-    </message>
-    <message>
-        <source>System Proxy</source>
-        <translation>Ndërmjetës Sistemi</translation>
-    </message>
-    <message>
-        <source>Application Proxy</source>
-        <translation>Ndërmjetës Aplikacioni</translation>
-    </message>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>Mënyra Aeroplan</translation>
-        <extra-contents_path>/network/Airplane</extra-contents_path>
-    </message>
-    <message>
-        <source>Network Details</source>
-        <translation>Hollësi Rrjeti</translation>
-    </message>
+    <name>NetworkModule</name>
     <message>
         <source>Network</source>
         <translation>Rrjet</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>Përplasje IP-sh</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>I çaktivizuar</translation>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>Dorazi</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Auto</translation>
-    </message>
-    <message>
-        <source>Configure by Network Manager</source>
-        <translation>Formësoje përmes Përgjegjës Rrjeti</translation>
-    </message>
-    <message>
-        <source>Personal Hotspot</source>
-        <translation>Hotspot Personal</translation>
     </message>
 </context>
 <context>
@@ -790,99 +544,7 @@
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>PppoePage</name>
-    <message>
-        <source>Create PPPoE Connection</source>
-        <translation>Krijoni Lidhje PPPoE</translation>
-    </message>
-    <message>
-        <source>PPP</source>
-        <translation>PPP</translation>
-    </message>
-</context>
-<context>
-    <name>ProxyPage</name>
-    <message>
-        <source>System Proxy</source>
-        <translation>Ndërmjetës Sistemi</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Anuloje</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <comment>button</comment>
-        <translation>Ruaje</translation>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation>Lloj Ndërmjetësi</translation>
-        <extra-child_page>System Proxy</extra-child_page>
-        <extra-contents_path>/network/System Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>Dorazi</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Auto</translation>
-    </message>
-    <message>
-        <source>Optional</source>
-        <translation>Opsionale</translation>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>Portë</translation>
-    </message>
-    <message>
-        <source>Authentication is required</source>
-        <translation>Lypset mirëfilltësim</translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>Emër përdoruesi</translation>
-    </message>
-    <message>
-        <source>Required</source>
-        <translation>E domosdoshme</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Fjalëkalim</translation>
-    </message>
-    <message>
-        <source>HTTP Proxy</source>
-        <translation>Ndërmjetës HTTP</translation>
-    </message>
-    <message>
-        <source>HTTPS Proxy</source>
-        <translation>Ndërmjetës HTTPS</translation>
-    </message>
-    <message>
-        <source>FTP Proxy</source>
-        <translation>Ndërmjetës FTP</translation>
-    </message>
-    <message>
-        <source>SOCKS Proxy</source>
-        <translation>Ndërmjetës SOCKS</translation>
-    </message>
-    <message>
-        <source>Ignore the proxy configurations for the above hosts and domains</source>
-        <translation>Shpërfill formësime ndërmjetësi për strehët dhe përkatësitë më sipër</translation>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation>URL Formësimi</translation>
-        <extra-child_page>System Proxy</extra-child_page>
-        <extra-contents_path>/network/System Proxy</extra-contents_path>
+        <translation>Gjendje  MPPE</translation>
     </message>
 </context>
 <context>
@@ -1114,6 +776,106 @@
     </message>
 </context>
 <context>
+    <name>SysProxyModule</name>
+    <message>
+        <source>System Proxy</source>
+        <translation>Ndërmjetës Sistemi</translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation>Dorazi</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Automatikisht</translation>
+    </message>
+    <message>
+        <source>Proxy Type</source>
+        <translation>Lloj Ndërmjetësi</translation>
+    </message>
+    <message>
+        <source>Optional</source>
+        <translation>Opsionale</translation>
+    </message>
+    <message>
+        <source>Configuration URL</source>
+        <translation>URL Formësimi</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <comment>button</comment>
+        <translation>Ruaje</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Anuloje</translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation>Portë</translation>
+    </message>
+    <message>
+        <source>HTTP Proxy</source>
+        <translation>Ndërmjetës HTTP</translation>
+    </message>
+    <message>
+        <source>HTTPS Proxy</source>
+        <translation>Ndërmjetës HTTPS</translation>
+    </message>
+    <message>
+        <source>FTP Proxy</source>
+        <translation>Ndërmjetës FTP</translation>
+    </message>
+    <message>
+        <source>SOCKS Proxy</source>
+        <translation>Ndërmjetës SOCKS</translation>
+    </message>
+    <message>
+        <source>Ignore the proxy configurations for the above hosts and domains</source>
+        <translation>Shpërfilli formësimet e ndërmjetësit për strehët dhe përkatësitë më sipër</translation>
+    </message>
+</context>
+<context>
+    <name>VPNModule</name>
+    <message>
+        <source>VPN</source>
+        <translation>VPN</translation>
+    </message>
+    <message>
+        <source>Wired Network Adapter</source>
+        <translation>Përshtatës Rrjeti Me Fill</translation>
+    </message>
+    <message>
+        <source>VPN Status</source>
+        <translation>Gjendje VPN-je</translation>
+    </message>
+    <message>
+        <source>Add Network Connection</source>
+        <translation>Shtoni Lidhje Rrjeti</translation>
+    </message>
+    <message>
+        <source>Create VPN</source>
+        <translation>Krijoni VPN</translation>
+    </message>
+    <message>
+        <source>Import VPN</source>
+        <translation>Importoni VPN</translation>
+    </message>
+    <message>
+        <source>Import Error</source>
+        <translation>Gabim Importimi</translation>
+    </message>
+    <message>
+        <source>File error</source>
+        <translation>Gabim kartele</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>OK</translation>
+    </message>
+</context>
+<context>
     <name>VpnAdvOpenVPNSection</name>
     <message>
         <source>VPN Advanced</source>
@@ -1161,11 +923,11 @@
     </message>
     <message>
         <source>UDP Fragment Size</source>
-        <translation>Madhësi Fragmenti UDP</translation>
+        <translation>Madhësi Fragmentesh UDP</translation>
     </message>
     <message>
         <source>Restrict Tunnel TCP MSS</source>
-        <translation type="unfinished"/>
+        <translation>Kufizo Tunalin TCP MSS</translation>
     </message>
     <message>
         <source>Randomize Remote Hosts</source>
@@ -1184,7 +946,7 @@
     </message>
     <message>
         <source>Netscreen</source>
-        <translation type="unfinished"/>
+        <translation>Netscreen</translation>
     </message>
     <message>
         <source>Secure (default)</source>
@@ -1252,7 +1014,7 @@
     </message>
     <message>
         <source>NAT Traversal Mode</source>
-        <translation type="unfinished"/>
+        <translation>menyra e udhetimit NAT</translation>
     </message>
     <message>
         <source>IKE DH Group</source>
@@ -1512,34 +1274,7 @@
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>VpnPage</name>
-    <message>
-        <source>VPN Status</source>
-        <translation>Gjendje VPN-je</translation>
-    </message>
-    <message>
-        <source>Create VPN</source>
-        <translation>Krijoni VPN</translation>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation>Importo VPN</translation>
-    </message>
-    <message>
-        <source>Import Error</source>
-        <translation>Gabim Importimi</translation>
-    </message>
-    <message>
-        <source>File error</source>
-        <translation>Gabim kartele</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>OK</translation>
+        <translation>Gjendje  MPPE</translation>
     </message>
 </context>
 <context>
@@ -1879,44 +1614,40 @@
     </message>
 </context>
 <context>
-    <name>WiredPage</name>
-    <message>
-        <source>Plug in the network cable first</source>
-        <translation>Së pari futni kabllon e rrjetit në vend</translation>
-    </message>
+    <name>WiredModule</name>
     <message>
         <source>Wired Network Adapter</source>
         <translation>Përshtatës Rrjeti Me Fill</translation>
     </message>
     <message>
+        <source>Plug in the network cable first</source>
+        <translation>Së pari futni kabllon e rrjetit në vend</translation>
+    </message>
+    <message>
         <source>Add Network Connection</source>
         <translation>Shtoni Lidhje Rrjeti</translation>
     </message>
+</context>
+<context>
+    <name>WirelessDeviceModel</name>
     <message>
-        <source>Select Settings</source>
-        <translation>Përzgjidhni Rregullime</translation>
+        <source>Connect to hidden network</source>
+        <translation>Lidhu me rrjet të fshehur</translation>
     </message>
 </context>
 <context>
-    <name>WirelessPage</name>
+    <name>WirelessModule</name>
     <message>
         <source>Wireless Network Adapter</source>
         <translation>Përshtatës Rrjeti Pa Fill</translation>
-        <extra-contents_path>/network/Wireless Network</extra-contents_path>
+    </message>
+    <message>
+        <source>Disable hotspot first if you want to connect to a wireless network</source>
+        <translation>Së pari çaktivizoni hotspot-in, nëse doni të lidheni me një rrjet pa fill</translation>
     </message>
     <message>
         <source>Close Hotspot</source>
         <translation>Mbylle Hotspot-in</translation>
-    </message>
-    <message>
-        <source>Disable hotspot first if you want to connect to a wireless network</source>
-        <translation>Nëse doni të lidheni me një rrjet pa fill, së pari, çaktivizoni hotspot-in</translation>
-    </message>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>Lidhu në rrjet të fshehtë</translation>
-        <extra-child_page>WirelessPage</extra-child_page>
-        <extra-contents_path>/network/Connect to hidden network</extra-contents_path>
     </message>
 </context>
 <context>
@@ -1927,7 +1658,7 @@
     </message>
     <message>
         <source>Not Bind</source>
-        <translation type="unfinished"/>
+        <translation>Jo e lidhur</translation>
     </message>
     <message>
         <source>Device MAC Addr</source>

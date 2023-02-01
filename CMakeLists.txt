@@ -37,22 +37,6 @@ find_package(Qt5 COMPONENTS Core Widgets DBus Network LinguistTools REQUIRED)
 find_package(KF5NetworkManagerQt REQUIRED)
 get_target_property(KF5_QT_INCLUDE_DIRS KF5::NetworkManagerQt INTERFACE_INCLUDE_DIRECTORIES)
 
-# test networkmanagetqt
-try_compile(DEEPIN_NMQT_TEST
-              ${CMAKE_CURRENT_BINARY_DIR}/try_compile
-            SOURCES
-              ${CMAKE_CURRENT_SOURCE_DIR}/try-compile/networkmanagerqt.cc
-            LINK_LIBRARIES
-              ${KF5_QT_LIBRARIES}
-              Qt5::Core
-              Qt5::DBus
-              Qt5::Network
-            CMAKE_FLAGS
-              "-DINCLUDE_DIRECTORIES=${KF5_QT_INCLUDE_DIRS}\;${GLIB_INCLUDE_DIRS}\;${LibNM_INCLUDE_DIRS}"
-            OUTPUT_VARIABLE
-              result
-)
-
 if (QT_DEBUG)
     message(" KF5_QT_INCLUDE_DIRS : " ${KF5_QT_INCLUDE_DIRS})
     message(" GLIB_INCLUDE_DIRS :" ${GLIB_INCLUDE_DIRS})

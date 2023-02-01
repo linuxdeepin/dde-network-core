@@ -10,6 +10,7 @@
 #include "proxycontroller.h"
 #include "vpncontroller.h"
 #include "ipconfilctchecker.h"
+#include "networkdbusproxy.h"
 
 #include <networkmanagerqt/wireddevice.h>
 #include <networkmanagerqt/wirelessdevice.h>
@@ -18,16 +19,14 @@
 #include <wireddevice.h>
 #include <wirelessdevice.h>
 
+#include <QDBusConnection>
+#include <QDBusObjectPath>
+
 using namespace dde::network;
 using namespace NetworkManager;
 
-const static QString NetworkService = "com.deepin.daemon.Network";
-const static QString NetworkPath = "/com/deepin/daemon/Network";
-const static QString NetworkInterface = "com.deepin.daemon.Network";
-const static QString NetworkManagerService = "org.freedesktop.NetworkManager";
-const static QString NetworkManagerPath = "/org/freedesktop/NetworkManager";
-const static QString NetworkManagerInterface = "org.freedesktop.NetworkManager";
-const static QString PropertiesInterface = "org.freedesktop.DBus.Properties";
+const static QString networkService = "org.deepin.dde.Network1";
+const static QString networkPath = "/org/deepin/dde/Network1";
 
 NetworkManagerProcesser::NetworkManagerProcesser(QObject *parent)
     : NetworkProcesser(parent)
@@ -53,38 +52,13 @@ NetworkManagerProcesser::~NetworkManagerProcesser()
 
 void NetworkManagerProcesser::initConnections()
 {
-    QDBusConnection::systemBus().connect(NetworkManagerService, NetworkManagerPath, NetworkManagerInterface, "DeviceAdded", this, SLOT(onDeviceAdded(QDBusObjectPath)));
-    QDBusConnection::systemBus().connect(NetworkManagerService, NetworkManagerPath, NetworkManagerInterface, "DeviceRemoved", this, SLOT(onDeviceRemoved(QDBusObjectPath)));
-    QDBusConnection::systemBus().connect(NetworkManagerService, NetworkManagerPath, PropertiesInterface,  "PropertiesChanged", this, SLOT(onPropertiesChanged(QString, QVariantMap, QStringList)));
-    QDBusConnection::systemBus().connect(NetworkService, NetworkPath, NetworkInterface, "DeviceEnabled", this, SLOT(onDeviceEnabledChanged(QDBusObjectPath, bool)));
-}
-
-void NetworkManagerProcesser::onDevicesChanged(const QList<QDBusObjectPath> &devices)
-{
-    for(QDBusObjectPath device : devices ) {
-        qInfo() << "Device added: " << device.path();
-        onDeviceAdded(device.path());
-    }
-}
-
-void NetworkManagerProcesser::onDeviceAdded(const QDBusObjectPath &device)
-{
-    onDeviceAdded(device.path());
-}
-
-void NetworkManagerProcesser::onDeviceRemoved(const QDBusObjectPath &device)
-{
-    onDeviceRemove(device.path());
-}
-
-void NetworkManagerProcesser::onPropertiesChanged(const QString &interfaceName, const QVariantMap &changedProperties, const QStringList &invalidatedProperties)
-{
-    Q_UNUSED(interfaceName)
-    Q_UNUSED(invalidatedProperties)
-
-    if (changedProperties.contains("Connectivity")) {
-        onConnectivityChanged(NetworkManager::Connectivity(changedProperties.value("Connectivity").toUInt()));
-    }
+    connect(NetworkManager::notifier(), &Notifier::deviceAdded, this, &NetworkManagerProcesser::onDeviceAdded);
+    connect(NetworkManager::notifier(), &Notifier::deviceRemoved, this, &NetworkManagerProcesser::onDeviceRemove);
+    connect(NetworkManager::notifier(), &Notifier::connectivityChanged, this, &NetworkManagerProcesser::onConnectivityChanged);
+    connect(m_ipChecker, &IPConfilctChecker::conflictStatusChanged, this, [ ] (NetworkDeviceBase *device, const bool confilct) {
+        Q_EMIT device->deviceStatusChanged(confilct ? DeviceStatus::IpConfilct : device->deviceStatus());
+    });
+    QDBusConnection::systemBus().connect("org.deepin.dde.Network1", "/org/deepin/dde/Network1", "org.deepin.dde.Network1", "DeviceEnabled", this, SLOT(onDeviceEnabledChanged(QDBusObjectPath, bool)));
 }
 
 QList<NetworkDeviceBase *> NetworkManagerProcesser::devices()
@@ -341,10 +315,10 @@ NetworkDeviceBase *NetworkManagerProcesser::findDevice(const QString devicePath)
     return Q_NULLPTR;
 }
 
-NetworkInter *NetworkManagerProcesser::networkInter()
+NetworkDBusProxy *NetworkManagerProcesser::networkInter()
 {
     if (!m_networkInter)
-        m_networkInter = new NetworkInter(NetworkService, NetworkPath, QDBusConnection::sessionBus(), this);
+        m_networkInter = new NetworkDBusProxy(this);
 
     return m_networkInter;
 }

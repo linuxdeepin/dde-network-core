@@ -11,7 +11,6 @@
 
 #include <NetworkManagerQt/Device>
 
-#include <com_deepin_daemon_network.h>
 
 DGUI_USE_NAMESPACE
 
@@ -26,8 +25,6 @@ class AccessPoints;
 class QTimer;
 class NetItem;
 
-using namespace dde::network;
-
 namespace dde {
 namespace networkplugin {
 
@@ -38,10 +35,22 @@ class NetworkPluginHelper : public QObject
 {
     Q_OBJECT
 
+public:
+    enum MenuItemKey : int {
+        MenuSettings = 1,
+        MenuEnable,
+        MenuDisable,
+        MenuWiredEnable,
+        MenuWiredDisable,
+        MenuWirelessEnable,
+        MenuWirelessDisable,
+    };
+
 Q_SIGNALS:
     void sendIpConflictDect(int);
     void addDevice(const QString &devicePath);
     void viewUpdate();
+    void iconChanged();
 
 public:
     explicit NetworkPluginHelper(NetworkDialog *networkDialog, QObject *parent = Q_NULLPTR);
@@ -54,13 +63,20 @@ public:
     PluginState getPluginState();
     void updateTooltips(); // 更新提示的内容
 
+    QIcon *trayIcon() const;
+    QIcon icon(int colorType) const;
+    void refreshIcon();
+    void setIconDark(bool isDark);
+
 private:
     void initUi();
     void initConnection();
     bool deviceEnabled(const DeviceType &deviceType) const;
     void setDeviceEnabled(const DeviceType &deviceType, bool enabeld);
     bool wirelessIsActive() const;
-    void handleAccessPointSecure(AccessPoints *accessPoint);
+    QString getStrengthStateString(int strength) const;
+    dde::network::AccessPoints *getStrongestAp() const;
+    dde::network::AccessPoints *getConnectedAp() const;
 
     int deviceCount(const DeviceType &devType) const;
     QList<QPair<QString, QStringList>> ipTipsMessage(const DeviceType &devType);
@@ -80,8 +96,10 @@ private:
     QSet<QString> m_devicePaths; // 记录无线设备Path,防止信号重复连接
     QString m_lastActiveWirelessDevicePath;
     NetworkDialog *m_networkDialog;
+    QIcon *m_trayIcon;
+    QTimer *m_refreshIconTimer;
+    bool m_isDarkIcon; // 是深色主题
 };
-
 }
 }
 

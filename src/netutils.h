@@ -7,20 +7,11 @@
 
 #include "networkconst.h"
 
-#include <QDebug>
 #include <QJsonObject>
 #include <QLoggingCategory>
 
-#include "com_deepin_daemon_network.h"
-#include "com_deepin_daemon_network_proxychains.h"
-
-Q_DECLARE_LOGGING_CATEGORY(dncd);
-
 namespace dde {
 namespace network {
-
-#define PRINT_INFO_MESSAGE(msg) qCInfo(dncd) << __FILE__ << "line:" << __LINE__ << "function:" << __FUNCTION__ << "Message:" << msg
-#define PRINT_DEBUG_MESSAGE(msg) qCDebug(dncd) << __FILE__ << "line:" << __LINE__ << "function:" << __FUNCTION__ << "Message:" << msg
 
 // an alias for numeric zero, no flags set.
 #define DEVICE_INTERFACE_FLAG_NONE 0
@@ -34,13 +25,9 @@ namespace network {
 // wifi6的标记
 #define AP_FLAGS_HE 0x10
 
-using NetworkInter = com::deepin::daemon::Network;
-using ProxyChains = com::deepin::daemon::network::ProxyChains;
-
 Connectivity connectivityValue(uint sourceConnectivity);
 DeviceStatus convertDeviceStatus(int sourceDeviceStatus);
 ConnectionStatus convertConnectionStatus(int sourceConnectionStatus);
-
 
 }
 }

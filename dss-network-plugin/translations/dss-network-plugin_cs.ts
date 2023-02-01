@@ -148,7 +148,7 @@
     </message>
     <message>
         <source>Connected but no Internet access</source>
-        <translation>Připojeno, ale bez přístupu k Internetu</translation>
+        <translation>Připojeno, ale bez přístupu k internetu</translation>
     </message>
     <message>
         <source>Not connected</source>
@@ -180,7 +180,7 @@
     </message>
     <message>
         <source>IP conflict</source>
-        <translation>Konflikt IP adres</translation>
+        <translation>Střet IP adres</translation>
     </message>
     <message>
         <source>Failed</source>

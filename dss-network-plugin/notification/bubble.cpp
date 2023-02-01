@@ -22,6 +22,7 @@
 #include <QParallelAnimationGroup>
 #include <QTextDocument>
 #include <QBitmap>
+#include <QPointer>
 
 Bubble::Bubble(QWidget *parent, EntityPtr entity, OSD::ShowStyle style)
     : DBlurEffectWidget(parent)

@@ -4,6 +4,12 @@
 
 #include "secretagent.h"
 
+#include <QDBusConnection>
+#include <QStringBuilder>
+#include <QtDBus/qdbusmetatype.h>
+#include <QJsonDocument>
+#include <QJsonArray>
+
 #include <NetworkManagerQt/ConnectionSettings>
 #include <NetworkManagerQt/GenericTypes>
 #include <NetworkManagerQt/GsmSetting>
@@ -12,14 +18,6 @@
 #include <NetworkManagerQt/VpnSetting>
 #include <NetworkManagerQt/WirelessSecuritySetting>
 #include <NetworkManagerQt/WirelessSetting>
-
-#include <QDBusConnection>
-#include <QStringBuilder>
-#include <QtDBus/qdbusmetatype.h>
-#include <QJsonDocument>
-#include <QJsonArray>
-
-static const QString NetworkDialogApp = "dde-network-dialog"; //网络列表执行文件
 
 #define DEBUG_PRINT qDebug() << __FILE__ << "line:" << __LINE__ << "function:" << __FUNCTION__ << "Message:"
 
@@ -216,20 +214,18 @@ bool SecretAgent::processGetSecrets(SecretsRequest &request)
     }
 
     if (!m_greeter) {
-        NMStringMap secretsMap;
         if (!requestNew) {
             // 需要去解锁密码环，取密码
             return false;
         }
 
-        if (!secretsMap.isEmpty()) {
-            setting->secretsFromStringMap(secretsMap);
-            if (!(isVpn) && setting->needSecrets(requestNew).isEmpty()) {
-                // Enough secrets were retrieved from storage
-                request.connection[request.setting_name] = setting->secretsToMap();
-                sendSecrets(request.connection, request.message);
-                return true;
-            }
+        NMStringMap secretsMap;
+        setting->secretsFromStringMap(secretsMap);
+        if (!(isVpn) && setting->needSecrets(requestNew).isEmpty()) {
+            // Enough secrets were retrieved from storage
+            request.connection[request.setting_name] = setting->secretsToMap();
+            sendSecrets(request.connection, request.message);
+            return true;
         }
     }
 

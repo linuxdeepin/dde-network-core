@@ -5,22 +5,25 @@
 #include "ipconfilctchecker.h"
 #include "networkdevicebase.h"
 #include "realize/netinterface.h"
+#include "networkdbusproxy.h"
 
 #include <QtMath>
+#include <QJsonParseError>
+#include <QJsonArray>
+#include <QTimer>
+#include <QThread>
 
 #include <networkmanagerqt/manager.h>
 #include <networkmanagerqt/device.h>
 
-#include <org_freedesktop_notifications.h>
-
-const static QString networkService = "com.deepin.daemon.Network";
-const static QString networkPath = "/com/deepin/daemon/Network";
+const static QString networkService = "org.deepin.dde.Network1";
+const static QString networkPath = "/org/deepin/dde/Network1";
 
 using namespace dde::network;
 
 IPConfilctChecker::IPConfilctChecker(NetworkProcesser *networkProcesser, const bool ipChecked, QObject *parent)
     : QObject(parent)
-    , m_networkInter(new NetworkInter(networkService, networkPath, QDBusConnection::sessionBus(), this))
+    , m_networkInter(new NetworkDBusProxy(this))
     , m_networkProcesser(networkProcesser)
     , m_ipNeedCheck(ipChecked)
     , m_thread(new QThread(this))
@@ -28,7 +31,7 @@ IPConfilctChecker::IPConfilctChecker(NetworkProcesser *networkProcesser, const b
     this->moveToThread(m_thread);
 
     Q_ASSERT(m_networkProcesser);
-    connect(m_networkInter, &NetworkInter::IPConflict, this, &IPConfilctChecker::onIPConfilct);                      // IP冲突发出的信号
+    connect(m_networkInter, &NetworkDBusProxy::IPConflict, this, &IPConfilctChecker::onIPConfilct);                      // IP冲突发出的信号
     // 构造所有的设备冲突检测对象
     connect(m_networkProcesser, &NetworkProcesser::deviceAdded, this, &IPConfilctChecker::onDeviceAdded, Qt::QueuedConnection);
     m_thread->start();
@@ -66,13 +69,8 @@ void IPConfilctChecker::onIPConfilct(const QString &ip, const QString &macAddres
 {
     // 此处通过调用后台获取IP地址，如果直接使用当前网络库中设备的IP地址，就有如下问题
     // 如果是在控制中心修改手动IP的话，从当前库中获取到的IP地址就不是最新的地址，因此此处需要从后台获取实时IP
-    QDBusPendingCallWatcher *w = new QDBusPendingCallWatcher(m_networkInter->GetActiveConnectionInfo(), this);
-    connect(w, &QDBusPendingCallWatcher::finished, w, &QDBusPendingCallWatcher::deleteLater);
-    connect(w, &QDBusPendingCallWatcher::finished, this, [ = ](QDBusPendingCallWatcher * w) {
-        QDBusPendingReply<QString> reply = *w;
-        QString activeConnectionInfo = reply.value();
-        handlerIpConflict(ip, macAddress, activeConnectionInfo);
-    });
+    QString activeConnectionInfo =m_networkInter->GetActiveConnectionInfo();
+    handlerIpConflict(ip, macAddress, activeConnectionInfo);
 }
 
 void IPConfilctChecker::onSenderIPInfo(const QStringList &ips)
@@ -201,7 +199,7 @@ QMap<QString, NetworkDeviceBase *> IPConfilctChecker::parseDeviceIp(const QStrin
  * @param netInter
  * @param parent
  */
-DeviceIPChecker::DeviceIPChecker(NetworkDeviceBase *device, NetworkInter *netInter, QObject *parent)
+DeviceIPChecker::DeviceIPChecker(NetworkDeviceBase *device, NetworkDBusProxy *netInter, QObject *parent)
     : QObject(parent)
     , m_device(device)
     , m_networkInter(netInter)
@@ -213,9 +211,7 @@ DeviceIPChecker::DeviceIPChecker(NetworkDeviceBase *device, NetworkInter *netInt
     auto requestConflictCheck = [ this ] () {
         // 当设备的IP地址发生变化的时候，请求IP冲突， 只有在上一次请求和该次请求发生的时间大于3秒，才发出信号
         m_ipV4 = m_device->ipv4();
-        auto now = QTime::currentTime();
-        if (!m_ipV4.isEmpty() && m_requestTime > now) {
-            PRINT_INFO_MESSAGE(QString("request Device:%1, IP: %2").arg(m_device->deviceName()).arg(m_ipV4.join(",")));
+        if (!m_ipV4.isEmpty()) {
             m_changeIpv4s << m_ipV4;
             m_requestTime = now.addSecs(3);
             if (m_changeIpv4s.size() > 0) {
@@ -283,13 +279,21 @@ void DeviceIPChecker::handlerIpConflict()
             // IP冲突状态发生变化的时候才会发送该信号
             if (lastConfilctStatus)
                 Q_EMIT conflictStatusChanged(m_device, false);
+            // 如果网络没有冲突，则30分钟定期检测一次
+            if (m_clearCount < 3)
+                emit ipConflictCheck(m_ipV4);
+            // 如果冲突解除，则30秒发送一次，因为正常情况下，如果有冲突，很少会主动给客户端发送冲突信息
+            // 所以在解除后，检测30秒再发送一次检测
+            QTimer::singleShot(1000 * 30, this, [ this ] {
+                emit ipConflictCheck(m_ipV4);
+            });
         }
         m_clearCount++;
     } else {
         m_clearCount = 0;
 
         // 如果少于两次，则继续确认
-        if (m_conflictCount < 1 && !m_ipConflicted) {
+        if (m_conflictCount < 1) {
             emit ipConflictCheck(m_ipV4);
         } else {
             // 如果大于3次，则认为当前IP冲突了

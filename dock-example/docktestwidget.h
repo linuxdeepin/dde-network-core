@@ -10,6 +10,7 @@
 #include "dockpopupwindow.h"
 
 class NetworkPlugin;
+class QLabel;
 
 class DockTestWidget : public QWidget, public PluginProxyInterface
 {
@@ -35,6 +36,20 @@ private:
     void saveValue(PluginsItemInterface * const itemInter, const QString &key, const QVariant &value) override;
     const QVariant getValue(PluginsItemInterface *const itemInter, const QString &key, const QVariant& fallback = QVariant()) override;
     void removeValue(PluginsItemInterface *const itemInter, const QStringList &keyList) override;
+    void updateDockInfo(PluginsItemInterface *const itemInter, const DockPart &part) override;
+
+protected:
+    virtual void showPopupWindow(QWidget * const content, const bool model = false);
+    virtual void showHoverTips();
+    const QPoint popupMarkPoint() const;
+    const QPoint topleftPoint() const;
+    void popupWindowAccept();
+    void showPopupApplet(QWidget * const applet);
+    void hidePopup();
+    QWidget *trayTipsWidget();
+
+Q_SIGNALS:
+    void requestWindowAutoHide(const bool autoHide);
 
 protected:
     virtual void showPopupWindow(QWidget * const content, const bool model = false);
@@ -55,6 +70,7 @@ private:
 
     bool m_popupShown;
     QPointer<QWidget> m_lastPopupWidget;
+    QLabel *m_iconWidget;
 
     static Dock::Position DockPosition;
     static QPointer<DockPopupWindow> PopupWindow;

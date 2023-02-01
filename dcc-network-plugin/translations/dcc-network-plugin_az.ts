@@ -1,17 +1,17 @@
 <?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="az">
 <context>
-    <name>ChainsProxyPage</name>
+    <name>AppProxyModule</name>
     <message>
         <source>Application Proxy</source>
         <translation>Tətbiq proksisi</translation>
     </message>
     <message>
         <source>Proxy Type</source>
-        <translation>Proksi növü</translation>
+        <translation>Proxy növü</translation>
     </message>
     <message>
         <source>IP Address</source>
-        <translation>IP Ünvanı</translation>
+        <translation>IP ünvanı</translation>
     </message>
     <message>
         <source>Required</source>
@@ -27,7 +27,7 @@
     </message>
     <message>
         <source>Optional</source>
-        <translation>İxtiyari</translation>
+        <translation>İstəyə görə</translation>
     </message>
     <message>
         <source>Password</source>
@@ -35,17 +35,17 @@
     </message>
     <message>
         <source>Check &quot;Use a proxy&quot; in application context menu in Launcher after configured</source>
-        <translation>Tənzimləndikdən sonra Başladıcıda, tətbiqin kontekst menyusundakı &quot;Proksi istifadə edin&quot; işarələyin</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Ləğv edin</translation>
+        <translation>Tənzimləndikdən sonra Başladıcıda, tətbiqin kontekst menyusundakı &quot;Proksi istifadə edin&quot; girişini işarələyin</translation>
     </message>
     <message>
         <source>Save</source>
         <comment>button</comment>
         <translation>Saxla</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>İmtina</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
@@ -168,218 +168,6 @@
     </message>
 </context>
 <context>
-    <name>DCCNetworkModule</name>
-    <message>
-        <source>Network</source>
-        <translation>Şəbəkə</translation>
-    </message>
-    <message>
-        <source>Application Proxy</source>
-        <translation>Tətbiq proksisi</translation>
-    </message>
-    <message>
-        <source>Personal Hotspot</source>
-        <translation>Fərdi qoşulma nöqtəsi</translation>
-    </message>
-    <message>
-        <source>Network Details</source>
-        <translation>Şəbəkə məlumatları</translation>
-    </message>
-    <message>
-        <source>System Proxy</source>
-        <translation>Sistem proksisi</translation>
-    </message>
-    <message>
-        <source>Wired Network</source>
-        <translation>Naqilli şəbəkə</translation>
-    </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation>Simsiz şəbəkə</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>VPN</translation>
-    </message>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>Təyyarə rejimi</translation>
-        <extra-child_page>Airplane Mode</extra-child_page>
-        <extra-contents_path>/network/Airplane Mode</extra-contents_path>
-    </message>
-    <message>
-        <source>Wired Network Adapter</source>
-        <translation>Naqilli şəbəkə uzlaşdırıcısı</translation>
-        <extra-child_page>Wired Network</extra-child_page>
-        <extra-contents_path>/network/Wired Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Add Network Connection</source>
-        <translation>Şəbəkə bağlantısı əlavə et</translation>
-        <extra-child_page>Wired Network</extra-child_page>
-        <extra-contents_path>/network/Wired Network/addWiredConnection</extra-contents_path>
-    </message>
-    <message>
-        <source>Wireless Network Adapter</source>
-        <translation>Simsiz şəbəkə uzlaşdırıcısı</translation>
-        <extra-child_page>Wireless Network</extra-child_page>
-        <extra-contents_path>/network/Wireless Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>Gizli şəbəkəyə qoşulmaq</translation>
-        <extra-child_page>Wireless Network</extra-child_page>
-        <extra-contents_path>/network/Wireless Network/Connect to hidden network</extra-contents_path>
-    </message>
-    <message>
-        <source>DSL</source>
-        <translation>DSL</translation>
-        <extra-child_page_hide>DSL</extra-child_page_hide>
-        <extra-contents_path>/network/DSL</extra-contents_path>
-    </message>
-    <message>
-        <source>Create PPPoE Connection</source>
-        <translation>PPPoE bağlantısı yaratmaq</translation>
-        <extra-child_page>DSL</extra-child_page>
-        <extra-contents_path>/network/DSL/Create PPPoE Connection</extra-contents_path>
-    </message>
-    <message>
-        <source>VPN Status</source>
-        <translation>VPN statusu</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Create VPN</source>
-        <translation>VPN yaratmaq</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN/Create VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation>VPN idxal etmək</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN/Import VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation>Proksi növü</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation>Tənzimləmə URL&apos;u</translation>
-    </message>
-    <message>
-        <source>IP Address</source>
-        <translation>IP Ünvanı</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>Port</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>İstifadəçi adı</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Şifrə</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Hotspot</source>
-        <translation>Qoşulma nöqtəsi</translation>
-        <extra-child_page>Personal Hotspot</extra-child_page>
-        <extra-contents_path>/network/Personal Hotspot</extra-contents_path>
-    </message>
-    <message>
-        <source>Create Hotspot</source>
-        <translation>Qoşulma nöqtəsi yaratmaq</translation>
-        <extra-child_page>Personal Hotspot</extra-child_page>
-        <extra-contents_path>/network/Personal Hotspot/Create Hotspot</extra-contents_path>
-    </message>
-    <message>
-        <source>Interface</source>
-        <translation>İnterfeys</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>MAC</source>
-        <translation>MAC</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation>Aralıq</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>IPv4</source>
-        <translation>IPv4</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Şəbəkə keçidi</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Primary DNS</source>
-        <translation>Birinci DNS</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Netmask</source>
-        <translation>Şəbəkə maskası</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>IPv6</source>
-        <translation>IPv6</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Prefix</source>
-        <translation>Prefiks</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation>Sürət</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-</context>
-<context>
-    <name>dccV20::network::AirplaneModepage</name>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>Təyyarə rejimi</translation>
-    </message>
-    <message>
-        <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
-        <translation>Təyyarə rejiminin işə salınması simsiz şəbəkəni, fərdi qoşulma nötəsini və Bluetooth-u söndürür</translation>
-    </message>
-</context>
-<context>
     <name>DNSSection</name>
     <message>
         <source>DNS</source>
@@ -388,6 +176,17 @@
     <message>
         <source>Invalid DNS address</source>
         <translation>Səhv DNS ünvanı</translation>
+    </message>
+</context>
+<context>
+    <name>DSLModule</name>
+    <message>
+        <source>DSL</source>
+        <translation>DSL</translation>
+    </message>
+    <message>
+        <source>Create PPPoE Connection</source>
+        <translation>PPPoE bağlantısı yarat</translation>
     </message>
 </context>
 <context>
@@ -460,21 +259,25 @@
     </message>
 </context>
 <context>
-    <name>HotspotDeviceWidget</name>
+    <name>HotspotDeviceItem</name>
     <message>
         <source>Hotspot</source>
         <translation>Qoşulma nöqtəsi</translation>
     </message>
     <message>
         <source>Add Settings</source>
-        <translation>Ayarlar əlavə etmək</translation>
+        <translation>Ayarlar əlavə et</translation>
     </message>
 </context>
 <context>
-    <name>HotspotPage</name>
+    <name>HotspotModule</name>
+    <message>
+        <source>Personal Hotspot</source>
+        <translation>Fərdi qoşulma nöqtəsi</translation>
+    </message>
     <message>
         <source>Create Hotspot</source>
-        <translation>Qoşulma nöqtəsi yaratmaq</translation>
+        <translation>Qoşulma nöqtəsi yarat</translation>
     </message>
 </context>
 <context>
@@ -645,66 +448,17 @@
     </message>
 </context>
 <context>
-    <name>NetworkDetailPage</name>
+    <name>NetworkInfoModule</name>
     <message>
         <source>Network Details</source>
         <translation>Şəbəkə məlumatları</translation>
     </message>
 </context>
 <context>
-    <name>NetworkModuleWidget</name>
-    <message>
-        <source>DSL</source>
-        <translation>DSL</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>VPN</translation>
-    </message>
-    <message>
-        <source>System Proxy</source>
-        <translation>Sistem proksisi</translation>
-    </message>
-    <message>
-        <source>Application Proxy</source>
-        <translation>Tətbiq proksisi</translation>
-    </message>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>Təyyarə rejimi</translation>
-        <extra-contents_path>/network/Airplane</extra-contents_path>
-    </message>
-    <message>
-        <source>Network Details</source>
-        <translation>Şəbəkə məlumatları</translation>
-    </message>
+    <name>NetworkModule</name>
     <message>
         <source>Network</source>
         <translation>Şəbəkə</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>İP ziddiyyəti</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Aktiv deyil</translation>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>Əllə</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Avtomatik</translation>
-    </message>
-    <message>
-        <source>Configure by Network Manager</source>
-        <translation>Şəbəkə Meneceri ilə ayarlamaq</translation>
-    </message>
-    <message>
-        <source>Personal Hotspot</source>
-        <translation>Fərdi qoşulma nöqtəsi</translation>
     </message>
 </context>
 <context>
@@ -791,98 +545,6 @@
     <message>
         <source>Stateful MPPE</source>
         <translation>MPPE vəziyyəti</translation>
-    </message>
-</context>
-<context>
-    <name>PppoePage</name>
-    <message>
-        <source>Create PPPoE Connection</source>
-        <translation>PPPoE bağlantısı yaratmaq</translation>
-    </message>
-    <message>
-        <source>PPP</source>
-        <translation>PPP</translation>
-    </message>
-</context>
-<context>
-    <name>ProxyPage</name>
-    <message>
-        <source>System Proxy</source>
-        <translation>Sistem proksisi</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Ləğv edin</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <comment>button</comment>
-        <translation>Saxla</translation>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation>Proksi növü</translation>
-        <extra-child_page>System Proxy</extra-child_page>
-        <extra-contents_path>/network/System Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>Əllə</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Avtomatik</translation>
-    </message>
-    <message>
-        <source>Optional</source>
-        <translation>İxtiyari</translation>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>Port</translation>
-    </message>
-    <message>
-        <source>Authentication is required</source>
-        <translation>Kimlik doğrulaması tələb olunur</translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>İstifadəçi adı</translation>
-    </message>
-    <message>
-        <source>Required</source>
-        <translation>Tələb olunur</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Şifrə</translation>
-    </message>
-    <message>
-        <source>HTTP Proxy</source>
-        <translation>HTTP proksi</translation>
-    </message>
-    <message>
-        <source>HTTPS Proxy</source>
-        <translation>HTTPS proksi</translation>
-    </message>
-    <message>
-        <source>FTP Proxy</source>
-        <translation>FTP proksi</translation>
-    </message>
-    <message>
-        <source>SOCKS Proxy</source>
-        <translation>SOCKS proksi</translation>
-    </message>
-    <message>
-        <source>Ignore the proxy configurations for the above hosts and domains</source>
-        <translation>Yuxarıdakı hostlar və domenlər üçün proksi tənzimləmələrini nəzərə almamaq</translation>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation>Tənzimləmə URL&apos;u</translation>
-        <extra-child_page>System Proxy</extra-child_page>
-        <extra-contents_path>/network/System Proxy</extra-contents_path>
     </message>
 </context>
 <context>
@@ -1111,6 +773,106 @@
     <message>
         <source>Password</source>
         <translation>Şifrə</translation>
+    </message>
+</context>
+<context>
+    <name>SysProxyModule</name>
+    <message>
+        <source>System Proxy</source>
+        <translation>Sistem proksisi</translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation>Əl ilə</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Avtomatik</translation>
+    </message>
+    <message>
+        <source>Proxy Type</source>
+        <translation>Proxy növü</translation>
+    </message>
+    <message>
+        <source>Optional</source>
+        <translation>İstəyə görə</translation>
+    </message>
+    <message>
+        <source>Configuration URL</source>
+        <translation>Tənzimləmə URL&apos;u</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <comment>button</comment>
+        <translation>Saxla</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>İmtina</translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation>Port</translation>
+    </message>
+    <message>
+        <source>HTTP Proxy</source>
+        <translation>HTTP proksi</translation>
+    </message>
+    <message>
+        <source>HTTPS Proxy</source>
+        <translation>HTTPS proksi</translation>
+    </message>
+    <message>
+        <source>FTP Proxy</source>
+        <translation>FTP proksi</translation>
+    </message>
+    <message>
+        <source>SOCKS Proxy</source>
+        <translation>SOCKS proksi</translation>
+    </message>
+    <message>
+        <source>Ignore the proxy configurations for the above hosts and domains</source>
+        <translation>Yuxarıdakı hostlar və domenlər üçün proksi tənzimləmələrini nəzərə almayın</translation>
+    </message>
+</context>
+<context>
+    <name>VPNModule</name>
+    <message>
+        <source>VPN</source>
+        <translation>VPN</translation>
+    </message>
+    <message>
+        <source>Wired Network Adapter</source>
+        <translation>Naqilli şəbəkə uzlaşdırıcısı</translation>
+    </message>
+    <message>
+        <source>VPN Status</source>
+        <translation>VPN statusu</translation>
+    </message>
+    <message>
+        <source>Add Network Connection</source>
+        <translation>Şəbəkə bağlantısı əlavə et</translation>
+    </message>
+    <message>
+        <source>Create VPN</source>
+        <translation>VPN yarat</translation>
+    </message>
+    <message>
+        <source>Import VPN</source>
+        <translation>VPN-i idxal et</translation>
+    </message>
+    <message>
+        <source>Import Error</source>
+        <translation>İdxal xətası</translation>
+    </message>
+    <message>
+        <source>File error</source>
+        <translation>Fayl xətası</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>OLDU</translation>
     </message>
 </context>
 <context>
@@ -1516,33 +1278,6 @@
     </message>
 </context>
 <context>
-    <name>VpnPage</name>
-    <message>
-        <source>VPN Status</source>
-        <translation>VPN statusu</translation>
-    </message>
-    <message>
-        <source>Create VPN</source>
-        <translation>VPN yaratmaq</translation>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation>VPN idxal etmək</translation>
-    </message>
-    <message>
-        <source>Import Error</source>
-        <translation>İdxal alınmadı</translation>
-    </message>
-    <message>
-        <source>File error</source>
-        <translation>Fayl xətası</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>OK</translation>
-    </message>
-</context>
-<context>
     <name>VpnProxySection</name>
     <message>
         <source>VPN Proxy</source>
@@ -1879,44 +1614,40 @@
     </message>
 </context>
 <context>
-    <name>WiredPage</name>
-    <message>
-        <source>Plug in the network cable first</source>
-        <translation>Öncə şəbəkə kabelini qoşun</translation>
-    </message>
+    <name>WiredModule</name>
     <message>
         <source>Wired Network Adapter</source>
         <translation>Naqilli şəbəkə uzlaşdırıcısı</translation>
     </message>
     <message>
+        <source>Plug in the network cable first</source>
+        <translation>Öncə şəbəkə kabelini qoşun</translation>
+    </message>
+    <message>
         <source>Add Network Connection</source>
         <translation>Şəbəkə bağlantısı əlavə et</translation>
     </message>
+</context>
+<context>
+    <name>WirelessDeviceModel</name>
     <message>
-        <source>Select Settings</source>
-        <translation>Ayarları seçin</translation>
+        <source>Connect to hidden network</source>
+        <translation>Gizli şəbəkəyə qoşul</translation>
     </message>
 </context>
 <context>
-    <name>WirelessPage</name>
+    <name>WirelessModule</name>
     <message>
         <source>Wireless Network Adapter</source>
         <translation>Simsiz şəbəkə uzlaşdırıcısı</translation>
-        <extra-contents_path>/network/Wireless Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Close Hotspot</source>
-        <translation>Qoşulma nöqtəsini bağlamaq</translation>
     </message>
     <message>
         <source>Disable hotspot first if you want to connect to a wireless network</source>
         <translation>Simsiz şəbəkəyə bağlanmaq istəsəniz qoşulma nöqtəsini söndürün</translation>
     </message>
     <message>
-        <source>Connect to hidden network</source>
-        <translation>Gizli şəbəkəyə qoşulmaq</translation>
-        <extra-child_page>WirelessPage</extra-child_page>
-        <extra-contents_path>/network/Connect to hidden network</extra-contents_path>
+        <source>Close Hotspot</source>
+        <translation>Qoşulma nöqtəsini bağla</translation>
     </message>
 </context>
 <context>

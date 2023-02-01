@@ -148,7 +148,7 @@
     </message>
     <message>
         <source>Connected but no Internet access</source>
-        <translation>Bağandı ancak İnternet erişimi yok</translation>
+        <translation>Bağlandı ancak İnternet erişimi yok</translation>
     </message>
     <message>
         <source>Not connected</source>

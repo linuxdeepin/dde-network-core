@@ -17,7 +17,7 @@ namespace dde {
 namespace network {
 
 #define MaxQueueSize 4
-
+class NetworkDBusProxy;
 class DeviceInterRealize : public NetworkDeviceRealize
 {
     Q_OBJECT
@@ -45,10 +45,14 @@ public:
     Connectivity connectivity();
     DeviceStatus deviceStatus() const override;
 
+protected Q_SLOTS:
+    void deviceConnectionFailed();
+    void deviceConnectionSuccess();
+
 protected:
-    explicit DeviceInterRealize(IPConfilctChecker *ipChecker, NetworkInter *networkInter, QObject *parent = Q_NULLPTR);
+    explicit DeviceInterRealize(IPConfilctChecker *ipChecker, NetworkDBusProxy *networkInter, QObject *parent = Q_NULLPTR);
     virtual ~DeviceInterRealize() override;
-    NetworkInter *networkInter();
+    NetworkDBusProxy *networkInter();
     void updateDeviceInfo(const QJsonObject &info);
     void initDeviceInfo();
     QStringList getValidIPV4(const QStringList &ipv4s);
@@ -63,7 +67,7 @@ protected:
     int mode() const;
 
 private:
-    NetworkInter *m_networkInter;
+    NetworkDBusProxy *m_networkInter;
     QJsonObject m_data;
     QJsonObject m_activeInfoData;
     bool m_enabled;
@@ -79,7 +83,7 @@ class WiredDeviceInterRealize : public DeviceInterRealize
     friend class NetworkInterProcesser;
 
 private:
-    WiredDeviceInterRealize(IPConfilctChecker *ipChecker, NetworkInter *networkInter, QObject *parent);
+    WiredDeviceInterRealize(IPConfilctChecker *ipChecker, NetworkDBusProxy *networkInter, QObject *parent);
     ~WiredDeviceInterRealize() override;
 
 public:
@@ -115,7 +119,7 @@ public:
     AccessPoints *activeAccessPoints() const override;                                                      // 当前活动的无线连接
 
 protected:
-    WirelessDeviceInterRealize(IPConfilctChecker *ipChecker, NetworkInter *networkInter, QObject *parent);
+    WirelessDeviceInterRealize(IPConfilctChecker *ipChecker, NetworkDBusProxy *networkInter, QObject *parent);
     ~WirelessDeviceInterRealize() override;
 
 private:

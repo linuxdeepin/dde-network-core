@@ -5,7 +5,9 @@
 #include "wirelessconnect.h"
 #include <pwd.h>
 
-#include <wirelessdevice.h>
+#include "wirelessdevice.h"
+
+#include <QtDBus/qdbusmetatype.h>
 
 #include <NetworkManagerQt/AccessPoint>
 #include <NetworkManagerQt/Settings>
@@ -15,9 +17,6 @@
 #include <NetworkManagerQt/Ipv4Setting>
 #include <NetworkManagerQt/Ipv6Setting>
 #include <NetworkManagerQt/Utils>
-#include <QtDBus/qdbusmetatype.h>
-
-#define LIGHTDM_USER "lightdm"
 
 using namespace dde::network;
 using namespace NetworkManager;
@@ -282,7 +281,7 @@ void WirelessConnect::activateConnection()
             return;
         }
     }
-    qInfo() << "activateConnection" <<conn->path()<< m_device->path() << accessPointPath;
+    qInfo() << "activateConnection" << conn->path() << m_device->path() << accessPointPath;
     NetworkManager::activateConnection(conn->path(), m_device->path(), accessPointPath);
 }
 

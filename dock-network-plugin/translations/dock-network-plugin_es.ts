@@ -16,6 +16,67 @@
         <source>Network</source>
         <translation>Red</translation>
     </message>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Red cableada</translation>
+    </message>
+    <message>
+        <source>Device disabled</source>
+        <translation>Dispositivo deshabilitado</translation>
+    </message>
+    <message>
+        <source>Network cable unplugged</source>
+        <translation>Cable de red desconectado</translation>
+    </message>
+    <message>
+        <source>Not connected</source>
+        <translation>Sin conexión</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation>Conectando</translation>
+    </message>
+    <message>
+        <source>Connected but no Internet access</source>
+        <translation>Conectado pero sin acceso a Internet</translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation>Conflicto de IP</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation>Conexión fallida</translation>
+    </message>
+</context>
+<context>
+    <name>WirelessItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation>Conectarse a una red oculta</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Contraseña</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Cancelar</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <comment>button</comment>
+        <translation>Conectar</translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation>Nombre (SSID)</translation>
+    </message>
 </context>
 <context>
     <name>WirelessItem</name>
@@ -58,7 +119,7 @@
     </message>
     <message>
         <source>Security Type</source>
-        <translation>Tipo de Seguridad</translation>
+        <translation>Tipo de seguridad</translation>
     </message>
     <message>
         <source>Channel</source>

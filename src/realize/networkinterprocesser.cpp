@@ -4,6 +4,7 @@
 
 #include "networkinterprocesser.h"
 #include "ipconfilctchecker.h"
+#include "networkdbusproxy.h"
 
 #include "dslcontroller.h"
 #include "hotspotcontroller.h"
@@ -15,11 +16,12 @@
 #include "wirelessdevice.h"
 #include "deviceinterrealize.h"
 
+#include <QJsonDocument>
+#include <QTimer>
+
 namespace dde {
 namespace network {
 
-const static QString networkService = "com.deepin.daemon.Network";
-const static QString networkPath = "/com/deepin/daemon/Network";
 
 #define CHANGE_CONNECTIONS "ConnectionsChanged"
 #define CHANGE_ACTIVECONNECTIONS "ActiveConnectionsChanged"
@@ -31,7 +33,7 @@ NetworkInterProcesser::NetworkInterProcesser(bool sync, bool ipCheck, QObject *p
     , m_vpnController(Q_NULLPTR)
     , m_dslController(Q_NULLPTR)
     , m_hotspotController(Q_NULLPTR)
-    , m_networkInter(new NetworkInter(networkService, networkPath, QDBusConnection::sessionBus(), this))
+    , m_networkInter(new NetworkDBusProxy(this))
     , m_connectivity(Connectivity::Full)
     , m_sync(sync)
     , m_changedTimer(new QTimer(this))
@@ -46,7 +48,7 @@ NetworkInterProcesser::~NetworkInterProcesser()
     delete m_ipChecker;
 }
 
-void NetworkInterProcesser::initNetData(NetworkInter *networkInt)
+void NetworkInterProcesser::initNetData(NetworkDBusProxy *networkInt)
 {
     onDevicesChanged(networkInt->devices());
     doChangeConnectionList(networkInt->connections());
@@ -57,32 +59,12 @@ void NetworkInterProcesser::initNetData(NetworkInter *networkInt)
 void NetworkInterProcesser::updateSync(const bool sync)
 {
     m_sync = sync;
-    m_networkInter->setSync(sync);
 }
 
 void NetworkInterProcesser::initDeviceService()
 {
-    m_networkInter->setSync(m_sync);
-    if (m_sync) {
-        // 同步的方式来获取设备列表和连接列表
-        initNetData(m_networkInter);
-    } else {
-        // 异步的方式获取设备列表和连接列表
-        QDBusReply<bool> req = QDBusConnection::sessionBus().interface()->isServiceRegistered(networkService);
-        if (!req.value()) {
-            QDBusServiceWatcher *serviceWatcher = new QDBusServiceWatcher(this);
-            serviceWatcher->setConnection(QDBusConnection::sessionBus());
-            serviceWatcher->addWatchedService(networkService);
-            connect(serviceWatcher, &QDBusServiceWatcher::serviceRegistered, this, [ = ] {
-                NetworkInter netInter(networkService, networkPath, QDBusConnection::sessionBus(), this);
-                initNetData(&netInter);
-                serviceWatcher->deleteLater();
-            });
-        } else {
-            // 在异步状态下，这里必须调用一次相关的接口来获取数据，否则就不会触发相关的信号
-            initNetData(m_networkInter);
-        }
-    }
+    // 同步的方式来获取设备列表和连接列表
+    initNetData(m_networkInter);
 }
 
 void NetworkInterProcesser::initConnection()
@@ -94,7 +76,6 @@ void NetworkInterProcesser::initConnection()
     // 但是它们都能在100毫秒内全部返回，这样在定时器里按照顺序来处理这些信号的数据，保证数据的准确性
     m_changedTimer->setInterval(100);
     auto onDataChanged = [ this ](const char *infoName, const QString infoValue) {
-        PRINT_INFO_MESSAGE(infoName);
         // 这里需要用QStringList来保存，因为对于ActiveConnectionsChanged信号来说，在多个网卡存在的情况下，这个信号会发送多次
         // 每次的内容可能会不一样，例如断开连接，第一次发送的信号是第一个网卡的连接状态，第二次发送的信号是第二个网卡的连接状态，必须保证每个
         // 信号都能被正确接收并处理，否则就会出现信号丢失引起状态不正确的问题
@@ -109,29 +90,21 @@ void NetworkInterProcesser::initConnection()
     };
 
     connect(m_changedTimer, &QTimer::timeout, this, &NetworkInterProcesser::onConnectionInfoChanged);
-    connect(m_networkInter, &NetworkInter::DevicesChanged, this, &NetworkInterProcesser::onDevicesChanged);                            // 设备状态发生变化
-    connect(m_networkInter, &NetworkInter::ConnectionsChanged, this, [ onDataChanged ](const QString &connections) {                            // 连接发生变化
+    connect(m_networkInter, &NetworkDBusProxy::DevicesChanged, this, &NetworkInterProcesser::onDevicesChanged);                            // 设备状态发生变化
+    connect(m_networkInter, &NetworkDBusProxy::ConnectionsChanged, this, [ onDataChanged ](const QString &connections) {                            // 连接发生变化
         onDataChanged(CHANGE_CONNECTIONS, connections);
     });
-    connect(m_networkInter, &NetworkInter::ActiveConnectionsChanged, this, [ onDataChanged ](const QString &activeConnections) {                // 当前活动连接发生变化
+    connect(m_networkInter, &NetworkDBusProxy::ActiveConnectionsChanged, this, [ onDataChanged ](const QString &activeConnections) {                // 当前活动连接发生变化
         onDataChanged(CHANGE_ACTIVECONNECTIONS, activeConnections);
     });
-    connect(m_networkInter, &NetworkInter::WirelessAccessPointsChanged, this, [ onDataChanged ](const QString &accessPoints) {                  // 热点发生变化
+    connect(m_networkInter, &NetworkDBusProxy::WirelessAccessPointsChanged, this, [ onDataChanged ](const QString &accessPoints) {                  // 热点发生变化
         onDataChanged(CHANGE_WIRELESSACCESSPOINTS, accessPoints);
     });
-    connect(m_networkInter, &NetworkInter::DeviceEnabled, this, &NetworkInterProcesser::onDeviceEnableChanged);                        // 关闭设备或启用设备
+    connect(m_networkInter, &NetworkDBusProxy::DeviceEnabled, this, &NetworkInterProcesser::onDeviceEnableChanged);                        // 关闭设备或启用设备
 
-    connect(m_networkInter, &NetworkInter::ConnectivityChanged, this, &NetworkInterProcesser::onConnectivityChanged);                  // 网络状态发生变化
-
-    connect(m_networkInter, &NetworkInter::ActiveConnectionInfoChanged, this, [this] {
-        // 同步IP地址等信息
-        QDBusPendingCallWatcher *w = new QDBusPendingCallWatcher(m_networkInter->GetActiveConnectionInfo(), this);
-        connect(w, &QDBusPendingCallWatcher::finished, w, &QDBusPendingCallWatcher::deleteLater);
-        connect(w, &QDBusPendingCallWatcher::finished, this, [ this ](QDBusPendingCallWatcher * w) {
-            QDBusPendingReply<QString> reply = *w;
-            QString activeConnectionInfo = reply.value();
-            activeConnInfoChanged(activeConnectionInfo);
-        });
+    connect(m_networkInter, &NetworkDBusProxy::ConnectivityChanged, this, &NetworkInterProcesser::onConnectivityChanged);                  // 网络状态发生变化
+    connect(m_ipChecker, &IPConfilctChecker::conflictStatusChanged, this, [ ] (NetworkDeviceBase *device, const bool confilct) {
+        Q_EMIT device->deviceStatusChanged(confilct ? DeviceStatus::IpConfilct : device->deviceStatus());
     });
 }
 
@@ -163,7 +136,6 @@ void NetworkInterProcesser::onDevicesChanged(const QString &value)
         return;
 
     bool unManager = false;
-    PRINT_INFO_MESSAGE("device Changed");
     const QJsonObject data = QJsonDocument::fromJson(value.toUtf8()).object();
     QStringList devPaths;
     QList<NetworkDeviceBase *> newDevices;
@@ -191,7 +163,6 @@ void NetworkInterProcesser::onDevicesChanged(const QString &value)
             if (type != DeviceType::Wireless) {
                 if (!deviceInfo.value("InterfaceFlags").isUndefined()) {
                     if (!(deviceInfo.value("InterfaceFlags").toInt() & DEVICE_INTERFACE_FLAG_UP)) {
-                        PRINT_DEBUG_MESSAGE(QString("Interface_flag_up: %1").arg(deviceInfo.value("Interface").toString()));
                         continue;
                     }
                 }
@@ -201,14 +172,12 @@ void NetworkInterProcesser::onDevicesChanged(const QString &value)
             if (!device) {
                 switch (type) {
                 case DeviceType::Wireless: {
-                    PRINT_DEBUG_MESSAGE(QString("new Wireless Device: %1").arg(deviceInfo.value("Interface").toString()));
                     DeviceInterRealize *wirelessRealize = new WirelessDeviceInterRealize(m_ipChecker, m_networkInter, nullptr);
                     device = new WirelessDevice(wirelessRealize, this);
                     wirelessRealize->updateDeviceInfo(deviceInfo);
                     break;
                 }
                 case DeviceType::Wired: {
-                    PRINT_DEBUG_MESSAGE(QString("new Wired Device: %1").arg(deviceInfo.value("Interface").toString()));
                     DeviceInterRealize *wiredRealize = new WiredDeviceInterRealize(m_ipChecker, m_networkInter, nullptr);
                     device = new WiredDevice(wiredRealize, this);
                     wiredRealize->updateDeviceInfo(deviceInfo);
@@ -365,8 +334,6 @@ void NetworkInterProcesser::doChangeConnectionList(const QString &connections)
     if (connections.isEmpty())
         return;
 
-    PRINT_INFO_MESSAGE("start");
-
     m_connections = QJsonDocument::fromJson(connections.toUtf8()).object();
     updateConnectionsInfo(m_devices);
 
@@ -391,19 +358,12 @@ void NetworkInterProcesser::doChangeActiveConnections(const QString &activeConne
     if (activeConnections.isEmpty())
         return;
 
-    PRINT_INFO_MESSAGE("Active Connections Changed");
     activeInfoChanged(activeConnections);
     // 同步IP地址等信息
-    QDBusPendingCallWatcher *w = new QDBusPendingCallWatcher(m_networkInter->GetActiveConnectionInfo(), this);
-    connect(w, &QDBusPendingCallWatcher::finished, w, &QDBusPendingCallWatcher::deleteLater);
-    connect(w, &QDBusPendingCallWatcher::finished, this, [ = ](QDBusPendingCallWatcher * w) {
-        QDBusPendingReply<QString> reply = *w;
-        QString activeConnectionInfo = reply.value();
-        PRINT_INFO_MESSAGE("receive value");
-        activeConnInfoChanged(activeConnectionInfo);
-        onConnectivityChanged(m_networkInter->connectivity());
-        updateDeviceConnectiveInfo();
-    });
+    QString activeConnectionInfo =m_networkInter->GetActiveConnectionInfo();
+    activeConnInfoChanged(activeConnectionInfo);
+    onConnectivityChanged(m_networkInter->connectivity());
+    updateDeviceConnectiveInfo();
 }
 
 void NetworkInterProcesser::updateDeviceConnectiveInfo()
@@ -454,8 +414,6 @@ void NetworkInterProcesser::activeConnInfoChanged(const QString &conns)
                 deviceInter->updateActiveConnectionInfo(QList<QJsonObject>());
             }
         }
-    } else {
-        PRINT_DEBUG_MESSAGE(QString("receive error connection value: %1").arg(conns));
     }
     // 同时需要更新网络信息
     updateNetworkDetails();
@@ -487,7 +445,6 @@ void NetworkInterProcesser::doChangeAccesspoint(const QString &accessPoints)
 
 void NetworkInterProcesser::onDeviceEnableChanged(const QString &devicePath, bool enabled)
 {
-    PRINT_INFO_MESSAGE(QString("Device enabled:%1").arg(enabled));
     NetworkDeviceBase *device = findDevices(devicePath);
     if (device) {
         DeviceInterRealize *interDevice = static_cast<DeviceInterRealize *>(device->deviceRealize());
@@ -503,7 +460,6 @@ void NetworkInterProcesser::onDeviceEnableChanged(const QString &devicePath, boo
 
 void NetworkInterProcesser::onConnectivityChanged(uint conectivity)
 {
-    PRINT_INFO_MESSAGE(QString("conectivity:%1").arg(conectivity));
     Connectivity conn = static_cast<Connectivity>(conectivity);
     if (conn == m_connectivity)
         return;
@@ -536,7 +492,6 @@ void NetworkInterProcesser::updateConnectionsInfo(const QList<NetworkDeviceBase 
 
 void NetworkInterProcesser::activeInfoChanged(const QString &conns)
 {
-    PRINT_INFO_MESSAGE("active info changed");
     // 当前活动连接发生变化
     m_activeConection = QJsonDocument::fromJson(conns.toUtf8()).object();
     QMap<QString, QList<QJsonObject>> devActiveConn;
@@ -591,7 +546,6 @@ QList<NetworkDetails *> NetworkInterProcesser::networkDetails()
 
 void NetworkInterProcesser::updateDeviceHotpot()
 {
-    PRINT_INFO_MESSAGE("start");
     if (!m_hotspotController)
         return;
 
@@ -607,7 +561,6 @@ void NetworkInterProcesser::updateDeviceHotpot()
 
 void NetworkInterProcesser::updateNetworkDetails()
 {
-    PRINT_INFO_MESSAGE("start");
     QStringList devicePaths;
     for (NetworkDeviceBase *device : m_devices) {
         if (!device->isEnabled())
@@ -671,7 +624,6 @@ void NetworkInterProcesser::updateDSLData()
     if (!m_dslController || !m_connections.contains("pppoe"))
         return;
 
-    PRINT_INFO_MESSAGE("start update dsl info");
     m_dslController->updateDevice(m_devices);
     m_dslController->updateDSLItems(m_connections.value("pppoe").toArray());
     m_dslController->updateActiveConnections(m_activeConection);

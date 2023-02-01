@@ -17,6 +17,7 @@ NETWORKPLUGIN_BEGIN_NAMESPACE
 class NetworkDialog : public QObject
 {
     Q_OBJECT
+
 public:
     explicit NetworkDialog(QObject *parent = Q_NULLPTR);
     ~NetworkDialog() override;

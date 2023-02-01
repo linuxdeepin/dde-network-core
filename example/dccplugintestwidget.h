@@ -8,7 +8,8 @@
 #include <QWidget>
 #include <QStack>
 
-#include <interface/frameproxyinterface.h>
+//#include <interface/frameproxyinterface.h>
+#include <interface/moduleobject.h>
 
 #include <DMainWindow>
 
@@ -20,125 +21,99 @@ class QMouseEvent;
 class QPaintEvent;
 class QStandardItemModel;
 class QTranslator;
-
-namespace dcc {
-  namespace widgets {
-    class MultiSelectListView;
-  }
-}
+class QAbstractItemView;
+class QBoxLayout;
 
 DWIDGET_BEGIN_NAMESPACE
 class DBackgroundGroup;
 DWIDGET_END_NAMESPACE
 
-using namespace DCC_NAMESPACE;
 DWIDGET_USE_NAMESPACE
 
-class DccPluginTestWidget : public DMainWindow, public FrameProxyInterface
+using namespace DCC_NAMESPACE;
+
+namespace DCC_NAMESPACE {
+
+
+class MainModulePrivate;
+
+class MainModule : public ModuleObject
 {
     Q_OBJECT
 
 public:
+    explicit MainModule(QObject *parent = nullptr);
+    MainModule(const QString &name, const QString &displayName = QString(), QObject *parent = nullptr);
+    MainModule(const QString &name, const QStringList &contentText, QObject *parent = nullptr);
+    MainModule(const QString &name, const QString &displayName, const QStringList &contentText, QObject *parent = nullptr);
+    MainModule(const QString &name, const QString &displayName, const QVariant &icon, QObject *parent = nullptr);
+    MainModule(const QString &name, const QString &displayName, const QString &description, QObject *parent = nullptr);
+    MainModule(const QString &name, const QString &displayName, const QString &description, const QVariant &icon, QObject *parent = nullptr);
+    MainModule(const QString &name, const QString &displayName, const QString &description, const QIcon &icon, QObject *parent = nullptr);
+    MainModule(const QString &name, const QString &displayName, const QString &description, const QStringList &contentText, const QVariant &icon, QObject *parent = nullptr);
+    ~MainModule() override;
+
+    void appendChild(ModuleObject *const module) override;
+    QWidget *page() override;
+    ModuleObject *defultModule() override;
+    inline DCC_MODULE_TYPE getClassID() const override { return MAINLAYOUT; }
+
+private:
+    QScopedPointer<MainModulePrivate> d_ptr;
+    Q_DECLARE_PRIVATE(MainModule)
+    Q_DISABLE_COPY(MainModule)
+};
+
+}
+
+class DccPluginTestWidget : public DMainWindow
+{
+    Q_OBJECT
+
+public:
+    enum class UrlType {
+        Name,
+        DisplayName
+    };
     explicit DccPluginTestWidget(QWidget *parent = nullptr);
     ~DccPluginTestWidget();
 
-    void pushWidget(ModuleInterface *const inter, QWidget *const w, PushType type = Normal);
-
-    void popWidget(ModuleInterface *const inter);
-
-    void setModuleVisible(ModuleInterface *const inter, const bool visible);
-
-    void showModulePage(const QString &module, const QString &page, bool animation);
-
-    void setModuleSubscriptVisible(const QString &module, bool bIsDisplay);
-
-    void setRemoveableDeviceStatus(QString type, bool state);
-    bool getRemoveableDeviceStatus(QString type) const;
-
-    void setSearchPath(ModuleInterface *const inter) const;
-
-    void setModuleVisible(const QString &module, bool visible);
-    void setWidgetVisible(const QString &module, const QString &widget, bool visible);
-    void setDetailVisible(const QString &module, const QString &widget, const QString &detail, bool visible);
-    void updateSearchData(const QString &module);
-    void addChildPageTrans(const QString &menu, const QString &rran);
-    QString moduleDisplayName(const QString &module) const;
-
-private slots:
-    void onBack();
-    void onFirstItemClick(const QModelIndex &index);
-
-private:
-    void initNetworkModule();
-
-    void replaceThirdWidget(ModuleInterface *const inter, QWidget *const w);
-    void pushNormalWidget(ModuleInterface *const inter, QWidget *const w);
-    void popAllWidgets(int place = 0);
-    void resetNavList(bool isIconMode);
-    void judgeTopWidgetPlace(ModuleInterface *const inter, QWidget *const w);
-    void popWidget();
-    void pushTopWidget(ModuleInterface *const inter, QWidget *const w);
-    void resetTabOrder();
-    void findFocusChild(QWidget *w, QWidget *&pre);
-    void findFocusChild(QLayout *l, QWidget *&pre);
-    void pushFinalWidget(ModuleInterface *const inter, QWidget *const w);
-    void updateViewBackground();
-
-    void updateWinsize();
-
-private:
-    DCCNetworkModule *m_module;
-
-    QWidget *m_lastPushWidget{nullptr};
-    QStack<QPair<ModuleInterface *, QWidget *>> m_contentStack;
-    QPair<ModuleInterface *, QWidget *> m_lastThirdPage;
-    QHBoxLayout *m_rightContentLayout;
-    FourthColWidget *m_topWidget;
-    dcc::widgets::MultiSelectListView *m_navView;
-    struct CornerItemGroup {
-        QString m_name;
-        int m_index;
-        QPair <DViewItemAction *, DViewItemAction *> m_action;
-    };
-    QList<CornerItemGroup> m_remindeSubscriptList;//用于记录是否有角标, QString为模块名称，DViewItemAction为角标对象
-    QStandardItemModel *m_navModel;
-    QList<QPair<ModuleInterface *, QString>> m_modules;
-    DBackgroundGroup *m_rightView;
-    DIconButton *m_backwardBtn;
-
-    QTranslator *m_translator;
-
-    QStringList m_removeableDeviceList;
-
-    bool m_isFinalWidget;
-    bool m_isFromSecondAddWidget;
-};
-
-class FourthColWidget : public QWidget
-{
-    Q_OBJECT
-
-public:
-    explicit FourthColWidget(QWidget *parent = nullptr);
-    void initWidget(QWidget *showWidget, ModuleInterface *module = nullptr);
-
-    inline QWidget *curWidget() const { return m_curWidget; }
-    inline ModuleInterface *curInterface() const { return m_curInterface; }
+    /**
+     * @brief 显示路径请求的页面，用于搜索或DBus接口
+     * @param url 路径地址,从左至右搜索，如路径错误，只显示已搜索出的模块
+     */
+    void showPage(const QString &url, const UrlType &uType);
 
 protected:
-    void paintEvent(QPaintEvent *event) override;
-    void mousePressEvent(QMouseEvent *event) override;
-
-protected slots:
-    void onCurrentWidgetDestroy();
-
-Q_SIGNALS:
-    void signalBack();
+    void changeEvent(QEvent *event) override;
 
 private:
-    QWidget *m_curWidget{nullptr};
-    ModuleInterface *m_curInterface{nullptr};
-};
+    void openManual();
+    void initUI();
+    void initConfig();
+    void loadModules();
+    void toHome();
+    void updateMainView();
+    void clearPage(QWidget *const widget);
+    void configLayout(QBoxLayout *const layout);
+    int getScrollPos(const int index);
+    void showPage(ModuleObject *module, const QString &url, const UrlType &uType);
+    void showModule(ModuleObject *module, const int index = -1);
+    QWidget *getPage(QWidget *const widget, const QString &title);
+    QWidget *getExtraPage(QWidget *const widget);
 
+private Q_SLOTS:
+    void onAddModule(ModuleObject *module);
+    void onRemoveModule(ModuleObject *module);
+    void onTriggered();
+    void onChildStateChanged(ModuleObject *child, uint32_t flag, bool state);
+
+private:
+    Dtk::Widget::DIconButton *m_backwardBtn; //回退按钮
+    ModuleObject *m_rootModule;
+    QList<ModuleObject *> m_currentModule;
+    QAbstractItemView *m_mainView; //保存主菜单view, 方便改变背景
+    QList<QWidget *> m_pages;      //保存终点的页面
+};
 
 #endif // DCCPLUGINTESTWIDGET_H

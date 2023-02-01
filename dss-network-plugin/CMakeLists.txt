@@ -19,7 +19,6 @@ find_package(DtkWidget REQUIRED)
 find_package(KF5NetworkManagerQt REQUIRED)
 find_package(DdeSessionShell REQUIRED)
 
-pkg_check_modules(DFrameworkDBus REQUIRED dframeworkdbus)
 pkg_check_modules(QGSettings REQUIRED gsettings-qt)
 
 file(GLOB TS_FILES "translations/*.ts")
@@ -43,12 +42,12 @@ endif()
 target_include_directories(${PLUGIN_NAME} PUBLIC
     ${DtkWidget_INCLUDE_DIRS}
     ${Qt5DBus_INCLUDE_DIRS}
-    ${DFrameworkDBus_INCLUDE_DIRS}
     ${QGSettings_INCLUDE_DIRS}
     ${DDE-Network-Core_INCLUDE_DIRS}
     ${DDESESSIONSHELL_INCLUDE_DIR}
     ${Qt5Network_INCLUDE_DIRS}
     ${KF5_QT_INCLUDE_DIRS}
+    ${NETINTERFACEINCLUDE}
     "../common-plugin/"
 )
 
@@ -59,7 +58,6 @@ target_link_libraries(${PLUGIN_NAME} PRIVATE
     ${Qt5DBus_LIBRARIES}
     ${QGSettings_LIBRARIES}
     ${DDE-Network-Core_LIBRARIES}
-    ${DFrameworkDBus_LIBRARIES}
     ${KF5_QT_LIBRARIES}
     ${Qt5Network_LIBRARIES}
 )

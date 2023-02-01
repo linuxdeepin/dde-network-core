@@ -7,4 +7,4 @@ rm -f dss-network-plugin.ts
 lupdate ../ ../../src ../../common-plugin -ts -no-ui-lines -locations none -no-obsolete dss-network-plugin.ts
 cd ../
 
-tx push -s -b m20
+tx push -s -b m23

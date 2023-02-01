@@ -8,6 +8,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 find_package(DdeControlCenter REQUIRED)
+find_package(PkgConfig REQUIRED)
 
 aux_source_directory(../dcc-network-plugin DCCPLUGINDIR)
 aux_source_directory(../dcc-network-plugin/window DCCPLUGINWINDOWDIR)
@@ -26,27 +27,30 @@ file(GLOB_RECURSE QRCFILE "./example.qrc"
 set(COMPILEFILES
     ./networkhandler.h
     ./networkhandler.cpp
+    ./moduledatamodel.h
+    ./moduledatamodel.cpp
     ./main.cpp
     ./dccplugintestwidget.h
     ./dccplugintestwidget.cpp)
+
+file(GLOB_RECURSE DCCPLUGINSRCS
+    "../dcc-network-plugin/*.h"
+    "../dcc-network-plugin/*.cpp"
+    "../dcc-network-plugin/icons/*"
+    "../dcc-network-plugin/../src/*.h"
+    "../dcc-network-plugin/../src/*.cpp"
+)
+#message(${DCCPLUGINDIR})
 
 #list(REMOVE_ITEM NETWORKDIR "../dde-network-core/debian")
 
 add_executable(${PROJECT_NAME}
     ${COMPILEFILES}
-    ${DCCPLUGINDIR}
-    ${DCCPLUGINWINDOWDIR}
-    ${NETWORKDIR}
-    ${DCCPLUGINSECTIONS}
-    ${DCCPLUGINSECTIONSVPN}
-    ${DCCPLUGINSETTINGS}
-    ${DCCPLUGINVPNSETTINGS}
-    ${DCCPLUGINTHEMES}
-    ${DCCPLUGINWIDGETS}
+    ${DCCPLUGINSRCS}
     ${REALIZEDIR}
     ${QRCFILE})
 
-find_package(Qt5 COMPONENTS Core DBus Network REQUIRED)
+find_package(Qt5 COMPONENTS Core DBus Concurrent Network REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 find_package(KF5NetworkManagerQt REQUIRED)
 find_package(DtkWidget REQUIRED)
@@ -70,26 +74,29 @@ IMPORTED_LOCATION_NOCONFIG
 
 target_include_directories(${PROJECT_NAME} PUBLIC
     ../dcc-network-plugin
+    ../dcc-network-plugin/window
+    ../dcc-network-plugin/operation
     ${DdeControlCenter_INCLUDE_DIR}
     ${DtkWidget_INCLUDE_DIRS}
     ${Qt5Core_INCLUDE_DIRS}
     ${Qt5DBus_INCLUDE_DIRS}
     ${Qt5Widget_INCLUDE_DIRS}
-    ${DFrameworkDBus_INCLUDE_DIRS}
+    Qt5::Concurrent
     ${QGSettings_INCLUDE_DIRS}
-    ${LibNM_INCLUDE_DIRS}
+    #${LibNM_INCLUDE_DIRS}
     ${Qt5Network_INCLUDE_DIRS}
     ${KF5_QT_INCLUDE_DIRS}
-    ${DDE-Network-Core_INCLUDE_DIRS}
-)
+    ${NETINTERFACEINCLUDE})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     ${DdeControlCenter_LIBRARIES}
+    ${DCC_INTERFACE_LIBRARIES}
+    ${DCC_WIDGETS_LIBRARIES}
     ${DtkWidget_LIBRARIES}
     ${Qt5Core_LIBRARIES}
     ${Qt5Widgets_LIBRARIES}
-    ${LibNM_LIBRARIES}
-    ${DFrameworkDBus_LIBRARIES}
+    Qt5::Concurrent
+    #${LibNM_LIBRARIES}
     ${Qt5DBus_LIBRARIES}
     ${Qt5Network_LIBRARIES}
     ${QGSettings_LIBRARIES}

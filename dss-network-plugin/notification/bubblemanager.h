@@ -16,27 +16,7 @@
 #include <QApplication>
 #include <QGuiApplication>
 #include <QTimer>
-
-#include <com_deepin_daemon_gesture.h>
-#include <com_deepin_dde_daemon_launcherd.h>
-#include <com_deepin_daemon_appearance.h>
-
-using Appearance = com::deepin::daemon::Appearance;
-using LauncherInter = com::deepin::dde::daemon::Launcher;
-using GestureInter = com::deepin::daemon::Gesture;
-
-static const QString NotificationsDBusService = "org.freedesktop.Notifications";
-static const QString NotificationsDBusPath = "/org/freedesktop/Notifications";
-static const QString DDENotifyDBusServer = "com.deepin.dde.Notification";
-static const QString DDENotifyDBusPath = "/com/deepin/dde/Notification";
-static const QString Login1DBusService = "org.freedesktop.login1";
-static const QString Login1DBusPath = "/org/freedesktop/login1";
-static const QString DisplayDaemonDBusServie = "com.deepin.daemon.Display";
-static const QString DisplayDaemonDBusPath = "/com/deepin/daemon/Display";
-static const QString LauncherDaemonDBusServie = "com.deepin.dde.daemon.Launcher";
-static const QString LauncherDaemonDBusPath = "/com/deepin/dde/daemon/Launcher";
-static const QString SessionDBusServie = "com.deepin.SessionManager";
-static const QString SessionDaemonDBusPath = "/com/deepin/SessionManager";
+#include <QPointer>
 
 class AbstractPersistence;
 class AbstractNotifySetting;
@@ -65,19 +45,6 @@ Q_SIGNALS:
     // Standard Notifications dbus implementation
     void ActionInvoked(uint, const QString &);
     void NotificationClosed(uint, uint);
-
-    // Extra DBus APIs
-    void RecordAdded(const QString &);
-    void AppInfoChanged(const QString &id, uint item, QDBusVariant var);
-    void SystemInfoChanged(uint item, QDBusVariant var);
-    void AppAddedSignal(const QString &id);
-    void AppRemovedSignal(const QString &id);
-
-    // 旧接口之后废弃
-    void appAdded(QString appName);
-    void appRemoved(QString appName);
-    void appSettingChanged(QString Settings);
-    void systemSettingChanged(QString Settings);
 
 public Q_SLOTS:
     // Standard Notifications dbus implementation
@@ -203,7 +170,6 @@ private:
 
     // 手指划入距离，任务栏在右侧时，需大于任务栏最大宽度100，其它情况没有设限大于0即可
     int m_slideWidth;
-    GestureInter *m_gestureInter;
     QTimer* m_trickTimer; // 防止300ms内重复按键
     QPointer<QWidget> m_parentWidget; // 父窗口，取图标按钮的父窗口
 };

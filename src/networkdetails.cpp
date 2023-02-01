@@ -7,6 +7,8 @@
 #include "wireddevice.h"
 #include "wirelessdevice.h"
 
+#include <QJsonArray>
+
 #include <networkmanagerqt/settings.h>
 #include <networkmanagerqt/connection.h>
 #include <networkmanagerqt/connectionsettings.h>
@@ -97,6 +99,11 @@ void NetworkDetails::updateData(const QJsonObject &info)
         // 安全类型
         const QString &securityType = info.value("Security").toString();
         appendInfo(tr("Security Type"), securityType);
+
+        // 频段
+        const QString &band = hotspotInfo.value("Band").toString();
+        QString bandInfo = band == "a" ? "5GHz" : (band == "bg" ? "2.4GHz" : "automatic");
+        appendInfo(tr("Band"), bandInfo);
 
         // 网络通道
         const QString &channel = QString::number(hotspotInfo.value("Channel").toInt());

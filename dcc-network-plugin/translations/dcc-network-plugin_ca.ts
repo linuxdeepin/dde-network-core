@@ -1,6 +1,6 @@
 <?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ca">
 <context>
-    <name>ChainsProxyPage</name>
+    <name>AppProxyModule</name>
     <message>
         <source>Application Proxy</source>
         <translation>Aplicació de servidor intermediari</translation>
@@ -38,14 +38,14 @@
         <translation>Marqueu «Usa un servidor intermediari» al menú contextual de l&apos;aplicació al llançador després d&apos;haver-lo configurat.</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Cancel·la</translation>
-    </message>
-    <message>
         <source>Save</source>
         <comment>button</comment>
         <translation>Desa</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Cancel·la</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
@@ -168,218 +168,6 @@
     </message>
 </context>
 <context>
-    <name>DCCNetworkModule</name>
-    <message>
-        <source>Network</source>
-        <translation>Xarxa</translation>
-    </message>
-    <message>
-        <source>Application Proxy</source>
-        <translation>Aplicació de servidor intermediari</translation>
-    </message>
-    <message>
-        <source>Personal Hotspot</source>
-        <translation>Punt d&apos;accés personal</translation>
-    </message>
-    <message>
-        <source>Network Details</source>
-        <translation>Detalls de xarxa</translation>
-    </message>
-    <message>
-        <source>System Proxy</source>
-        <translation>Servidor intermediari del sistema</translation>
-    </message>
-    <message>
-        <source>Wired Network</source>
-        <translation>Xarxa amb fil</translation>
-    </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation>Xarxa sense fil</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>XPV</translation>
-    </message>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>Mode d&apos;avió</translation>
-        <extra-child_page>Airplane Mode</extra-child_page>
-        <extra-contents_path>/network/Airplane Mode</extra-contents_path>
-    </message>
-    <message>
-        <source>Wired Network Adapter</source>
-        <translation>Adaptador de la xarxa amb fil</translation>
-        <extra-child_page>Wired Network</extra-child_page>
-        <extra-contents_path>/network/Wired Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Add Network Connection</source>
-        <translation>Afegiu una connexió de xarxa</translation>
-        <extra-child_page>Wired Network</extra-child_page>
-        <extra-contents_path>/network/Wired Network/addWiredConnection</extra-contents_path>
-    </message>
-    <message>
-        <source>Wireless Network Adapter</source>
-        <translation>Adaptador de la xarxa sense fil</translation>
-        <extra-child_page>Wireless Network</extra-child_page>
-        <extra-contents_path>/network/Wireless Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>Connecta amb una xarxa oculta</translation>
-        <extra-child_page>Wireless Network</extra-child_page>
-        <extra-contents_path>/network/Wireless Network/Connect to hidden network</extra-contents_path>
-    </message>
-    <message>
-        <source>DSL</source>
-        <translation>DSL</translation>
-        <extra-child_page_hide>DSL</extra-child_page_hide>
-        <extra-contents_path>/network/DSL</extra-contents_path>
-    </message>
-    <message>
-        <source>Create PPPoE Connection</source>
-        <translation>Crea una connexió de PPPoE</translation>
-        <extra-child_page>DSL</extra-child_page>
-        <extra-contents_path>/network/DSL/Create PPPoE Connection</extra-contents_path>
-    </message>
-    <message>
-        <source>VPN Status</source>
-        <translation>Estat de la XPV</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Create VPN</source>
-        <translation>Crea una XPV</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN/Create VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation>Importa una XPV</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN/Import VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation>Tipus de servidor intermediari</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation>URL de configuració</translation>
-    </message>
-    <message>
-        <source>IP Address</source>
-        <translation>Adreça IP</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>Port</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>Nom d&apos;usuari</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Contrasenya</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Hotspot</source>
-        <translation>Punt d&apos;accés</translation>
-        <extra-child_page>Personal Hotspot</extra-child_page>
-        <extra-contents_path>/network/Personal Hotspot</extra-contents_path>
-    </message>
-    <message>
-        <source>Create Hotspot</source>
-        <translation>Crea un punt d&apos;accés</translation>
-        <extra-child_page>Personal Hotspot</extra-child_page>
-        <extra-contents_path>/network/Personal Hotspot/Create Hotspot</extra-contents_path>
-    </message>
-    <message>
-        <source>Interface</source>
-        <translation>Interfície</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>MAC</source>
-        <translation>MAC</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation>Banda</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>IPv4</source>
-        <translation>IPv4</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Passarel·la</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Primary DNS</source>
-        <translation>DNS primari</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Netmask</source>
-        <translation>Màscara de xarxa</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>IPv6</source>
-        <translation>IPv6</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Prefix</source>
-        <translation>Prefix</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation>Velocitat</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-</context>
-<context>
-    <name>dccV20::network::AirplaneModepage</name>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>Mode d&apos;avió</translation>
-    </message>
-    <message>
-        <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
-        <translation>Habilitar el mode d&apos;avió inhabilita la xarxa sense fil, el punt d&apos;accés personal i el Bluetooth.</translation>
-    </message>
-</context>
-<context>
     <name>DNSSection</name>
     <message>
         <source>DNS</source>
@@ -388,6 +176,17 @@
     <message>
         <source>Invalid DNS address</source>
         <translation>Adreça DNS no vàlida</translation>
+    </message>
+</context>
+<context>
+    <name>DSLModule</name>
+    <message>
+        <source>DSL</source>
+        <translation>DSL</translation>
+    </message>
+    <message>
+        <source>Create PPPoE Connection</source>
+        <translation>Crea una connexió PPPoE</translation>
     </message>
 </context>
 <context>
@@ -460,7 +259,7 @@
     </message>
 </context>
 <context>
-    <name>HotspotDeviceWidget</name>
+    <name>HotspotDeviceItem</name>
     <message>
         <source>Hotspot</source>
         <translation>Punt d&apos;accés</translation>
@@ -471,7 +270,11 @@
     </message>
 </context>
 <context>
-    <name>HotspotPage</name>
+    <name>HotspotModule</name>
+    <message>
+        <source>Personal Hotspot</source>
+        <translation>Punt d&apos;accés personal</translation>
+    </message>
     <message>
         <source>Create Hotspot</source>
         <translation>Crea un punt d&apos;accés</translation>
@@ -645,66 +448,17 @@
     </message>
 </context>
 <context>
-    <name>NetworkDetailPage</name>
+    <name>NetworkInfoModule</name>
     <message>
         <source>Network Details</source>
         <translation>Detalls de la xarxa</translation>
     </message>
 </context>
 <context>
-    <name>NetworkModuleWidget</name>
-    <message>
-        <source>DSL</source>
-        <translation>DSL</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>XPV</translation>
-    </message>
-    <message>
-        <source>System Proxy</source>
-        <translation>Servidor intermediari del sistema</translation>
-    </message>
-    <message>
-        <source>Application Proxy</source>
-        <translation>Aplicació de servidor intermediari</translation>
-    </message>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>Mode d&apos;avió</translation>
-        <extra-contents_path>/network/Airplane</extra-contents_path>
-    </message>
-    <message>
-        <source>Network Details</source>
-        <translation>Detalls de la xarxa</translation>
-    </message>
+    <name>NetworkModule</name>
     <message>
         <source>Network</source>
         <translation>Xarxa</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>Conflicte d&apos;IP</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Inhabilitat</translation>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>Manual</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Automàtic</translation>
-    </message>
-    <message>
-        <source>Configure by Network Manager</source>
-        <translation>Configureu-ho amb el gestor de xarxes</translation>
-    </message>
-    <message>
-        <source>Personal Hotspot</source>
-        <translation>Punt d&apos;accés personal</translation>
     </message>
 </context>
 <context>
@@ -791,98 +545,6 @@
     <message>
         <source>Stateful MPPE</source>
         <translation>MPPE amb estat</translation>
-    </message>
-</context>
-<context>
-    <name>PppoePage</name>
-    <message>
-        <source>Create PPPoE Connection</source>
-        <translation>Crea una connexió de PPPoE</translation>
-    </message>
-    <message>
-        <source>PPP</source>
-        <translation>PPP</translation>
-    </message>
-</context>
-<context>
-    <name>ProxyPage</name>
-    <message>
-        <source>System Proxy</source>
-        <translation>Servidor intermediari del sistema</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Cancel·la</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <comment>button</comment>
-        <translation>Desa</translation>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation>Tipus de servidor intermediari</translation>
-        <extra-child_page>System Proxy</extra-child_page>
-        <extra-contents_path>/network/System Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>Manual</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Automàtic</translation>
-    </message>
-    <message>
-        <source>Optional</source>
-        <translation>Opcional</translation>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>Port</translation>
-    </message>
-    <message>
-        <source>Authentication is required</source>
-        <translation>Cal autenticació</translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>Nom d&apos;usuari</translation>
-    </message>
-    <message>
-        <source>Required</source>
-        <translation>Cal</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Contrasenya</translation>
-    </message>
-    <message>
-        <source>HTTP Proxy</source>
-        <translation>Servidor intermediari d&apos;HTTP</translation>
-    </message>
-    <message>
-        <source>HTTPS Proxy</source>
-        <translation>Servidor intermediari d&apos;HTTPS</translation>
-    </message>
-    <message>
-        <source>FTP Proxy</source>
-        <translation>Servidor intermediari d&apos;FTP</translation>
-    </message>
-    <message>
-        <source>SOCKS Proxy</source>
-        <translation>Servidor intermediari de SOCKS</translation>
-    </message>
-    <message>
-        <source>Ignore the proxy configurations for the above hosts and domains</source>
-        <translation>Ignora les configuracions d&apos;intermediari per als amfitrions i dominis anteriors.</translation>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation>URL de configuració</translation>
-        <extra-child_page>System Proxy</extra-child_page>
-        <extra-contents_path>/network/System Proxy</extra-contents_path>
     </message>
 </context>
 <context>
@@ -1111,6 +773,106 @@
     <message>
         <source>Password</source>
         <translation>Contrasenya</translation>
+    </message>
+</context>
+<context>
+    <name>SysProxyModule</name>
+    <message>
+        <source>System Proxy</source>
+        <translation>Servidor intermediari del sistema</translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation>Manual</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Automàtic</translation>
+    </message>
+    <message>
+        <source>Proxy Type</source>
+        <translation>Tipus de servidor intermediari</translation>
+    </message>
+    <message>
+        <source>Optional</source>
+        <translation>Opcional</translation>
+    </message>
+    <message>
+        <source>Configuration URL</source>
+        <translation>URL de configuració</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <comment>button</comment>
+        <translation>Desa</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Cancel·la</translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation>Port</translation>
+    </message>
+    <message>
+        <source>HTTP Proxy</source>
+        <translation>Servidor intermediari d&apos;HTTP</translation>
+    </message>
+    <message>
+        <source>HTTPS Proxy</source>
+        <translation>Servidor intermediari d&apos;HTTPS</translation>
+    </message>
+    <message>
+        <source>FTP Proxy</source>
+        <translation>Servidor intermediari d&apos;FTP</translation>
+    </message>
+    <message>
+        <source>SOCKS Proxy</source>
+        <translation>Servidor intermediari de SOCKS</translation>
+    </message>
+    <message>
+        <source>Ignore the proxy configurations for the above hosts and domains</source>
+        <translation>Ignora les configuracions d&apos;intermediari per als amfitrions i dominis anteriors.</translation>
+    </message>
+</context>
+<context>
+    <name>VPNModule</name>
+    <message>
+        <source>VPN</source>
+        <translation>XPV</translation>
+    </message>
+    <message>
+        <source>Wired Network Adapter</source>
+        <translation>Adaptador de xarxa amb fil</translation>
+    </message>
+    <message>
+        <source>VPN Status</source>
+        <translation>Estat de la XPV</translation>
+    </message>
+    <message>
+        <source>Add Network Connection</source>
+        <translation>Afegiu una connexió de xarxa</translation>
+    </message>
+    <message>
+        <source>Create VPN</source>
+        <translation>Crea una XPV</translation>
+    </message>
+    <message>
+        <source>Import VPN</source>
+        <translation>Importa una XPV</translation>
+    </message>
+    <message>
+        <source>Import Error</source>
+        <translation>Error d&apos;importació</translation>
+    </message>
+    <message>
+        <source>File error</source>
+        <translation>Error del fitxer</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>D&apos;acord</translation>
     </message>
 </context>
 <context>
@@ -1516,33 +1278,6 @@
     </message>
 </context>
 <context>
-    <name>VpnPage</name>
-    <message>
-        <source>VPN Status</source>
-        <translation>Estat de la XPV</translation>
-    </message>
-    <message>
-        <source>Create VPN</source>
-        <translation>Crea una XPV</translation>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation>Importa una XPV</translation>
-    </message>
-    <message>
-        <source>Import Error</source>
-        <translation>Error d&apos;importació</translation>
-    </message>
-    <message>
-        <source>File error</source>
-        <translation>Error del fitxer</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>D&apos;acord</translation>
-    </message>
-</context>
-<context>
     <name>VpnProxySection</name>
     <message>
         <source>VPN Proxy</source>
@@ -1879,44 +1614,40 @@
     </message>
 </context>
 <context>
-    <name>WiredPage</name>
+    <name>WiredModule</name>
+    <message>
+        <source>Wired Network Adapter</source>
+        <translation>Adaptador de xarxa amb fil</translation>
+    </message>
     <message>
         <source>Plug in the network cable first</source>
         <translation>Connecteu primer el cable de xarxa.</translation>
     </message>
     <message>
-        <source>Wired Network Adapter</source>
-        <translation>Adaptador de la xarxa amb fil</translation>
-    </message>
-    <message>
         <source>Add Network Connection</source>
         <translation>Afegiu una connexió de xarxa</translation>
     </message>
+</context>
+<context>
+    <name>WirelessDeviceModel</name>
     <message>
-        <source>Select Settings</source>
-        <translation>Seleccioneu els paràmetres</translation>
+        <source>Connect to hidden network</source>
+        <translation>Connecta amb una xarxa oculta</translation>
     </message>
 </context>
 <context>
-    <name>WirelessPage</name>
+    <name>WirelessModule</name>
     <message>
         <source>Wireless Network Adapter</source>
         <translation>Adaptador de la xarxa sense fil</translation>
-        <extra-contents_path>/network/Wireless Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Close Hotspot</source>
-        <translation>Tanca el punt d&apos;accés.</translation>
     </message>
     <message>
         <source>Disable hotspot first if you want to connect to a wireless network</source>
         <translation>Inhabiliteu primer el punt d&apos;accés si voleu connectar-vos a una xarxa sense fil.</translation>
     </message>
     <message>
-        <source>Connect to hidden network</source>
-        <translation>Connecta amb una xarxa oculta</translation>
-        <extra-child_page>WirelessPage</extra-child_page>
-        <extra-contents_path>/network/Connect to hidden network</extra-contents_path>
+        <source>Close Hotspot</source>
+        <translation>Tanca el punt d&apos;accés</translation>
     </message>
 </context>
 <context>

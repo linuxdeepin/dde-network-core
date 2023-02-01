@@ -4,8 +4,11 @@
 
 #include "vpncontroller.h"
 #include "networkconst.h"
+#include "networkdbusproxy.h"
 
 #include "networkmanagerqt/manager.h"
+
+#include <QJsonArray>
 
 using namespace dde::network;
 using namespace NetworkManager;
@@ -31,13 +34,13 @@ void VPNController::disconnectItem()
         deactivateConnection(m_activePath);
 }
 
-VPNController::VPNController(NetworkInter *networkInter, QObject *parent)
+VPNController::VPNController(NetworkDBusProxy *networkInter, QObject *parent)
     : QObject(parent)
     , m_networkInter(networkInter)
     , m_enabled(false)
 {
     Q_ASSERT(m_networkInter);
-    connect(m_networkInter, &NetworkInter::VpnEnabledChanged, this, &VPNController::onEnableChanged);
+    connect(m_networkInter, &NetworkDBusProxy::VpnEnabledChanged, this, &VPNController::onEnableChanged);
     onEnableChanged(m_networkInter->vpnEnabled());
 }
 
@@ -161,20 +164,9 @@ void VPNController::onEnableChanged(const bool enabled)
 
 VPNItem::VPNItem()
     : ControllItems()
-    , m_connectionStatus(ConnectionStatus::Deactivated)
 {
 }
 
 VPNItem::~VPNItem()
 {
-}
-
-void VPNItem::setConnectionStatus(ConnectionStatus connectionStatus)
-{
-    m_connectionStatus = connectionStatus;
-}
-
-ConnectionStatus VPNItem::status() const
-{
-    return m_connectionStatus;
 }

@@ -24,12 +24,14 @@
 #include <QWidget>
 #include <QDialog>
 #include <QScopedPointer>
+#include <QtMath>
 #include <QScrollBar>
 
 #include <networkcontroller.h>
 #include <networkdevicebase.h>
 #include <wireddevice.h>
 #include <wirelessdevice.h>
+#include <networkdbusproxy.h>
 
 #define SWITCH_WIDTH 50
 #define SWITCH_HEIGHT 24
@@ -52,10 +54,6 @@ private:
 
 void ScrollArea::setVisible(bool visible)
 {
-    QWidget *w = qobject_cast<QWidget *>(parent());
-    if (w) {
-        w->setWindowFlag(Qt::WindowDoesNotAcceptFocus, !visible);
-    }
     if (!visible && m_panel->closeOnClear()) {
         m_panel->clear();
     }
@@ -69,7 +67,7 @@ NetworkPanel::NetworkPanel(QObject *parent)
     , m_applet(new ScrollArea(this))
     , m_centerWidget(new QWidget(m_applet))
     , m_netListView(new DListView(m_centerWidget))
-    , m_airplaneMode(new DBusAirplaneMode("com.deepin.daemon.AirplaneMode", "/com/deepin/daemon/AirplaneMode", QDBusConnection::systemBus(), this))
+    , m_airplaneMode(new NetworkDBusProxy(this))
     , m_updateTimer(new QTimer(this))
 {
     initUi();
@@ -385,7 +383,7 @@ void NetworkPanel::updateItems()
                 if (!apCtrl) {
                     apCtrl = new WirelessItem(m_netListView->viewport(), device, ap, this);
                     connect(apCtrl, &WirelessItem::sizeChanged, this, &NetworkPanel::refreshItems);
-                    connect(m_airplaneMode, &DBusAirplaneMode::EnabledChanged, apCtrl, &WirelessItem::onAirplaneModeChanged);
+                    connect(m_airplaneMode, &NetworkDBusProxy::EnabledChanged, apCtrl, &WirelessItem::onAirplaneModeChanged);
                 }
                 apCtrl->updateView();
                 apCtrl->onAirplaneModeChanged(m_airplaneMode->wifiEnabled());
@@ -463,13 +461,6 @@ void NetworkPanel::updateView()
     updateItems();
     refreshItems();
     passwordError(QString(), QString());
-    if (m_items.isEmpty()) {
-        // 1s后依旧无网络设备则退出
-        QTimer::singleShot(1000, this, [ this ] {
-            if (m_items.isEmpty())
-                qApp->quit();
-        });
-    }
     // 网络设备数量大于1时，需要延迟发送信号，确保数据初始化完成，避免网络面板闪烁，解决bug119717
     QTimer::singleShot(200, this, [ this ] {
         if (m_model->rowCount() > 0)
@@ -826,7 +817,7 @@ NetworkDelegate::~NetworkDelegate()
         m_refreshTimer->stop();
 }
 
-void NetworkDelegate::setDBusAirplaneMode(DBusAirplaneMode *airplane)
+void NetworkDelegate::setDBusAirplaneMode(NetworkDBusProxy *airplane)
 {
     m_airplaneMode = airplane;
 }
@@ -1045,7 +1036,7 @@ bool NetworkDelegate::switchIsEnabled(const QModelIndex &index) const
     case NetItemType::WirelessControllViewItem: {
         NetworkDeviceBase *device = index.data(NetItemRole::DeviceDataRole).value<NetworkDeviceBase *>();
         if (device)
-            return device->isEnabled() && !m_airplaneMode->wifiEnabled();
+            return device->isEnabled() && !m_airplaneMode->enabled();
         break;
     }
     default:
@@ -1091,7 +1082,7 @@ void NetworkDelegate::drawSwitchButton(QPainter *painter, const QStyleOptionView
     NetItemType itemType = index.data(TypeRole).value<NetItemType>();
     // 如果是总控、有线网卡、无线网卡开关，则需要显示开关
     QPalette::ColorRole colorRole = isSwitchEnabled ? QPalette::ColorRole::Highlight : DPalette::ColorRole::ButtonText;
-    if (m_airplaneMode->wifiEnabled() && itemType == NetItemType::WirelessControllViewItem)
+    if (m_airplaneMode->enabled() && itemType == NetItemType::WirelessControllViewItem)
         painter->setBrush(palette.color(QPalette::ColorGroup::Disabled, colorRole));
     else
         painter->setBrush(palette.color(colorRole));

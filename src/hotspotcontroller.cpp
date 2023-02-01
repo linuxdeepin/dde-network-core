@@ -4,15 +4,18 @@
 
 #include "hotspotcontroller.h"
 #include "wirelessdevice.h"
+#include "networkdbusproxy.h"
 
 #include <QDebug>
+#include <QJsonArray>
+#include <QJsonObject>
 
 #include <networkmanagerqt/manager.h>
 
 using namespace dde::network;
 using namespace NetworkManager;
 
-HotspotController::HotspotController(NetworkInter *networkInter, QObject *parent)
+HotspotController::HotspotController(NetworkDBusProxy *networkInter, QObject *parent)
     : QObject(parent)
     , m_networkInter(networkInter)
 {
@@ -245,7 +248,6 @@ void HotspotController::updateDevices(const QList<NetworkDeviceBase *> &devices)
 
 void HotspotController::updateConnections(const QJsonArray &jsons)
 {
-    PRINT_INFO_MESSAGE(jsons);
     // 筛选出通用的(HwAddress为空)热点和指定HwAddress的热点
     QList<QJsonObject> commonConnections;
     QMap<QString, QList<QJsonObject>> deviceConnections;
@@ -326,17 +328,11 @@ HotspotItem::HotspotItem(WirelessDevice *device)
     : ControllItems()
     , m_device(device)
     , m_devicePath(m_device->path())
-    , m_connectionStatus(ConnectionStatus::Unknown)
 {
 }
 
 HotspotItem::~HotspotItem()
 {
-}
-
-void HotspotItem::setConnectionStatus(const ConnectionStatus &status)
-{
-    m_connectionStatus = status;
 }
 
 QString HotspotItem::name() const
@@ -352,9 +348,4 @@ WirelessDevice *HotspotItem::device() const
 QString HotspotItem::devicePath() const
 {
     return m_devicePath;
-}
-
-ConnectionStatus HotspotItem::status() const
-{
-    return m_connectionStatus;
 }

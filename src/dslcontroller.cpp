@@ -4,13 +4,16 @@
 
 #include "dslcontroller.h"
 #include "networkdevicebase.h"
+#include "networkdbusproxy.h"
+
+#include <QJsonArray>
 
 #include <networkmanagerqt/manager.h>
 
 using namespace dde::network;
 using namespace NetworkManager;
 
-DSLController::DSLController(NetworkInter *networkInter, QObject *parent)
+DSLController::DSLController(NetworkDBusProxy *networkInter, QObject *parent)
     : QObject(parent)
     , m_networkInter(networkInter)
 {
@@ -77,8 +80,6 @@ void DSLController::updateDSLItems(const QJsonArray &dsljson)
         item->setConnection(dsl);
         paths << path;
     }
-
-    PRINT_DEBUG_MESSAGE(QString("change DSL size: %1, new DSL size: %2, remove DSL size: %3").arg(changeItems.size()).arg(newItems.size()));
 
     // 如果ID发生变化的数量大于0，则向外抛出连接变化的信号
     if (changeItems.size())
@@ -168,7 +169,6 @@ DSLItem *DSLController::findDSLItemByUuid(const QString &uuid)
  */
 DSLItem::DSLItem()
     : ControllItems()
-    , m_connectStatus(ConnectionStatus::Unknown)
 {
 }
 
@@ -176,12 +176,3 @@ DSLItem::~DSLItem()
 {
 }
 
-void DSLItem::setConnectionStatus(ConnectionStatus connectStatus)
-{
-    m_connectStatus = connectStatus;
-}
-
-ConnectionStatus DSLItem::status() const
-{
-    return m_connectStatus;
-}

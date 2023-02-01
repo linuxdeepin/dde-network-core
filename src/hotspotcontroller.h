@@ -19,6 +19,7 @@ class Connection;
 class HotspotItem;
 class WirelessDevice;
 class NetworkDeviceBase;
+class NetworkDBusProxy;
 
 class HotspotController : public QObject
 {
@@ -48,7 +49,7 @@ Q_SIGNALS:
     void enableHotspotSwitch(const bool &);                                  // 使能热点开关
 
 protected:
-    explicit HotspotController(NetworkInter *networkInter, QObject *parent = Q_NULLPTR);
+    explicit HotspotController(NetworkDBusProxy *networkInter, QObject *parent = Q_NULLPTR);
     ~HotspotController();
 
     void updateDevices(const QList<NetworkDeviceBase *> &devices);
@@ -63,7 +64,7 @@ protected:
 private:
     QList<WirelessDevice *> m_devices;
     QList<HotspotItem *> m_hotspotItems;
-    NetworkInter *m_networkInter;
+    NetworkDBusProxy *m_networkInter;
 };
 
 class HotspotItem : public ControllItems
@@ -73,19 +74,16 @@ class HotspotItem : public ControllItems
 public:
     QString name() const;                                                    // 个人热点名称
     WirelessDevice *device() const;                                          // 当前热点对应的无线设备
-    ConnectionStatus status() const;                               // 当前连接的连接状态
 
 protected:
     HotspotItem(WirelessDevice *device);
     ~HotspotItem();
 
     QString devicePath() const;                                              // 返回设备的路径
-    void setConnectionStatus(const ConnectionStatus &status);
 
 private:
     WirelessDevice *m_device;
     QString m_devicePath;
-    ConnectionStatus m_connectionStatus;
 };
 
 }

@@ -1,59 +1,59 @@
 <?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fi">
 <context>
-    <name>ChainsProxyPage</name>
+    <name>AppProxyModule</name>
     <message>
         <source>Application Proxy</source>
-        <translation>Sovelluksen välityspalvelin</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Proxy Type</source>
-        <translation>Proxy tyyppi</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>IP Address</source>
-        <translation>IP osoite</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Required</source>
-        <translation>Vaadittu</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Port</source>
-        <translation>Portti</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Username</source>
-        <translation>Käyttäjätunnus</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Optional</source>
-        <translation>Valinnainen</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Password</source>
-        <translation>Salasana</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Check &quot;Use a proxy&quot; in application context menu in Launcher after configured</source>
-        <translation>Tarkista &quot;käytä välityspalvelinta&quot; sovelluksessa. Löytyy pikavalikosta määritysten jälkeen</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Peruuta</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save</source>
         <comment>button</comment>
-        <translation>Tallenna</translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invalid IP address</source>
-        <translation>Virheellinen IP-osoite</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invalid port</source>
-        <translation>Virheellinen portti</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -168,218 +168,6 @@
     </message>
 </context>
 <context>
-    <name>DCCNetworkModule</name>
-    <message>
-        <source>Network</source>
-        <translation>Verkko</translation>
-    </message>
-    <message>
-        <source>Application Proxy</source>
-        <translation>Sovelluksen välityspalvelin</translation>
-    </message>
-    <message>
-        <source>Personal Hotspot</source>
-        <translation>Jaettu tukiasema</translation>
-    </message>
-    <message>
-        <source>Network Details</source>
-        <translation>Verkkon tiedot</translation>
-    </message>
-    <message>
-        <source>System Proxy</source>
-        <translation>Välityspalvelin</translation>
-    </message>
-    <message>
-        <source>Wired Network</source>
-        <translation>Kaapeli</translation>
-    </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation>Langaton verkko</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>VPN</translation>
-    </message>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>Lentotila</translation>
-        <extra-child_page>Airplane Mode</extra-child_page>
-        <extra-contents_path>/network/Airplane Mode</extra-contents_path>
-    </message>
-    <message>
-        <source>Wired Network Adapter</source>
-        <translation>Verkkokortti</translation>
-        <extra-child_page>Wired Network</extra-child_page>
-        <extra-contents_path>/network/Wired Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Add Network Connection</source>
-        <translation>Lisää verkkoyhteys</translation>
-        <extra-child_page>Wired Network</extra-child_page>
-        <extra-contents_path>/network/Wired Network/addWiredConnection</extra-contents_path>
-    </message>
-    <message>
-        <source>Wireless Network Adapter</source>
-        <translation>Langaton verkkokortti</translation>
-        <extra-child_page>Wireless Network</extra-child_page>
-        <extra-contents_path>/network/Wireless Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>Yhdistä piilotettuun verkkoon</translation>
-        <extra-child_page>Wireless Network</extra-child_page>
-        <extra-contents_path>/network/Wireless Network/Connect to hidden network</extra-contents_path>
-    </message>
-    <message>
-        <source>DSL</source>
-        <translation>DSL</translation>
-        <extra-child_page_hide>DSL</extra-child_page_hide>
-        <extra-contents_path>/network/DSL</extra-contents_path>
-    </message>
-    <message>
-        <source>Create PPPoE Connection</source>
-        <translation>Luo PPPoE yhteys</translation>
-        <extra-child_page>DSL</extra-child_page>
-        <extra-contents_path>/network/DSL/Create PPPoE Connection</extra-contents_path>
-    </message>
-    <message>
-        <source>VPN Status</source>
-        <translation>VPN tila</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Create VPN</source>
-        <translation>Luo VPN</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN/Create VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation>Tuo VPN</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN/Import VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation>Proxy tyyppi</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation>Kokoonpanon URL</translation>
-    </message>
-    <message>
-        <source>IP Address</source>
-        <translation>IP osoite</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>Portti</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>Käyttäjänimi</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Salasana</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Hotspot</source>
-        <translation>Tukiasema</translation>
-        <extra-child_page>Personal Hotspot</extra-child_page>
-        <extra-contents_path>/network/Personal Hotspot</extra-contents_path>
-    </message>
-    <message>
-        <source>Create Hotspot</source>
-        <translation>Luo tukiasema</translation>
-        <extra-child_page>Personal Hotspot</extra-child_page>
-        <extra-contents_path>/network/Personal Hotspot/Create Hotspot</extra-contents_path>
-    </message>
-    <message>
-        <source>Interface</source>
-        <translation>Liitäntä</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>MAC</source>
-        <translation>MAC</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation>Taajuusalue</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>IPv4</source>
-        <translation>IPv4</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Yhdyskäytävä</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Primary DNS</source>
-        <translation>Ensisijainen DNS</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Netmask</source>
-        <translation>Verkkopeite</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>IPv6</source>
-        <translation>IPv6</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Prefix</source>
-        <translation>Etuliite</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation>Nopeus</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-</context>
-<context>
-    <name>dccV20::network::AirplaneModepage</name>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>Lentotila</translation>
-    </message>
-    <message>
-        <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
-        <translation>Lentotilan käyttöönotto sammuttaa langattoman verkon, jaetun tukiaseman ja Bluetoothin</translation>
-    </message>
-</context>
-<context>
     <name>DNSSection</name>
     <message>
         <source>DNS</source>
@@ -388,6 +176,17 @@
     <message>
         <source>Invalid DNS address</source>
         <translation>Virheellinen DNS-osoite</translation>
+    </message>
+</context>
+<context>
+    <name>DSLModule</name>
+    <message>
+        <source>DSL</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create PPPoE Connection</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -460,21 +259,25 @@
     </message>
 </context>
 <context>
-    <name>HotspotDeviceWidget</name>
+    <name>HotspotDeviceItem</name>
     <message>
         <source>Hotspot</source>
-        <translation>Tukiasema</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add Settings</source>
-        <translation>Lisää asetukset</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>HotspotPage</name>
+    <name>HotspotModule</name>
+    <message>
+        <source>Personal Hotspot</source>
+        <translation type="unfinished"/>
+    </message>
     <message>
         <source>Create Hotspot</source>
-        <translation>Luo tukiasema</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -645,66 +448,17 @@
     </message>
 </context>
 <context>
-    <name>NetworkDetailPage</name>
+    <name>NetworkInfoModule</name>
     <message>
         <source>Network Details</source>
-        <translation>Verkkon tiedot</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>NetworkModuleWidget</name>
-    <message>
-        <source>DSL</source>
-        <translation>DSL</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>VPN</translation>
-    </message>
-    <message>
-        <source>System Proxy</source>
-        <translation>Välityspalvelin</translation>
-    </message>
-    <message>
-        <source>Application Proxy</source>
-        <translation>Sovelluksen välityspalvelin</translation>
-    </message>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>Lentotila</translation>
-        <extra-contents_path>/network/Airplane</extra-contents_path>
-    </message>
-    <message>
-        <source>Network Details</source>
-        <translation>Verkkon tiedot</translation>
-    </message>
+    <name>NetworkModule</name>
     <message>
         <source>Network</source>
-        <translation>Verkko</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>IP ristiriita</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Suljettu</translation>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>Manuaalinen</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Automaattinen</translation>
-    </message>
-    <message>
-        <source>Configure by Network Manager</source>
-        <translation>Määritä verkkohallinnassa</translation>
-    </message>
-    <message>
-        <source>Personal Hotspot</source>
-        <translation>Jaettu tukiasema</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -791,98 +545,6 @@
     <message>
         <source>Stateful MPPE</source>
         <translation>Tilaobjekti MPPE</translation>
-    </message>
-</context>
-<context>
-    <name>PppoePage</name>
-    <message>
-        <source>Create PPPoE Connection</source>
-        <translation>Luo PPPoE yhteys</translation>
-    </message>
-    <message>
-        <source>PPP</source>
-        <translation>PPP</translation>
-    </message>
-</context>
-<context>
-    <name>ProxyPage</name>
-    <message>
-        <source>System Proxy</source>
-        <translation>Välityspalvelin</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Peruuta</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <comment>button</comment>
-        <translation>Tallenna</translation>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation>Proxy tyyppi</translation>
-        <extra-child_page>System Proxy</extra-child_page>
-        <extra-contents_path>/network/System Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>Manuaalinen</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Automaattinen</translation>
-    </message>
-    <message>
-        <source>Optional</source>
-        <translation>Valinnainen</translation>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>Portti</translation>
-    </message>
-    <message>
-        <source>Authentication is required</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Required</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>HTTP Proxy</source>
-        <translation>HTTP välityspalvelin</translation>
-    </message>
-    <message>
-        <source>HTTPS Proxy</source>
-        <translation>HTTPS välityspalvelin</translation>
-    </message>
-    <message>
-        <source>FTP Proxy</source>
-        <translation>FTP välityspalvelin</translation>
-    </message>
-    <message>
-        <source>SOCKS Proxy</source>
-        <translation>SOCKS välityspalvelin</translation>
-    </message>
-    <message>
-        <source>Ignore the proxy configurations for the above hosts and domains</source>
-        <translation>Ohita yllä mainittujen isäntien ja toimialueiden välityspalvelin määritykset</translation>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation>Kokoonpanon URL</translation>
-        <extra-child_page>System Proxy</extra-child_page>
-        <extra-contents_path>/network/System Proxy</extra-contents_path>
     </message>
 </context>
 <context>
@@ -1111,6 +773,106 @@
     <message>
         <source>Password</source>
         <translation>Salasana</translation>
+    </message>
+</context>
+<context>
+    <name>SysProxyModule</name>
+    <message>
+        <source>System Proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Proxy Type</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optional</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration URL</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save</source>
+        <comment>button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HTTP Proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HTTPS Proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>FTP Proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>SOCKS Proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ignore the proxy configurations for the above hosts and domains</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>VPNModule</name>
+    <message>
+        <source>VPN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Wired Network Adapter</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VPN Status</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add Network Connection</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create VPN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import VPN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import Error</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File error</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1516,33 +1278,6 @@
     </message>
 </context>
 <context>
-    <name>VpnPage</name>
-    <message>
-        <source>VPN Status</source>
-        <translation>VPN tila</translation>
-    </message>
-    <message>
-        <source>Create VPN</source>
-        <translation>Luo VPN</translation>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation>Tuo VPN</translation>
-    </message>
-    <message>
-        <source>Import Error</source>
-        <translation>Tuontivirhe</translation>
-    </message>
-    <message>
-        <source>File error</source>
-        <translation>Tiedoston virhe</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>OK</translation>
-    </message>
-</context>
-<context>
     <name>VpnProxySection</name>
     <message>
         <source>VPN Proxy</source>
@@ -1879,44 +1614,40 @@
     </message>
 </context>
 <context>
-    <name>WiredPage</name>
-    <message>
-        <source>Plug in the network cable first</source>
-        <translation>Kytke ensin verkkokaapeli</translation>
-    </message>
+    <name>WiredModule</name>
     <message>
         <source>Wired Network Adapter</source>
-        <translation>Verkkokortti</translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plug in the network cable first</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add Network Connection</source>
-        <translation>Lisää verkkoyhteys</translation>
-    </message>
-    <message>
-        <source>Select Settings</source>
-        <translation>Valitse asetukset</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>WirelessPage</name>
+    <name>WirelessDeviceModel</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>WirelessModule</name>
     <message>
         <source>Wireless Network Adapter</source>
-        <translation>Langaton verkkokortti</translation>
-        <extra-contents_path>/network/Wireless Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Close Hotspot</source>
-        <translation>Sulje tukiasema</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disable hotspot first if you want to connect to a wireless network</source>
-        <translation>Poista esin tukiaseman jakaminen, jos haluat yhteyden langattomaan verkkoon</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Connect to hidden network</source>
-        <translation>Yhdistä piilotettuun verkkoon</translation>
-        <extra-child_page>WirelessPage</extra-child_page>
-        <extra-contents_path>/network/Connect to hidden network</extra-contents_path>
+        <source>Close Hotspot</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2060,7 +1791,7 @@
     <name>dde::network::NetworkProcesser</name>
     <message>
         <source>Wired Network</source>
-        <translation>Kiinteä verkko</translation>
+        <translation>Kaapeli</translation>
     </message>
     <message>
         <source>Wired Network %1</source>

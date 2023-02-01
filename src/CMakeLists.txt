@@ -17,7 +17,6 @@ find_package(Qt5 COMPONENTS Core DBus Network REQUIRED)
 find_package(PkgConfig REQUIRED)
 find_package(KF5NetworkManagerQt REQUIRED)
 
-pkg_check_modules(DFrameworkDBus REQUIRED dframeworkdbus)
 pkg_check_modules(QGSettings REQUIRED gsettings-qt)
 pkg_check_modules(LibNM REQUIRED IMPORTED_TARGET libnm)
 
@@ -43,18 +42,15 @@ pkg_check_modules(LibNM REQUIRED IMPORTED_TARGET libnm)
 target_include_directories(${PROJECT_NAME} PUBLIC
     realize
     ${Qt5DBus_INCLUDE_DIRS}
-    ${DFrameworkDBus_INCLUDE_DIRS}
     ${QGSettings_INCLUDE_DIRS}
+    #${LibNM_INCLUDE_DIRS}
     ${Qt5Network_INCLUDE_DIRS}
     ${KF5_QT_INCLUDE_DIRS}
-    PkgConfig::LibNM
-)
-
-message(STATUS ${LibNM_INCLUDE_DIRS})
+    ${NETINTERFACEINCLUDE})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     ${Qt5Core_LIBRARIES}
-    ${DFrameworkDBus_LIBRARIES}
+    #${LibNM_LIBRARIES}
     ${Qt5DBus_LIBRARIES}
     ${Qt5Network_LIBRARIES}
     ${QGSettings_LIBRARIES}
@@ -76,7 +72,7 @@ set(INTERFACEFILES
     wireddevice.h
     wirelessdevice.h)
 
-install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME}Targets LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
-install(FILES ${CMAKE_BINARY_DIR}/dde-network-core.pc DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME}Targets LIBRARY DESTINATION lib)
+install(FILES ${CMAKE_BINARY_DIR}/dde-network-core.pc DESTINATION lib/pkgconfig)
 install(FILES ${INTERFACEFILES} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/libddenetworkcore)
 install(FILES ../config/org.deepin.dde.network.json DESTINATION ${CMAKE_INSTALL_DATADIR}/dsg/configs/org.deepin.dde.network)

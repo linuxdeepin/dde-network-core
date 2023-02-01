@@ -1,6 +1,6 @@
 <?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="hu">
 <context>
-    <name>ChainsProxyPage</name>
+    <name>AppProxyModule</name>
     <message>
         <source>Application Proxy</source>
         <translation>Alkalmazás proxy</translation>
@@ -38,14 +38,14 @@
         <translation>A konfigurálás után jelölje be az Indító alkalmazás helyi menüjében a &quot;Proxy használata&quot; lehetőséget</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Mégsem</translation>
-    </message>
-    <message>
         <source>Save</source>
         <comment>button</comment>
         <translation>Mentés</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Mégsem</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
@@ -168,218 +168,6 @@
     </message>
 </context>
 <context>
-    <name>DCCNetworkModule</name>
-    <message>
-        <source>Network</source>
-        <translation>Hálózat</translation>
-    </message>
-    <message>
-        <source>Application Proxy</source>
-        <translation>Alkalmazás proxy</translation>
-    </message>
-    <message>
-        <source>Personal Hotspot</source>
-        <translation>Személyes Hotspot</translation>
-    </message>
-    <message>
-        <source>Network Details</source>
-        <translation>Hálózati adatok</translation>
-    </message>
-    <message>
-        <source>System Proxy</source>
-        <translation>Rendszer proxy</translation>
-    </message>
-    <message>
-        <source>Wired Network</source>
-        <translation>Vezetékes hálózat </translation>
-    </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation>Vezeték nélküli hálózat</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>VPN</translation>
-    </message>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>Repülőgép üzemmód</translation>
-        <extra-child_page>Airplane Mode</extra-child_page>
-        <extra-contents_path>/network/Airplane Mode</extra-contents_path>
-    </message>
-    <message>
-        <source>Wired Network Adapter</source>
-        <translation>Vezetékes hálózati kártya</translation>
-        <extra-child_page>Wired Network</extra-child_page>
-        <extra-contents_path>/network/Wired Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Add Network Connection</source>
-        <translation>Hálózati kapcsolat hozzáadása</translation>
-        <extra-child_page>Wired Network</extra-child_page>
-        <extra-contents_path>/network/Wired Network/addWiredConnection</extra-contents_path>
-    </message>
-    <message>
-        <source>Wireless Network Adapter</source>
-        <translation>Vezeték nélküli kártya</translation>
-        <extra-child_page>Wireless Network</extra-child_page>
-        <extra-contents_path>/network/Wireless Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>Csatlakozás rejtett hálózathoz</translation>
-        <extra-child_page>Wireless Network</extra-child_page>
-        <extra-contents_path>/network/Wireless Network/Connect to hidden network</extra-contents_path>
-    </message>
-    <message>
-        <source>DSL</source>
-        <translation>DSL</translation>
-        <extra-child_page_hide>DSL</extra-child_page_hide>
-        <extra-contents_path>/network/DSL</extra-contents_path>
-    </message>
-    <message>
-        <source>Create PPPoE Connection</source>
-        <translation>PPPoE kapcsolat létrehozása</translation>
-        <extra-child_page>DSL</extra-child_page>
-        <extra-contents_path>/network/DSL/Create PPPoE Connection</extra-contents_path>
-    </message>
-    <message>
-        <source>VPN Status</source>
-        <translation>VPN állapota</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Create VPN</source>
-        <translation>VPN létrehozása</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN/Create VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation>VPN beállítások importálása</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN/Import VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation>Proxy típusa</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation>Konfigurációs URL</translation>
-    </message>
-    <message>
-        <source>IP Address</source>
-        <translation>IP cím</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>Port</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>Felhasználónév</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Jelszó</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Hotspot</source>
-        <translation>Hotspot</translation>
-        <extra-child_page>Personal Hotspot</extra-child_page>
-        <extra-contents_path>/network/Personal Hotspot</extra-contents_path>
-    </message>
-    <message>
-        <source>Create Hotspot</source>
-        <translation>Hotspot létrehozása</translation>
-        <extra-child_page>Personal Hotspot</extra-child_page>
-        <extra-contents_path>/network/Personal Hotspot/Create Hotspot</extra-contents_path>
-    </message>
-    <message>
-        <source>Interface</source>
-        <translation>Felület</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>MAC</source>
-        <translation>MAC cím</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation>Sáv</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>IPv4</source>
-        <translation>IPv4</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Átjáró</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Primary DNS</source>
-        <translation>Elsődleges DNS</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Netmask</source>
-        <translation>Hálózati maszk</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>IPv6</source>
-        <translation>IPv6</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Prefix</source>
-        <translation>Előtag</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation>Sebesség</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-</context>
-<context>
-    <name>dccV20::network::AirplaneModepage</name>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>Repülőgép üzemmód</translation>
-    </message>
-    <message>
-        <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
-        <translation>A repülőgép üzemmód engedélyezése kikapcsolja a vezeték nélküli hálózatot, a személyes hotspotot és a Bluetooth-t</translation>
-    </message>
-</context>
-<context>
     <name>DNSSection</name>
     <message>
         <source>DNS</source>
@@ -388,6 +176,17 @@
     <message>
         <source>Invalid DNS address</source>
         <translation>Érvénytelen DNS cím</translation>
+    </message>
+</context>
+<context>
+    <name>DSLModule</name>
+    <message>
+        <source>DSL</source>
+        <translation>DSL</translation>
+    </message>
+    <message>
+        <source>Create PPPoE Connection</source>
+        <translation>PPPoE kapcsolat létrehozása</translation>
     </message>
 </context>
 <context>
@@ -460,7 +259,7 @@
     </message>
 </context>
 <context>
-    <name>HotspotDeviceWidget</name>
+    <name>HotspotDeviceItem</name>
     <message>
         <source>Hotspot</source>
         <translation>Hotspot</translation>
@@ -471,7 +270,11 @@
     </message>
 </context>
 <context>
-    <name>HotspotPage</name>
+    <name>HotspotModule</name>
+    <message>
+        <source>Personal Hotspot</source>
+        <translation>Személyes Hotspot</translation>
+    </message>
     <message>
         <source>Create Hotspot</source>
         <translation>Hotspot létrehozása</translation>
@@ -645,66 +448,17 @@
     </message>
 </context>
 <context>
-    <name>NetworkDetailPage</name>
+    <name>NetworkInfoModule</name>
     <message>
         <source>Network Details</source>
         <translation>Hálózati adatok</translation>
     </message>
 </context>
 <context>
-    <name>NetworkModuleWidget</name>
-    <message>
-        <source>DSL</source>
-        <translation>DSL</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>VPN</translation>
-    </message>
-    <message>
-        <source>System Proxy</source>
-        <translation>Rendszer proxy</translation>
-    </message>
-    <message>
-        <source>Application Proxy</source>
-        <translation>Alkalmazás proxy</translation>
-    </message>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>Repülőgép üzemmód</translation>
-        <extra-contents_path>/network/Airplane</extra-contents_path>
-    </message>
-    <message>
-        <source>Network Details</source>
-        <translation>Hálózati adatok</translation>
-    </message>
+    <name>NetworkModule</name>
     <message>
         <source>Network</source>
         <translation>Hálózat</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>IP cím ütközés</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Letiltva</translation>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>Manuális</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Automatikus</translation>
-    </message>
-    <message>
-        <source>Configure by Network Manager</source>
-        <translation>A Hálózati Kezelő által konfigurálva</translation>
-    </message>
-    <message>
-        <source>Personal Hotspot</source>
-        <translation>Személyes Hotspot</translation>
     </message>
 </context>
 <context>
@@ -791,98 +545,6 @@
     <message>
         <source>Stateful MPPE</source>
         <translation>Állapotfüggő MPPE</translation>
-    </message>
-</context>
-<context>
-    <name>PppoePage</name>
-    <message>
-        <source>Create PPPoE Connection</source>
-        <translation>PPPoE kapcsolat létrehozása</translation>
-    </message>
-    <message>
-        <source>PPP</source>
-        <translation>PPP</translation>
-    </message>
-</context>
-<context>
-    <name>ProxyPage</name>
-    <message>
-        <source>System Proxy</source>
-        <translation>Rendszer proxy</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Mégsem</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <comment>button</comment>
-        <translation>Mentés</translation>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation>Proxy típusa</translation>
-        <extra-child_page>System Proxy</extra-child_page>
-        <extra-contents_path>/network/System Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>Manuális</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Automatikus</translation>
-    </message>
-    <message>
-        <source>Optional</source>
-        <translation>Opcionális</translation>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>Port</translation>
-    </message>
-    <message>
-        <source>Authentication is required</source>
-        <translation>Hitelesítés szükséges</translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>Felhasználónév</translation>
-    </message>
-    <message>
-        <source>Required</source>
-        <translation>Kötelező</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Jelszó</translation>
-    </message>
-    <message>
-        <source>HTTP Proxy</source>
-        <translation>HTTP Proxy</translation>
-    </message>
-    <message>
-        <source>HTTPS Proxy</source>
-        <translation>HTTPS Proxy</translation>
-    </message>
-    <message>
-        <source>FTP Proxy</source>
-        <translation>FTP Proxy</translation>
-    </message>
-    <message>
-        <source>SOCKS Proxy</source>
-        <translation>SOCKS Proxy</translation>
-    </message>
-    <message>
-        <source>Ignore the proxy configurations for the above hosts and domains</source>
-        <translation>Hagyja figyelmen kívül a fenti gazdagépek és tartományok proxykonfigurációit</translation>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation>Konfigurációs URL</translation>
-        <extra-child_page>System Proxy</extra-child_page>
-        <extra-contents_path>/network/System Proxy</extra-contents_path>
     </message>
 </context>
 <context>
@@ -1111,6 +773,106 @@
     <message>
         <source>Password</source>
         <translation>Jelszó</translation>
+    </message>
+</context>
+<context>
+    <name>SysProxyModule</name>
+    <message>
+        <source>System Proxy</source>
+        <translation>Rendszer proxy</translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation>Manuális</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Automatikus</translation>
+    </message>
+    <message>
+        <source>Proxy Type</source>
+        <translation>Proxy típusa</translation>
+    </message>
+    <message>
+        <source>Optional</source>
+        <translation>Opcionális</translation>
+    </message>
+    <message>
+        <source>Configuration URL</source>
+        <translation>Konfigurációs URL</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <comment>button</comment>
+        <translation>Mentés</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Mégsem</translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation>Port</translation>
+    </message>
+    <message>
+        <source>HTTP Proxy</source>
+        <translation>HTTP Proxy</translation>
+    </message>
+    <message>
+        <source>HTTPS Proxy</source>
+        <translation>HTTPS Proxy</translation>
+    </message>
+    <message>
+        <source>FTP Proxy</source>
+        <translation>FTP Proxy</translation>
+    </message>
+    <message>
+        <source>SOCKS Proxy</source>
+        <translation>SOCKS Proxy</translation>
+    </message>
+    <message>
+        <source>Ignore the proxy configurations for the above hosts and domains</source>
+        <translation>Hagyja figyelmen kívül a fenti gazdagépek és tartományok proxykonfigurációit</translation>
+    </message>
+</context>
+<context>
+    <name>VPNModule</name>
+    <message>
+        <source>VPN</source>
+        <translation>VPN</translation>
+    </message>
+    <message>
+        <source>Wired Network Adapter</source>
+        <translation>Vezetékes hálózati kártya</translation>
+    </message>
+    <message>
+        <source>VPN Status</source>
+        <translation>VPN állapota</translation>
+    </message>
+    <message>
+        <source>Add Network Connection</source>
+        <translation>Hálózati kapcsolat hozzáadása</translation>
+    </message>
+    <message>
+        <source>Create VPN</source>
+        <translation>VPN létrehozása</translation>
+    </message>
+    <message>
+        <source>Import VPN</source>
+        <translation>VPN beállítások importálása</translation>
+    </message>
+    <message>
+        <source>Import Error</source>
+        <translation>Importálási hiba</translation>
+    </message>
+    <message>
+        <source>File error</source>
+        <translation>Fájl hiba</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -1516,33 +1278,6 @@
     </message>
 </context>
 <context>
-    <name>VpnPage</name>
-    <message>
-        <source>VPN Status</source>
-        <translation>VPN állapota</translation>
-    </message>
-    <message>
-        <source>Create VPN</source>
-        <translation>VPN létrehozása</translation>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation>VPN beállítások importálása</translation>
-    </message>
-    <message>
-        <source>Import Error</source>
-        <translation>Importálási hiba</translation>
-    </message>
-    <message>
-        <source>File error</source>
-        <translation>Fájl hiba</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>OK</translation>
-    </message>
-</context>
-<context>
     <name>VpnProxySection</name>
     <message>
         <source>VPN Proxy</source>
@@ -1879,44 +1614,40 @@
     </message>
 </context>
 <context>
-    <name>WiredPage</name>
-    <message>
-        <source>Plug in the network cable first</source>
-        <translation>Először a hálózati kábelt csatlakoztasd.</translation>
-    </message>
+    <name>WiredModule</name>
     <message>
         <source>Wired Network Adapter</source>
         <translation>Vezetékes hálózati kártya</translation>
     </message>
     <message>
-        <source>Add Network Connection</source>
-        <translation>Hálózat hozzáadása</translation>
+        <source>Plug in the network cable first</source>
+        <translation>Először csatlakoztassa a hálózati kábelt</translation>
     </message>
     <message>
-        <source>Select Settings</source>
-        <translation>Beállítások kiválasztása</translation>
+        <source>Add Network Connection</source>
+        <translation>Hálózati kapcsolat hozzáadása</translation>
     </message>
 </context>
 <context>
-    <name>WirelessPage</name>
+    <name>WirelessDeviceModel</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation>Csatlakozás rejtett hálózathoz</translation>
+    </message>
+</context>
+<context>
+    <name>WirelessModule</name>
     <message>
         <source>Wireless Network Adapter</source>
         <translation>Vezeték nélküli kártya</translation>
-        <extra-contents_path>/network/Wireless Network</extra-contents_path>
+    </message>
+    <message>
+        <source>Disable hotspot first if you want to connect to a wireless network</source>
+        <translation>Először tiltsa le a Hotspotot, ha vezeték nélküli hálózathoz szeretne csatlakozni</translation>
     </message>
     <message>
         <source>Close Hotspot</source>
         <translation>Hotspot bezárása</translation>
-    </message>
-    <message>
-        <source>Disable hotspot first if you want to connect to a wireless network</source>
-        <translation>Először tiltsa le a hotspotot, ha vezeték nélküli hálózathoz szeretne csatlakozni</translation>
-    </message>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>Kapcsolódás rejtett hálózathoz</translation>
-        <extra-child_page>WirelessPage</extra-child_page>
-        <extra-contents_path>/network/Connect to hidden network</extra-contents_path>
     </message>
 </context>
 <context>

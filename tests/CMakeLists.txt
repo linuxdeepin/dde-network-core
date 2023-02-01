@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 3.7)
 
 project(tst-dde-network)
 
+set(CMAKE_THREAD_LIBS_INIT "-lpthread")
+set(CMAKE_HAVE_THREADS_LIBRARY 1)
+set(CMAKE_USE_PTHREADS_INIT 1)
+set(CMAKE_PREFER_PTHREAD_FLAG ON)
+
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_PREFIX_PATH $ENV{Qt5_DIR})
 set(CMAKE_AUTOMOC ON)
@@ -11,6 +16,7 @@ find_package(Qt5 COMPONENTS Core DBus Network REQUIRED)
 find_package(GTest REQUIRED)
 find_package(KF5NetworkManagerQt REQUIRED)
 find_package(Qt5Widgets REQUIRED)
+find_package(PkgConfig REQUIRED)
 
 get_target_property(KF5_QT_INCLUDE_DIRS KF5::NetworkManagerQt INTERFACE_INCLUDE_DIRECTORIES)
 
@@ -43,20 +49,19 @@ aux_source_directory(. FILES)
 add_executable(${PROJECT_NAME} ${FILES})
 
 target_include_directories(${PROJECT_NAME} PUBLIC
-    ${DFrameworkDBus_INCLUDE_DIRS}
     ${QGSettings_INCLUDE_DIRS}
-    ${LibNM_INCLUDE_DIRS}
+    #${LibNM_INCLUDE_DIRS}
     ${Qt5Network_INCLUDE_DIRS}
     ${Qt5Widget_INCLUDE_DIRS}
     ${KF5_QT_INCLUDE_DIRS}
+    ${NETINTERFACEINCLUDE}
     ../src)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     ${Qt5Core_LIBRARIES}
     ${Qt5Widgets_LIBRARIES}
-    ${LibNM_LIBRARIES}
+    #${LibNM_LIBRARIES}
     ${Qt5Network_LIBRARIES}
-    ${DFrameworkDBus_LIBRARIES}
     ${Qt5DBus_LIBRARIES}
     ${Qt5Test_LIBRARIES}
     ${Qt5Network_LIBRARIES}

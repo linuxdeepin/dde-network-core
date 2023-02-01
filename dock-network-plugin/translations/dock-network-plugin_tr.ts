@@ -16,6 +16,63 @@
         <source>Network</source>
         <translation>Ağ</translation>
     </message>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Kablolu Ağ</translation>
+    </message>
+    <message>
+        <source>Device disabled</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Not connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connected but no Internet access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>WirelessItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation>Gizli ağa bağlan</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Parola</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>İptal</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <comment>button</comment>
+        <translation>Bağlan</translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation>İsim (SSID)</translation>
+    </message>
 </context>
 <context>
     <name>WirelessItem</name>
@@ -113,7 +170,7 @@
     </message>
     <message>
         <source>Connected but no Internet access</source>
-        <translation>Bağandı ancak İnternet erişimi yok</translation>
+        <translation>Bağlandı ancak İnternet erişimi yok</translation>
     </message>
     <message>
         <source>Not connected</source>

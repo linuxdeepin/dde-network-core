@@ -1,6 +1,6 @@
 <?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="uk">
 <context>
-    <name>ChainsProxyPage</name>
+    <name>AppProxyModule</name>
     <message>
         <source>Application Proxy</source>
         <translation>Проксі програми</translation>
@@ -15,7 +15,7 @@
     </message>
     <message>
         <source>Required</source>
-        <translation>Потрібен</translation>
+        <translation>Обов&apos;язкове</translation>
     </message>
     <message>
         <source>Port</source>
@@ -35,17 +35,17 @@
     </message>
     <message>
         <source>Check &quot;Use a proxy&quot; in application context menu in Launcher after configured</source>
-        <translation>Позначте пункт «Використовувати проксі» у контекстному меню програми у Launcher після налаштовування</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Скасувати</translation>
+        <translation>Позначте пункт «Використовувати проксі» у контекстному меню програми у засобі запуску після налаштовування</translation>
     </message>
     <message>
         <source>Save</source>
         <comment>button</comment>
         <translation>Зберегти</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Скасувати</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
@@ -168,218 +168,6 @@
     </message>
 </context>
 <context>
-    <name>DCCNetworkModule</name>
-    <message>
-        <source>Network</source>
-        <translation>Мережа</translation>
-    </message>
-    <message>
-        <source>Application Proxy</source>
-        <translation>Проксі Програма</translation>
-    </message>
-    <message>
-        <source>Personal Hotspot</source>
-        <translation>Особиста точка доступу</translation>
-    </message>
-    <message>
-        <source>Network Details</source>
-        <translation>Параметри мережі</translation>
-    </message>
-    <message>
-        <source>System Proxy</source>
-        <translation>Системний проксі-сервер</translation>
-    </message>
-    <message>
-        <source>Wired Network</source>
-        <translation>Провідна мережа</translation>
-    </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation>Бездротова мережа</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>VPN</translation>
-    </message>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>Режим польоту</translation>
-        <extra-child_page>Airplane Mode</extra-child_page>
-        <extra-contents_path>/network/Airplane Mode</extra-contents_path>
-    </message>
-    <message>
-        <source>Wired Network Adapter</source>
-        <translation>Дротова Мережева Карта</translation>
-        <extra-child_page>Wired Network</extra-child_page>
-        <extra-contents_path>/network/Wired Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Add Network Connection</source>
-        <translation>Додати підключення до мережі</translation>
-        <extra-child_page>Wired Network</extra-child_page>
-        <extra-contents_path>/network/Wired Network/addWiredConnection</extra-contents_path>
-    </message>
-    <message>
-        <source>Wireless Network Adapter</source>
-        <translation>Бездротова Мережева Карта</translation>
-        <extra-child_page>Wireless Network</extra-child_page>
-        <extra-contents_path>/network/Wireless Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>Підключитися до прихованої мережі</translation>
-        <extra-child_page>Wireless Network</extra-child_page>
-        <extra-contents_path>/network/Wireless Network/Connect to hidden network</extra-contents_path>
-    </message>
-    <message>
-        <source>DSL</source>
-        <translation>DSL</translation>
-        <extra-child_page_hide>DSL</extra-child_page_hide>
-        <extra-contents_path>/network/DSL</extra-contents_path>
-    </message>
-    <message>
-        <source>Create PPPoE Connection</source>
-        <translation>Створити PPPoE-з&apos;єднання</translation>
-        <extra-child_page>DSL</extra-child_page>
-        <extra-contents_path>/network/DSL/Create PPPoE Connection</extra-contents_path>
-    </message>
-    <message>
-        <source>VPN Status</source>
-        <translation>Статус VPN</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Create VPN</source>
-        <translation>Створити VPN</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN/Create VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation>Імпортувати VPN</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN/Import VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation>Тип проксі</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation>Конфігурація URL</translation>
-    </message>
-    <message>
-        <source>IP Address</source>
-        <translation>IP-адреса</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>Порт</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>Ім&apos;я користувача</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Пароль</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Hotspot</source>
-        <translation>Точка доступу</translation>
-        <extra-child_page>Personal Hotspot</extra-child_page>
-        <extra-contents_path>/network/Personal Hotspot</extra-contents_path>
-    </message>
-    <message>
-        <source>Create Hotspot</source>
-        <translation>Створіть точку доступу</translation>
-        <extra-child_page>Personal Hotspot</extra-child_page>
-        <extra-contents_path>/network/Personal Hotspot/Create Hotspot</extra-contents_path>
-    </message>
-    <message>
-        <source>Interface</source>
-        <translation>Інтерфейс</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>MAC</source>
-        <translation>МАС</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation>Група</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>IPv4</source>
-        <translation>IPv4</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Шлюз</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Primary DNS</source>
-        <translation>Первинний DNS</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Netmask</source>
-        <translation>Маска мережі</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>IPv6</source>
-        <translation>IPv6</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Prefix</source>
-        <translation>Префікс</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation>Швидкість</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-</context>
-<context>
-    <name>dccV20::network::AirplaneModepage</name>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>Режим польоту</translation>
-    </message>
-    <message>
-        <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
-        <translation>Вмикання режиму польоту вимикає бездротову мережу, особистку точку доступу та Bluetooth</translation>
-    </message>
-</context>
-<context>
     <name>DNSSection</name>
     <message>
         <source>DNS</source>
@@ -388,6 +176,17 @@
     <message>
         <source>Invalid DNS address</source>
         <translation>Некоректна адреса DNS</translation>
+    </message>
+</context>
+<context>
+    <name>DSLModule</name>
+    <message>
+        <source>DSL</source>
+        <translation>DSL</translation>
+    </message>
+    <message>
+        <source>Create PPPoE Connection</source>
+        <translation>Створити PPPoE-з&apos;єднання</translation>
     </message>
 </context>
 <context>
@@ -460,7 +259,7 @@
     </message>
 </context>
 <context>
-    <name>HotspotDeviceWidget</name>
+    <name>HotspotDeviceItem</name>
     <message>
         <source>Hotspot</source>
         <translation>Точка доступу</translation>
@@ -471,7 +270,11 @@
     </message>
 </context>
 <context>
-    <name>HotspotPage</name>
+    <name>HotspotModule</name>
+    <message>
+        <source>Personal Hotspot</source>
+        <translation>Особиста точка доступу</translation>
+    </message>
     <message>
         <source>Create Hotspot</source>
         <translation>Створіть точку доступу</translation>
@@ -645,66 +448,17 @@
     </message>
 </context>
 <context>
-    <name>NetworkDetailPage</name>
+    <name>NetworkInfoModule</name>
     <message>
         <source>Network Details</source>
         <translation>Параметри мережі</translation>
     </message>
 </context>
 <context>
-    <name>NetworkModuleWidget</name>
-    <message>
-        <source>DSL</source>
-        <translation>DSL</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>VPN</translation>
-    </message>
-    <message>
-        <source>System Proxy</source>
-        <translation>Системний проксі-сервер</translation>
-    </message>
-    <message>
-        <source>Application Proxy</source>
-        <translation>Проксі програми</translation>
-    </message>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>Режим польоту</translation>
-        <extra-contents_path>/network/Airplane</extra-contents_path>
-    </message>
-    <message>
-        <source>Network Details</source>
-        <translation>Параметри мережі</translation>
-    </message>
+    <name>NetworkModule</name>
     <message>
         <source>Network</source>
         <translation>Мережа</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>Конфлікт IP</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Вимкнено</translation>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>Вручну</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Авто</translation>
-    </message>
-    <message>
-        <source>Configure by Network Manager</source>
-        <translation>Налаштування за допомогою Менеджера мережі</translation>
-    </message>
-    <message>
-        <source>Personal Hotspot</source>
-        <translation>Особиста точка доступу</translation>
     </message>
 </context>
 <context>
@@ -791,98 +545,6 @@
     <message>
         <source>Stateful MPPE</source>
         <translation>MPPE з контролем стану підключень</translation>
-    </message>
-</context>
-<context>
-    <name>PppoePage</name>
-    <message>
-        <source>Create PPPoE Connection</source>
-        <translation>Створити PPPoE з&apos;єднання</translation>
-    </message>
-    <message>
-        <source>PPP</source>
-        <translation>PPP</translation>
-    </message>
-</context>
-<context>
-    <name>ProxyPage</name>
-    <message>
-        <source>System Proxy</source>
-        <translation>Системний проксі-сервер</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Скасувати</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <comment>button</comment>
-        <translation>Зберегти</translation>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation>Тип проксі</translation>
-        <extra-child_page>System Proxy</extra-child_page>
-        <extra-contents_path>/network/System Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>Вручну</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Авто</translation>
-    </message>
-    <message>
-        <source>Optional</source>
-        <translation>Необов&apos;язкове</translation>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>Порт</translation>
-    </message>
-    <message>
-        <source>Authentication is required</source>
-        <translation>Слід пройти розпізнавання</translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>Користувач</translation>
-    </message>
-    <message>
-        <source>Required</source>
-        <translation>Обов&apos;язкове</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Пароль</translation>
-    </message>
-    <message>
-        <source>HTTP Proxy</source>
-        <translation>HTTP-проксі</translation>
-    </message>
-    <message>
-        <source>HTTPS Proxy</source>
-        <translation>HTTPS-проксі</translation>
-    </message>
-    <message>
-        <source>FTP Proxy</source>
-        <translation>FTP-проксі</translation>
-    </message>
-    <message>
-        <source>SOCKS Proxy</source>
-        <translation>SOCKS-проксі</translation>
-    </message>
-    <message>
-        <source>Ignore the proxy configurations for the above hosts and domains</source>
-        <translation>Ігнорувати конфігурації проксі для зазначених вище вузлів і доменів</translation>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation>Конфігурація URL</translation>
-        <extra-child_page>System Proxy</extra-child_page>
-        <extra-contents_path>/network/System Proxy</extra-contents_path>
     </message>
 </context>
 <context>
@@ -1111,6 +773,106 @@
     <message>
         <source>Password</source>
         <translation>Пароль</translation>
+    </message>
+</context>
+<context>
+    <name>SysProxyModule</name>
+    <message>
+        <source>System Proxy</source>
+        <translation>Системний проксі-сервер</translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation>Вручну</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Авто</translation>
+    </message>
+    <message>
+        <source>Proxy Type</source>
+        <translation>Тип проксі</translation>
+    </message>
+    <message>
+        <source>Optional</source>
+        <translation>Необов&apos;язкове</translation>
+    </message>
+    <message>
+        <source>Configuration URL</source>
+        <translation>Адреса налаштовування</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <comment>button</comment>
+        <translation>Зберегти</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Скасувати</translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation>Порт</translation>
+    </message>
+    <message>
+        <source>HTTP Proxy</source>
+        <translation>HTTP-проксі</translation>
+    </message>
+    <message>
+        <source>HTTPS Proxy</source>
+        <translation>HTTPS-проксі</translation>
+    </message>
+    <message>
+        <source>FTP Proxy</source>
+        <translation>FTP-проксі</translation>
+    </message>
+    <message>
+        <source>SOCKS Proxy</source>
+        <translation>SOCKS-проксі</translation>
+    </message>
+    <message>
+        <source>Ignore the proxy configurations for the above hosts and domains</source>
+        <translation>Ігнорувати конфігурації проксі для зазначених вище вузлів і доменів</translation>
+    </message>
+</context>
+<context>
+    <name>VPNModule</name>
+    <message>
+        <source>VPN</source>
+        <translation>VPN</translation>
+    </message>
+    <message>
+        <source>Wired Network Adapter</source>
+        <translation>Дротова мережева карта</translation>
+    </message>
+    <message>
+        <source>VPN Status</source>
+        <translation>Стан VPN</translation>
+    </message>
+    <message>
+        <source>Add Network Connection</source>
+        <translation>Додати мережеве з&apos;єднання</translation>
+    </message>
+    <message>
+        <source>Create VPN</source>
+        <translation>Створити VPN</translation>
+    </message>
+    <message>
+        <source>Import VPN</source>
+        <translation>Імпортувати VPN</translation>
+    </message>
+    <message>
+        <source>Import Error</source>
+        <translation>Помилка імпортування</translation>
+    </message>
+    <message>
+        <source>File error</source>
+        <translation>Помилка під час роботи з файлами</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>Гаразд</translation>
     </message>
 </context>
 <context>
@@ -1516,33 +1278,6 @@
     </message>
 </context>
 <context>
-    <name>VpnPage</name>
-    <message>
-        <source>VPN Status</source>
-        <translation>Статус VPN</translation>
-    </message>
-    <message>
-        <source>Create VPN</source>
-        <translation>Створити VPN</translation>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation>Імпортувати VPN</translation>
-    </message>
-    <message>
-        <source>Import Error</source>
-        <translation>Помилка імпорту</translation>
-    </message>
-    <message>
-        <source>File error</source>
-        <translation>Помилка під час роботи з файлом</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>Гаразд</translation>
-    </message>
-</context>
-<context>
     <name>VpnProxySection</name>
     <message>
         <source>VPN Proxy</source>
@@ -1879,44 +1614,40 @@
     </message>
 </context>
 <context>
-    <name>WiredPage</name>
-    <message>
-        <source>Plug in the network cable first</source>
-        <translation>Спочатку підключіть мережний кабель</translation>
-    </message>
+    <name>WiredModule</name>
     <message>
         <source>Wired Network Adapter</source>
-        <translation>Дротова Мережева Карта</translation>
+        <translation>Дротовий мережевий адаптер</translation>
+    </message>
+    <message>
+        <source>Plug in the network cable first</source>
+        <translation>Спочатку, вставте кабель мережі</translation>
     </message>
     <message>
         <source>Add Network Connection</source>
-        <translation>Додати підключення до мережі</translation>
-    </message>
-    <message>
-        <source>Select Settings</source>
-        <translation>Обрати Налаштування</translation>
+        <translation>Додати мережеве з&apos;єднання</translation>
     </message>
 </context>
 <context>
-    <name>WirelessPage</name>
+    <name>WirelessDeviceModel</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation>Встановлення з&apos;єднання із прихованою мережею</translation>
+    </message>
+</context>
+<context>
+    <name>WirelessModule</name>
     <message>
         <source>Wireless Network Adapter</source>
-        <translation>Бездротова Мережева Карта</translation>
-        <extra-contents_path>/network/Wireless Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Close Hotspot</source>
-        <translation>Закрити точку доступу</translation>
+        <translation>Бездротовий мережевий адаптер</translation>
     </message>
     <message>
         <source>Disable hotspot first if you want to connect to a wireless network</source>
         <translation>Спочатку вимкніть точку доступу, якщо ви хочете підключитися до бездротової мережі</translation>
     </message>
     <message>
-        <source>Connect to hidden network</source>
-        <translation>Підключитися до прихованої мережі</translation>
-        <extra-child_page>WirelessPage</extra-child_page>
-        <extra-contents_path>/network/Connect to hidden network</extra-contents_path>
+        <source>Close Hotspot</source>
+        <translation>Закрити точку доступу</translation>
     </message>
 </context>
 <context>

@@ -16,6 +16,63 @@
         <source>Network</source>
         <translation>Сеть</translation>
     </message>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Проводная сеть</translation>
+    </message>
+    <message>
+        <source>Device disabled</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Not connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connected but no Internet access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>WirelessItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation>Подключиться к скрытой сети</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Пароль</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Отмена</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <comment>button</comment>
+        <translation>Подключить</translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation>Имя (SSID)</translation>
+    </message>
 </context>
 <context>
     <name>WirelessItem</name>

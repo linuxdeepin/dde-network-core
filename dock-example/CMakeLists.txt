@@ -7,13 +7,17 @@ set(CMAKE_PREFIX_PATH $ENV{Qt5_DIR})
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(DdeControlCenter REQUIRED)
 find_package(Qt5 COMPONENTS Core DBus Network REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Svg REQUIRED)
 find_package(KF5NetworkManagerQt REQUIRED)
+find_package(DtkCore REQUIRED)
 find_package(DtkWidget REQUIRED)
+
+set(DTKCORE_INCLUDE_DIR DTKCORE_INCLUDE_DIRS)
+
 find_package(DdeDock REQUIRED)
+find_package(PkgConfig REQUIRED)
 
 aux_source_directory(../dock-network-plugin DOCKPLUGINDIR)
 aux_source_directory(../common-plugin/* COMMONPLUGINS)
@@ -31,7 +35,7 @@ add_executable(${PROJECT_NAME}
     ${COMPILEFILES}
     ${DOCKPLUGINDIR}
     ${COMMONPLUGINS_SRCS}
-    )
+    ${QRCFILES})
 
 get_target_property(KF5_QT_INCLUDE_DIRS KF5::NetworkManagerQt INTERFACE_INCLUDE_DIRECTORIES)
 
@@ -65,9 +69,8 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     ${Qt5Core_INCLUDE_DIRS}
     ${Qt5DBus_INCLUDE_DIRS}
     ${Qt5Widget_INCLUDE_DIRS}
-    ${DFrameworkDBus_INCLUDE_DIRS}
     ${QGSettings_INCLUDE_DIRS}
-    ${LibNM_INCLUDE_DIRS}
+    #${LibNM_INCLUDE_DIRS}
     ${Qt5Network_INCLUDE_DIRS}
     ${KF5_QT_INCLUDE_DIRS}
     ${DDE-Network-Core_INCLUDE_DIRS}
@@ -78,9 +81,8 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     ${DtkWidget_LIBRARIES}
     ${Qt5Core_LIBRARIES}
     ${Qt5Widgets_LIBRARIES}
-    ${LibNM_LIBRARIES}
+    #${LibNM_LIBRARIES}
     ${Qt5Svg_LIBRARIES}
-    ${DFrameworkDBus_LIBRARIES}
     ${Qt5DBus_LIBRARIES}
     ${Qt5Network_LIBRARIES}
     ${QGSettings_LIBRARIES}

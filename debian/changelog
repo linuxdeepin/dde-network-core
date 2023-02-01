@@ -1,8 +1,93 @@
-dde-network-core (1.1.9) unstable; urgency=low
+dde-network-core (2.0.4.2) unstable; urgency=medium
 
-  * bump version to 1.1.9
+  [ Deepin Packages Builder ]
+  * fix: 修改仅X屏模式，登录界面崩溃问题(Bug: 182829)(Influence: 仅X屏模式-注销或重启进入登录界面)
 
- -- lichangze <lichangze@uniontech.com>  Mon, 9 Jan 2023 16:20:17 +0000
+ -- caixiangrong <caixiangrong@uniontech.com>  Tue, 10 Jan 2023 21:37:42 +0800
+
+dde-network-core (2.0.4.1) unstable; urgency=medium
+
+  [ TagBuilder ]
+  * fix: 修改网卡名刷新不及时问题(Task: 224813)(Influence: 控制中心-网络-多网卡插拔，网卡名正常)
+  * fix: 修改热点开关状态错误(Task: 224819)(Influence: 控制中心-网络-开启热点)
+  * fix: 修改应用代理无输入时无错误提示(Task: 224769)(Influence: 控制中心-网络-应用代理-无输入时点保存)
+  * fix: 修改频段单位为GHz(Bug: 176471)(Influence: 控制中心-网络-网络详情-wifi频段)
+  * fix: 修改控制中心弹窗title为控制中心<2>问题(Task: 230721)(Influence: 控制中心-网络-网络设置弹窗标题)
+
+ -- zhaoyingzhen <zhaoyingzhen@uniontech.com>  Thu, 29 Dec 2022 15:14:28 +0800
+
+dde-network-core (2.0.3.1) unstable; urgency=medium
+
+  [ TagBuilder ]
+  * fix: 更新网络翻译文件(Bug: 165783)(Influence: 控制中心-网络-翻译)
+  * fix: 网络面板改为插件内窗口(Task: 196767)(Influence: 登录、锁屏、任务栏网络面板弹窗)
+  * fix: 网络插件适配DTK接口更新(Task: 112061)(Influence: 控制中心-网络-各项网络列表)
+  * chore: 更新翻译文件(Task: 196767)(Influence: 网络面板翻译)
+  * fix: 修改网络图标为空问题(Task: 208067)(Influence: 任务栏、锁屏-网络图标显示)
+  * fix: 添加network-manager-integration-plugins依赖(Task: 196767)(Influence: 控制中心-网络-有线网络EAP认证)
+  * fix: 适配任务栏网络插件(Task: 208067)(Influence: 任务栏、锁屏界面、登录界面-网络图标，任务栏网络快捷面板)
+  * chore: 更新翻译文件(Task: 208067)(Influence: 任务栏网络快捷面板)
+  * fix: 网络快捷面板增加长文本处理(Task: 208067)(Influence: 任务栏网络快捷面板)
+  * fix: 网络快捷面板文本修改(Task: 208067)(Influence: 任务栏网络快捷面板)
+  * chore: 更新翻译文件(Task: 208067)(Influence: 任务栏网络快捷面板)
+  * fix: 修改只有有线时，网络快捷面板网络状态错误问题(Task: 208067)(Influence: 只有有线时，任务栏-网络-网络快捷面板状态)
+  * fix: 增加控制中心个性化的图标定制(Bug: 172365)(Influence: 控制中心-个性化，查看插件区域，观察网络图标是否跟随主题变化)
+  * fix: 修改网络面板焦点问题(Bug: 146615)(Influence: 登陆/锁屏/任务栏-网络面板-输入焦点)
+  * fix: 修改网络快捷面板图标缩放适配(Bug: 173395)(Influence: 任务栏-网络快捷面板界面)
+  * feat: 增加任务栏可识别插件属性(Task: 220099)(Influence: 观察插件是否在任务栏快捷面板中)
+  * fix: 修复任务栏不能连接隐藏网络问题(Bug: 173619)(Influence: 任务栏-连接隐藏网络)
+  * fix: 适配基类接口(Task: 222025)(Influence: 无)
+  * chore: V23接口改造适配(Task: 207483)(Influence: 无)
+  * fix: 处理创建DSL点击保存后未触发主动连接问题(Bug: 132667)(Influence: 创建DSL点击保存后触发主动连接)
+
+ -- zhaoyingzhen <zhaoyingzhen@uniontech.com>  Tue, 13 Dec 2022 19:01:51 +0800
+
+dde-network-core (2.0.2) unstable; urgency=medium
+
+  [ Deepin Packages Builder ]
+  * fix(dcc-network-plugin): 网络插件适配控制中心接口变更(Task: 176337)(Influence: 控制中心-网络插件)
+  * fix(dcc-network-plugin): 修改通过网络设置唤起控制中心，网络二级菜单显示异常问题(Bug: 154259)(Influence: 任务栏右击网络图标打开网络设置，查看网络界面)
+  * fix: 网络适配控制中心的接口(Task: 198123)(Influence: 网络库编译打包)
+  * fix: 适配任务栏最新接口(Task: 121387)(Influence: 安装网络插件，查看网络插件是否在快捷设置面板中显示两列图标)
+
+ -- baodi <baodi@uniontech.com>  Wed, 19 Oct 2022 12:43:45 +0800
+
+dde-network-core (2.0.1) unstable; urgency=medium
+
+  [ donghualin ]
+  * UNRELEASED
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Mon, 25 Jul 2022 13:06:44 +0800
+
+dde-network-core (2.0.0.1) unstable; urgency=low
+
+ * release Tag 2.0.0.1
+
+ -- donghualin <donghualin@uniontech.com>  Mon, 5 Jul 2022 14:51:12 +0800
+
+dde-network-core (1.0.17.4) unstable; urgency=low
+
+ * release Tag 1.0.17.4
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Mon, 6 June 2022 14:40:48 +0800
+
+dde-network-core (1.0.17.3) unstable; urgency=low
+
+ * release Tag 1.0.17.3
+
+ -- donghualin <donghualin@uniontech.com>  Wed, 2 June 2022 16:10:48 +0800
+
+dde-network-core (1.0.17.2) unstable; urgency=low
+
+ * release Tag 1.0.17.2
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Wed, 1 June 2022 17:16:39 +0800
+
+dde-network-core (1.0.17.1) unstable; urgency=low
+
+ * release Tag 1.0.17.1
+
+ -- donghualin <donghualin@uniontech.com>  Wed, 1 June 2022 10:58:39 +0800
 
 dde-network-core (1.0.0.1) stable; urgency=medium
 

@@ -25,7 +25,7 @@
     </message>
     <message>
         <source>%1 connected</source>
-        <translation>已連接%1</translation>
+        <translation>%1已連接</translation>
     </message>
     <message>
         <source>%1 disconnected</source>
@@ -97,7 +97,7 @@
     </message>
     <message>
         <source>Channel</source>
-        <translation>聲道</translation>
+        <translation>網絡通道</translation>
     </message>
     <message>
         <source>Band</source>
@@ -121,11 +121,11 @@
     </message>
     <message>
         <source>Gateway</source>
-        <translation>閘道器</translation>
+        <translation>網關</translation>
     </message>
     <message>
         <source>Primary DNS</source>
-        <translation>主要 DNS</translation>
+        <translation>首選DNS</translation>
     </message>
     <message>
         <source>IPv6</source>
@@ -133,7 +133,7 @@
     </message>
     <message>
         <source>Prefix</source>
-        <translation>首碼</translation>
+        <translation>前綴</translation>
     </message>
     <message>
         <source>Speed</source>
@@ -160,7 +160,7 @@
     </message>
     <message>
         <source>Connecting</source>
-        <translation>連接中</translation>
+        <translation>正在連接</translation>
     </message>
     <message>
         <source>Authenticating</source>
@@ -168,7 +168,7 @@
     </message>
     <message>
         <source>Obtaining IP address</source>
-        <translation>獲取IP位址</translation>
+        <translation>正在獲取IP位址</translation>
     </message>
     <message>
         <source>Connected</source>
@@ -176,7 +176,7 @@
     </message>
     <message>
         <source>Disconnected</source>
-        <translation>已切斷連接</translation>
+        <translation>已斷開</translation>
     </message>
     <message>
         <source>IP conflict</source>
@@ -199,7 +199,7 @@
     </message>
     <message>
         <source>Wired Network %1</source>
-        <translation>有線網絡 %1</translation>
+        <translation>有線網絡%1</translation>
     </message>
     <message>
         <source>Wireless Network</source>
@@ -226,7 +226,7 @@
     </message>
     <message>
         <source>Connecting</source>
-        <translation>連接中</translation>
+        <translation>正在連接</translation>
     </message>
     <message>
         <source>Connected but no Internet access</source>
@@ -266,7 +266,14 @@
     </message>
     <message>
         <source>Network settings</source>
-        <translation>網絡設置</translation>
+        <translation>網絡設定</translation>
+    </message>
+</context>
+<context>
+    <name>dss::module::NetworkModule</name>
+    <message>
+        <source>Wired Connection</source>
+        <translation>有線連接</translation>
     </message>
 </context>
 <context>

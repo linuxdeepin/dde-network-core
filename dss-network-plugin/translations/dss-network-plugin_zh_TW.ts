@@ -21,35 +21,35 @@
     <name>QObject</name>
     <message>
         <source>Connecting %1</source>
-        <translation>正在連線 %1</translation>
+        <translation>正在連線%1</translation>
     </message>
     <message>
         <source>%1 connected</source>
-        <translation>%1已連線</translation>
+        <translation>%1已連接</translation>
     </message>
     <message>
         <source>%1 disconnected</source>
-        <translation>%1已斷線</translation>
+        <translation>%1已斷開</translation>
     </message>
     <message>
         <source>Unable to connect %1, please check your router or net cable.</source>
-        <translation>無法連線到 %1 網路，請檢查路由器或網路線</translation>
+        <translation>未能加入%1，請檢查路由器或網路線。</translation>
     </message>
     <message>
         <source>Unable to connect %1, please keep closer to the wireless router</source>
-        <translation>無法連線到 %1 網路，請離無線網路路由器更近點</translation>
+        <translation>未能加入%1，請嘗試靠近無線路由器</translation>
     </message>
     <message>
         <source>Connection failed, unable to connect %1, wrong password</source>
-        <translation>連線失敗：無法連線到 %1 網路，原因：密碼錯誤</translation>
+        <translation>連線失敗，未能加入%1，密碼不正確</translation>
     </message>
     <message>
         <source>Password is required to connect %1</source>
-        <translation>連線至 %1 需要密碼</translation>
+        <translation>連接%1需要密碼</translation>
     </message>
     <message>
         <source>The %1 802.11 WLAN network could not be found</source>
-        <translation>找不到%1 802.11 WLAN 網路</translation>
+        <translation>%1 802.11 WLAN網路無法找到</translation>
     </message>
 </context>
 <context>
@@ -81,7 +81,7 @@
     <name>dde::network::NetworkDetails</name>
     <message>
         <source>Hotspot</source>
-        <translation>無線熱點</translation>
+        <translation>熱點</translation>
     </message>
     <message>
         <source>SSID</source>
@@ -97,7 +97,7 @@
     </message>
     <message>
         <source>Channel</source>
-        <translation>聲道</translation>
+        <translation>網路通道</translation>
     </message>
     <message>
         <source>Band</source>
@@ -105,11 +105,11 @@
     </message>
     <message>
         <source>Interface</source>
-        <translation>界面</translation>
+        <translation>介面</translation>
     </message>
     <message>
         <source>MAC</source>
-        <translation>MAC 位址</translation>
+        <translation>MAC</translation>
     </message>
     <message>
         <source>IPv4</source>
@@ -117,15 +117,15 @@
     </message>
     <message>
         <source>Netmask</source>
-        <translation>子網路遮罩</translation>
+        <translation>子網掩碼</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation>閘道器</translation>
+        <translation>網關</translation>
     </message>
     <message>
         <source>Primary DNS</source>
-        <translation>主要 DNS</translation>
+        <translation>首選DNS</translation>
     </message>
     <message>
         <source>IPv6</source>
@@ -133,30 +133,30 @@
     </message>
     <message>
         <source>Prefix</source>
-        <translation>前置詞</translation>
+        <translation>前綴</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation>速度</translation>
+        <translation>速率</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetworkDeviceRealize</name>
     <message>
         <source>Device disabled</source>
-        <translation>已停用裝置</translation>
+        <translation>裝置已禁用</translation>
     </message>
     <message>
         <source>Connected but no Internet access</source>
-        <translation>已連線但不能存取網路</translation>
+        <translation>已連接網路但無法訪問網路</translation>
     </message>
     <message>
         <source>Not connected</source>
-        <translation>未連線</translation>
+        <translation>未連接</translation>
     </message>
     <message>
         <source>Network cable unplugged</source>
-        <translation>已拔除網路線</translation>
+        <translation>未插入網路線</translation>
     </message>
     <message>
         <source>Connecting</source>
@@ -164,19 +164,19 @@
     </message>
     <message>
         <source>Authenticating</source>
-        <translation>正在驗證</translation>
+        <translation>認證中</translation>
     </message>
     <message>
         <source>Obtaining IP address</source>
-        <translation>取得 IP 位址中…</translation>
+        <translation>正在獲取IP位址</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation>已連線</translation>
+        <translation>已連接</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation>已斷線</translation>
+        <translation>已斷開</translation>
     </message>
     <message>
         <source>IP conflict</source>
@@ -184,11 +184,11 @@
     </message>
     <message>
         <source>Failed</source>
-        <translation>連線失敗</translation>
+        <translation>失敗</translation>
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation>正在取得 IP 位址</translation>
+        <translation>獲取地址中</translation>
     </message>
 </context>
 <context>
@@ -199,7 +199,7 @@
     </message>
     <message>
         <source>Wired Network %1</source>
-        <translation>有線網路 %1</translation>
+        <translation>有線網路%1</translation>
     </message>
     <message>
         <source>Wireless Network</source>
@@ -207,22 +207,22 @@
     </message>
     <message>
         <source>Wireless Network %1</source>
-        <translation>無線網路 %1</translation>
+        <translation>無線網路%1</translation>
     </message>
 </context>
 <context>
     <name>dde::networkplugin::NetworkPluginHelper</name>
     <message>
         <source>Device disabled</source>
-        <translation>已停用裝置</translation>
+        <translation>裝置已禁用</translation>
     </message>
     <message>
         <source>Network cable unplugged</source>
-        <translation>已拔除網路線</translation>
+        <translation>未插入網路線</translation>
     </message>
     <message>
         <source>Not connected</source>
-        <translation>未連線</translation>
+        <translation>未連接</translation>
     </message>
     <message>
         <source>Connecting</source>
@@ -230,11 +230,11 @@
     </message>
     <message>
         <source>Connected but no Internet access</source>
-        <translation>已連線但不能存取網路</translation>
+        <translation>已連接網路但無法訪問網路</translation>
     </message>
     <message>
         <source>Connection failed</source>
-        <translation>連接失敗</translation>
+        <translation>連線失敗</translation>
     </message>
     <message>
         <source>IP conflict</source>
@@ -258,7 +258,7 @@
     </message>
     <message>
         <source>Disable network</source>
-        <translation>停用網路</translation>
+        <translation>關閉網路</translation>
     </message>
     <message>
         <source>Enable network</source>
@@ -273,7 +273,7 @@
     <name>dss::module::NetworkModule</name>
     <message>
         <source>Wired Connection</source>
-        <translation>有線網路</translation>
+        <translation>有線連接</translation>
     </message>
 </context>
 </TS>

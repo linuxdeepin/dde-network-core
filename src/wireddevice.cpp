@@ -59,30 +59,11 @@ QList<WiredConnection *> WiredDevice::items() const
     return deviceRealize()->wiredItems();
 }
 
-/**
- * @brief 无线网络连接信息
- */
-bool WiredConnection::connected()
-{
-    return (m_status == ConnectionStatus::Activated);
-}
-
-ConnectionStatus WiredConnection::status() const
-{
-    return m_status;
-}
-
 WiredConnection::WiredConnection()
     : ControllItems()
-    , m_status(ConnectionStatus::Unknown)
 {
 }
 
 WiredConnection::~WiredConnection()
 {
-}
-
-void WiredConnection::setConnectionStatus(const ConnectionStatus &status)
-{
-    m_status = status;
 }

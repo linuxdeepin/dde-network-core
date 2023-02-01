@@ -1,25 +1,42 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
-//
-// SPDX-License-Identifier: GPL-3.0-or-later
+/*
+ * Copyright (C) 2021 ~ 2021 Uniontech Software Technology Co.,Ltd.
+ *
+ * Author:     Zhang Qipeng <zhangqipeng@uniontech.com>
+ *
+ * Maintainer: Zhang Qipeng <zhangqipeng@uniontech.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "network_module.h"
 #include "networkpluginhelper.h"
 #include "networkdialog.h"
 #include "secretagent.h"
-#include "trayicon.h"
 #include "notificationmanager.h"
 #include "dockpopupwindow.h"
 #include "networkdialog/thememanager.h"
 
 #include <QWidget>
 #include <QTime>
+#include <QDBusConnection>
+#include <QDBusInterface>
+#include <QLabel>
 
 #include <DArrowRectangle>
 
 #include <networkcontroller.h>
 #include <networkdevicebase.h>
-
-#include <com_deepin_daemon_accounts_user.h>
 
 #include <NetworkManagerQt/WirelessDevice>
 #include <NetworkManagerQt/WiredDevice>
@@ -39,14 +56,18 @@ namespace module {
 class PopupAppletManager : public QObject
 {
 public:
-    explicit PopupAppletManager(NetworkDialog *networkDialog, QObject *parent = nullptr)
+    explicit PopupAppletManager(NetworkDialog *networkDialog, NetworkPluginHelper *networkHelper, QObject *parent = nullptr)
         : QObject(parent)
         , m_networkDialog(networkDialog)
+        , m_networkHelper(networkHelper)
         , m_popupShown(false)
     {
         m_networkDialog->setCloseOnClear(false);
+        QObject::connect(m_networkHelper, &NetworkPluginHelper::iconChanged, this, [this]() {
+            updateIcon();
+        });
     }
-    ~PopupAppletManager() {}
+    ~PopupAppletManager() { }
     inline bool popupShown()
     {
         return m_popupShown;
@@ -87,7 +108,7 @@ public:
                 }
 
                 point = it.second->parentWidget()->mapFromGlobal(point);
-                QWidget * panel = m_networkDialog->panel();
+                QWidget *panel = m_networkDialog->panel();
                 QPalette palette = panel->palette();
                 palette.setColor(QPalette::Normal, QPalette::BrightText, QColor(255, 255, 255)); // 文本颜色
                 palette.setColor(QPalette::Normal, QPalette::Window, QColor(235, 235, 235, 13)); // 背景颜色
@@ -102,7 +123,7 @@ public:
         }
     }
 
-    void addTrayIcon(TrayIcon *trayIcon)
+    void addTrayIcon(QLabel *trayIcon)
     {
         if (!trayIcon)
             return;
@@ -113,15 +134,18 @@ public:
             }
         }
         if (trayIcon) {
-            m_applets.append({ QPointer<TrayIcon>(trayIcon), QPointer<DockPopupWindow>(nullptr) });
-            connect(trayIcon, &QObject::destroyed, this, [trayIcon, this] {
-                for (auto pair : m_applets) {
-                    if (pair.first.data() == trayIcon) {
-                        m_applets.removeAll(pair);
-                        break;
-                    }
-                }
-            });
+            trayIcon->setAlignment(Qt::AlignCenter);
+            m_applets.append({ QPointer<QLabel>(trayIcon), QPointer<DockPopupWindow>(nullptr) });
+            connect(trayIcon, &QObject::destroyed, this, &PopupAppletManager::removerTrayIcon);
+            updateIcon();
+        }
+    }
+
+    void updateIcon()
+    {
+        QPixmap pixmap = m_networkHelper->trayIcon()->pixmap(26, 26);
+        for (auto &&it : m_applets) {
+            it.first->setPixmap(pixmap);
         }
     }
 
@@ -153,9 +177,21 @@ protected:
         return QObject::eventFilter(watched, e);
     }
 
+    void removerTrayIcon()
+    {
+        QObject *o = sender();
+        for (auto it = m_applets.begin(); it != m_applets.end(); ++it) {
+            if (it->first == o) {
+                m_applets.erase(it);
+                break;
+            }
+        }
+    }
+
 public:
-    QList<QPair<QPointer<NETWORKPLUGIN_NAMESPACE::TrayIcon>, QPointer<DockPopupWindow>>> m_applets;
+    QList<QPair<QPointer<QLabel>, QPointer<DockPopupWindow>>> m_applets;
     NetworkDialog *m_networkDialog;
+    NetworkPluginHelper *m_networkHelper;
     bool m_popupShown;
 };
 
@@ -163,24 +199,25 @@ NetworkModule::NetworkModule(QObject *parent)
     : QObject(parent)
     , m_lastState(NetworkManager::Device::State::UnknownState)
 {
-    QDBusConnection::sessionBus().connect("com.deepin.dde.lockFront", "/com/deepin/dde/lockFront", "com.deepin.dde.lockFront", "Visible", this, SLOT(updateLockScreenStatus(bool)));
+    QDBusConnection::sessionBus().connect("org.deepin.dde.LockFront1", "/org/deepin/dde/LockFront1", "org.deepin.dde.LockFront1", "Visible", this, SLOT(updateLockScreenStatus(bool)));
     m_isLockModel = (-1 == qAppName().indexOf("greeter"));
     if (!m_isLockModel) {
         dde::network::NetworkController::setServiceType(dde::network::ServiceLoadType::LoadFromManager);
     }
 
     m_networkDialog = new NetworkDialog(this);
-    m_popupAppletManager = new PopupAppletManager(m_networkDialog, this);
-    m_networkDialog->setServerName("dde-network-dialog" + QString::number(getuid()) + "lock");
     m_networkHelper = new NetworkPluginHelper(m_networkDialog, this);
+    m_popupAppletManager = new PopupAppletManager(m_networkDialog, m_networkHelper, this);
     connect(m_networkDialog, &NetworkDialog::requestShow, m_popupAppletManager, &PopupAppletManager::showPopupApplet);
 
     installTranslator(QLocale::system().name());
     ThemeManager::instance()->setThemeType(m_isLockModel ? ThemeManager::LockType : ThemeManager::GreeterType);
-    if (!m_isLockModel) {
-        QDBusMessage lock = QDBusMessage::createMethodCall("com.deepin.dde.LockService", "/com/deepin/dde/LockService", "com.deepin.dde.LockService", "CurrentUser");
+    if (m_isLockModel) {
+        m_networkDialog->setServerName("dde-network-dialog" + QString::number(getuid()) + "lock");
+    } else {
+        QDBusMessage lock = QDBusMessage::createMethodCall("org.deepin.dde.LockService1", "/org/deepin/dde/LockService1", "org.deepin.dde.LockService1", "CurrentUser");
         QDBusConnection::systemBus().callWithCallback(lock, this, SLOT(onUserChanged(QString)));
-        QDBusConnection::systemBus().connect("com.deepin.dde.LockService", "/com/deepin/dde/LockService", "com.deepin.dde.LockService", "UserChanged", this, SLOT(onUserChanged(QString)));
+        QDBusConnection::systemBus().connect("org.deepin.dde.LockService1", "/org/deepin/dde/LockService1", "org.deepin.dde.LockService1", "UserChanged", this, SLOT(onUserChanged(QString)));
 
         connect(m_networkHelper, &NetworkPluginHelper::addDevice, this, &NetworkModule::onAddDevice);
         for (dde::network::NetworkDeviceBase *device : dde::network::NetworkController::instance()->devices()) {
@@ -209,7 +246,7 @@ QWidget *NetworkModule::itemTipsWidget() const
     QWidget *itemTips = m_networkHelper->itemTips();
     if (itemTips) {
         QPalette palette = itemTips->palette();
-        palette.setColor(QPalette::BrightText, Qt::black);
+        palette.setColor(QPalette::BrightText, Qt::white);
         itemTips->setPalette(palette);
     }
     return itemTips;
@@ -230,10 +267,8 @@ bool NetworkModule::eventFilter(QObject *watched, QEvent *e)
 {
     switch (e->type()) {
     case QEvent::ParentChange: {
-        TrayIcon *trayIcon = qobject_cast<TrayIcon *>(watched);
-        // ParentChange可能会进来多次，只需要处理父对象是FloatingButton的情况
-        // FIXME 这种写法增加了与dde-session-shell的耦合性
-        if (!trayIcon || !trayIcon->parent() || (trayIcon->parent()->metaObject()->className() != QString("FloatingButton")))
+        QLabel *trayIcon = qobject_cast<QLabel *>(watched);
+        if (!trayIcon || !trayIcon->parent() || (QString(trayIcon->parent()->metaObject()->className()).contains("FlotingButton")))
             break;
         if (!m_isLockModel)
             NotificationManager::InstallEventFilter(trayIcon);
@@ -255,7 +290,8 @@ void NetworkModule::updateLockScreenStatus(bool visible)
 {
     m_isLockModel = true;
     m_isLockScreen = visible;
-    m_popupAppletManager->hidePopup();
+    if (m_popupAppletManager)
+        m_popupAppletManager->hidePopup();
 }
 
 void NetworkModule::onAddDevice(const QString &devicePath)
@@ -277,7 +313,7 @@ void NetworkModule::onAddDevice(const QString &devicePath)
             NetworkManager::WiredDevice *wDevice = new NetworkManager::WiredDevice(devicePath, this);
             nmDevice = wDevice;
             addFirstConnection(wDevice);
-            connect(wDevice, &NetworkManager::WiredDevice::availableConnectionAppeared, this, [ this ] (const QString &) {
+            connect(wDevice, &NetworkManager::WiredDevice::availableConnectionAppeared, this, [this]() {
                 NetworkManager::WiredDevice *device = qobject_cast<NetworkManager::WiredDevice *>(sender());
                 addFirstConnection(device);
             });
@@ -295,8 +331,8 @@ void NetworkModule::onUserChanged(QString json)
     if (!doc.isObject())
         return;
     int uid = doc.object().value("Uid").toInt();
-    com::deepin::daemon::accounts::User user("com.deepin.daemon.Accounts", QString("/com/deepin/daemon/Accounts/User%1").arg(uid), QDBusConnection::systemBus());
-    installTranslator(user.locale().split(".").first());
+    QDBusInterface user("org.deepin.dde.Accounts1", QString("/org/deepin/dde/Accounts1/User%1").arg(uid), "org.deepin.dde.Accounts1.User", QDBusConnection::systemBus());
+    installTranslator(user.property("Locale").toString().split(".").first());
 }
 
 void NetworkModule::installTranslator(QString locale)
@@ -383,7 +419,7 @@ void NetworkModule::addFirstConnection(NetworkManager::WiredDevice *nmDevice)
         return;
 
     connectionCreated = true;
-    auto autoCreateConnection = [ & ]() {
+    auto autoCreateConnection = [this]() {
         // 如果发现当前的连接的数量为空,则自动创建以当前语言为基础的连接
         ConnectionSettings::Ptr conn(new ConnectionSettings);
         conn->setId(connectionMatchName());
@@ -394,7 +430,7 @@ void NetworkModule::addFirstConnection(NetworkManager::WiredDevice *nmDevice)
     if (!findConnection) {
         if (isRemoved) {
             // 如果有删除的连接，则等待1秒后重新创建
-            QTimer::singleShot(1000, this, [ = ] {
+            QTimer::singleShot(1000, this, [autoCreateConnection] {
                 autoCreateConnection();
             });
         } else {
@@ -575,8 +611,7 @@ QWidget *NetworkPlugin::content()
 
 QWidget *NetworkPlugin::itemWidget() const
 {
-    TrayIcon *trayIcon = new TrayIcon(m_network->networkHelper());
-    trayIcon->setGreeterStyle(true);
+    QLabel *trayIcon = new QLabel();
     trayIcon->installEventFilter(m_network);
     return trayIcon;
 }

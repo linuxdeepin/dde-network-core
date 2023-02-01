@@ -1,6 +1,6 @@
 <?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_CN">
 <context>
-    <name>ChainsProxyPage</name>
+    <name>AppProxyModule</name>
     <message>
         <source>Application Proxy</source>
         <translation>应用代理</translation>
@@ -38,14 +38,14 @@
         <translation>配置好代理后，可在启动器的应用右键菜单查看“使用代理”选项，勾选后即可使用代理</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>取 消</translation>
-    </message>
-    <message>
         <source>Save</source>
         <comment>button</comment>
         <translation>保 存</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>取 消</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
@@ -168,218 +168,6 @@
     </message>
 </context>
 <context>
-    <name>DCCNetworkModule</name>
-    <message>
-        <source>Network</source>
-        <translation>网络</translation>
-    </message>
-    <message>
-        <source>Application Proxy</source>
-        <translation>应用代理</translation>
-    </message>
-    <message>
-        <source>Personal Hotspot</source>
-        <translation>个人热点</translation>
-    </message>
-    <message>
-        <source>Network Details</source>
-        <translation>网络详情</translation>
-    </message>
-    <message>
-        <source>System Proxy</source>
-        <translation>系统代理</translation>
-    </message>
-    <message>
-        <source>Wired Network</source>
-        <translation>有线网络</translation>
-    </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation>无线网络</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>VPN</translation>
-    </message>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>飞行模式</translation>
-        <extra-child_page>Airplane Mode</extra-child_page>
-        <extra-contents_path>/network/Airplane Mode</extra-contents_path>
-    </message>
-    <message>
-        <source>Wired Network Adapter</source>
-        <translation>有线网卡</translation>
-        <extra-child_page>Wired Network</extra-child_page>
-        <extra-contents_path>/network/Wired Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Add Network Connection</source>
-        <translation>添加网络设置</translation>
-        <extra-child_page>Wired Network</extra-child_page>
-        <extra-contents_path>/network/Wired Network/addWiredConnection</extra-contents_path>
-    </message>
-    <message>
-        <source>Wireless Network Adapter</source>
-        <translation>无线网卡</translation>
-        <extra-child_page>Wireless Network</extra-child_page>
-        <extra-contents_path>/network/Wireless Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>连接到隐藏网络</translation>
-        <extra-child_page>Wireless Network</extra-child_page>
-        <extra-contents_path>/network/Wireless Network/Connect to hidden network</extra-contents_path>
-    </message>
-    <message>
-        <source>DSL</source>
-        <translation>DSL</translation>
-        <extra-child_page_hide>DSL</extra-child_page_hide>
-        <extra-contents_path>/network/DSL</extra-contents_path>
-    </message>
-    <message>
-        <source>Create PPPoE Connection</source>
-        <translation>创建PPPoE连接</translation>
-        <extra-child_page>DSL</extra-child_page>
-        <extra-contents_path>/network/DSL/Create PPPoE Connection</extra-contents_path>
-    </message>
-    <message>
-        <source>VPN Status</source>
-        <translation>VPN状态</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Create VPN</source>
-        <translation>添加VPN</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN/Create VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation>导入VPN</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN/Import VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation>代理类型</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation>配置URL</translation>
-    </message>
-    <message>
-        <source>IP Address</source>
-        <translation>IP 地址</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>端口</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>用户名</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>密码</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Hotspot</source>
-        <translation>热点</translation>
-        <extra-child_page>Personal Hotspot</extra-child_page>
-        <extra-contents_path>/network/Personal Hotspot</extra-contents_path>
-    </message>
-    <message>
-        <source>Create Hotspot</source>
-        <translation>添加热点</translation>
-        <extra-child_page>Personal Hotspot</extra-child_page>
-        <extra-contents_path>/network/Personal Hotspot/Create Hotspot</extra-contents_path>
-    </message>
-    <message>
-        <source>Interface</source>
-        <translation>接口</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>MAC</source>
-        <translation>MAC</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation>频段</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>IPv4</source>
-        <translation>IPv4</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>网关</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Primary DNS</source>
-        <translation>首选DNS</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Netmask</source>
-        <translation>子网掩码</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>IPv6</source>
-        <translation>IPv6</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Prefix</source>
-        <translation>前缀</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation>速率</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-</context>
-<context>
-    <name>dccV20::network::AirplaneModepage</name>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>飞行模式</translation>
-    </message>
-    <message>
-        <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
-        <translation>打开飞行模式将关闭无线网络、个人热点和蓝牙功能</translation>
-    </message>
-</context>
-<context>
     <name>DNSSection</name>
     <message>
         <source>DNS</source>
@@ -388,6 +176,17 @@
     <message>
         <source>Invalid DNS address</source>
         <translation>无效的DNS地址</translation>
+    </message>
+</context>
+<context>
+    <name>DSLModule</name>
+    <message>
+        <source>DSL</source>
+        <translation>DSL</translation>
+    </message>
+    <message>
+        <source>Create PPPoE Connection</source>
+        <translation>创建PPPoE连接</translation>
     </message>
 </context>
 <context>
@@ -460,7 +259,7 @@
     </message>
 </context>
 <context>
-    <name>HotspotDeviceWidget</name>
+    <name>HotspotDeviceItem</name>
     <message>
         <source>Hotspot</source>
         <translation>热点</translation>
@@ -471,7 +270,11 @@
     </message>
 </context>
 <context>
-    <name>HotspotPage</name>
+    <name>HotspotModule</name>
+    <message>
+        <source>Personal Hotspot</source>
+        <translation>个人热点</translation>
+    </message>
     <message>
         <source>Create Hotspot</source>
         <translation>添加热点</translation>
@@ -645,66 +448,17 @@
     </message>
 </context>
 <context>
-    <name>NetworkDetailPage</name>
+    <name>NetworkInfoModule</name>
     <message>
         <source>Network Details</source>
         <translation>网络详情</translation>
     </message>
 </context>
 <context>
-    <name>NetworkModuleWidget</name>
-    <message>
-        <source>DSL</source>
-        <translation>DSL</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>VPN</translation>
-    </message>
-    <message>
-        <source>System Proxy</source>
-        <translation>系统代理</translation>
-    </message>
-    <message>
-        <source>Application Proxy</source>
-        <translation>应用代理</translation>
-    </message>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>飞行模式</translation>
-        <extra-contents_path>/network/Airplane</extra-contents_path>
-    </message>
-    <message>
-        <source>Network Details</source>
-        <translation>网络详情</translation>
-    </message>
+    <name>NetworkModule</name>
     <message>
         <source>Network</source>
         <translation>网络</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>IP地址冲突</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>已禁用</translation>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>手动</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>自动</translation>
-    </message>
-    <message>
-        <source>Configure by Network Manager</source>
-        <translation>用网络管理器配置</translation>
-    </message>
-    <message>
-        <source>Personal Hotspot</source>
-        <translation>个人热点</translation>
     </message>
 </context>
 <context>
@@ -791,98 +545,6 @@
     <message>
         <source>Stateful MPPE</source>
         <translation>使用带状态的MPPE</translation>
-    </message>
-</context>
-<context>
-    <name>PppoePage</name>
-    <message>
-        <source>Create PPPoE Connection</source>
-        <translation>创建PPPoE连接</translation>
-    </message>
-    <message>
-        <source>PPP</source>
-        <translation>PPP</translation>
-    </message>
-</context>
-<context>
-    <name>ProxyPage</name>
-    <message>
-        <source>System Proxy</source>
-        <translation>系统代理</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>取 消</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <comment>button</comment>
-        <translation>保 存</translation>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation>代理类型</translation>
-        <extra-child_page>System Proxy</extra-child_page>
-        <extra-contents_path>/network/System Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>手动</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>自动</translation>
-    </message>
-    <message>
-        <source>Optional</source>
-        <translation>选填</translation>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>端口</translation>
-    </message>
-    <message>
-        <source>Authentication is required</source>
-        <translation>需要认证</translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>用户名</translation>
-    </message>
-    <message>
-        <source>Required</source>
-        <translation>必填</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>密码</translation>
-    </message>
-    <message>
-        <source>HTTP Proxy</source>
-        <translation>HTTP代理</translation>
-    </message>
-    <message>
-        <source>HTTPS Proxy</source>
-        <translation>HTTPS代理</translation>
-    </message>
-    <message>
-        <source>FTP Proxy</source>
-        <translation>FTP代理</translation>
-    </message>
-    <message>
-        <source>SOCKS Proxy</source>
-        <translation>SOCKS代理</translation>
-    </message>
-    <message>
-        <source>Ignore the proxy configurations for the above hosts and domains</source>
-        <translation>忽略以上主机和域的代理配置</translation>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation>配置URL</translation>
-        <extra-child_page>System Proxy</extra-child_page>
-        <extra-contents_path>/network/System Proxy</extra-contents_path>
     </message>
 </context>
 <context>
@@ -1111,6 +773,106 @@
     <message>
         <source>Password</source>
         <translation>密码</translation>
+    </message>
+</context>
+<context>
+    <name>SysProxyModule</name>
+    <message>
+        <source>System Proxy</source>
+        <translation>系统代理</translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation>手动</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>自动</translation>
+    </message>
+    <message>
+        <source>Proxy Type</source>
+        <translation>代理类型</translation>
+    </message>
+    <message>
+        <source>Optional</source>
+        <translation>选填</translation>
+    </message>
+    <message>
+        <source>Configuration URL</source>
+        <translation>配置URL</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <comment>button</comment>
+        <translation>保 存</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>取 消</translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation>端口</translation>
+    </message>
+    <message>
+        <source>HTTP Proxy</source>
+        <translation>HTTP代理</translation>
+    </message>
+    <message>
+        <source>HTTPS Proxy</source>
+        <translation>HTTPS代理</translation>
+    </message>
+    <message>
+        <source>FTP Proxy</source>
+        <translation>FTP代理</translation>
+    </message>
+    <message>
+        <source>SOCKS Proxy</source>
+        <translation>SOCKS代理</translation>
+    </message>
+    <message>
+        <source>Ignore the proxy configurations for the above hosts and domains</source>
+        <translation>忽略以上主机和域的代理配置</translation>
+    </message>
+</context>
+<context>
+    <name>VPNModule</name>
+    <message>
+        <source>VPN</source>
+        <translation>VPN</translation>
+    </message>
+    <message>
+        <source>Wired Network Adapter</source>
+        <translation>有线网卡</translation>
+    </message>
+    <message>
+        <source>VPN Status</source>
+        <translation>VPN状态</translation>
+    </message>
+    <message>
+        <source>Add Network Connection</source>
+        <translation>添加网络设置</translation>
+    </message>
+    <message>
+        <source>Create VPN</source>
+        <translation>添加VPN</translation>
+    </message>
+    <message>
+        <source>Import VPN</source>
+        <translation>导入VPN</translation>
+    </message>
+    <message>
+        <source>Import Error</source>
+        <translation>导入错误</translation>
+    </message>
+    <message>
+        <source>File error</source>
+        <translation>导入文件错误</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>确定</translation>
     </message>
 </context>
 <context>
@@ -1516,33 +1278,6 @@
     </message>
 </context>
 <context>
-    <name>VpnPage</name>
-    <message>
-        <source>VPN Status</source>
-        <translation>VPN状态</translation>
-    </message>
-    <message>
-        <source>Create VPN</source>
-        <translation>添加VPN</translation>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation>导入VPN</translation>
-    </message>
-    <message>
-        <source>Import Error</source>
-        <translation>导入错误</translation>
-    </message>
-    <message>
-        <source>File error</source>
-        <translation>导入文件错误</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>确定</translation>
-    </message>
-</context>
-<context>
     <name>VpnProxySection</name>
     <message>
         <source>VPN Proxy</source>
@@ -1879,44 +1614,40 @@
     </message>
 </context>
 <context>
-    <name>WiredPage</name>
-    <message>
-        <source>Plug in the network cable first</source>
-        <translation>请您先插入网线！</translation>
-    </message>
+    <name>WiredModule</name>
     <message>
         <source>Wired Network Adapter</source>
         <translation>有线网卡</translation>
     </message>
     <message>
+        <source>Plug in the network cable first</source>
+        <translation>请您先插入网线！</translation>
+    </message>
+    <message>
         <source>Add Network Connection</source>
         <translation>添加网络设置</translation>
     </message>
+</context>
+<context>
+    <name>WirelessDeviceModel</name>
     <message>
-        <source>Select Settings</source>
-        <translation>选择设置</translation>
+        <source>Connect to hidden network</source>
+        <translation>连接到隐藏网络</translation>
     </message>
 </context>
 <context>
-    <name>WirelessPage</name>
+    <name>WirelessModule</name>
     <message>
         <source>Wireless Network Adapter</source>
         <translation>无线网卡</translation>
-        <extra-contents_path>/network/Wireless Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Close Hotspot</source>
-        <translation>关闭热点</translation>
     </message>
     <message>
         <source>Disable hotspot first if you want to connect to a wireless network</source>
         <translation>若要连接并使用无线网络功能，请先关闭热点分享</translation>
     </message>
     <message>
-        <source>Connect to hidden network</source>
-        <translation>连接到隐藏网络</translation>
-        <extra-child_page>WirelessPage</extra-child_page>
-        <extra-contents_path>/network/Connect to hidden network</extra-contents_path>
+        <source>Close Hotspot</source>
+        <translation>关闭热点</translation>
     </message>
 </context>
 <context>

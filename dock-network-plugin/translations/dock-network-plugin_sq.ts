@@ -16,6 +16,67 @@
         <source>Network</source>
         <translation>Rrjet</translation>
     </message>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>Rrjet Me Fill</translation>
+    </message>
+    <message>
+        <source>Device disabled</source>
+        <translation>Pajisje e çaktivizuar</translation>
+    </message>
+    <message>
+        <source>Network cable unplugged</source>
+        <translation>Kablloja e rrjetit është e hequr</translation>
+    </message>
+    <message>
+        <source>Not connected</source>
+        <translation>Jo e lidhur</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation>Po lidhet</translation>
+    </message>
+    <message>
+        <source>Connected but no Internet access</source>
+        <translation>E lidhur, por pa hyrje Internet</translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation>Përplasje IP-sh</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation>Lidhja dështoi</translation>
+    </message>
+</context>
+<context>
+    <name>WirelessItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation>Lidhu me rrjet të fshehur</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Fjalëkalim</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Anuloje</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <comment>button</comment>
+        <translation>Lidhu</translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation>Emër (SSID)</translation>
+    </message>
 </context>
 <context>
     <name>WirelessItem</name>

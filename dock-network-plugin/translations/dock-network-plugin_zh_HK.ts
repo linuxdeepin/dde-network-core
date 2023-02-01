@@ -16,6 +16,75 @@
         <source>Network</source>
         <translation>網絡</translation>
     </message>
+    <message>
+        <source>Wireless Network</source>
+        <translation>無線網絡</translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation>有線網絡</translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation>已連接</translation>
+    </message>
+    <message>
+        <source>Device disabled</source>
+        <translation>設備已禁用</translation>
+    </message>
+    <message>
+        <source>Network cable unplugged</source>
+        <translation>未插入網線</translation>
+    </message>
+    <message>
+        <source>Not connected</source>
+        <translation>未連接</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation>正在連接</translation>
+    </message>
+    <message>
+        <source>Obtaining address</source>
+        <translation>獲取地址中</translation>
+    </message>
+    <message>
+        <source>Connected but no Internet access</source>
+        <translation>已連接網絡但無法訪問互聯網</translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation>IP位址衝突</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation>連接失敗</translation>
+    </message>
+</context>
+<context>
+    <name>WirelessItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation>連接到隱藏網絡</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>請輸入密碼</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>取 消</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <comment>button</comment>
+        <translation>連 接</translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation>請輸入網絡名稱（SSID）</translation>
+    </message>
 </context>
 <context>
     <name>WirelessItem</name>
@@ -62,7 +131,7 @@
     </message>
     <message>
         <source>Channel</source>
-        <translation>聲道</translation>
+        <translation>網絡通道</translation>
     </message>
     <message>
         <source>Band</source>
@@ -86,11 +155,11 @@
     </message>
     <message>
         <source>Gateway</source>
-        <translation>閘道器</translation>
+        <translation>網關</translation>
     </message>
     <message>
         <source>Primary DNS</source>
-        <translation>主要 DNS</translation>
+        <translation>首選DNS</translation>
     </message>
     <message>
         <source>IPv6</source>
@@ -98,7 +167,7 @@
     </message>
     <message>
         <source>Prefix</source>
-        <translation>首碼</translation>
+        <translation>前綴</translation>
     </message>
     <message>
         <source>Speed</source>
@@ -125,7 +194,7 @@
     </message>
     <message>
         <source>Connecting</source>
-        <translation>連接中</translation>
+        <translation>正在連接</translation>
     </message>
     <message>
         <source>Authenticating</source>
@@ -133,7 +202,7 @@
     </message>
     <message>
         <source>Obtaining IP address</source>
-        <translation>獲取IP位址</translation>
+        <translation>正在獲取IP位址</translation>
     </message>
     <message>
         <source>Connected</source>
@@ -141,7 +210,7 @@
     </message>
     <message>
         <source>Disconnected</source>
-        <translation>已切斷連接</translation>
+        <translation>已斷開</translation>
     </message>
     <message>
         <source>IP conflict</source>
@@ -164,7 +233,7 @@
     </message>
     <message>
         <source>Wired Network %1</source>
-        <translation>有線網絡 %1</translation>
+        <translation>有線網絡%1</translation>
     </message>
     <message>
         <source>Wireless Network</source>
@@ -191,7 +260,7 @@
     </message>
     <message>
         <source>Connecting</source>
-        <translation>連接中</translation>
+        <translation>正在連接</translation>
     </message>
     <message>
         <source>Connected but no Internet access</source>
@@ -231,7 +300,7 @@
     </message>
     <message>
         <source>Network settings</source>
-        <translation>網絡設置</translation>
+        <translation>網絡設定</translation>
     </message>
 </context>
 </TS>

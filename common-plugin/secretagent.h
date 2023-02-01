@@ -8,9 +8,6 @@
 #include "utils.h"
 
 #include <NetworkManagerQt/SecretAgent>
-#include <QProcess>
-
-class QProcess;
 
 NETWORKPLUGIN_BEGIN_NAMESPACE
 
@@ -53,6 +50,7 @@ public:
 class Q_DECL_EXPORT SecretAgent : public NetworkManager::SecretAgent
 {
     Q_OBJECT
+
 public:
     explicit SecretAgent(bool greeter = false, QObject *parent = nullptr);
 
@@ -98,4 +96,5 @@ private:
 };
 
 NETWORKPLUGIN_END_NAMESPACE
+
 #endif // SECRETAGENT_H

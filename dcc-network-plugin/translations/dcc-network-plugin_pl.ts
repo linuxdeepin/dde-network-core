@@ -1,6 +1,6 @@
 <?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pl">
 <context>
-    <name>ChainsProxyPage</name>
+    <name>AppProxyModule</name>
     <message>
         <source>Application Proxy</source>
         <translation>Proxy aplikacji</translation>
@@ -38,14 +38,14 @@
         <translation>Zaznacz „Użyj proxy” w menu kontekstowym aplikacji w programie wywołującym po skonfigurowaniu</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Anuluj</translation>
-    </message>
-    <message>
         <source>Save</source>
         <comment>button</comment>
         <translation>Zapisz</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Anuluj</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
@@ -168,218 +168,6 @@
     </message>
 </context>
 <context>
-    <name>DCCNetworkModule</name>
-    <message>
-        <source>Network</source>
-        <translation>Sieć</translation>
-    </message>
-    <message>
-        <source>Application Proxy</source>
-        <translation>Proxy aplikacji</translation>
-    </message>
-    <message>
-        <source>Personal Hotspot</source>
-        <translation>Osobisty Hotspot</translation>
-    </message>
-    <message>
-        <source>Network Details</source>
-        <translation>Szczegóły sieci</translation>
-    </message>
-    <message>
-        <source>System Proxy</source>
-        <translation>Proxy systemowe</translation>
-    </message>
-    <message>
-        <source>Wired Network</source>
-        <translation>Sieć przewodowa</translation>
-    </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation>Sieć bezprzewodowa</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>VPN</translation>
-    </message>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>Tryb samolotowy</translation>
-        <extra-child_page>Airplane Mode</extra-child_page>
-        <extra-contents_path>/network/Airplane Mode</extra-contents_path>
-    </message>
-    <message>
-        <source>Wired Network Adapter</source>
-        <translation>Przewodowa karta sieciowa</translation>
-        <extra-child_page>Wired Network</extra-child_page>
-        <extra-contents_path>/network/Wired Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Add Network Connection</source>
-        <translation>Dodaj Połączenie Sieciowe</translation>
-        <extra-child_page>Wired Network</extra-child_page>
-        <extra-contents_path>/network/Wired Network/addWiredConnection</extra-contents_path>
-    </message>
-    <message>
-        <source>Wireless Network Adapter</source>
-        <translation>Bezprzewodowa karta sieciowa</translation>
-        <extra-child_page>Wireless Network</extra-child_page>
-        <extra-contents_path>/network/Wireless Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>Połącz z siecią ukrytą</translation>
-        <extra-child_page>Wireless Network</extra-child_page>
-        <extra-contents_path>/network/Wireless Network/Connect to hidden network</extra-contents_path>
-    </message>
-    <message>
-        <source>DSL</source>
-        <translation>DSL</translation>
-        <extra-child_page_hide>DSL</extra-child_page_hide>
-        <extra-contents_path>/network/DSL</extra-contents_path>
-    </message>
-    <message>
-        <source>Create PPPoE Connection</source>
-        <translation>Utwórz połączenie PPPoE</translation>
-        <extra-child_page>DSL</extra-child_page>
-        <extra-contents_path>/network/DSL/Create PPPoE Connection</extra-contents_path>
-    </message>
-    <message>
-        <source>VPN Status</source>
-        <translation>Status VPN</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Create VPN</source>
-        <translation>Utwórz VPN</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN/Create VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation>Importuj VPN</translation>
-        <extra-child_page>VPN</extra-child_page>
-        <extra-contents_path>/network/VPN/Import VPN</extra-contents_path>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation>Typ Proxy</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation>Adres URL konfiguracji</translation>
-    </message>
-    <message>
-        <source>IP Address</source>
-        <translation>Adres IP</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>Port</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>Nazwa użytkownika</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Hasło</translation>
-        <extra-child_page>Application Proxy</extra-child_page>
-        <extra-contents_path>/network/Application Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Hotspot</source>
-        <translation>Hotspot</translation>
-        <extra-child_page>Personal Hotspot</extra-child_page>
-        <extra-contents_path>/network/Personal Hotspot</extra-contents_path>
-    </message>
-    <message>
-        <source>Create Hotspot</source>
-        <translation>Utwórz Hotspot</translation>
-        <extra-child_page>Personal Hotspot</extra-child_page>
-        <extra-contents_path>/network/Personal Hotspot/Create Hotspot</extra-contents_path>
-    </message>
-    <message>
-        <source>Interface</source>
-        <translation>Interfejs</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>MAC</source>
-        <translation>MAC</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation>Pasmo</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>IPv4</source>
-        <translation>IPv4</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Brama sieciowa</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Primary DNS</source>
-        <translation>Podstawowy DNS</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Netmask</source>
-        <translation>Maska sieci</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>IPv6</source>
-        <translation>IPv6</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Prefix</source>
-        <translation>Prefiks</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation>Prędkość</translation>
-        <extra-child_page>Network Details</extra-child_page>
-        <extra-contents_path>/network/Network Details</extra-contents_path>
-    </message>
-</context>
-<context>
-    <name>dccV20::network::AirplaneModepage</name>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>Tryb samolotowy</translation>
-    </message>
-    <message>
-        <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
-        <translation>Włączenie trybu samolotowego wyłączy sieć bezprzewodową, osobisty Hotspot i Bluetooth</translation>
-    </message>
-</context>
-<context>
     <name>DNSSection</name>
     <message>
         <source>DNS</source>
@@ -388,6 +176,17 @@
     <message>
         <source>Invalid DNS address</source>
         <translation>Nieprawidłowy adres DNS</translation>
+    </message>
+</context>
+<context>
+    <name>DSLModule</name>
+    <message>
+        <source>DSL</source>
+        <translation>DSL</translation>
+    </message>
+    <message>
+        <source>Create PPPoE Connection</source>
+        <translation>Utwórz połączenie PPPoE</translation>
     </message>
 </context>
 <context>
@@ -443,10 +242,6 @@
         <translation>Taka nazwa już istnieje</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Name</source>
         <translation>Nazwa</translation>
     </message>
@@ -460,7 +255,7 @@
     </message>
 </context>
 <context>
-    <name>HotspotDeviceWidget</name>
+    <name>HotspotDeviceItem</name>
     <message>
         <source>Hotspot</source>
         <translation>Hotspot</translation>
@@ -471,7 +266,11 @@
     </message>
 </context>
 <context>
-    <name>HotspotPage</name>
+    <name>HotspotModule</name>
+    <message>
+        <source>Personal Hotspot</source>
+        <translation>Osobisty Hotspot</translation>
+    </message>
     <message>
         <source>Create Hotspot</source>
         <translation>Utwórz Hotspot</translation>
@@ -645,66 +444,17 @@
     </message>
 </context>
 <context>
-    <name>NetworkDetailPage</name>
+    <name>NetworkInfoModule</name>
     <message>
         <source>Network Details</source>
         <translation>Szczegóły sieci</translation>
     </message>
 </context>
 <context>
-    <name>NetworkModuleWidget</name>
-    <message>
-        <source>DSL</source>
-        <translation>DSL</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>VPN</translation>
-    </message>
-    <message>
-        <source>System Proxy</source>
-        <translation>Proxy systemowe</translation>
-    </message>
-    <message>
-        <source>Application Proxy</source>
-        <translation>Proxy aplikacji</translation>
-    </message>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>Tryb samolotowy</translation>
-        <extra-contents_path>/network/Airplane</extra-contents_path>
-    </message>
-    <message>
-        <source>Network Details</source>
-        <translation>Szczegóły sieci</translation>
-    </message>
+    <name>NetworkModule</name>
     <message>
         <source>Network</source>
         <translation>Sieć</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>Konflikt IP</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Wyłączone</translation>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>Ręcznie</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Automatycznie</translation>
-    </message>
-    <message>
-        <source>Configure by Network Manager</source>
-        <translation>Skonfiguruj przy użyciu menedżera sieci</translation>
-    </message>
-    <message>
-        <source>Personal Hotspot</source>
-        <translation>Osobisty Hotspot</translation>
     </message>
 </context>
 <context>
@@ -791,98 +541,6 @@
     <message>
         <source>Stateful MPPE</source>
         <translation>Stanowy MPPE</translation>
-    </message>
-</context>
-<context>
-    <name>PppoePage</name>
-    <message>
-        <source>Create PPPoE Connection</source>
-        <translation>Utwórz połączenie PPPoE</translation>
-    </message>
-    <message>
-        <source>PPP</source>
-        <translation>PPP</translation>
-    </message>
-</context>
-<context>
-    <name>ProxyPage</name>
-    <message>
-        <source>System Proxy</source>
-        <translation>Proxy systemowe</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Anuluj</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <comment>button</comment>
-        <translation>Zapisz</translation>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation>Typ Proxy</translation>
-        <extra-child_page>System Proxy</extra-child_page>
-        <extra-contents_path>/network/System Proxy</extra-contents_path>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>Ręcznie</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Automatycznie</translation>
-    </message>
-    <message>
-        <source>Optional</source>
-        <translation>Opcjonalne</translation>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>Port</translation>
-    </message>
-    <message>
-        <source>Authentication is required</source>
-        <translation>Wymagane jest uwierzytelnienie</translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>Nazwa użytkownika</translation>
-    </message>
-    <message>
-        <source>Required</source>
-        <translation>Wymagane</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Hasło</translation>
-    </message>
-    <message>
-        <source>HTTP Proxy</source>
-        <translation>HTTP Proxy</translation>
-    </message>
-    <message>
-        <source>HTTPS Proxy</source>
-        <translation>HTTPS Proxy</translation>
-    </message>
-    <message>
-        <source>FTP Proxy</source>
-        <translation>FTP Proxy</translation>
-    </message>
-    <message>
-        <source>SOCKS Proxy</source>
-        <translation>SOCKS Proxy</translation>
-    </message>
-    <message>
-        <source>Ignore the proxy configurations for the above hosts and domains</source>
-        <translation>Ignoruj konfiguracje proxy dla powyższych hostów i domen</translation>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation>Adres URL konfiguracji</translation>
-        <extra-child_page>System Proxy</extra-child_page>
-        <extra-contents_path>/network/System Proxy</extra-contents_path>
     </message>
 </context>
 <context>
@@ -1111,6 +769,106 @@
     <message>
         <source>Password</source>
         <translation>Hasło</translation>
+    </message>
+</context>
+<context>
+    <name>SysProxyModule</name>
+    <message>
+        <source>System Proxy</source>
+        <translation>Proxy systemowe</translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation>Ręcznie</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Automatycznie</translation>
+    </message>
+    <message>
+        <source>Proxy Type</source>
+        <translation>Typ Proxy</translation>
+    </message>
+    <message>
+        <source>Optional</source>
+        <translation>Opcjonalne</translation>
+    </message>
+    <message>
+        <source>Configuration URL</source>
+        <translation>Adres URL konfiguracji</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <comment>button</comment>
+        <translation>Zapisz</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation>Anuluj</translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation>Port</translation>
+    </message>
+    <message>
+        <source>HTTP Proxy</source>
+        <translation>HTTP Proxy</translation>
+    </message>
+    <message>
+        <source>HTTPS Proxy</source>
+        <translation>HTTPS Proxy</translation>
+    </message>
+    <message>
+        <source>FTP Proxy</source>
+        <translation>FTP Proxy</translation>
+    </message>
+    <message>
+        <source>SOCKS Proxy</source>
+        <translation>SOCKS Proxy</translation>
+    </message>
+    <message>
+        <source>Ignore the proxy configurations for the above hosts and domains</source>
+        <translation>Ignoruj konfiguracje proxy dla powyższych hostów i domen</translation>
+    </message>
+</context>
+<context>
+    <name>VPNModule</name>
+    <message>
+        <source>VPN</source>
+        <translation>VPN</translation>
+    </message>
+    <message>
+        <source>Wired Network Adapter</source>
+        <translation>Przewodowa karta sieciowa</translation>
+    </message>
+    <message>
+        <source>VPN Status</source>
+        <translation>Status VPN</translation>
+    </message>
+    <message>
+        <source>Add Network Connection</source>
+        <translation>Dodaj połączenie sieciowe</translation>
+    </message>
+    <message>
+        <source>Create VPN</source>
+        <translation>Utwórz VPN</translation>
+    </message>
+    <message>
+        <source>Import VPN</source>
+        <translation>Importuj VPN</translation>
+    </message>
+    <message>
+        <source>Import Error</source>
+        <translation>Błąd importu</translation>
+    </message>
+    <message>
+        <source>File error</source>
+        <translation>Błąd pliku</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -1516,33 +1274,6 @@
     </message>
 </context>
 <context>
-    <name>VpnPage</name>
-    <message>
-        <source>VPN Status</source>
-        <translation>Status VPN</translation>
-    </message>
-    <message>
-        <source>Create VPN</source>
-        <translation>Utwórz VPN</translation>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation>Importuj VPN</translation>
-    </message>
-    <message>
-        <source>Import Error</source>
-        <translation>Błąd importu</translation>
-    </message>
-    <message>
-        <source>File error</source>
-        <translation>Błąd pliku</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>OK</translation>
-    </message>
-</context>
-<context>
     <name>VpnProxySection</name>
     <message>
         <source>VPN Proxy</source>
@@ -1879,44 +1610,40 @@
     </message>
 </context>
 <context>
-    <name>WiredPage</name>
-    <message>
-        <source>Plug in the network cable first</source>
-        <translation>Najpierw podłącz kabel sieciowy</translation>
-    </message>
+    <name>WiredModule</name>
     <message>
         <source>Wired Network Adapter</source>
         <translation>Przewodowa karta sieciowa</translation>
     </message>
     <message>
-        <source>Add Network Connection</source>
-        <translation>Dodaj Połączenie Sieciowe</translation>
+        <source>Plug in the network cable first</source>
+        <translation>Najpierw podłącz kabel sieciowy</translation>
     </message>
     <message>
-        <source>Select Settings</source>
-        <translation>Wybierz ustawienia</translation>
+        <source>Add Network Connection</source>
+        <translation>Dodaj połączenie sieciowe</translation>
     </message>
 </context>
 <context>
-    <name>WirelessPage</name>
+    <name>WirelessDeviceModel</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation>Połącz z siecią ukrytą</translation>
+    </message>
+</context>
+<context>
+    <name>WirelessModule</name>
     <message>
         <source>Wireless Network Adapter</source>
         <translation>Bezprzewodowa karta sieciowa</translation>
-        <extra-contents_path>/network/Wireless Network</extra-contents_path>
-    </message>
-    <message>
-        <source>Close Hotspot</source>
-        <translation>Zamknij Hotspot</translation>
     </message>
     <message>
         <source>Disable hotspot first if you want to connect to a wireless network</source>
         <translation>Najpierw wyłącz Hotspot, aby połączyć się z siecią bezprzewodową</translation>
     </message>
     <message>
-        <source>Connect to hidden network</source>
-        <translation>Połącz z siecią ukrytą</translation>
-        <extra-child_page>WirelessPage</extra-child_page>
-        <extra-contents_path>/network/Connect to hidden network</extra-contents_path>
+        <source>Close Hotspot</source>
+        <translation>Zamknij Hotspot</translation>
     </message>
 </context>
 <context>

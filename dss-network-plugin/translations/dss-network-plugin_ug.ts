@@ -81,7 +81,7 @@
     <name>dde::network::NetworkDetails</name>
     <message>
         <source>Hotspot</source>
-        <translation>تور تارقىتىش</translation>
+        <translation>ھەمبەھىر نۇقتىسى</translation>
     </message>
     <message>
         <source>SSID</source>

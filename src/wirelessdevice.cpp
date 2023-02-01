@@ -11,12 +11,9 @@ using namespace dde::network;
 bool WirelessDevice::isConnected() const
 {
     QList<AccessPoints *> aps = deviceRealize()->accessPointItems();
-    for (AccessPoints *ap : aps) {
-        if (ap->status() == ConnectionStatus::Activated)
-            return true;
-    }
-
-    return false;
+    return std::any_of(aps.begin(), aps.end(), [](const AccessPoints *ap) {
+        return ap->status() == ConnectionStatus::Activated;
+    });
 }
 
 DeviceType WirelessDevice::deviceType() const
@@ -77,7 +74,6 @@ WirelessDevice::WirelessDevice(NetworkDeviceRealize *networkInter, QObject *pare
 {
     connect(networkInter, &NetworkDeviceRealize::networkAdded, this, &WirelessDevice::networkAdded);
     connect(networkInter, &NetworkDeviceRealize::networkRemoved, this, &WirelessDevice::networkRemoved);
-    connect(networkInter, &NetworkDeviceRealize::connectionFailed, this, &WirelessDevice::connectionFailed);
     connect(networkInter, &NetworkDeviceRealize::connectionSuccess, this, &WirelessDevice::connectionSuccess);
     connect(networkInter, &NetworkDeviceRealize::hotspotEnableChanged, this, &WirelessDevice::hotspotEnableChanged);
     connect(networkInter, &NetworkDeviceRealize::accessPointInfoChanged, this, &WirelessDevice::accessPointInfoChanged);
@@ -220,9 +216,9 @@ AccessPoints *WirelessConnection::accessPoints() const
     return m_accessPoints;
 }
 
-bool WirelessConnection::connected()
+ConnectionStatus WirelessConnection::status() const
 {
-    return m_accessPoints ? m_accessPoints->connected() : false;
+    return m_accessPoints ? m_accessPoints->status() :ConnectionStatus::Unknown;
 }
 
 WirelessConnection::WirelessConnection()

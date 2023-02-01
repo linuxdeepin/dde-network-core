@@ -10,13 +10,12 @@
 
 #include <DHiDPIHelper>
 #include <DApplicationHelper>
-#include <DDBusSender>
 #include <DMenu>
 
 #include <QTimer>
 #include <QVBoxLayout>
 #include <QAction>
-#include <QDBusConnection>
+#include <QJsonDocument>
 
 #include <networkcontroller.h>
 #include <networkdevicebase.h>
@@ -31,26 +30,18 @@
 #include <NetworkManagerQt/WirelessSecuritySetting>
 #include <NetworkManagerQt/WirelessSetting>
 
-#include <com_deepin_daemon_airplanemode.h>
-
-enum MenuItemKey : int {
-    MenuSettings = 1,
-    MenuEnable,
-    MenuDisable,
-    MenuWiredEnable,
-    MenuWiredDisable,
-    MenuWirelessEnable,
-    MenuWirelessDisable,
-};
+#include "networkdbusproxy.h"
 
 NETWORKPLUGIN_USE_NAMESPACE
 
-using DBusAirplaneMode = com::deepin::daemon::AirplaneMode;
-
 NetworkPluginHelper::NetworkPluginHelper(NetworkDialog *networkDialog, QObject *parent)
     : QObject(parent)
+    , m_pluginState(PluginState::Unknown)
     , m_tipsWidget(new TipsWidget(nullptr))
     , m_networkDialog(networkDialog)
+    , m_isDarkIcon(true)
+    , m_refreshIconTimer(new QTimer(this))
+    , m_trayIcon(new QIcon(QIcon::fromTheme(":/light/wireless-disabled-symbolic")))
 {
     qDBusRegisterMetaType<NMVariantMapMap>();
     initUi();
@@ -59,6 +50,8 @@ NetworkPluginHelper::NetworkPluginHelper(NetworkDialog *networkDialog, QObject *
 
 NetworkPluginHelper::~NetworkPluginHelper()
 {
+    delete m_tipsWidget;
+    delete m_trayIcon;
 }
 
 void NetworkPluginHelper::initUi()
@@ -78,8 +71,13 @@ void NetworkPluginHelper::initConnection()
     connect(networkController, &NetworkController::deviceRemoved, this, &NetworkPluginHelper::onUpdatePlugView);
     connect(networkController, &NetworkController::connectivityChanged, this, &NetworkPluginHelper::onUpdatePlugView);
 
+    m_refreshIconTimer->setInterval(200);
+    connect(m_refreshIconTimer, &QTimer::timeout, this, &NetworkPluginHelper::refreshIcon);
+
+    refreshIcon();
     QTimer::singleShot(100, this, [ = ] {
         onDeviceAdded(networkController->devices());
+        refreshIcon();
     });
 }
 
@@ -136,7 +134,7 @@ void NetworkPluginHelper::updateTooltips()
             m_tipsWidget->setContext(tips);
         }
         break;
-    case PluginState::Unknow:
+    case PluginState::Unknown:
     case PluginState::Nocable: {
             QList<QPair<QString, QStringList>> tips;
             tips << QPair<QString, QStringList>({ tr("Network cable unplugged"), QStringList() });
@@ -183,6 +181,272 @@ void NetworkPluginHelper::updateTooltips()
         }
         break;
     }
+}
+
+QIcon *NetworkPluginHelper::trayIcon() const
+{
+    return m_trayIcon;
+}
+
+QIcon NetworkPluginHelper::icon(int colorType) const
+{
+    QString stateString;
+    QString iconString;
+    QString localPath = (colorType == DGuiApplicationHelper::ColorType::DarkType ? ":/dark/" : ":/light/");
+
+    switch (m_pluginState) {
+    case PluginState::Disabled:
+    case PluginState::WirelessDisabled:
+        stateString = "disabled";
+        iconString = QString("wireless-%1-symbolic").arg(stateString);
+        break;
+    case PluginState::WiredDisabled:
+        stateString = "disabled";
+        iconString = QString("network-%1-symbolic").arg(stateString);
+        break;
+    case PluginState::Connected:
+    case PluginState::WirelessConnected: {
+        bool isWlan6 = false;
+        AccessPoints *activeAp = getStrongestAp();
+        if (activeAp) {
+            isWlan6 = (activeAp->type() == AccessPoints::WlanType::wlan6);
+        }
+
+        stateString = getStrengthStateString(activeAp ? activeAp->strength() : 0);
+        if (isWlan6) {
+            iconString = QString("wireless6-%1-symbolic").arg(stateString);
+        } else {
+            iconString = QString("wireless-%1-symbolic").arg(stateString);
+        }
+    }
+    break;
+    case PluginState::WiredConnected:
+        stateString = "online";
+        iconString = QString("network-%1-symbolic").arg(stateString);
+        break;
+    case PluginState::Disconnected:
+    case PluginState::WirelessDisconnected:
+        stateString = "0";
+        iconString = QString("wireless-%1-symbolic").arg(stateString);
+        break;
+    case PluginState::WiredDisconnected:
+        stateString = "none";
+        iconString = QString("network-%1-symbolic").arg(stateString);
+        break;
+    case PluginState::Connecting: {
+        if (QTime::currentTime().second() & 2) {
+            stateString = getStrengthStateString(QTime::currentTime().msec() / 10 % 100);
+            iconString = QString("wireless-%1-symbolic").arg(stateString);
+        } else {
+            const int index = QTime::currentTime().msec() / 200 % 10;
+            const int num = index + 1;
+            iconString = QString("network-wired-symbolic-connecting%1").arg(num);
+        }
+        break;
+    }
+    case PluginState::WirelessConnecting: {
+        stateString = getStrengthStateString(QTime::currentTime().msec() / 10 % 100);
+        iconString = QString("wireless-%1-symbolic").arg(stateString);
+        break;
+    }
+    case PluginState::WiredConnecting: {
+        const int index = QTime::currentTime().msec() / 200 % 10;
+        const int num = index + 1;
+        iconString = QString("network-wired-symbolic-connecting%1").arg(num);
+        break;
+    }
+    case PluginState::ConnectNoInternet:
+    case PluginState::WirelessConnectNoInternet: {
+        // 无线已连接但无法访问互联网 offline
+        bool isWlan6 = false;
+        AccessPoints *connectedAp = getConnectedAp();
+        if (connectedAp) {
+            isWlan6 = (connectedAp->type() == AccessPoints::WlanType::wlan6);
+        }
+
+        stateString = "offline";
+        if (isWlan6) {
+            iconString = QString("wireless6-%1-symbolic").arg(stateString);
+        } else {
+            iconString = QString("wireless-%1-symbolic").arg(stateString);
+        }
+        break;
+    }
+    case PluginState::WiredConnectNoInternet: {
+        stateString = "warning";
+        iconString = QString("network-%1-symbolic").arg(stateString);
+        break;
+    }
+    case PluginState::WiredFailed: {
+        // 有线连接失败none变为offline
+        stateString = "offline";
+        iconString = QString("network-%1-symbolic").arg(stateString);
+        break;
+    }
+    case PluginState::Unknown:
+    case PluginState::Nocable: {
+        stateString = "error"; // 待图标 暂用错误图标
+        iconString = QString("network-%1-symbolic").arg(stateString);
+        break;
+    }
+    case PluginState::WirelessIpConflicted: {
+        stateString = "offline";
+        iconString = QString("wireless-%1-symbolic").arg(stateString);
+        break;
+    }
+    case PluginState::WiredIpConflicted: {
+        stateString = "offline";
+        iconString = QString("network-%1-symbolic").arg(stateString);
+        break;
+    }
+    case PluginState::WirelessFailed:
+    case PluginState::Failed: {
+        // 无线连接失败改为 disconnect
+        stateString = "disconnect";
+        iconString = QString("wireless-%1").arg(stateString);
+        break;
+    }
+    }
+
+    return QIcon::fromTheme(localPath + iconString);
+}
+
+void NetworkPluginHelper::refreshIcon()
+{
+    QString stateString;
+    QString iconString;
+    QString localPath = m_isDarkIcon ? ":/dark/" : ":/light/";
+    bool refreshIconTimer = false;
+
+    switch (m_pluginState) {
+    case PluginState::Disabled:
+    case PluginState::WirelessDisabled:
+        stateString = "disabled";
+        iconString = QString("wireless-%1-symbolic").arg(stateString);
+        break;
+    case PluginState::WiredDisabled:
+        stateString = "disabled";
+        iconString = QString("network-%1-symbolic").arg(stateString);
+        break;
+    case PluginState::Connected:
+    case PluginState::WirelessConnected: {
+        bool isWlan6 = false;
+        AccessPoints *activeAp = getStrongestAp();
+        if (activeAp) {
+            isWlan6 = (activeAp->type() == AccessPoints::WlanType::wlan6);
+        }
+
+        stateString = getStrengthStateString(activeAp ? activeAp->strength() : 0);
+        if (isWlan6) {
+            iconString = QString("wireless6-%1-symbolic").arg(stateString);
+        } else {
+            iconString = QString("wireless-%1-symbolic").arg(stateString);
+        }
+    }
+    break;
+    case PluginState::WiredConnected:
+        stateString = "online";
+        iconString = QString("network-%1-symbolic").arg(stateString);
+        break;
+    case PluginState::Disconnected:
+    case PluginState::WirelessDisconnected:
+        stateString = "0";
+        iconString = QString("wireless-%1-symbolic").arg(stateString);
+        break;
+    case PluginState::WiredDisconnected:
+        stateString = "none";
+        iconString = QString("network-%1-symbolic").arg(stateString);
+        break;
+    case PluginState::Connecting: {
+        refreshIconTimer = true;
+        if (QTime::currentTime().second() & 2) {
+            stateString = getStrengthStateString(QTime::currentTime().msec() / 10 % 100);
+            iconString = QString("wireless-%1-symbolic").arg(stateString);
+        } else {
+            const int index = QTime::currentTime().msec() / 200 % 10;
+            const int num = index + 1;
+            iconString = QString("network-wired-symbolic-connecting%1").arg(num);
+        }
+        break;
+    }
+    case PluginState::WirelessConnecting: {
+        refreshIconTimer = true;
+        stateString = getStrengthStateString(QTime::currentTime().msec() / 10 % 100);
+        iconString = QString("wireless-%1-symbolic").arg(stateString);
+        break;
+    }
+    case PluginState::WiredConnecting: {
+        refreshIconTimer = true;
+        const int index = QTime::currentTime().msec() / 200 % 10;
+        const int num = index + 1;
+        iconString = QString("network-wired-symbolic-connecting%1").arg(num);
+        break;
+    }
+    case PluginState::ConnectNoInternet:
+    case PluginState::WirelessConnectNoInternet: {
+        // 无线已连接但无法访问互联网 offline
+        bool isWlan6 = false;
+        AccessPoints *connectedAp = getConnectedAp();
+        if (connectedAp) {
+            isWlan6 = (connectedAp->type() == AccessPoints::WlanType::wlan6);
+        }
+
+        stateString = "offline";
+        if (isWlan6) {
+            iconString = QString("wireless6-%1-symbolic").arg(stateString);
+        } else {
+            iconString = QString("wireless-%1-symbolic").arg(stateString);
+        }
+        break;
+    }
+    case PluginState::WiredConnectNoInternet: {
+        stateString = "warning";
+        iconString = QString("network-%1-symbolic").arg(stateString);
+        break;
+    }
+    case PluginState::WiredFailed: {
+        // 有线连接失败none变为offline
+        stateString = "offline";
+        iconString = QString("network-%1-symbolic").arg(stateString);
+        break;
+    }
+    case PluginState::Unknown:
+    case PluginState::Nocable: {
+        stateString = "error"; // 待图标 暂用错误图标
+        iconString = QString("network-%1-symbolic").arg(stateString);
+        break;
+    }
+    case PluginState::WirelessIpConflicted: {
+        stateString = "offline";
+        iconString = QString("wireless-%1-symbolic").arg(stateString);
+        break;
+    }
+    case PluginState::WiredIpConflicted: {
+        stateString = "offline";
+        iconString = QString("network-%1-symbolic").arg(stateString);
+        break;
+    }
+    case PluginState::WirelessFailed:
+    case PluginState::Failed: {
+        // 无线连接失败改为 disconnect
+        stateString = "disconnect";
+        iconString = QString("wireless-%1").arg(stateString);
+        break;
+    }
+    }
+
+    if (!refreshIconTimer) {
+        m_refreshIconTimer->stop();
+    } else if (!m_refreshIconTimer->isActive()){
+        m_refreshIconTimer->start(200);
+    }
+    (*m_trayIcon) = QIcon::fromTheme(localPath + iconString);
+    emit iconChanged();
+}
+
+void NetworkPluginHelper::setIconDark(bool isDark)
+{
+    m_isDarkIcon = isDark;
 }
 
 int NetworkPluginHelper::deviceCount(const DeviceType &devType) const
@@ -265,13 +529,7 @@ void NetworkPluginHelper::invokeMenuItem(const QString &menuId)
             setDeviceEnabled(DeviceType::Wireless, false);
         break;
     case MenuItemKey::MenuSettings:
-        DDBusSender()
-            .service("com.deepin.dde.ControlCenter")
-            .interface("com.deepin.dde.ControlCenter")
-            .path("/com/deepin/dde/ControlCenter")
-            .method(QString("ShowModule"))
-            .arg(QString("network"))
-            .call();
+        NetworkDBusProxy::ShowPage("network");
         break;
     default:
         break;
@@ -324,8 +582,60 @@ void NetworkPluginHelper::setDeviceEnabled(const DeviceType &deviceType, bool en
 
 bool NetworkPluginHelper::wirelessIsActive() const
 {
-    static DBusAirplaneMode airplaneMode("com.deepin.daemon.AirplaneMode", "/com/deepin/daemon/AirplaneMode", QDBusConnection::systemBus());
-    return (!airplaneMode.enabled());
+    dde::network::NetworkDBusProxy *networkInter = new dde::network::NetworkDBusProxy();
+    networkInter->deleteLater();
+    return !networkInter->enabled();
+}
+
+QString NetworkPluginHelper::getStrengthStateString(int strength) const
+{
+    if (5 >= strength)
+        return "0";
+
+    if (30 >= strength)
+        return "20";
+
+    if (55 >= strength)
+        return "40";
+
+    if (65 >= strength)
+        return "60";
+
+    return "80";
+}
+
+AccessPoints *NetworkPluginHelper::getStrongestAp() const
+{
+    AccessPoints *maxAps = nullptr;
+    QList<NetworkDeviceBase *> devices = NetworkController::instance()->devices();
+    for (NetworkDeviceBase *device : devices) {
+        if (device->deviceType() != DeviceType::Wireless)
+            continue;
+
+        WirelessDevice *dev = static_cast<WirelessDevice *>(device);
+        AccessPoints *ap = dev->activeAccessPoints();
+        if (ap && (!maxAps || maxAps->strength() < ap->strength()))
+            maxAps = ap;
+    }
+
+    return maxAps;
+}
+
+AccessPoints *NetworkPluginHelper::getConnectedAp() const
+{
+    AccessPoints *connectedAp = nullptr;
+    QList<NetworkDeviceBase *> devices = NetworkController::instance()->devices();
+    for (NetworkDeviceBase *device : devices) {
+        if (device->deviceType() != DeviceType::Wireless)
+            continue;
+
+        WirelessDevice *dev = static_cast<WirelessDevice *>(device);
+        AccessPoints *ap = dev->activeAccessPoints();
+        if (ap && ap->connected() && (!connectedAp || connectedAp->strength() < ap->strength()))
+            connectedAp = ap;
+    }
+
+    return connectedAp;
 }
 
 const QString NetworkPluginHelper::contextMenu(bool hasSetting) const
@@ -397,6 +707,7 @@ QWidget *NetworkPluginHelper::itemTips()
 void NetworkPluginHelper::onUpdatePlugView()
 {
     updateTooltips();
+    refreshIcon();
     emit viewUpdate();
 }
 

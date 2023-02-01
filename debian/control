@@ -4,6 +4,7 @@ Priority: optional
 Maintainer: donghualin <donghualin@uniontech.com>
 Build-Depends: debhelper-compat (= 12),
                cmake,
+               libglib2.0-dev (>= 2.32),
                libdframeworkdbus-dev (>= 1.0.2),
                libgsettings-qt-dev,
                pkg-config,
@@ -11,7 +12,7 @@ Build-Depends: debhelper-compat (= 12),
                qtbase5-private-dev,
                qttools5-dev-tools,
                libgtest-dev,
-               libkf5networkmanagerqt-dev,
+               libkf5networkmanagerqt-dev (>= 5.90.0),
                libdtkwidget-dev,
                dde-control-center-dev,
                dde-dock-dev,
@@ -36,7 +37,7 @@ Description: the interface of networkcode,used for developers
 
 Package: dcc-network-plugin
 Architecture: any
-Depends: ${misc:Depends},${shlibs:Depends},libdde-network-core (= ${binary:Version})
+Depends: ${misc:Depends},${shlibs:Depends},network-manager-integration-plugins,libdde-network-core (= ${binary:Version})
 Description: the plugin of network for dde control center
  dcc-network-plugin module
 

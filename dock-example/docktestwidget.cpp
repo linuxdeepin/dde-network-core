@@ -6,6 +6,10 @@
 #include "networkplugin.h"
 
 #include <QHBoxLayout>
+#include <QLabel>
+
+QPointer<DockPopupWindow> DockTestWidget::PopupWindow = nullptr;
+Dock::Position DockTestWidget::DockPosition = Dock::Position::Bottom;
 
 QPointer<DockPopupWindow> DockTestWidget::PopupWindow = nullptr;
 Dock::Position DockTestWidget::DockPosition = Dock::Position::Bottom;
@@ -14,6 +18,7 @@ DockTestWidget::DockTestWidget(QWidget *parent)
     : QWidget(parent)
     , m_pluginInter(new NetworkPlugin(this))
     , m_itemKey(NETWORK_KEY)
+    , m_iconWidget(new QLabel(this))
 {
     initDock();
 }
@@ -29,7 +34,7 @@ void DockTestWidget::initDock()
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setContentsMargins(20, 0, 20, 0);
     layout->addWidget(pluginWidget);
-    layout->addStretch();
+    layout->addWidget(m_iconWidget);
     pluginWidget->installEventFilter(this);
     this->installEventFilter(this);
 
@@ -159,6 +164,11 @@ void DockTestWidget::removeValue(PluginsItemInterface * const itemInter, const Q
 {
     Q_UNUSED(itemInter);
     Q_UNUSED(keyList);
+}
+
+void DockTestWidget::updateDockInfo(PluginsItemInterface * const itemInter, const DockPart &part)
+{
+    m_iconWidget->setPixmap(itemInter->icon(part).pixmap(16, 16));
 }
 
 void DockTestWidget::showPopupWindow(QWidget * const content, const bool model)
