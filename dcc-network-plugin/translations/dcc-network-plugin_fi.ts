@@ -79,14 +79,6 @@
         <translation>Tallenna</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>Yhdistää</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>Katkaise</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>Haluatko varmasti poistaa tämän määrityksen?</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>Tukiasema</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>Langaton %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>Yleinen</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>Nimi</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>Nimi on jo olemassa</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>Ei sido</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Vaadittu</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>MAC-osoite</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation>Suojaustyyppi</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kanava</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Taajuusalue</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kanava</translation>
     </message>
     <message>
         <source>Interface</source>

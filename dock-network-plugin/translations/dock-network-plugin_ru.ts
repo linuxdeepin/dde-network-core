@@ -75,31 +75,6 @@
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>Подключиться к скрытой сети</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Пароль</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Отмена</translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <comment>button</comment>
-        <translation>Подключить</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation>Имя (SSID)</translation>
-    </message>
-</context>
-<context>
     <name>dde::network::NetworkDetails</name>
     <message>
         <source>Hotspot</source>
@@ -118,12 +93,12 @@
         <translation>Тип безопасности</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Канал</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Диапазон</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Канал</translation>
     </message>
     <message>
         <source>Interface</source>

@@ -15,7 +15,6 @@
 #include <DAbstractDialog>
 
 #include <networkmanagerqt/connection.h>
-#include <networkmanagerqt/activeconnection.h>
 #include <networkmanagerqt/connectionsettings.h>
 
 namespace DCC_NAMESPACE {
@@ -56,7 +55,6 @@ public:
 
     void setButtonTupleEnable(bool enable);
     void setLeftButtonEnable(bool enable);
-    void initHeaderButtons();
 
 Q_SIGNALS:
     void requestNextPage(QWidget *const page);
@@ -80,6 +78,7 @@ protected:
 
 private:
     void initUI();
+    void initHeaderButtons();
     void initConnection();
     void initConnectionSecrets();
     void saveConnSettings();

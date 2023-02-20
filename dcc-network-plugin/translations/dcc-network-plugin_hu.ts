@@ -79,14 +79,6 @@
         <translation>Mentés</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>Kapcsolódás</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>Szétkapcsolás</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>Biztosan törölni szeretné ezt a beállítást?</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>Hotspot</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>Vezeték nélküli kapcsolat %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>Általános</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>Név</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>Létező név</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>Nem kötött</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Kötelező</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>Eszköz MAC címe</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation>Biztonság típusa</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Csatorna</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Sáv</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Csatorna</translation>
     </message>
     <message>
         <source>Interface</source>

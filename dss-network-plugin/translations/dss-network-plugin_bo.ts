@@ -96,12 +96,12 @@
         <translation>བདེ་འཇགས་རིགས།</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>དྲ་རྒྱའི་རྒྱུ་ལམ།</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>བྱུང་རིམ།</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>དྲ་རྒྱའི་རྒྱུ་ལམ།</translation>
     </message>
     <message>
         <source>Interface</source>

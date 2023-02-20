@@ -179,7 +179,9 @@ NetworkDBusProxy *DeviceInterRealize::networkInter()
 void DeviceInterRealize::updateDeviceInfo(const QJsonObject &info)
 {
     m_data = info;
-    NetworkDeviceRealize::setDeviceStatus(deviceStatus());
+    DeviceStatus stat = convertDeviceStatus(info.value("State").toInt());
+
+    setDeviceStatus(stat);
 }
 
 void DeviceInterRealize::initDeviceInfo()
@@ -257,10 +259,6 @@ WiredDeviceInterRealize::WiredDeviceInterRealize(IPConfilctChecker *ipChecker, N
 
 WiredDeviceInterRealize::~WiredDeviceInterRealize()
 {
-    for (auto item : m_connections) {
-        delete item;
-    }
-    m_connections.clear();
 }
 
 bool WiredDeviceInterRealize::connectNetwork(WiredConnection *connection)
@@ -479,14 +477,8 @@ AccessPoints *WirelessDeviceInterRealize::activeAccessPoints() const
 }
 
 void WirelessDeviceInterRealize::disconnectNetwork()
-{    
-    // 使用DeactivateConnection而不是DisconnectDevice，是为了能在断开当前网络后仍能自动回连其他热点
-    WirelessConnection *wirelessConn = findConnectionByAccessPoint(activeAccessPoints());
-    if (!wirelessConn)
-        return;
-
-    const QString uuid = wirelessConn->connection()->uuid();
-    networkInter()->DeactivateConnection(uuid);
+{
+    networkInter()->DisconnectDevice(QDBusObjectPath(path()));
 }
 
 QList<WirelessConnection *> WirelessDeviceInterRealize::items() const
@@ -602,20 +594,15 @@ void WirelessDeviceInterRealize::updateActiveInfo()
         if (!ap)
             continue;
 
-        tmpApList.removeAll(ap);
         ConnectionStatus status = convertConnectionStatus(connectionStatus);
         if (ap->status() == status)
             continue;
 
-        ap->updateConnectionStatus(status);
+        ap->m_status = status;
         changed = true;
-        if (ap->status() == ConnectionStatus::Activated)
+        if (ap->m_status == ConnectionStatus::Activated)
             activeAp = ap;
     }
-
-    // 将其它连接变成普通状态
-    for (AccessPoints *ap : tmpApList)
-        ap->updateConnectionStatus(ConnectionStatus::Unknown);
 
     if (changed) {
         Q_EMIT activeConnectionChanged();

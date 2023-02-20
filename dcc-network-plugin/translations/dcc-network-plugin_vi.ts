@@ -79,14 +79,6 @@
         <translation>Lưu</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>Đang kết nối</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>Ngắt kết nối</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>Bạn có chắc chắn muốn xóa cấu hình này?</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>Điểm truy cập</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>Kết nối Không dây: %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>Tổng quát</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>tên</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>Tên người dùng đã được sử dụng</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>Not Bind</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Cần thiết</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>Địa chỉ MAC thiết bị</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation>Loại bảo mật</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kênh</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Băng tần</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kênh</translation>
     </message>
     <message>
         <source>Interface</source>

@@ -79,14 +79,6 @@
         <translation>Speichern</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>Wird verbunden</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>Trennen</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>Sind Sie sicher, dass Sie diese Konfiguration löschen möchten?</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>Hotspot</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>Drahtlosverbindung %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>Allgemein</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>Name</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>Der Name existiert bereits</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>Nicht gebunden</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Erforderlich</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>Geräte MAC-Adresse</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation>Sicherheitstyp</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kanal</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Band</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kanal</translation>
     </message>
     <message>
         <source>Interface</source>

@@ -12,7 +12,6 @@
 #include <DDBusSender>
 
 #include <QTime>
-#include <QMouseEvent>
 
 #include <networkcontroller.h>
 #include <networkdevicebase.h>
@@ -29,7 +28,6 @@ NetworkPlugin::NetworkPlugin(QObject *parent)
     , m_networkDialog(Q_NULLPTR)
     , m_quickPanel(Q_NULLPTR)
     , m_clickTime(-10000)
-    , m_trayIcon(nullptr)
 {
     NetworkController::setIPConflictCheck(true);
     QTranslator *translator = new QTranslator(this);

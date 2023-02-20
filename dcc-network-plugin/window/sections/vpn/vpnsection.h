@@ -13,7 +13,6 @@ namespace DCC_NAMESPACE {
 class LineEditWidget;
 class ComboxWidget;
 }
-class PasswdLineEditWidget;
 
 class VpnSection : public AbstractSection
 {

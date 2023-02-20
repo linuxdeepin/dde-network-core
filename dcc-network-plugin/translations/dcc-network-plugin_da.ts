@@ -79,14 +79,6 @@
         <translation>Gem</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>Forbinder</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>Afbryd</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>Er du sikker på, at du vil slette konfigurationen?</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>Hotspot</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>Trådløs forbindelse %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>Generelt</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>Navn</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>Navnet findes allerede</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>Ikke bundet</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Påkrævet</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>Enhedens MAC-adresse</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kanal</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Bånd</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kanal</translation>
     </message>
     <message>
         <source>Interface</source>

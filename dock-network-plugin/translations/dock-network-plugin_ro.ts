@@ -75,31 +75,6 @@
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>Conectare la rețele ascunse</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Parola</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Anulează</translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <comment>button</comment>
-        <translation>Conectare</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>dde::network::NetworkDetails</name>
     <message>
         <source>Hotspot</source>
@@ -118,12 +93,12 @@
         <translation>Tip Securitate</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Canal</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Bandă</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Canal</translation>
     </message>
     <message>
         <source>Interface</source>

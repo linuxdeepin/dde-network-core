@@ -96,12 +96,12 @@
         <translation>Soort beveiliging</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kanaal</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Band</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kanaal</translation>
     </message>
     <message>
         <source>Interface</source>

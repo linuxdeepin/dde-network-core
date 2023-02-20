@@ -96,12 +96,12 @@
         <translation>보안 유형</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>채널</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>밴드</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>채널</translation>
     </message>
     <message>
         <source>Interface</source>

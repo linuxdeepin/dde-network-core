@@ -96,12 +96,12 @@
         <translation>Тип безопасности</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Канал</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Диапазон</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Канал</translation>
     </message>
     <message>
         <source>Interface</source>

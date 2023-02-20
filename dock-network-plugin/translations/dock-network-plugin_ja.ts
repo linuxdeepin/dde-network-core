@@ -75,31 +75,6 @@
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>非表示のネットワークへ接続</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>パスワード</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>キャンセル</translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <comment>button</comment>
-        <translation>接続</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>dde::network::NetworkDetails</name>
     <message>
         <source>Hotspot</source>
@@ -118,12 +93,12 @@
         <translation>セキュリティタイプ</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>チャンネル</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>バンド</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>チャンネル</translation>
     </message>
     <message>
         <source>Interface</source>

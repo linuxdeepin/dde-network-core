@@ -75,31 +75,6 @@
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>Σύνδεση σε κρυφό δίκτυο</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Κωδικός πρόσβασης</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Ακύρωση</translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <comment>button</comment>
-        <translation>Σύνδεση</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>dde::network::NetworkDetails</name>
     <message>
         <source>Hotspot</source>
@@ -118,12 +93,12 @@
         <translation>Τύπος Ασφαλείας</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kανάλι</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Mπάντα</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kανάλι</translation>
     </message>
     <message>
         <source>Interface</source>

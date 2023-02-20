@@ -75,31 +75,6 @@
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>Kết nối với mạng ẩn</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Mật mã</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Hủy</translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <comment>button</comment>
-        <translation>Kết nối</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>dde::network::NetworkDetails</name>
     <message>
         <source>Hotspot</source>
@@ -118,12 +93,12 @@
         <translation>Loại bảo mật</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kênh</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Băng tần</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kênh</translation>
     </message>
     <message>
         <source>Interface</source>

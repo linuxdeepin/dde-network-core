@@ -75,31 +75,6 @@
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>छुपे नेटवर्क से जुड़ें</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>कूटशब्द</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>रद्द करें</translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <comment>button</comment>
-        <translation>कनेक्ट करें</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>dde::network::NetworkDetails</name>
     <message>
         <source>Hotspot</source>
@@ -118,12 +93,12 @@
         <translation>सुरक्षा प्रकार</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>चैनल </translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>बैंड </translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>चैनल </translation>
     </message>
     <message>
         <source>Interface</source>

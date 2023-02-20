@@ -20,17 +20,6 @@
     </message>
 </context>
 <context>
-    <name>DeviceControllItem</name>
-    <message>
-        <source>Wireless Network</source>
-        <translation>Wireless Network</translation>
-    </message>
-    <message>
-        <source>Wired Network</source>
-        <translation>Wired Network</translation>
-    </message>
-</context>
-<context>
     <name>QObject</name>
     <message>
         <source>Connecting %1</source>
@@ -115,10 +104,6 @@
     <message>
         <source>Channel</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation>Band</translation>
     </message>
     <message>
         <source>Interface</source>

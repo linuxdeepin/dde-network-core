@@ -79,14 +79,6 @@
         <translation>Opslaan</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>Bezig met verbinden</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>Verbinding verbreken</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>Weet je zeker dat je deze configuratie wilt verwijderen?</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>Hotspot</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>Draadloze verbinding %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>Algemeen</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation>Naam (SSID)</translation>
+        <source>Name</source>
+        <translation>Naam</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>Deze naam is al in gebruik</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation>Naam (SSID)</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>Niet verbonden</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Vereist</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>MAC-adres van apparaat</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation>Soort beveiliging</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kanaal</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Band</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kanaal</translation>
     </message>
     <message>
         <source>Interface</source>

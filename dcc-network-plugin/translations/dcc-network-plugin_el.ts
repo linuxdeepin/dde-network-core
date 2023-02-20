@@ -79,14 +79,6 @@
         <translation>Αποθήκευση</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>Σύνδεση</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>Αποσύνδεση</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>Είστε σίγουροι ότι θέλετε να διαγράψετε αυτές τις ρυθμίσεις παραμέτρων;</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>Hotspot</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>Ασύρματη Σύνδεση %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>Γενικά</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>Όνομα</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>Το όνομα υπάρχει ήδη</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>Μη Δεσμευμένο</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Απαιτείται</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>Διεύθυνση MAC συσκευής</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation>Τύπος Ασφαλείας</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kανάλι</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Mπάντα</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kανάλι</translation>
     </message>
     <message>
         <source>Interface</source>

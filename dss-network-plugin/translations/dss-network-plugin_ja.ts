@@ -96,12 +96,12 @@
         <translation>セキュリティタイプ</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>チャンネル</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>バンド</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>チャンネル</translation>
     </message>
     <message>
         <source>Interface</source>

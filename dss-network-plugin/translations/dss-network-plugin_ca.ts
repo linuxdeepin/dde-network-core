@@ -96,12 +96,12 @@
         <translation>Tipus de seguretat</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Canal</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Banda</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Canal</translation>
     </message>
     <message>
         <source>Interface</source>

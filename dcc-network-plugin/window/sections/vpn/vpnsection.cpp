@@ -3,12 +3,10 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "vpnsection.h"
-#include "../../widgets/passwdlineeditwidget.h"
 
 #include <widgets/lineeditwidget.h>
 #include <widgets/comboxwidget.h>
 
-#include <QHostInfo>
 #include <QHostAddress>
 
 #include <DLineEdit>
@@ -22,7 +20,7 @@ VpnSection::VpnSection(VpnSetting::Ptr vpnSetting, QFrame *parent)
     , m_gateway(new LineEditWidget(this))
     , m_userName(new LineEditWidget(this))
     , m_passwordFlagsChooser(new ComboxWidget(this))
-    , m_password(new PasswdLineEditWidget(this))
+    , m_password(new LineEditWidget(true, this))
     , m_domain(new LineEditWidget(this))
 {
     setAccessibleName("VpnSection");
@@ -45,20 +43,12 @@ bool VpnSection::allInputValid()
 {
     bool valid = true;
 
-    if (m_gateway->text().isEmpty()) {
+    if (m_gateway->text().isEmpty() || !isIpv4Address(m_gateway->text())) {
         valid = false;
         m_gateway->setIsErr(true);
         m_gateway->dTextEdit()->showAlertMessage(tr("Invalid gateway"), parentWidget(), 2000);
     } else {
-        QHostAddress addr(m_gateway->text());
-        if (addr.protocol() == QAbstractSocket::IPv6Protocol) {
-            // ipv6 不支持，这里过滤掉，不然后面host 会反向解析浪费时间。
-            valid = false;
-            m_gateway->setIsErr(true);
-            m_gateway->dTextEdit()->showAlertMessage(tr("Invalid gateway"), parentWidget(), 2000);
-        } else {
-            m_gateway->setIsErr(false);
-        }
+        m_gateway->setIsErr(false);
     }
 
     if (m_userName->text().isEmpty()) {
@@ -85,19 +75,7 @@ void VpnSection::saveSettings()
     m_dataMap = m_vpnSetting->data();
     m_secretMap = m_vpnSetting->secrets();
 
-    auto addr = m_gateway->text();
-    if (!isIpv4Address(addr)) {
-        // 非ipv4的地址，看下能否转为ipv4的地址。
-        QHostInfo hostInfo = QHostInfo::fromName(addr);
-        for (const auto& v : hostInfo.addresses()) {
-            if (v.protocol() == QAbstractSocket::IPv4Protocol) {
-                addr = v.toString();
-                break;
-            }
-        }
-    }
-
-    m_dataMap.insert("gateway", addr);
+    m_dataMap.insert("gateway", m_gateway->text());
     m_dataMap.insert("user", m_userName->text());
     m_dataMap.insert("password-flags", QString::number(m_currentPasswordType));
     if (m_currentPasswordType == Setting::SecretFlagType::None)

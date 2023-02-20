@@ -15,6 +15,7 @@
 
 NETWORKPLUGIN_USE_NAMESPACE
 
+static const QString NetworkDialogApp = "dde-network-dialog"; //网络列表执行文件
 static QMap<QString, void (NetworkDialog::*)(QLocalSocket *, const QByteArray &)> s_FunMap = {
     { "password", &NetworkDialog::sendPassword },
     { "connect", &NetworkDialog::connectNetwork },

@@ -87,31 +87,6 @@
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>Connecta amb una xarxa oculta</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Contrasenya</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Cancel·la</translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <comment>button</comment>
-        <translation>Connecta</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation>Nom (SSID)</translation>
-    </message>
-</context>
-<context>
     <name>dde::network::NetworkDetails</name>
     <message>
         <source>Hotspot</source>
@@ -130,12 +105,12 @@
         <translation>Tipus de seguretat</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Canal</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Banda</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Canal</translation>
     </message>
     <message>
         <source>Interface</source>

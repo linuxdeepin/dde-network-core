@@ -79,14 +79,6 @@
         <translation>儲 存</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>正在連線</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>斷開連線</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>您確定要刪除目前配置嗎？</translation>
     </message>
@@ -227,8 +219,8 @@
         <translation>通用</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation>名稱（SSID）</translation>
+        <source>Name</source>
+        <translation>名稱</translation>
     </message>
     <message>
         <source>Required</source>
@@ -244,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>名稱已被占用</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation>名稱（SSID）</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1704,12 +1692,12 @@
         <translation>安全類型</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>網路通道</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>頻段</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>網路通道</translation>
     </message>
     <message>
         <source>Interface</source>

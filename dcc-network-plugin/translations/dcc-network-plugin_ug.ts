@@ -79,14 +79,6 @@
         <translation>ساقلاش</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>ئۇلىنىۋاتىدۇ</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>ئۈزۈش</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>بۇ سەپلىمىنى ئۆچۈرمەكچىمۇ؟</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>تور تارقىتىش</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>سىمسىز ئۇلىنىش% 1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>ئورتاق</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>ئىسمى</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>بۇ ئىسىم ئاللىبۇرۇن مەۋجۇت</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>باغلانمايدۇ</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>زۆرۈر</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>ئۈسكۈنە MAC ئادرېسى</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation>بىخەتەرلىك تۈرى</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>قانال</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>دولقۇن بۆلىكى</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>قانال</translation>
     </message>
     <message>
         <source>Interface</source>

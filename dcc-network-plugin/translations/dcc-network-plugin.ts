@@ -81,14 +81,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>Connecting</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>Disconnect</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -174,17 +166,6 @@
     </message>
 </context>
 <context>
-    <name>dccV20::network::AirplaneModepage</name>
-    <message>
-        <source>Airplane Mode</source>
-        <translation>Airplane Mode</translation>
-    </message>
-    <message>
-        <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
-        <translation>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</translation>
-    </message>
-</context>
-<context>
     <name>DNSSection</name>
     <message>
         <source>DNS</source>
@@ -257,10 +238,6 @@
     <message>
         <source>The name already exists</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation>Name (SSID)</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1723,10 +1700,6 @@
     <message>
         <source>Channel</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation>Band</translation>
     </message>
     <message>
         <source>Interface</source>

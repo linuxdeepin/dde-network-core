@@ -3,7 +3,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "vpnsstpproxysection.h"
-#include "../../widgets/passwdlineeditwidget.h"
 
 #include <DSpinBox>
 
@@ -25,7 +24,7 @@ VpnSstpProxySection::VpnSstpProxySection(VpnSetting::Ptr vpnSetting, QFrame *par
     , m_server(new LineEditWidget(this))
     , m_port(new SpinBoxWidget(this))
     , m_userName(new LineEditWidget(this))
-    , m_password(new PasswdLineEditWidget(this))
+    , m_password(new LineEditWidget(true, this))
 {
     initUI();
     initConnection();

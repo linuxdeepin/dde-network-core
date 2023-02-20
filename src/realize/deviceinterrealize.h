@@ -43,7 +43,6 @@ public:
     QJsonObject activeConnectionInfo() const override;                                                       // 获取当前活动连接的信息
     void setEnabled(bool enabled) override;                                                                  // 开启或禁用网卡
     Connectivity connectivity();
-    DeviceStatus deviceStatus() const override;
 
 protected Q_SLOTS:
     void deviceConnectionFailed();

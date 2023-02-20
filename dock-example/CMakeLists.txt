@@ -23,6 +23,11 @@ aux_source_directory(../dock-network-plugin DOCKPLUGINDIR)
 aux_source_directory(../common-plugin/* COMMONPLUGINS)
 
 aux_source_directory(. COMPILEFILES)
+file(GLOB_RECURSE QRCFILES "../common-plugin/network.qrc"
+    "../common-plugin/resources/common/*.svg"
+    "../common-plugin/resources/wired/*.svg"
+    "../common-plugin/resources/wireless/*.svg"
+    "../common-plugin/resources/wireless6/*.svg")
 
 get_target_property(KF5_QT_INCLUDE_DIRS KF5::NetworkManagerQt INTERFACE_INCLUDE_DIRECTORIES)
 

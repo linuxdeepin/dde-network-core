@@ -79,14 +79,6 @@
         <translation>संचित करें</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>कनेक्ट हो रहा है </translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>डिस्कनेक्ट है</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation type="unfinished"/>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>हॉटस्पॉट</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>Wireless Connection %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -200,12 +196,6 @@
     <message>
         <source>VPN</source>
         <translation>वीपीएन</translation>
-    </message>
-    <message>
-        <source>Airplane Mode</source>
-        <translation type="unfinished"/>
-        <extra-child_page>Airplane Mode</extra-child_page>
-        <extra-contents_path>/network/Airplane Mode</extra-contents_path>
     </message>
     <message>
         <source>Wired Network Adapter</source>
@@ -369,17 +359,6 @@
     </message>
 </context>
 <context>
-    <name>dccV20::network::AirplaneModepage</name>
-    <message>
-        <source>Airplane Mode</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>DNSSection</name>
     <message>
         <source>DNS</source>
@@ -424,8 +403,8 @@
         <translation>सामान्य</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>नाम</translation>
     </message>
     <message>
         <source>Required</source>
@@ -440,10 +419,6 @@
     </message>
     <message>
         <source>The name already exists</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -670,11 +645,6 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Airplane Mode</source>
-        <translation type="unfinished"/>
-        <extra-contents_path>/network/Airplane</extra-contents_path>
-    </message>
-    <message>
         <source>Network Details</source>
         <translation>नेटवर्क विवरण</translation>
     </message>
@@ -841,22 +811,6 @@
     <message>
         <source>Port</source>
         <translation>पोर्ट</translation>
-    </message>
-    <message>
-        <source>Authentication is required</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Required</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>HTTP Proxy</source>
@@ -1930,6 +1884,14 @@
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>आवश्यक</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>उपकरण MAC ऐड्रेस</translation>
     </message>
@@ -1961,12 +1923,12 @@
         <translation>सुरक्षा प्रकार</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>चैनल </translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>बैंड </translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>चैनल </translation>
     </message>
     <message>
         <source>Interface</source>

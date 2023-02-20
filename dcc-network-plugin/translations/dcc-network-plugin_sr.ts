@@ -79,14 +79,6 @@
         <translation>Сачувај</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>Повезивање</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>Прекини везу</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>Заиста желите да обришете ова подешавања?</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>Врућа тачка</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>Бежична веза %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>Опште</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>Име</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>Име већ постоји</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>Није везан</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>ССИД</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Неопходно</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>МАК адр. уређаја</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation>Врста безбедности</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Канал</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Опсег</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Канал</translation>
     </message>
     <message>
         <source>Interface</source>

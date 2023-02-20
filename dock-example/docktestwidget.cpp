@@ -11,9 +11,6 @@
 QPointer<DockPopupWindow> DockTestWidget::PopupWindow = nullptr;
 Dock::Position DockTestWidget::DockPosition = Dock::Position::Bottom;
 
-QPointer<DockPopupWindow> DockTestWidget::PopupWindow = nullptr;
-Dock::Position DockTestWidget::DockPosition = Dock::Position::Bottom;
-
 DockTestWidget::DockTestWidget(QWidget *parent)
     : QWidget(parent)
     , m_pluginInter(new NetworkPlugin(this))

@@ -20,7 +20,6 @@ namespace network {
 class SpinBoxWidget;
 }
 }
-class PasswdLineEditWidget;
 
 using namespace NetworkManager;
 

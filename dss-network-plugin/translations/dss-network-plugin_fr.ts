@@ -96,12 +96,12 @@
         <translation>Type de sécurité</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Canal</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Bande</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Canal</translation>
     </message>
     <message>
         <source>Interface</source>

@@ -87,31 +87,6 @@
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>連接到隱藏網絡</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>請輸入密碼</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>取 消</translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <comment>button</comment>
-        <translation>連 接</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation>請輸入網絡名稱（SSID）</translation>
-    </message>
-</context>
-<context>
     <name>dde::network::NetworkDetails</name>
     <message>
         <source>Hotspot</source>
@@ -130,12 +105,12 @@
         <translation>安全類型</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>網絡通道</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>頻段</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>網絡通道</translation>
     </message>
     <message>
         <source>Interface</source>

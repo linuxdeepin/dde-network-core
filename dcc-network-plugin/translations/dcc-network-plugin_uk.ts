@@ -79,14 +79,6 @@
         <translation>Зберегти</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>З&apos;єднання</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>Відʼєднатися</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>Ви впевнені, що хочете видалити цю конфігурацію?</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>Точка доступу</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>Бездротове з&apos;єднання %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>Загальне</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>Назва</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>Таке ім&apos;я вже існує</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>Не прив&apos;язано</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Потрібен</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>Пристрій MAC Addr</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation>Тип захисту</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Канал</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Група</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Канал</translation>
     </message>
     <message>
         <source>Interface</source>

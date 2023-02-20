@@ -96,12 +96,12 @@
         <translation>सुरक्षा प्रकार</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>चैनल </translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>बैंड </translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>चैनल </translation>
     </message>
     <message>
         <source>Interface</source>

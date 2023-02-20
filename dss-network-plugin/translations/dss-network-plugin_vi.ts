@@ -96,12 +96,12 @@
         <translation>Loại bảo mật</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kênh</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Băng tần</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kênh</translation>
     </message>
     <message>
         <source>Interface</source>

@@ -79,14 +79,6 @@
         <translation>حفظ</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>يتصل</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>قطع الاتصال</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>أمتأكد من حذفتك لهذا الإعداد؟</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>نقطة الإتصال</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>اتصال لاسلكي  %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>عام</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>الاسم</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>الاسم موجود بالفعل</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>لا يوجد جهاز مرتبط بعنوان ال MAC</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID </translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>مطلوب</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>عنوان MAC الجهاز </translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>القناة</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>الحزمة</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>القناة</translation>
     </message>
     <message>
         <source>Interface</source>

@@ -20,7 +20,6 @@ namespace network {
 class FileChooseWidget;
 }
 }
-class PasswdLineEditWidget;
 
 using namespace NetworkManager;
 

@@ -96,12 +96,12 @@
         <translation>Güvenlik Türü</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kanal</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Bant</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kanal</translation>
     </message>
     <message>
         <source>Interface</source>

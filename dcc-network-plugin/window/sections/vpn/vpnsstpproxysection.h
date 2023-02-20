@@ -12,7 +12,6 @@
 namespace DCC_NAMESPACE {
 class LineEditWidget;
 }
-class PasswdLineEditWidget;
 
 namespace dcc {
 namespace network {

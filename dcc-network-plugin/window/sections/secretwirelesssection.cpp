@@ -3,7 +3,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "secretwirelesssection.h"
-#include "../widgets/passwdlineeditwidget.h"
 
 #include <QComboBox>
 
@@ -11,7 +10,6 @@
 
 #include <networkmanagerqt/utils.h>
 
-#include <networkmanagerqt/utils.h>
 #include <widgets/lineeditwidget.h>
 #include <widgets/comboxwidget.h>
 
@@ -21,7 +19,7 @@ using namespace NetworkManager;
 SecretWirelessSection::SecretWirelessSection(WirelessSecuritySetting::Ptr wsSeting, Security8021xSetting::Ptr sSetting, ParametersContainer::Ptr parameter, QFrame *parent)
     : Secret8021xSection(sSetting, parent)
     , m_keyMgmtChooser(new ComboxWidget(this))
-    , m_passwdEdit(new PasswdLineEditWidget(this))
+    , m_passwdEdit(new LineEditWidget(true, this))
     , m_enableWatcher(new Secret8021xEnableWatcher(this))
     , m_authAlgChooser(new ComboxWidget(this))
     , m_currentKeyMgmt(WirelessSecuritySetting::KeyMgmt::WpaNone)
@@ -134,11 +132,7 @@ void SecretWirelessSection::saveSettings()
             m_wsSetting->setPsk(QString());
 
         m_wsSetting->setWepKeyType(WirelessSecuritySetting::WepKeyType::NotSpecified);
-        if (m_currentKeyMgmt == WirelessSecuritySetting::KeyMgmt::WpaPsk) {
-            m_wsSetting->setAuthAlg(WirelessSecuritySetting::AuthAlg::Open);
-        } else {
-            m_wsSetting->setAuthAlg(WirelessSecuritySetting::AuthAlg::None);
-        }
+        m_wsSetting->setAuthAlg(WirelessSecuritySetting::AuthAlg::None);
     } else if (m_currentKeyMgmt == WirelessSecuritySetting::KeyMgmt::WpaEap) {
         m_wsSetting->setAuthAlg(WirelessSecuritySetting::AuthAlg::None);
     }
@@ -227,11 +221,6 @@ void SecretWirelessSection::initConnection()
     });
 
     connect(m_passwdEdit->textEdit(), &QLineEdit::editingFinished, this, &SecretWirelessSection::saveUserInputPassword, Qt::QueuedConnection);
-
-    connect(m_passwdEdit->textEdit(), &QLineEdit::textChanged, this, [this] (const QString &text) {
-        if (text.isEmpty())
-            static_cast<DPasswordEdit*>(m_passwdEdit->dTextEdit())->setEchoButtonIsVisible(true);
-    });
     connect(m_enableWatcher, &Secret8021xEnableWatcher::passwdEnableChanged, this,  [ = ] (const bool enabled) {
         switch (m_currentKeyMgmt) {
         case WirelessSecuritySetting::KeyMgmt::WpaNone:

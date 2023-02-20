@@ -11,7 +11,6 @@
 
 namespace NetworkManager {
 class WirelessNetwork;
-class AccessPoint;
 }
 
 using namespace NetworkManager;
@@ -58,19 +57,28 @@ protected:
     QList<WiredConnection *> wiredItems() const override;                                 // 有线网络连接列表
 
 private:
-    void initSigSlotConnection();
-    void createWlans(QList<QSharedPointer<WirelessConnection >> &allConnections);
-    void syncWlanAndConnections(QList<QSharedPointer<WirelessConnection>> &allConnections);
+    template<class T>
+    void clearListData(QList<T *> &dataList) {
+        for (T *data : dataList)
+            delete data;
 
-    QSharedPointer<AccessPoints> findAccessPoints(const QString &ssid);
-    QJsonObject createWlanJson(QSharedPointer<NetworkManager::AccessPoint> ap);
+        dataList.clear();
+    }
+
+private:
+    void initSigSlotConnection();
+    void createWlans(QList<WirelessConnection *> &allConnections);
+    void syncWlanAndConnections(QList<WirelessConnection *> &allConnections);
+
+    AccessPoints *findAccessPoints(const QString &ssid);
+    QJsonObject createWlanJson(QSharedPointer<NetworkManager::WirelessNetwork> network);
     QJsonObject createConnectionJson(QSharedPointer<NetworkManager::Connection> networkConnection);
-    QSharedPointer<WirelessConnection> findConnectionByAccessPoint(const AccessPoints *accessPoint, QList<QSharedPointer<WirelessConnection>> &allConnections);
+    WirelessConnection *findConnectionByAccessPoint(const AccessPoints *accessPoint, QList<WirelessConnection *> &allConnections);
 
     WiredConnection *findWiredConnection(const QString &path);
     WiredConnection *findWiredConnectionByUuid(const QString &uuid);
-    QSharedPointer<WirelessConnection> findWirelessConnectionBySsid(const QString &ssid);
-    QSharedPointer<WirelessConnection> findWirelessConnection(const QString &path);
+    WirelessConnection *findWirelessConnectionBySsid(const QString &ssid);
+    WirelessConnection *findWirelessConnection(const QString &path);
     WirelessConnection *findWirelessConnectionByUuid(const QString &uuid);
     ConnectionStatus convertStatus(Device::State state);
     DeviceStatus convertDeviceStatus(Device::State state);
@@ -86,13 +94,12 @@ private slots:
     void onWiredConnectionChanged();
     void onWirelessConnectionChanged();
     void onStatusChanged(NetworkManager::Device::State newstate, NetworkManager::Device::State oldstate, NetworkManager::Device::StateChangeReason reason);
-    void onDeviceEnabledChanged(QDBusObjectPath path, bool enabled);
 
 private:
     QSharedPointer<Device> m_wDevice;
-    QList<QSharedPointer<AccessPoints>> m_accessPoints;
+    QList<AccessPoints *> m_accessPoints;
     QList<WiredConnection *> m_wiredConnections;
-    QList<QSharedPointer<WirelessConnection>> m_wirelessConnections;
+    QList<WirelessConnection *> m_wirelessConnections;
     WiredConnection *m_activeWiredConnection;
     WirelessConnection *m_activeWirelessConnection;
     bool m_hotspotEnabled;

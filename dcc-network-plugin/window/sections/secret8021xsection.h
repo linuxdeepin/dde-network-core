@@ -14,8 +14,6 @@ class ComboxWidget;
 class LineEditWidget;
 }
 
-class PasswdLineEditWidget;
-
 using namespace NetworkManager;
 
 class Secret8021xEnableWatcher : public QObject

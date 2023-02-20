@@ -8,7 +8,6 @@
 #include "networkconst.h"
 
 #include <QJsonObject>
-#include <QLoggingCategory>
 
 namespace dde {
 namespace network {

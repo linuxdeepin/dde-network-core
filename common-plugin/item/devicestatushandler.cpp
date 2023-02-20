@@ -45,10 +45,6 @@ NetDeviceStatus DeviceStatusHandler::wiredStatus(WiredDevice *device)
     if (!device->isEnabled())
         return NetDeviceStatus::Disabled;
 
-    // ip 冲突
-    if (device->ipConflicted())
-        return NetDeviceStatus::IpConflicted;
-
     // 网络是已连接，但是当前的连接状态不是Full，则认为网络连接成功，但是无法上网
     if (device->deviceStatus() == DeviceStatus::Activated
             && NetworkController::instance()->connectivity() != Connectivity::Full) {
@@ -106,9 +102,6 @@ NetDeviceStatus DeviceStatusHandler::wirelessStatus(WirelessDevice *device)
 {
     if (!device->isEnabled())
         return NetDeviceStatus::Disabled;
-
-    if (device->ipConflicted())
-        return NetDeviceStatus::IpConflicted;
 
     if (device->deviceStatus() == DeviceStatus::Activated
             && device->connectivity() != Connectivity::Full) {

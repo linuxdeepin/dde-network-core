@@ -8,7 +8,6 @@
 #include "abstractsection.h"
 
 #include <networkmanagerqt/wirelesssetting.h>
-#include <networkmanagerqt/connectionsettings.h>
 
 namespace DCC_NAMESPACE {
 class LineEditWidget;
@@ -34,13 +33,21 @@ public:
 
     bool allInputValid() Q_DECL_OVERRIDE;
     void saveSettings() Q_DECL_OVERRIDE;
+
+    void setSsidEditable(const bool editable);
+    bool ssidIsEditable() const;
+    const QString ssid() const;
     void setSsid(const QString &ssid);
+
+Q_SIGNALS:
+    void ssidChanged(const QString &ssid);
 
 private:
     void initUI();
     void initConnection();
 
     void onCostomMtuChanged(const bool enable);
+    virtual bool eventFilter(QObject *watched, QEvent *event) override;
 
 private:
     DCC_NAMESPACE::LineEditWidget *m_apSsid;
@@ -52,7 +59,7 @@ private:
     NetworkManager::WirelessSetting::Ptr m_wirelessSetting;
 
     QRegExp m_macAddrRegExp;
-    QMap<QString, QPair<QString, QString>> m_macStrMap;
+    QMap<QString, QString> m_macStrMap;
 };
 
 #endif /* WIRELESSSECTION_H */

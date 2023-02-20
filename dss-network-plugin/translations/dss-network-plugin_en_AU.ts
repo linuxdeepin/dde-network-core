@@ -96,12 +96,12 @@
         <translation>Security Type</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Channel</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Band</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Channel</translation>
     </message>
     <message>
         <source>Interface</source>

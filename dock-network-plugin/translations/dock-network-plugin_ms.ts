@@ -75,31 +75,6 @@
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>Sambung ke rangkaian tersembunyi</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Kata Laluan</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Batal</translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <comment>button</comment>
-        <translation>Sambung</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>dde::network::NetworkDetails</name>
     <message>
         <source>Hotspot</source>
@@ -118,12 +93,12 @@
         <translation>Jenis Keselamatan</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Saluran</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Jalur</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Saluran</translation>
     </message>
     <message>
         <source>Interface</source>

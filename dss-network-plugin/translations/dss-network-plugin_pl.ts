@@ -96,12 +96,12 @@
         <translation>Typ zabezpieczenia</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kanał</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Pasmo</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kanał</translation>
     </message>
     <message>
         <source>Interface</source>

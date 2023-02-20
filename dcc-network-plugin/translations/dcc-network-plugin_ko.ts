@@ -79,14 +79,6 @@
         <translation>저장</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>연결 중</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>연결 해제</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>이 환경설정을 삭제하시겠습니까?</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>핫스팟</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>무선 연결 %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>일반</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>이름</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>이름이 이미 존재합니다</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>바인딩 안함</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>필수 항목</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>장치 MAC 주소</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation>보안 유형</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>채널</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>밴드</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>채널</translation>
     </message>
     <message>
         <source>Interface</source>

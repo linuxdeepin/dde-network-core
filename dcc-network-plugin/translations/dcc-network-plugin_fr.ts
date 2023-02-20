@@ -79,14 +79,6 @@
         <translation>Sauvegarder</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>Connexion en cours</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>Déconnecter</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>Êtes-vous sûr de vouloir supprimer cette configuration ?</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>Point d&apos;accès</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>Connexion sans fil %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>Général</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>Nom</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>Le nom existe déjà</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>Ne pas lier</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Obligatoire</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>Adresse MAC du périphérique</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation>Type de sécurité</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Canal</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Bande</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Canal</translation>
     </message>
     <message>
         <source>Interface</source>

@@ -96,12 +96,12 @@
         <translation>Jenis Keselamatan</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Saluran</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Jalur</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Saluran</translation>
     </message>
     <message>
         <source>Interface</source>

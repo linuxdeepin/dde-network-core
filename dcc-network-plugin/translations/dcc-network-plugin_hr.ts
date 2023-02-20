@@ -79,14 +79,6 @@
         <translation>Spremi</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>Povezujem se</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>Odspoji</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>Jeste li sigurni da želite izbrisati ovu konfiguraciju?</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>Bežična veza: %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>Općenito</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>Ime</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>Ime već postoji</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Potrebno</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>MAC adresa uređaja</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation>Vrsta sigurnosti</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kanal</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Frekvencija</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kanal</translation>
     </message>
     <message>
         <source>Interface</source>

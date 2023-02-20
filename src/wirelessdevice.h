@@ -35,7 +35,6 @@ public:
     QList<WirelessConnection *> items() const;                      // 无线网络连接列表
     AccessPoints *activeAccessPoints() const;                       // 当前活动的无线连接
     bool hotspotEnabled() const;                                    // 是否开启热点
-    void disconnectNetwork();
 
 Q_SIGNALS:
     void networkAdded(QList<AccessPoints *>);                       // wlan新增网络
@@ -78,9 +77,9 @@ public:
 
 protected:
     AccessPoints(const QJsonObject &json, QObject *parent = Q_NULLPTR);
+    ~AccessPoints();
 
 public:
-    ~AccessPoints();
     QString ssid() const;                                           // 网络SSID，对应于返回接口中的Ssid
     int strength() const;                                           // 信号强度，对应于返回接口中的Strength
     bool secured() const;                                           // 是否加密，对应于返回接口中的Secured
@@ -95,12 +94,9 @@ public:
 
 Q_SIGNALS:
     void strengthChanged(const int) const;                          // 当前信号强度变化
-    void connectionStatusChanged(ConnectionStatus);
-    void securedChanged(bool);
 
 protected:
     void updateAccessPoints(const QJsonObject &json);
-    void updateConnectionStatus(ConnectionStatus);
 
 private:
     QJsonObject m_json;
@@ -119,7 +115,6 @@ class WirelessConnection: public ControllItems
     friend class DeviceManagerRealize;
 
 public:
-    WirelessConnection();
     AccessPoints *accessPoints() const;                             // 返回当前对应的wlan的指针
     ConnectionStatus status() const override;
 

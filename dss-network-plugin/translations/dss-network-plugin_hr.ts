@@ -96,12 +96,12 @@
         <translation>Vrsta sigurnosti</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kanal</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Frekvencija</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kanal</translation>
     </message>
     <message>
         <source>Interface</source>

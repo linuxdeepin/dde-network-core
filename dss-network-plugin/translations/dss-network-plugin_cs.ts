@@ -96,12 +96,12 @@
         <translation>Typ zabezpečení</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kanál</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Pásmo</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kanál</translation>
     </message>
     <message>
         <source>Interface</source>

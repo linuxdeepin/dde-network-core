@@ -75,31 +75,6 @@
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>숨겨진 네트워크에 연결</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>비밀번호</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>취소</translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <comment>button</comment>
-        <translation>연결</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation>명칭(SSID)</translation>
-    </message>
-</context>
-<context>
     <name>dde::network::NetworkDetails</name>
     <message>
         <source>Hotspot</source>
@@ -118,12 +93,12 @@
         <translation>보안 유형</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>채널</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>밴드</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>채널</translation>
     </message>
     <message>
         <source>Interface</source>

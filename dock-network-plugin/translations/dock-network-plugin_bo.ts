@@ -75,31 +75,6 @@
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>ཡིབ་དྲ་དང་མཐུད་པ།</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>གསང་ཨང་འཇུག་རོགས།</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>འདོར་བ། </translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <comment>button</comment>
-        <translation>འབྲེལ་མཐུད། </translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation>དྲ་བའི་མིང་(SSID）ནང་འཇུག་བྱེད་རོགས། </translation>
-    </message>
-</context>
-<context>
     <name>dde::network::NetworkDetails</name>
     <message>
         <source>Hotspot</source>
@@ -118,12 +93,12 @@
         <translation>བདེ་འཇགས་རིགས།</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>དྲ་རྒྱའི་རྒྱུ་ལམ།</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>བྱུང་རིམ།</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>དྲ་རྒྱའི་རྒྱུ་ལམ།</translation>
     </message>
     <message>
         <source>Interface</source>

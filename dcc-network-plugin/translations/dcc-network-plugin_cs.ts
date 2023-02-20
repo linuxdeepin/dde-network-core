@@ -79,14 +79,6 @@
         <translation>Uložit</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>Připojuje se</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>Odpojit</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>Opravdu chcete toto nastavení smazat?</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>Přípojný bod</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>Bezdrátové připojení %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>Obecné</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>Název</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>Název už existuje</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>Nespojeno</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Vyžadováno</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>MAC adresa zařízení</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation>Typ zabezpečení</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kanál</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Pásmo</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kanál</translation>
     </message>
     <message>
         <source>Interface</source>

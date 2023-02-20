@@ -79,14 +79,6 @@
         <translation>Lagre</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>Kobler til</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>Koble fra</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation type="unfinished"/>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>Hotspot</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>Trådløs Forbindelse %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -201,12 +197,6 @@
     <message>
         <source>VPN</source>
         <translation>VPN</translation>
-    </message>
-    <message>
-        <source>Airplane Mode</source>
-        <translation type="unfinished"/>
-        <extra-child_page>Airplane Mode</extra-child_page>
-        <extra-contents_path>/network/Airplane Mode</extra-contents_path>
     </message>
     <message>
         <source>Wired Network Adapter</source>
@@ -370,17 +360,6 @@
     </message>
 </context>
 <context>
-    <name>dccV20::network::AirplaneModepage</name>
-    <message>
-        <source>Airplane Mode</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>DNSSection</name>
     <message>
         <source>DNS</source>
@@ -425,8 +404,8 @@
         <translation>Generel</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>Navn</translation>
     </message>
     <message>
         <source>Required</source>
@@ -441,10 +420,6 @@
     </message>
     <message>
         <source>The name already exists</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -671,11 +646,6 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Airplane Mode</source>
-        <translation type="unfinished"/>
-        <extra-contents_path>/network/Airplane</extra-contents_path>
-    </message>
-    <message>
         <source>Network Details</source>
         <translation>Nettverksdetaljer</translation>
     </message>
@@ -842,22 +812,6 @@
     <message>
         <source>Port</source>
         <translation>Port</translation>
-    </message>
-    <message>
-        <source>Authentication is required</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Required</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>HTTP Proxy</source>
@@ -1931,6 +1885,14 @@
         <translation>Ikke Bind</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Påkrevd</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>Enhet MAC adr</translation>
     </message>
@@ -1962,12 +1924,12 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kanal</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Bånd</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kanal</translation>
     </message>
     <message>
         <source>Interface</source>

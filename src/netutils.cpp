@@ -4,12 +4,6 @@
 
 #include "netutils.h"
 
-#ifndef QT_DEBUG
-Q_LOGGING_CATEGORY(dncd, "dde.network.core.dev" , QtInfoMsg);
-#else
-Q_LOGGING_CATEGORY(dncd, "dde.network.core.dev");
-#endif
-
 namespace dde {
 namespace network {
 

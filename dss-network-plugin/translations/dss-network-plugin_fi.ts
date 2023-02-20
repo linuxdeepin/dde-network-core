@@ -96,12 +96,12 @@
         <translation>Suojaustyyppi</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kanava</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Taajuusalue</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kanava</translation>
     </message>
     <message>
         <source>Interface</source>

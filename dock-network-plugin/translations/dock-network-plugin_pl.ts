@@ -87,31 +87,6 @@
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>Połącz z siecią ukrytą</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Hasło</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Anuluj</translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <comment>button</comment>
-        <translation>Połącz</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation>Nazwa (SSID)</translation>
-    </message>
-</context>
-<context>
     <name>dde::network::NetworkDetails</name>
     <message>
         <source>Hotspot</source>
@@ -130,12 +105,12 @@
         <translation>Typ zabezpieczenia</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kanał</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Pasmo</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kanał</translation>
     </message>
     <message>
         <source>Interface</source>

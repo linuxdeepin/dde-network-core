@@ -96,12 +96,12 @@
         <translation>Τύπος Ασφαλείας</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kανάλι</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Mπάντα</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kανάλι</translation>
     </message>
     <message>
         <source>Interface</source>

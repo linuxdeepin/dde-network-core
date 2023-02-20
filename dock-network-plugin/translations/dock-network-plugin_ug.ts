@@ -75,31 +75,6 @@
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>يوشۇرۇن تورغا ئۇلاش</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>پارولنى كىرگۈزۈڭ</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>بىكار قىلىش</translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <comment>button</comment>
-        <translation>ئۇلاش</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation>تور نامىنى كىرگۈزۈڭ（SSID）</translation>
-    </message>
-</context>
-<context>
     <name>dde::network::NetworkDetails</name>
     <message>
         <source>Hotspot</source>
@@ -118,12 +93,12 @@
         <translation>بىخەتەرلىك تۈرى</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>قانال</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>دولقۇن بۆلىكى</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>قانال</translation>
     </message>
     <message>
         <source>Interface</source>

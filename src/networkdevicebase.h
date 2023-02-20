@@ -78,7 +78,6 @@ public:
     void setEnabled(bool enabled);                                                               // 开启或禁用网卡
     void disconnectNetwork();                                                        // 断开网络连接，该方法是一个虚方法，具体在子类
     Connectivity connectivity();
-    bool ipConflicted();
     virtual void setName(const QString &name);                                                   // 设置设备的名称
     virtual QString deviceName();                                                                // 设备名称
 

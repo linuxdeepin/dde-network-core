@@ -27,7 +27,6 @@
 
 #include <NetworkManagerQt/Device>
 #include <NetworkManagerQt/WiredDevice>
-#include <QPointer>
 
 NETWORKPLUGIN_BEGIN_NAMESPACE
 class NetworkPluginHelper;
@@ -66,9 +65,6 @@ protected:
     void onDeviceStatusChanged(NetworkManager::Device::State newstate, NetworkManager::Device::State oldstate, NetworkManager::Device::StateChangeReason reason);
     void onAddDevice(const QString &path);
     void onUserChanged(QString json);
-
-protected:
-    bool eventFilter(QObject *watched, QEvent *e) override;
 
 private:
     void addFirstConnection(NetworkManager::WiredDevice *nmDevice);

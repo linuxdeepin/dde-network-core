@@ -79,14 +79,6 @@
         <translation>Save</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>Connecting</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>Disconnect</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>Are you sure you want to delete this configuration?</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>Hotspot</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>Wireless Connection %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>General</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>Name</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>The name already exists</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>Not Bind</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Required</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>Device MAC Addr</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation>Security Type</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Channel</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Band</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Channel</translation>
     </message>
     <message>
         <source>Interface</source>

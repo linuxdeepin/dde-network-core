@@ -79,31 +79,6 @@
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>Prisijungti prie paslėpto tinklo</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Slaptažodis</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Atsisakyti</translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <comment>button</comment>
-        <translation>Prisijungti</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>dde::network::NetworkDetails</name>
     <message>
         <source>Hotspot</source>
@@ -122,12 +97,12 @@
         <translation>Saugumo tipas</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kanalas</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Juosta</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kanalas</translation>
     </message>
     <message>
         <source>Interface</source>

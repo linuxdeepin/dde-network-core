@@ -79,14 +79,6 @@
         <translation>Kaydet</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>Bağlanıyor</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>Bağlantıyı kes</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>Bu yapılandırmayı silmek istediğinize emin misiniz?</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>Bağlantı Noktası</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>Kablosuz Bağlantı %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>Genel</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>İsim</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>İsim zaten var</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>Bağlı Değil</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Gerekli</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>Aygıtın MAC Adresi</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation>Güvenlik Türü</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kanal</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Bant</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kanal</translation>
     </message>
     <message>
         <source>Interface</source>

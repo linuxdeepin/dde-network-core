@@ -75,31 +75,6 @@
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>Yhdistä piilotettuun verkkoon</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Salasana</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>Peruuta</translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <comment>button</comment>
-        <translation>Yhdistä</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation>Nimi (SSID)</translation>
-    </message>
-</context>
-<context>
     <name>dde::network::NetworkDetails</name>
     <message>
         <source>Hotspot</source>
@@ -118,12 +93,12 @@
         <translation>Suojaustyyppi</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kanava</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Taajuusalue</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kanava</translation>
     </message>
     <message>
         <source>Interface</source>

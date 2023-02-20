@@ -79,14 +79,6 @@
         <translation>保存</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>接続試行中</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>切断</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>この設定を削除してもよろしいですか？</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>ホットスポット</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>無線接続 %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>一般</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>名前</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>この名前はすでに存在します</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>バインドされていません</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>必須</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>デバイスの MAC アドレス</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation>セキュリティタイプ</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>チャンネル</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>バンド</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>チャンネル</translation>
     </message>
     <message>
         <source>Interface</source>

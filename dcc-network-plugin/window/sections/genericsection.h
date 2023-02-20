@@ -33,9 +33,6 @@ public:
     const QString connectionName() const;
     void setConnectionName(const QString &name);
 
-Q_SIGNALS:
-    void ssidChanged(const QString &ssid);
-
 private:
     void initUI();
     virtual bool eventFilter(QObject *watched, QEvent *event) override;

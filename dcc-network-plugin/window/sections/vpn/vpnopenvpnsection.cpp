@@ -4,7 +4,6 @@
 
 #include "vpnopenvpnsection.h"
 #include "widgets/switchwidget.h"
-#include "../../widgets/passwdlineeditwidget.h"
 
 #include <QComboBox>
 #include <QHostAddress>
@@ -42,7 +41,7 @@ bool VpnOpenVPNSection::allInputValid()
 {
     bool valid = true;
 
-    if (m_gateway->text().isEmpty()) {
+    if (m_gateway->text().isEmpty() || !isIpv4Address(m_gateway->text())) {
         valid = false;
         m_gateway->setIsErr(true);
         m_gateway->dTextEdit()->showAlertMessage(tr("Invalid gateway"), parentWidget(), 2000);
@@ -185,7 +184,7 @@ void VpnOpenVPNSection::initTLSItems()
     }
     certPasswordFlagsChooser->setCurrentText(curCertPasswordOption);
 
-    PasswdLineEditWidget *priKeyPassword = new PasswdLineEditWidget(this);
+    LineEditWidget *priKeyPassword = new LineEditWidget(true, this);
     priKeyPassword->setTitle(tr("Private Pwd"));
     priKeyPassword->setText(m_secretMap.value("cert-pass"));
     priKeyPassword->setPlaceholderText(tr("Required"));
@@ -234,7 +233,7 @@ void VpnOpenVPNSection::initPasswordItems()
     }
     passwordFlagsChooser->setCurrentText(curPasswordOption);
 
-    PasswdLineEditWidget *password = new PasswdLineEditWidget(this);
+    LineEditWidget *password = new LineEditWidget(true, this);
     password->setTitle(tr("Password"));
     password->setText(m_secretMap.value("password"));
     password->setPlaceholderText(tr("Required"));

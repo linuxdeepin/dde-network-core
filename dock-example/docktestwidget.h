@@ -18,7 +18,7 @@ class DockTestWidget : public QWidget, public PluginProxyInterface
 
 public:
     explicit DockTestWidget(QWidget *parent = nullptr);
-    ~DockTestWidget() override;
+    ~DockTestWidget();
 
 private:
     void initDock();
@@ -37,19 +37,6 @@ private:
     const QVariant getValue(PluginsItemInterface *const itemInter, const QString &key, const QVariant& fallback = QVariant()) override;
     void removeValue(PluginsItemInterface *const itemInter, const QStringList &keyList) override;
     void updateDockInfo(PluginsItemInterface *const itemInter, const DockPart &part) override;
-
-protected:
-    virtual void showPopupWindow(QWidget * const content, const bool model = false);
-    virtual void showHoverTips();
-    const QPoint popupMarkPoint() const;
-    const QPoint topleftPoint() const;
-    void popupWindowAccept();
-    void showPopupApplet(QWidget * const applet);
-    void hidePopup();
-    QWidget *trayTipsWidget();
-
-Q_SIGNALS:
-    void requestWindowAutoHide(const bool autoHide);
 
 protected:
     virtual void showPopupWindow(QWidget * const content, const bool model = false);

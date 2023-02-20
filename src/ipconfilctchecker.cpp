@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2022 UnionTech Software Technology Co., Ltd.
+﻿// SPDX-FileCopyrightText: 2022 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -87,31 +87,6 @@ void IPConfilctChecker::handlerIpConflict(const QString &ip, const QString &macA
     NetworkDeviceBase *conflictDevice = Q_NULLPTR;
     if (deviceIps.contains(ip))
         conflictDevice = deviceIps[ip];
-    else {
-        // 可能是修改前的ip，从现存的checker里找是否有存在的，并更新ip。
-        for (DeviceIPChecker *checker : m_deviceCheckers) {
-            if (checker->ipV4().contains(ip)) {
-                QStringList ips;
-                for (auto it = deviceIps.begin(); it != deviceIps.end(); it++) {
-                    if (it.value() == checker->device())
-                        ips << it.key();
-                }
-
-                if (ips.isEmpty()) {
-                    // 已经没有checker 对应的device 了，应该销毁这个checker
-                    m_deviceCheckers.removeOne(checker);
-                    if (checker->ipConflicted()) {
-                        Q_EMIT conflictStatusChanged(checker->device(), false);
-                    }
-                    checker->deleteLater();
-                } else {
-                    checker->setDeviceInfo(ips, macAddress);
-                    checker->handlerIpConflict();
-                }
-            }
-        }
-        return;
-    }
 
     // 如果不是本机IP，不做任何处理
     if (!conflictDevice) {
@@ -205,47 +180,23 @@ DeviceIPChecker::DeviceIPChecker(NetworkDeviceBase *device, NetworkDBusProxy *ne
     , m_networkInter(netInter)
     , m_conflictCount(0)
     , m_clearCount(0)
-    , m_count(0)
     , m_ipConflicted(false)
 {
     auto requestConflictCheck = [ this ] () {
-        // 当设备的IP地址发生变化的时候，请求IP冲突， 只有在上一次请求和该次请求发生的时间大于3秒，才发出信号
+        // 当设备的IP地址发生变化的时候，请求IP冲突， 只有在上一次请求和该次请求发生的时间大于2秒，才发出信号
         m_ipV4 = m_device->ipv4();
         if (!m_ipV4.isEmpty()) {
             m_changeIpv4s << m_ipV4;
-            m_requestTime = now.addSecs(3);
-            if (m_changeIpv4s.size() > 0) {
-                emit ipConflictCheck(m_changeIpv4s[m_changeIpv4s.size() - 1]);
-                m_changeIpv4s.clear();
-            }
+            QTimer::singleShot(800, this, [ this ] {
+                if (m_changeIpv4s.size() > 0) {
+                    emit ipConflictCheck(m_changeIpv4s[m_changeIpv4s.size() - 1]);
+                    m_changeIpv4s.clear();
+                }
+            });
         }
     };
     connect(device, &NetworkDeviceBase::ipV4Changed, this, requestConflictCheck);
     connect(device, &NetworkDeviceBase::enableChanged, this, requestConflictCheck);
-
-    QTimer *timer = new QTimer(this);
-
-    connect(timer, &QTimer::timeout, this, [this] () {
-        if (m_ipConflicted) {
-            // 如果确定是有冲突，则冷却至少5秒检测一次，直到冲突解除。
-            PRINT_INFO_MESSAGE(QString("[on] check ip conflict:%1").arg(m_ipV4.join(",")));
-            emit ipConflictCheck(m_ipV4);
-        } else {
-            if ((m_count++ % 2) == 0) {
-                if (!m_device.isNull() && m_device->deviceStatus() == DeviceStatus::Activated && m_device->connectivity() == Connectivity::Limited) {
-                    PRINT_INFO_MESSAGE(QString("[off] limit check ip conflict:%1").arg(m_ipV4.join(",")));
-                    emit ipConflictCheck(m_ipV4);
-                    return;
-                }
-            }
-            // 如果无冲突, 则冷却至少180秒检测一次。
-            if ((m_count++ % 36) == 0) {
-                PRINT_INFO_MESSAGE(QString("[off] check ip conflict:%1").arg(m_ipV4.join(",")));
-                emit ipConflictCheck(m_ipV4);
-            }
-        }
-    });
-    timer->start(5000);
 }
 
 DeviceIPChecker::~DeviceIPChecker()
@@ -268,12 +219,12 @@ void DeviceIPChecker::handlerIpConflict()
     if (m_macAddress.isEmpty()) {
         m_conflictCount = 0;
         // 如果MAC地址为空，则表示IP冲突已经解决，则让每个网卡恢复之前的状态
-        if (m_clearCount < 3 && m_ipConflicted) {
-            // 当对方主机不积极争抢时，ip 冲突很容易被解除，所以不主动发起请求。
-            //emit ipConflictCheck(m_ipV4);
+        if (m_clearCount < 3) {
+            emit ipConflictCheck(m_ipV4);
         } else {
             // 拿到最后一次设备冲突的状态
             bool lastConfilctStatus = m_ipConflicted;
+            // 确认1次后解除冲突
             m_ipConflicted = false;
 
             // IP冲突状态发生变化的时候才会发送该信号
@@ -302,20 +253,13 @@ void DeviceIPChecker::handlerIpConflict()
             m_ipConflicted = true;
 
             // 最后一次IP不冲突，本次IP冲突的时候才发送设备状态变化的信号
-            if (!lastConflictStatus) {
+            if (!lastConflictStatus)
                 Q_EMIT conflictStatusChanged(m_device, true);
 
-                if (m_requestTime > QTime::currentTime()) {
-                    // ip 地址变化 3 秒内，发送通知
-                    using Notifications = org::freedesktop::Notifications;
-                    Notifications notifications("org.freedesktop.Notifications", "/org/freedesktop/Notifications", QDBusConnection::sessionBus());
-                    notifications.Notify("dde-control-center",
-                                         static_cast<uint>(QDateTime::currentMSecsSinceEpoch()),
-                                         "preferences-system",
-                                         tr("Network"),
-                                         tr("IP conflict"), QStringList(), QVariantMap(), 3000);
-                }
-            }
+            QTimer::singleShot(5000, this, [ this ] {
+                // 如果确定是有冲突，则每隔5秒检测一次，直到冲突解除
+                emit ipConflictCheck(m_ipV4);
+            });
         }
         m_conflictCount++;
     }
@@ -324,9 +268,4 @@ void DeviceIPChecker::handlerIpConflict()
 QStringList DeviceIPChecker::ipV4()
 {
     return m_ipV4;
-}
-
-bool DeviceIPChecker::ipConflicted()
-{
-    return m_ipConflicted;
 }

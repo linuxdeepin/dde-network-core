@@ -25,7 +25,7 @@ Secret8021xSection::Secret8021xSection(Security8021xSetting::Ptr sSetting, QFram
     , m_currentPasswordType(Setting::AgentOwned)
     , m_eapMethmodChooser(new ComboxWidget(this))
     , m_identity(new LineEditWidget(this))
-    , m_password(new PasswdLineEditWidget(this))
+    , m_password(new LineEditWidget(true, this))
     , m_enableWatcher(nullptr)
     , m_secretSetting(sSetting)
 {
@@ -36,7 +36,7 @@ Secret8021xSection::Secret8021xSection(Security8021xSetting::Ptr sSetting, QFram
     m_currentEapMethod = eapMethods.isEmpty() ? Security8021xSetting::EapMethodTls : eapMethods.first();
 
     // init password type
-    Setting::SecretFlags passwordFlags = m_currentEapMethod == Security8021xSetting::EapMethodTls ? m_secretSetting->privateKeyPasswordFlags() : m_secretSetting->passwordFlags();
+    Setting::SecretFlags passwordFlags = m_secretSetting->passwordFlags();
     for (auto it = PasswordFlagsStrMap.cbegin(); it != PasswordFlagsStrMap.cend(); ++it) {
         if (passwordFlags.testFlag(it->second)) {
             m_currentPasswordType = it->second;

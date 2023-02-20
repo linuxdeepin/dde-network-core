@@ -32,7 +32,7 @@ void HotspotSettings::initSections()
 
     SecretHotspotSection *secretHotspotSection = new SecretHotspotSection(m_connSettings->setting(Setting::SettingType::WirelessSecurity).staticCast<WirelessSecuritySetting>());
 
-    WirelessSection *wirelessSection = new WirelessSection(m_connSettings, wirelessSetting, ConnectionEditPage::devicePath(), true);
+    WirelessSection *wirelessSection = new WirelessSection(wirelessSetting, true);
 
     connect(genericSection, &GenericHotspotSection::editClicked, this, &HotspotSettings::anyEditClicked);
     connect(secretHotspotSection, &GenericHotspotSection::editClicked, this, &HotspotSettings::anyEditClicked);

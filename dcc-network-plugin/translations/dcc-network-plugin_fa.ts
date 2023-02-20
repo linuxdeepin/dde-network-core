@@ -79,14 +79,6 @@
         <translation>ذخیره</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>در حال اتصال</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>قطع اتصال</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>آیا مطمئن هستید که می خواهید این پیکربندی را حذف کنید؟</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>هات اسپات</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>اتصال بی سیم %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>کلی</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>نام</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>این نام از قبل وجود دارد</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>وصل نشد</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>مورد نیاز</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>آدرس MAC دستگاه</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>کانال</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>باند</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>کانال</translation>
     </message>
     <message>
         <source>Interface</source>

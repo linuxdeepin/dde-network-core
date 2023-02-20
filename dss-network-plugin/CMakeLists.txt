@@ -40,6 +40,7 @@ if (NOT KF5_QT_LIBRARIES)
 endif()
 
 target_include_directories(${PLUGIN_NAME} PUBLIC
+    ${NETWORKINTERFACE}
     ${DtkWidget_INCLUDE_DIRS}
     ${Qt5DBus_INCLUDE_DIRS}
     ${QGSettings_INCLUDE_DIRS}
@@ -62,7 +63,7 @@ target_link_libraries(${PLUGIN_NAME} PRIVATE
     ${Qt5Network_LIBRARIES}
 )
 
-install(TARGETS ${PLUGIN_NAME} LIBRARY DESTINATION lib/dde-session-shell/modules)
+install(TARGETS ${PLUGIN_NAME} LIBRARY DESTINATION /lib/dde-session-shell/modules)
 # 安装 .qm 文件
 install(FILES ${QM_FILES} DESTINATION ${CMAKE_INSTALL_DATADIR}/${PLUGIN_NAME}/translations)
 

@@ -3,7 +3,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "vpnstrongswansection.h"
-#include "../../widgets/passwdlineeditwidget.h"
 
 #include <QComboBox>
 #include <QHostAddress>
@@ -28,7 +27,7 @@ VpnStrongSwanSection::VpnStrongSwanSection(VpnSetting::Ptr vpnSetting, QFrame *p
     , m_userCert(new FileChooseWidget(this))
     , m_userKey(new FileChooseWidget(this))
     , m_userName(new LineEditWidget(this))
-    , m_password(new PasswdLineEditWidget(this))
+    , m_password(new LineEditWidget(true, this))
     , m_requestInnerIp(new SwitchWidget(this))
     , m_enforceUDP(new SwitchWidget(this))
     , m_useIPComp(new SwitchWidget(this))
@@ -52,7 +51,7 @@ bool VpnStrongSwanSection::allInputValid()
 {
     bool valid = true;
 
-    if (m_gateway->text().isEmpty()) {
+    if (m_gateway->text().isEmpty() || !isIpv4Address(m_gateway->text())) {
         valid = false;
         m_gateway->setIsErr(true);
         m_gateway->dTextEdit()->showAlertMessage(tr("Invalid gateway"), parentWidget(), 2000);

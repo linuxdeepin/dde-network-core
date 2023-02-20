@@ -8,8 +8,6 @@
 #include "pluginsiteminterface.h"
 #include "../common-plugin/utils.h"
 
-#include <QSharedPointer>
-
 #define NETWORK_KEY "network-item-key"
 
 NETWORKPLUGIN_BEGIN_NAMESPACE
@@ -75,7 +73,6 @@ private:
     NETWORKPLUGIN_NAMESPACE::NetworkDialog *m_networkDialog;
     QuickPanel *m_quickPanel;
     int m_clickTime;
-    QSharedPointer<NETWORKPLUGIN_NAMESPACE::TrayIcon> m_trayIcon;
 };
 
 #endif // NETWORKPLUGIN_H

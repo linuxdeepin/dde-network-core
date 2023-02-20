@@ -79,14 +79,6 @@
         <translation>Сохранить</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>Соединение</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>Отключить</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>Вы уверены, что хотите удалить эту конфигурацию?</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>Точка доступа</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>Беспроводное соединение %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>Основной</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>Название</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>Имя уже существует.</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>Не связывать</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Требуется</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>MAC-адрес устройства</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation>Тип безопасности</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Канал</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Диапазон</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Канал</translation>
     </message>
     <message>
         <source>Interface</source>

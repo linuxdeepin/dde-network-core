@@ -96,12 +96,12 @@
         <translation>بىخەتەرلىك تۈرى</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>قانال</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>دولقۇن بۆلىكى</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>قانال</translation>
     </message>
     <message>
         <source>Interface</source>

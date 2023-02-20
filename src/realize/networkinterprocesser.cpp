@@ -374,19 +374,6 @@ void NetworkInterProcesser::updateDeviceConnectiveInfo()
 
 void NetworkInterProcesser::activeConnInfoChanged(const QString &conns)
 {
-    // 当没有激活的连接时，需要更新对应的连接信息和网络详细信息为空
-    if (conns == "null") {
-        for (NetworkDeviceBase *device : m_devices){
-            DeviceInterRealize *deviceInter = static_cast<DeviceInterRealize *>(device->deviceRealize());
-            deviceInter->updateActiveConnectionInfo(QList<QJsonObject>());
-            m_networkDetails.clear();
-        }
-
-        Q_EMIT activeConnectionChange();
-
-        return;
-    }
-
     QJsonParseError error;
     m_activeConnectionInfo = QJsonDocument::fromJson(conns.toUtf8(), &error).array();
     if (error.error == QJsonParseError::NoError) {
@@ -569,7 +556,11 @@ void NetworkInterProcesser::updateNetworkDetails()
         devicePaths << device->path();
     }
 
-
+    // 删除不在设备列表中的项
+    for (NetworkDetails *detail : m_networkDetails) {
+        if (!devicePaths.contains(detail->devicePath()))
+            m_networkDetails.removeOne(detail);
+    }
     // 删除多余的网络详情的数据
     if (m_networkDetails.size() >= m_activeConnectionInfo.size()) {
         for (int i = m_networkDetails.size() - 1; i >= m_activeConnectionInfo.size(); i--) {
@@ -582,6 +573,9 @@ void NetworkInterProcesser::updateNetworkDetails()
     // 遍历网络详情列表，更新内存中的记录
     for (int i = 0; i < m_activeConnectionInfo.size(); i++) {
         QJsonObject activeConnection = m_activeConnectionInfo.at(i).toObject();
+        QString devicePath = activeConnection.value("Device").toString();
+        if (!devicePaths.contains(devicePath))
+            continue;
 
         NetworkDetails *detail = Q_NULLPTR;
         if (i < m_networkDetails.size()) {
@@ -592,14 +586,6 @@ void NetworkInterProcesser::updateNetworkDetails()
         }
 
         detail->updateData(activeConnection);
-    }
-
-    // 删除不在设备列表中的项
-    for (NetworkDetails *detail : m_networkDetails) {
-        if (!devicePaths.contains(detail->devicePath())) {
-            m_networkDetails.removeOne(detail);
-            delete detail;
-        }
     }
 
     if (m_devices.size() > 0) {

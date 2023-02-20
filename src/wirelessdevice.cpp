@@ -52,11 +52,6 @@ bool WirelessDevice::hotspotEnabled() const
     return deviceRealize()->hotspotEnabled();
 }
 
-void WirelessDevice::disconnectNetwork()
-{
-    return deviceRealize()->disconnectNetwork();
-}
-
 void WirelessDevice::connectNetwork(const QString &ssid)
 {
     AccessPoints *apConnection = findAccessPoint(ssid);
@@ -188,24 +183,10 @@ AccessPoints::WlanType AccessPoints::type() const
 void AccessPoints::updateAccessPoints(const QJsonObject &json)
 {
     int nOldStrength = strength();
-    bool oldSecured = secured();
     m_json = json;
     int nStrength = strength();
     if (nOldStrength != -1 && nStrength != nOldStrength)
         Q_EMIT strengthChanged(nStrength);
-
-    bool newSecured = secured();
-    if (oldSecured != newSecured)
-        Q_EMIT securedChanged(newSecured);
-}
-
-void AccessPoints::updateConnectionStatus(ConnectionStatus status)
-{
-    if (m_status == status)
-        return;
-
-    m_status = status;
-    Q_EMIT connectionStatusChanged(status);
 }
 
 /**

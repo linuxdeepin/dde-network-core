@@ -408,7 +408,7 @@ void WirelessItem::initUi(QWidget *parent)
     standardItem()->setData(QVariant::fromValue(DeviceType::Wireless), NetItemRole::DeviceTypeRole);
     standardItem()->setData(QVariant::fromValue(static_cast<void *>(m_accessPoint)), NetItemRole::DataRole);
     standardItem()->setFontSize(DFontSizeManager::T6);
-    connect(m_device, &WirelessDevice::destroyed, this, [this] {
+    connect(m_device, &WirelessDevice::destroyed, this, [ this ] {
         m_device = nullptr;
         standardItem()->setData(0, NetItemRole::DeviceDataRole);
     });

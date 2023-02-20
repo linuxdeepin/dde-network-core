@@ -79,14 +79,6 @@
         <translation>Shrani</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>Povezovanje</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>Prekini povezavo</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>Ali res želite izbrisati to konfiguracijo?</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>Dostopna točka</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>Brezžična povezava %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>Splošno</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>Ime</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>To ime že obstaja</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>Brez vezave</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Obvezno</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>MAC naslov naprave</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation>Vrsta varnosti</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kanal</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Pas</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kanal</translation>
     </message>
     <message>
         <source>Interface</source>

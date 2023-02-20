@@ -24,7 +24,6 @@ GenericSection::GenericSection(ConnectionSettings::Ptr connSettings, QFrame *par
     initUI();
     m_connIdItem->textEdit()->installEventFilter(this);
     connect(m_autoConnItem, &SwitchWidget::checkedChanged, this, &GenericSection::editClicked);
-    connect(m_connIdItem->textEdit(), &QLineEdit::textChanged, this,  &GenericSection::ssidChanged);
 }
 
 GenericSection::~GenericSection()
@@ -104,12 +103,7 @@ void GenericSection::setConnectionNameEditable(const bool editable)
 void GenericSection::initUI()
 {
     setAccessibleName("GenericSection");
-    if (m_connSettings->connectionType() == NetworkManager::ConnectionSettings::Wireless) {
-        m_connIdItem->setTitle(tr("Name (SSID)"));
-    } else {
-        m_connIdItem->setTitle(tr("Name"));
-    }
-
+    m_connIdItem->setTitle(tr("Name"));
     m_connIdItem->setText(m_connSettings->id());
     m_connIdItem->setPlaceholderText(tr("Required"));
     m_autoConnItem->setChecked(m_connSettings->autoconnect());
@@ -122,10 +116,8 @@ void GenericSection::initUI()
 bool GenericSection::eventFilter(QObject *watched, QEvent *event)
 {
     // 实现鼠标点击编辑框，确定按钮激活，统一网络模块处理，捕捉FocusIn消息
-    QLineEdit * lineEdit = qobject_cast<QLineEdit *>(watched);
-    if (lineEdit && event->type() == QEvent::FocusIn && lineEdit->isEnabled()) {
+    if (event->type() == QEvent::FocusIn && dynamic_cast<QLineEdit *>(watched))
         Q_EMIT editClicked();
-    }
 
     return QWidget::eventFilter(watched, event);
 }

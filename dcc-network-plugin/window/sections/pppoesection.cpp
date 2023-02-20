@@ -4,7 +4,6 @@
 
 #include "pppoesection.h"
 #include "widgets/lineeditwidget.h"
-#include "../widgets/passwdlineeditwidget.h"
 
 #include <DLineEdit>
 
@@ -19,7 +18,7 @@ PPPOESection::PPPOESection(PppoeSetting::Ptr pppoeSetting, QFrame *parent)
     , m_pppoeSetting(pppoeSetting)
     , m_userName(new LineEditWidget(this))
     , m_service(new LineEditWidget(this))
-    , m_password(new PasswdLineEditWidget(this))
+    , m_password(new LineEditWidget(true, this))
 {
     initUI();
 

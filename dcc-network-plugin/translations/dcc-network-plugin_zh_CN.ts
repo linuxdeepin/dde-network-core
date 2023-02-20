@@ -79,14 +79,6 @@
         <translation>保 存</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>正在连接</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>断开连接</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>您确定要删除当前配置吗？</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>热点</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>无线连接 %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>通用</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation>名称（SSID）</translation>
+        <source>Name</source>
+        <translation>名称</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>名称已被占用</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation>名称（SSID）</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>不指定设备</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>必填</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>设备MAC地址</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation>安全类型</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>网络通道</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>频段</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>网络通道</translation>
     </message>
     <message>
         <source>Interface</source>

@@ -75,31 +75,6 @@
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation>සැඟවුණු ජාලයකට සම්බන්ධ වන්න</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>මුර පදය</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <comment>button</comment>
-        <translation>අවලංගු කරන්න</translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <comment>button</comment>
-        <translation>සම්බන්ධ කරන්න</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>dde::network::NetworkDetails</name>
     <message>
         <source>Hotspot</source>
@@ -118,12 +93,12 @@
         <translation>ආරක්ෂක වර්ගය</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>නාලිකාව</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>කලාපය</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>නාලිකාව</translation>
     </message>
     <message>
         <source>Interface</source>

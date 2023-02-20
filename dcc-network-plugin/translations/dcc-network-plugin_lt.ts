@@ -79,14 +79,6 @@
         <translation>Įrašyti</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>Jungiamasi</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>Atsijungti</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>Ar tikrai norite ištrinti šią konfigūraciją?</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>Prieigos taškas</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>Belaidis ryšys %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>Bendra</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>Pavadinimas</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>Pavadinimas jau yra</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>Nesusietas</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Būtina</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>Įrenginio MAC adresas</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation>Saugumo tipas</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kanalas</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Juosta</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kanalas</translation>
     </message>
     <message>
         <source>Interface</source>

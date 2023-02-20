@@ -96,12 +96,12 @@
         <translation>ආරක්ෂක වර්ගය</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>නාලිකාව</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>කලාපය</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>නාලිකාව</translation>
     </message>
     <message>
         <source>Interface</source>

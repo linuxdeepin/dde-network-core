@@ -79,14 +79,6 @@
         <translation>සුරකින්න</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>සම්බන්ධ වෙමින් පවතී</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>විසන්ධි කරන්න</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>මෙම සැකසුම් මකා දැමීමට අවශ්‍ය බව ඔබට විශ්වාසද?</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>හොට්ස්පොට්</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>රැහැන් රහිත සම්බන්ධතාවය: %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>පොදු</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>නම</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>නම දැනටමත් පවතී</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>බැඳී නොමැත</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>අත්‍යවශ්‍යයි</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>උපාංගයේ MAC ලිපිනය</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation>ආරක්ෂක වර්ගය</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>නාලිකාව</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>කලාපය</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>නාලිකාව</translation>
     </message>
     <message>
         <source>Interface</source>

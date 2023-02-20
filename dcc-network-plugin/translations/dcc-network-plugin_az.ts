@@ -79,14 +79,6 @@
         <translation>Saxla</translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>Qoşulur</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>Bağlantını ləğv et</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>Bu tənzimləmənisilmək istədiyinizə əminsiniz?</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>Qoşulma nöqtəsi</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>Simsiz bağlantı %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>Ümumi</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>Ad</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>Bu ad artıq var</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>Qoşulu deyil</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Tələb olunur</translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>Cihazın MAC ünvanı</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation>Təhlükəsizlik növü</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kanal</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Aralıq</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Kanal</translation>
     </message>
     <message>
         <source>Interface</source>

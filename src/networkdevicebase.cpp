@@ -112,11 +112,6 @@ Connectivity NetworkDeviceBase::connectivity()
     return deviceRealize()->connectivity();
 }
 
-bool NetworkDeviceBase::ipConflicted()
-{
-    return deviceRealize()->ipConflicted();
-}
-
 void NetworkDeviceBase::setName(const QString &name)
 {
     if (m_name != name) {

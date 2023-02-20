@@ -79,14 +79,6 @@
         <translation>ཉར་ཚགས། </translation>
     </message>
     <message>
-        <source>Connecting</source>
-        <translation>སྦྲེལ་བཞིན་པ། </translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation>སྦྲེལ་མཐུད་ཕྲལ་གཅོད། </translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>ཁྱོད་ཀྱིས་མིག་སྔའི་སྡེབ་སྒྲིག་བསུབ་རྒྱུ་ཡིན་པ་གཏན་ཁེལ་ལམ།</translation>
     </message>
@@ -97,6 +89,10 @@
     <message>
         <source>Hotspot</source>
         <translation>ཚ་གནས།</translation>
+    </message>
+    <message>
+        <source>Wireless Connection %1</source>
+        <translation>སྐུད་མེད་འབྲེལ་མཐུད་%1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
@@ -223,8 +219,8 @@
         <translation>ཀུན་སྤྱོད།</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <source>Name</source>
+        <translation>མིང་།</translation>
     </message>
     <message>
         <source>Required</source>
@@ -240,10 +236,6 @@
     <message>
         <source>The name already exists</source>
         <translation>མིང་ཡོད་པ།</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -1661,6 +1653,14 @@
         <translation>སྒྲིག་ཆས་དམིགས་འཛུགས་མི་བྱེད།</translation>
     </message>
     <message>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>ངེས་པར་འབྲི་དགོས། </translation>
+    </message>
+    <message>
         <source>Device MAC Addr</source>
         <translation>སྒྲིག་ཆས་MACཡི་གནས་ཡུལ།</translation>
     </message>
@@ -1692,12 +1692,12 @@
         <translation>བདེ་འཇགས་རིགས།</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>དྲ་རྒྱའི་རྒྱུ་ལམ།</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>བྱུང་རིམ།</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>དྲ་རྒྱའི་རྒྱུ་ལམ།</translation>
     </message>
     <message>
         <source>Interface</source>

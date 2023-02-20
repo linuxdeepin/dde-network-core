@@ -1,6 +1,23 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
-//
-// SPDX-License-Identifier: GPL-3.0-or-later
+/*
+ * Copyright (C) 2011 ~ 2021 Deepin Technology Co., Ltd.
+ *
+ * Author:     donghualin <donghualin@uniontech.com>
+ *
+ * Maintainer: donghualin <donghualin@uniontech.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "networkdetails.h"
 #include "networkdevicebase.h"
@@ -15,7 +32,6 @@
 #include <networkmanagerqt/ipv6setting.h>
 
 #include <QJsonObject>
-#include <QJsonArray>
 
 using namespace NetworkManager;
 using namespace dde::network;
@@ -110,12 +126,7 @@ void NetworkDetails::updateData(const QJsonObject &info)
         if (!channel.isEmpty())
             appendInfo(tr("Channel"), channel);
     }
-    if (isWireless || isHotspot) {
-        // 频段
-        const QString &band = hotspotInfo.value("Band").toString();
-        QString bandInfo = band == "a" ? "5 GHz" : (band == "bg" ? "2.4 GHz" : "automatic");
-        appendInfo(tr("Band"), bandInfo);
-    }
+
     if (isHotspot) {
         const QString securityType = info.value("Security").toString();
         appendInfo(tr("Security Type"), securityType);
@@ -128,7 +139,11 @@ void NetworkDetails::updateData(const QJsonObject &info)
     const QString mac = info.value("HwAddress").toString();
     if (!mac.isEmpty())
         appendInfo(tr("MAC"), mac);
-    if (!isHotspot) {
+    // 频段
+    if (isHotspot) {
+        const QString band = hotspotInfo.value("Band").toString();
+        appendInfo(tr("Band"), band);
+    } else {
         // ipv4
         if (info.contains("IPv4")) {
             QJsonObject ipv4TopObject = info["IPv4"].toObject();

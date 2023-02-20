@@ -51,7 +51,6 @@ ConnectionEditPage::ConnectionEditPage(ConnectionType connType, const QString &d
     , m_connType(static_cast<ConnectionSettings::ConnectionType>(connType))
     , m_isHotSpot(isHotSpot)
 {
-    qDBusRegisterMetaType<NMVariantMapMap>();
     DevicePath = devPath;
 
     initUI();
@@ -94,13 +93,14 @@ void ConnectionEditPage::initUI()
     w->setLayout(m_settingsLayout);
     area->setWidget(w);
 
-    m_buttonTuple_conn->removeSpacing();
     m_disconnectBtn = m_buttonTuple_conn->leftButton();
     m_removeBtn = m_buttonTuple_conn->rightButton();
     //    GSettingWatcher::instance()->bind("removeConnection", m_removeBtn);
 
     m_disconnectBtn->setText(tr("Disconnect", "button"));
+    m_disconnectBtn->setVisible(false);
     m_removeBtn->setText(tr("Delete", "button"));
+    m_removeBtn->setVisible(false);
 
     QPushButton *cancelBtn = m_buttonTuple->leftButton();
     QPushButton *acceptBtn = m_buttonTuple->rightButton();
@@ -151,15 +151,10 @@ bool ConnectionEditPage::isConnected()
     return false;
 }
 
-const ActiveConnection::State ConnectionEditPage::ConnectedState()
+void ConnectionEditPage::initHeaderButtons()
 {
-    NetworkManager::Device::Ptr device(new NetworkManager::Device(DevicePath));
-    if (device->type() == Device::Type::Wifi || device->type() == Device::Type::Ethernet) {
-        // 如果是有线网络或者无线网络
-        NetworkManager::ActiveConnection::Ptr activeConn = device->activeConnection();
-        if (!activeConn.isNull() && (activeConn->uuid() == m_connection->uuid())) {
-            return activeConn->state();
-        }
+    if (m_isNewConnection) {
+        return;
     }
 
     if (isConnected()) {
@@ -168,15 +163,10 @@ const ActiveConnection::State ConnectionEditPage::ConnectedState()
         m_disconnectBtn->setProperty("connectionUuid", m_connection->uuid());
     }
 
-    return NetworkManager::ActiveConnection::Unknown;
-}
+    m_removeBtn->setVisible(true);
 
-void ConnectionEditPage::initHeaderButtons()
-{
-    if (m_isNewConnection) {
-        m_disconnectBtn->setVisible(false);
-        m_removeBtn->setVisible(false);
-        m_buttonTuple_conn->setVisible(false);
+    //当只有m_removeBtn显示时,由于布局中添加了space,导致删除按钮未对齐,需要删除空格
+    if (!m_disconnectBtn->isHidden())
         return;
     m_buttonTuple_conn->removeSpacing();
 }

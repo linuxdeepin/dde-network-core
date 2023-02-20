@@ -96,12 +96,12 @@
         <translation>安全类型</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>网络通道</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>频段</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>网络通道</translation>
     </message>
     <message>
         <source>Interface</source>

@@ -61,6 +61,7 @@ public:
     const QString contextMenu(bool hasSetting) const;
     QWidget *itemTips();
     PluginState getPluginState();
+    void updatePluginState();
     void updateTooltips(); // 更新提示的内容
 
     QIcon *trayIcon() const;
@@ -80,17 +81,17 @@ private:
 
     int deviceCount(const DeviceType &devType) const;
     QList<QPair<QString, QStringList>> ipTipsMessage(const DeviceType &devType);
-    bool needSetPassword(AccessPoints *accessPoint) const;
 
 private Q_SLOTS:
     void onDeviceAdded(QList<NetworkDeviceBase *> devices);
     void onUpdatePlugView();
     void onActiveConnectionChanged();
 
-    void onAccessPointsAdded(QList<AccessPoints *> newAps);
-
 private:
+    PluginState m_pluginState;
+
     TipsWidget *m_tipsWidget;
+    bool m_switchWire;
     QPixmap m_iconPixmap;
 
     QSet<QString> m_devicePaths; // 记录无线设备Path,防止信号重复连接

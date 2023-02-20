@@ -96,12 +96,12 @@
         <translation>Biztonság típusa</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Csatorna</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Sáv</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Csatorna</translation>
     </message>
     <message>
         <source>Interface</source>
