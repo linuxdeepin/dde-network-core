@@ -102,7 +102,7 @@ public:
     explicit NetworkPlugin(QObject *parent = nullptr);
     ~NetworkPlugin() override { }
     void init() override;
-    bool isNeedInitPlugin() const override { return true; }
+    bool isNeedInitPlugin() const { return true; }
 
     inline QString key() const override { return objectName(); }
     QWidget *content() override;
