@@ -1,2 +1,3 @@
 usr/include/libddenetworkcore
-usr/lib/pkgconfig/dde-network-core.pc
+usr/lib/*/libdde-network-core.so
+usr/lib/*/pkgconfig/dde-network-core.pc

@@ -1,8 +1,12 @@
 cmake_minimum_required(VERSION 3.7)
 
-project(dde-network-core)
-
-set(VERSION "1.0.0" CACHE STRING "define project version")
+set(VERSION "2.0.4" CACHE STRING "define project version")
+project(dde-network-core
+  VERSION ${VERSION}
+  DESCRIPTION "DDE Network Core"
+  HOMEPAGE_URL "https://github.com/linuxdeepin/dde-network-core9"
+  LANGUAGES CXX C
+)
 
 # 增加安全编译参数
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fstack-protector-all")
