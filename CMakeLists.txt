@@ -9,6 +9,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fstack-protector-all")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fstack-protector-all")
 set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -z relro -z now -z noexecstack -pie")
 
+option(ENABLE_DEEPIN_NMQT "enable nmqt patch on deepin" OFF)
+
 set(DDE-Network-Core_INCLUDE_DIRS  "${CMAKE_SOURCE_DIR}/src")
 set(DDE-Network-Core_LIBRARIES  dde-network-core)
 
@@ -44,7 +46,7 @@ if (QT_DEBUG)
     message(STATUS ${result})
 endif()
 
-if (DEEPIN_NMQT_TEST)
+if (ENABLE_DEEPIN_NMQT)
     add_definitions(-DUSE_DEEPIN_NMQT)
 endif()
 
