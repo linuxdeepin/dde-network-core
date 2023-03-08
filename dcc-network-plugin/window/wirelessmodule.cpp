@@ -114,6 +114,14 @@ void WirelessModule::initWirelessList(DListView *lvAP)
     });
 }
 
+void WirelessModule::active() {
+    PageModule::active();
+
+    if (m_device->isEnabled()) {
+        m_device->scanNetwork();
+    }
+}
+
 void WirelessModule::onNameChanged(const QString &name)
 {
     QString tmp;

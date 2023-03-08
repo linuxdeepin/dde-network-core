@@ -26,6 +26,9 @@ class WirelessModule : public DCC_NAMESPACE::PageModule
 public:
     explicit WirelessModule(dde::network::WirelessDevice *dev, QObject *parent = nullptr);
 
+public Q_SLOTS:
+    virtual void active() override;
+
 private Q_SLOTS:
     void onNetworkAdapterChanged(bool checked);
     void onApWidgetEditRequested(dde::network::AccessPoints *ap, QWidget *parent);
