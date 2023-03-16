@@ -66,6 +66,7 @@ public:
 
     QIcon *trayIcon() const;
     QIcon icon(int colorType) const;
+    QString iconPath(int colorType) const;
     void refreshIcon();
     void setIconDark(bool isDark);
 
