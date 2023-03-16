@@ -17,6 +17,7 @@
 #include <QLabel>
 
 #include <DArrowRectangle>
+#include <DIconButton>
 
 #include <networkcontroller.h>
 #include <networkdevicebase.h>
@@ -35,148 +36,6 @@ NETWORKPLUGIN_USE_NAMESPACE
 
 namespace dss {
 namespace module {
-// 弹窗管理类,多屏会有多个弹窗
-class PopupAppletManager : public QObject
-{
-public:
-    explicit PopupAppletManager(NetworkDialog *networkDialog, NetworkPluginHelper *networkHelper, QObject *parent = nullptr)
-        : QObject(parent)
-        , m_networkDialog(networkDialog)
-        , m_networkHelper(networkHelper)
-        , m_popupShown(false)
-    {
-        m_networkDialog->setCloseOnClear(false);
-        QObject::connect(m_networkHelper, &NetworkPluginHelper::iconChanged, this, [this]() {
-            updateIcon();
-        });
-    }
-    ~PopupAppletManager() { }
-    inline bool popupShown()
-    {
-        return m_popupShown;
-    }
-    void showPopupApplet()
-    {
-        if (!m_popupShown) {
-            qApp->installEventFilter(this);
-            m_popupShown = true;
-        }
-        updatePopup();
-    }
-    void hidePopup()
-    {
-        m_popupShown = false;
-        qApp->removeEventFilter(this);
-        for (auto &&it : m_applets) {
-            if (it.second && it.second->isVisible()) {
-                m_networkDialog->clear();
-                it.second->setVisible(false);
-            }
-        }
-    }
-    void updatePopup()
-    {
-        if (!m_popupShown)
-            return;
-        for (auto &&it : m_applets) {
-            if (it.first->isVisible()) {
-                QPoint point = it.first->mapToGlobal(QPoint(it.first->width() / 2, 0));
-                QDesktopWidget *desktopWidget = qApp->desktop();
-                if (desktopWidget->screenNumber(point) != desktopWidget->screenNumber(QCursor::pos()))
-                    continue;
-
-                if (it.second.isNull()) {
-                    QWidget *pWidget = it.first->window();
-                    it.second = new DockPopupWindow(pWidget);
-                }
-
-                point = it.second->parentWidget()->mapFromGlobal(point);
-                QWidget *panel = m_networkDialog->panel();
-                QPalette palette = panel->palette();
-                palette.setColor(QPalette::Normal, QPalette::BrightText, QColor(255, 255, 255)); // 文本颜色
-                palette.setColor(QPalette::Normal, QPalette::Window, QColor(235, 235, 235, 13)); // 背景颜色
-                palette.setColor(DPalette::Normal, QPalette::ButtonText, QColor(0, 0, 0, 76));
-                panel->setPalette(palette);
-
-                it.second->setContent(panel);
-                it.second->show(point);
-            } else if (!it.second.isNull()) {
-                it.second->setVisible(false);
-            }
-        }
-    }
-
-    void addTrayIcon(QLabel *trayIcon)
-    {
-        if (!trayIcon)
-            return;
-        for (auto &&it : m_applets) {
-            if (it.first == trayIcon) {
-                trayIcon = nullptr;
-                break;
-            }
-        }
-        if (trayIcon) {
-            trayIcon->setAlignment(Qt::AlignCenter);
-            m_applets.append({ QPointer<QLabel>(trayIcon), QPointer<DockPopupWindow>(nullptr) });
-            connect(trayIcon, &QObject::destroyed, this, &PopupAppletManager::removerTrayIcon);
-            updateIcon();
-        }
-    }
-
-    void updateIcon()
-    {
-        QPixmap pixmap = m_networkHelper->trayIcon()->pixmap(26, 26);
-        for (auto &&it : m_applets) {
-            it.first->setPixmap(pixmap);
-        }
-    }
-
-protected:
-    // qApp的事件较多，固单独一个类监听其事件
-    bool eventFilter(QObject *watched, QEvent *e) override
-    {
-        switch (e->type()) {
-        case QEvent::MouseButtonPress: {
-            if (!m_popupShown)
-                break;
-
-            QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(e);
-            for (auto &&it : m_applets) {
-                if (!it.second || !it.second->isVisible())
-                    continue;
-
-                QRect rect = it.second->rect();
-                rect.moveTo(it.second->mapToGlobal(rect.topLeft()));
-                if (!rect.contains(mouseEvent->globalPos())) {
-                    hidePopup();
-                }
-                break;
-            }
-        } break;
-        default:
-            break;
-        }
-        return QObject::eventFilter(watched, e);
-    }
-
-    void removerTrayIcon()
-    {
-        QObject *o = sender();
-        for (auto it = m_applets.begin(); it != m_applets.end(); ++it) {
-            if (it->first == o) {
-                m_applets.erase(it);
-                break;
-            }
-        }
-    }
-
-public:
-    QList<QPair<QPointer<QLabel>, QPointer<DockPopupWindow>>> m_applets;
-    NetworkDialog *m_networkDialog;
-    NetworkPluginHelper *m_networkHelper;
-    bool m_popupShown;
-};
 
 NetworkModule::NetworkModule(QObject *parent)
     : QObject(parent)
@@ -190,8 +49,6 @@ NetworkModule::NetworkModule(QObject *parent)
 
     m_networkDialog = new NetworkDialog(this);
     m_networkHelper = new NetworkPluginHelper(m_networkDialog, this);
-    m_popupAppletManager = new PopupAppletManager(m_networkDialog, m_networkHelper, this);
-    connect(m_networkDialog, &NetworkDialog::requestShow, m_popupAppletManager, &PopupAppletManager::showPopupApplet);
 
     installTranslator(QLocale::system().name());
     ThemeManager::instance()->setThemeType(m_isLockModel ? ThemeManager::LockType : ThemeManager::GreeterType);
@@ -214,18 +71,11 @@ NetworkModule::NetworkModule(QObject *parent)
 
 QWidget *NetworkModule::content()
 {
-    int msec = QTime::currentTime().msecsSinceStartOfDay();
-    if (!m_popupAppletManager->popupShown() && abs(msec - m_clickTime) > 200) {
-        m_clickTime = msec;
-        m_popupAppletManager->showPopupApplet();
-    }
-    return nullptr;
+    return m_networkDialog->panel();
 }
 
 QWidget *NetworkModule::itemTipsWidget() const
 {
-    if (m_popupAppletManager->popupShown())
-        return nullptr;
     QWidget *itemTips = m_networkHelper->itemTips();
     if (itemTips) {
         QPalette palette = itemTips->palette();
@@ -246,35 +96,10 @@ void NetworkModule::invokedMenuItem(const QString &menuId, const bool checked) c
     m_networkHelper->invokeMenuItem(menuId);
 }
 
-bool NetworkModule::eventFilter(QObject *watched, QEvent *e)
-{
-    switch (e->type()) {
-    case QEvent::ParentChange: {
-        QLabel *trayIcon = qobject_cast<QLabel *>(watched);
-        if (!trayIcon || !trayIcon->parent() || (QString(trayIcon->parent()->metaObject()->className()).contains("FlotingButton")))
-            break;
-        if (!m_isLockModel)
-            NotificationManager::InstallEventFilter(trayIcon);
-        trayIcon->parent()->installEventFilter(this);
-        m_popupAppletManager->addTrayIcon(trayIcon);
-    } break;
-    case QEvent::Move:
-    case QEvent::Show:
-    case QEvent::Hide:
-        m_popupAppletManager->updatePopup();
-        break;
-    default:
-        break;
-    }
-    return QObject::eventFilter(watched, e);
-}
-
 void NetworkModule::updateLockScreenStatus(bool visible)
 {
     m_isLockModel = true;
     m_isLockScreen = visible;
-    if (m_popupAppletManager)
-        m_popupAppletManager->hidePopup();
 }
 
 void NetworkModule::onAddDevice(const QString &devicePath)
@@ -592,11 +417,24 @@ QWidget *NetworkPlugin::content()
     return m_network->content();
 }
 
+QString NetworkPlugin::icon() const
+{
+    return m_network->networkHelper()->iconPath(DGuiApplicationHelper::instance()->themeType());
+}
+
 QWidget *NetworkPlugin::itemWidget() const
 {
-    QLabel *trayIcon = new QLabel();
-    trayIcon->installEventFilter(m_network);
-    return trayIcon;
+    auto helper = m_network->networkHelper();
+    DIconButton *iconButton = new DIconButton;
+    iconButton->setFlat(true);
+    iconButton->setAttribute(Qt::WA_TransparentForMouseEvents);
+    iconButton->setIconSize({26, 26});
+    iconButton->setIcon(*helper->trayIcon());
+    connect(helper, &NetworkPluginHelper::iconChanged, helper, [helper, iconButton] {
+        iconButton->setIcon(*helper->trayIcon());
+    });
+    NotificationManager::InstallEventFilter(iconButton);
+    return iconButton;
 }
 
 QWidget *NetworkPlugin::itemTipsWidget() const

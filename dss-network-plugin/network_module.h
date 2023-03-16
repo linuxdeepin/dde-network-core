@@ -43,8 +43,6 @@ protected Q_SLOTS:
     void updateLockScreenStatus(bool visible);
 
 protected:
-    bool eventFilter(QObject *watched, QEvent *e) override;
-
     void onDeviceStatusChanged(NetworkManager::Device::State newstate, NetworkManager::Device::State oldstate, NetworkManager::Device::StateChangeReason reason);
     void onAddDevice(const QString &path);
     void onUserChanged(QString json);
@@ -70,8 +68,6 @@ private:
     QString m_lastConnectionUuid;
     NetworkManager::Device::State m_lastState;
     int m_clickTime;
-
-    PopupAppletManager *m_popupAppletManager;
 };
 
 class NetworkPlugin : public QObject, public TrayModuleInterface
@@ -89,7 +85,7 @@ public:
 
     inline QString key() const override { return objectName(); }
     QWidget *content() override;
-    inline QString icon() const override { return ":/wired/resources/wired/network-online-symbolic.svg"; }
+    QString icon() const override;
 
     QWidget *itemWidget() const override;
     QWidget *itemTipsWidget() const override;
