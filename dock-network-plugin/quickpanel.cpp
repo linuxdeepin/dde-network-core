@@ -153,35 +153,48 @@ bool QuickPanel::eventFilter(QObject *watched, QEvent *event)
 
 void QuickPanel::initUi()
 {
+    QHBoxLayout *mainLayout = new QHBoxLayout(this);
     // 文本
     QWidget *labelWidget = new QWidget(this);
     QVBoxLayout *layout = new QVBoxLayout(labelWidget);
-    layout->addWidget(m_text, 0, Qt::AlignLeft | Qt::AlignVCenter);
+    layout->setContentsMargins(0, 10, 0, 10);
+    layout->setSpacing(0);
     QFont nameFont = DFontSizeManager::instance()->t6();
     nameFont.setBold(true);
     m_text->setFont(nameFont);
     m_text->setElideMode(Qt::ElideRight);
-    layout->addWidget(m_description, 0, Qt::AlignLeft | Qt::AlignVCenter);
+    layout->addWidget(m_text);
     m_description->setFont(DFontSizeManager::instance()->t10());
     m_description->setElideMode(Qt::ElideRight);
-    labelWidget->setGeometry(46, 5, 80, 50);
+    layout->addWidget(m_description);
+
     // 图标
     m_iconButton->setEnabledCircle(true);
     m_iconButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     m_iconButton->setIconSize(IconSize);
-    m_iconButton->setGeometry(8, 10, 36, 36);
     m_iconButton->installEventFilter(this);
     m_iconButton->setCheckable(true);
+
     // 进入图标
-    QLabel *enterIcon = new QLabel(this);
+    QWidget *expandWidget = new QWidget(this);
+    QVBoxLayout *expandLayout = new QVBoxLayout(expandWidget);
+    QLabel *enterIcon = new QLabel(expandWidget);
     qreal ratio = devicePixelRatioF();
     QSize size = QCoreApplication::testAttribute(Qt::AA_UseHighDpiPixmaps) ? QSize(16, 16) : QSize(16, 16) * ratio;
     QPixmap enterPixmap = DStyle::standardIcon(style(), DStyle::SP_ArrowEnter).pixmap(size);
     enterPixmap.setDevicePixelRatio(ratio);
     enterIcon->setPixmap(enterPixmap);
-    enterIcon->setGeometry(127, 22, 16, 16);
+    expandLayout->setContentsMargins(0, 0, 0, 0);
+    expandLayout->setSpacing(0);
+    expandLayout->addWidget(enterIcon);
 
-    setFixedSize(150, 60);
+    mainLayout->setContentsMargins(10, 0, 10, 0);
+    mainLayout->setSpacing(0);
+    mainLayout->addWidget(m_iconButton);
+    mainLayout->addSpacing(10);
+    mainLayout->addWidget(labelWidget);
+    mainLayout->addStretch();
+    mainLayout->addWidget(expandWidget);
 }
 
 void QuickPanel::initConnect()
