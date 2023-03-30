@@ -1,3 +1,15 @@
+dde-network-core (2.0.5) unstable; urgency=medium
+
+  * refactor: delegate popup to dde-session-shell
+  * chore: reuse code and extract a function
+  * fix: Fix incorrect display of network plugins in QuickPanel
+  * fix: Control Center not automatically scanning for APs
+  * chore: use sovername
+  * chore: fix reuse
+  * chore: bring back enable_deepin_nmqt option
+
+ -- Deepin Packages Builder <packages@deepin.com>  Thu, 30 Mar 2023 15:18:56 +0800
+
 dde-network-core (2.0.4.2) unstable; urgency=medium
 
   [ Deepin Packages Builder ]
