@@ -25,7 +25,7 @@ using namespace DCC_NAMESPACE;
 using namespace NetworkManager;
 using namespace dcc::network;
 
-WirelessSection::WirelessSection(ConnectionSettings::Ptr connSettings, WirelessSetting::Ptr wiredSetting, QString devPath, bool isHotSpot, QFrame *parent)
+WirelessSection::WirelessSection(ConnectionSettings::Ptr connSettings, WirelessSetting::Ptr wiredSetting, const QString &devPath, bool isHotSpot, QFrame *parent)
     : AbstractSection(tr("WLAN"), parent)
     , m_apSsid(new LineEditWidget(this))
     , m_deviceMacLine(new ComboxWidget(this))
