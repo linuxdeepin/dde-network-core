@@ -51,3 +51,9 @@ Architecture: any
 Depends: ${misc:Depends},${shlibs:Depends},libdde-network-core (= ${binary:Version})
 Description: the plugin of network for dde-lock
  dss-network-plugin module
+
+Package: dock-hotspot-plugin
+Architecture: any
+Depends: ${misc:Depends},${shlibs:Depends},libdde-network-core (= ${binary:Version})
+Description: the plugin of hotspot for dde-lock
+ dock-hotspot-plugin module

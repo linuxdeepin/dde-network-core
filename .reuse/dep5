@@ -39,7 +39,7 @@ Copyright: UnionTech Software Technology Co., Ltd.
 License: LGPL-3.0-or-later
 
 # project config files(json)
-Files: dock-network-plugin/network.json dcc-network-plugin/network.json config/org.deepin.dde.network.json dde-network-dialog/network.json dss-network-plugin/network.json
+Files: dock-network-plugin/network.json dcc-network-plugin/network.json config/org.deepin.dde.network.json dde-network-dialog/network.json dss-network-plugin/network.json dock-hotspot-plugin/hotspot.json
 Copyright: UnionTech Software Technology Co., Ltd.
 License: LGPL-3.0-or-later
 
