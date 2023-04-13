@@ -68,6 +68,7 @@ SysProxyModule::SysProxyModule(QObject *parent)
     m_modules.append(new WidgetModule<ComboxWidget>("system_proxy_box", tr("System Proxy"), [this](ComboxWidget *proxyTypeBox) {
         m_proxyTypeBox = proxyTypeBox;
         proxyTypeBox->setTitle(tr("Proxy Type"));
+        proxyTypeBox->addBackground();
         proxyTypeBox->comboBox()->addItems(m_ProxyMethodList);
         auto updateBox = [proxyTypeBox]() {
             ProxyMethod method = NetworkController::instance()->proxyController()->proxyMethod();
