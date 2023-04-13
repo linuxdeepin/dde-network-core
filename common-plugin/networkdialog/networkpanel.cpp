@@ -881,6 +881,7 @@ void NetworkDelegate::paint(QPainter *painter, const QStyleOptionViewItem &optio
         painter->setRenderHint(QPainter::Antialiasing, true);
 
         QRect rct = checkRect(option.rect);
+        painter->save();
         painter->setPen(QPen(Qt::NoPen));
         painter->setBrush(m_parentWidget->palette().color(QPalette::Highlight));
 
@@ -890,6 +891,7 @@ void NetworkDelegate::paint(QPainter *painter, const QStyleOptionViewItem &optio
         else
             drawCheck(painter, rct, pen, DIAMETER);
 
+        painter->restore();
         break;
     }
     case NetConnectionType::Connecting: {
