@@ -4,7 +4,7 @@ set(VERSION "2.0.4" CACHE STRING "define project version")
 project(dde-network-core
   VERSION ${VERSION}
   DESCRIPTION "DDE Network Core"
-  HOMEPAGE_URL "https://github.com/linuxdeepin/dde-network-core9"
+  HOMEPAGE_URL "https://github.com/linuxdeepin/dde-network-core"
   LANGUAGES CXX C
 )
 
