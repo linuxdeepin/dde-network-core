@@ -1,3 +1,12 @@
+dde-network-core (2.0.6) unstable; urgency=medium
+
+  [ Deepin Packages Builder ]
+  * fix(dcc-network-plugin): 修改在多块无线网卡绑定到其他设备MAC时无法开启热点问题(Issue: 3947)(Bug: 148023)(Influence: 控制中心-网络-创建热点)
+  * fix: Hightlight background for wireless panel(Issue: 4068)
+  * fix: add backgroundcolor to the line proxy type(Issue: https://github.com/linuxdeepin/dde-network-core/issues/141)
+
+ -- Deepin Packages Builder <packages@deepin.org>  Mon, 17 Apr 2023 13:41:50 +0800
+
 dde-network-core (2.0.5) unstable; urgency=medium
 
   * refactor: delegate popup to dde-session-shell
