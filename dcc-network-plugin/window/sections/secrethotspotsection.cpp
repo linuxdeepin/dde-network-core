@@ -22,7 +22,7 @@ static const QList<WirelessSecuritySetting::KeyMgmt> KeyMgmtList {
 };
 
 SecretHotspotSection::SecretHotspotSection(WirelessSecuritySetting::Ptr wsSeting, QFrame *parent)
-    : AbstractSection(parent)
+    : AbstractSection(tr("Security"), parent)
     , m_keyMgmtChooser(new ComboxWidget(this))
     , m_passwdEdit(new LineEditWidget(true))
     , m_currentKeyMgmt(WirelessSecuritySetting::KeyMgmt::WpaNone)
