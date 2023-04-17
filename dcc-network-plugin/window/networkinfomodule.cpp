@@ -10,6 +10,7 @@
 #include <widgets/settingshead.h>
 #include <widgets/widgetmodule.h>
 #include <widgets/titlevalueitem.h>
+#include <widgets/settingsgroupmodule.h>
 
 using namespace dde::network;
 using namespace DCC_NAMESPACE;
@@ -29,6 +30,7 @@ void NetworkInfoModule::onUpdateNetworkInfo()
     }
     QList<NetworkDetails *> netDetails = NetworkController::instance()->networkDetails();
     int size = netDetails.size();
+    SettingsGroupModule *networkModuleGroup = new SettingsGroupModule("", tr(""));
     for (int i = 0; i < size; i++) {
         NetworkDetails *detail = netDetails[i];
         appendChild(new WidgetModule<SettingsHead>("", tr(""), [detail](SettingsHead *head) {
@@ -38,7 +40,7 @@ void NetworkInfoModule::onUpdateNetworkInfo()
         }));
         QList<QPair<QString, QString>> items = detail->items();
         for (const QPair<QString, QString> &item : items)
-            appendChild(new WidgetModule<TitleValueItem>("", tr(""), [item](TitleValueItem *valueItem) {
+            networkModuleGroup->appendChild(new WidgetModule<TitleValueItem>("", tr(""), [item](TitleValueItem *valueItem) {
                 valueItem->setTitle(item.first);
                 valueItem->setValue(item.second);
                 valueItem->addBackground();
@@ -46,6 +48,7 @@ void NetworkInfoModule::onUpdateNetworkInfo()
                     valueItem->setWordWrap(false);
             }));
         if (i < size - 1)
-            appendChild(new WidgetModule<QWidget>());
+            networkModuleGroup->appendChild(new WidgetModule<QWidget>());
     }
+    appendChild(networkModuleGroup);
 }
