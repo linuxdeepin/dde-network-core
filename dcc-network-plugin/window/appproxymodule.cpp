@@ -8,6 +8,7 @@
 #include <widgets/comboxwidget.h>
 #include <widgets/lineeditwidget.h>
 #include <widgets/widgetmodule.h>
+#include <widgets/settingsgroupmodule.h>
 
 #include <QLineEdit>
 #include <QPushButton>
@@ -31,8 +32,8 @@ AppProxyModule::AppProxyModule(QObject *parent)
     : PageModule("applicationProxy", tr("Application Proxy"), tr("Application Proxy"), QIcon::fromTheme("dcc_app_proxy"), parent)
 {
     deactive();
-
-    appendChild(new WidgetModule<ComboxWidget>("app_proxy_type", tr("Proxy Type"), [this](ComboxWidget *proxyType) {
+    SettingsGroupModule *appProxyModuleGroup = new SettingsGroupModule("", tr(""));
+    appProxyModuleGroup->appendChild(new WidgetModule<ComboxWidget>("app_proxy_type", tr("Proxy Type"), [this](ComboxWidget *proxyType) {
         m_proxyType = proxyType;
         proxyType->addBackground();
         proxyType->setTitle(tr("Proxy Type"));
@@ -51,7 +52,7 @@ AppProxyModule::AppProxyModule(QObject *parent)
             updateProxyType(NetworkController::instance()->proxyController()->appProxy().type);
         });
     }));
-    appendChild(new WidgetModule<LineEditWidget>("app_proxy_ip", tr("IP Address"), [this](LineEditWidget *addr) {
+    appProxyModuleGroup->appendChild(new WidgetModule<LineEditWidget>("app_proxy_ip", tr("IP Address"), [this](LineEditWidget *addr) {
         m_addr = addr;
         m_addr->addBackground();
         m_addr->setTitle(tr("IP Address"));
@@ -68,7 +69,7 @@ AppProxyModule::AppProxyModule(QObject *parent)
             updateAddr(NetworkController::instance()->proxyController()->appProxy().ip);
         });
     }));
-    appendChild(new WidgetModule<LineEditWidget>("app_proxy_port", tr("Port"), [this](LineEditWidget *portWidget) {
+    appProxyModuleGroup->appendChild(new WidgetModule<LineEditWidget>("app_proxy_port", tr("Port"), [this](LineEditWidget *portWidget) {
         m_port = portWidget;
         portWidget->addBackground();
         portWidget->setTitle(tr("Port"));
@@ -85,7 +86,7 @@ AppProxyModule::AppProxyModule(QObject *parent)
             updatePort(NetworkController::instance()->proxyController()->appProxy().port);
         });
     }));
-    appendChild(new WidgetModule<LineEditWidget>("app_proxy_username", tr("Username"), [this](LineEditWidget *username) {
+    appProxyModuleGroup->appendChild(new WidgetModule<LineEditWidget>("app_proxy_username", tr("Username"), [this](LineEditWidget *username) {
         m_username = username;
         username->addBackground();
         username->setTitle(tr("Username"));
@@ -102,7 +103,7 @@ AppProxyModule::AppProxyModule(QObject *parent)
             updateUsername(NetworkController::instance()->proxyController()->appProxy().username);
         });
     }));
-    appendChild(new WidgetModule<LineEditWidget>("app_proxy_password", tr("Password"), [this](LineEditWidget *password) {
+    appProxyModuleGroup->appendChild(new WidgetModule<LineEditWidget>("app_proxy_password", tr("Password"), [this](LineEditWidget *password) {
         m_password = password;
         password->addBackground();
         password->setTitle(tr("Password"));
@@ -120,6 +121,7 @@ AppProxyModule::AppProxyModule(QObject *parent)
             updatePassword(NetworkController::instance()->proxyController()->appProxy().password);
         });
     }));
+    appendChild(appProxyModuleGroup);
     appendChild(new WidgetModule<DTipLabel>("app_proxy_tip", tr("Check \"Use a proxy\" in application context menu in Launcher after configured"), [](DTipLabel *tip) {
         tip->setText(tr("Check \"Use a proxy\" in application context menu in Launcher after configured"));
         tip->setWordWrap(true);
