@@ -115,7 +115,7 @@ void NetworkDialog::readyReadHandler()
     if (socket) {
         QByteArray allData = socket->readAll();
         allData = m_lastData + allData;
-        qDebug() << "Recieve data from client: " << allData;
+        qDebug() << "Receive data from client: " << allData;
         QList<QByteArray> dataArray = allData.split('\n');
         m_lastData = dataArray.last();
         for (const QByteArray &data : dataArray) {
