@@ -30,7 +30,11 @@ void NetworkInfoModule::onUpdateNetworkInfo()
     }
     QList<NetworkDetails *> netDetails = NetworkController::instance()->networkDetails();
     int size = netDetails.size();
+<<<<<<< HEAD
     SettingsGroupModule *networkModuleGroup = new SettingsGroupModule("", tr(""));
+=======
+    setSpacing(1);
+>>>>>>> ff8d8c5 (fix: 修复了代理与端口之间控件使用不对的问题)
     for (int i = 0; i < size; i++) {
         NetworkDetails *detail = netDetails[i];
         networkModuleGroup->appendChild(new WidgetModule<SettingsHead>("", tr(""), [detail](SettingsHead *head) {

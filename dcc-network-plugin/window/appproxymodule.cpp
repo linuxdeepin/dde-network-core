@@ -32,8 +32,13 @@ AppProxyModule::AppProxyModule(QObject *parent)
     : PageModule("applicationProxy", tr("Application Proxy"), tr("Application Proxy"), QIcon::fromTheme("dcc_app_proxy"), parent)
 {
     deactive();
+<<<<<<< HEAD
     SettingsGroupModule *appProxyModuleGroup = new SettingsGroupModule("", tr(""));
     appProxyModuleGroup->appendChild(new WidgetModule<ComboxWidget>("app_proxy_type", tr("Proxy Type"), [this](ComboxWidget *proxyType) {
+=======
+    setSpacing(1);
+    appendChild(new WidgetModule<ComboxWidget>("app_proxy_type", tr("Proxy Type"), [this](ComboxWidget *proxyType) {
+>>>>>>> ff8d8c5 (fix: 修复了代理与端口之间控件使用不对的问题)
         m_proxyType = proxyType;
         proxyType->addBackground();
         proxyType->setTitle(tr("Proxy Type"));
