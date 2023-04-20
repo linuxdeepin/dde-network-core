@@ -430,7 +430,7 @@ QWidget *NetworkPlugin::itemWidget() const
     iconButton->setAttribute(Qt::WA_TransparentForMouseEvents);
     iconButton->setIconSize({26, 26});
     iconButton->setIcon(*helper->trayIcon());
-    connect(helper, &NetworkPluginHelper::iconChanged, helper, [helper, iconButton] {
+    connect(helper, &NetworkPluginHelper::iconChanged, iconButton, [helper, iconButton] {
         iconButton->setIcon(*helper->trayIcon());
     });
     NotificationManager::InstallEventFilter(iconButton);
