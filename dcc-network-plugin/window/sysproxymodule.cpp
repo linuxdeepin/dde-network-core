@@ -10,7 +10,8 @@
 #include <widgets/settingsgroup.h>
 #include <widgets/switchwidget.h>
 #include <widgets/widgetmodule.h>
-
+#include <widgets/settingsgroupmodule.h>
+#include <widgets/itemmodule.h>
 #include <DFloatingButton>
 #include <DFontSizeManager>
 #include <DListView>
@@ -36,8 +37,33 @@ SysProxyModule::SysProxyModule(QObject *parent)
     , m_ProxyMethodList({ tr("Manual"), tr("Auto") })
     , m_uiMethod(dde::network::ProxyMethod::Init)
 {
-    deactive();
-    m_modules.append(new WidgetModule<SwitchWidget>("system_proxy", tr("System Proxy"), [this](SwitchWidget *proxySwitch) {
+    auto initProxyGroup = [this] (LineEditWidget *&proxyEdit, LineEditWidget *&portEdit, const QString &proxyTitle) -> SettingsGroupModule* {
+        SettingsGroupModule *module = new SettingsGroupModule("","");
+        module->appendChild(new ItemModule("","", [&proxyEdit, this, proxyTitle](ModuleObject *module) {
+            proxyEdit = new LineEditWidget;
+            proxyEdit->setPlaceholderText(tr("Optional"));
+            proxyEdit->setTitle(proxyTitle);
+            proxyEdit->textEdit()->installEventFilter(this);
+            return proxyEdit;
+        },false));
+        module->appendChild(new ItemModule("","", [&portEdit, this](ModuleObject *module) {
+            portEdit = new LineEditWidget;
+            portEdit->setPlaceholderText(tr("Optional"));
+            portEdit->setTitle(tr("Port"));
+            portEdit->textEdit()->installEventFilter(this);
+            connect(portEdit->textEdit(), &QLineEdit::textChanged, this, [=](const QString &str) {
+                if (str.toInt() < 0) {
+                    portEdit->setText("0");
+                } else if (str.toInt() > 65535) {
+                    portEdit->setText("65535");
+                }
+            });
+            return portEdit;
+        },false));
+
+        return module;
+    };
+    appendChild(new WidgetModule<SwitchWidget>("system_proxy", tr("System Proxy"), [this](SwitchWidget *proxySwitch) {
         m_proxySwitch = proxySwitch;
         QLabel *lblTitle = new QLabel(tr("System Proxy"));
         DFontSizeManager::instance()->bind(lblTitle, DFontSizeManager::T5, QFont::DemiBold);
@@ -66,7 +92,7 @@ SysProxyModule::SysProxyModule(QObject *parent)
             }
         });
     }));
-    m_modules.append(new WidgetModule<ComboxWidget>("system_proxy_box", tr("System Proxy"), [this](ComboxWidget *proxyTypeBox) {
+    m_systemProxyTypeModule = new WidgetModule<ComboxWidget>("system_proxy_box", tr("System Proxy"), [this](ComboxWidget *proxyTypeBox) {
         m_proxyTypeBox = proxyTypeBox;
         proxyTypeBox->setTitle(tr("Proxy Type"));
         proxyTypeBox->addBackground();
@@ -99,8 +125,9 @@ SysProxyModule::SysProxyModule(QObject *parent)
             }
             m_buttonTuple->setEnabled(true);
         });
-    }));
-    m_modules.append(new WidgetModule<SettingsGroup>("system_proxy_auto_group", QString(), [this](SettingsGroup *autoGroup) {
+    });
+    appendChild(m_systemProxyTypeModule);
+    m_urlConfigureModule = new WidgetModule<SettingsGroup>("system_proxy_auto_group", QString(), [this](SettingsGroup *autoGroup) {
         m_autoUrl = new LineEditWidget;
         m_autoUrl->setPlaceholderText(tr("Optional"));
         m_autoUrl->setTitle(tr("Configuration URL"));
@@ -109,9 +136,43 @@ SysProxyModule::SysProxyModule(QObject *parent)
         connect(proxyController, &ProxyController::autoProxyChanged, m_autoUrl, &LineEditWidget::setText);
         autoGroup->appendItem(m_autoUrl);
         resetData(ProxyMethod::Auto);
-    }));
-    m_modules.append(new WidgetModule<QWidget>("system_proxy_manual_group", QString(), this, &SysProxyModule::initManualView));
-    m_modules.append(new WidgetModule<QWidget>); // 加个空的保证下面有弹簧
+    });
+    appendChild(m_urlConfigureModule);
+
+    m_httpProxyModule = initProxyGroup(m_httpAddr, m_httpPort, tr("HTTP Proxy")) ;
+    appendChild(m_httpProxyModule);
+
+    m_httpsProxyModule = initProxyGroup(m_httpsAddr, m_httpsPort, tr("HTTPS Proxy"));
+    appendChild(m_httpsProxyModule);
+    m_ftpProxyModule = initProxyGroup(m_ftpAddr, m_ftpPort, tr("FTP Proxy"));
+    appendChild(m_ftpProxyModule);
+    m_socketsModule = initProxyGroup(m_socksAddr, m_socksPort, tr("SOCKS Proxy"));
+    appendChild(m_socketsModule);
+    m_editLineModule = new ItemModule("", "", [ this ](ModuleObject *module) {
+        m_ignoreList = new DTextEdit;
+        m_ignoreList->setAccessibleName("ProxyPage_ignoreList");
+        m_ignoreList->installEventFilter(this);
+        QLabel *ignoreTips = new QLabel;
+        ignoreTips->setWordWrap(true);
+        ignoreTips->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        ignoreTips->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+        ignoreTips->setText(tr("Ignore the proxy configurations for the above hosts and domains"));
+        resetData(ProxyMethod::Manual);
+        ProxyController *proxyController = NetworkController::instance()->proxyController();
+        connect(proxyController, &ProxyController::proxyIgnoreHostsChanged, m_ignoreList, [this](const QString &hosts) {
+            const QTextCursor cursor = m_ignoreList->textCursor();
+            m_ignoreList->blockSignals(true);
+            m_ignoreList->setPlainText(hosts);
+            m_ignoreList->setTextCursor(cursor);
+            m_ignoreList->blockSignals(false);
+        });
+        connect(proxyController, &ProxyController::proxyChanged, m_httpAddr, [this]() {
+            resetData(ProxyMethod::Manual);
+        });
+        return m_ignoreList;
+    },false);
+    appendChild(m_editLineModule);
+
     ModuleObject *extra = new WidgetModule<ButtonTuple>("save", tr("Save", "button"), [this](ButtonTuple *buttonTuple) {
         m_buttonTuple = buttonTuple;
         m_buttonTuple->setButtonType(ButtonTuple::Save);
@@ -130,7 +191,7 @@ SysProxyModule::SysProxyModule(QObject *parent)
         });
     });
     extra->setExtra();
-    m_modules.append(extra);
+    appendChild(extra);
     NetworkController::instance()->proxyController()->querySysProxyData();
     uiMethodChanged(NetworkController::instance()->proxyController()->proxyMethod());
 }
@@ -145,91 +206,7 @@ void SysProxyModule::active()
 
 void SysProxyModule::deactive()
 {
-    m_proxySwitch = nullptr;
-    m_proxyTypeBox = nullptr;
-    m_autoUrl = nullptr;
-    m_httpAddr = nullptr;
-    m_httpPort = nullptr;
-    m_httpsAddr = nullptr;
-    m_httpsPort = nullptr;
-    m_ftpAddr = nullptr;
-    m_ftpPort = nullptr;
-    m_socksAddr = nullptr;
-    m_socksPort = nullptr;
-    m_ignoreList = nullptr;
-    m_buttonTuple = nullptr;
-}
 
-void SysProxyModule::initManualView(QWidget *w)
-{
-    // 手动代理编辑界面处理逻辑提取
-    auto initProxyGroup = [this](LineEditWidget *&proxyEdit, LineEditWidget *&portEdit, const QString &proxyTitle, SettingsGroup *&group) {
-        proxyEdit = new LineEditWidget(group);
-        proxyEdit->setPlaceholderText(tr("Optional"));
-        proxyEdit->setTitle(proxyTitle);
-        proxyEdit->textEdit()->installEventFilter(this);
-        portEdit = new LineEditWidget;
-        portEdit->setPlaceholderText(tr("Optional"));
-        portEdit->setTitle(tr("Port"));
-        portEdit->textEdit()->installEventFilter(this);
-        group->appendItem(proxyEdit);
-        group->appendItem(portEdit);
-        connect(portEdit->textEdit(), &QLineEdit::textChanged, this, [=](const QString &str) {
-            if (str.toInt() < 0) {
-                portEdit->setText("0");
-            } else if (str.toInt() > 65535) {
-                portEdit->setText("65535");
-            }
-        });
-    };
-
-    //  手动代理编辑界面控件初始化
-    SettingsGroup *httpGroup = new SettingsGroup();
-    initProxyGroup(m_httpAddr, m_httpPort, tr("HTTP Proxy"), httpGroup);
-
-    SettingsGroup *httpsGroup = new SettingsGroup();
-    initProxyGroup(m_httpsAddr, m_httpsPort, tr("HTTPS Proxy"), httpsGroup);
-
-    SettingsGroup *ftpGroup = new SettingsGroup();
-    initProxyGroup(m_ftpAddr, m_ftpPort, tr("FTP Proxy"), ftpGroup);
-
-    SettingsGroup *socksGroup = new SettingsGroup();
-    initProxyGroup(m_socksAddr, m_socksPort, tr("SOCKS Proxy"), socksGroup);
-
-    // 手动代理界面忽略主机编辑框初始化
-    m_ignoreList = new DTextEdit(w);
-    m_ignoreList->setAccessibleName("ProxyPage_ignoreList");
-    m_ignoreList->installEventFilter(this);
-    QLabel *ignoreTips = new QLabel(w);
-    ignoreTips->setWordWrap(true);
-    ignoreTips->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    ignoreTips->setAlignment(Qt::AlignTop | Qt::AlignLeft);
-    ignoreTips->setText(tr("Ignore the proxy configurations for the above hosts and domains"));
-
-    // 手动代理界面布局
-    QVBoxLayout *manualLayout = new QVBoxLayout(w);
-    manualLayout->addWidget(httpGroup);
-    manualLayout->addWidget(httpsGroup);
-    manualLayout->addWidget(ftpGroup);
-    manualLayout->addWidget(socksGroup);
-    manualLayout->addWidget(m_ignoreList);
-    manualLayout->addWidget(ignoreTips);
-    manualLayout->setMargin(0);
-    manualLayout->setSpacing(10);
-
-    resetData(ProxyMethod::Manual);
-    ProxyController *proxyController = NetworkController::instance()->proxyController();
-    connect(proxyController, &ProxyController::proxyIgnoreHostsChanged, m_ignoreList, [this](const QString &hosts) {
-        const QTextCursor cursor = m_ignoreList->textCursor();
-        m_ignoreList->blockSignals(true);
-        m_ignoreList->setPlainText(hosts);
-        m_ignoreList->setTextCursor(cursor);
-        m_ignoreList->blockSignals(false);
-    });
-
-    connect(proxyController, &ProxyController::proxyChanged, m_httpAddr, [this]() {
-        resetData(ProxyMethod::Manual);
-    });
 }
 
 void SysProxyModule::applySettings()
@@ -253,29 +230,18 @@ void SysProxyModule::applySettings()
 
 void SysProxyModule::uiMethodChanged(ProxyMethod uiMethod)
 {
-    int i = 0;
-    for (ModuleObject *module : m_modules) {
-        if (module->name() == "system_proxy_box") {
-            if (uiMethod != ProxyMethod::None)
-                insertChild(i++, module);
-            else
-                removeChild(module);
-        } else if (module->name() == "system_proxy_auto_group") {
-            if (uiMethod == ProxyMethod::Auto)
-                insertChild(i++, module);
-            else
-                removeChild(module);
-        } else if (module->name() == "system_proxy_manual_group") {
-            if (uiMethod == ProxyMethod::Manual)
-                insertChild(i++, module);
-            else
-                removeChild(module);
-        } else {
-            insertChild(i++, module);
-        }
-    }
-    if (m_buttonTuple)
+    if (!m_buttonTuple.isNull()) {
+        m_urlConfigureModule->setVisible(uiMethod == ProxyMethod::Auto);
+
+        m_httpProxyModule->setVisible(uiMethod == ProxyMethod::Manual);
+        m_httpsProxyModule->setVisible(uiMethod == ProxyMethod::Manual);
+        m_ftpProxyModule->setVisible(uiMethod == ProxyMethod::Manual);
+        m_socketsModule->setVisible(uiMethod == ProxyMethod::Manual);
+        m_editLineModule->setVisible(uiMethod == ProxyMethod::Manual);
+
+        m_systemProxyTypeModule->setVisible(uiMethod != ProxyMethod::None);
         m_buttonTuple->setVisible(uiMethod != ProxyMethod::None);
+    }
 }
 
 void SysProxyModule::resetData(ProxyMethod uiMethod)

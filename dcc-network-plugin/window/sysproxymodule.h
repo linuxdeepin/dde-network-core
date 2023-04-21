@@ -5,8 +5,10 @@
 #ifndef SYSPROXYMODULE_H
 #define SYSPROXYMODULE_H
 #include "interface/pagemodule.h"
+#include "widgets/widgetmodule.h"
 
 #include <dtkwidget_global.h>
+#include <QPointer>
 
 DWIDGET_BEGIN_NAMESPACE
 class DTextEdit;
@@ -17,6 +19,10 @@ class SettingsGroup;
 class LineEditWidget;
 class ButtonTuple;
 class SwitchWidget;
+class ComboxWidget;
+class SettingsGroup;
+class SettingsGroupModule;
+class ItemModule;
 class ComboxWidget;
 }
 
@@ -37,7 +43,6 @@ public:
     virtual void deactive() override;
 
 private Q_SLOTS:
-    void initManualView(QWidget *w);
     void applySettings();
     void uiMethodChanged(dde::network::ProxyMethod uiMethod);
     void resetData(dde::network::ProxyMethod uiMethod);
@@ -52,6 +57,15 @@ private:
     DCC_NAMESPACE::SwitchWidget *m_proxySwitch;
     DCC_NAMESPACE::ComboxWidget *m_proxyTypeBox;
 
+    WidgetModule<DCC_NAMESPACE::ComboxWidget> *m_systemProxyTypeModule;
+    WidgetModule<DCC_NAMESPACE::SettingsGroup> *m_urlConfigureModule;
+
+    DCC_NAMESPACE::SettingsGroupModule *m_httpProxyModule;
+    DCC_NAMESPACE::SettingsGroupModule *m_httpsProxyModule;
+    DCC_NAMESPACE::SettingsGroupModule *m_ftpProxyModule;
+    DCC_NAMESPACE::SettingsGroupModule *m_socketsModule;
+    DCC_NAMESPACE::ItemModule *m_editLineModule;
+
     DCC_NAMESPACE::LineEditWidget *m_autoUrl;
 
     DCC_NAMESPACE::LineEditWidget *m_httpAddr;
@@ -63,7 +77,7 @@ private:
     DCC_NAMESPACE::LineEditWidget *m_socksAddr;
     DCC_NAMESPACE::LineEditWidget *m_socksPort;
     DTK_WIDGET_NAMESPACE::DTextEdit *m_ignoreList;
-    DCC_NAMESPACE::ButtonTuple *m_buttonTuple;
+    QPointer<DCC_NAMESPACE::ButtonTuple> m_buttonTuple;
 
     dde::network::ProxyMethod m_uiMethod; // ui修改的ProxyMethod
 };
