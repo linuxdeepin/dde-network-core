@@ -456,7 +456,10 @@ int ConnectionEditPage::connectionSuffixNum(const QString &matchConnName)
 
 void ConnectionEditPage::addHeaderButton(QPushButton *button)
 {
-    m_mainLayout->insertWidget(m_mainLayout->indexOf(m_buttonTuple_conn) + 1, button);
+    QVBoxLayout *headerButtonLayout = new QVBoxLayout();
+    headerButtonLayout->addWidget(button);
+    headerButtonLayout->setContentsMargins(10, 0, 10, 0);
+    m_mainLayout->insertLayout(m_mainLayout->indexOf(m_buttonTuple_conn) + 1, headerButtonLayout);
 }
 
 bool ConnectionEditPage::eventFilter(QObject *obj, QEvent *event)
