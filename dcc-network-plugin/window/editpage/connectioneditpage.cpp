@@ -88,6 +88,7 @@ void ConnectionEditPage::initUI()
     QScrollArea * area = new QScrollArea;
     area->setFrameShape(QFrame::NoFrame);
     area->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    area->setAlignment(Qt::AlignHCenter);
     area->setWidgetResizable(true);
     QWidget *w = new QWidget();
     w->setLayout(m_settingsLayout);
