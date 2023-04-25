@@ -7,6 +7,7 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QTranslator>
+#include <DGuiApplicationHelper>
 
 #include "dccplugintestwidget.h"
 
@@ -19,6 +20,9 @@ int main(int argc, char *argv[])
     QTranslator t;
     if (t.load(":/qm/network_cn_qm"))
         app.installTranslator(&t);
+    Dtk::Gui::DGuiApplicationHelper::loadTranslator("dcc-network-plugin",
+                                                    {app.applicationDirPath() + "/../dcc-network-plugin"},
+                                                    {QLocale::system()});
 
     if (QString(argv[1]) == "dccPlug") {
         DccPluginTestWidget testPluginWidget;
