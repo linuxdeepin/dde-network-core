@@ -45,7 +45,8 @@ NetworkInterProcesser::NetworkInterProcesser(bool sync, bool ipCheck, QObject *p
 
 NetworkInterProcesser::~NetworkInterProcesser()
 {
-    delete m_ipChecker;
+    m_ipChecker->release();
+    m_ipChecker->deleteLater();
 }
 
 void NetworkInterProcesser::initNetData(NetworkDBusProxy *networkInt)

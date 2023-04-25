@@ -39,6 +39,10 @@ IPConfilctChecker::IPConfilctChecker(NetworkProcesser *networkProcesser, const b
 
 IPConfilctChecker::~IPConfilctChecker()
 {
+}
+
+void IPConfilctChecker::release()
+{
     m_thread->quit();
     m_thread->wait();
 }

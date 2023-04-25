@@ -31,6 +31,8 @@ public:
     explicit IPConfilctChecker(NetworkProcesser *networkProcesser, const bool ipChecked, QObject *parent = nullptr);
     ~IPConfilctChecker();
 
+    void release();
+
 private Q_SLOT:
     void onDeviceAdded(QList<NetworkDeviceBase *> devices);
     void onIPConfilct(const QString &ip, const QString &macAddress);
