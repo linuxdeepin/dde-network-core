@@ -30,9 +30,10 @@ void NetworkInfoModule::onUpdateNetworkInfo()
     }
     QList<NetworkDetails *> netDetails = NetworkController::instance()->networkDetails();
     int size = netDetails.size();
-    SettingsGroupModule *networkModuleGroup = new SettingsGroupModule("", tr(""));
+
     for (int i = 0; i < size; i++) {
         NetworkDetails *detail = netDetails[i];
+        SettingsGroupModule *networkModuleGroup = new SettingsGroupModule("", tr(""));
         appendChild(new WidgetModule<SettingsHead>("", tr(""), [detail](SettingsHead *head) {
             head->setEditEnable(false);
             head->setContentsMargins(10, 0, 0, 0);
@@ -49,6 +50,7 @@ void NetworkInfoModule::onUpdateNetworkInfo()
             }));
         if (i < size - 1)
             networkModuleGroup->appendChild(new WidgetModule<QWidget>());
+
+        appendChild(networkModuleGroup);
     }
-    appendChild(networkModuleGroup);
 }
