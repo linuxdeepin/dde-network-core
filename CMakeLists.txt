@@ -59,6 +59,7 @@ message(STATUS DEEPIN_NMQT_TEST ": ${DEEPIN_NMQT_TEST}")
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
     set(CMAKE_INSTALL_PREFIX "/usr")
 endif()
+include(GNUInstallDirs)
 
 add_subdirectory("src")
 add_subdirectory("dcc-network-plugin")
