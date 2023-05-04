@@ -152,7 +152,10 @@ void NetworkModule::installTranslator(QString locale)
     }
     localTmp = locale;
     QApplication::removeTranslator(&translator);
-    translator.load(QString("/usr/share/dss-network-plugin/translations/dss-network-plugin_%1.qm").arg(locale));
+    QString languagePath = QStandardPaths::locate(QStandardPaths::GenericDataLocation,
+                                                  QString("dss-network-plugin/translations"),
+                                                  QStandardPaths::LocateDirectory);
+    translator.load(QString(languagePath+"/dss-network-plugin_%1.qm").arg(locale));
     QApplication::installTranslator(&translator);
     dde::network::NetworkController::instance()->retranslate();
     m_networkHelper->updateTooltips();

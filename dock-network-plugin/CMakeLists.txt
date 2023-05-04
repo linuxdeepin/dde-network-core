@@ -3,7 +3,6 @@ cmake_minimum_required(VERSION 3.7)
 set(PLUGIN_NAME "dock-network-plugin")
 
 project(${PLUGIN_NAME})
-include(GNUInstallDirs)
 # 启用 qt moc 的支持
 set(CMAKE_AUTOMOC ON)
 # 启用 qrc 资源文件的支持
@@ -67,6 +66,6 @@ target_link_libraries(${PLUGIN_NAME} PRIVATE
     ${Qt5Network_LIBRARIES}
 )
 
-install(TARGETS ${PLUGIN_NAME} LIBRARY DESTINATION /usr/lib/dde-dock/plugins/quick-trays)
+install(TARGETS ${PLUGIN_NAME} LIBRARY DESTINATION lib/dde-dock/plugins/quick-trays)
 # 安装 .qm 文件
 install(FILES ${QM_FILES} DESTINATION ${CMAKE_INSTALL_DATADIR}/${PLUGIN_NAME}/translations)
