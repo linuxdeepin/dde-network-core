@@ -6,8 +6,7 @@
 #include "networkdbusproxy.h"
 
 #include <QFile>
-
-const QString chains4Path = "/usr/bin/proxychains4";
+#include <QStandardPaths>
 
 using namespace dde::network;
 
@@ -33,7 +32,7 @@ ProxyController::ProxyController(NetworkDBusProxy *networkInter, QObject *parent
     m_appProxyConfig.username = m_networkInter->user();
     m_appProxyConfig.password = m_networkInter->password();
     // 判断是否存在proxychains4来决定是否存在应用代理
-    m_appProxyExist = QFile().exists(chains4Path);
+    m_appProxyExist = !QStandardPaths::findExecutable("proxychains4").isEmpty();
 }
 
 ProxyController::~ProxyController()
