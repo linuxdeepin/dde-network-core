@@ -40,6 +40,7 @@ MultiIpvxSection::MultiIpvxSection(Setting::Ptr ipvSetting, QFrame *parent)
     setSettingsHead(m_headerWidget);
     m_headerWidget->setEditEnable(false);
     m_headerEditWidget->toCancel();
+    m_headerWidget->setContentsMargins(8, 0, 0, 0);
     m_headerWidget->setFixedHeight(30);
     m_headerEditWidget->setFixedHeight(30);
 
