@@ -79,6 +79,7 @@ target_link_libraries(${PLUGIN_NAME} PRIVATE
     ${KF5_QT_LIBRARIES}
     ${Qt5Network_LIBRARIES}
     ${DCC_WIDGETS_LIBRARIES}
+    ${DCC_INTERFACE_LIBRARIES}
 #    ${DDE-Network-Core_LIBRARIES}
 )
 
