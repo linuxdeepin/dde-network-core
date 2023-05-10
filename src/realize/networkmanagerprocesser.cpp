@@ -48,7 +48,8 @@ NetworkManagerProcesser::NetworkManagerProcesser(QObject *parent)
 
 NetworkManagerProcesser::~NetworkManagerProcesser()
 {
-    delete m_ipChecker;
+    m_ipChecker->release();
+    m_ipChecker->deleteLater();
 }
 
 void NetworkManagerProcesser::initConnections()
