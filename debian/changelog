@@ -1,3 +1,21 @@
+dde-network-core (2.0.8) unstable; urgency=medium
+
+  * fix: 修复了代理与端口之间控件使用不对的问题
+    Thanks to York Lee(issue: https://github.com/linuxdeepin/dde-network-core/issues/141)
+  * fix: Crashed when exit running in debug qt
+  * fix: App crashed running in debug QT
+  * fix: wrong fix for networkdetail
+  * chore: don't use hardcode path
+  * fix: Add a missing library link
+    Thanks to Hillwood Yang
+  * chore: Sync by https://github.com/linuxdeepin/.github/commit/2e5e092ba3f86b16d1aabbabcf0bfd2ae65b19c8(Influence: none)
+  * fix: crash on exit when running in qt debug ver
+  * fix: 修复了内容区没有居中于弹窗的问题
+    Thanks to skdsfy(Issue: #141)
+  * fix: Hotspot can't be connected for Wpa/Wpa2(Issue: https://github.com/linuxdeepin/developer-center/issues/3732)
+
+ -- Deepin Packages Builder <packages@deepin.org>  Fri, 12 May 2023 10:57:03 +0800
+
 dde-network-core (2.0.7) unstable; urgency=medium
 
   * fix: 修复了新增个人热点的弹窗名称与安全之间的间隔过大的问题
