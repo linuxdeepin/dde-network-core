@@ -109,6 +109,7 @@ AppProxyModule::AppProxyModule(QObject *parent)
         password->setTitle(tr("Password"));
         password->setPlaceholderText(tr("Optional"));
         password->textEdit()->setEchoMode(QLineEdit::Password);
+        m_password->textEdit()->setValidator(new QRegExpValidator(QRegExp("^\\S+$"), this));
         password->textEdit()->installEventFilter(this);
         auto updatePassword = [password](const QString &user) {
             password->textEdit()->blockSignals(true);
