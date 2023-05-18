@@ -43,7 +43,6 @@ if (NOT KF5_QT_LIBRARIES)
 endif()
 
 target_include_directories(${PLUGIN_NAME} PUBLIC
-    ${NETWORKINTERFACE}
     ${DtkWidget_INCLUDE_DIRS}
     ${Qt5DBus_INCLUDE_DIRS}
     ${QGSettings_INCLUDE_DIRS}
