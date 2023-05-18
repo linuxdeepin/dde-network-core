@@ -1,3 +1,43 @@
+dde-network-core (2.0.9) unstable; urgency=medium
+
+  * fix(merge-to-v23): e636c91f
+  * fix(merge-to-v23):  0873866f
+  * fix: 防止控制中心多次推送IP冲突消息(Bug: 130419)(Influence: IP冲突横幅通知。)
+  * fix: ip冲突处理错误(Bug: 131935)(Influence: IP冲突)
+  * fix(merge-to-v23): 0dca8ebd
+  * fix(dde-network-core): 没有激活的网络连接时数据更新处理错误(Bug: 141047)(Influence: 网络个人热点功能/网络详细信息显示)
+  * fix: 不弹出网络列表(Bug: 146131)(Influence: 网络弹窗)
+  * fix: 输入密码的ap和已连接的ap不是同一个(Bug: 146165)(Influence: 连接加密网络)
+  * fix: 修复断开连接无法自动连接下一个连接问题(Bug: 146233)(Influence: 网络连接)
+  * fix(dcc-network-plugin): 修改在多块无线网卡取消绑定MAC时无法开启热点问题(Bug: 149527)(Influence: 控制中心-网络-创建热点)
+  * fix: 修复热点和wifi显示频段不统一问题(Bug: 151079)(Influence: 频段)
+  * fix: 初始化网络连接编辑界面时需要向DBUS注册NMVariantMapMap数据类型(Task: 175119)(Influence: 正常编辑网络连接)
+  * fix: 修复“使用LZO压缩”未识别“comp-lzo adaptive”的问题
+    Thanks to hotime(Influence: 控制中心 - 网络 - VPN - VPN高级选项 - 使用LZO压缩)
+  * fix: 修复隐藏网络连接失败的问题(Bug: 155277)(Influence: ARM平台且wayland下，连接隐藏网络)
+  * fix: 修改登录界面网络面板没有显示正在连接的WiFi问题(Bug: 149937)(Influence: 登录界面-网络)
+  * fix: 修复在控制中心连接隐藏网络后任务栏弹出输入密码的提示(Bug: 158483)(Influence: 打开控制中心，连接隐藏网络，输入密码，观察任务栏是否弹出网络框让输入密码)
+  * fix: 网络库类型未注册qDbus导致锁屏异常退出(Bug: 159567)(Influence: 锁屏界面正常显示)
+  * fix: 修复部份网络无法连接隐藏热点的问题 (#89)
+    Thanks to liaohanqin(Bug: 155771)(Influence: wifi)
+  * fix: 修复连接隐藏网络问题(Bug: 174223)(Influence: 网络面板-连接网络)
+  * fix: 修复个人热点无法开启问题
+    Thanks to caixr23(Bug: 174545)(Influence: 控制中心-开启个人热点)
+  * feat: 导出VPN时提供默认文件名(Task: 212939)(Influence: VPN默认文件名)
+  * feat: VPN支持域名网关 (#105)
+    Thanks to liaohanqin(Task: 212887)(Influence: vpn)
+  * fix: 修复WiFi频段单位错误问题(Bug: 176467)(Influence: WIFI频段)
+  * fix: 要求输入密码时任务栏先响应界面显示再显示密码输入框 (#117)
+    Thanks to chenjun(Bug: 172773)(Influence: 要求输入密码时密码框有焦点)
+  * fix: 修复热点激活问题 (#119)
+    Thanks to liaohanqin(Bug: 179755)(Influence: 无)
+  * fix: 连接监听"com.deepin.system.Network"的"DeviceEnabled"属性改变信号 (#121)
+    Thanks to chenjun(Bug: 179753)(Influence: 关闭网络时及时清空无线网络列表)
+  * fix: 修复dock栏无法自动回连问题 (#128)
+    Thanks to liaohanqin(Bug: 181203)(Influence: 网络)
+
+ -- Deepin Packages Builder <packages@deepin.org>  Thu, 18 May 2023 20:22:50 +0800
+
 dde-network-core (2.0.8) unstable; urgency=medium
 
   * fix: 修复了代理与端口之间控件使用不对的问题
