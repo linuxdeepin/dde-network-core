@@ -55,8 +55,6 @@ add_library(${PLUGIN_NAME} SHARED ${SRCS})
 # 变量 ${DtkWidget_INCLUDE_DIRS} 是在前面执行 find_package 命令时引入的
 # 当出现编译失败提示找不到某些库的头文件时应该检查此处是否将所有需要的头文件都包含了
 target_include_directories(${PLUGIN_NAME} PUBLIC
-    ../src
-    ../src/realize
     window
     operation
     ${Qt5Widgets_INCLUDE_DIRS}
@@ -66,7 +64,7 @@ target_include_directories(${PLUGIN_NAME} PUBLIC
     ${KF5_QT_INCLUDE_DIRS}
     ${Qt5Network_INCLUDE_DIRS}
     ${NETINTERFACEINCLUDE}
-#    ${DDE-Network-Core_INCLUDE_DIRS}
+    ${DDE-Network-Core_INCLUDE_DIRS}
 )
 # 设置目标要使用的链接库
 # 变量 ${DtkWidget_LIBRARIES} 和 ${Qt5Widgets_LIBRARIES} 是在前面执行 find_package 命令时引入的
@@ -80,7 +78,7 @@ target_link_libraries(${PLUGIN_NAME} PRIVATE
     ${Qt5Network_LIBRARIES}
     ${DCC_WIDGETS_LIBRARIES}
     ${DCC_INTERFACE_LIBRARIES}
-#    ${DDE-Network-Core_LIBRARIES}
+    ${DDE-Network-Core_LIBRARIES}
 )
 
 # 设置执行 make install 时哪个目标应该被 install 到哪个位置
