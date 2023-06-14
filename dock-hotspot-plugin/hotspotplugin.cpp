@@ -32,6 +32,7 @@ void HotspotPlugin::init(PluginProxyInterface *proxyInter) {
     if (dev->type() == NetworkManager::Device::Wifi)
       m_wirelessDev.append(dev);
   }
+  initConnection();
   updateLatestHotSpot();
   for (const auto &dev : m_wirelessDev)
         updateState(dev);
@@ -111,7 +112,7 @@ void HotspotPlugin::updateState(const NetworkManager::Device::Ptr &dev) {
       }
     }
   }
-
+  qInfo() << "hotspot update state to:" << enabled;
   if (enabled) {
     m_latestDevice = dev;
     m_latestHotSpot = con->connection();
@@ -150,7 +151,24 @@ const QString HotspotPlugin::itemCommand(const QString &itemKey) {
   Q_UNUSED(itemKey)
   if(m_wirelessDev.isEmpty()){
       qWarning() << "hotspot is unsupported. ignore...";
-      return QString{};
+      return {};
+  }
+  if (hotspotEnabled) {
+    auto curCon = m_latestDevice->activeConnection();
+    auto reply = NetworkManager::deactivateConnection(curCon->path());
+    reply.waitForFinished(); // force sync
+    if(reply.isError())
+      qWarning() << reply.error() << m_latestHotSpot->path();
+      return {};
+  } else {
+    if(!m_latestDevice.isNull() and !m_latestHotSpot.isNull()){
+      auto reply = NetworkManager::activateConnection(m_latestHotSpot->path(),m_latestDevice->uni(),"/");
+      reply.waitForFinished(); // force sync
+      if(reply.isError())
+          qWarning() << "activate failed:" << reply.error();
+      return {};
+    }
+    qWarning() << "Internal error: unreachable....";
   }
   return QString("dbus-send --print-reply --dest=org.deepin.dde.ControlCenter1 /org/deepin/dde/ControlCenter1 org.deepin.dde.ControlCenter1.ShowPage string:network/personalHotspot");
 }
