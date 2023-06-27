@@ -49,7 +49,7 @@ Copyright: UnionTech Software Technology Co., Ltd.
 License: LGPL-3.0-or-later
 
 # sh
-Files: dcc-network-plugin/lupdate.sh dde-network-dialog/lupdate.sh dss-network-plugin/lupdate.sh dock-network-plugin/lupdate.sh tests/test-recoverage.sh
+Files: dcc-network-plugin/lupdate.sh dde-network-dialog/lupdate.sh dss-network-plugin/lupdate.sh dock-network-plugin/lupdate.sh tests/test-recoverage.sh dock-hotspot-plugin/lupdate.sh
 Copyright: UnionTech Software Technology Co., Ltd.
 License: LGPL-3.0-or-later
 
