@@ -3,8 +3,8 @@ if [ ! -d "translations/" ];then
   mkdir translations
 fi
 cd ./translations
-rm -f dss-network-plugin.ts
-lupdate ../ ../../src ../../common-plugin -ts -no-ui-lines -locations none -no-obsolete dss-network-plugin.ts
+rm -f dss-network-plugin_en_US.ts
+lupdate ../ ../../src ../../common-plugin -ts -no-ui-lines -locations none -no-obsolete dss-network-plugin_en_US.ts
 cd ../
 
-tx push -s -b m23
+tx push -s --branch m23
