@@ -8,6 +8,7 @@
 #include <QVBoxLayout>
 #include <DDBusSender>
 #include <networkmanagerqt/accesspoint.h>
+#include <networkmanagerqt/settings.h>
 #include <algorithm>
 HOTSPOTPLUGIN_BEGIN_NAMESPACE
 
@@ -82,6 +83,16 @@ void HotspotPlugin::initConnection() {
               }
             }
           });
+
+  connect(NetworkManager::settingsNotifier(),
+          &NetworkManager::SettingsNotifier::connectionRemoved, this,
+          [this](const QString &path) {
+            if (m_latestHotSpot.isNull())
+              return;
+            if (path == m_latestHotSpot->path())
+              updateLatestHotSpot();
+          });
+
   for (const auto &dev : m_wirelessDev) {
     connect(dev.data(), &NetworkManager::Device::activeConnectionChanged,
             [this,dev]() {
@@ -168,7 +179,6 @@ const QString HotspotPlugin::itemCommand(const QString &itemKey) {
           qWarning() << "activate failed:" << reply.error();
       return {};
     }
-    qWarning() << "Internal error: unreachable....";
   }
   return QString("dbus-send --print-reply --dest=org.deepin.dde.ControlCenter1 /org/deepin/dde/ControlCenter1 org.deepin.dde.ControlCenter1.ShowPage string:network/personalHotspot");
 }
@@ -253,6 +263,12 @@ void HotspotPlugin::updateLatestHotSpot(){
               m_latestHotSpot = elem;
             }
         }
+    }
+
+    if (maxTimeStamp == 0) {
+        m_latestDevice.reset(nullptr);
+        m_latestHotSpot.reset(nullptr);
+        onStateChanged(false);
     }
 }
 
