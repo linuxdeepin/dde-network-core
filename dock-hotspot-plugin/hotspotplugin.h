@@ -22,6 +22,9 @@ class HotspotPlugin : public QObject, PluginsItemInterface {
                         "hotspot.json")
 
  public:
+  enum class State {
+    On,Off,Unavailable,Unsupported
+  };
   explicit HotspotPlugin(QObject *parent = nullptr);
   ~HotspotPlugin() override;
 
@@ -40,10 +43,12 @@ class HotspotPlugin : public QObject, PluginsItemInterface {
   PluginFlags flags() const override;
 
   private Q_SLOTS:
-   void onStateChanged(bool enabled);
+   void onStateChanged(State state);
 
   private:
    void initConnection();
+   bool checkDeviceAvailability(const NetworkManager::Device::Ptr &dev) const;
+   void initDevConnection(const NetworkManager::Device::Ptr &dev);
    QPixmap getIcon(const DGuiApplicationHelper::ColorType type, const QSize& size) const;
    void updateState(const NetworkManager::Device::Ptr& dev);
    void onQuickPanelClicked();
