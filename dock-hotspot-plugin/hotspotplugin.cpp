@@ -9,6 +9,7 @@
 #include <DDBusSender>
 #include <networkmanagerqt/accesspoint.h>
 #include <networkmanagerqt/settings.h>
+#include <networkmanagerqt/device.h>
 #include <algorithm>
 HOTSPOTPLUGIN_BEGIN_NAMESPACE
 
@@ -28,7 +29,7 @@ void HotspotPlugin::init(PluginProxyInterface *proxyInter) {
   m_tipsLabel.reset(new networkplugin::TipsWidget());
   m_quickPanel.reset(new QuickPanel());
 
-  onStateChanged(false);
+  onStateChanged(State::Off);
   for (const auto &dev : NetworkManager::networkInterfaces()) {
     if (dev->type() == NetworkManager::Device::Wifi)
       m_wirelessDev.append(dev);
@@ -36,7 +37,8 @@ void HotspotPlugin::init(PluginProxyInterface *proxyInter) {
   initConnection();
   updateLatestHotSpot();
   for (const auto &dev : m_wirelessDev)
-        updateState(dev);
+    updateState(dev);
+     
   m_proxyInter->itemAdded(this, hotspot_key);
 }
 
@@ -52,12 +54,7 @@ void HotspotPlugin::initConnection() {
             const auto dev = NetworkManager::Device::Ptr{new NetworkManager::Device{uni}};
             if (dev->type() == NetworkManager::Device::Wifi){
               m_wirelessDev.append(dev);
-              connect(dev.data(),
-                      &NetworkManager::Device::activeConnectionChanged, this,
-                      [this, dev]() {
-                        qInfo() << "active connection changed";
-                        updateState(dev);
-                      });
+              initDevConnection(dev);
             }
           });
 
@@ -77,29 +74,52 @@ void HotspotPlugin::initConnection() {
                     if (reply.isError())
                       qWarning() << "activate failed:" << reply.error();
                   } else {
-                    onStateChanged(false);
+                    onStateChanged(State::Off);
                   }
                 }
               }
             }
           });
-
-  connect(NetworkManager::settingsNotifier(),
-          &NetworkManager::SettingsNotifier::connectionRemoved, this,
-          [this](const QString &path) {
-            if (m_latestHotSpot.isNull())
+  connect(NetworkManager::settingsNotifier(), &NetworkManager::SettingsNotifier::connectionRemoved,this,
+          [this](const QString& path) {
+            if(m_latestHotSpot.isNull()){
               return;
-            if (path == m_latestHotSpot->path())
+            }
+            qInfo() << "connection was removed:" << path;  
+            if(path == m_latestHotSpot->path())
               updateLatestHotSpot();
           });
 
-  for (const auto &dev : m_wirelessDev) {
-    connect(dev.data(), &NetworkManager::Device::activeConnectionChanged,
-            [this,dev]() {
-              qInfo() << "active connection changed" << dev;
-              updateState(dev);
-    });
-  }
+  for (const auto &dev : m_wirelessDev)
+    initDevConnection(dev);
+}
+
+void HotspotPlugin::initDevConnection(const NetworkManager::Device::Ptr &dev) {
+  connect(dev.data(), &NetworkManager::Device::activeConnectionChanged, this,
+          [this, dev]() {
+            updateState(dev);
+          },Qt::QueuedConnection);
+#ifdef USE_DEEPIN_NMQT
+  connect(dev.data(), &NetworkManager::Device::interfaceFlagsChanged, this,
+          [this, dev]() {
+            if (m_latestDevice.isNull() or dev->uni() != m_latestDevice->uni())
+              return; 
+              
+            if (checkDeviceAvailability(dev)){
+              onStateChanged(State::Off);
+            } else {
+              onStateChanged(State::Unavailable);
+            }
+            
+            auto curCon = m_latestDevice->activeConnection();
+            if (!curCon.isNull() and curCon->connection()->path() == m_latestHotSpot->path()) {
+              auto reply = NetworkManager::deactivateConnection(curCon->path());
+              reply.waitForFinished();  // force sync
+              if (reply.isError())
+                qWarning() << reply.error() << curCon->path();
+            }
+      },Qt::QueuedConnection);
+#endif
 }
 
 HotspotPlugin::~HotspotPlugin() {
@@ -109,22 +129,27 @@ HotspotPlugin::~HotspotPlugin() {
 
 void HotspotPlugin::updateState(const NetworkManager::Device::Ptr &dev) {
   auto con = dev->activeConnection();
-  bool enabled{false};
-  if (!con.isNull()) {
-    auto connectionPtr = con->connection();
-    const auto &settingMap = connectionPtr->settings()->toMap();
-    const auto &wirelessMap = qAsConst(settingMap).find("802-11-wireless");
-    if (wirelessMap != qAsConst(settingMap).cend()) {
-      const auto &mode = (*wirelessMap).find("mode");
-      if (mode != qAsConst(*wirelessMap).cend()) {
-        const auto &modeStr = (*mode).toString();
-        if (modeStr == "ap" or modeStr == "adhoc")
-          enabled = true;
+  State enabled{State::Off};
+  if (!checkDeviceAvailability(dev)) {
+    qInfo() << "device is Unavailable" << dev->uni();
+    enabled = State::Unavailable;
+  } else {
+    if (!con.isNull()) {
+      auto connectionPtr = con->connection();
+      const auto &settingMap = connectionPtr->settings()->toMap();
+      const auto &wirelessMap = qAsConst(settingMap).find("802-11-wireless");
+      if (wirelessMap != qAsConst(settingMap).cend()) {
+        const auto &mode = (*wirelessMap).find("mode");
+        if (mode != qAsConst(*wirelessMap).cend()) {
+          const auto &modeStr = (*mode).toString();
+          if (modeStr == "ap" or modeStr == "adhoc")
+            enabled = State::On;
+        }
       }
     }
   }
-  qInfo() << "hotspot update state to:" << enabled;
-  if (enabled) {
+
+  if (enabled == State::On) {
     m_latestDevice = dev;
     m_latestHotSpot = con->connection();
   } else {
@@ -132,7 +157,18 @@ void HotspotPlugin::updateState(const NetworkManager::Device::Ptr &dev) {
       return;
   }
 
+  qInfo() << "hotspot update state to:" << static_cast<int>(enabled);
+
   onStateChanged(enabled);
+}
+
+bool HotspotPlugin::checkDeviceAvailability(const NetworkManager::Device::Ptr& dev) const
+{
+#ifdef USE_DEEPIN_NMQT
+  return !!dev->interfaceFlags();
+#else
+  return false;
+#endif
 }
 
 const QString HotspotPlugin::pluginName() const
@@ -228,22 +264,34 @@ void HotspotPlugin::setSortKey(const QString &itemKey, const int order) {
   m_proxyInter->saveValue(this, key, order);
 }
 
-void HotspotPlugin::onStateChanged(bool enabled) {
-  auto type = DGuiApplicationHelper::instance()->themeType();
-  if (m_wirelessDev.isEmpty()) {
-      m_quickPanel->updateState(type, false);
-      m_tipsLabel->setContext({{tr("Hotspot is unsupported"), {}}});
-      return;
+void HotspotPlugin::onStateChanged(State state) {
+
+  QString text;
+
+  if (m_wirelessDev.isEmpty())
+    state = State::Unsupported;
+
+  switch (state) {
+    case State::Unavailable:
+      text = tr("Wireless Device is Unavailable");
+      break;
+    case State::On:
+      text = tr("Personal Hotspot On");
+      break;
+    case State::Off:
+      text = tr("Personal Hotspot Off");
+      break;
+    case State::Unsupported:
+      text = tr("Hotspot is unsupported");
+      break;
+    default:
+      qWarning() << "Internal error";
   }
-  hotspotEnabled = enabled;
-  
-  if (hotspotEnabled) {
-    m_quickPanel->updateState(type, true);
-    m_tipsLabel->setContext({{tr("Personal Hotspot On"), {}}});
-  } else {
-    m_quickPanel->updateState(type, false);
-    m_tipsLabel->setContext({{tr("Personal Hotspot Off"), {}}});
-  }
+
+  hotspotEnabled = state == State::On;
+  m_quickPanel->updateState(DGuiApplicationHelper::instance()->themeType(), hotspotEnabled);
+  m_quickPanel->setToolTip(text);
+  m_tipsLabel->setContext({{text, {}}});
 }
 
 void HotspotPlugin::updateLatestHotSpot(){
@@ -265,15 +313,18 @@ void HotspotPlugin::updateLatestHotSpot(){
         }
     }
 
-    if (maxTimeStamp == 0) {
-        m_latestDevice.reset(nullptr);
-        m_latestHotSpot.reset(nullptr);
-        onStateChanged(false);
+    if(maxTimeStamp == 0){
+      m_latestDevice.reset(nullptr);
+      m_latestHotSpot.reset(nullptr);
+      qInfo() << "now cache is empty";
+      onStateChanged(State::Off);
+    } else {
+      if (!checkDeviceAvailability(m_latestDevice))
+        onStateChanged(State::Unavailable);
     }
 }
 
 void HotspotPlugin::onQuickPanelClicked(){
-    qDebug() << "process click" << hotspotEnabled;
     if (hotspotEnabled) {
         auto curCon = m_latestDevice->activeConnection();
         auto reply = NetworkManager::deactivateConnection(curCon->path());
