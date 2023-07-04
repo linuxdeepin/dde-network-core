@@ -31,7 +31,7 @@ using namespace DCC_NAMESPACE;
 using namespace dde::network;
 
 NetworkModule::NetworkModule(QObject *parent)
-    : HListModule("network", tr("Network"), tr("Network"), QIcon::fromTheme("dcc_nav_network"), parent)
+    : HListModule("network", tr("Network"), QString(), QIcon::fromTheme("dcc_nav_network"), parent)
 {
 
 }
