@@ -46,6 +46,7 @@ target_include_directories(${PLUGIN_NAME} PUBLIC
     ${Qt5Network_INCLUDE_DIRS}
     ${KF5_QT_INCLUDE_DIRS}
     ${NETINTERFACEINCLUDE}
+    "../common-plugin"
 )
 
 target_link_libraries(${PLUGIN_NAME} PRIVATE

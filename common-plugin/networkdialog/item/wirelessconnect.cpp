@@ -75,16 +75,10 @@ WirelessSecuritySetting::KeyMgmt WirelessConnect::getKeyMgmtByAp(dde::network::A
         keyMgmt = WirelessSecuritySetting::KeyMgmt::WpaPsk;
     }
 
-#ifdef USE_DEEPIN_NMQT
     // 判断是否是wpa3加密的，因为wpa3加密方式，实际上是wpa2的扩展，所以其中会包含KeyMgmtPsk枚举值
-    if (wpaFlags.testFlag(NetworkManager::AccessPoint::WpaFlag::keyMgmtSae) || rsnFlags.testFlag(NetworkManager::AccessPoint::WpaFlag::keyMgmtSae)) {
-        keyMgmt = NetworkManager::WirelessSecuritySetting::KeyMgmt::WpaSae;
-    }
-#else
     if (wpaFlags.testFlag(NetworkManager::AccessPoint::WpaFlag::KeyMgmtSAE) || rsnFlags.testFlag(NetworkManager::AccessPoint::WpaFlag::KeyMgmtSAE)) {
         keyMgmt = NetworkManager::WirelessSecuritySetting::KeyMgmt::SAE;
     }
-#endif
 
     if (wpaFlags.testFlag(AccessPoint::WpaFlag::KeyMgmt8021x) || rsnFlags.testFlag(AccessPoint::WpaFlag::KeyMgmt8021x)) {
         keyMgmt = WirelessSecuritySetting::KeyMgmt::WpaEap;
@@ -156,12 +150,7 @@ void WirelessConnect::initConnection()
                 wsSetting->setKeyMgmt(keyMgmt);
                 if (keyMgmt == WirelessSecuritySetting::KeyMgmt::Wep) {
                     wsSetting->setWepKeyFlags(Setting::None);
-                } else if (keyMgmt == WirelessSecuritySetting::KeyMgmt::WpaPsk
-#ifdef USE_DEEPIN_NMQT
-                           || keyMgmt == WirelessSecuritySetting::KeyMgmt::WpaSae) {
-#else
-                           || keyMgmt == WirelessSecuritySetting::KeyMgmt::SAE) {
-#endif
+                } else if (keyMgmt == WirelessSecuritySetting::KeyMgmt::WpaPsk || keyMgmt == WirelessSecuritySetting::KeyMgmt::SAE) {
                     wsSetting->setPskFlags(Setting::None);
                 }
                 wsSetting->setInitialized(true);
@@ -182,12 +171,8 @@ void WirelessConnect::setPassword(const QString &password)
     wsSetting->setKeyMgmt(keyMgmt);
     if (keyMgmt == WirelessSecuritySetting::KeyMgmt::Wep) {
         wsSetting->setWepKey0(password);
-    } else if (keyMgmt == WirelessSecuritySetting::KeyMgmt::WpaPsk
-#ifdef USE_DEEPIN_NMQT
-               || keyMgmt == WirelessSecuritySetting::KeyMgmt::WpaSae) {
-#else
-               || keyMgmt == WirelessSecuritySetting::KeyMgmt::SAE) {
-#endif
+    } else if (keyMgmt == WirelessSecuritySetting::KeyMgmt::WpaPsk || keyMgmt == WirelessSecuritySetting::KeyMgmt::SAE) {
+
         wsSetting->setPsk(password);
 
         if (isHidden && keyMgmt == WirelessSecuritySetting::KeyMgmt::WpaPsk) {
