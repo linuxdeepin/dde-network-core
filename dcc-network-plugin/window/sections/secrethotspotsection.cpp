@@ -92,9 +92,10 @@ void SecretHotspotSection::saveSettings()
     case WirelessSecuritySetting::KeyMgmt::WpaPsk: {
         m_wsSetting->setPsk(m_passwdEdit->text());
         m_wsSetting->setPskFlags(NetworkManager::Setting::AgentOwned);
-        m_wsSetting->setProto(QList<NetworkManager::WirelessSecuritySetting::WpaProtocolVersion>{NetworkManager::WirelessSecuritySetting::Wpa});
+        m_wsSetting->setProto(QList<NetworkManager::WirelessSecuritySetting::WpaProtocolVersion>{NetworkManager::WirelessSecuritySetting::Rsn});
         m_wsSetting->setGroup(QList<NetworkManager::WirelessSecuritySetting::WpaEncryptionCapabilities>{NetworkManager::WirelessSecuritySetting::Ccmp});
         m_wsSetting->setPairwise(QList<NetworkManager::WirelessSecuritySetting::WpaEncryptionCapabilities>{NetworkManager::WirelessSecuritySetting::Ccmp});
+        m_wsSetting->setPmf(NetworkManager::WirelessSecuritySetting::Pmf::DisablePmf);
         break;
     }
     case WirelessSecuritySetting::KeyMgmt::SAE: {
