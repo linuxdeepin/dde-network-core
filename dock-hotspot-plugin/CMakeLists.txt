@@ -20,9 +20,9 @@ find_package(KF5NetworkManagerQt REQUIRED)
 
 pkg_check_modules(DDE-Dock REQUIRED dde-dock)
 
-#file(GLOB TS_FILES "translations/*.ts")
-#qt5_add_translation(QM_FILES ${TS_FILES})
-#add_custom_target(HotSpotlanguage ALL DEPENDS ${QM_FILES})
+file(GLOB TS_FILES "translations/*.ts")
+qt5_add_translation(QM_FILES ${TS_FILES})
+add_custom_target(HotSpotlanguage ALL DEPENDS ${QM_FILES})
 
 add_definitions("${QT_DEFINITIONS} -DQT_PLUGIN")
 add_library(${PLUGIN_NAME} SHARED ${SRCS})
@@ -42,7 +42,6 @@ target_include_directories(${PLUGIN_NAME} PUBLIC
     ${NETWORKINTERFACE}
     ${DtkWidget_INCLUDE_DIRS}
     ${Qt5DBus_INCLUDE_DIRS}
-    ${QGSettings_INCLUDE_DIRS}
     ${DDE-Network-Core_INCLUDE_DIRS}
     ${DDE_DOCK_INCLUDE_DIR}
     ${Qt5Network_INCLUDE_DIRS}
