@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2023 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -11,10 +11,7 @@
 #include <QGSettings>
 #include <QDebug>
 
-#define NETWORKPLUGIN_BEGIN_NAMESPACE namespace dde { namespace networkplugin {
-#define NETWORKPLUGIN_END_NAMESPACE }}
-#define NETWORKPLUGIN_USE_NAMESPACE using namespace dde::networkplugin;
-#define NETWORKPLUGIN_NAMESPACE dde::networkplugin
+#include "plugin_global.h"
 
 namespace Utils {
 

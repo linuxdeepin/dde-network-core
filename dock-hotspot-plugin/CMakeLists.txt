@@ -7,7 +7,7 @@ include(GNUInstallDirs)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-file(GLOB_RECURSE SRCS "*.h" "*.cpp" "item/*.h" "item/*.cpp" "../common-plugin/*.h" "../common-plugin/*.cpp")
+file(GLOB_RECURSE SRCS "*.h" "*.cpp" "../common-plugin/widgets/*" "../common-plugin/plugin_global.g")
 
 find_package(Qt5 COMPONENTS Core Widgets DBus Network LinguistTools REQUIRED)
 find_package(PkgConfig REQUIRED)
@@ -42,12 +42,10 @@ target_include_directories(${PLUGIN_NAME} PUBLIC
     ${NETWORKINTERFACE}
     ${DtkWidget_INCLUDE_DIRS}
     ${Qt5DBus_INCLUDE_DIRS}
-    ${DDE-Network-Core_INCLUDE_DIRS}
     ${DDE_DOCK_INCLUDE_DIR}
     ${Qt5Network_INCLUDE_DIRS}
     ${KF5_QT_INCLUDE_DIRS}
     ${NETINTERFACEINCLUDE}
-    "../common-plugin/"
 )
 
 target_link_libraries(${PLUGIN_NAME} PRIVATE
@@ -55,7 +53,6 @@ target_link_libraries(${PLUGIN_NAME} PRIVATE
     ${Qt5Widgets_LIBRARIES}
     ${Qt5Svg_LIBRARIES}
     ${Qt5DBus_LIBRARIES}
-    ${DDE-Network-Core_LIBRARIES}
     ${KF5_QT_LIBRARIES}
     ${Qt5Network_LIBRARIES}
 )
