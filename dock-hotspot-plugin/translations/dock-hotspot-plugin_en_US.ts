@@ -2,7 +2,7 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en_US">
 <context>
-    <name>HotspotPlugin</name>
+    <name>dde::hotspotplugin::HotspotPlugin</name>
     <message>
         <source>hotspot</source>
         <translation>hotspot</translation>
@@ -19,9 +19,13 @@
         <source>Personal Hotspot Off</source>
         <translation>Personal Hotspot Off</translation>
     </message>
+    <message>
+        <source>Wireless Device is Unavailable</source>
+        <translation>Wireless Device is Unavailable</translation>
+    </message>
 </context>
 <context>
-    <name>QuickPanel</name>
+    <name>dde::hotspotplugin::QuickPanel</name>
     <message>
         <source>HotSpot</source>
         <translation>HotSpot</translation>

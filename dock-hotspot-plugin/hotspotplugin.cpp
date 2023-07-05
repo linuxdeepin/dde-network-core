@@ -19,9 +19,9 @@ static constexpr auto state_key = "enabled";
 HotspotPlugin::HotspotPlugin(QObject *parent)
     : QObject(parent)
 {
-  //QTranslator *trs = new QTranslator(this);
-  //trs->load(QString("/usr/share/dock-hotspot-plugin/translations/dock-network-plugin_%1.qm").arg(QLocale::system().name()));
-  //QCoreApplication::installTranslator(trs);
+  QTranslator *trs = new QTranslator(this);
+  trs->load(QString("/usr/share/dock-hotspot-plugin/translations/dock-hotspot-plugin_%1.qm").arg(QLocale::system().name()));
+  QCoreApplication::installTranslator(trs);
 }
 
 void HotspotPlugin::init(PluginProxyInterface *proxyInter) {
