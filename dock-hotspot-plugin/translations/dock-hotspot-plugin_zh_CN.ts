@@ -2,7 +2,7 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
-    <name>HotspotPlugin</name>
+    <name>dde::hotspotplugin::HotspotPlugin</name>
     <message>
         <source>hotspot</source>
         <translation>热点</translation>
@@ -19,9 +19,13 @@
         <source>Personal Hotspot Off</source>
         <translation>个人热点关</translation>
     </message>
+    <message>
+        <source>Wireless Device is Unavailable</source>
+        <translation>无线设备不可用</translation>
+    </message>
 </context>
 <context>
-    <name>QuickPanel</name>
+    <name>dde::hotspotplugin::QuickPanel</name>
     <message>
         <source>HotSpot</source>
         <translation>热点</translation>
