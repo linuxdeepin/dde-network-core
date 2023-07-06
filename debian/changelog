@@ -1,3 +1,20 @@
+dde-network-core (2.0.11) unstable; urgency=medium
+
+  * fix: Add dcc-network-plugin's displayName(Issue: #4615)
+  * chore: update translate config
+  * fix: update hotspot state failed when connection was removed
+  * fix: unchanged state when network adapter was disabled by device manager
+  * chore: add translation for hotspot plugin
+  * refactor: adjust source structure
+  * chore: enable USE_DEEPIN_NMQT macro
+  * fix: remove useless macro branch
+  * chore: correct translation
+  * fix: disable wpa3 transition mode when using wpa-psk
+  * Revert "fix: Hotspot can't be connected for Wpa/Wpa2"
+  * fix: QuickPanel text is imcompleted when font set to 20
+
+ -- Deepin Packages Builder <packages@deepin.org>  Thu, 06 Jul 2023 13:44:54 +0800
+
 dde-network-core (2.0.10) unstable; urgency=medium
 
   * feat: add hotspot plugin for dde-dock(issue: 3794)
