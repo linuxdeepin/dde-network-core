@@ -69,7 +69,7 @@ void QuickPanel::initUi()
     m_icon->setCheckable(true);
 
     // text
-    m_text->setFixedHeight(15);
+    m_text->setFixedHeight(20);
     m_text->setAlignment(Qt::AlignCenter);
     m_text->setFont(Dtk::Widget::DFontSizeManager::instance()->t10());
     m_text->setText(tr("HotSpot"));

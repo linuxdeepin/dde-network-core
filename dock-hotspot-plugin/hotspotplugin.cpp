@@ -206,13 +206,13 @@ const QString HotspotPlugin::itemCommand(const QString &itemKey) {
     reply.waitForFinished(); // force sync
     if(reply.isError())
       qWarning() << reply.error() << m_latestHotSpot->path();
-      return {};
+    return {};
   } else {
     if(!m_latestDevice.isNull() and !m_latestHotSpot.isNull()){
       auto reply = NetworkManager::activateConnection(m_latestHotSpot->path(),m_latestDevice->uni(),"/");
       reply.waitForFinished(); // force sync
       if(reply.isError())
-          qWarning() << "activate failed:" << reply.error();
+        qWarning() << "activate failed:" << reply.error();
       return {};
     }
   }
