@@ -103,16 +103,19 @@ void HotspotPlugin::initDevConnection(const NetworkManager::Device::Ptr &dev) {
   connect(dev.data(), &NetworkManager::Device::interfaceFlagsChanged, this,
           [this, dev]() {
             if (m_latestDevice.isNull() or dev->uni() != m_latestDevice->uni())
-              return; 
+              return;
+
+            auto curCon = m_latestDevice->activeConnection();
+            if(curCon.isNull() or curCon->state() != NetworkManager::ActiveConnection::State::Activated)
+              return;
               
             if (checkDeviceAvailability(dev)){
               onStateChanged(State::Off);
             } else {
               onStateChanged(State::Unavailable);
             }
-            
-            auto curCon = m_latestDevice->activeConnection();
-            if (!curCon.isNull() and curCon->connection()->path() == m_latestHotSpot->path()) {
+
+            if (curCon->connection()->path() == m_latestHotSpot->path()) {
               auto reply = NetworkManager::deactivateConnection(curCon->path());
               reply.waitForFinished();  // force sync
               if (reply.isError())
@@ -208,7 +211,9 @@ const QString HotspotPlugin::itemCommand(const QString &itemKey) {
       qWarning() << reply.error() << m_latestHotSpot->path();
     return {};
   } else {
-    if(!m_latestDevice.isNull() and !m_latestHotSpot.isNull()){
+    if (!m_latestDevice.isNull() and !m_latestHotSpot.isNull()) {
+      if (!checkDeviceAvailability(m_latestDevice))
+        return {};
       auto reply = NetworkManager::activateConnection(m_latestHotSpot->path(),m_latestDevice->uni(),"/");
       reply.waitForFinished(); // force sync
       if(reply.isError())
@@ -337,6 +342,8 @@ void HotspotPlugin::onQuickPanelClicked(){
             return;
         }
         if(!m_latestDevice.isNull() and !m_latestHotSpot.isNull()){
+            if(!checkDeviceAvailability(m_latestDevice))
+              return;
             auto reply = NetworkManager::activateConnection(m_latestHotSpot->path(),m_latestDevice->uni(),"/");
             reply.waitForFinished(); // force sync
             if(reply.isError())
