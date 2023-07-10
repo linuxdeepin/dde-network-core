@@ -102,8 +102,16 @@ void HotspotPlugin::initDevConnection(const NetworkManager::Device::Ptr &dev) {
 #ifdef USE_DEEPIN_NMQT
   connect(dev.data(), &NetworkManager::Device::interfaceFlagsChanged, this,
           [this, dev]() {
-            if (m_latestDevice.isNull() or dev->uni() != m_latestDevice->uni())
+            if (m_latestDevice.isNull() or dev->uni() != m_latestDevice->uni()){
+              bool allDisable{false};
+              for (auto dev : m_wirelessDev)
+                allDisable |= checkDeviceAvailability(dev);
+              if (allDisable)
+                onStateChanged(State::Off);
+              else
+                onStateChanged(State::Unavailable);
               return;
+            }
 
             auto curCon = m_latestDevice->activeConnection();
             if(curCon.isNull() or curCon->state() != NetworkManager::ActiveConnection::State::Activated)
