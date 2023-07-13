@@ -412,29 +412,33 @@ NetworkPlugin::NetworkPlugin(QObject *parent)
 
 void NetworkPlugin::init()
 {
-    initUI();
 }
 
 QWidget *NetworkPlugin::content()
 {
+    ensureNetwork();
     return m_network->content();
 }
 
 QString NetworkPlugin::icon() const
 {
+    const_cast<NetworkPlugin *>(this)->ensureNetwork();
     return m_network->networkHelper()->iconPath(DGuiApplicationHelper::instance()->themeType());
 }
 
 QWidget *NetworkPlugin::itemWidget() const
 {
-    auto helper = m_network->networkHelper();
     DIconButton *iconButton = new DIconButton;
     iconButton->setFlat(true);
     iconButton->setAttribute(Qt::WA_TransparentForMouseEvents);
     iconButton->setIconSize({26, 26});
-    iconButton->setIcon(*helper->trayIcon());
-    connect(helper, &NetworkPluginHelper::iconChanged, iconButton, [helper, iconButton] {
+    QTimer::singleShot(1, [this, iconButton]() {
+        const_cast<NetworkPlugin *>(this)->ensureNetwork();
+        auto helper = m_network->networkHelper();
         iconButton->setIcon(*helper->trayIcon());
+        connect(helper, &NetworkPluginHelper::iconChanged, iconButton, [helper, iconButton] {
+            iconButton->setIcon(*helper->trayIcon());
+        });
     });
     NotificationManager::InstallEventFilter(iconButton);
     return iconButton;
@@ -442,20 +446,24 @@ QWidget *NetworkPlugin::itemWidget() const
 
 QWidget *NetworkPlugin::itemTipsWidget() const
 {
+    const_cast<NetworkPlugin *>(this)->ensureNetwork();
     return m_network->itemTipsWidget();
 }
 
 const QString NetworkPlugin::itemContextMenu() const
 {
+    const_cast<NetworkPlugin *>(this)->ensureNetwork();
     return m_network->itemContextMenu();
 }
 
 void NetworkPlugin::invokedMenuItem(const QString &menuId, const bool checked) const
 {
+    const_cast<NetworkPlugin *>(this)->ensureNetwork();
     m_network->invokedMenuItem(menuId, checked);
 }
 
-void NetworkPlugin::initUI()
+// Delay construct Network to avoid NetworkManager service hasn't ready, e.g: dde-session-daemon.
+void NetworkPlugin::ensureNetwork()
 {
     if (m_network) {
         return;
