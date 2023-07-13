@@ -93,7 +93,7 @@ public:
     void invokedMenuItem(const QString &menuId, const bool checked) const override;
 
 private:
-    void initUI();
+    void ensureNetwork();
 
 private:
     NetworkModule *m_network;
