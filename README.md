@@ -55,4 +55,4 @@ We encourage you to report issues and contribute changes
 
 ## License
 
-DDE Network Core is licensed under [GPL-3.0-or-later](LICENSE).
+DDE Network Core is licensed under [LGPL-3.0-or-later](LICENSE).
