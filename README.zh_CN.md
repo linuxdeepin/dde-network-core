@@ -54,4 +54,4 @@ $ sudo make install
 
 ## License
 
-DDE网络核心框架在 [GPL-3.0-or-later](LICENSE)下发布。
+DDE网络核心框架在 [LGPL-3.0-or-later](LICENSE)下发布。
