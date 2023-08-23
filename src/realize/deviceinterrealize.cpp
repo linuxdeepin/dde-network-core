@@ -463,6 +463,7 @@ void WirelessDeviceInterRealize::connectNetwork(const AccessPoints *item)
     const QString apPath = item->path();
     const QString devPath = path();
 
+    qInfo() << "Connect to the AP, uuid:" << uuid << ", access point path:" << apPath << ", device path:" << devPath;
     networkInter()->ActivateAccessPoint(uuid, QDBusObjectPath(apPath), QDBusObjectPath(devPath), this, SLOT(deviceConnectionSuccess()), SLOT(deviceConnectionFailed()));
 }
 
@@ -793,6 +794,11 @@ void WirelessDeviceInterRealize::createConnection(const QJsonArray &info)
         const QJsonObject &jsonObj = jsonValue.toObject();
         const QString hwAddress = jsonObj.value("HwAddress").toString();
         if (!hwAddress.isEmpty() && hwAddress != realHwAdr())
+            continue;
+
+        // only update its own connection instead of all devices connection.
+        const QString ifcName = jsonObj.value("IfcName").toString();
+        if (!ifcName.isEmpty() && ifcName != interface())
             continue;
 
         const QString path = jsonObj.value("Path").toString();
