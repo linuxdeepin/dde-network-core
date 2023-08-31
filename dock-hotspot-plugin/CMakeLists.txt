@@ -47,6 +47,7 @@ target_include_directories(${PLUGIN_NAME} PUBLIC
     ${KF5_QT_INCLUDE_DIRS}
     ${NETINTERFACEINCLUDE}
     "../common-plugin"
+    "../src"
 )
 
 target_link_libraries(${PLUGIN_NAME} PRIVATE
@@ -56,6 +57,7 @@ target_link_libraries(${PLUGIN_NAME} PRIVATE
     ${Qt5DBus_LIBRARIES}
     ${KF5_QT_LIBRARIES}
     ${Qt5Network_LIBRARIES}
+    ${DDE-Network-Core_LIBRARIES}
 )
 
 install(TARGETS ${PLUGIN_NAME} LIBRARY DESTINATION lib/dde-dock/plugins/quick-trays)
