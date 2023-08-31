@@ -11,6 +11,8 @@
 #include <networkmanagerqt/settings.h>
 #include <networkmanagerqt/device.h>
 #include <algorithm>
+#include "networkcontroller.h"
+#include "hotspotcontroller.h"
 HOTSPOTPLUGIN_BEGIN_NAMESPACE
 
 DWIDGET_USE_NAMESPACE
@@ -38,8 +40,11 @@ void HotspotPlugin::init(PluginProxyInterface *proxyInter) {
   updateLatestHotSpot();
   for (const auto &dev : m_wirelessDev)
     updateState(dev);
-     
-  m_proxyInter->itemAdded(this, hotspot_key);
+
+  onHotspotEnabledChanged();
+  auto controller = network::NetworkController::instance()->hotspotController();
+  connect(controller, &network::HotspotController::enabledChanged,
+            this, &HotspotPlugin::onHotspotEnabledChanged, Qt::UniqueConnection);
 }
 
 void HotspotPlugin::initConnection() {
@@ -49,7 +54,7 @@ void HotspotPlugin::initConnection() {
 
   connect(m_quickPanel.data(),&QuickPanel::iconClicked,this,&HotspotPlugin::onQuickPanelClicked);
 
-  connect(&m_notifyer, &NetworkManager::Notifier::deviceAdded, this,
+  connect(NetworkManager::notifier(), &NetworkManager::Notifier::deviceAdded, this,
           [this](const QString &uni) {
             const auto dev = NetworkManager::Device::Ptr{new NetworkManager::Device{uni}};
             if (dev->type() == NetworkManager::Device::Wifi){
@@ -58,9 +63,10 @@ void HotspotPlugin::initConnection() {
             }
           });
 
-  connect(&m_notifyer, &NetworkManager::Notifier::deviceRemoved, this,
+  connect(NetworkManager::notifier(), &NetworkManager::Notifier::deviceRemoved, this,
           [this](const QString &uni) {
-            for (const auto &dev : m_wirelessDev) {
+            const auto devices = m_wirelessDev;
+            for (const auto &dev : devices) {
               if (dev->uni() == uni) {
                 m_wirelessDev.removeOne(dev);
                 if(!m_latestDevice.isNull() and (dev->uni() == m_latestDevice->uni())){
@@ -95,8 +101,8 @@ void HotspotPlugin::initConnection() {
 }
 
 void HotspotPlugin::initDevConnection(const NetworkManager::Device::Ptr &dev) {
-  connect(dev.data(), &NetworkManager::Device::activeConnectionChanged, this,
-          [this, dev]() {
+    connect(dev.data(), &NetworkManager::Device::activeConnectionChanged, this,
+        [this, dev]() {
             updateState(dev);
           },Qt::QueuedConnection);
 #ifdef USE_DEEPIN_NMQT
@@ -197,12 +203,9 @@ bool HotspotPlugin::pluginIsDisable() {
 }
 
 void HotspotPlugin::pluginStateSwitched() {
-  const bool disabled = pluginIsDisable();
-  m_proxyInter->saveValue(this, state_key, disabled);
-  if (disabled)
-    m_proxyInter->itemRemoved(this, hotspot_key);
-  else
-    m_proxyInter->itemAdded(this, hotspot_key);
+    const bool disabled = pluginIsDisable();
+    m_proxyInter->saveValue(this, state_key, disabled);
+    updateDockItemEnabled(!disabled);
 }
 
 const QString HotspotPlugin::itemCommand(const QString &itemKey) {
@@ -305,6 +308,19 @@ void HotspotPlugin::onStateChanged(State state) {
   m_quickPanel->updateState(DGuiApplicationHelper::instance()->themeType(), hotspotEnabled);
   m_quickPanel->setToolTip(text);
   m_tipsLabel->setContext({{text, {}}});
+}
+
+void HotspotPlugin::onHotspotEnabledChanged()
+{
+    updateDockItemEnabled(network::NetworkController::instance()->hotspotController()->supportHotspot());
+}
+
+void HotspotPlugin::updateDockItemEnabled(bool isEnabled)
+{
+    if (isEnabled)
+        m_proxyInter->itemAdded(this, hotspot_key);
+    else
+        m_proxyInter->itemRemoved(this, hotspot_key);
 }
 
 void HotspotPlugin::updateLatestHotSpot(){

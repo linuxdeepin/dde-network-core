@@ -53,11 +53,12 @@ class HotspotPlugin : public QObject, PluginsItemInterface {
    void updateState(const NetworkManager::Device::Ptr& dev);
    void onQuickPanelClicked();
    void updateLatestHotSpot();
+    void onHotspotEnabledChanged();
+    void updateDockItemEnabled(bool isEnabled);
 
    bool hotspotEnabled{false};
    QScopedPointer<networkplugin::TipsWidget> m_tipsLabel{nullptr};
    NetworkManager::Device::List m_wirelessDev{};
-   NetworkManager::Notifier m_notifyer;
    QScopedPointer<QuickPanel> m_quickPanel{nullptr};
    NetworkManager::Connection::Ptr m_latestHotSpot{nullptr};
    NetworkManager::Device::Ptr m_latestDevice{nullptr};
