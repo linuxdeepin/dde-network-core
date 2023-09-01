@@ -27,7 +27,7 @@ DockTestWidget::~DockTestWidget()
 void DockTestWidget::initDock()
 {
     m_pluginInter->init(this);
-    QWidget *pluginWidget = m_pluginInter->itemWidget(NETWORK_KEY);
+    QWidget *pluginWidget = m_pluginInter->itemWidget(QUICK_ITEM_KEY);
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setContentsMargins(20, 0, 20, 0);
     layout->addWidget(pluginWidget);
@@ -49,7 +49,7 @@ void DockTestWidget::initDock()
     }
 
     // 必须初始化父窗口，否则当主题切换之后再设置父窗口的时候palette会更改为主题切换前的palette
-    if (QWidget *w = m_pluginInter->itemPopupApplet(NETWORK_KEY)) {
+    if (QWidget *w = m_pluginInter->itemPopupApplet(QUICK_ITEM_KEY)) {
         w->setParent(PopupWindow.data());
         w->setVisible(false);
     }
