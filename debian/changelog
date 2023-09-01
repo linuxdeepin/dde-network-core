@@ -1,3 +1,16 @@
+dde-network-core (2.0.13) unstable; urgency=medium
+
+  * chore: Sync by https://github.com/linuxdeepin/.github/commit/559e91167d4919644f37bbcf123eb0651c1528ea(Influence: none)
+  * fix: Even if the hotspot does not exist its state should change
+  * fix: NetworkPanel'status unrefreshed for dss-network-plugin
+  * fix: setContentsMargins of multiipvxsection
+  * chore(CI): Update obs tag build workflow
+  * feat: Hide hotspot plugin when unsupport hotspot(Issue: https://github.com/linuxdeepin/developer-center/issues/5023)
+  * chore: dock-example can't work
+  * feat: Remove dock-hotspot-plugin temporarily(Issue: https://github.com/linuxdeepin/developer-center/issues/5415)
+
+ -- YeShanShan <yeshanshan@deepin.org>  Fri, 06 Sep 2023 10:16:15 +0800
+
 dde-network-core (2.0.12) unstable; urgency=medium
 
   * fix: Accidentally deactivated hotspot connection due to uncertain signal order
