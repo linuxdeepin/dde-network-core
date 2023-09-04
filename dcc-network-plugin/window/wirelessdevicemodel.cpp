@@ -31,8 +31,8 @@ struct ItemAction
 
     explicit ItemAction(AccessPoints *_ap)
         : secureAction(new DViewItemAction(Qt::AlignCenter, QSize(), QSize(), false))
-        , iconAction(new DViewItemAction(Qt::AlignCenter | Qt::AlignRight, QSize(), QSize(), true))
-        , spinnerAction(new DViewItemAction(Qt::AlignCenter | Qt::AlignRight, QSize(), QSize(), false))
+        , iconAction(new DViewItemAction(Qt::AlignLeft | Qt::AlignVCenter, QSize(), QSize(), true))
+        , spinnerAction(new DViewItemAction(Qt::AlignLeft | Qt::AlignVCenter , QSize(), QSize(), false))
         , loadingIndicator(nullptr)
         , ap(_ap)
         , item(new DStandardItem())
@@ -67,7 +67,6 @@ struct ItemAction
             loadingIndicator->setVisible(false);
         }
         spinnerAction->setVisible(isLoading);
-        iconAction->setVisible(!isLoading);
     }
     Q_DISABLE_COPY(ItemAction)
 };

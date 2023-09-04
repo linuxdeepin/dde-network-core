@@ -28,8 +28,8 @@ struct ControllItemsAction
     DStandardItem *item;
 
     explicit ControllItemsAction(ControllItems *_conn)
-        : iconAction(new DViewItemAction(Qt::AlignCenter | Qt::AlignRight, QSize(), QSize(), true))
-        , spinnerAction(new DViewItemAction(Qt::AlignCenter | Qt::AlignRight, QSize(), QSize(), false))
+        : iconAction(new DViewItemAction(Qt::AlignLeft | Qt::AlignVCenter, QSize(), QSize(), true))
+        , spinnerAction(new DViewItemAction(Qt::AlignLeft | Qt::AlignVCenter, QSize(), QSize(), false))
         , loadingIndicator(nullptr)
         , conn(_conn)
         , item(new DStandardItem())
@@ -64,7 +64,6 @@ struct ControllItemsAction
             loadingIndicator->setVisible(false);
         }
         spinnerAction->setVisible(isLoading);
-        iconAction->setVisible(!isLoading);
     }
     Q_DISABLE_COPY(ControllItemsAction)
 };
