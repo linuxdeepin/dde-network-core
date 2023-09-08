@@ -1,3 +1,9 @@
+dde-network-core (2.0.14) unstable; urgency=medium
+
+  * fix: Can't set connection when connecting(Issue: https://github.com/linuxdeepin/developer-center/issues/5146)
+
+ -- YeShanShan <yeshanshan@deepin.org>  Fri, 08 Sep 2023 13:32:33 +0800
+
 dde-network-core (2.0.13) unstable; urgency=medium
 
   * chore: Sync by https://github.com/linuxdeepin/.github/commit/559e91167d4919644f37bbcf123eb0651c1528ea(Influence: none)
