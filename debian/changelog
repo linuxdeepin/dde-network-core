@@ -1,3 +1,9 @@
+dde-network-core (2.0.15) unstable; urgency=medium
+
+  * fix: Missing update when refresh stopped(Issue: https://github.com/linuxdeepin/developer-center/issues/5484)
+
+ -- YeShanShan <yeshanshan@deepin.org>  Mon, 11 Sep 2023 17:03:03 +0800
+
 dde-network-core (2.0.14) unstable; urgency=medium
 
   * fix: Can't set connection when connecting(Issue: https://github.com/linuxdeepin/developer-center/issues/5146)
