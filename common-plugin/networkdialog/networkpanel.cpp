@@ -803,9 +803,8 @@ NetworkDelegate::NetworkDelegate(QAbstractItemView *parent)
         if (m_refreshAngle.size() == 0) {
             if (m_refreshIconTimer->isActive())
                 m_refreshIconTimer->stop();
-        } else {
-            m_parentWidget->update();
         }
+        m_parentWidget->update();
     });
 
     m_refreshTimer->setInterval(30);
