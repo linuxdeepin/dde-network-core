@@ -5,7 +5,6 @@ Maintainer: donghualin <donghualin@uniontech.com>
 Build-Depends: debhelper-compat (= 12),
                cmake,
                libglib2.0-dev (>= 2.32),
-               libdframeworkdbus-dev (>= 1.0.2),
                libgsettings-qt-dev,
                pkg-config,
                qtbase5-dev,
