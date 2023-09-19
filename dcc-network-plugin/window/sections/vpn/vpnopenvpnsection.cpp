@@ -41,28 +41,31 @@ bool VpnOpenVPNSection::allInputValid()
 {
     bool valid = true;
 
-    if (m_gateway->text().isEmpty() || !isIpv4Address(m_gateway->text())) {
+    if (m_gateway->text().isEmpty()) {
         valid = false;
         m_gateway->setIsErr(true);
-        m_gateway->dTextEdit()->showAlertMessage(tr("Invalid gateway"), parentWidget(), 2000);
     } else {
         m_gateway->setIsErr(false);
     }
 
-    if (m_caFile->edit()->text().isEmpty())
+    if (m_caFile->edit()->text().isEmpty()) {
+        valid = false;
         m_caFile->setIsErr(true);
-    else
+    } else {
         m_caFile->setIsErr(false);
+    }
 
-    if (m_currentAuthType == "tls") {
-        valid = tlsItemsInputValid();
-    } else if (m_currentAuthType == "password") {
-        valid = passwordItemsInputValid();
+    if (m_currentAuthType == "tls" && !tlsItemsInputValid()) {
+        valid = false;
+    } else if (m_currentAuthType == "password" && !passwordItemsInputValid()) {
+        valid = false;
     } else if (m_currentAuthType == "password-tls") {
-        valid = tlsItemsInputValid();
-        valid = passwordItemsInputValid();
-    } else if (m_currentAuthType == "static-key") {
-        valid = staticKeyItemsInputValid();
+        if (!tlsItemsInputValid())
+            valid = false;
+        if (!passwordItemsInputValid())
+            valid = false;
+    } else if (m_currentAuthType == "static-key" && !staticKeyItemsInputValid()) {
+        valid = false;
     }
 
     return valid;
