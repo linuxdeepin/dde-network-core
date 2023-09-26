@@ -29,7 +29,6 @@ DSLModule::DSLModule(QObject *parent)
     appendChild(new WidgetModule<DListView>("pppoelist", QString(), this, &DSLModule::initDSLList));
     ModuleObject *extra = new WidgetModule<FloatingButton>("createDSL", tr("Create PPPoE Connection"), [this](FloatingButton *createBtn) {
         createBtn->setIcon(DStyle::StandardPixmap::SP_IncreaseElement);
-        createBtn->setMinimumSize(QSize(47, 47));
 
         createBtn->setToolTip(tr("Create PPPoE Connection"));
         createBtn->setAccessibleName(tr("Create PPPoE Connection"));

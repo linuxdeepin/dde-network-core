@@ -60,7 +60,6 @@ WiredModule::WiredModule(WiredDevice *dev, QObject *parent)
 
     ModuleObject *extra = new WidgetModule<FloatingButton>("addWired", tr("Add Network Connection"), [this](FloatingButton *createBtn) {
         createBtn->setIcon(DStyle::StandardPixmap::SP_IncreaseElement);
-        createBtn->setMinimumSize(QSize(47, 47));
 
         createBtn->setToolTip(tr("Add Network Connection"));
         connect(createBtn, &FloatingButton::clicked, this, [this]() {

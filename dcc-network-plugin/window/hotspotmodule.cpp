@@ -148,7 +148,6 @@ HotspotModule::HotspotModule(QObject *parent)
     connect(hotspotController, &HotspotController::deviceRemove, this, &HotspotModule::onDeviceRemove);
     ModuleObject *extra = new WidgetModule<FloatingButton>("createHotspot", tr("Create Hotspot"), [this](FloatingButton *newprofile) {
         newprofile->setIcon(DStyle::StandardPixmap::SP_IncreaseElement);
-        newprofile->setMinimumSize(QSize(47, 47));
 
         newprofile->setToolTip(tr("Create Hotspot"));
         connect(newprofile, &QAbstractButton::clicked, this, [this] {

@@ -77,7 +77,6 @@ VPNModule::VPNModule(QObject *parent)
     m_modules.append(new WidgetModule<DListView>("vpnlist", QString(), this, &VPNModule::initVPNList));
     ModuleObject *extraCreate = new WidgetModule<FloatingButton>("addWired", tr("Add Network Connection"), [this](FloatingButton *createVpnBtn) {
         createVpnBtn->setIcon(DStyle::StandardPixmap::SP_IncreaseElement);
-        createVpnBtn->setMinimumSize(QSize(47, 47));
         createVpnBtn->setToolTip(tr("Create VPN"));
         createVpnBtn->setAccessibleName(tr("Create VPN"));
         connect(createVpnBtn, &DFloatingButton::clicked, this, [this]() {
@@ -88,7 +87,6 @@ VPNModule::VPNModule(QObject *parent)
     m_modules.append(extraCreate);
     ModuleObject *extraImport = new WidgetModule<FloatingButton>("addWired", tr("Add Network Connection"), [this](FloatingButton *importVpnBtn) {
         importVpnBtn->QAbstractButton::setText("\342\206\223");
-        importVpnBtn->setMinimumSize(QSize(47, 47));
         importVpnBtn->setToolTip(tr("Import VPN"));
         importVpnBtn->setAccessibleName(tr("Import VPN"));
         connect(importVpnBtn, &DFloatingButton::clicked, this, &VPNModule::importVPN);
