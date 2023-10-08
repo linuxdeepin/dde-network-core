@@ -129,6 +129,11 @@ bool IpvxSection::saveIpv4Settings()
         ipv4Setting->setAddresses(QList<IpAddress>() << ipAddressAuto);
     }
 
+    if (method == Ipv4Setting::Disabled) {
+        qInfo() << "disable ipv4.";
+        ipv4Setting->setAddresses({});
+    }
+
     if (m_neverDefault->isVisible())
         ipv4Setting->setNeverDefault(m_neverDefault->checked());
 
@@ -142,7 +147,9 @@ bool IpvxSection::saveIpv6Settings()
     Ipv6Setting::ConfigMethod method = Ipv6ConfigMethodStrMap.value(m_methodChooser->currentText());
     ipv6Setting->setMethod(Ipv6ConfigMethodStrMap.value(m_methodChooser->currentText()));
 
-    if (method == Ipv6Setting::Ignored) {
+    if (method == Ipv6Setting::Ignored or
+        method == Ipv6Setting::ConfigDisabled) {
+        qInfo() << "disable ipv6.";
         ipv6Setting->setAddresses(QList<IpAddress>());
         return true;
     }
