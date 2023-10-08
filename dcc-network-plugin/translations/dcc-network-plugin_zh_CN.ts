@@ -364,6 +364,10 @@
         <translation>忽略</translation>
     </message>
     <message>
+        <source>Disable</source>
+        <translation>禁用</translation>
+    </message>
+    <message>
         <source>IP Address</source>
         <translation>IP 地址</translation>
     </message>
@@ -437,6 +441,10 @@
     <message>
         <source>Ignore</source>
         <translation>忽略</translation>
+    </message>
+    <message>
+        <source>Disable</source>
+        <translation>禁用</translation>
     </message>
 </context>
 <context>

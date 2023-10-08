@@ -364,6 +364,10 @@
         <translation>Ignore</translation>
     </message>
     <message>
+        <source>Disable</source>
+        <translation>Disable</translation>
+    </message>
+    <message>
         <source>IP Address</source>
         <translation>IP Address</translation>
     </message>
@@ -437,6 +441,10 @@
     <message>
         <source>Ignore</source>
         <translation>Ignore</translation>
+    </message>
+    <message>
+        <source>Disable</source>
+        <translation>Disable</translation>
     </message>
 </context>
 <context>

@@ -366,6 +366,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Disable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>IP Address</source>
         <translation type="unfinished"></translation>
     </message>
@@ -438,6 +442,10 @@
     </message>
     <message>
         <source>Ignore</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1109,10 +1117,6 @@
     <name>VpnOpenVPNSection</name>
     <message>
         <source>VPN</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Invalid gateway</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
