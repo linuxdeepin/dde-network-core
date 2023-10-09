@@ -131,7 +131,9 @@ void NetworkDetails::updateData(const QJsonObject &info)
                 const QJsonObject ipv4Object = ipv4Value.toObject();
                 QString ip = ipv4Object.value("Address").toString();
                 ip = ip.remove("\"");
-                appendInfo(tr("IPv4"), ip);
+                if(ip != "0.0.0.0"){
+                  appendInfo(tr("IPv4"), ip);
+                }
                 int prefix = ipv4Object.value("Prefix").toInt();
                 QString ip4Netmask = prefixToNetMask(prefix);
                 if (!ip4Netmask.isEmpty())
@@ -149,8 +151,9 @@ void NetworkDetails::updateData(const QJsonObject &info)
             if (!ipv4.isEmpty()) {
                 // ipv4 地址
                 const auto ip4Addr = ipv4.value("Address").toString();
-                if (!ip4Addr.isEmpty())
+                if (!ip4Addr.isEmpty() and ip4Addr != "0.0.0.0") {
                     appendInfo(tr("IPv4"), ip4Addr);
+                }
                 // ipv4 子网掩码
                 const auto ip4Netmask = ipv4.value("Mask").toString();
                 if (!ip4Netmask.isEmpty())
@@ -173,7 +176,9 @@ void NetworkDetails::updateData(const QJsonObject &info)
                 const QJsonObject ipv6Object = ipv6Value.toObject();
                 QString ip = ipv6Object.value("Address").toString();
                 ip = ip.remove("\"");
-                appendInfo(tr("IPv6"), ip);
+                if(ip != "0::0"){
+                    appendInfo(tr("IPv6"), ip);
+                }
                 QString ip6Prefix = QString::number(ipv6Object.value("Prefix").toInt());
                 if (!ip6Prefix.isEmpty())
                     appendInfo(tr("Prefix"), ip6Prefix);
@@ -189,7 +194,10 @@ void NetworkDetails::updateData(const QJsonObject &info)
             const auto ipv6 = info.value("Ip6").toObject();
             if (!ipv6.isEmpty()) {
                 // ipv6地址
-                appendInfo(tr("IPv6"), compressedIpv6Addr(ipv6Infomation(info, InfoType::Ip)));
+                const auto& ipv6Address = ipv6Infomation(info, InfoType::Ip);
+                if(ipv6Address != "0::0"){
+                    appendInfo(tr("IPv6"), compressedIpv6Addr(ipv6Address));
+                }
                 // ipv6前缀
                 const auto ip6Prefix = QString::number(ipv6.value("Prefix").toInt());
                 if (!ip6Prefix.isEmpty())

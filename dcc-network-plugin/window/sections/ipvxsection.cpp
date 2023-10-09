@@ -121,12 +121,7 @@ bool IpvxSection::saveIpv4Settings()
     }
 
     if (method == Ipv4Setting::Automatic) {
-        QList<IpAddress>().clear();
-        IpAddress ipAddressAuto;
-        ipAddressAuto.setIp(QHostAddress(""));
-        ipAddressAuto.setNetmask(QHostAddress(""));
-        ipAddressAuto.setGateway(QHostAddress(""));
-        ipv4Setting->setAddresses(QList<IpAddress>() << ipAddressAuto);
+        ipv4Setting->setAddresses({});
     }
 
     if (method == Ipv4Setting::Disabled) {
@@ -147,10 +142,13 @@ bool IpvxSection::saveIpv6Settings()
     Ipv6Setting::ConfigMethod method = Ipv6ConfigMethodStrMap.value(m_methodChooser->currentText());
     ipv6Setting->setMethod(Ipv6ConfigMethodStrMap.value(m_methodChooser->currentText()));
 
-    if (method == Ipv6Setting::Ignored or
-        method == Ipv6Setting::ConfigDisabled) {
+    if (method == Ipv6Setting::Ignored) {
+        return true;
+    }
+
+    if (method == Ipv6Setting::ConfigDisabled) {
         qInfo() << "disable ipv6.";
-        ipv6Setting->setAddresses(QList<IpAddress>());
+        ipv6Setting->setAddresses({});
         return true;
     }
 
@@ -159,18 +157,11 @@ bool IpvxSection::saveIpv6Settings()
         ipAddress.setIp(QHostAddress(m_ipAddress->text()));
         ipAddress.setPrefixLength(m_prefixIpv6->spinBox()->value());
         ipAddress.setGateway(QHostAddress(m_gateway->text()));
-        ipv6Setting->setAddresses(QList<IpAddress>() << ipAddress);
+        ipv6Setting->setAddresses({ipAddress});
     }
 
     if (method == Ipv6Setting::Automatic) {
-        QList<IpAddress> ipAddresses;
-        ipAddresses.clear();
-        IpAddress ipAddressAuto;
-        ipAddressAuto.setIp(QHostAddress(""));
-        ipAddressAuto.setPrefixLength(0);
-        ipAddressAuto.setGateway(QHostAddress(""));
-        ipAddresses.append(ipAddressAuto);
-        ipv6Setting->setAddresses(ipAddresses);
+        ipv6Setting->setAddresses({});
     }
 
     if (m_neverDefault->isVisible())
@@ -210,13 +201,15 @@ void IpvxSection::initStrMaps()
 {
     Ipv4ConfigMethodStrMap = {
         { tr("Auto"), Ipv4Setting::ConfigMethod::Automatic },
-        { tr("Manual"), Ipv4Setting::ConfigMethod::Manual }
+        { tr("Manual"), Ipv4Setting::ConfigMethod::Manual },
+        { tr("Disable"), Ipv4Setting::ConfigMethod::Disabled }
     };
 
     Ipv6ConfigMethodStrMap = {
         { tr("Auto"), Ipv6Setting::ConfigMethod::Automatic },
         { tr("Manual"), Ipv6Setting::ConfigMethod::Manual },
-        { tr("Ignore"), Ipv6Setting::ConfigMethod::Ignored }
+        { tr("Ignore"), Ipv6Setting::ConfigMethod::Ignored },
+        { tr("Disable"), Ipv6Setting::ConfigMethod::ConfigDisabled }
     };
 }
 
