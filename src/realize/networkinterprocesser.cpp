@@ -104,6 +104,11 @@ void NetworkInterProcesser::initConnection()
     connect(m_networkInter, &NetworkDBusProxy::DeviceEnabled, this, &NetworkInterProcesser::onDeviceEnableChanged);                        // 关闭设备或启用设备
 
     connect(m_networkInter, &NetworkDBusProxy::ConnectivityChanged, this, &NetworkInterProcesser::onConnectivityChanged);                  // 网络状态发生变化
+
+    connect(m_networkInter, &NetworkDBusProxy::ActiveConnectionInfoChanged, this, [this] {
+        QString activeConnectionInfo = m_networkInter->GetActiveConnectionInfo();
+        activeConnInfoChanged(activeConnectionInfo);       
+    });
 }
 
 NetworkDeviceBase *NetworkInterProcesser::findDevices(const QString &path) const
