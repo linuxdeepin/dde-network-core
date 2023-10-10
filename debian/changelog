@@ -1,3 +1,16 @@
+dde-network-core (2.0.16) unstable; urgency=medium
+
+  * fix: OpenVPN网关校验等相关问题
+    Thanks to hotime
+  * fix: not set fixed size for extra(Issue: https://github.com/linuxdeepin/developer-center/issues/5714)
+  * fix: remove unused libdframeworkdbus-dev builddep from debian/control
+    Thanks to Felix Yan
+  * feat: support disable ipv4/ipv6(Issue: https://github.com/linuxdeepin/developer-center/issues/5823)
+  * feat: correct behavior when ipv6 set to ignore or set ipv4/6 to
+    disable(Issue: https://github.com/linuxdeepin/developer-center/issues/5823)
+
+ -- Deepin Packages Builder <packages@deepin.org>  Tue, 10 Oct 2023 11:02:47 +0800
+
 dde-network-core (2.0.15) unstable; urgency=medium
 
   * fix: Missing update when refresh stopped(Issue: https://github.com/linuxdeepin/developer-center/issues/5484)
