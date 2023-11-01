@@ -57,12 +57,7 @@ add_library(${PLUGIN_NAME} SHARED ${SRCS})
 target_include_directories(${PLUGIN_NAME} PUBLIC
     window
     operation
-    ${Qt5Widgets_INCLUDE_DIRS}
-    ${DtkWidget_INCLUDE_DIRS}
-    ${DdeControlCenter_INCLUDE_DIR}
-    ${Qt5DBus_INCLUDE_DIRS}
     ${KF5_QT_INCLUDE_DIRS}
-    ${Qt5Network_INCLUDE_DIRS}
     ${NETINTERFACEINCLUDE}
     ${DDE-Network-Core_INCLUDE_DIRS}
 )
@@ -70,14 +65,13 @@ target_include_directories(${PLUGIN_NAME} PUBLIC
 # 变量 ${DtkWidget_LIBRARIES} 和 ${Qt5Widgets_LIBRARIES} 是在前面执行 find_package 命令时引入的
 # 当出现运行时错误提示某些符号没有定义时应该检查此处是否将所有用的库都写在了这里
 target_link_libraries(${PLUGIN_NAME} PRIVATE
-    ${Qt5Widgets_LIBRARIES}
-    ${DtkWidget_LIBRARIES}
-    ${DdeControlCenter_LIBRARIES}
-    ${Qt5DBus_LIBRARIES}
     ${KF5_QT_LIBRARIES}
-    ${Qt5Network_LIBRARIES}
-    ${DCC_WIDGETS_LIBRARIES}
-    ${DCC_INTERFACE_LIBRARIES}
+    Dtk::Widget
+    Qt5::Widgets
+    Qt5::Network
+    Qt5::DBus
+    Dde::DCCWidget
+    Dde::DCCInterface
     ${DDE-Network-Core_LIBRARIES}
 )
 
