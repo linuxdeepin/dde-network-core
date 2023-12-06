@@ -41,46 +41,14 @@ const QList<ConnectionVpnEditPage::VpnType> SupportedExportVpnList {
 ConnectionVpnEditPage::ConnectionVpnEditPage(const QString &connUuid, QWidget *parent)
     : ConnectionEditPage(ConnectionEditPage::ConnectionType::VpnConnection, QString(), connUuid, parent)
     , m_exportButton(nullptr)
-    , m_saveConfig(new QFileDialog(this))
 {
-    m_saveConfig->setAccessibleName("ConnectionVpnEditPage_saveConfig");
-    m_saveConfig->setModal(true);
-    m_saveConfig->setNameFilter("Config File (*.conf)");
-    m_saveConfig->setAcceptMode(QFileDialog::AcceptSave);
-    QStringList directory = QStandardPaths::standardLocations(QStandardPaths::HomeLocation);
-    if (!directory.isEmpty())
-        m_saveConfig->setDirectory(directory.first());
 
-    connect(m_saveConfig, &QFileDialog::finished, this, [ = ] (int result) {
-        Q_EMIT requestFrameAutoHide(true);
-        if (result == QFileDialog::Accepted) {
-            QString file = m_saveConfig->selectedFiles().first();
-            if (!file.endsWith(".conf"))
-               file.append(".conf");
-
-            const QString uuid = connectionUuid();
-            const auto args = QStringList() << "connection" << "export" << uuid << file;
-            qDebug() << Q_FUNC_INFO;
-
-            QProcess p;
-            p.start("nmcli", args);
-            p.waitForFinished();
-            qDebug() << p.readAllStandardOutput();
-            qDebug() << p.readAllStandardError();
-
-            // process ca
-            processConfigCA(file);
-        }
-    });
 }
 
 ConnectionVpnEditPage::~ConnectionVpnEditPage()
 {
     if (m_exportButton)
         m_exportButton->deleteLater();
-
-    if (m_saveConfig)
-        m_saveConfig->deleteLater();
 }
 
 void ConnectionVpnEditPage::initSettingsWidget()
@@ -248,8 +216,39 @@ void ConnectionVpnEditPage::resetConnectionIdByType(ConnectionVpnEditPage::VpnTy
 void ConnectionVpnEditPage::exportConnConfig()
 {
     Q_EMIT requestFrameAutoHide(false);
-    m_saveConfig->selectFile(this->m_connectionSettings->id());
-    m_saveConfig->show();
+    QFileDialog dialog;
+    dialog.selectFile(this->m_connectionSettings->id());
+    dialog.setAccessibleName("ConnectionVpnEditPage_saveConfig");
+    dialog.setModal(true);
+    dialog.setNameFilter("Config File (*.conf)");
+    dialog.setAcceptMode(QFileDialog::AcceptSave);
+    QStringList directory = QStandardPaths::standardLocations(QStandardPaths::HomeLocation);
+    if (!directory.isEmpty())
+        dialog.setDirectory(directory.first());
+    connect(&dialog, &QFileDialog::finished, this, [ &dialog, this ] (int result) {
+        Q_EMIT requestFrameAutoHide(true);
+        if (result == QFileDialog::Accepted) {
+            QString file = dialog.selectedFiles().first();
+            if (!file.endsWith(".conf"))
+               file.append(".conf");
+
+            const QString uuid = connectionUuid();
+            const auto args = QStringList() << "connection" << "export" << uuid << file;
+            qDebug() << Q_FUNC_INFO;
+
+            QProcess p;
+            p.start("nmcli", args);
+            p.waitForFinished();
+            qDebug() << p.readAllStandardOutput();
+            qDebug() << p.readAllStandardError();
+
+            // process ca
+            processConfigCA(file);
+        }
+    });
+
+    dialog.exec();
+
 }
 
 void ConnectionVpnEditPage::processConfigCA(const QString &file)
