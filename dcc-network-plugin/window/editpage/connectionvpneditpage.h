@@ -17,8 +17,6 @@
 #define ServiceTypeOpenConnect  "org.freedesktop.NetworkManager.openconnect"
 #define ServiceTypeSSTP         "org.freedesktop.NetworkManager.sstp"
 
-class QFileDialog;
-
 class ConnectionVpnEditPage : public ConnectionEditPage
 {
     Q_OBJECT
@@ -42,7 +40,6 @@ private:
 
 private:
     QPushButton *m_exportButton;
-    QFileDialog *m_saveConfig;
 };
 
 #endif /* CONNECTIONVPNEDITPAGE_H */
