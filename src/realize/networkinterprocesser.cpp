@@ -18,6 +18,7 @@
 
 #include <QJsonDocument>
 #include <QTimer>
+#include <QMultiMap>
 
 namespace dde {
 namespace network {
@@ -211,7 +212,7 @@ void NetworkInterProcesser::onDevicesChanged(const QString &value)
         return tmpIndexValue.toInt();
     };
 
-    qSort(m_devices.begin(), m_devices.end(), [ = ] (NetworkDeviceBase *dev1, NetworkDeviceBase *dev2) {
+    std::sort(m_devices.begin(), m_devices.end(), [ = ] (NetworkDeviceBase *dev1, NetworkDeviceBase *dev2) {
         if (dev1->deviceType() == DeviceType::Wired && dev2->deviceType() == DeviceType::Wireless)
             return true;
 
@@ -393,7 +394,7 @@ void NetworkInterProcesser::activeConnInfoChanged(const QString &conns)
     QJsonParseError error;
     m_activeConnectionInfo = QJsonDocument::fromJson(conns.toUtf8(), &error).array();
     if (error.error == QJsonParseError::NoError) {
-        QMap<NetworkDeviceBase *, QJsonObject> deviceInfoMap;
+        QMultiMap<NetworkDeviceBase *, QJsonObject> deviceInfoMap;
         for (QJsonValue jsonValue : m_activeConnectionInfo) {
             QJsonObject connInfo = jsonValue.toObject();
             const QString devPath = connInfo.value("Device").toString();
@@ -401,7 +402,7 @@ void NetworkInterProcesser::activeConnInfoChanged(const QString &conns)
             if (!device)
                 continue;
 
-            deviceInfoMap.insertMulti(device, connInfo);
+            deviceInfoMap.insert(device, connInfo);
         }
 
         for (auto it = deviceInfoMap.begin(); it != deviceInfoMap.end(); it++) {
@@ -606,7 +607,7 @@ void NetworkInterProcesser::updateNetworkDetails()
     }
 
     if (m_devices.size() > 0) {
-        qSort(m_networkDetails.begin(), m_networkDetails.end(), [ & ] (NetworkDetails *detail1, NetworkDetails *detail2) {
+        std::sort(m_networkDetails.begin(), m_networkDetails.end(), [ & ] (NetworkDetails *detail1, NetworkDetails *detail2) {
             int index1 = -1;
             int index2 = -1;
             for (int i = 0; i < m_devices.size(); i++) {

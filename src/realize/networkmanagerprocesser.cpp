@@ -115,7 +115,7 @@ void NetworkManagerProcesser::sortDevice()
         return tmpIndexValue.toInt();
     };
     // 有线网络始终在无线网络的前面，如果两者都是有线或者无线网络，则按照path的顺序来排序
-    qSort(m_devices.begin(), m_devices.end(),  [ = ](NetworkDeviceBase *device1, NetworkDeviceBase *device2) {
+    std::sort(m_devices.begin(), m_devices.end(),  [ = ](NetworkDeviceBase *device1, NetworkDeviceBase *device2) {
         if (device1->deviceType() == DeviceType::Wired && device2->deviceType() == DeviceType::Wireless)
             return true;
 

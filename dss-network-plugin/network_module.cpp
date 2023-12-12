@@ -51,7 +51,7 @@ NetworkModule::NetworkModule(QObject *parent)
     m_networkHelper = new NetworkPluginHelper(m_networkDialog, this);
 
     installTranslator(QLocale::system().name());
-    ThemeManager::instance()->setThemeType(m_isLockModel ? ThemeManager::LockType : ThemeManager::GreeterType);
+    ThemeManager::ref().setThemeType(m_isLockModel ? ThemeManager::LockType : ThemeManager::GreeterType);
     if (m_isLockModel) {
         m_networkDialog->setServerName("dde-network-dialog" + QString::number(getuid()) + "lock");
     } else {

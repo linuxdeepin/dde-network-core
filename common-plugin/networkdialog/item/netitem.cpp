@@ -212,7 +212,7 @@ WiredConnection *WiredItem::connection()
 QString WiredItem::symbolicIcon(const bool &connected) const
 {
     QString icon = connected ? QString("network-wired-symbolic") : QString("network-none-symbolic");
-    return ThemeManager::instance()->getIcon(icon);
+    return ThemeManager::ref().getIcon(icon);
 }
 
 void WiredItem::updateView()
@@ -405,7 +405,7 @@ void WirelessItem::initConnection()
 void WirelessItem::updateSrcirityIcon()
 {
     if (m_accessPoint && m_accessPoint->secured()) {
-        QString srcirityIcon = ThemeManager::instance()->getIcon("security");
+        QString srcirityIcon = ThemeManager::ref().getIcon("security");
         // 更新加密图标
         m_securityAction->setIcon(QIcon(srcirityIcon));
     } else {
@@ -422,7 +422,7 @@ void WirelessItem::updateWifiIcon()
     QString strength = getStrengthStateString(m_accessPoint->strength());
     QString iconRes = QString(isWlan6 ? QString("wireless6-%1-symbolic")
                                       : QString("wireless-%1-symbolic")).arg(strength);
-    QString icon = ThemeManager::instance()->getIcon(iconRes);
+    QString icon = ThemeManager::ref().getIcon(iconRes);
     m_wifiLabel->setIcon(QIcon(icon));
 }
 
@@ -547,7 +547,7 @@ void WirelessItem::createPasswordEdit()
     connect(m_connectButton, &DPushButton::clicked, this, &WirelessItem::onConnectNetwork);
     connect(m_passwdEdit->lineEdit(), &QLineEdit::returnPressed, this, &WirelessItem::onConnectNetwork);
     connect(m_passwdEdit->lineEdit(), &QLineEdit::textChanged, this, &WirelessItem::checkInputValid);
-    ThemeManager::instance()->updateInputStyle(m_passwdEdit);
+    ThemeManager::ref().updateInputStyle(m_passwdEdit);
 }
 
 void WirelessItem::createSsidEdit()
@@ -588,7 +588,7 @@ void WirelessItem::createSsidEdit()
     connect(cancelButtion, &DPushButton::clicked, this, &WirelessItem::onCancel);
     connect(connectButton, &DPushButton::clicked, this, &WirelessItem::onConnectHidden);
     connect(m_ssidEdit->lineEdit(), &QLineEdit::returnPressed, this, &WirelessItem::onConnectHidden);
-    ThemeManager::instance()->updateInputStyle(m_ssidEdit);
+    ThemeManager::ref().updateInputStyle(m_ssidEdit);
 }
 
 void WirelessItem::initExpandUi()

@@ -230,18 +230,18 @@ void NetworkPlugin::updateQuickPanel()
         NetDeviceStatus status = DeviceStatusHandler::wirelessStatus(wirelessList);
         updateQuickPanelDescription(status, wirelessConnectionCount, wirelessConnection, NetworkPluginHelper::MenuWirelessEnable);
         m_quickPanel->setText(tr("Wireless Network"));
-        m_quickPanel->setIcon(QIcon::fromTheme(ThemeManager::instance()->getIcon("wireless-80-symbolic")));
+        m_quickPanel->setIcon(QIcon::fromTheme(ThemeManager::ref().getIcon("wireless-80-symbolic")));
     } else if (!wiredList.isEmpty()) {
         NetDeviceStatus status = DeviceStatusHandler::wiredStatus(wiredList);
         updateQuickPanelDescription(status, wiredConnectionCount, wiredConnection, NetworkPluginHelper::MenuWiredEnable);
         m_quickPanel->setText(tr("Wired Network"));
-        m_quickPanel->setIcon(QIcon::fromTheme(ThemeManager::instance()->getIcon("network-wired-symbolic")));
+        m_quickPanel->setIcon(QIcon::fromTheme(ThemeManager::ref().getIcon("network-wired-symbolic")));
     } else {
         m_quickPanel->setText(pluginDisplayName());
         m_quickPanel->setDescription(description());
         m_quickPanel->setActive(false);
         m_quickPanel->setUserData(NetworkPluginHelper::MenuSettings);
-        m_quickPanel->setIcon(QIcon::fromTheme(ThemeManager::instance()->getIcon("wireless-disconnect")));
+        m_quickPanel->setIcon(QIcon::fromTheme(ThemeManager::ref().getIcon("wireless-disconnect")));
     }
 }
 

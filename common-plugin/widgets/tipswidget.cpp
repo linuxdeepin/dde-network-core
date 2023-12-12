@@ -25,7 +25,7 @@ void TipsWidget::setContext(const QList<QPair<QString, QStringList>> &textList)
     int height = 0;
     int titleWidth = 0;
     for (QPair<QString, QStringList> textPair : m_textList)
-        titleWidth = qMax(titleWidth, fontMetrics().width(textPair.first));
+        titleWidth = qMax(titleWidth, fontMetrics().horizontalAdvance(textPair.first));
 
     for (QPair<QString, QStringList> textPair : m_textList) {
         QString key = textPair.first;
@@ -33,7 +33,7 @@ void TipsWidget::setContext(const QList<QPair<QString, QStringList>> &textList)
         if (values.size() > 0) {
             for (const QString &value : values) {
                 QString text = m_spliter + value;
-                width = qMax(width, fontMetrics().width(text) + MARGIN * 2);
+                width = qMax(width, fontMetrics().horizontalAdvance(text) + MARGIN * 2);
                 height += fontMetrics().boundingRect(text).height();
             }
         } else {
@@ -61,7 +61,7 @@ int TipsWidget::calcValueX()
         int nCurrentTextWidth = fontMetrics().boundingRect(textPair.first).width();
         nMaxWidth = qMax(nMaxWidth, nCurrentTextWidth);
     }
-    return MARGIN + nMaxWidth + fontMetrics().width(m_spliter);
+    return MARGIN + nMaxWidth + fontMetrics().horizontalAdvance(m_spliter);
 }
 
 /**

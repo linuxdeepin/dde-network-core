@@ -6,7 +6,7 @@
 #define DOCKPOPUPWINDOW_H
 
 #include <darrowrectangle.h>
-#include <dregionmonitor.h>
+#include <DRegionMonitor>
 #include <DWindowManagerHelper>
 
 DWIDGET_USE_NAMESPACE

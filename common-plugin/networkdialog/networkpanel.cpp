@@ -10,7 +10,7 @@
 
 #include <NetworkManagerQt/WirelessDevice>
 
-#include <DHiDPIHelper>
+#include <DIcon>
 #include <DApplicationHelper>
 #include <DDBusSender>
 #include <DGuiApplicationHelper>
@@ -369,7 +369,7 @@ void NetworkPanel::updateItems()
         if (device->isEnabled() && !device->hotspotEnabled()) {
             QList<AccessPoints *> aps = accessPoints(device);
             // 按连接状态、强度、名称排序
-            qSort(aps.begin(), aps.end(), [](AccessPoints *a, AccessPoints *b) {
+            std::sort(aps.begin(), aps.end(), [](AccessPoints *a, AccessPoints *b) {
                 int aStatus = static_cast<int>(a->status()) & 3;
                 int bStatus = static_cast<int>(b->status()) & 3;
                 if (aStatus ^ bStatus)
@@ -481,7 +481,7 @@ void NetworkPanel::refreshItems()
             rmRows << i;
     }
     // 将row按照从大到小的顺序排序，否则会出现删除错误的问题
-    qSort(rmRows.begin(), rmRows.end(), [=](int &row1, int &row2) { return row1 > row2; });
+    std::sort(rmRows.begin(), rmRows.end(), [](const int row1, const int row2) { return row1 > row2; });
     for (int row : rmRows)
         m_model->removeRow(row);
 
@@ -619,7 +619,7 @@ QWidget *NetworkPanel::itemApplet()
 void NetworkPanel::setControlBackground()
 {
     QPalette backgroud = m_applet->palette();
-    backgroud.setColor(QPalette::Background, ThemeManager::instance()->backgroundColor());
+    backgroud.setColor(QPalette::Window, ThemeManager::ref().backgroundColor());
     m_applet->setAutoFillBackground(true);
     m_applet->setPalette(backgroud);
 }
@@ -835,7 +835,7 @@ void NetworkDelegate::paint(QPainter *painter, const QStyleOptionViewItem &optio
         QRect rct = option.rect;
         rct.setY(rct.top() + rct.height() - 2);
         rct.setHeight(2);
-        painter->fillRect(rct, ThemeManager::instance()->lineColor());
+        painter->fillRect(rct, ThemeManager::ref().lineColor());
     }
     // 鼠标移动的时候不
     bool isHoverItem = cantHover(index);
@@ -844,7 +844,7 @@ void NetworkDelegate::paint(QPainter *painter, const QStyleOptionViewItem &optio
         rect.setHeight(rect.height() - 2);
 
     if (!isHoverItem && (option.state & QStyle::State_MouseOver)) {
-        painter->fillRect(rect, ThemeManager::instance()->itemBackgroundColor());
+        painter->fillRect(rect, ThemeManager::ref().itemBackgroundColor());
     }
 
     // 绘制无线网络左侧的刷新按钮
@@ -1053,7 +1053,7 @@ void NetworkDelegate::drawRefreshButton(QPainter *painter, const QStyleOptionVie
         return;
 
     QRect rctIcon(option.rect.width() - SWITCH_WIDTH - 36, option.rect.top() + (option.rect.height() - 20) / 2, 20, 20);
-    QPixmap pixmap = DHiDPIHelper::loadNxPixmap(ThemeManager::instance()->getIcon("refresh"));
+    QPixmap pixmap = DIcon::loadNxPixmap(ThemeManager::ref().getIcon("refresh"));
     painter->save();
     painter->setRenderHint(QPainter::Antialiasing, true);
     if (m_refreshAngle.contains(index)) {
