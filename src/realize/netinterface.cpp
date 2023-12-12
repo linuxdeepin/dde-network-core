@@ -337,7 +337,7 @@ void NetworkDeviceRealize::setDeviceStatus(const DeviceStatus &status)
 void NetworkDeviceRealize::sortWiredItem(QList<WiredConnection *> &items)
 {
     // 按照最后面的数字从小到大排序，如果名字中没有数字，就按照创建的先后顺序来排序(path数字的大小)
-    qSort(items.begin(), items.end(), [ ] (WiredConnection *conn1, WiredConnection *conn2) {
+    std::sort(items.begin(), items.end(), [ ] (WiredConnection *conn1, WiredConnection *conn2) {
         QString lastChar1 = conn1->connection()->id().right(1);
         QString lastChar2 = conn2->connection()->id().right(1);
         int rightCount = 3;
