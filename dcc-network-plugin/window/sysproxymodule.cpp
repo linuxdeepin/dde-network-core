@@ -113,6 +113,7 @@ SysProxyModule::SysProxyModule(QObject *parent)
     m_modules.append(new WidgetModule<QWidget>); // 加个空的保证下面有弹簧
     ModuleObject *extra = new WidgetModule<ButtonTuple>("save", tr("Save", "button"), [this](ButtonTuple *buttonTuple) {
         m_buttonTuple = buttonTuple;
+        m_buttonTuple->setButtonType(ButtonTuple::Save);
         m_buttonTuple->leftButton()->setText(tr("Cancel", "button"));
         m_buttonTuple->rightButton()->setText(tr("Save", "button"));
         m_buttonTuple->setVisible(NetworkController::instance()->proxyController()->proxyMethod() != ProxyMethod::None);
