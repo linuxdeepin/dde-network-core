@@ -86,7 +86,7 @@ VPNModule::VPNModule(QObject *parent)
     extraCreate->setExtra();
     m_modules.append(extraCreate);
     ModuleObject *extraImport = new WidgetModule<FloatingButton>("addWired", tr("Add Network Connection"), [this](FloatingButton *importVpnBtn) {
-        importVpnBtn->QAbstractButton::setText("\342\206\223");
+        importVpnBtn->setIcon(QIcon::fromTheme("dcc_vpn_import"));
         importVpnBtn->setToolTip(tr("Import VPN"));
         importVpnBtn->setAccessibleName(tr("Import VPN"));
         connect(importVpnBtn, &DFloatingButton::clicked, this, &VPNModule::importVPN);
