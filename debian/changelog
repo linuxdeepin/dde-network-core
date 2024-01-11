@@ -1,3 +1,10 @@
+dde-network-core (2.0.18) unstable; urgency=medium
+
+  * fix the break ci
+  * fix the changelog
+
+ -- chenhongtao <chenhongtao@deepin.org>  Thu, 11 Mon 2024 15:44:43 +0800
+
 dde-network-core (2.0.17) unstable; urgency=medium
 
   * fix: vpn dialog open for a long time
@@ -227,33 +234,33 @@ dde-network-core (2.0.1) unstable; urgency=medium
 
 dde-network-core (2.0.0.1) unstable; urgency=low
 
- * release Tag 2.0.0.1
+  * release Tag 2.0.0.1
 
  -- donghualin <donghualin@uniontech.com>  Mon, 5 Jul 2022 14:51:12 +0800
 
 dde-network-core (1.0.17.4) unstable; urgency=low
 
- * release Tag 1.0.17.4
+   * release Tag 1.0.17.4
 
- -- caixiangrong <caixiangrong@uniontech.com>  Mon, 6 June 2022 14:40:48 +0800
+ -- caixiangrong <caixiangrong@uniontech.com>  Mon, 6 Jun 2022 14:40:48 +0800
 
 dde-network-core (1.0.17.3) unstable; urgency=low
 
- * release Tag 1.0.17.3
+   * release Tag 1.0.17.3
 
- -- donghualin <donghualin@uniontech.com>  Wed, 2 June 2022 16:10:48 +0800
+ -- donghualin <donghualin@uniontech.com>  Wed, 2 Jun 2022 16:10:48 +0800
 
 dde-network-core (1.0.17.2) unstable; urgency=low
 
- * release Tag 1.0.17.2
+   * release Tag 1.0.17.2
 
- -- caixiangrong <caixiangrong@uniontech.com>  Wed, 1 June 2022 17:16:39 +0800
+ -- caixiangrong <caixiangrong@uniontech.com>  Wed, 1 Jun 2022 17:16:39 +0800
 
 dde-network-core (1.0.17.1) unstable; urgency=low
 
- * release Tag 1.0.17.1
+   * release Tag 1.0.17.1
 
- -- donghualin <donghualin@uniontech.com>  Wed, 1 June 2022 10:58:39 +0800
+ -- donghualin <donghualin@uniontech.com>  Wed, 1 Jun 2022 10:58:39 +0800
 
 dde-network-core (1.0.0.1) stable; urgency=medium
 

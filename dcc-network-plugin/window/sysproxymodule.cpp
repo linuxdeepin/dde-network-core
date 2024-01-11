@@ -19,6 +19,7 @@
 
 #include <QLineEdit>
 #include <QPushButton>
+#include <QTimer>
 
 #include <networkcontroller.h>
 #include <proxycontroller.h>
