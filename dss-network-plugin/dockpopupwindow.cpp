@@ -10,6 +10,7 @@
 #include <QDesktopWidget>
 #include <QAccessible>
 #include <QAccessibleEvent>
+#include <QTimer>
 
 DWIDGET_USE_NAMESPACE
 
