@@ -241,7 +241,7 @@ void NetworkPlugin::updateQuickPanel()
         m_quickPanel->setDescription(description());
         m_quickPanel->setActive(false);
         m_quickPanel->setUserData(NetworkPluginHelper::MenuSettings);
-        m_quickPanel->setIcon(QIcon::fromTheme(ThemeManager::ref().getIcon("wireless-disconnect")));
+        m_quickPanel->setIcon(QIcon::fromTheme(ThemeManager::ref().getIcon("network-error-symbolic")));
     }
 }
 

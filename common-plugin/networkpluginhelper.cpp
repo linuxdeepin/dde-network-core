@@ -297,7 +297,7 @@ QString NetworkPluginHelper::iconPath(int colorType) const
     }
     case PluginState::Unknown:
     case PluginState::Nocable: {
-        stateString = "error"; // 待图标 暂用错误图标
+        stateString = "error";
         iconString = QString("network-%1-symbolic").arg(stateString);
         break;
     }
