@@ -88,7 +88,14 @@ void HotspotDeviceItem::initHotspotList(DListView *lvProfiles)
 
     connect(lvProfiles, &QListView::clicked, this, [this](const QModelIndex &index) {
         if (NetworkController::instance()->hotspotController()->enabled(m_device)) {
-            NetworkController::instance()->hotspotController()->connectItem(static_cast<HotspotItem *>(index.internalPointer()));
+            HotspotItem *item = static_cast<HotspotItem *>(index.internalPointer());
+            if (item->connected())
+                return;
+
+            NetworkController::instance()->hotspotController()->connectItem(item);
+        } else if (qEnvironmentVariableIsSet("DCC_NET_AC_AUTO_ON")) {
+            // 有这个环境变量时可以自动打开热点（无线已连接的情况下）
+            NetworkController::instance()->hotspotController()->setEnabled(m_device, true);
         }
     });
 }
