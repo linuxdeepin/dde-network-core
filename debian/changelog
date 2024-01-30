@@ -1,3 +1,9 @@
+dde-network-core (2.0.21) unstable; urgency=medium
+
+  * fix: dss plugin shouldn't acquire focus
+
+ -- YuMing He <heyuming@deepin.org>  Tue, 30 Jan 2024 21:42:11 +0800
+
 dde-network-core (2.0.20) unstable; urgency=medium
 
   * fix #6014
