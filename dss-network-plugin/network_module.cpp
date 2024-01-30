@@ -429,6 +429,7 @@ QString NetworkPlugin::icon() const
 QWidget *NetworkPlugin::itemWidget() const
 {
     DIconButton *iconButton = new DIconButton;
+    iconButton->setFocusPolicy(Qt::NoFocus);
     iconButton->setFlat(true);
     iconButton->setAttribute(Qt::WA_TransparentForMouseEvents);
     iconButton->setIconSize({26, 26});
