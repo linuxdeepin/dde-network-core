@@ -55,8 +55,8 @@ SysProxyModule::SysProxyModule(QObject *parent)
         connect(proxySwitch, &SwitchWidget::checkedChanged, proxySwitch, [this](const bool checked) {
             m_buttonTuple->setEnabled(checked);
             if (checked) {
-                // 打开代理默认手动
-                uiMethodChanged(ProxyMethod::Manual);
+                uiMethodChanged(m_lastCombIndex == 0 ? ProxyMethod::Manual : ProxyMethod::Auto);
+                m_proxyTypeBox->comboBox()->setCurrentIndex(m_lastCombIndex);
             } else {
                 // 关闭代理
                 NetworkController::instance()->proxyController()->setProxyMethod(ProxyMethod::None);
@@ -120,7 +120,10 @@ SysProxyModule::SysProxyModule(QObject *parent)
         m_buttonTuple->setVisible(NetworkController::instance()->proxyController()->proxyMethod() != ProxyMethod::None);
         m_buttonTuple->setEnabled(false);
 
-        connect(m_buttonTuple->rightButton(), &QPushButton::clicked, this, &SysProxyModule::applySettings);
+        connect(m_buttonTuple->rightButton(), &QPushButton::clicked, this, [this] {
+            m_lastCombIndex = m_proxyTypeBox->comboBox()->currentIndex();
+            applySettings();
+        });
         connect(m_buttonTuple->leftButton(), &QPushButton::clicked, this, [this]() {
             m_buttonTuple->setEnabled(false);
             if (m_proxyTypeBox->comboBox()->currentIndex() == ProxyMethodIndex_Auto)
