@@ -66,6 +66,7 @@ private:
     DCC_NAMESPACE::ButtonTuple *m_buttonTuple;
 
     dde::network::ProxyMethod m_uiMethod; // ui修改的ProxyMethod
+    int m_lastCombIndex = 0;
 };
 
 #endif // SYSPROXYMODULE_H
