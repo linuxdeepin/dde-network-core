@@ -47,9 +47,3 @@ void HotspotSettings::initSections()
     m_settingSections.append(secretHotspotSection);
     m_settingSections.append(wirelessSection);
 }
-
-bool HotspotSettings::clearInterfaceName()
-{
-    WirelessSetting::Ptr wirelessSetting = m_connSettings->setting(Setting::SettingType::Wireless).staticCast<WirelessSetting>();
-    return wirelessSetting->macAddress().isEmpty();
-}

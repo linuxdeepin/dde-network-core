@@ -90,9 +90,3 @@ void WirelessSettings::initSections()
     m_settingSections.append(dnsSection);
     m_settingSections.append(wirelessSection);
 }
-
-bool WirelessSettings::clearInterfaceName()
-{
-    WirelessSetting::Ptr wirelessSetting = m_connSettings->setting(Setting::SettingType::Wireless).staticCast<WirelessSetting>();
-    return wirelessSetting->macAddress().isEmpty();
-}
