@@ -21,8 +21,6 @@ public:
 
 protected:
     void initSections() Q_DECL_OVERRIDE;
-    bool clearInterfaceName() Q_DECL_OVERRIDE;
-    void resetConnectionInterfaceName() Q_DECL_OVERRIDE;
 
 private:
     EthernetSection *m_ethernetSection;

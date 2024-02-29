@@ -19,7 +19,7 @@ public:
 
 protected:
     void initSections() Q_DECL_OVERRIDE;
-    bool clearInterfaceName() Q_DECL_OVERRIDE { return true; }
+    bool setInterfaceName() Q_DECL_OVERRIDE { return false; }
 };
 
 #endif /* VPNSTRONGSWANSETTINGS_H */

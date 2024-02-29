@@ -63,13 +63,3 @@ void DslPppoeSettings::initSections()
     m_settingSections.append(m_etherNetSection);
     m_settingSections.append(pppSection);
 }
-
-bool DslPppoeSettings::clearInterfaceName()
-{
-    ConnectionEditPage *page = dynamic_cast<ConnectionEditPage *>(m_parent);
-    if (page)
-        page->setDevicePath(m_etherNetSection->devicePath());
-
-    WiredSetting::Ptr wiredSetting = m_connSettings->setting(Setting::Wired).staticCast<WiredSetting>();
-    return wiredSetting->macAddress().isEmpty();
-}

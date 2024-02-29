@@ -64,11 +64,12 @@ bool AbstractSettings::isAutoConnect()
 
 void AbstractSettings::resetConnectionInterfaceName()
 {
-    if (!m_connSettings->interfaceName().isEmpty())
+    if (!m_connSettings->interfaceName().isEmpty()) {
         return;
+    }
 
-    if (ConnectionEditPage::devicePath().isEmpty() || clearInterfaceName()) {
-        m_connSettings->setInterfaceName(QString());
+    if (!setInterfaceName() || ConnectionEditPage::devicePath().isEmpty()) {
+        // 不设置 interfaceName
         return;
     }
 

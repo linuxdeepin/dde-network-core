@@ -21,7 +21,6 @@ public:
 
 protected:
     void initSections() Q_DECL_OVERRIDE;
-    bool clearInterfaceName() Q_DECL_OVERRIDE;
 
 private:
     QString m_devicePath;

@@ -9,6 +9,7 @@
 #include "sections/dnssection.h"
 #include "sections/ethernetsection.h"
 //#include "window/gsettingwatcher.h"
+#include "editpage/connectioneditpage.h"
 
 #include <widgets/lineeditwidget.h>
 #include <widgets/switchwidget.h>
@@ -85,28 +86,4 @@ void WiredSettings::initSections()
     m_settingSections.append(etherNetSection);
 
     m_ethernetSection = etherNetSection;
-}
-
-bool WiredSettings::clearInterfaceName()
-{
-    WiredSetting::Ptr wiredSetting = m_connSettings->setting(Setting::Wired).staticCast<WiredSetting>();
-    return wiredSetting->macAddress().isEmpty();
-}
-
-void WiredSettings::resetConnectionInterfaceName()
-{
-    if (!m_ethernetSection) {
-        AbstractSettings::resetConnectionInterfaceName();
-        return;
-    }
-
-    QString devicePath = m_ethernetSection->devicePath();
-    if (devicePath.isEmpty() || clearInterfaceName()) {
-        m_connSettings->setInterfaceName(QString());
-        return;
-    }
-
-    Device::Ptr dev = findNetworkInterface(devicePath);
-    if (dev)
-        m_connSettings->setInterfaceName(dev->interfaceName());
 }
