@@ -121,10 +121,6 @@ void NetworkModule::onAddDevice(const QString &devicePath)
             NetworkManager::WiredDevice *wDevice = new NetworkManager::WiredDevice(devicePath, this);
             nmDevice = wDevice;
             addFirstConnection(wDevice);
-            connect(wDevice, &NetworkManager::WiredDevice::availableConnectionAppeared, this, [this]() {
-                NetworkManager::WiredDevice *device = qobject_cast<NetworkManager::WiredDevice *>(sender());
-                addFirstConnection(device);
-            });
         }
         if (nmDevice) {
             connect(nmDevice, &NetworkManager::Device::stateChanged, this, &NetworkModule::onDeviceStatusChanged);
@@ -172,11 +168,7 @@ const QString NetworkModule::connectionMatchName() const
             connNameList.append(conn->name());
     }
 
-    QString matchConnName = tr("Wired Connection");
-    if (!connNameList.contains(matchConnName))
-        return matchConnName;
-
-    matchConnName = QString(tr("Wired Connection")) + QString(" %1");
+    QString matchConnName = QString(tr("Wired Connection")) + QString(" %1");
     for (int i = 1; i <= connNameList.size(); ++i) {
         if (!connNameList.contains(matchConnName.arg(i))) {
             connSuffixNum = i;
@@ -189,65 +181,19 @@ const QString NetworkModule::connectionMatchName() const
     return matchConnName.arg(connSuffixNum);
 }
 
-bool NetworkModule::hasConnection(NetworkManager::WiredDevice *nmDevice, NetworkManager::Connection::List &unSaveDevices)
-{
-    bool connIsEmpty = false;
-    // 获取所有的连接列表,遍历连接列表,如果当前连接中的MAC地址不为空且不等于当前网卡的MAC地址，则认为它不是当前网卡的连接
-    // 在获取所有连接之前，需要手动调用一下当前设备的availableConnections接口，否则获取到的连接列表就不是最新的(具体原因待查)。
-    nmDevice->availableConnections();
-    NetworkManager::Connection::List connList = listConnections();
-    for (NetworkManager::Connection::Ptr conn : connList) {
-        WiredSetting::Ptr settings = conn->settings()->setting(Setting::Wired).staticCast<WiredSetting>();
-        // 如果当前连接的MAC地址不为空且连接的MAC地址不等于当前设备的MAC地址，则认为不是当前的连接，跳过
-        if (settings.isNull() || (!settings->macAddress().isEmpty() && nmDevice->hardwareAddress().compare(settings->macAddress().toHex(':'), Qt::CaseInsensitive) != 0))
-            continue;
-
-        // 将未保存的连接放入到列表中，供外面调用删除
-        if (conn->isUnsaved()) {
-            unSaveDevices << conn;
-            continue;
-        }
-
-        connIsEmpty = true;
-    }
-
-    return connIsEmpty;
-}
-
 void NetworkModule::addFirstConnection(NetworkManager::WiredDevice *nmDevice)
 {
     // 先查找当前的设备下是否存在有线连接，如果不存在，则直接新建一个，因为按照要求是至少要有一个有线连接
-    NetworkManager::Connection::List unSaveConnections;
-    bool findConnection = hasConnection(nmDevice, unSaveConnections);
-    // 按照需求，需要将未保存的连接删除
-    bool isRemoved = !unSaveConnections.isEmpty();
-    for (NetworkManager::Connection::Ptr conn : unSaveConnections)
-        conn->remove();
-
-    static bool connectionCreated = false;
-    // 只要有一个新增的连接,就不继续新增连接了,因为这个新增的连接是所有网卡共享的
-    if (connectionCreated)
+    if (!nmDevice->availableConnections().isEmpty()) {
         return;
-
-    connectionCreated = true;
-    auto autoCreateConnection = [this]() {
-        // 如果发现当前的连接的数量为空,则自动创建以当前语言为基础的连接
-        ConnectionSettings::Ptr conn(new ConnectionSettings);
-        conn->setId(connectionMatchName());
-        conn->setUuid("");
-        NetworkManager::addConnection(conn->toMap());
-    };
-
-    if (!findConnection) {
-        if (isRemoved) {
-            // 如果有删除的连接，则等待1秒后重新创建
-            QTimer::singleShot(1000, this, [autoCreateConnection] {
-                autoCreateConnection();
-            });
-        } else {
-            autoCreateConnection();
-        }
     }
+
+    // 如果发现当前的连接的数量为空,则自动创建以当前语言为基础的连接
+    ConnectionSettings::Ptr conn(new ConnectionSettings);
+    conn->setId(connectionMatchName());
+    conn->setUuid("");
+    conn->setInterfaceName(nmDevice->interfaceName());
+    NetworkManager::addConnection(conn->toMap());
 }
 
 bool NetworkModule::needPopupNetworkDialog() const
