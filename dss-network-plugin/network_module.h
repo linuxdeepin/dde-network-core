@@ -49,6 +49,7 @@ protected:
 
 private:
     void addFirstConnection(NetworkManager::WiredDevice *nmDevice);
+    bool hasConnection(NetworkManager::WiredDevice *nmDevice, NetworkManager::Connection::List &unSaveDevices);
     const QString connectionMatchName() const;
     void installTranslator(QString locale);
     bool needPopupNetworkDialog() const;
