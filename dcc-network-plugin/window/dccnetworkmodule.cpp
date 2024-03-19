@@ -46,7 +46,9 @@ void NetworkModule::init()
         m_modules.append(new DSLModule(this));         // DSL
         m_modules.append(new VPNModule(this));         // VPN
         m_modules.append(new SysProxyModule(this));    // 代理
+#ifdef DCC_ENABLE_APP_PROXY
         m_modules.append(new AppProxyModule(this));    // 应用代理
+#endif
         m_modules.append(new HotspotModule(this));     // 热点
         m_modules.append(new NetworkInfoModule(this)); // 网络详情
     }
