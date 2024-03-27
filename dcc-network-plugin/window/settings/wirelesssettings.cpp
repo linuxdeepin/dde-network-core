@@ -76,11 +76,12 @@ void WirelessSettings::initSections()
     connect(wirelessSection, &WirelessSection::ssidChanged, genericSection, &GenericSection::setConnectionName);
 
     m_sectionsLayout->addWidget(genericSection);
+    m_sectionsLayout->addWidget(wirelessSection);
     m_sectionsLayout->addWidget(secretSection);
     m_sectionsLayout->addWidget(ipv4Section);
     m_sectionsLayout->addWidget(ipv6Section);
     m_sectionsLayout->addWidget(dnsSection);
-    m_sectionsLayout->addWidget(wirelessSection);
+
     m_sectionsLayout->addStretch();
 
     m_settingSections.append(genericSection);
