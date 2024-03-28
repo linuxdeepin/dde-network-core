@@ -5,9 +5,9 @@
 #include "wirelesssection.h"
 
 #include <DSpinBox>
+#include <DLineEdit>
 
 #include <QComboBox>
-#include <QLineEdit>
 
 #include <networkmanagerqt/manager.h>
 #include <networkmanagerqt/wireddevice.h>
@@ -108,13 +108,13 @@ void WirelessSection::saveSettings()
 
 void WirelessSection::setSsidEditable(const bool editable)
 {
-    m_apSsid->textEdit()->setClearButtonEnabled(editable);
-    m_apSsid->textEdit()->setEnabled(editable);
+    m_apSsid->dTextEdit()->setClearButtonEnabled(editable);
+    m_apSsid->dTextEdit()->setEnabled(editable);
 }
 
 bool WirelessSection::ssidIsEditable() const
 {
-    return m_apSsid->isEnabled();
+    return m_apSsid->dTextEdit()->isEnabled();
 }
 
 const QString WirelessSection::ssid() const
