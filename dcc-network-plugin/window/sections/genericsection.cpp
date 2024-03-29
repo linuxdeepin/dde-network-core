@@ -41,7 +41,7 @@ void GenericSection::setConnectionType(ConnectionSettings::ConnectionType connTy
 
 bool GenericSection::connectionNameIsEditable()
 {
-    return m_connIdItem->isEnabled();
+    return m_connIdItem->dTextEdit()->isEnabled();
 }
 
 const QString GenericSection::connectionName() const
@@ -96,8 +96,8 @@ bool GenericSection::autoConnectChecked() const
 
 void GenericSection::setConnectionNameEditable(const bool editable)
 {
-    m_connIdItem->textEdit()->setClearButtonEnabled(editable);
-    m_connIdItem->textEdit()->setEnabled(editable);
+    m_connIdItem->dTextEdit()->setClearButtonEnabled(editable);
+    m_connIdItem->dTextEdit()->setEnabled(editable);
 }
 
 void GenericSection::initUI()
