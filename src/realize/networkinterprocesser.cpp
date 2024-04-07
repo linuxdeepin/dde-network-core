@@ -599,7 +599,8 @@ void NetworkInterProcesser::updateNetworkDetails()
     }
 
     // 删除不在设备列表中的项
-    for (NetworkDetails *detail : m_networkDetails) {
+    const auto details = m_networkDetails;
+    for (NetworkDetails *detail : details) {
         if (!devicePaths.contains(detail->devicePath())) {
             m_networkDetails.removeOne(detail);
             delete detail;
