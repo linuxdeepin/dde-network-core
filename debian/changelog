@@ -1,3 +1,14 @@
+dde-network-core (2.0.24) unstable; urgency=medium
+
+  * fix: warning label is not translated
+  * fix: empty network panel when unavailable
+  * fix: loadingIndicator isn't deleted
+  * fix: wild pointer for networkDetails
+  * chore: build tests with cpp 14
+  * fix: line edit not fully disabled
+
+ -- Wang Fei <wangfei@deepin.org>  Tue, 16 Apr 2024 16:17:14 +0800
+
 dde-network-core (2.0.23) unstable; urgency=medium
 
   * fix #7465
