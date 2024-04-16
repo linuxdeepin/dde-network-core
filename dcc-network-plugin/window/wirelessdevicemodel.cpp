@@ -60,6 +60,10 @@ struct ItemAction
                 loadingIndicator = new DSpinner(parentView);
                 loadingIndicator->setFixedSize(24, 24);
                 spinnerAction->setWidget(loadingIndicator);
+                QObject::connect(spinnerAction, &DViewItemAction::destroyed, loadingIndicator, [this] {
+                    loadingIndicator->deleteLater();
+                    loadingIndicator = nullptr;
+                });
             }
             loadingIndicator->start();
         } else if (loadingIndicator) {
