@@ -7,10 +7,12 @@
 
 #include "tray_module_interface.h"
 #include "../common-plugin/utils.h"
+#include "item/devicestatushandler.h"
 
 #include <NetworkManagerQt/Device>
 #include <NetworkManagerQt/WiredDevice>
 
+class QLabel;
 NETWORKPLUGIN_BEGIN_NAMESPACE
 class NetworkPluginHelper;
 class NetworkDialog;
@@ -25,12 +27,33 @@ class PopupAppletManager;
  * 用于处理插件差异
  * NetworkModule处理信号槽有问题，固增加该类
  */
+class NetworkPanelContainer : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit NetworkPanelContainer(NETWORKPLUGIN_NAMESPACE::NetworkDialog *dialog, QWidget *parent = nullptr);
+    ~NetworkPanelContainer() override;
+    void sendWarnMessage(const QString &msg);
+    void clearWarnMessage();
+    void setContentWidget(QWidget *content);
+    bool eventFilter(QObject *watched, QEvent *event) override;
+
+public Q_SLOTS:
+    void onPluginStateChanged(PluginState state);
+
+private:
+    QLabel *m_warnLabel;
+    NETWORKPLUGIN_NAMESPACE::NetworkDialog *m_dialog;
+    QWidget *m_savedParent;
+    QWidget *m_contentWidget;
+};
 class NetworkModule : public QObject
 {
     Q_OBJECT
 
 public:
     explicit NetworkModule(QObject *parent = nullptr);
+    ~NetworkModule() override;
 
     QWidget *content();
     QWidget *itemTipsWidget() const;
@@ -58,6 +81,7 @@ private:
     NETWORKPLUGIN_NAMESPACE::NetworkPluginHelper *m_networkHelper;
     NETWORKPLUGIN_NAMESPACE::NetworkDialog *m_networkDialog;
     NETWORKPLUGIN_NAMESPACE::SecretAgent *m_secretAgent;
+    QPointer<NetworkPanelContainer> m_panelContainer;
 
     bool m_isLockModel;  // 锁屏 or greeter
     bool m_isLockScreen; // 锁屏显示
