@@ -166,6 +166,7 @@ void NetworkModule::installTranslator(QString locale)
     QApplication::installTranslator(&translator);
     dde::network::NetworkController::instance()->retranslate();
     m_networkHelper->updateTooltips();
+    m_panelContainer->onPluginStateChanged(m_networkHelper->getPluginState());
 }
 
 const QString NetworkModule::connectionMatchName() const
@@ -482,7 +483,7 @@ NetworkPanelContainer::NetworkPanelContainer(dde::networkplugin::NetworkDialog *
 {
     m_warnLabel->setFixedWidth(300);
     m_warnLabel->setAlignment(Qt::AlignCenter);
-    m_warnLabel->setContentsMargins(10, 2, 10, 2);
+    m_warnLabel->setContentsMargins(10, 0, 10, 0);
     m_warnLabel->setWordWrap(true);
 }
 

@@ -276,4 +276,11 @@
         <translation>Wired Connection</translation>
     </message>
 </context>
+<context>
+    <name>dss::module::NetworkPanelContainer</name>
+    <message>
+        <source>Network cable unplugged</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>
