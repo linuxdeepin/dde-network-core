@@ -276,4 +276,11 @@
         <translation>有线连接</translation>
     </message>
 </context>
+<context>
+    <name>dss::module::NetworkPanelContainer</name>
+    <message>
+        <source>Network cable unplugged</source>
+        <translation>未插入网线</translation>
+    </message>
+</context>
 </TS>

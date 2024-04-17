@@ -22,11 +22,6 @@ NETWORKPLUGIN_END_NAMESPACE
 namespace dss {
 namespace module {
 class PopupAppletManager;
-/**
- * @brief The NetworkModule class
- * 用于处理插件差异
- * NetworkModule处理信号槽有问题，固增加该类
- */
 class NetworkPanelContainer : public QWidget
 {
     Q_OBJECT
@@ -47,6 +42,11 @@ private:
     QWidget *m_savedParent;
     QWidget *m_contentWidget;
 };
+/**
+ * @brief The NetworkModule class
+ * 用于处理插件差异
+ * NetworkModule处理信号槽有问题，固增加该类
+ */
 class NetworkModule : public QObject
 {
     Q_OBJECT
