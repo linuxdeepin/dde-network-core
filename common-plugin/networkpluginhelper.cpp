@@ -85,7 +85,11 @@ void NetworkPluginHelper::initConnection()
 
 void NetworkPluginHelper::updatePluginState()
 {
-    m_pluginState = DeviceStatusHandler::pluginState();
+    auto state = DeviceStatusHandler::pluginState();
+    if (m_pluginState == state)
+        return;
+    m_pluginState = state;
+    Q_EMIT pluginStateChanged(state);
 }
 
 PluginState NetworkPluginHelper::getPluginState()

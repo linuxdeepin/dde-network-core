@@ -49,6 +49,9 @@ NetworkModule::NetworkModule(QObject *parent)
 
     m_networkDialog = new NetworkDialog(this);
     m_networkHelper = new NetworkPluginHelper(m_networkDialog, this);
+    m_panelContainer = new NetworkPanelContainer(m_networkDialog);
+    connect(m_networkHelper, &NetworkPluginHelper::pluginStateChanged, m_panelContainer, &NetworkPanelContainer::onPluginStateChanged);
+    m_panelContainer->onPluginStateChanged(m_networkHelper->getPluginState());
 
     installTranslator(QLocale::system().name());
     ThemeManager::ref().setThemeType(m_isLockModel ? ThemeManager::LockType : ThemeManager::GreeterType);
@@ -69,9 +72,17 @@ NetworkModule::NetworkModule(QObject *parent)
     }
 }
 
+NetworkModule::~NetworkModule()
+{
+    if (m_panelContainer) {
+        m_panelContainer->deleteLater();
+        m_panelContainer.clear();
+    }
+}
+
 QWidget *NetworkModule::content()
 {
-    return m_networkDialog->panel();
+    return m_panelContainer;
 }
 
 QWidget *NetworkModule::itemTipsWidget() const
@@ -462,5 +473,77 @@ void NetworkPlugin::ensureNetwork()
     m_network = new NetworkModule(this);
 }
 
+NetworkPanelContainer::NetworkPanelContainer(dde::networkplugin::NetworkDialog *dialog, QWidget *parent)
+    : QWidget(parent)
+    , m_warnLabel(new QLabel)
+    , m_dialog(dialog)
+    , m_savedParent(dialog->panel()->parentWidget())
+    , m_contentWidget(nullptr)
+{
+    m_warnLabel->setFixedWidth(300);
+    m_warnLabel->setAlignment(Qt::AlignCenter);
+    m_warnLabel->setContentsMargins(10, 2, 10, 2);
+    m_warnLabel->setWordWrap(true);
+}
+
+NetworkPanelContainer::~NetworkPanelContainer()
+{
+    // Warning label may have a null parent, delete it here.
+    delete m_warnLabel;
+    m_warnLabel = nullptr;
+}
+
+void NetworkPanelContainer::sendWarnMessage(const QString &msg)
+{
+    m_warnLabel->setText(msg);
+    setContentWidget(m_warnLabel);
+}
+
+void NetworkPanelContainer::clearWarnMessage()
+{
+    m_warnLabel->clear();
+    setContentWidget(m_dialog->panel());
+}
+
+void NetworkPanelContainer::onPluginStateChanged(PluginState state)
+{
+    switch(state) {
+    case PluginState::Nocable:
+    case PluginState::Unknown:
+    case PluginState::Disabled:
+        sendWarnMessage(tr("Network cable unplugged"));
+        break;
+    default:
+        clearWarnMessage();
+        break;
+    }
+}
+
+void NetworkPanelContainer::setContentWidget(QWidget *content)
+{
+    if (m_contentWidget) {
+        m_contentWidget->removeEventFilter(this);
+        m_contentWidget->setParent(m_savedParent);
+    }
+    m_contentWidget = content;
+    m_savedParent = content->parentWidget();
+    // Note: for m_dialog->panel(), setting parent to container means controlling its life span.
+    // As container has the same life span as panel, this is not a problem at least now.
+    m_contentWidget->setParent(this);
+    resize(content->size());
+    content->installEventFilter(this);
+    content->show();
+}
+
+bool NetworkPanelContainer::eventFilter(QObject *watched, QEvent *event)
+{
+    if (watched == m_contentWidget) {
+        if (event->type() == QEvent::Resize) {
+            QResizeEvent *rsEvent = dynamic_cast<QResizeEvent *>(event);
+            resize(rsEvent->size());
+        }
+    }
+    return false;
+}
 } // namespace module
 } // namespace dss

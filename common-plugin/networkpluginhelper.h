@@ -51,6 +51,7 @@ Q_SIGNALS:
     void addDevice(const QString &devicePath);
     void viewUpdate();
     void iconChanged();
+    void pluginStateChanged(PluginState state);
 
 public:
     explicit NetworkPluginHelper(NetworkDialog *networkDialog, QObject *parent = Q_NULLPTR);
