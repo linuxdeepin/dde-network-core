@@ -46,7 +46,8 @@ NetItem::NetItem(QWidget *parent)
     m_standardItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
     m_standardItem->setData(NetConnectionType::UnConnected, ConnectionStatusRole);
     m_standardItem->setBackground(Qt::transparent);
-    m_standardItem->setTextColorRole(DPalette::BrightText);
+    QColor textColor(Qt::white);
+    m_standardItem->setData(textColor, Qt::ForegroundRole);
 }
 
 NetItem::~NetItem()
