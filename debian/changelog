@@ -1,3 +1,10 @@
+dde-network-core (2.0.26) unstable; urgency=medium
+
+  * fix: lineedit alert style error
+  * fix: secure icons in lock screen are too small
+
+ -- Zhang Kun <zhangkun2@uniontech.com>  Thu, 23 May 2024 16:14:14 +0800
+
 dde-network-core (2.0.25) unstable; urgency=medium
 
   * fix: netItem textColor error and the selected button is not centered(Issue: https://github.com/linuxdeepin/developer-center/issues/8505)
