@@ -10,7 +10,7 @@
 #include <networkmanagerqt/utils.h>
 
 #include <QComboBox>
-#include <QLineEdit>
+#include <DLineEdit>
 
 using namespace DCC_NAMESPACE;
 using namespace NetworkManager;
@@ -55,15 +55,18 @@ bool SecretHotspotSection::allInputValid()
         valid = wepKeyIsValid(m_passwdEdit->text(), WirelessSecuritySetting::WepKeyType::Passphrase);
         m_passwdEdit->setIsErr(!valid);
         if (!valid && !m_passwdEdit->text().isEmpty())
-            m_passwdEdit->showAlertMessage(tr("Invalid password"));
+            m_passwdEdit->dTextEdit()->showAlertMessage(tr("Invalid password"), this);
         break;
     }
     case WirelessSecuritySetting::KeyMgmt::WpaPsk:
     case WirelessSecuritySetting::KeyMgmt::SAE: {
         valid = wpaPskIsValid(m_passwdEdit->text());
         m_passwdEdit->setIsErr(!valid);
-        if (!valid && !m_passwdEdit->text().isEmpty())
-            m_passwdEdit->showAlertMessage(tr("Invalid password"));
+        if (!valid && m_passwdEdit->text().length() < 8) {
+            m_passwdEdit->dTextEdit()->showAlertMessage(tr("Please enter a password of at least eight digits"), this);
+        } else if (!valid) {
+            m_passwdEdit->dTextEdit()->showAlertMessage(tr("Invalid password"), this);
+        }
         break;
     }
     default: break;

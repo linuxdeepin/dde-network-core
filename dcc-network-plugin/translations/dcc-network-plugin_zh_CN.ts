@@ -712,6 +712,10 @@
         <source>Password</source>
         <translation>密码</translation>
     </message>
+    <message>
+        <source>Please enter a password of at least eight digits</source>
+        <translation>请输入至少8位密码</translation>
+    </message>
 </context>
 <context>
     <name>SecretWiredSection</name>
@@ -773,6 +777,10 @@
     <message>
         <source>Password</source>
         <translation>密码</translation>
+    </message>
+    <message>
+        <source>Please enter a password of at least eight digits</source>
+        <translation>请输入至少8位密码</translation>
     </message>
 </context>
 <context>

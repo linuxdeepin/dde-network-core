@@ -714,6 +714,10 @@
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Please enter a password of at least eight digits</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SecretWiredSection</name>
@@ -774,6 +778,10 @@
     </message>
     <message>
         <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a password of at least eight digits</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
