@@ -96,8 +96,11 @@ bool SecretWirelessSection::allInputValid()
         if (m_currentPasswordType != Setting::NotSaved) {
             valid = wpaPskIsValid(m_passwdEdit->text());
             m_passwdEdit->setIsErr(!valid);
-            if (!valid && !m_passwdEdit->text().isEmpty())
+            if (!valid && m_passwdEdit->text().length() < 8) {
+                m_passwdEdit->dTextEdit()->showAlertMessage(tr("Please enter a password of at least eight digits"), this);
+            } else if (!valid) {
                 m_passwdEdit->dTextEdit()->showAlertMessage(tr("Invalid password"), this);
+            }
         }
     }
 
