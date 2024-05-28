@@ -380,8 +380,8 @@
         <translation>网关</translation>
     </message>
     <message>
-        <source>Only applied in corresponding resources</source>
-        <translation>仅用于相对应的网络上的资源</translation>
+        <source>Use this connection only for resources on its network</source>
+        <translation>仅对该网络上的资源使用此连接</translation>
     </message>
     <message>
         <source>Method</source>

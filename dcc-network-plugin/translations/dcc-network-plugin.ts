@@ -382,10 +382,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Only applied in corresponding resources</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Method</source>
         <translation type="unfinished"></translation>
     </message>
@@ -415,6 +411,10 @@
     </message>
     <message>
         <source>IP conflict</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use this connection only for resources on its network</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

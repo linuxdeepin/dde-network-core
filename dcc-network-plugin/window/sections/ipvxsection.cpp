@@ -219,7 +219,7 @@ void IpvxSection::initUI()
     m_ipAddress->setTitle(tr("IP Address"));
     m_ipAddress->textEdit()->setPlaceholderText(tr("Required"));
     m_gateway->setTitle(tr("Gateway"));
-    m_neverDefault->setTitle(tr("Only applied in corresponding resources"));
+    m_neverDefault->setTitle(tr("Use this connection only for resources on its network"));
     m_neverDefault->setVisible(false);
 
     m_methodChooser = m_methodLine->comboBox();
