@@ -36,7 +36,7 @@ BubbleManager *NotificationManager::BubbleManagerinstance()
 uint NotificationManager::Notify(const QString &icon, const QString &body)
 {
     static uint replacesId = 0;
-    replacesId = BubbleManagerinstance()->Notify("dde-control-center", replacesId, icon, "", body);
+    replacesId = BubbleManagerinstance()->Notify(QObject::tr("dde-control-center"), replacesId, icon, "", body);
     return replacesId;
 }
 
