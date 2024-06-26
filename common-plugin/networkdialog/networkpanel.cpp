@@ -1162,7 +1162,7 @@ bool NetworkDelegate::editorEvent(QEvent *event, QAbstractItemModel *model, cons
 QRect NetworkDelegate::checkRect(const QRect &rct) const
 {
     int left = rct.right() - RIGHTMARGIN - DIAMETER + 4;
-    int top = rct.top() + (rct.height() - DIAMETER) / 2; // 连接图标绘制在顶端
+    int top = rct.top() + (NETITEM_HEIGHT - DIAMETER) / 2; // 连接图标绘制在顶端
     QRect rect;
     rect.setLeft(left);
     rect.setTop(top);
