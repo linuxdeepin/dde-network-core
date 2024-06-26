@@ -251,7 +251,7 @@ NetItemType WiredItem::itemType()
 
 void WiredItem::initUi()
 {
-    standardItem()->setSizeHint(QSize(-1, 36));
+    standardItem()->setSizeHint(QSize(-1, NETITEM_HEIGHT));
 
     // 占位的
     DViewItemAction *emptyAction = new DViewItemAction(Qt::AlignLeft | Qt::AlignVCenter,
@@ -369,10 +369,10 @@ void WirelessItem::initUi(QWidget *parent)
     standardItem()->setActionList(Qt::BottomEdge, { m_expandItem });
     m_expandItem->setVisible(false);
     // 左侧的加密图标
-    m_securityAction = new DViewItemAction(Qt::AlignCenter, QSize(), QSize(), false);
+    m_securityAction = new DViewItemAction(Qt::AlignLeft , QSize(20, 35), QSize(20, 35), false);
     updateSrcirityIcon();
     // 绘制WiFi图标
-    m_wifiLabel = new DViewItemAction(Qt::AlignLeft | Qt::AlignVCenter , QSize(), QSize(), false);
+    m_wifiLabel = new DViewItemAction(Qt::AlignLeft , QSize(20, 35), QSize(8, 35), false);
     updateWifiIcon();
 
     standardItem()->setSizeHint(QSize(-1, 36));
@@ -407,9 +407,9 @@ void WirelessItem::initConnection()
 void WirelessItem::updateSrcirityIcon()
 {
     if (m_accessPoint && m_accessPoint->secured()) {
-        DStyleHelper helper(qobject_cast<QWidget *>(parent())->style());
+        QString srcirityIcon = ThemeManager::ref().getIcon("security");
         // 更新加密图标
-        m_securityAction->setIcon(helper.standardIcon(DStyle::SP_LockElement, nullptr, nullptr));
+        m_securityAction->setIcon(QIcon(srcirityIcon));
     } else {
         m_securityAction->setIcon(QIcon());
     }

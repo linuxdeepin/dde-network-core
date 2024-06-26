@@ -14,6 +14,8 @@
 
 #include <networkdevicebase.h>
 
+#define NETITEM_HEIGHT 36
+
 class NetworkDevice;
 class NetItem;
 class WirelessConnect;
