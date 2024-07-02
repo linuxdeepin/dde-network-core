@@ -435,7 +435,7 @@ bool IpvxSection::ipv4InputIsValid()
         inter.RequestIPConflictCheck(ip, "");
         connect(&inter, &NetworkDBusProxy::IPConflict, this, [&strCurrentIP,&isIPConflict] (const QString &strIP, const QString &strMac) {
             if (!strMac.isEmpty() && strIP == strCurrentIP && !isIPConflict) {
-                NetworkDBusProxy::Notify("dde-control-center", static_cast<uint>(QDateTime::currentMSecsSinceEpoch()), "preferences-system", tr("Network"), tr("IP conflict"), QStringList(), QVariantMap(), 3000);
+                NetworkDBusProxy::Notify(tr("dde-control-center"), static_cast<uint>(QDateTime::currentMSecsSinceEpoch()), "preferences-system", tr("Network"), tr("IP conflict"), QStringList(), QVariantMap(), 3000);
             }
             isIPConflict = true;
         });
