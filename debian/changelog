@@ -1,3 +1,10 @@
+dde-network-core (2.0.28) unstable; urgency=medium
+
+  * fix: icon drift on the left side of listView(Issue: https://github.com/linuxdeepin/developer-center/issues/8982)
+  * fix: VPN gateway cannot input ip:port(Issue: https://github.com/linuxdeepin/developer-center/issues/9437)
+
+ -- Zhang Kun <zhangkun2@uniontech.com>  Tue, 02 Jul 2024 10:36:08 +0800
+
 dde-network-core (2.0.27) unstable; urgency=medium
 
   * chore: Update translation
