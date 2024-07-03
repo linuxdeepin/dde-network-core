@@ -36,6 +36,10 @@ public:
 public Q_SLOTS:
     void onPluginStateChanged(PluginState state);
 
+protected:
+    void showEvent(QShowEvent *event) override;
+    void hideEvent(QHideEvent *event) override;
+
 private:
     QLabel *m_warnLabel;
     NETWORKPLUGIN_NAMESPACE::NetworkDialog *m_dialog;
