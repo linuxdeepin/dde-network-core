@@ -7,7 +7,6 @@
 #include "networkdialog.h"
 #include "secretagent.h"
 #include "notificationmanager.h"
-#include "dockpopupwindow.h"
 #include "networkdialog/thememanager.h"
 
 #include <QWidget>
@@ -32,6 +31,8 @@
 #define NETWORK_KEY "network-item-key"
 
 using namespace NetworkManager;
+
+DWIDGET_USE_NAMESPACE
 NETWORKPLUGIN_USE_NAMESPACE
 
 namespace dss {
@@ -517,6 +518,18 @@ void NetworkPanelContainer::onPluginStateChanged(PluginState state)
     default:
         clearWarnMessage();
         break;
+    }
+}
+
+void NetworkPanelContainer::showEvent(QShowEvent *event) {
+    if (m_contentWidget == m_dialog->panel()) {
+        m_contentWidget->setVisible(true);
+    }
+}
+
+void NetworkPanelContainer::hideEvent(QHideEvent *event) {
+    if (m_contentWidget == m_dialog->panel()) {
+        m_contentWidget->setVisible(false);
     }
 }
 
