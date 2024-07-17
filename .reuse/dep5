@@ -44,7 +44,7 @@ Copyright: UnionTech Software Technology Co., Ltd.
 License: LGPL-3.0-or-later
 
 # project config files(pkla in cc)
-Files: dss-network-plugin/10-network-manager.pkla src/dde-network-core.pc.in try-compile/networkmanagerqt.cc
+Files: dss-network-plugin/50-dss-network-plugin.rules src/dde-network-core.pc.in try-compile/networkmanagerqt.cc
 Copyright: UnionTech Software Technology Co., Ltd.
 License: LGPL-3.0-or-later
 
