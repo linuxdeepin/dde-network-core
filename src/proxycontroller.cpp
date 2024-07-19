@@ -25,6 +25,7 @@ ProxyController::ProxyController(NetworkDBusProxy *networkInter, QObject *parent
     connect(m_networkInter, &NetworkDBusProxy::TypeChanged, this, &ProxyController::onTypeChanged);
     connect(m_networkInter, &NetworkDBusProxy::UserChanged, this, &ProxyController::onUserChanged);
     connect(m_networkInter, &NetworkDBusProxy::PortChanged, this, &ProxyController::onPortChanged);
+    connect(m_networkInter, &NetworkDBusProxy::ProxyMethodChanged, this, &ProxyController::queryProxyMethod);
     // 初始化应用代理的相关的数据
     m_appProxyConfig.type = appProxyType(m_networkInter->type());
     m_appProxyConfig.ip = m_networkInter->iP();

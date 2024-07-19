@@ -63,6 +63,7 @@ Q_SIGNALS: // SIGNALS
     void ActiveConnectionInfoChanged();
     void DeviceEnabled(const QString &device, bool enabled);
     void IPConflict(const QString &in0, const QString &in1);
+    void ProxyMethodChanged(const QString &method);
     // begin property changed signals
     void ActiveConnectionsChanged(const QString &value) const;
     void ConnectionsChanged(const QString &value) const;
