@@ -1,3 +1,10 @@
+dde-network-core (2.0.30) unstable; urgency=medium
+
+  * fix: Responding to proxy change signals (#252)(Issue: 9711)
+  * fix(dss): can't connect to new WiFi(Issue: 9630)
+
+ -- zyz <zhaoyingzhen@uniontech.com>  Wed, 24 Jul 2024 14:05:40 +0800
+
 dde-network-core (2.0.29) unstable; urgency=medium
 
   * fix(dss): input  is not hidden after closing the window
