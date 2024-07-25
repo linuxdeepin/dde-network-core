@@ -44,11 +44,10 @@ SysProxyModule::SysProxyModule(QObject *parent)
         proxySwitch->setLeftWidget(lblTitle);
         proxySwitch->switchButton()->setAccessibleName(lblTitle->text());
 
-        auto updateSwitch = [proxySwitch, this]() {
+        auto updateSwitch = [proxySwitch]() {
             ProxyMethod method = NetworkController::instance()->proxyController()->proxyMethod();
             proxySwitch->blockSignals(true);
             proxySwitch->setChecked(method != ProxyMethod::None);
-            uiMethodChanged(method);
             proxySwitch->blockSignals(false);
         };
         updateSwitch();
@@ -137,14 +136,13 @@ SysProxyModule::SysProxyModule(QObject *parent)
     m_modules.append(extra);
     NetworkController::instance()->proxyController()->querySysProxyData();
     uiMethodChanged(NetworkController::instance()->proxyController()->proxyMethod());
+    connect(NetworkController::instance()->proxyController(), &ProxyController::proxyMethodChanged, this, &SysProxyModule::uiMethodChanged);
 }
 
 void SysProxyModule::active()
 {
     NetworkController::instance()->proxyController()->querySysProxyData();
-    QTimer::singleShot(1, this, [this]() {
-        uiMethodChanged(NetworkController::instance()->proxyController()->proxyMethod());
-    });
+    uiMethodChanged(NetworkController::instance()->proxyController()->proxyMethod());
 }
 
 void SysProxyModule::deactive()
@@ -162,6 +160,7 @@ void SysProxyModule::deactive()
     m_socksPort = nullptr;
     m_ignoreList = nullptr;
     m_buttonTuple = nullptr;
+    uiMethodChanged(NetworkController::instance()->proxyController()->proxyMethod());
 }
 
 void SysProxyModule::initManualView(QWidget *w)
