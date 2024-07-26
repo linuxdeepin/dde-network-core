@@ -57,6 +57,7 @@ SysProxyModule::SysProxyModule(QObject *parent)
             if (checked) {
                 uiMethodChanged(m_lastCombIndex == 0 ? ProxyMethod::Manual : ProxyMethod::Auto);
                 m_proxyTypeBox->comboBox()->setCurrentIndex(m_lastCombIndex);
+                checkConf();
             } else {
                 // 关闭代理
                 NetworkController::instance()->proxyController()->setProxyMethod(ProxyMethod::None);
@@ -97,6 +98,7 @@ SysProxyModule::SysProxyModule(QObject *parent)
                 uiMethodChanged(ProxyMethod::Manual);
                 break;
             }
+            checkConf();
             m_buttonTuple->setEnabled(true);
         });
     }));
@@ -107,6 +109,7 @@ SysProxyModule::SysProxyModule(QObject *parent)
         m_autoUrl->textEdit()->installEventFilter(this);
         ProxyController *proxyController = NetworkController::instance()->proxyController();
         connect(proxyController, &ProxyController::autoProxyChanged, m_autoUrl, &LineEditWidget::setText);
+        connect(m_autoUrl->textEdit(), &QLineEdit::textChanged, this, &SysProxyModule::checkConf);
         autoGroup->appendItem(m_autoUrl);
         resetData(ProxyMethod::Auto);
     }));
@@ -119,6 +122,7 @@ SysProxyModule::SysProxyModule(QObject *parent)
         m_buttonTuple->rightButton()->setText(tr("Save", "button"));
         m_buttonTuple->setVisible(NetworkController::instance()->proxyController()->proxyMethod() != ProxyMethod::None);
         m_buttonTuple->setEnabled(false);
+        checkConf();
 
         connect(m_buttonTuple->rightButton(), &QPushButton::clicked, this, [this] {
             m_lastCombIndex = m_proxyTypeBox->comboBox()->currentIndex();
@@ -160,7 +164,9 @@ void SysProxyModule::deactive()
     m_socksPort = nullptr;
     m_ignoreList = nullptr;
     m_buttonTuple = nullptr;
-    uiMethodChanged(NetworkController::instance()->proxyController()->proxyMethod());
+    QTimer::singleShot(1, this, [this]() {
+        uiMethodChanged(NetworkController::instance()->proxyController()->proxyMethod());
+    });
 }
 
 void SysProxyModule::initManualView(QWidget *w)
@@ -177,13 +183,14 @@ void SysProxyModule::initManualView(QWidget *w)
         portEdit->textEdit()->installEventFilter(this);
         group->appendItem(proxyEdit);
         group->appendItem(portEdit);
-        connect(portEdit->textEdit(), &QLineEdit::textChanged, this, [=](const QString &str) {
+        connect(portEdit->textEdit(), &QLineEdit::textChanged, this, [portEdit](const QString &str) {
             if (str.toInt() < 0) {
                 portEdit->setText("0");
             } else if (str.toInt() > 65535) {
                 portEdit->setText("65535");
             }
         });
+        connect(proxyEdit->textEdit(), &QLineEdit::textChanged, this, &SysProxyModule::checkConf);
     };
 
     //  手动代理编辑界面控件初始化
@@ -321,6 +328,17 @@ void SysProxyModule::resetData(ProxyMethod uiMethod)
     } break;
     default:
         break;
+    }
+}
+
+void SysProxyModule::checkConf()
+{
+    if (!m_proxyTypeBox || !m_buttonTuple)
+        return;
+    if (m_proxyTypeBox->comboBox()->currentIndex() == ProxyMethodIndex_Manual) {
+        m_buttonTuple->rightButton()->setEnabled(!m_httpAddr->text().isEmpty() || !m_httpsAddr->text().isEmpty() || !m_ftpAddr->text().isEmpty() || !m_socksAddr->text().isEmpty());
+    } else if (m_proxyTypeBox->comboBox()->currentIndex() == ProxyMethodIndex_Auto) {
+        m_buttonTuple->rightButton()->setEnabled(!m_autoUrl->text().isEmpty());
     }
 }
 

@@ -41,6 +41,7 @@ private Q_SLOTS:
     void applySettings();
     void uiMethodChanged(dde::network::ProxyMethod uiMethod);
     void resetData(dde::network::ProxyMethod uiMethod);
+    void checkConf();
 
 private:
     virtual bool eventFilter(QObject *watched, QEvent *event) override;
