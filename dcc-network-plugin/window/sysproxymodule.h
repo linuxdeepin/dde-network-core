@@ -6,6 +6,8 @@
 #define SYSPROXYMODULE_H
 #include "interface/pagemodule.h"
 
+#include <QPointer>
+
 #include <dtkwidget_global.h>
 
 DWIDGET_BEGIN_NAMESPACE
@@ -50,21 +52,21 @@ private:
     QList<DCC_NAMESPACE::ModuleObject *> m_modules;
     const QStringList m_ProxyMethodList;
 
-    DCC_NAMESPACE::SwitchWidget *m_proxySwitch;
-    DCC_NAMESPACE::ComboxWidget *m_proxyTypeBox;
+    QPointer<DCC_NAMESPACE::SwitchWidget> m_proxySwitch;
+    QPointer<DCC_NAMESPACE::ComboxWidget> m_proxyTypeBox;
 
-    DCC_NAMESPACE::LineEditWidget *m_autoUrl;
+    QPointer<DCC_NAMESPACE::LineEditWidget> m_autoUrl;
 
-    DCC_NAMESPACE::LineEditWidget *m_httpAddr;
-    DCC_NAMESPACE::LineEditWidget *m_httpPort;
-    DCC_NAMESPACE::LineEditWidget *m_httpsAddr;
-    DCC_NAMESPACE::LineEditWidget *m_httpsPort;
-    DCC_NAMESPACE::LineEditWidget *m_ftpAddr;
-    DCC_NAMESPACE::LineEditWidget *m_ftpPort;
-    DCC_NAMESPACE::LineEditWidget *m_socksAddr;
-    DCC_NAMESPACE::LineEditWidget *m_socksPort;
-    DTK_WIDGET_NAMESPACE::DTextEdit *m_ignoreList;
-    DCC_NAMESPACE::ButtonTuple *m_buttonTuple;
+    QPointer<DCC_NAMESPACE::LineEditWidget> m_httpAddr;
+    QPointer<DCC_NAMESPACE::LineEditWidget> m_httpPort;
+    QPointer<DCC_NAMESPACE::LineEditWidget> m_httpsAddr;
+    QPointer<DCC_NAMESPACE::LineEditWidget> m_httpsPort;
+    QPointer<DCC_NAMESPACE::LineEditWidget> m_ftpAddr;
+    QPointer<DCC_NAMESPACE::LineEditWidget> m_ftpPort;
+    QPointer<DCC_NAMESPACE::LineEditWidget> m_socksAddr;
+    QPointer<DCC_NAMESPACE::LineEditWidget> m_socksPort;
+    QPointer<DTK_WIDGET_NAMESPACE::DTextEdit> m_ignoreList;
+    QPointer<DCC_NAMESPACE::ButtonTuple> m_buttonTuple;
 
     dde::network::ProxyMethod m_uiMethod; // ui修改的ProxyMethod
     int m_lastCombIndex = 0;
