@@ -172,7 +172,7 @@ void SysProxyModule::deactive()
 void SysProxyModule::initManualView(QWidget *w)
 {
     // 手动代理编辑界面处理逻辑提取
-    auto initProxyGroup = [this](LineEditWidget *&proxyEdit, LineEditWidget *&portEdit, const QString &proxyTitle, SettingsGroup *&group) {
+    auto initProxyGroup = [this](QPointer<LineEditWidget> &proxyEdit, QPointer<LineEditWidget> &portEdit, const QString &proxyTitle, SettingsGroup *&group) {
         proxyEdit = new LineEditWidget(group);
         proxyEdit->setPlaceholderText(tr("Optional"));
         proxyEdit->setTitle(proxyTitle);
@@ -335,9 +335,9 @@ void SysProxyModule::checkConf()
 {
     if (!m_proxyTypeBox || !m_buttonTuple)
         return;
-    if (m_proxyTypeBox->comboBox()->currentIndex() == ProxyMethodIndex_Manual) {
+    if (m_proxyTypeBox->comboBox()->currentIndex() == ProxyMethodIndex_Manual && m_httpAddr && m_httpsAddr && m_ftpAddr && m_socksAddr) {
         m_buttonTuple->rightButton()->setEnabled(!m_httpAddr->text().isEmpty() || !m_httpsAddr->text().isEmpty() || !m_ftpAddr->text().isEmpty() || !m_socksAddr->text().isEmpty());
-    } else if (m_proxyTypeBox->comboBox()->currentIndex() == ProxyMethodIndex_Auto) {
+    } else if (m_proxyTypeBox->comboBox()->currentIndex() == ProxyMethodIndex_Auto && m_autoUrl) {
         m_buttonTuple->rightButton()->setEnabled(!m_autoUrl->text().isEmpty());
     }
 }
