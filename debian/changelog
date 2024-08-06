@@ -1,3 +1,11 @@
+dde-network-core (2.0.32) unstable; urgency=medium
+
+  * fix: Modify system proxy crash issue(Issue: 10118)
+  * fix: Modify network plugin translation issues(Issue: 10071)
+  * fix: Modify the issue of untranslated network name created for the first time(Issue: 10018)
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Tue, 06 Aug 2024 15:45:40 +0800
+
 dde-network-core (2.0.31) unstable; urgency=medium
 
   * fix: Modify the interface to display multiple system proxy issues(Issue: 9961)
