@@ -68,8 +68,6 @@ public:
 
 protected Q_SLOTS:
     void updateLockScreenStatus(bool visible);
-
-protected:
     void onDeviceStatusChanged(NetworkManager::Device::State newstate, NetworkManager::Device::State oldstate, NetworkManager::Device::StateChangeReason reason);
     void onAddDevice(const QString &path);
     void onUserChanged(QString json);
