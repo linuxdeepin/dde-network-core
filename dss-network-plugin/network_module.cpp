@@ -41,6 +41,7 @@ namespace module {
 NetworkModule::NetworkModule(QObject *parent)
     : QObject(parent)
     , m_lastState(NetworkManager::Device::State::UnknownState)
+    , m_initilized(false)
 {
     QDBusConnection::sessionBus().connect("org.deepin.dde.LockFront1", "/org/deepin/dde/LockFront1", "org.deepin.dde.LockFront1", "Visible", this, SLOT(updateLockScreenStatus(bool)));
     m_isLockModel = (-1 == qAppName().indexOf("greeter"));
@@ -63,10 +64,6 @@ NetworkModule::NetworkModule(QObject *parent)
         QDBusConnection::systemBus().callWithCallback(lock, this, SLOT(onUserChanged(QString)));
         QDBusConnection::systemBus().connect("org.deepin.dde.LockService1", "/org/deepin/dde/LockService1", "org.deepin.dde.LockService1", "UserChanged", this, SLOT(onUserChanged(QString)));
 
-        connect(m_networkHelper, &NetworkPluginHelper::addDevice, this, &NetworkModule::onAddDevice);
-        for (dde::network::NetworkDeviceBase *device : dde::network::NetworkController::instance()->devices()) {
-            onAddDevice(device->path());
-        }
         m_secretAgent = new NETWORKPLUGIN_NAMESPACE::SecretAgent(true, this);
         connect(m_networkDialog, &NetworkDialog::inputPassword, m_secretAgent, &NETWORKPLUGIN_NAMESPACE::SecretAgent::onInputPassword);
         connect(m_secretAgent, &NETWORKPLUGIN_NAMESPACE::SecretAgent::requestPassword, m_networkDialog, &NetworkDialog::setConnectWireless);
@@ -144,11 +141,18 @@ void NetworkModule::onAddDevice(const QString &devicePath)
 void NetworkModule::onUserChanged(QString json)
 {
     QJsonDocument doc = QJsonDocument::fromJson(json.toUtf8());
-    if (!doc.isObject())
-        return;
-    int uid = doc.object().value("Uid").toInt();
-    QDBusInterface user("org.deepin.dde.Accounts1", QString("/org/deepin/dde/Accounts1/User%1").arg(uid), "org.deepin.dde.Accounts1.User", QDBusConnection::systemBus());
-    installTranslator(user.property("Locale").toString().split(".").first());
+    if (doc.isObject()) {
+        int uid = doc.object().value("Uid").toInt();
+        QDBusInterface user("org.deepin.dde.Accounts1", QString("/org/deepin/dde/Accounts1/User%1").arg(uid), "org.deepin.dde.Accounts1.User", QDBusConnection::systemBus());
+        installTranslator(user.property("Locale").toString().split(".").first());
+    }
+    if (!m_initilized) {
+        m_initilized = true;
+        connect(m_networkHelper, &NetworkPluginHelper::addDevice, this, &NetworkModule::onAddDevice);
+        for (dde::network::NetworkDeviceBase *device : dde::network::NetworkController::instance()->devices()) {
+            onAddDevice(device->path());
+        }
+    }
 }
 
 void NetworkModule::installTranslator(QString locale)

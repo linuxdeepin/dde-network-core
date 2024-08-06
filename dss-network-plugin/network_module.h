@@ -87,6 +87,7 @@ private:
 
     bool m_isLockModel;  // 锁屏 or greeter
     bool m_isLockScreen; // 锁屏显示
+    bool m_initilized;
 
     QSet<QString> m_devicePaths; // 记录无线设备Path,防止信号重复连接
     QString m_lastActiveWirelessDevicePath;
