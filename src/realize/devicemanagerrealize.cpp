@@ -200,6 +200,7 @@ void DeviceManagerRealize::setEnabled(bool enabled)
                 NetworkManager::activateConnection(activeConnectionPath, m_wDevice->uni(), QString());
                 qInfo() << "connected:" << activeConnectionPath;
             }
+            m_wDevice->setAutoconnect(true);
         }
     }
 }

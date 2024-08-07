@@ -49,6 +49,7 @@ NetItem::NetItem(QWidget *parent)
     m_standardItem->setBackground(Qt::transparent);
     QColor textColor(Qt::white);
     m_standardItem->setData(textColor, Qt::ForegroundRole);
+    m_parentWidget->installEventFilter(this);
 }
 
 NetItem::~NetItem()
@@ -60,6 +61,14 @@ DStandardItem *NetItem::standardItem()
     return m_standardItem;
 }
 
+bool NetItem::eventFilter(QObject *obj, QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange) {
+        updateView();
+    }
+    return QObject::eventFilter(obj, event);
+}
+
 /**
  * @brief baseControllItem::baseControllItem
  * 总线控制器
@@ -69,6 +78,7 @@ DeviceControllItem::DeviceControllItem(const DeviceType &deviceType, QWidget *pa
     , m_deviceType(deviceType)
 {
     initItemText();
+    updateView();
 }
 
 DeviceControllItem::~DeviceControllItem()
@@ -100,6 +110,10 @@ void DeviceControllItem::updateView()
 {
     // 更新状态显示
     standardItem()->setData(QVariant::fromValue<QList<NetworkDeviceBase *>>(m_devices), DeviceDataRole);
+    if (m_deviceType == DeviceType::Wireless)
+        standardItem()->setText(tr("Wireless Network"));
+    else
+        standardItem()->setText(tr("Wired Network"));
 }
 
 NetItemType DeviceControllItem::itemType()
@@ -115,11 +129,6 @@ void DeviceControllItem::initItemText()
     standardItem()->setData(NetItemType::DeviceControllViewItem, NetItemRole::TypeRole);
     standardItem()->setData(QVariant::fromValue(m_deviceType), NetItemRole::DeviceTypeRole);
     standardItem()->setFontSize(DFontSizeManager::T4);
-
-    if (m_deviceType == DeviceType::Wireless)
-        standardItem()->setText(tr("Wireless Network"));
-    else
-        standardItem()->setText(tr("Wired Network"));
 }
 
 WiredControllItem::WiredControllItem(QWidget *parent, WiredDevice *device)
@@ -127,7 +136,6 @@ WiredControllItem::WiredControllItem(QWidget *parent, WiredDevice *device)
     , m_device(device)
 {
     standardItem()->setSizeHint(QSize(-1, 46));
-    standardItem()->setText(device->deviceName());
     standardItem()->setFlags(Qt::ItemIsEnabled);
     standardItem()->setData(NetItemType::WiredControllViewItem, NetItemRole::TypeRole);
     standardItem()->setData(QVariant::fromValue(DeviceType::Wired), NetItemRole::DeviceTypeRole);
@@ -137,6 +145,7 @@ WiredControllItem::WiredControllItem(QWidget *parent, WiredDevice *device)
         m_device = nullptr;
         standardItem()->setData(0, NetItemRole::DeviceDataRole);
     });
+    updateView();
 }
 
 WiredControllItem::~WiredControllItem()
@@ -163,7 +172,6 @@ WirelessControllItem::WirelessControllItem(QWidget *parent, WirelessDevice *devi
     , m_device(device)
 {
     standardItem()->setSizeHint(QSize(-1, 46));
-    standardItem()->setText(device->deviceName());
     standardItem()->setFlags(Qt::ItemIsEnabled);
     standardItem()->setData(NetItemType::WirelessControllViewItem, NetItemRole::TypeRole);
     standardItem()->setData(QVariant::fromValue(m_device), NetItemRole::DeviceDataRole);
@@ -173,6 +181,7 @@ WirelessControllItem::WirelessControllItem(QWidget *parent, WirelessDevice *devi
         m_device = nullptr;
         standardItem()->setData(0, NetItemRole::DeviceDataRole);
     });
+    updateView();
 }
 
 WirelessControllItem::~WirelessControllItem()
@@ -302,16 +311,7 @@ WirelessItem::WirelessItem(QWidget *parent, WirelessDevice *device, AccessPoints
 {
     initUi(parent);
     initConnection();
-    if (m_accessPoint) {
-        m_wirelessConnect->setSsid(ap->ssid());
-        QFontMetrics ftm(standardItem()->font());
-        QString displayText = ftm.elidedText(m_accessPoint->ssid(), Qt::TextElideMode::ElideRight, MAXTEXTWIDTH);
-        standardItem()->setText(displayText);
-    } else {
-        m_wifiLabel->setVisible(false);
-        m_securityAction->setVisible(false);
-        standardItem()->setText(tr("Connect to hidden network"));
-    }
+    updateView();
 }
 
 WirelessItem::~WirelessItem()
@@ -332,6 +332,16 @@ const WirelessDevice *WirelessItem::wirelessDevice()
 
 void WirelessItem::updateView()
 {
+    if (m_accessPoint) {
+        m_wirelessConnect->setSsid(m_accessPoint->ssid());
+        QFontMetrics ftm(standardItem()->font());
+        QString displayText = ftm.elidedText(m_accessPoint->ssid(), Qt::TextElideMode::ElideRight, MAXTEXTWIDTH);
+        standardItem()->setText(displayText);
+    } else {
+        standardItem()->setText(tr("Connect to hidden network"));
+        m_wifiLabel->setVisible(false);
+        m_securityAction->setVisible(false);
+    }
     updateSrcirityIcon();
     updateWifiIcon();
     updateConnectionStatus();
