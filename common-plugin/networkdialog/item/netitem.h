@@ -89,6 +89,9 @@ public:
     virtual void updateView() {}
     virtual NetItemType itemType() = 0;
 
+protected:
+    bool eventFilter(QObject *obj, QEvent *event) override;
+
 private:
     DStandardItem *m_standardItem;
     QWidget *m_parentWidget;
