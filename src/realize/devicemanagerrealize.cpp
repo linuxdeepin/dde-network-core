@@ -299,7 +299,6 @@ void DeviceManagerRealize::onWiredConnectionChanged()
     QList<WiredConnection *> rmConnection;
     for (WiredConnection *conn : m_wiredConnections) {
         if (!allConnection.contains(conn)) {
-            m_wiredConnections.removeOne(conn);
             rmConnection << conn;
         }
     }
@@ -525,7 +524,6 @@ void DeviceManagerRealize::createWlans(QList<WirelessConnection *> &allConnectio
     QList<AccessPoints *> rmAps;
     for (AccessPoints *ap : m_accessPoints) {
         if (!allAccessPoints.contains(ap)) {
-            m_accessPoints.removeOne(ap);
             rmAps << ap;
         }
     }
