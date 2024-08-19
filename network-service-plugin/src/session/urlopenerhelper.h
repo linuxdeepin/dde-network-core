@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -8,11 +8,12 @@
 #include <QObject>
 
 class QProcess;
+class QTimer;
 
 namespace network {
 namespace sessionservice {
 
-class BrowserAssist : public QObject
+class UrlOpenerHelper : public QObject
 {
     Q_OBJECT
 
@@ -20,22 +21,26 @@ public:
     static void openUrl(const QString &url);
 
 protected:
-    explicit BrowserAssist(QObject *parent = nullptr);
-    ~BrowserAssist();
+    explicit UrlOpenerHelper(QObject *parent = nullptr);
+    ~UrlOpenerHelper();
 
 private:
-    void init();
-    bool desktopIsPrepare() const;
     void openUrlAddress(const QString &url);
     QString getDisplayEnvironment() const;
+    void init();
+    bool isPrepare() const;
 
 private slots:
+    void onCheckTimeout();
     void onServiceRegistered(const QString &service);
 
 private:
     QStringList m_cacheUrls;
-    bool m_dockIsRegister;
     QProcess *m_process;
+    QTimer *m_timer;
+    QString m_displayEnvironment;
+    bool m_startManagerIsPrepare;
+    bool m_checkComplete;
 };
 
 }

@@ -1,11 +1,11 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
 #include "sessioncontainer.h"
 #include "sessionipconfilct.h"
 #include "constants.h"
-#include "browserassist.h"
+#include "urlopenerhelper.h"
 
 #include <QDBusConnection>
 #include <QDBusInterface>
@@ -61,7 +61,8 @@ void SessionContainer::onIPConflictChanged(const QString &devicePath, const QStr
 
 void SessionContainer::onPortalDetected(const QString &url)
 {
-    BrowserAssist::openUrl(url);
+    qCDebug(DSM) << "detacted portal url" << url;
+    UrlOpenerHelper::openUrl(url);
 }
 
 void SessionContainer::onProxyMethodChanged(const QString &method)
