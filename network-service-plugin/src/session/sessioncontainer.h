@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -11,6 +11,7 @@ namespace network {
 namespace sessionservice {
 
 class SessionIPConflict;
+class DesktopMonitor;
 
 class SessionContainer : public QObject
 {
@@ -23,15 +24,21 @@ public:
 
 private:
     void initConnection();
-    void initMember();
+    void initEnvornment();
+    void checkPortalUrl();
+    void enterDesktop();
+    void leaveDesktop();
+    void openPortalUrl(const QString &url);
 
 private slots:
     void onIPConflictChanged(const QString &devicePath, const QString &ip, bool conflicted);
     void onPortalDetected(const QString &url);
     void onProxyMethodChanged(const QString &method);
+    void onDesktopChanged(bool isLogin);
 
 private:
     SessionIPConflict *m_ipConflictHandler;
+    DesktopMonitor *m_desktopMonitor;
 };
 
 }
