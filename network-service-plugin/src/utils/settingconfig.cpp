@@ -8,6 +8,11 @@
 
 static Dtk::Core::DConfig *dConfig = nullptr;
 
+// 当没有进行配置的时候, 则访问我们官网
+static const QStringList CheckUrls{
+    "https://www.uniontech.com",
+};
+
 SettingConfig *SettingConfig::instance()
 {
     static SettingConfig inst;
@@ -39,9 +44,9 @@ QStringList SettingConfig::networkCheckerUrls() const
     return m_networkUrls;
 }
 
-bool SettingConfig::checkPortal() const
+bool SettingConfig::enableOpenPortal() const
 {
-    return m_checkPortal;
+    return m_enableOpenPortal;
 }
 
 bool SettingConfig::disableNetwork() const
@@ -88,10 +93,9 @@ void SettingConfig::onValueChanged(const QString &key)
         emit connectivityCheckIntervalChanged(m_connectivityCheckInterval);
     } else if (key == QString("NetworkCheckerUrls")) {
         m_networkUrls = dConfig->value("NetworkCheckerUrls").toStringList();
+        if (m_networkUrls.isEmpty())
+            m_networkUrls = CheckUrls;
         emit checkUrlsChanged(m_networkUrls);
-    } else if (key == QString("checkPortal")) {
-        m_checkPortal = dConfig->value("checkPortal").toBool();
-        emit checkPortalChanged(m_checkPortal);
     } else if (key == QString("disableFailureNotify")) {
         m_disableFailureNotify = dConfig->value("disableFailureNotify").toBool();
         emit disableFailureNotifyChanged(m_disableFailureNotify);
@@ -102,6 +106,8 @@ void SettingConfig::onValueChanged(const QString &key)
         m_httpRequestTimeout = dConfig->value("httpRequestTimeout").toInt();
     } else if (key == QString("httpConnectTimeout")) {
         m_httpConnectTimeout = dConfig->value("httpConnectTimeout").toInt();
+    } else if (key == QString("enableOpenPortal")) {
+        m_enableOpenPortal = dConfig->value("enableOpenPortal").toBool();
     }
 }
 
@@ -110,7 +116,7 @@ SettingConfig::SettingConfig(QObject *parent)
     , m_reconnectIfIpConflicted(false)
     , m_enableConnectivity(true)
     , m_connectivityCheckInterval(30000)
-    , m_checkPortal(false)
+    , m_enableOpenPortal(false)
     , m_disabledNetwork(false)
     , m_enableAccountNetwork(false)
     , m_disableFailureNotify(false)
@@ -138,8 +144,8 @@ SettingConfig::SettingConfig(QObject *parent)
         if (keys.contains("NetworkCheckerUrls"))
             m_networkUrls = dConfig->value("NetworkCheckerUrls").toStringList();
 
-        if (keys.contains("checkPortal"))
-            m_checkPortal = dConfig->value("checkPortal").toBool();
+        if (keys.contains("enableOpenPortal"))
+            m_enableOpenPortal = dConfig->value("enableOpenPortal").toBool();
 
         if (keys.contains("disabledNetwork"))
             m_disabledNetwork = dConfig->value("disabledNetwork").toBool();
@@ -158,4 +164,6 @@ SettingConfig::SettingConfig(QObject *parent)
 
         m_disableFailureNotify = dConfig->value("disableFailureNotify", false).toBool();
     }
+    if (m_networkUrls.isEmpty())
+        m_networkUrls = CheckUrls;
 }

@@ -6,6 +6,8 @@
 #include "sessionipconfilct.h"
 #include "constants.h"
 #include "desktopmonitor.h"
+#include "settingconfig.h"
+#include "urlhelper.h"
 
 #include <QDBusConnection>
 #include <QDBusInterface>
@@ -79,15 +81,15 @@ void SessionContainer::leaveDesktop()
 
 void SessionContainer::openPortalUrl(const QString &url)
 {
-    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-    QString displayEnvironment = m_desktopMonitor->displayEnvironment();
-    if (!displayEnvironment.isEmpty())
-        env.insert("DISPLAY", displayEnvironment);
+    // 如果没有配置，则无需打开网页
+    if (!SettingConfig::instance()->enableOpenPortal()) {
+        qCDebug(DSM) << "open portal is disabled";
+        return;
+    }
 
-    QProcess process;
-    process.setProcessEnvironment(env);
-    process.start("xdg-open", QStringList() << url);
-    process.waitForFinished();
+    // 打开portal网页
+    UrlHelper urlHelper(m_desktopMonitor);
+    urlHelper.openUrl(url);
 }
 
 void SessionContainer::onIPConflictChanged(const QString &devicePath, const QString &ip, bool conflicted)

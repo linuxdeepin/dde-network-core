@@ -100,17 +100,15 @@
         "enableConnectivity": {
             "value": true,
             "serial": 0,
-            "flags": [
-                "global"
-            ],
-            "name": "enableConnectivity",
-            "name[zh_CN]": "检查网络连接标记",
-            "description[zh_CN]": "当设置为true时，使用前端检测网络连接，false，则使用NetworkManager自身的检测连接流程",
-            "description": "ture: use dde-network-core to check connectivity",
-            "permissions": "readwrite",
-            "visibility": "private"
-        },
-        "checkPortal": {
+            "flags":["global"],
+            "name":"enableConnectivity",
+            "name[zh_CN]":"检查网络连接标记",
+            "description[zh_CN]":"当设置为true时，使用前端检测网络连接，false，则使用NetworkManager自身的检测连接流程",
+            "description":"ture: use dde-network-core to check connectivity",
+            "permissions":"readwrite",
+            "visibility":"private"
+         },
+         "enableOpenPortal":{
             "value": true,
             "serial": 0,
             "flags": [

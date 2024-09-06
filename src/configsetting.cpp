@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2022 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -18,7 +18,6 @@ ConfigSetting::ConfigSetting(QObject *parent)
     , m_alwaysFromNM(true)
     , m_loadServiceFromNM(false)
     , m_enableConnectivity(false)
-    , m_checkPortal(false)
     , m_supportCertifiedEscape(false)
     , m_showUnAuthorizeSwitch(true)
     , m_connectivityCheckInterval(30000)
@@ -67,9 +66,6 @@ void ConfigSetting::onValueChanged(const QString &key)
     } else if (key == QString("enableConnectivity")) {
         m_enableConnectivity = dConfig->value("enableConnectivity").toBool();
         emit enableConnectivityChanged(m_enableConnectivity);
-    } else if (key == QString("checkPortal")) {
-        m_checkPortal = dConfig->value("checkPortal").toBool();
-        emit checkPortalChanged(m_checkPortal);
     } else if (key == QString("ConnectivityCheckInterval")) {
         m_connectivityCheckInterval = dConfig->value("ConnectivityCheckInterval").toInt() * 1000;
         emit connectivityCheckIntervalChanged(m_connectivityCheckInterval);
@@ -133,11 +129,6 @@ QStringList ConfigSetting::networkCheckerUrls() const
 bool ConfigSetting::enableConnectivity() const
 {
     return m_enableConnectivity;
-}
-
-bool ConfigSetting::checkPortal() const
-{
-    return m_checkPortal;
 }
 
 bool ConfigSetting::supportCertifiedEscape() const
