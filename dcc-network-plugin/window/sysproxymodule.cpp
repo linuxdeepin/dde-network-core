@@ -183,6 +183,11 @@ void SysProxyModule::initManualView(QWidget *w)
         portEdit->textEdit()->installEventFilter(this);
         group->appendItem(proxyEdit);
         group->appendItem(portEdit);
+        connect(proxyEdit->textEdit(), &QLineEdit::textChanged, this, [this] (const QString &text) {
+            if (!text.isEmpty()) {
+                m_buttonTuple->setEnabled(true);
+            }
+        });
         connect(portEdit->textEdit(), &QLineEdit::textChanged, this, [portEdit](const QString &str) {
             if (str.toInt() < 0) {
                 portEdit->setText("0");
@@ -229,6 +234,11 @@ void SysProxyModule::initManualView(QWidget *w)
 
     resetData(ProxyMethod::Manual);
     ProxyController *proxyController = NetworkController::instance()->proxyController();
+    connect(m_ignoreList, &DTextEdit::textChanged, this, [this] {
+        if (!m_ignoreList->toPlainText().isEmpty()) {
+            m_buttonTuple->setEnabled(true);
+        }
+    });
     connect(proxyController, &ProxyController::proxyIgnoreHostsChanged, m_ignoreList, [this](const QString &hosts) {
         const QTextCursor cursor = m_ignoreList->textCursor();
         m_ignoreList->blockSignals(true);
