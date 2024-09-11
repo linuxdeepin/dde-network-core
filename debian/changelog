@@ -1,3 +1,9 @@
+dde-network-core (2.0.34) unstable; urgency=medium
+
+  * fix: Save button is not enabled when proxy address changed after saving
+
+ -- Yutao Meng <mengyutao@deepin.org>  Wed, 11 Sep 2024 16:02:53 +0800
+
 dde-network-core (2.0.33) unstable; urgency=medium
 
   * fix: Network panel translation not dynamically updated(Issue: 10226)
