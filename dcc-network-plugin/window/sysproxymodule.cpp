@@ -184,7 +184,7 @@ void SysProxyModule::initManualView(QWidget *w)
         group->appendItem(proxyEdit);
         group->appendItem(portEdit);
         connect(proxyEdit->textEdit(), &QLineEdit::textChanged, this, [this] (const QString &text) {
-            if (!text.isEmpty()) {
+            if (!text.isEmpty() && m_buttonTuple) {
                 m_buttonTuple->setEnabled(true);
             }
         });
@@ -235,7 +235,7 @@ void SysProxyModule::initManualView(QWidget *w)
     resetData(ProxyMethod::Manual);
     ProxyController *proxyController = NetworkController::instance()->proxyController();
     connect(m_ignoreList, &DTextEdit::textChanged, this, [this] {
-        if (!m_ignoreList->toPlainText().isEmpty()) {
+        if (!m_ignoreList->toPlainText().isEmpty() && m_buttonTuple) {
             m_buttonTuple->setEnabled(true);
         }
     });
