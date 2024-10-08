@@ -31,6 +31,7 @@ ConfigSetting::ConfigSetting(QObject *parent)
     , m_showBrowserLink(false)
     , m_browserUrl("https://www.uniontech.com")
     , m_nobindEthernetMacDefault(false)
+    , m_portalProcessMode("promp")
 {
     QStringList keys;
     if (!dConfig)
@@ -50,6 +51,8 @@ ConfigSetting::ConfigSetting(QObject *parent)
             m_dontSetIpIfConflict = dConfig->value("dontSetIpIfConflict").toBool();
         if (keys.contains("wpaEapAuthmethod"))
             m_wpaEapAuthmethod = dConfig->value("wpaEapAuthmethod").toString();
+        if (keys.contains("portalProcessMode"))
+            m_portalProcessMode = dConfig->value("portalProcessMode").toString();
     }
     for (auto &&key : keys) {
         onValueChanged(key);
@@ -190,8 +193,13 @@ QString ConfigSetting::browserUrl() const
 {
     return m_browserUrl;
 }
-    
+
 bool ConfigSetting::nobindEthernetMacDefault() const
 {
     return m_nobindEthernetMacDefault;
+}
+
+bool ConfigSetting::supportPortalPromp() const
+{
+    return m_portalProcessMode.toLower().contains("promp");
 }

@@ -214,6 +214,11 @@ void NetManagerThreadPrivate::init(NetType::NetManagerFlags flags)
     QMetaObject::invokeMethod(this, &NetManagerThreadPrivate::doInit, Qt::QueuedConnection);
 }
 
+NetType::NetManagerFlags NetManagerThreadPrivate::flags() const
+{
+    return m_flags;
+}
+
 QString NetManagerThreadPrivate::wpaEapAuthen() const
 {
     return ConfigSetting::instance()->wpaEapAuthen();
@@ -499,6 +504,17 @@ void NetManagerThreadPrivate::doInit()
 
     QDBusConnection::systemBus().connect("com.deepin.defender.netcheck", "/com/deepin/defender/netcheck", "org.freedesktop.DBus.Properties", "PropertiesChanged", this, SLOT(onNetCheckPropertiesChanged(QString, QVariantMap, QStringList)));
     QDBusConnection::systemBus().connect("org.freedesktop.login1", "/org/freedesktop/login1", "org.freedesktop.login1.Manager", "PrepareForSleep", this, SLOT(onPrepareForSleep(bool)));
+
+
+    // 只有配置为promp和openandpromp的情况下，才会给出提示
+    if (ConfigSetting::instance()->supportPortalPromp()) {
+        QDBusConnection::systemBus().connect("org.deepin.dde.Network1",
+                                             "/org/deepin/service/SystemNetwork",
+                                             "org.deepin.service.SystemNetwork",
+                                             "PortalDetected",
+                                             this,
+                                             SLOT(onPortalDetected(const QString &)));
+    }
 
     // 优先网络
     auto updadePrimaryConnectionType = [this] {
@@ -1948,6 +1964,8 @@ void NetManagerThreadPrivate::onDeviceAdded(QList<NetworkDeviceBase *> devices)
     }
     updateDSLEnabledable();
     updateSupportWireless();
+
+    checkPoratal();
 }
 
 void NetManagerThreadPrivate::onDeviceRemoved(QList<NetworkDeviceBase *> devices)
@@ -1989,6 +2007,7 @@ void NetManagerThreadPrivate::onConnectionAdded(const QList<WiredConnection *> &
     if (!dev)
         return;
     addConnection(dev, conns);
+    checkPoratal();
 }
 
 void NetManagerThreadPrivate::onConnectionRemoved(const QList<WiredConnection *> &conns)
@@ -2908,6 +2927,62 @@ void NetManagerThreadPrivate::onPrepareForSleep(bool state)
     m_isSleeping = state;
 }
 
+void NetManagerThreadPrivate::onPortalDetected(const QString &portalUrl)
+{
+    NetworkManager::ActiveConnection::Ptr primaryActiveConnection = NetworkManager::primaryConnection();
+    if (primaryActiveConnection.isNull())
+        return;
+
+    dde::network::NetworkDeviceBase *networkDevice = nullptr;
+    NetworkManager::Connection::Ptr primaryConnection = primaryActiveConnection->connection();
+    for (const NetworkManager::Device::Ptr &device : NetworkManager::networkInterfaces()) {
+        NetworkManager::ActiveConnection::Ptr deviceActiveConnection = device->activeConnection();
+        if (deviceActiveConnection.isNull())
+            continue;
+        if (deviceActiveConnection->connection() == primaryConnection) {
+            QList<NetworkDeviceBase *> devices = dde::network::NetworkController::instance()->devices();
+            for (NetworkDeviceBase *dev : devices) {
+                if (dev->path() == device->uni()) {
+                    networkDevice = dev;
+                    break;
+                }
+            }
+            if (networkDevice)
+                break;
+        }
+    }
+    if (!networkDevice) {
+        qCWarning(DNC) << "can't found the device,connection" << primaryConnection->name();
+        return;
+    }
+    qCDebug(DNC) << "portal changed:" << portalUrl << "device" << networkDevice->interface();
+    if (networkDevice->deviceType() == dde::network::DeviceType::Wired) {
+        // 找到有线网络对应的那个连接
+        NetworkManager::WiredSetting::Ptr wiredSetting = primaryConnection->settings()->setting(NetworkManager::Setting::Wired).dynamicCast<NetworkManager::WiredSetting>();
+        if (!wiredSetting)
+            return;
+
+        // 找到有线连接对应的连接
+        dde::network::WiredDevice *wiredDevice = static_cast<dde::network::WiredDevice *>(networkDevice);
+        Q_EMIT dataChanged(DataChanged::portalUrlChanged, QString("%1:%2").arg(wiredDevice->path()).arg(primaryConnection->path()), portalUrl);
+    } else if (networkDevice->deviceType() == dde::network::DeviceType::Wireless) {
+        // 找到无线设备对应的那个无线网络
+        NetworkManager::WirelessSetting::Ptr wirelessSetting = primaryConnection->settings()->setting(NetworkManager::Setting::Wireless).dynamicCast<NetworkManager::WirelessSetting>();
+        if (!wirelessSetting)
+            return;
+
+        dde::network::WirelessDevice *wirelessDevice = static_cast<dde::network::WirelessDevice *>(networkDevice);
+        // 找到无线连接对应那个网络
+        for (dde::network::AccessPoints *ap : wirelessDevice->accessPointItems()) {
+            if (ap->ssid() != wirelessSetting->ssid())
+                continue;
+
+            Q_EMIT dataChanged(DataChanged::portalUrlChanged, apID(ap), portalUrl);
+            break;
+        }
+    }
+}
+
 void NetManagerThreadPrivate::addDevice(NetDeviceItemPrivate *deviceItem, NetworkDeviceBase *dev)
 {
     deviceItem->updatepathIndex(dev->path().mid(dev->path().lastIndexOf('/') + 1).toInt());
@@ -3141,6 +3216,17 @@ NetType::NetDeviceStatus NetManagerThreadPrivate::deviceStatus(NetworkDeviceBase
 
     Q_UNREACHABLE();
     return NetType::NetDeviceStatus::DS_Unknown;
+}
+
+void NetManagerThreadPrivate::checkPoratal()
+{
+    // 只有配置为promp和openandpromp的情况下，才会给出提示
+    if (!ConfigSetting::instance()->supportPortalPromp())
+        return;
+
+    // 获取portal网页
+    QDBusInterface dbusInter("org.deepin.dde.Network1", "/org/deepin/service/SystemNetwork", "org.deepin.service.SystemNetwork", QDBusConnection::systemBus());
+    onPortalDetected(dbusInter.property("PortalUrl").toString());
 }
 
 } // namespace network

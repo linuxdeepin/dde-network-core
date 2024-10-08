@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2019 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #include "netdelegate.h"
@@ -9,6 +9,7 @@
 #include "netmodel.h"
 #include "netsecretwidget.h"
 #include "networkconst.h"
+#include "nettype.h"
 
 #include <DLabel>
 #include <DSpinner>
@@ -24,6 +25,9 @@
 #include <QTextLine>
 #include <QTimer>
 #include <QToolButton>
+#include <QTextLine>
+#include <QTextDocument>
+#include <QDesktopServices>
 
 DWIDGET_USE_NAMESPACE
 
@@ -40,6 +44,11 @@ NetDelegate::NetDelegate(QAbstractItemView *view)
 }
 
 NetDelegate::~NetDelegate() { }
+
+void NetDelegate::setFlags(NetType::NetManagerFlags flag)
+{
+    m_flag = flag;
+}
 
 ItemSpacing NetDelegate::getItemSpacing(const QModelIndex &index) const
 {
@@ -161,11 +170,19 @@ void NetDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, c
             } else {
                 textColor = boption.dpalette.highlightedText().color();
                 bgColor = boption.dpalette.highlight().color();
+                NetItemWidget *itemWidget = qobject_cast<NetItemWidget *>(m_view->indexWidget(index));
+                if (itemWidget) {
+                    itemWidget->setHover(true);
+                }
             }
         } else {
             textColor = boption.dpalette.brightText().color();
             bgColor = boption.dpalette.brightText().color();
             bgColor.setAlphaF(0.05);
+            NetItemWidget *itemWidget = qobject_cast<NetItemWidget *>(m_view->indexWidget(index));
+            if (itemWidget) {
+                itemWidget->setHover(false);
+            }
         }
     } break;
     default:
@@ -210,13 +227,17 @@ QWidget *NetDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &
             netWidget = new NetWirelessTypeControlWidget(static_cast<NetWirelessOtherItem *>(item), parent);
         } break;
         case NetType::WirelessItem: {
-            netWidget = new NetWirelessWidget(static_cast<NetWirelessItem *>(item), parent);
+            NetWirelessWidget *widget = new NetWirelessWidget(static_cast<NetWirelessItem *>(item), parent);
+            widget->setFlag(m_flag);
+            netWidget = widget;
         } break;
         case NetType::WirelessHiddenItem: {
             netWidget = new NetWirelessHiddenWidget(static_cast<NetWirelessHiddenItem *>(item), parent);
         } break;
         case NetType::WiredItem: {
-            netWidget = new NetWiredWidget(static_cast<NetWiredItem *>(item), parent);
+            NetWiredWidget *widget = new NetWiredWidget(static_cast<NetWiredItem *>(item), parent);
+            widget->setFlag(m_flag);
+            netWidget = widget;
         } break;
         case NetType::WirelessDisabledItem:
         case NetType::WiredDisabledItem: {
@@ -587,11 +608,12 @@ void NetWirelessTypeControlWidget::updateExpandState(bool isExpanded)
 NetWirelessTypeControlWidget::~NetWirelessTypeControlWidget() { }
 
 NetWirelessWidget::NetWirelessWidget(NetWirelessItem *item, QWidget *parent)
-    : NetWidget(item, parent)
+    : NetItemWidget(item, parent)
     , m_isWifi6(item->flags())
     , m_iconBut(new NetIconButton(this))
     , m_connBut(new NetIconButton(this))
     , m_loading(new DSpinner(this))
+    , m_status(dde::network::NetType::NetConnectionStatus::CS_UnConnected)
 {
     QWidget *widget = new QWidget(this);
     if (item->hasConnection()) {
@@ -623,6 +645,7 @@ NetWirelessWidget::NetWirelessWidget(NetWirelessItem *item, QWidget *parent)
     onStatusChanged(item->status());
 
     connect(item, &NetWirelessItem::secureChanged, this, &NetWirelessWidget::updateIcon);
+    connect(item, &NetWirelessItem::portalUrlChanged, this, &NetWirelessWidget::onPortalUrlChanged);
     connect(item, &NetWirelessItem::strengthLevelChanged, this, &NetWirelessWidget::updateIcon);
     connect(item, &NetWirelessItem::statusChanged, this, &NetWirelessWidget::onStatusChanged);
     connect(m_connBut, &NetIconButton::clicked, this, &NetWirelessWidget::onDisconnectClicked);
@@ -638,6 +661,7 @@ void NetWirelessWidget::updateIcon()
 
 void NetWirelessWidget::onStatusChanged(NetType::NetConnectionStatus status)
 {
+    m_status = status;
     switch (status) {
     case NetType::CS_Connected:
         m_connBut->setVisible(true);
@@ -660,6 +684,17 @@ void NetWirelessWidget::onStatusChanged(NetType::NetConnectionStatus status)
 void NetWirelessWidget::onDisconnectClicked()
 {
     sendRequest(NetManager::Disconnect, item()->id());
+}
+
+bool NetWirelessWidget::isConnected() const
+{
+    // 连接状态按钮可见并且加载按钮隐藏，此时认为当前状态是已连接
+    return m_status == dde::network::NetType::NetConnectionStatus::CS_Connected;
+}
+
+int NetWirelessWidget::leftSpacing() const
+{
+    return m_iconBut->width() + 12;
 }
 
 NetWirelessHiddenWidget::NetWirelessHiddenWidget(NetWirelessHiddenItem *item, QWidget *parent)
@@ -736,7 +771,7 @@ NetVPNTipsWidget::NetVPNTipsWidget(NetVPNTipsItem *item, QWidget *parent)
 NetVPNTipsWidget::~NetVPNTipsWidget() { }
 
 NetWiredWidget::NetWiredWidget(NetWiredItem *item, QWidget *parent)
-    : NetWidget(item, parent)
+    : NetItemWidget(item, parent)
     , m_iconBut(new NetIconButton(this))
     , m_connBut(new NetIconButton(this))
     , m_loading(new DSpinner(this))
@@ -767,6 +802,7 @@ NetWiredWidget::NetWiredWidget(NetWiredItem *item, QWidget *parent)
     onStatusChanged(item->status());
 
     connect(item, &NetWiredItem::statusChanged, this, &NetWiredWidget::onStatusChanged);
+    connect(item, &NetWiredItem::portalUrlChanged, this, &NetWiredWidget::onPortalUrlChanged);
     connect(m_connBut, &NetIconButton::clicked, this, &NetWiredWidget::onDisconnectClicked);
 }
 
@@ -774,6 +810,7 @@ NetWiredWidget::~NetWiredWidget() { }
 
 void NetWiredWidget::onStatusChanged(NetType::NetConnectionStatus status)
 {
+    m_status = status;
     switch (status) {
     case NetType::CS_Connected:
         m_connBut->setVisible(true);
@@ -796,6 +833,16 @@ void NetWiredWidget::onStatusChanged(NetType::NetConnectionStatus status)
 void NetWiredWidget::onDisconnectClicked()
 {
     sendRequest(NetManager::Disconnect, item()->id());
+}
+
+bool NetWiredWidget::isConnected() const
+{
+    return m_status == dde::network::NetType::NetConnectionStatus::CS_Connected;
+}
+
+int NetWiredWidget::leftSpacing() const
+{
+    return m_iconBut->width() + 10;
 }
 
 NetDisabledWidget::NetDisabledWidget(NetItem *item, QWidget *parent)
@@ -828,6 +875,145 @@ NetDisabledWidget::NetDisabledWidget(NetItem *item, QWidget *parent)
 }
 
 NetDisabledWidget::~NetDisabledWidget() { }
+
+NetItemWidget::NetItemWidget(NetItem *item, QWidget *parent)
+    : NetWidget (item, parent)
+    , m_portalLabel (nullptr)
+    , m_isEnter(false)
+{
+}
+
+void NetItemWidget::removePasswordWidget()
+{
+    // 这个一般是在外部发送Close信号的时候会触发
+    if (m_portalLabel) {
+        // m_portalLabel 和用户名密码不能同时存在，m_portalLabel只在网络连接成功后存在
+        // 如果当前状态是已连接的状态，则不做任何的处理
+        if (isConnected())
+            return;
+
+        // 如果当前状态不是连接状态，则清空按钮
+        removeUrlLink();
+    } else {
+        NetWidget::removePasswordWidget();
+    }
+}
+
+void NetItemWidget::setHover(bool isHover)
+{
+    if (!m_portalLabel)
+        return;
+
+    m_portalLabel->setText(getDisplayText(isHover));
+}
+
+void NetItemWidget::setFlag(NetType::NetManagerFlags flag)
+{
+    m_flag = flag;
+}
+
+void NetItemWidget::removeUrlLink()
+{
+    if (!m_portalLabel)
+        return;
+
+    QVBoxLayout *mainLayout = qobject_cast<QVBoxLayout *>(layout());
+    if (!mainLayout)
+        return;
+
+    for (int i = 0; i < mainLayout->count(); i++) {
+        QLayoutItem *layoutItem = mainLayout->itemAt(i);
+        if (!layoutItem || layoutItem->widget() != m_portalLabel)
+            continue;
+
+        // 先删除前面的layoutItem，因为它是space
+        if (i > 0) {
+            QLayoutItem *spaceLayoutItem = mainLayout->itemAt(i - 1);
+            if (spaceLayoutItem) {
+                mainLayout->removeItem(spaceLayoutItem);
+                delete spaceLayoutItem;
+            }
+        }
+        mainLayout->removeItem(layoutItem);
+        delete layoutItem;
+        break;
+    }
+    if (mainLayout->count() > 0) {
+        QLayoutItem *layoutItem = mainLayout->itemAt(mainLayout->count() - 1);
+        if (layoutItem) {
+            mainLayout->removeItem(layoutItem);
+            delete layoutItem;
+        }
+    }
+    m_portalLabel->deleteLater();
+    m_portalLabel = nullptr;
+}
+
+bool NetItemWidget::eventFilter(QObject *watched, QEvent *event)
+{
+    if (watched == m_portalLabel) {
+        switch (event->type()) {
+        case QEvent::Enter: {
+            m_isEnter = true;
+            m_portalLabel->setText(getDisplayText(true));
+        }
+        break;
+        case QEvent::Leave: {
+            m_isEnter = false;
+            m_portalLabel->setText(getDisplayText(true));
+        }
+        break;
+        default:
+            break;
+        }
+    }
+    return NetWidget::eventFilter(watched, event);
+}
+
+void NetItemWidget::onPortalUrlChanged(const QString &url)
+{
+    // 添加portal连接
+    QVBoxLayout *mainLayout = qobject_cast<QVBoxLayout *>(layout());
+    if (!mainLayout)
+        return;
+
+    m_portalUrl = url;
+    if (m_portalUrl.isEmpty()) {
+        // 移除链接
+        removeUrlLink();
+    } else {
+        // 新增连接
+        if (m_portalLabel)
+            return;
+
+        m_portalLabel = new QLabel(getDisplayText(false), this);
+        m_portalLabel->setContentsMargins(leftSpacing(), 0, 0, 0);
+        m_portalLabel->setFixedHeight(30);
+        m_portalLabel->installEventFilter(this);
+        mainLayout->addSpacing(5);
+        mainLayout->addWidget(m_portalLabel);
+        mainLayout->addSpacing(5);
+        if (m_flag.testFlag(NetType::NetManagerFlag::Net_tipsLinkEnabled)) {
+            connect(m_portalLabel, &QLabel::linkActivated, this, [this] {
+                QDesktopServices::openUrl(m_portalUrl);
+            });
+        }
+    }
+    Q_EMIT requestUpdateLayout();
+}
+
+QString NetItemWidget::getDisplayText(bool isHover)
+{
+    const QString &openText = tr("Open a browser to authenticate");
+    if (!m_flag.testFlag(NetType::NetManagerFlag::Net_tipsLinkEnabled))
+        return openText;
+
+    if (isHover) {
+        return QString("<a style=\"text-decoration: none;color:%1\" href=\"%2\">%2</a>").arg(m_isEnter ? "rgba(255,255,255,0.8)" : "white").arg(openText);
+    }
+
+    return QString("<a style=\"text-decoration: none\" href=\"%1\">%1</p></a>").arg(openText);
+}
 
 } // namespace network
 } // namespace dde

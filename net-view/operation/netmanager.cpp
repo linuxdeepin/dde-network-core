@@ -68,6 +68,12 @@ void NetManager::setEnabled(bool enabled)
     d->setEnabled(enabled);
 }
 
+NetType::NetManagerFlags NetManager::flags() const
+{
+    Q_D(const NetManager);
+    return d->flags();
+}
+
 NetItem *NetManager::root() const
 {
     Q_D(const NetManager);
@@ -271,6 +277,11 @@ void NetManagerPrivate::init(NetType::NetManagerFlags flags)
         airplaneTipsItem->updatetipsLinkEnabled(flags.testFlags(NetType::Net_tipsLinkEnabled));
         addItem(airplaneTipsItem, m_root);
     }
+}
+
+NetType::NetManagerFlags NetManagerPrivate::flags() const
+{
+    return m_managerThread->flags();
 }
 
 bool NetManagerPrivate::netCheckAvailable()
@@ -545,7 +556,13 @@ void NetManagerPrivate::onItemRemoved(const QString &id)
 void NetManagerPrivate::onDataChanged(int dataType, const QString &id, const QVariant &value)
 {
     switch (dataType) {
+    case NetManagerThreadPrivate::portalUrlChanged: {
+        updatePortalUrl(id, value.toString());
+        m_lastShowPortalItemId = id;
+    } break;
     case NetManagerThreadPrivate::primaryConnectionTypeChanged: {
+        // 在主链接发生变化之前，清空之前连接的portal的连接
+        updatePortalUrl(m_lastShowPortalItemId, "");
         updatePrimaryConnectionType(NetManager::ConnectionType(value.toInt()));
     } break;
     case NetManagerThreadPrivate::AirplaneModeEnabledChanged: {
@@ -1033,6 +1050,27 @@ void NetManagerPrivate::updatePrimaryConnectionType(NetManager::ConnectionType t
     //     Q_Q(NetManager);
     //     Q_EMIT q->primaryConnectionTypeChanged(m_primaryConnectionType);
     // }
+}
+
+void NetManagerPrivate::updatePortalUrl(const QString &id, const QString &url)
+{
+    NetItemPrivate *item = findItem(id);
+    if (!item)
+        return;
+
+    switch (item->itemType()) {
+    case NetType::WiredItem: {
+        // 有线网络
+        NetWiredItemPrivate *wiredItem = NetItemPrivate::toItem<NetWiredItemPrivate>(item);
+        wiredItem->updateportalUrl(url);
+    } break;
+    case NetType::WirelessItem: {
+        // 无线网络
+        NetWirelessItemPrivate *wirelessItem = NetItemPrivate::toItem<NetWirelessItemPrivate>(item);
+        wirelessItem->updateportalUrl(url);
+    } break;
+    default: break;
+    }
 }
 
 void NetManagerPrivate::addItem(NetItemPrivate *item, NetItemPrivate *parentItem)

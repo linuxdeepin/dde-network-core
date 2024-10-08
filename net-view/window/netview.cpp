@@ -53,6 +53,7 @@ NetView::NetView(NetManager *manager)
     connect(m_proxyModel, &QSortFilterProxyModel::rowsRemoved, this, &NetView::updateGeometries);
 
     m_delegate = new NetDelegate(this);
+    m_delegate->setFlags(m_manager->flags());
     setItemDelegate(m_delegate);
 
     connect(m_delegate, &NetDelegate::requestUpdateLayout, this, &NetView::updateLayout, Qt::QueuedConnection);
