@@ -82,8 +82,8 @@ void SessionContainer::leaveDesktop()
 void SessionContainer::openPortalUrl(const QString &url)
 {
     // 如果没有配置，则无需打开网页
-    if (!SettingConfig::instance()->enableOpenPortal()) {
-        qCDebug(DSM) << "open portal is disabled";
+    if (!SettingConfig::instance()->supportAutoOpenPortal()) {
+        qCDebug(DSM) << "current portal process mode is not open";
         return;
     }
 

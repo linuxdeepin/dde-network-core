@@ -26,6 +26,11 @@ public:
     int httpRequestTimeout() const;                 // HTTP请求超时时间（秒）
     int httpConnectTimeout() const;                 // HTTP连接超时时间（秒）
 
+    bool supportAutoOpenPortal() const;             // 是否支持自动打开网页
+    bool supportPortalPromp() const;                // 是否支持在任务栏或控制中心给出提示
+    bool checkDeviceConnection() const;             // 是否检测设备连接
+    bool enableLocalNotify() const;
+
 signals:
     void enableConnectivityChanged(bool);
     void connectivityCheckIntervalChanged(int);
@@ -45,7 +50,7 @@ private:
     int m_connectivityIntervalWhenLimit;
     int m_connectivityCheckInterval;
     QStringList m_networkUrls;
-    bool m_enableOpenPortal;
+    QString m_protalProcessMode;
     bool m_disabledNetwork;
     bool m_enableAccountNetwork;
     bool m_disableFailureNotify;

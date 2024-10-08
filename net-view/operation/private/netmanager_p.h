@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -38,6 +38,7 @@ public:
     void setEnabled(bool enabled);
     void setServerKey(const QString &serverKey);
     void init(NetType::NetManagerFlags flags);
+    NetType::NetManagerFlags flags() const;
     bool netCheckAvailable();
     QString wpaEapAuthen() const;     // 企业网EAP认证方式
     QString wpaEapAuthmethod() const; // 企业网内部认证方式
@@ -71,6 +72,7 @@ protected:
     void updateControlEnabled(int type);
     void updateAirplaneMode(bool enabled);
     void updatePrimaryConnectionType(NetManager::ConnectionType type);
+    void updatePortalUrl(const QString &id, const QString &url);
 
     void addItem(NetItemPrivate *item, NetItemPrivate *parentItem = nullptr);
     void removeItem(NetItemPrivate *item);
@@ -91,6 +93,7 @@ private:
     QMap<QString, NetItemPrivate *> m_dataMap;
     PasswordRequest *m_passwordRequestData;
     QString m_showInputId;
+    QString m_lastShowPortalItemId;
 
     int m_deviceCount[DeviceItemCount];
     bool m_supportWireless;

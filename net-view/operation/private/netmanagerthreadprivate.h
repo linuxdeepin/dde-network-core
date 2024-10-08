@@ -61,6 +61,7 @@ public:
     void setServerKey(const QString &serverKey);
 
     void init(NetType::NetManagerFlags flags);
+    NetType::NetManagerFlags flags() const;
 
     QString wpaEapAuthen() const;     // 企业网EAP认证方式
     QString wpaEapAuthmethod() const; // 企业网内部认证方式
@@ -92,6 +93,7 @@ public:
         HotspotOptionalDevicePathChanged,
         HotspotShareDeviceChanged,
         DeviceEnabledChanged,
+        portalUrlChanged
     };
 
 Q_SIGNALS:
@@ -245,6 +247,8 @@ protected Q_SLOTS:
     void handleAccessPointSecure(AccessPoints *accessPoint);
     bool handle8021xAccessPoint(AccessPoints *ap, bool hidden);
     void onPrepareForSleep(bool state);
+    // portal网页发生变化
+    void onPortalDetected(const QString &portalUrl);
 
 private:
     void addDevice(NetDeviceItemPrivate *deviceItem, NetworkDeviceBase *dev);
@@ -264,6 +268,8 @@ private:
     static NetType::NetConnectionStatus toNetConnectionStatus(ConnectionStatus status);
     static bool isWirelessApMode(NetworkDeviceBase *device);
     static NetType::NetDeviceStatus deviceStatus(NetworkDeviceBase *device);
+
+    void checkPoratal();
 
 private:
     QThread *m_thread;

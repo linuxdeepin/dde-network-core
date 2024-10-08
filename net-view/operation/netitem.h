@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -204,8 +204,13 @@ protected:
 class NetWiredItem : public NetConnectionItem
 {
     Q_OBJECT
+public:
+    const QString & portalUrl() const;
 protected:
     using NetConnectionItem::NetConnectionItem;
+
+Q_SIGNALS:
+    void portalUrlChanged(const QString &url);
 };
 
 class NetWiredDisabledItem : public NetItem
@@ -234,6 +239,7 @@ class NetWirelessItem : public NetConnectionItem
     Q_PROPERTY(int strengthLevel READ strengthLevel NOTIFY strengthLevelChanged)
     Q_PROPERTY(bool secure READ isSecure NOTIFY secureChanged)
     Q_PROPERTY(bool hasConnection READ hasConnection NOTIFY hasConnectionChanged)
+    Q_PROPERTY(QString portalUrl READ portalUrl NOTIFY portalUrlChanged)
 
 public:
     uint flags() const;
@@ -241,6 +247,7 @@ public:
     int strengthLevel() const;
     bool isSecure() const;
     bool hasConnection() const;
+    const QString & portalUrl() const;
 
 Q_SIGNALS:
     void flagsChanged(uint flags);
@@ -248,6 +255,7 @@ Q_SIGNALS:
     void strengthLevelChanged(int strengthLevel);
     void secureChanged(bool secure);
     void hasConnectionChanged(bool hasConnection);
+    void portalUrlChanged(const QString &url);
 
 protected:
     using NetConnectionItem::NetConnectionItem;

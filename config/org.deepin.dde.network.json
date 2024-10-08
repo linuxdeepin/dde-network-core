@@ -108,8 +108,8 @@
             "permissions":"readwrite",
             "visibility":"private"
          },
-         "enableOpenPortal":{
-            "value": true,
+         "portalProcessMode":{
+            "value": "promp",
             "serial": 0,
             "flags": [
                 "global"

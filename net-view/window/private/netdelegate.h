@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2019 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #ifndef NETDELEGATE_H
@@ -13,6 +13,7 @@
 
 class QSortFilterProxyModel;
 class QVBoxLayout;
+class QLabel;
 
 namespace Dtk {
 namespace Widget {
@@ -54,6 +55,8 @@ public:
     explicit NetDelegate(QAbstractItemView *view);
     ~NetDelegate() override;
 
+    void setFlags(NetType::NetManagerFlags flag);
+
     ItemSpacing getItemSpacing(const QModelIndex &index) const;
     // painting
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
@@ -76,6 +79,7 @@ Q_SIGNALS:
 private:
     const QAbstractItemView *m_view;
     const QSortFilterProxyModel *m_model;
+    NetType::NetManagerFlags m_flag;
 };
 
 class NetWidget : public QWidget
@@ -89,7 +93,7 @@ public:
     QWidget *centralWidget() const;
     void addPasswordWidget(QWidget *widget);
     void setNoMousePropagation(bool noMousePropagation);
-    void removePasswordWidget();
+    virtual void removePasswordWidget();
 
 Q_SIGNALS:
     void requestExec(NetManager::CmdType cmd, const QString &id, const QVariantMap &param);
@@ -149,7 +153,37 @@ private:
     NetIconButton *m_expandButton;
 };
 
-class NetWirelessWidget : public NetWidget
+class NetItemWidget : public NetWidget
+{
+    Q_OBJECT
+
+public:
+    NetItemWidget(NetItem *item, QWidget *parent = nullptr);
+    void removePasswordWidget() override;
+    void setHover(bool isHover);
+    void setFlag(NetType::NetManagerFlags flag);
+
+protected:
+    virtual bool isConnected() const = 0;
+    void removeUrlLink();
+    virtual int leftSpacing() const = 0;
+
+    bool eventFilter(QObject *watched, QEvent *event) override;
+
+protected slots:
+    void onPortalUrlChanged(const QString &url);
+
+private:
+    QString getDisplayText(bool isHover);
+
+private:
+    QString m_portalUrl;
+    QLabel *m_portalLabel;
+    NetType::NetManagerFlags m_flag;
+    bool m_isEnter;
+};
+
+class NetWirelessWidget : public NetItemWidget
 {
     Q_OBJECT
 public:
@@ -161,11 +195,16 @@ public Q_SLOTS:
     void onStatusChanged(NetType::NetConnectionStatus status);
     void onDisconnectClicked();
 
+protected:
+    bool isConnected() const Q_DECL_OVERRIDE;
+    int leftSpacing() const Q_DECL_OVERRIDE;
+
 private:
     bool m_isWifi6;
     NetIconButton *m_iconBut;
     NetIconButton *m_connBut;
     Dtk::Widget::DSpinner *m_loading;
+    dde::network::NetType::NetConnectionStatus m_status;
 };
 
 class NetWirelessHiddenWidget : public NetWidget
@@ -207,7 +246,7 @@ public:
     ~NetVPNTipsWidget() Q_DECL_OVERRIDE;
 };
 
-class NetWiredWidget : public NetWidget
+class NetWiredWidget : public NetItemWidget
 {
     Q_OBJECT
 
@@ -219,10 +258,15 @@ public Q_SLOTS:
     void onStatusChanged(NetType::NetConnectionStatus status);
     void onDisconnectClicked();
 
+protected:
+    bool isConnected() const Q_DECL_OVERRIDE;
+    int leftSpacing() const Q_DECL_OVERRIDE;
+
 private:
     NetIconButton *m_iconBut;
     NetIconButton *m_connBut;
     Dtk::Widget::DSpinner *m_loading;
+    dde::network::NetType::NetConnectionStatus m_status;
 };
 
 class NetDisabledWidget : public NetWidget

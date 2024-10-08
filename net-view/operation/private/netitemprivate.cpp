@@ -244,6 +244,8 @@ NetConnectionItemPrivate::NetConnectionItemPrivate()
 }
 // 有线连接
 GETFUN(NetType::NetItemType, NetWiredItem, itemType, NetType::NetItemType::WiredItem)
+GETFUN(const QString &, NetWiredItem, portalUrl, m_portalUrl)
+UPDATEFUN(NetWiredItem, const QString &, portalUrl)
 // 我的网络
 GETFUN(NetType::NetItemType, NetWirelessMineItem, itemType, NetType::NetItemType::WirelessMineItem)
 // 其他网络
@@ -270,6 +272,8 @@ UPDATEFUN(NetWirelessItem, uint, flags)
 // UPDATEFUN(NetWirelessItem, int, strength)
 UPDATEFUN(NetWirelessItem, bool, secure)
 UPDATEFUN(NetWirelessItem, bool, hasConnection)
+GETFUN(const QString &, NetWirelessItem, portalUrl, m_portalUrl)
+UPDATEFUN(NetWirelessItem, const QString &, portalUrl)
 
 void NetWirelessItemPrivate::updatestrength(int strength)
 {
