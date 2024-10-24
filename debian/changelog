@@ -1,3 +1,10 @@
+dde-network-core (2.0.35) unstable; urgency=medium
+
+  * fix: Crash after manual proxy is saved
+  * feat: Implement control center network plugin
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Tue, 06 Aug 2024 15:45:40 +0800
+
 dde-network-core (2.0.34) unstable; urgency=medium
 
   * fix: Save button is not enabled when proxy address changed after saving
@@ -114,7 +121,7 @@ dde-network-core (2.0.18) unstable; urgency=medium
   * fix the break ci
   * fix the changelog
 
- -- chenhongtao <chenhongtao@deepin.org>  Thu, 11 Mon 2024 15:44:43 +0800
+ -- chenhongtao <chenhongtao@deepin.org>  Thu, 11 Jan 2024 15:44:43 +0800
 
 dde-network-core (2.0.17) unstable; urgency=medium
 
