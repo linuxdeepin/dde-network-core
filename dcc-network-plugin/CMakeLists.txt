@@ -16,8 +16,8 @@ ADD_DEFINITIONS("-fstack-protector-strong -D_FORTITY_SOURCE=1 -z noexecstack -pi
 # 指定所有源码文件
 file(GLOB_RECURSE SRCS "*.h"
     "*.cpp"
-    "../src/*.h"
-    "../src/*.cpp"
+    "../src-old/*.h"
+    "../src-old/*.cpp"
     "*.qrc"
     "*.svg"
 )

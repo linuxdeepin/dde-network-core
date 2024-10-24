@@ -1,13 +1,19 @@
 // SPDX-FileCopyrightText: 2022 UnionTech Software Technology Co., Ltd.
 //
-// SPDX-License-Identifier: LGPL-3.0-or-later
+// SPDX-License-Identifier: GPL-3.0-or-later
 
 #ifndef NETUTILS_H
 #define NETUTILS_H
 
 #include "networkconst.h"
+#include "networkinter.h"
 
+#include <NetworkManagerQt/ActiveConnection>
+
+#include <QDebug>
 #include <QJsonObject>
+
+// #include "com_deepin_daemon_network.h"
 
 namespace dde {
 namespace network {
@@ -24,10 +30,12 @@ namespace network {
 // wifi6的标记
 #define AP_FLAGS_HE 0x10
 
+// using NetworkInter = com::deepin::daemon::Network;
+
 Connectivity connectivityValue(uint sourceConnectivity);
 DeviceStatus convertDeviceStatus(int sourceDeviceStatus);
 ConnectionStatus convertConnectionStatus(int sourceConnectionStatus);
-
+ConnectionStatus convertStateFromNetworkManager(NetworkManager::ActiveConnection::State state);
 }
 }
-#endif // UTILS_H
+#endif  // NETUTILS_H

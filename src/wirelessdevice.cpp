@@ -1,19 +1,24 @@
 // SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
 //
-// SPDX-License-Identifier: LGPL-3.0-or-later
+// SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "wirelessdevice.h"
 #include "netutils.h"
-#include "realize/netinterface.h"
+#include "netinterface.h"
+
+#include <utility>
 
 using namespace dde::network;
 
 bool WirelessDevice::isConnected() const
 {
     QList<AccessPoints *> aps = deviceRealize()->accessPointItems();
-    return std::any_of(aps.begin(), aps.end(), [](const AccessPoints *ap) {
-        return ap->status() == ConnectionStatus::Activated;
-    });
+    for (AccessPoints *ap : aps) {
+        if (ap->status() == ConnectionStatus::Activated)
+            return true;
+    }
+
+    return false;
 }
 
 DeviceType WirelessDevice::deviceType() const
@@ -52,6 +57,11 @@ bool WirelessDevice::hotspotEnabled() const
     return deviceRealize()->hotspotEnabled();
 }
 
+void WirelessDevice::disconnectNetwork()
+{
+    return deviceRealize()->disconnectNetwork();
+}
+
 void WirelessDevice::connectNetwork(const QString &ssid)
 {
     AccessPoints *apConnection = findAccessPoint(ssid);
@@ -69,14 +79,17 @@ WirelessDevice::WirelessDevice(NetworkDeviceRealize *networkInter, QObject *pare
 {
     connect(networkInter, &NetworkDeviceRealize::networkAdded, this, &WirelessDevice::networkAdded);
     connect(networkInter, &NetworkDeviceRealize::networkRemoved, this, &WirelessDevice::networkRemoved);
+    connect(networkInter, &NetworkDeviceRealize::availableChanged, this, &WirelessDevice::availableChanged);
+    connect(networkInter, &NetworkDeviceRealize::connectionFailed, this, &WirelessDevice::connectionFailed);
     connect(networkInter, &NetworkDeviceRealize::connectionSuccess, this, &WirelessDevice::connectionSuccess);
     connect(networkInter, &NetworkDeviceRealize::hotspotEnableChanged, this, &WirelessDevice::hotspotEnableChanged);
     connect(networkInter, &NetworkDeviceRealize::accessPointInfoChanged, this, &WirelessDevice::accessPointInfoChanged);
+    connect(networkInter, &NetworkDeviceRealize::wirelessConnectionAdded, this, &WirelessDevice::wirelessConnectionAdded);
+    connect(networkInter, &NetworkDeviceRealize::wirelessConnectionRemoved, this, &WirelessDevice::wirelessConnectionRemoved);
+    connect(networkInter, &NetworkDeviceRealize::wirelessConnectionPropertyChanged, this, &WirelessDevice::wirelessConnectionPropertyChanged);
 }
 
-WirelessDevice::~WirelessDevice()
-{
-}
+WirelessDevice::~WirelessDevice() = default;
 
 AccessPoints *WirelessDevice::findAccessPoint(const QString &ssid)
 {
@@ -90,13 +103,16 @@ AccessPoints *WirelessDevice::findAccessPoint(const QString &ssid)
 }
 
 /**
- * @brief 无线网络连接
+ * 无线热点类
+ *
  */
-AccessPoints::AccessPoints(const QJsonObject &json, QObject *parent)
+AccessPoints::AccessPoints(AccessPointProxy *proxy, QObject *parent)
     : QObject(parent)
-    , m_json(json)
-    , m_status(ConnectionStatus::Unknown)
+    , m_proxy(proxy)
 {
+    connect(proxy, &AccessPointProxy::strengthChanged, this, &AccessPoints::strengthChanged);
+    connect(proxy, &AccessPointProxy::connectionStatusChanged, this, &AccessPoints::connectionStatusChanged);
+    connect(proxy, &AccessPointProxy::securedChanged, this, &AccessPoints::securedChanged);
 }
 
 AccessPoints::~AccessPoints()
@@ -105,102 +121,57 @@ AccessPoints::~AccessPoints()
 
 QString AccessPoints::ssid() const
 {
-    return m_json.value("Ssid").toString();
+    return m_proxy->ssid();
 }
 
 int AccessPoints::strength() const
 {
-    if (m_json.isEmpty())
-        return -1;
-
-    return m_json.value("Strength").toInt();
+    return m_proxy->strength();
 }
 
 bool AccessPoints::secured() const
 {
-    return m_json.value("Secured").toBool();
+    return m_proxy->secured();
 }
 
 bool AccessPoints::securedInEap() const
 {
-    return m_json.value("SecuredInEap").toBool();
+    return m_proxy->securedInEap();
 }
 
 int AccessPoints::frequency() const
 {
-    return m_json.value("Frequency").toInt();
+    return m_proxy->frequency();
 }
 
 QString AccessPoints::path() const
 {
-    return m_json.value("Path").toString();
+    return m_proxy->path();
 }
 
 QString AccessPoints::devicePath() const
 {
-    return m_devicePath;
+    return m_proxy->devicePath();
 }
 
 bool AccessPoints::connected() const
 {
-    return (m_status == ConnectionStatus::Activated);
+    return m_proxy->connected();
 }
 
 ConnectionStatus AccessPoints::status() const
 {
-    return m_status;
+    return m_proxy->status();
 }
 
 bool AccessPoints::hidden() const
 {
-    if (m_json.contains("Hidden"))
-        return m_json.value("Hidden").toBool();
-
-    return false;
+    return m_proxy->hidden();
 }
 
 AccessPoints::WlanType AccessPoints::type() const
 {
-    // 根据需求，在当前Wlan未连接的情况下，才判断是否有同名Wlan中存在Wlan6，如果当前已连接，则直接判断
-    if (!connected()) {
-        // 如果是重名的Wlan，则判断同名的Wlan的Flags是否为Wlan6
-        if (m_json.contains("extendFlags")) {
-            int flag = m_json.value("extendFlags").toInt();
-            if (flag & AP_FLAGS_HE)
-                return WlanType::wlan6;
-        }
-    }
-
-    if (m_json.contains("Flags")) {
-        int flag = m_json.value("Flags").toInt();
-        if (flag & AP_FLAGS_HE)
-            return WlanType::wlan6;
-    }
-
-    return WlanType::wlan;
-}
-
-void AccessPoints::updateAccessPoints(const QJsonObject &json)
-{
-    int nOldStrength = strength();
-    bool oldSecured = secured();
-    m_json = json;
-    int nStrength = strength();
-    if (nOldStrength != -1 && nStrength != nOldStrength)
-        Q_EMIT strengthChanged(nStrength);
-
-    bool newSecured = secured();
-    if (oldSecured != newSecured)
-        Q_EMIT securedChanged(newSecured);
-}
-
-void AccessPoints::updateConnectionStatus(ConnectionStatus status)
-{
-    if (m_status == status)
-        return;
-
-    m_status = status;
-    Q_EMIT connectionStatusChanged(status);
+    return (m_proxy->isWlan6() ? WlanType::wlan6 : WlanType::wlan);
 }
 
 /**
@@ -211,9 +182,9 @@ AccessPoints *WirelessConnection::accessPoints() const
     return m_accessPoints;
 }
 
-ConnectionStatus WirelessConnection::status() const
+bool WirelessConnection::connected()
 {
-    return m_accessPoints ? m_accessPoints->status() :ConnectionStatus::Unknown;
+    return m_accessPoints != nullptr && m_accessPoints->connected();
 }
 
 WirelessConnection::WirelessConnection()
@@ -222,13 +193,11 @@ WirelessConnection::WirelessConnection()
 {
 }
 
-WirelessConnection::~WirelessConnection()
-{
-}
+WirelessConnection::~WirelessConnection() = default;
 
 WirelessConnection *WirelessConnection::createConnection(AccessPoints *ap)
 {
-    WirelessConnection *wirelessConnection = new WirelessConnection;
+    auto *wirelessConnection = new WirelessConnection;
     QJsonObject json;
     json.insert("Ssid", ap->ssid());
     wirelessConnection->setConnection(json);

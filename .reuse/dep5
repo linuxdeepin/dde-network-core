@@ -34,22 +34,22 @@ Copyright: None
 License: CC0-1.0
 
 # png svg
-Files: *.png *.svg
+Files: *.png *.svg *.dci *.gif
 Copyright: UnionTech Software Technology Co., Ltd.
 License: LGPL-3.0-or-later
 
 # project config files(json)
-Files: dock-network-plugin/network.json dcc-network-plugin/network.json config/org.deepin.dde.network.json dde-network-dialog/network.json dss-network-plugin/network.json dock-hotspot-plugin/hotspot.json
+Files: *.json
 Copyright: UnionTech Software Technology Co., Ltd.
 License: LGPL-3.0-or-later
 
 # project config files(pkla in cc)
-Files: dss-network-plugin/50-dss-network-plugin.rules src/dde-network-core.pc.in try-compile/networkmanagerqt.cc
+Files: dss-network-plugin/50-dss-network-plugin.rules src/dde-network-core.pc.in try-compile/networkmanagerqt.cc *.pc.in
 Copyright: UnionTech Software Technology Co., Ltd.
 License: LGPL-3.0-or-later
 
 # sh
-Files: dcc-network-plugin/lupdate.sh dde-network-dialog/lupdate.sh dss-network-plugin/lupdate.sh dock-network-plugin/lupdate.sh tests/test-recoverage.sh dock-hotspot-plugin/lupdate.sh
+Files: *.sh
 Copyright: UnionTech Software Technology Co., Ltd.
 License: LGPL-3.0-or-later
 
@@ -64,7 +64,7 @@ Copyright: None
 License: CC0-1.0
 
 # xml toml json conf yaml
-Files: src/*.xml .clog.toml configs/*.json src/*conf src/*.yaml .tx/config .tx/deepin.conf
+Files: src/*.xml .clog.toml configs/*.json src/*conf src/*.yaml .tx/config .tx/deepin.conf *.conf
 Copyright: None
 License: CC0-1.0
 

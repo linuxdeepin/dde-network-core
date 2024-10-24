@@ -1,5 +1,5 @@
 Source: dde-network-core
-Section: lib
+Section: libs
 Priority: optional
 Maintainer: donghualin <donghualin@uniontech.com>
 Build-Depends: debhelper-compat (= 12),
@@ -14,7 +14,13 @@ Build-Depends: debhelper-compat (= 12),
                libdtkwidget-dev,
                dde-control-center-dev,
                dde-session-shell-dev,
-               qttools5-dev
+               libudev-dev,
+               qttools5-dev,
+               qt6-base-dev,
+               qt6-declarative-dev,
+               qt6-tools-dev,
+               libdtk6core-dev,
+               libkf6networkmanagerqt-dev
 Rules-Requires-Root: no
 Standards-Version: 4.5.0
 Homepage: https://gerrit.uniontech.com/admin/repos/dde-network-core

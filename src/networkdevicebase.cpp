@@ -1,8 +1,8 @@
 // SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
 //
-// SPDX-License-Identifier: LGPL-3.0-or-later
+// SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "realize/netinterface.h"
+#include "netinterface.h"
 #include "networkdevicebase.h"
 #include "netutils.h"
 
@@ -92,11 +92,6 @@ QStringList NetworkDeviceBase::ipv6() const
     return deviceRealize()->ipv6();
 }
 
-QJsonObject NetworkDeviceBase::activeConnectionInfo() const
-{
-    return deviceRealize()->activeConnectionInfo();
-}
-
 void NetworkDeviceBase::setEnabled(bool enabled)
 {
     deviceRealize()->setEnabled(enabled);
@@ -107,9 +102,9 @@ void NetworkDeviceBase::disconnectNetwork()
     deviceRealize()->disconnectNetwork();
 }
 
-Connectivity NetworkDeviceBase::connectivity()
+bool NetworkDeviceBase::ipConflicted()
 {
-    return deviceRealize()->connectivity();
+    return deviceRealize()->ipConflicted();
 }
 
 void NetworkDeviceBase::setName(const QString &name)
@@ -173,4 +168,9 @@ QString NetworkDeviceBase::statusStringDetail()
 bool NetworkDeviceBase::isEnabled() const
 {
     return m_deviceInterface->isEnabled();
+}
+
+bool NetworkDeviceBase::available() const
+{
+    return m_deviceInterface->available();
 }

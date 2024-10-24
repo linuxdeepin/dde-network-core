@@ -1,13 +1,17 @@
 // SPDX-FileCopyrightText: 2022 UnionTech Software Technology Co., Ltd.
 //
-// SPDX-License-Identifier: LGPL-3.0-or-later
+// SPDX-License-Identifier: GPL-3.0-or-later
 
 #ifndef NETWORKCONST_H
 #define NETWORKCONST_H
 
 #include <QString>
 #include <QJsonObject>
-#include <QMetaType>
+#include <QDateTime>
+#include <QDebug>
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(DNC);
 
 namespace dde {
 
@@ -58,7 +62,7 @@ enum class DeviceStatus {
     Activated       = 100,        // 激活状态，也就是连接成功
     Deactivation    = 110,        // 断开连接
     Failed          = 120,        // 连接失败
-    IpConfilct      = 121         // ip冲突
+    IpConflict      = 121         // ip冲突
 };
 
 /*
@@ -77,55 +81,6 @@ enum class Connectivity {
     Portal,
     Limited,    // 主机已连接到网络，似乎无法访问完整的Internet，但尚未检测到捕获的门户
     Full        // 主机已连接到网络，并且似乎能够访问完整的Internet。
-};
-
-/***
- * 加载网络的方式
- */
-
-enum class ServiceLoadType {
-    LoadFromInter = 0, // 从后台加载
-    LoadFromManager,   // 从NetworkManager加载
-    LoadFromService    // 从后台服务加载(备用)
-};
-
-/**
- * @brief 系统代理配置
- */
-struct SysProxyConfig
-{
-    SysProxyType type; // 系统代理类型，是一个枚举变量(http,https,ftp,socks)
-    QString url;       // 代理的URL，一般用于自动代理的URL，手动代理的代理值
-    uint port;         // 代理的端口，一般是手动代理
-};
-/**
- * @brief 应用代理配置
- */
-struct AppProxyConfig
-{
-    AppProxyType type; // 应用代理类型，枚举变量(http,socks4,socks5)
-    QString ip;        // IP地址
-    uint port;         // 端口
-    QString username;  // 用户名
-    QString password;  // 密码
-};
-
-enum class ProxyMethod {
-    Init = -1, // 初始化状态，用来对数据进行初始化
-    None = 0,  // 没有设置，对应字符串”none”，如果设置成这个，此时是关闭代理
-    Auto,      // 自动模式,对应字符串”auto”
-    Manual     // 手动模式,对应字符串”manual”
-};
-
-/**
- * @brief 当前网络连接状态
- */
-enum class ConnectionStatus {
-    Unknown = 0,      // 普通状态
-    Activating = 1,   // 连接中
-    Activated = 2,    // 连接成功
-    Deactivating = 3, // 断开连接中
-    Deactivated = 4   // 连接已断开
 };
 
 class Connection
@@ -149,33 +104,75 @@ private:
     QJsonObject m_data;
 };
 
-class ControllItems
+class ControllItems : public QObject
 {
-public:
-    ControllItems();
-    virtual ~ControllItems();
+    Q_OBJECT
 
+public:
     Connection *connection() const;
     QString activeConnection() const;
+    QDateTime timeStamp() const;
 
-    bool connected() const;                  //网络是否连接成功
-    virtual ConnectionStatus status() const; // 当前连接的连接状态
+Q_SIGNALS:
+    void connectionChanged();
 
 protected:
+    ControllItems();
+    virtual ~ControllItems();
     void setConnection(const QJsonObject &jsonObj);
     void setActiveConnection(const QString &activeConnection);
-    virtual void setConnectionStatus(const ConnectionStatus &status);
+    void updateTimeStamp(QDateTime timeStamp);
 
 private:
     Connection *m_connection;
     QString m_activeConnection;
-    ConnectionStatus m_status;
+    QDateTime m_timeStamp;
 };
 
+/**
+ * @brief 系统代理配置
+ */
+struct SysProxyConfig {
+    SysProxyType type;      // 系统代理类型，是一个枚举变量(http,https,ftp,socks)
+    QString url;            // 代理的URL，一般用于自动代理的URL，手动代理的代理值
+    uint port;              // 代理的端口，一般是手动代理
+    bool  enableAuth;       // 是否需要验证，一般是手动代理
+    QString userName;       // 验证用户名，一般是手动代理
+    QString password;       // 验证密码，一般是手动代理
+};
+/**
+ * @brief 应用代理配置
+ */
+struct AppProxyConfig {
+    AppProxyType type;      // 应用代理类型，枚举变量(http,socks4,socks5)
+    QString ip;             // IP地址
+    uint port;              // 端口
+    QString username;       // 用户名
+    QString password;       // 密码
+};
+
+enum class ProxyMethod {
+    Init = -1,               // 初始化状态，用来对数据进行初始化
+    None = 0,                // 没有设置，对应字符串”none”，如果设置成这个，此时是关闭代理
+    Auto,                    // 自动模式,对应字符串”auto”
+    Manual                   // 手动模式,对应字符串”manual”
+};
+
+/**
+ * @brief 当前网络连接状态
+ */
+enum class ConnectionStatus {
+    Unknown = 0,             // 普通状态
+    Activating = 1,         // 连接中
+    Activated = 2,          // 连接成功
+    Deactivating = 3,       // 断开连接中
+    Deactivated = 4         // 连接已断开
+};
+
+QDebug operator<<(QDebug deg, ConnectionStatus status);
+
 }
 
 }
-Q_DECLARE_METATYPE(dde::network::ControllItems);
-Q_DECLARE_METATYPE(dde::network::ControllItems *);
 
-#endif // UNETWORKCONST_H
+#endif  // NETWORKCONST_H

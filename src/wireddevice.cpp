@@ -1,25 +1,24 @@
 // SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
 //
-// SPDX-License-Identifier: LGPL-3.0-or-later
+// SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "wireddevice.h"
 #include "networkconst.h"
-#include "realize/netinterface.h"
+#include "netinterface.h"
 
 using namespace dde::network;
 
-WiredDevice::WiredDevice(NetworkDeviceRealize *devcieRealize, QObject *parent)
-    : NetworkDeviceBase(devcieRealize, parent)
+WiredDevice::WiredDevice(NetworkDeviceRealize *deviceRealize, QObject *parent)
+    : NetworkDeviceBase(deviceRealize, parent)
 {
-    connect(devcieRealize, &NetworkDeviceRealize::connectionAdded, this, &WiredDevice::connectionAdded);
-    connect(devcieRealize, &NetworkDeviceRealize::connectionRemoved, this, &WiredDevice::connectionRemoved);
-    connect(devcieRealize, &NetworkDeviceRealize::connectionPropertyChanged, this, &WiredDevice::connectionPropertyChanged);
-    connect(devcieRealize, &NetworkDeviceRealize::activeConnectionChanged, this, &WiredDevice::activeConnectionChanged);
+    connect(deviceRealize, &NetworkDeviceRealize::connectionAdded, this, &WiredDevice::connectionAdded);
+    connect(deviceRealize, &NetworkDeviceRealize::connectionRemoved, this, &WiredDevice::connectionRemoved);
+    connect(deviceRealize, &NetworkDeviceRealize::connectionPropertyChanged, this, &WiredDevice::connectionPropertyChanged);
+    connect(deviceRealize, &NetworkDeviceRealize::activeConnectionChanged, this, &WiredDevice::activeConnectionChanged);
+    connect(deviceRealize, &NetworkDeviceRealize::carrierChanged, this, &WiredDevice::carrierChanged);
 }
 
-WiredDevice::~WiredDevice()
-{
-}
+WiredDevice::~WiredDevice() = default;
 
 bool WiredDevice::connectNetwork(WiredConnection *connection)
 {
@@ -59,11 +58,33 @@ QList<WiredConnection *> WiredDevice::items() const
     return deviceRealize()->wiredItems();
 }
 
+bool WiredDevice::carrier() const
+{
+    return deviceRealize()->carrier();
+}
+
+/**
+ * @brief 无线网络连接信息
+ */
+bool WiredConnection::connected()
+{
+    return (m_status == ConnectionStatus::Activated);
+}
+
+ConnectionStatus WiredConnection::status() const
+{
+    return m_status;
+}
+
 WiredConnection::WiredConnection()
     : ControllItems()
+    , m_status(ConnectionStatus::Unknown)
 {
 }
 
-WiredConnection::~WiredConnection()
+WiredConnection::~WiredConnection() = default;
+
+void WiredConnection::setConnectionStatus(const ConnectionStatus &status)
 {
+    m_status = status;
 }

@@ -1,6 +1,6 @@
 // SPDX-FileCopyrightText: 2022 UnionTech Software Technology Co., Ltd.
 //
-// SPDX-License-Identifier: LGPL-3.0-or-later
+// SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "networkconst.h"
 
@@ -8,13 +8,9 @@ namespace dde {
 
 namespace network {
 
-Connection::Connection()
-{
-}
+Connection::Connection() = default;
 
-Connection::~Connection()
-{
-}
+Connection::~Connection() = default;
 
 QString Connection::path()
 {
@@ -54,7 +50,6 @@ void Connection::updateConnection(const QJsonObject &data)
 // 连接具体项的基类
 ControllItems::ControllItems()
     : m_connection(new Connection)
-    , m_status(ConnectionStatus::Unknown)
 {
 }
 
@@ -73,9 +68,15 @@ QString ControllItems::activeConnection() const
     return m_activeConnection;
 }
 
+QDateTime ControllItems::timeStamp() const
+{
+    return m_timeStamp;
+}
+
 void ControllItems::setConnection(const QJsonObject &jsonObj)
 {
     m_connection->updateConnection(jsonObj);
+    Q_EMIT connectionChanged();
 }
 
 void ControllItems::setActiveConnection(const QString &activeConnection)
@@ -83,19 +84,32 @@ void ControllItems::setActiveConnection(const QString &activeConnection)
     m_activeConnection = activeConnection;
 }
 
-ConnectionStatus ControllItems::status() const
+void ControllItems::updateTimeStamp(QDateTime timeStamp)
 {
-    return m_status;
+    m_timeStamp = timeStamp;
 }
 
-bool ControllItems::connected() const
+QDebug operator<<(QDebug dbg, ConnectionStatus status)
 {
-    return (status() == ConnectionStatus::Activated);
-}
-
-void ControllItems::setConnectionStatus(const ConnectionStatus &status)
-{
-    m_status = status;
+    QDebugStateSaver stateSaver(dbg);
+    switch (status) {
+    case ConnectionStatus::Unknown:
+        dbg.nospace() << "Unknow";
+        break;
+    case ConnectionStatus::Activated:
+        dbg.nospace() << "Activated";
+        break;
+    case ConnectionStatus::Activating:
+        dbg.nospace() << "Activating";
+        break;
+    case ConnectionStatus::Deactivated:
+        dbg.nospace() << "Deactivated";
+        break;
+    case ConnectionStatus::Deactivating:
+        dbg.nospace() << "Deactivating";
+        break;
+    }
+    return dbg;
 }
 
 }
