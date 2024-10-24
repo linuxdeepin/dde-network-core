@@ -1,6 +1,6 @@
 // SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
 //
-// SPDX-License-Identifier: LGPL-3.0-or-later
+// SPDX-License-Identifier: GPL-3.0-or-later
 
 #ifndef NETWORKDETAILS_H
 #define NETWORKDETAILS_H
@@ -13,45 +13,31 @@ namespace dde {
 
 namespace network {
 
-class NetworkDeviceBase;
+class NetworkDetailRealize;
 
-class NetworkDetails : QObject
+class NetworkDetails : public QObject
 {
     Q_OBJECT
 
-    friend class NetworkController;
-    friend class NetworkInterProcesser;
-
-private:
-    enum InfoType {
-        Ip,
-        Gateway
-    };
+    friend class ObjectManager;
 
 public:
-    // 连接的网络名称
-    inline QString name() { return m_name; }
-    inline QList<QPair<QString, QString>> items() { return m_items; }
+    QString name();
+    QList<QPair<QString, QString>> items();
 
-private:
-    NetworkDetails(QObject *parent = Q_NULLPTR);
+signals:
+    void infoChanged();
+
+protected:
+    NetworkDetails(NetworkDetailRealize *realize, QObject *parent = Q_NULLPTR);
     ~NetworkDetails();
 
-    void updateData(const QJsonObject &info);
-    void appendInfo(const QString &title, const QString &value);
-    QString ipv6Infomation(QJsonObject connectinfo, InfoType type);
-    QString devicePath();
-
-    QString prefixToNetMask(int prefixLength);
-
 private:
-    QString m_name;
-    QString m_devicePath;
-    QList<QPair<QString, QString>> m_items;
+    NetworkDetailRealize *m_realize;
 };
 
 }
 
 }
 
-#endif // UNETWORKDETAILS_H
+#endif  // NETWORKDETAILS_H

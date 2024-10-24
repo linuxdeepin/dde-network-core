@@ -46,7 +46,7 @@ target_include_directories(${PLUGIN_NAME} PUBLIC
     ${DDESESSIONSHELL_INCLUDE_DIR}
     ${Qt5Network_INCLUDE_DIRS}
     ${KF5_QT_INCLUDE_DIRS}
-    ${NETINTERFACEINCLUDE}
+    # ${NETINTERFACEINCLUDE}
     "../common-plugin/"
 )
 

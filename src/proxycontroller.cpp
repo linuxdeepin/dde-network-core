@@ -1,84 +1,113 @@
 // SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
 //
-// SPDX-License-Identifier: LGPL-3.0-or-later
+// SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "proxycontroller.h"
-#include "networkdbusproxy.h"
 
-#include <QFile>
-#include <QStandardPaths>
+#include <QDBusConnection>
+#include <QDBusInterface>
+
+const static QString networkService     = "com.deepin.daemon.Network";
+const static QString networkPath        = "/com/deepin/daemon/Network";
+const static QString networkInterface   = "com.deepin.daemon.Network";
 
 using namespace dde::network;
 
-ProxyController::ProxyController(NetworkDBusProxy *networkInter, QObject *parent)
+ProxyController::ProxyController(QObject *parent)
     : QObject(parent)
-    , m_networkInter(networkInter)
-    , m_proxyMothod(ProxyMethod::Init)
+    , m_networkInter(new NetworkInter(networkService, networkPath, QDBusConnection::sessionBus(), this))
+    , m_proxyMethod(ProxyMethod::Init)
+    , m_systemProxyExist(false)
 {
     Q_ASSERT(m_networkInter);
-    // 设置成同步的方式，目的是为了在初始化的时候能正确的返回应用代理的数据，
-    // 否则，如果是异步的方式，那么在初始化的时候查询应用代理的数据的时候，返回空
-    // 后续ProxyChains的每个信号都会触发一次，将会触发多次appProxyChanged信号
-    // 连接应用代理的相关的槽
-    connect(m_networkInter, &NetworkDBusProxy::IPChanged, this, &ProxyController::onIPChanged);
-    connect(m_networkInter, &NetworkDBusProxy::PasswordChanged, this, &ProxyController::onPasswordChanged);
-    connect(m_networkInter, &NetworkDBusProxy::TypeChanged, this, &ProxyController::onTypeChanged);
-    connect(m_networkInter, &NetworkDBusProxy::UserChanged, this, &ProxyController::onUserChanged);
-    connect(m_networkInter, &NetworkDBusProxy::PortChanged, this, &ProxyController::onPortChanged);
-    connect(m_networkInter, &NetworkDBusProxy::ProxyMethodChanged, this, &ProxyController::queryProxyMethod);
-    // 初始化应用代理的相关的数据
-    m_appProxyConfig.type = appProxyType(m_networkInter->type());
-    m_appProxyConfig.ip = m_networkInter->iP();
-    m_appProxyConfig.port = m_networkInter->port();
-    m_appProxyConfig.username = m_networkInter->user();
-    m_appProxyConfig.password = m_networkInter->password();
     // 判断是否存在proxychains4来决定是否存在应用代理
     m_appProxyExist = !QStandardPaths::findExecutable("proxychains4").isEmpty();
+    QDBusConnection::sessionBus().connect(networkService, networkPath, networkInterface, "ProxyMethodChanged", this, SLOT(onProxyMethodChanged(const QString&)));
+
+    connect(m_networkInter, &NetworkInter::serviceValidChanged, this, [this](bool valid) {
+        // 设置快速登录，重启后，锁屏的网络插件进行初始化，但是dbus服务无效,导致系统代理等设置异常，等dbus有效后，重新同步数据
+        if (valid) {
+            querySysProxyData();
+        }
+    });
 }
 
-ProxyController::~ProxyController()
+ProxyController::~ProxyController() = default;
+
+void ProxyController::onProxyMethodChanged(const QString &method)
 {
+    ProxyMethod value = convertProxyMethod(method);
+    if (value != m_proxyMethod) {
+        m_proxyMethod = value;
+        Q_EMIT proxyMethodChanged(value);
+    }
+    // 如果没有配置，则关掉代理，避免升级问题
+    bool isConfExist = false;
+    for (auto conf : m_sysProxyConfig) {
+        if (!conf.url.isEmpty()) {
+            isConfExist = true;
+            break;
+        }
+    }
+    bool systemProxyExist = isConfExist || !m_autoProxyURL.isEmpty();
+    if (m_systemProxyExist != systemProxyExist) {
+        m_systemProxyExist = systemProxyExist;
+        Q_EMIT systemProxyExistChanged(m_systemProxyExist);
+    }
 }
 
 void ProxyController::setProxyMethod(const ProxyMethod &pm)
 {
     // 设置代理模式，手动模式，自动模式和关闭代理
     QString methodName = convertProxyMethod(pm);
-    m_networkInter->SetProxyMethod(methodName, this, SLOT(queryProxyMethod()));
+    auto *w = new QDBusPendingCallWatcher(m_networkInter->SetProxyMethod(methodName), this);
+    connect(w, &QDBusPendingCallWatcher::finished, w, &QDBusPendingCallWatcher::deleteLater);
+    connect(w, &QDBusPendingCallWatcher::finished, this, [ = ] {
+        queryProxyMethod();
+    });
 }
 
 void ProxyController::setProxyIgnoreHosts(const QString &hosts)
 {
-    m_networkInter->SetProxyIgnoreHosts(hosts, this, SLOT(queryProxyIgnoreHosts()));
+    auto *w = new QDBusPendingCallWatcher(m_networkInter->SetProxyIgnoreHosts(hosts), this);
+    connect(w, &QDBusPendingCallWatcher::finished, w, &QDBusPendingCallWatcher::deleteLater);
+    connect(w, &QDBusPendingCallWatcher::finished, this, [ & ] {
+        queryProxyIgnoreHosts();
+    });
 }
 
 void ProxyController::setAutoProxy(const QString &proxy)
 {
-    m_networkInter->SetAutoProxy(proxy, this, SLOT(queryAutoProxy()));
+    auto *w = new QDBusPendingCallWatcher(m_networkInter->SetAutoProxy(proxy), this);
+    connect(w, &QDBusPendingCallWatcher::finished, w, &QDBusPendingCallWatcher::deleteLater);
+    connect(w, &QDBusPendingCallWatcher::finished, this, [ = ] {
+        queryAutoProxy();
+    });
 }
 
 void ProxyController::setProxy(const SysProxyType &type, const QString &addr, const QString &port)
 {
     QString uType = convertSysProxyType(type);
-    switch (type) {
-    case SysProxyType::Ftp:
-        m_networkInter->SetProxy(uType, addr, port, this, SLOT(queryProxyDataByFtp()));
-        break;
-    case SysProxyType::Http:
-        m_networkInter->SetProxy(uType, addr, port, this, SLOT(queryProxyDataByHttp()));
-        break;
-    case SysProxyType::Https:
-        m_networkInter->SetProxy(uType, addr, port, this, SLOT(queryProxyDataByHttps()));
-        break;
-    case SysProxyType::Socks:
-        m_networkInter->SetProxy(uType, addr, port, this, SLOT(queryProxyDataBySocks()));
-        break;
-    }
+    auto *w = new QDBusPendingCallWatcher(m_networkInter->SetProxy(uType, addr, port), this);
+    connect(w, &QDBusPendingCallWatcher::finished, w, &QDBusPendingCallWatcher::deleteLater);
+    connect(w, &QDBusPendingCallWatcher::finished, this, [ = ] {
+        queryProxyDataByType(uType);
+    });
 }
 
-void ProxyController::setAppProxy(const AppProxyConfig &config)
+void ProxyController::setProxyAuth(const SysProxyType &type, const QString &userName, const QString &password, const bool enable)
 {
-    m_networkInter->Set(appProxyType(config.type), config.ip, config.port, config.username, config.password);
+    QString uType = convertSysProxyType(type);
+    auto *w = new QDBusPendingCallWatcher(m_networkInter->asyncCall("SetProxyAuthentication", uType, userName, password, enable), this);
+    connect(w, &QDBusPendingCallWatcher::finished, w, &QDBusPendingCallWatcher::deleteLater);
+    connect(w, &QDBusPendingCallWatcher::finished, this, [ = ](QDBusPendingCallWatcher * self) {
+        Q_UNUSED(self);
+
+        QDBusPendingReply<QString, QString> reply = w->reply();
+        if (reply.isError()) return ;
+
+        queryProxyAuthByType(uType);
+    });
 }
 
 AppProxyConfig ProxyController::appProxy() const
@@ -97,6 +126,11 @@ SysProxyConfig ProxyController::proxy(const SysProxyType &type) const
     return SysProxyConfig();
 }
 
+bool ProxyController::appProxyEnabled() const
+{
+    return false;
+}
+
 bool ProxyController::appProxyExist() const
 {
     return m_appProxyExist;
@@ -110,8 +144,10 @@ void ProxyController::querySysProxyData()
     static QStringList proxyTypes = {"http", "https", "ftp", "socks"};
 
     // 依次获取每种类型的数据，并填充到列表中
-    for (QString type : proxyTypes)
+    for (const QString &type : proxyTypes) {
         queryProxyDataByType(type);
+        queryProxyAuthByType(type);
+    }
 
     // 查询自动代理
     queryAutoProxy();
@@ -123,11 +159,16 @@ void ProxyController::querySysProxyData()
 
 void ProxyController::queryAutoProxy()
 {
-    QString autoProxyURL = m_networkInter->GetAutoProxy();
-    if (m_autoProxyURL != autoProxyURL) {
-        m_autoProxyURL = autoProxyURL;
-        Q_EMIT autoProxyChanged(autoProxyURL);
-    }
+    auto *w = new QDBusPendingCallWatcher(m_networkInter->GetAutoProxy(), this);
+    connect(w, &QDBusPendingCallWatcher::finished, w, &QDBusPendingCallWatcher::deleteLater);
+    connect(w, &QDBusPendingCallWatcher::finished, this, [ = ] {
+        QDBusPendingReply<QString> reply = m_networkInter->GetAutoProxy();
+        QString autoProxyURL = reply.value();
+        if (m_autoProxyURL != autoProxyURL) {
+            m_autoProxyURL = autoProxyURL;
+            Q_EMIT autoProxyChanged(autoProxyURL);
+        }
+    });
 }
 
 QString ProxyController::convertProxyMethod(const ProxyMethod &method)
@@ -170,56 +211,90 @@ SysProxyType ProxyController::convertSysProxyType(const QString &type)
     return SysProxyType::Http;
 }
 
-void ProxyController::queryProxyDataByFtp()
-{
-    queryProxyDataByType("ftp");
-}
-
-void ProxyController::queryProxyDataByHttp()
-{
-    queryProxyDataByType("http");
-}
-
-void ProxyController::queryProxyDataByHttps()
-{
-    queryProxyDataByType("https");
-}
-
-void ProxyController::queryProxyDataBySocks()
-{
-    queryProxyDataByType("socks");
-}
-
 void ProxyController::queryProxyDataByType(const QString &type)
 {
     SysProxyType uType = convertSysProxyType(type);
-    QStringList proxy = m_networkInter->GetProxy(type);
-    if (proxy.size() != 2)
-        return;
-    bool finded = false;
-    // 先查找原来是否存在响应的代理，如果存在，就直接更新最新的数据
-    for (SysProxyConfig &conf : m_sysProxyConfig) {
-        if (conf.type == uType) {
-            QString url = proxy.at(0);
-            uint port = proxy.at(1).toUInt();
-            if (url != conf.url || port != conf.port) {
-                conf.url = url;
-                conf.port = port;
-                Q_EMIT proxyChanged(conf);
-            }
-            finded = true;
-            break;
+    auto *w = new QDBusPendingCallWatcher(m_networkInter->asyncCall("GetProxy", type), this);
+    connect(w, &QDBusPendingCallWatcher::finished, w, &QDBusPendingCallWatcher::deleteLater);
+    connect(w, &QDBusPendingCallWatcher::finished, this, [ = ](QDBusPendingCallWatcher * self) {
+        Q_UNUSED(self);
+        QDBusPendingReply<QString, QString> reply = w->reply();
+        if (!reply.isValid()) {
+            qCWarning(DNC) << "Dbus path:" << m_networkInter->path() << ". Method GetProxy return value error !" << reply.error();
+            return;
         }
-    }
-    // 如果不存在，直接将数据放入内存中
-    if (!finded) {
-        SysProxyConfig proxyConfig;
-        proxyConfig.url = proxy.at(0);
-        proxyConfig.port = proxy.at(1).toUInt();
-        proxyConfig.type = uType;
-        m_sysProxyConfig << proxyConfig;
-        Q_EMIT proxyChanged(proxyConfig);
-    }
+
+        bool finded = false;
+        // 先查找原来是否存在响应的代理，如果存在，就直接更新最新的数据
+        for (SysProxyConfig &conf : m_sysProxyConfig) {
+            if (conf.type == uType) {
+                QString url = reply.argumentAt(0).toString();
+                uint port = reply.argumentAt(1).toUInt();
+                if (url != conf.url || port != conf.port) {
+                    conf.url = url;
+                    conf.port = port;
+                    Q_EMIT proxyChanged(conf);
+                }
+                finded = true;
+                break;
+            }
+        }
+        // 如果不存在，直接将数据放入内存中
+        if (!finded) {
+            SysProxyConfig proxyConfig;
+            proxyConfig.url = reply.argumentAt(0).toString();
+            proxyConfig.port = reply.argumentAt(1).toUInt();
+            proxyConfig.type = uType;
+            m_sysProxyConfig << proxyConfig;
+            Q_EMIT proxyChanged(proxyConfig);
+        }
+    });
+}
+
+void ProxyController::queryProxyAuthByType(const QString &type)
+{
+    SysProxyType uType = convertSysProxyType(type);
+    auto *w = new QDBusPendingCallWatcher(m_networkInter->asyncCall("GetProxyAuthentication", type), this);
+    connect(w, &QDBusPendingCallWatcher::finished, w, &QDBusPendingCallWatcher::deleteLater);
+    connect(w, &QDBusPendingCallWatcher::finished, this, [ = ](QDBusPendingCallWatcher * self) {
+        Q_UNUSED(self);
+
+        QDBusPendingReply<QString, QString> reply = w->reply();
+        if (!reply.isValid()) {
+            qCWarning(DNC) << "Dbus path:" << m_networkInter->path() << ". Method GetProxyAuthentication return value error !" << reply.error();
+            return;
+        }
+
+        // 先查找原来是否存在响应的代理，如果存在，就直接更新最新的数据
+        auto iterator = std::find_if(m_sysProxyConfig.begin(), m_sysProxyConfig.end(), [ = ](SysProxyConfig conf) {
+            if (conf.type == uType) {
+                QString userName = reply.argumentAt(0).toString();
+                QString password = reply.argumentAt(1).toString();
+                bool enableAuth = reply.argumentAt(2).toBool();
+                if (enableAuth != conf.enableAuth ||
+                    userName != conf.userName ||
+                    password != conf.password) {
+                    conf.enableAuth = enableAuth;
+                    conf.userName = userName;
+                    conf.password = password;
+                    Q_EMIT proxyAuthChanged(conf);
+                }
+                return true;
+            }
+
+            return false;
+        });
+
+        if (iterator == m_sysProxyConfig.end()) {
+            SysProxyConfig proxyConfig;
+            proxyConfig.userName = reply.argumentAt(0).toString();
+            proxyConfig.password = reply.argumentAt(1).toString();
+            proxyConfig.enableAuth = reply.argumentAt(2).toBool();
+            proxyConfig.type = uType;
+            m_sysProxyConfig << proxyConfig;
+            Q_EMIT proxyAuthChanged(proxyConfig);
+        }
+    });
 }
 
 ProxyMethod ProxyController::convertProxyMethod(const QString &method)
@@ -237,21 +312,31 @@ ProxyMethod ProxyController::convertProxyMethod(const QString &method)
 void ProxyController::queryProxyMethod()
 {
     // 查询代理模式
-    ProxyMethod method = convertProxyMethod(m_networkInter->GetProxyMethod());
-    if (method != m_proxyMothod) {
-        m_proxyMothod = method;
-        Q_EMIT proxyMethodChanged(method);
-    }
+    auto *w = new QDBusPendingCallWatcher(m_networkInter->GetProxyMethod(), this);
+    connect(w, &QDBusPendingCallWatcher::finished, w, &QDBusPendingCallWatcher::deleteLater);
+    connect(w, &QDBusPendingCallWatcher::finished, this, [ = ] {
+        QDBusPendingReply<QString> reply = w->reply();
+        if (!reply.isValid()) {
+            qCWarning(DNC) << "Dbus path:" << m_networkInter->path() << ". Method GetProxyMethod return value error !" << reply.error();
+            return;
+        }
+        onProxyMethodChanged(reply.value());
+    });
 }
 
 void ProxyController::queryProxyIgnoreHosts()
 {
     // 查询忽略的代理主机
-    QString proxyIgnoreHosts = m_networkInter->GetProxyIgnoreHosts();
-    if (m_proxyIgnoreHosts != proxyIgnoreHosts) {
-        m_proxyIgnoreHosts = proxyIgnoreHosts;
-        Q_EMIT proxyIgnoreHostsChanged(proxyIgnoreHosts);
-    }
+    auto *w = new QDBusPendingCallWatcher(m_networkInter->GetProxyIgnoreHosts(), this);
+    connect(w, &QDBusPendingCallWatcher::finished, w, &QDBusPendingCallWatcher::deleteLater);
+    connect(w, &QDBusPendingCallWatcher::finished, this, [ = ] {
+        QDBusPendingReply<QString> reply = w->reply();
+        QString proxyIgnoreHosts = reply.value();
+        if (m_proxyIgnoreHosts != proxyIgnoreHosts) {
+            m_proxyIgnoreHosts = proxyIgnoreHosts;
+            Q_EMIT proxyIgnoreHostsChanged(proxyIgnoreHosts);
+        }
+    });
 }
 
 void ProxyController::onIPChanged(const QString &value)

@@ -1,8 +1,11 @@
 // SPDX-FileCopyrightText: 2022 UnionTech Software Technology Co., Ltd.
 //
-// SPDX-License-Identifier: LGPL-3.0-or-later
+// SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "netutils.h"
+
+#include <QMetaType>
+#include <QDBusMetaType>
 
 namespace dde {
 namespace network {
@@ -51,9 +54,25 @@ ConnectionStatus convertConnectionStatus(int sourceConnectionStatus)
     case 2:     return ConnectionStatus::Activated;
     case 3:     return ConnectionStatus::Deactivating;
     case 4:     return ConnectionStatus::Deactivated;
+    default:    return ConnectionStatus::Unknown;
     }
+}
 
-    return ConnectionStatus::Unknown;
+ConnectionStatus convertStateFromNetworkManager(NetworkManager::ActiveConnection::State state)
+{
+    switch (state) {
+    case NetworkManager::ActiveConnection::State::Activated:
+        return ConnectionStatus::Activated;
+    case NetworkManager::ActiveConnection::State::Activating:
+        return ConnectionStatus::Activating;
+    case NetworkManager::ActiveConnection::State::Deactivated:
+        return ConnectionStatus::Deactivated;
+    case NetworkManager::ActiveConnection::State::Deactivating:
+        return ConnectionStatus::Deactivating;
+    default:
+        break;
+    }
+    return ConnectionStatus::Deactivated;
 }
 
 }

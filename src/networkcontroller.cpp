@@ -1,56 +1,124 @@
 // SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
 //
-// SPDX-License-Identifier: LGPL-3.0-or-later
+// SPDX-License-Identifier: GPL-3.0-or-later
 
+#include "networkcontroller.h"
+
+#include "configsetting.h"
 #include "dslcontroller.h"
 #include "hotspotcontroller.h"
-#include "networkcontroller.h"
+#include "netutils.h"
 #include "networkdetails.h"
 #include "networkdevicebase.h"
+#include "networkinterprocesser.h"
+#include "networkmanagerprocesser.h"
 #include "proxycontroller.h"
 #include "vpncontroller.h"
 #include "wireddevice.h"
 #include "wirelessdevice.h"
-#include "netutils.h"
-#include "realize/networkmanagerprocesser.h"
-#include "realize/networkinterprocesser.h"
+#include "connectivityhandler.h"
+
+#include <DLog>
+
+const static QString networkService = "com.deepin.daemon.Network";
+const static QString networkPath = "/com/deepin/daemon/Network";
+static QString localeName;
 
 using namespace dde::network;
 
+NetworkController *NetworkController::m_networkController = nullptr;
 // 默认是异步方式
 bool NetworkController::m_sync = false;
 // 只有任务栏需要检测IP冲突，因此任务栏需要调用相关的接口来检测，其他的应用是不需要检测冲突的
 bool NetworkController::m_checkIpConflicted = false;
-// 默认从网络后台检测
-ServiceLoadType NetworkController::m_serviceLoadType = ServiceLoadType::LoadFromInter;
+QTranslator *NetworkController::m_translator = nullptr;
 
 NetworkController::NetworkController()
     : QObject(Q_NULLPTR)
+    , m_processer(Q_NULLPTR)
     , m_proxyController(Q_NULLPTR)
     , m_vpnController(Q_NULLPTR)
     , m_dslController(Q_NULLPTR)
     , m_hotspotController(Q_NULLPTR)
+    , m_connectivityHandler(new ConnectivityHandler(this))
 {
-    if (m_serviceLoadType == ServiceLoadType::LoadFromManager)
-        m_processer = new NetworkManagerProcesser(this);
-    else
-        m_processer = new NetworkInterProcesser(m_sync, m_checkIpConflicted, this);
+    Dtk::Core::loggerInstance()->logToGlobalInstance(DNC().categoryName(), true);
+    retranslate(QLocale().name());
 
-    connect(m_processer, &NetworkProcesser::deviceAdded, this, &NetworkController::deviceAdded);
+    if (ConfigSetting::instance()->serviceFromNetworkManager())
+        m_processer = new NetworkManagerProcesser(m_sync, this);
+    else
+        m_processer = new NetworkInterProcesser(m_sync, this);
+
+    connect(m_processer, &NetworkProcesser::deviceAdded, this, &NetworkController::onDeviceAdded);
     connect(m_processer, &NetworkProcesser::deviceRemoved, this, &NetworkController::deviceRemoved);
-    connect(m_processer, &NetworkProcesser::connectivityChanged, this, &NetworkController::connectivityChanged);
     connect(m_processer, &NetworkProcesser::connectionChanged, this, &NetworkController::connectionChanged);
     connect(m_processer, &NetworkProcesser::activeConnectionChange, this, &NetworkController::activeConnectionChange);
+    connect(m_connectivityHandler, &ConnectivityHandler::connectivityChanged, this, &NetworkController::connectivityChanged);
+
+    initNetworkStatus();
 }
 
-NetworkController::~NetworkController()
+void NetworkController::initNetworkStatus()
 {
+    QDBusServiceWatcher *serviceWatcher = new QDBusServiceWatcher(this);
+    serviceWatcher->setConnection(QDBusConnection::systemBus());
+    serviceWatcher->addWatchedService("org.deepin.service.SystemNetwork");
+    connect(serviceWatcher, &QDBusServiceWatcher::serviceRegistered, this, [ this ](const QString &service) {
+        if (service != "org.deepin.service.SystemNetwork")
+            return;
+
+        // 启动后过3秒再获取连接状态，因为在刚启动的时候，获取的状态不是正确的
+        QTimer::singleShot(3000, m_connectivityHandler, &ConnectivityHandler::init);
+        checkIpConflicted(m_processer->devices());
+    });
+
+    if (m_checkIpConflicted) {
+        // 如果当前需要处理IP冲突，则直接获取信号连接方式即可
+        QDBusConnection::systemBus().connect("org.deepin.service.SystemNetwork", "/org/deepin/service/SystemNetwork",
+                                    "org.deepin.service.SystemNetwork", "IpConflictChanged", m_processer, SLOT(onIpConflictChanged(const QString &, const QString &, bool)));
+        checkIpConflicted(m_processer->devices());
+    }
 }
+
+void NetworkController::checkIpConflicted(const QList<NetworkDeviceBase *> &devices)
+{
+    if (!m_checkIpConflicted)
+        return ;
+
+    static QDBusInterface dbusInter("org.deepin.service.SystemNetwork", "/org/deepin/service/SystemNetwork",
+                             "org.deepin.service.SystemNetwork", QDBusConnection::systemBus());
+    // 如果需要处理IP冲突，依次检测每个设备的IP是否冲突
+    for (NetworkDeviceBase *device : devices) {
+        QDBusReply<bool> reply = dbusInter.call("IpConflicted", device->path());
+        m_processer->onIpConflictChanged(device->path(), "", reply.value());
+    }
+}
+
+void NetworkController::onDeviceAdded(QList<NetworkDeviceBase *> device)
+{
+    checkIpConflicted(device);
+    emit deviceAdded(device);
+}
+
+NetworkController::~NetworkController() = default;
 
 NetworkController *NetworkController::instance()
 {
-    static NetworkController instance;
-    return &instance;
+    static QMutex m;
+    QMutexLocker locker(&m);
+    if (!m_networkController) {
+        m_networkController = new NetworkController;
+    };
+    return m_networkController;
+}
+
+void NetworkController::free()
+{
+    if (m_networkController) {
+        m_networkController->deleteLater();
+        m_networkController = nullptr;
+    }
 }
 
 void NetworkController::setActiveSync(const bool sync)
@@ -58,19 +126,35 @@ void NetworkController::setActiveSync(const bool sync)
     m_sync = sync;
 }
 
-void NetworkController::setServiceType(const ServiceLoadType serviceType)
-{
-    m_serviceLoadType = serviceType;
-}
-
 void NetworkController::setIPConflictCheck(const bool &checkIp)
 {
     m_checkIpConflicted = checkIp;
 }
 
+void NetworkController::alawaysLoadFromNM()
+{
+    ConfigSetting::instance()->alawaysLoadFromNM();
+}
+
+void NetworkController::installTranslator(const QString &locale)
+{
+    if (localeName == locale)
+        return;
+
+    localeName = locale;
+
+    if (m_translator) {
+        QCoreApplication::removeTranslator(m_translator);
+    } else {
+        m_translator = new QTranslator;
+    }
+    m_translator->load(QString("/usr/share/dde-network-core/translations/dde-network-core_%1").arg(localeName));
+    QCoreApplication::installTranslator(m_translator);
+}
+
 void NetworkController::updateSync(const bool sync)
 {
-    NetworkInterProcesser *processer = qobject_cast<NetworkInterProcesser *>(m_processer);
+    auto *processer = qobject_cast<NetworkInterProcesser *>(m_processer);
     if (processer)
         processer->updateSync(sync);
 }
@@ -107,10 +191,12 @@ QList<NetworkDeviceBase *> NetworkController::devices() const
 
 Connectivity NetworkController::connectivity()
 {
-    return m_processer->connectivity();
+    return m_connectivityHandler->connectivity();
 }
 
-void NetworkController::retranslate()
+void NetworkController::retranslate(const QString &locale)
 {
-    m_processer->retranslate();
+    NetworkController::installTranslator(locale);
+    if (m_processer)
+        m_processer->retranslate();
 }

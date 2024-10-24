@@ -55,7 +55,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     ${Qt5Widget_INCLUDE_DIRS}
     ${KF5_QT_INCLUDE_DIRS}
     ${NETINTERFACEINCLUDE}
-    ../src)
+    ../src-old)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     ${Qt5Core_LIBRARIES}
