@@ -8,6 +8,7 @@ import org.deepin.dtk 1.0 as D
 
 import org.deepin.dcc 1.0
 import org.deepin.dcc.network 1.0
+import "NetUtils.js" as NetUtils
 
 DccObject {
     id: root
@@ -18,84 +19,79 @@ DccObject {
     property bool isEdit: false
     property string method: "auto"
 
+    property string errorKey: ""
+    signal editClicked
+
     function setConfig(c) {
-        config = c
-        if (config === undefined) {
+        errorKey = ""
+        if (c === undefined) {
+            config = {}
             method = "auto"
             addressData = []
         } else {
+            config = c
             method = config.method
-            addressData = config.hasOwnProperty("addresses") ? config["addresses"] : []
+            resetAddressData()
         }
     }
     function getConfig() {
-        let sConfig = {}
+        let sConfig = config
         sConfig["method"] = method
-        sConfig["addresses"] = addressData //dccData.toNMUIntListList(addressData) // dccData.toNMList( addressData)
+        if (method === "manual") {
+            let tmpIpData = []
+            for (let ipData of addressData) {
+                let ip = NetUtils.ipToNum(ipData[0])
+                let prefix = NetUtils.ipToPrefix(ipData[1])
+                let gateway = NetUtils.ipToNum(ipData[2])
+                tmpIpData.push([ip, prefix, gateway])
+            }
+            sConfig["addresses"] = tmpIpData
+        }
+
         return sConfig
     }
     function checkInput() {
-        return true
-    }
-    function numToIp(num) {
-        let ips = [0, 0, 0, 0]
-        for (var i = 0; i < 4; i++) {
-            ips[i] = (num >> (i * 8)) & 255
-        }
-        return ips.join('.')
-    }
-    function ipToNum(ip) {
-        let ips = ip.split('.')
-        let cidr = 0
-        let ipNum = 0
-        if (ips.length !== 4) {
-            return "0.0.0.0"
-        }
-        for (let ipStr of ips) {
-            let num = parseInt(ipStr, 10)
-            ipNum |= ((num & 255) << cidr)
-            cidr += 8
-        }
-        return ipNum
-    }
-
-    function prefixToIp(subnetMask) {
-        if (subnetMask < 0 || subnetMask > 32) {
-            throw new Error("Subnet mask must be between 0 and 32")
-        }
-
-        let maskArray = [255, 255, 255, 255]
-
-        for (var i = 0; i < 4; i++) {
-            let byteBits = i * 8 + 8 - subnetMask
-            if (byteBits > 0) {
-                maskArray[i] = (255 << byteBits) & 255
-            }
-        }
-
-        return maskArray.join('.')
-    }
-    function ipToPrefix(decimalSubnet) {
-        let octets = decimalSubnet.split('.')
-        let cidr = 0
-
-        for (let octet of octets) {
-            let num = parseInt(octet, 10)
-            for (var i = 0; i < 8; i++) {
-                if ((num & (1 << (7 - i))) !== 0) {
-                    cidr++
-                } else {
-                    break
-                    // 一旦遇到0，就可以停止检查该字节的剩余位
+        errorKey = ""
+        if (method === "manual") {
+            for (let k in addressData) {
+                if (!NetUtils.ipRegExp.test(addressData[k][0])) {
+                    errorKey = k + "address"
+                    return false
+                }
+                if (!NetUtils.maskRegExp.test(addressData[k][1])) {
+                    errorKey = k + "prefix"
+                    return false
+                }
+                if (addressData[k][2].length !== 0 && !NetUtils.ipRegExp.test(addressData[k][2])) {
+                    errorKey = k + "gateway"
+                    return false
                 }
             }
-            // 如果已经达到了32位，可以提前退出循环（虽然对于标准子网掩码这不是必需的）
-            if (cidr === 32)
-                break
         }
-
-        return cidr
+        return true
     }
+
+    function resetAddressData() {
+        if (method === "manual") {
+            let tmpIpData = []
+            if (config.hasOwnProperty("addresses")) {
+                for (let ipData of config["addresses"]) {
+                    let ip = NetUtils.numToIp(ipData[0])
+                    let prefix = NetUtils.prefixToIp(ipData[1])
+                    let gateway = ipData[2] === 0 ? "" : NetUtils.numToIp(ipData[2])
+                    tmpIpData.push([ip, prefix, gateway])
+                }
+            }
+            addressData = tmpIpData
+            if (addressData.length === 0) {
+                addressData.push(["0.0.0.0", "255.255.255.0", ""])
+                addressDataChanged()
+            }
+        } else {
+            addressData = []
+        }
+    }
+
     name: "ipv4Title"
     displayName: qsTr("IPv4")
     pageType: DccObject.Item
@@ -161,29 +157,14 @@ DccObject {
             currentIndex: indexOfValue(root.method)
             onActivated: {
                 root.method = currentValue
-                if (root.method === "manual") {
-                    root.addressData = (config && config.hasOwnProperty("addresses")) ? config["addresses"] : []
-                    if (root.addressData.length === 0) {
-                        root.addressData.push([0, 24, 0])
-                        root.addressDataChanged()
-                    }
-                } else {
-                    root.addressData = []
-                }
+                resetAddressData()
+                root.editClicked()
             }
             model: type === NetType.VPNControlItem ? vpnModel : allModel
             Component.onCompleted: {
                 currentIndex = indexOfValue(method)
                 isEdit = false
-                if (root.method === "manual") {
-                    root.addressData = (config && config.hasOwnProperty("addresses")) ? config["addresses"] : []
-                    if (root.addressData.length === 0) {
-                        root.addressData.push([0, 24, 0])
-                        root.addressDataChanged()
-                    }
-                } else {
-                    root.addressData = []
-                }
+                resetAddressData()
             }
             Connections {
                 target: root
@@ -203,7 +184,10 @@ DccObject {
         page: D.CheckBox {
             text: dccObj.displayName
             checked: config && config.hasOwnProperty("never-default") ? config["never-default"] : false
-            onClicked: config["never-default"] = checked
+            onClicked: {
+                config["never-default"] = checked
+                root.editClicked()
+            }
         }
     }
     Component {
@@ -248,7 +232,7 @@ DccObject {
                             anchors.fill: parent
                             acceptedButtons: Qt.LeftButton
                             onClicked: {
-                                root.addressData.push([0, 24, 0])
+                                root.addressData.push(["0.0.0.0", "255.255.255.0", ""])
                                 root.addressDataChanged()
                             }
                         }
@@ -281,17 +265,32 @@ DccObject {
                 pageType: DccObject.Item
                 page: DccGroupView {}
                 DccObject {
-                    name: "addresses"
+                    name: "address"
                     parentName: ipGroup.parentName + "/" + ipGroup.name
                     weight: 10
                     displayName: qsTr("IP Address")
                     pageType: DccObject.Editor
                     page: D.LineEdit {
-                        text: addressData.length > index ? numToIp(addressData[index][0]) : "0.0.0.0"
+                        text: addressData.length > index ? addressData[index][0] : "0.0.0.0"
+                        validator: RegularExpressionValidator {
+                            regularExpression: NetUtils.ipRegExp
+                        }
                         onTextChanged: {
-                            let ipNum = ipToNum(text)
-                            if (addressData.length > index && addressData[index][0] !== ipNum) {
-                                addressData[index][0] = ipNum
+                            if (showAlert) {
+                                errorKey = ""
+                            }
+                            if (addressData.length > index && addressData[index][0] !== text) {
+                                addressData[index][0] = text
+                                root.editClicked()
+                            }
+                        }
+                        showAlert: errorKey === index + dccObj.name
+                        alertDuration: 2000
+                        alertText: qsTr("Invalid IP address")
+                        onShowAlertChanged: {
+                            if (showAlert) {
+                                dccObj.trigger()
+                                forceActiveFocus()
                             }
                         }
                     }
@@ -303,11 +302,25 @@ DccObject {
                     displayName: qsTr("Netmask")
                     pageType: DccObject.Editor
                     page: D.LineEdit {
-                        text: addressData.length > index ? root.prefixToIp(addressData[index][1]) : "255.255.255.0"
+                        text: addressData.length > index ? addressData[index][1] : "255.255.255.0"
+                        validator: RegularExpressionValidator {
+                            regularExpression: NetUtils.maskRegExp
+                        }
                         onTextChanged: {
-                            let prefix = root.ipToPrefix(text)
-                            if (addressData.length > index && addressData[index][1] !== prefix) {
-                                addressData[index][1] = prefix
+                            if (showAlert) {
+                                errorKey = ""
+                            }
+                            if (addressData.length > index && addressData[index][1] !== text) {
+                                addressData[index][1] = text
+                                root.editClicked()
+                            }
+                        }
+                        showAlert: errorKey === index + dccObj.name
+                        alertDuration: 1
+                        onShowAlertChanged: {
+                            if (showAlert) {
+                                dccObj.trigger()
+                                forceActiveFocus()
                             }
                         }
                     }
@@ -320,11 +333,25 @@ DccObject {
                     pageType: DccObject.Editor
                     page: D.LineEdit {
                         enabled: index === 0
-                        text: index === 0 && addressData.length > index ? root.numToIp(addressData[index][2]) : ""
+                        text: index === 0 && addressData.length > index ? addressData[index][2] : ""
+                        validator: RegularExpressionValidator {
+                            regularExpression: NetUtils.ipRegExp
+                        }
                         onTextChanged: {
-                            let ipNum = ipToNum(text)
-                            if (addressData.length > index && addressData[index][2] !== ipNum) {
-                                addressData[index][2] = ipNum
+                            if (showAlert) {
+                                errorKey = ""
+                            }
+                            if (addressData.length > index && addressData[index][2] !== text) {
+                                addressData[index][2] = text
+                                root.editClicked()
+                            }
+                        }
+                        showAlert: errorKey === index + dccObj.name
+                        alertDuration: 2000
+                        onShowAlertChanged: {
+                            if (showAlert) {
+                                dccObj.trigger()
+                                forceActiveFocus()
                             }
                         }
                     }
@@ -332,25 +359,18 @@ DccObject {
             }
         }
     }
-    function addIpItem() {
-        let ipItem = ipComponent.createObject(root, {
-                                                  "index": ipItems.length
-                                              })
-        DccApp.addObject(ipItem)
-        ipItems.push(ipItem)
-    }
-    function removeIpItem() {
-        let tmpItem = ipItems.pop()
-        DccApp.removeObject(tmpItem)
-        tmpItem.destroy()
-    }
-
     onAddressDataChanged: {
         while (addressData.length > ipItems.length) {
-            addIpItem()
+            let ipItem = ipComponent.createObject(root, {
+                                                      "index": ipItems.length
+                                                  })
+            DccApp.addObject(ipItem)
+            ipItems.push(ipItem)
         }
         while (addressData.length < ipItems.length) {
-            removeIpItem()
+            let tmpItem = ipItems.pop()
+            DccApp.removeObject(tmpItem)
+            tmpItem.destroy()
         }
     }
 }

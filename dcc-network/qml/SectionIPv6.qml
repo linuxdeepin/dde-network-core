@@ -8,6 +8,7 @@ import org.deepin.dtk 1.0 as D
 
 import org.deepin.dcc 1.0
 import org.deepin.dcc.network 1.0
+import "NetUtils.js" as NetUtils
 
 DccObject {
     id: root
@@ -19,27 +20,63 @@ DccObject {
     property string method: "auto"
     property string gateway: ""
 
+    property string errorKey: ""
+    signal editClicked
+
     function setConfig(c) {
-        config = c
-        if (config === undefined) {
+        errorKey = ""
+        if (c === undefined) {
+            config = {}
             method = "auto"
             addressData = []
             gateway = ""
         } else {
+            config = c
             method = config.method
             addressData = (config && config.hasOwnProperty("address-data")) ? config["address-data"] : []
             gateway = (config && config.hasOwnProperty("gateway")) ? config["gateway"] : ""
         }
     }
     function getConfig() {
-        let sConfig = {}
+        let sConfig = config
         sConfig["method"] = method
         sConfig["address-data"] = addressData
         sConfig["gateway"] = gateway
         return sConfig
     }
     function checkInput() {
+        errorKey = ""
+        if (method === "manual") {
+            for (let k in addressData) {
+                if (!NetUtils.ipv6RegExp.test(addressData[k].address)) {
+                    errorKey = k + "address"
+                    return false
+                }
+                if (addressData[k].prefix < 0 || addressData[k].prefix > 128) {
+                    errorKey = k + "prefix"
+                    return false
+                }
+                if (k === "0" && gateway.length !== 0 && !NetUtils.ipv6RegExp.test(gateway)) {
+                    errorKey = k + "gateway"
+                    return false
+                }
+            }
+        }
         return true
+    }
+    function resetAddressData() {
+        if (method === "manual") {
+            addressData = (config && config.hasOwnProperty("address-data")) ? config["address-data"] : []
+            if (addressData.length === 0) {
+                addressData.push({
+                                     "address": "",
+                                     "prefix": 64
+                                 })
+                addressDataChanged()
+            }
+        } else {
+            addressData = []
+        }
     }
 
     ListModel {
@@ -118,35 +155,14 @@ DccObject {
             currentIndex: indexOfValue(root.method)
             onActivated: {
                 root.method = currentValue
-                if (root.method === "manual") {
-                    root.addressData = (config && config.hasOwnProperty("address-data")) ? config["address-data"] : []
-                    if (root.addressData.length === 0) {
-                        root.addressData.push({
-                                                  "address": "",
-                                                  "prefix": 64
-                                              })
-                        root.addressDataChanged()
-                    }
-                } else {
-                    root.addressData = []
-                }
+                resetAddressData()
+                root.editClicked()
             }
             model: type === NetType.VPNControlItem ? vpnModel : allModel
             Component.onCompleted: {
                 currentIndex = indexOfValue(method)
                 isEdit = false
-                if (root.method === "manual") {
-                    root.addressData = (config && config.hasOwnProperty("address-data")) ? config["address-data"] : []
-                    if (root.addressData.length === 0) {
-                        root.addressData.push({
-                                                  "address": "",
-                                                  "prefix": 64
-                                              })
-                        root.addressDataChanged()
-                    }
-                } else {
-                    root.addressData = []
-                }
+                resetAddressData()
             }
             Connections {
                 target: root
@@ -166,7 +182,10 @@ DccObject {
         page: D.CheckBox {
             text: dccObj.displayName
             checked: config.hasOwnProperty("never-default") ? config["never-default"] : false
-            onClicked: config["never-default"] = checked
+            onClicked: {
+                config["never-default"] = checked
+                root.editClicked()
+            }
         }
     }
     Component {
@@ -255,9 +274,25 @@ DccObject {
                     pageType: DccObject.Editor
                     page: D.LineEdit {
                         text: addressData.length > index ? addressData[index].address : ""
+                        validator: RegularExpressionValidator {
+                            regularExpression: NetUtils.ipv6RegExp
+                        }
                         onTextChanged: {
+                            if (showAlert) {
+                                errorKey = ""
+                            }
                             if (addressData.length > index && addressData[index].address !== text) {
                                 addressData[index].address = text
+                                root.editClicked()
+                            }
+                        }
+                        showAlert: errorKey === index + dccObj.name
+                        alertDuration: 2000
+                        alertText: qsTr("Invalid IP address")
+                        onShowAlertChanged: {
+                            if (showAlert) {
+                                dccObj.trigger()
+                                forceActiveFocus()
                             }
                         }
                     }
@@ -270,9 +305,23 @@ DccObject {
                     pageType: DccObject.Editor
                     page: D.SpinBox {
                         value: addressData.length > index ? addressData[index].prefix : 64
+                        from: 0
+                        to: 128
                         onValueChanged: {
+                            if (showAlert) {
+                                errorKey = ""
+                            }
                             if (addressData.length > index && addressData[index].prefix !== value) {
                                 addressData[index].prefix = value
+                                root.editClicked()
+                            }
+                        }
+                        showAlert: errorKey === index + dccObj.name
+                        alertDuration: 2000
+                        onShowAlertChanged: {
+                            if (showAlert) {
+                                dccObj.trigger()
+                                forceActiveFocus()
                             }
                         }
                     }
@@ -286,8 +335,26 @@ DccObject {
                     page: D.LineEdit {
                         enabled: index === 0
                         text: index === 0 ? gateway : ""
+                        validator: RegularExpressionValidator {
+                            regularExpression: NetUtils.ipv6RegExp
+                        }
                         onTextChanged: {
-                            gateway = text
+                            if (showAlert) {
+                                errorKey = ""
+                            }
+                            if (gateway !== text) {
+                                gateway = text
+                                root.editClicked()
+                            }
+                        }
+                        showAlert: errorKey === index + dccObj.name
+                        alertDuration: 2000
+                        alertText: qsTr("Invalid IP address")
+                        onShowAlertChanged: {
+                            if (showAlert) {
+                                dccObj.trigger()
+                                forceActiveFocus()
+                            }
                         }
                     }
                 }

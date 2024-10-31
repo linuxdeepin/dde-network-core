@@ -47,6 +47,7 @@ public:
     ~NetManagerThreadPrivate() override;
 
     static QVariantMap CheckParamValid(const QVariantMap &param);
+    static bool CheckPasswordValid(const QString &key, const QString &password);
 
     inline bool NetCheckAvailable() { return m_netCheckAvailable; }
 

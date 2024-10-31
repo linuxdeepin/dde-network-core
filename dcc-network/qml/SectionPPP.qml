@@ -12,10 +12,12 @@ DccTitleObject {
     id: root
     property var config: null
     property bool mppe: false
-    name: "pppTitle"
-    displayName: qsTr("PPP")
+
+    property string errorKey: ""
+    signal editClicked
 
     function setConfig(c) {
+        errorKey = ""
         config = c !== undefined ? c : {}
         mppe = config.hasOwnProperty("require-mppe") && config["require-mppe"]
         root.configChanged()
@@ -31,6 +33,18 @@ DccTitleObject {
     function checkInput() {
         return true
     }
+    name: "pppTitle"
+    displayName: qsTr("PPP")
+    Component {
+        id: switchItem
+        D.Switch {
+            checked: config.hasOwnProperty(dccObj.name) && config[dccObj.name]
+            onClicked: {
+                config[dccObj.name] = checked
+                root.editClicked()
+            }
+        }
+    }
     DccObject {
         name: "pppGroup"
         parentName: root.parentName
@@ -45,87 +59,69 @@ DccTitleObject {
             pageType: DccObject.Editor
             page: D.Switch {
                 checked: mppe
-                onClicked: mppe = checked
+                onClicked: {
+                    mppe = checked
+                    root.editClicked()
+                }
             }
         }
         DccObject {
-            name: "128bitMPPE"
+            name: "require-mppe-128"
             parentName: root.parentName + "/pppGroup"
             displayName: qsTr("128-bit MPPE")
             weight: 20
             visible: mppe
             pageType: DccObject.Editor
-            page: D.Switch {
-                checked: config.hasOwnProperty("require-mppe-128") && config["require-mppe-128"]
-                onClicked: config["require-mppe-128"] = checked
-            }
+            page: switchItem
         }
         DccObject {
-            name: "statefulMPPE"
+            name: "mppe-stateful"
             parentName: root.parentName + "/pppGroup"
             displayName: qsTr("Stateful MPPE")
             weight: 30
             visible: mppe
             pageType: DccObject.Editor
-            page: D.Switch {
-                checked: config.hasOwnProperty("mppe-stateful") && config["mppe-stateful"]
-                onClicked: config["mppe-stateful"] = checked
-            }
+            page: switchItem
         }
         DccObject {
-            name: "refuseEap"
+            name: "refuse-eap"
             parentName: root.parentName + "/pppGroup"
             displayName: qsTr("Refuse EAP Authentication")
             weight: 40
             pageType: DccObject.Editor
-            page: D.Switch {
-                checked: config.hasOwnProperty("refuse-eap") && config["refuse-eap"]
-                onClicked: config["refuse-eap"] = checked
-            }
+            page: switchItem
         }
         DccObject {
-            name: "refusePap"
+            name: "refuse-pap"
             parentName: root.parentName + "/pppGroup"
             displayName: qsTr("Refuse PAP Authentication")
             weight: 50
             pageType: DccObject.Editor
-            page: D.Switch {
-                checked: config.hasOwnProperty("refuse-pap") && config["refuse-pap"]
-                onClicked: config["refuse-pap"] = checked
-            }
+            page: switchItem
         }
         DccObject {
-            name: "refuseChap"
+            name: "refuse-chap"
             parentName: root.parentName + "/pppGroup"
             displayName: qsTr("Refuse CHAP Authentication")
             weight: 60
             pageType: DccObject.Editor
-            page: D.Switch {
-                checked: config.hasOwnProperty("refuse-chap") && config["refuse-chap"]
-                onClicked: config["refuse-chap"] = checked
-            }
+            page: switchItem
         }
         DccObject {
-            name: "refuseMschap"
+            name: "refuse-mschap"
             parentName: root.parentName + "/pppGroup"
             displayName: qsTr("Refuse MSCHAP Authentication")
             weight: 70
             pageType: DccObject.Editor
-            page: D.Switch {
-                checked: config.hasOwnProperty("refuse-mschap") && config["refuse-mschap"]
-                onClicked: config["refuse-mschap"] = checked
-            }
+            page: switchItem
         }
         DccObject {
-            name: "refuseMschapv2"
+            name: "refuse-mschapv2"
             parentName: root.parentName + "/pppGroup"
             displayName: qsTr("Refuse MSCHAPv2 Authentication")
             weight: 80
             pageType: DccObject.Editor
-            page: D.Switch {
-                checked: config.hasOwnProperty("refuse-mschapv2") && config["refuse-mschapv2"]
-                onClicked: config["refuse-mschapv2"] = checked
-            }
+            page: switchItem
         }
         DccObject {
             name: "nobsdcomp"
@@ -133,10 +129,7 @@ DccTitleObject {
             displayName: qsTr("No BSD Data Compression")
             weight: 90
             pageType: DccObject.Editor
-            page: D.Switch {
-                checked: config.hasOwnProperty("nobsdcomp") && config["nobsdcomp"]
-                onClicked: config["nobsdcomp"] = checked
-            }
+            page: switchItem
         }
         DccObject {
             name: "nodeflate"
@@ -144,21 +137,15 @@ DccTitleObject {
             displayName: qsTr("No Deflate Data Compression")
             weight: 100
             pageType: DccObject.Editor
-            page: D.Switch {
-                checked: config.hasOwnProperty("nodeflate") && config["nodeflate"]
-                onClicked: config["nodeflate"] = checked
-            }
+            page: switchItem
         }
         DccObject {
-            name: "noVjComp"
+            name: "no-vj-comp"
             parentName: root.parentName + "/pppGroup"
             displayName: qsTr("No TCP Header Compression")
             weight: 110
             pageType: DccObject.Editor
-            page: D.Switch {
-                checked: config.hasOwnProperty("no-vj-comp") && config["no-vj-comp"]
-                onClicked: config["no-vj-comp"] = checked
-            }
+            page: switchItem
         }
         // DccObject {
         //     name: "nopcomp"
@@ -166,10 +153,7 @@ DccTitleObject {
         //     displayName: qsTr("No Protocol Field Compression")
         //     weight: 120
         //     pageType: DccObject.Editor
-        //     page: D.Switch {
-        //         checked: config.hasOwnProperty("nopcomp") && config["nopcomp"]
-        //         onClicked: config["nopcomp"] = checked
-        //     }
+        //     page: switchItem
         // }
         // DccObject {
         //     name: "noaccomp"
@@ -177,10 +161,7 @@ DccTitleObject {
         //     displayName: qsTr("No Address/Control Compression")
         //     weight: 130
         //     pageType: DccObject.Editor
-        //     page: D.Switch {
-        //         checked: config.hasOwnProperty("noaccomp") && config["noaccomp"]
-        //         onClicked: config["noaccomp"] = checked
-        //     }
+        //     page:switchItem
         // }
         DccObject {
             name: "lcpEchoInterval"
@@ -198,6 +179,7 @@ DccTitleObject {
                         config["lcp-echo-failure"] = 0
                         config["lcp-echo-interval"] = 0
                     }
+                    root.editClicked()
                 }
             }
         }

@@ -10,9 +10,14 @@ import org.deepin.dcc.network 1.0
 
 DccTitleObject {
     id: root
-    property var config: null
+    property var config: new Object()
     property string settingsID: ""
+
+    property string errorKey: ""
+    signal editClicked
+
     function setConfig(c) {
+        errorKey = ""
         config = c
         settingsID = config.hasOwnProperty("id") ? config.id : ""
         root.configChanged()
@@ -22,10 +27,15 @@ DccTitleObject {
     }
     function checkInput() {
         config.id = settingsID
+        errorKey = ""
         console.log("config.id.length", config.id, config.id.length)
-        return config.id.length > 0
-    }
+        if (config.type !== "802-11-wireless" && config.id.length === 0) {
+            errorKey = "id"
+        }
 
+        return errorKey.length === 0
+    }
+    onErrorKeyChanged: console.log("generic errorKey", errorKey)
     name: "genericTitle"
     displayName: qsTr("General")
     DccObject {
@@ -39,11 +49,27 @@ DccTitleObject {
             parentName: root.parentName + "/genericGroup"
             displayName: qsTr("Name")
             weight: 10
+            enabled: config.type !== "802-11-wireless"
             pageType: DccObject.Editor
             page: D.LineEdit {
-                enabled: config.type !== "802-11-wireless"
                 text: settingsID
-                onTextChanged: settingsID = text
+                onTextChanged: {
+                    if (showAlert) {
+                        errorKey = ""
+                    }
+                    if (settingsID !== text) {
+                        root.editClicked()
+                        settingsID = text
+                    }
+                }
+                showAlert: errorKey === "id"
+                alertDuration: 2000
+                onShowAlertChanged: {
+                    if (showAlert) {
+                        dccObj.trigger()
+                        forceActiveFocus()
+                    }
+                }
             }
         }
         DccObject {
@@ -54,7 +80,10 @@ DccTitleObject {
             pageType: DccObject.Editor
             page: D.Switch {
                 checked: !config.hasOwnProperty("autoconnect") || config.autoconnect
-                onClicked: config.autoconnect = checked
+                onClicked: {
+                    config.autoconnect = checked
+                    root.editClicked()
+                }
             }
         }
     }

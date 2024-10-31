@@ -27,6 +27,7 @@ public:
     ~NetManager() override;
 
     void setServerKey(const QString &serverKey);
+    Q_INVOKABLE static bool CheckPasswordValid(const QString &key, const QString &password);
 
     // // void setServiceLoadForNM(bool isNM);        // 使用NM
     // // void setMonitorNetworkNotify(bool monitor); // 发网络通知

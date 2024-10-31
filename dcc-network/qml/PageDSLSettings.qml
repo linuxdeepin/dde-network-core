@@ -14,6 +14,7 @@ DccObject {
     property var config: null
     property var item: null
     property int type: NetType.WiredItem
+    property bool modified: false
     signal finished
     readonly property string parentUrl: parentName + "/" + name
 
@@ -34,27 +35,32 @@ DccObject {
             id: sectionGeneric
             parentName: root.parentUrl + "/body"
             weight: 100
+            onEditClicked: modified = true
         }
         SectionPPPOE {
             id: sectionPPPOE
             parentName: root.parentUrl + "/body"
             weight: 200
+            onEditClicked: modified = true
         }
         SectionIPv4 {
             id: sectionIPv4
             parentName: root.parentUrl + "/body"
             weight: 300
+            onEditClicked: modified = true
         }
         SectionDNS {
             id: sectionDNS
             parentName: root.parentUrl + "/body"
             weight: 400
+            onEditClicked: modified = true
         }
         SectionDevice {
             id: sectionDevice
             parentName: root.parentUrl + "/body"
             weight: 500
             canNotBind: false
+            onEditClicked: modified = true
             onSsidChanged: {
                 if (root.type === NetType.WirelessItem && !root.config[root.config.connection.type].hasOwnProperty("id")) {
                     sectionGeneric.settingsID = sectionDevice.ssid
@@ -65,6 +71,7 @@ DccObject {
             id: sectionPPP
             parentName: root.parentUrl + "/body"
             weight: 600
+            onEditClicked: modified = true
         }
     }
     onConfigChanged: {
@@ -74,6 +81,7 @@ DccObject {
         sectionDNS.setConfig((config.hasOwnProperty("ipv4") && config.ipv4.hasOwnProperty("dns")) ? config.ipv4.dns : null)
         sectionDevice.setConfig(config["802-3-ethernet"])
         sectionPPP.setConfig(config["ppp"])
+        modified = config.connection.uuid === "{00000000-0000-0000-0000-000000000000}"
     }
 
     DccObject {
@@ -174,6 +182,7 @@ DccObject {
             name: "save"
             parentName: root.parentUrl + "/footer"
             weight: 40
+            enabled: root.modified
             pageType: DccObject.Item
             page: NetButton {
                 text: qsTr("Save")
@@ -202,7 +211,7 @@ DccObject {
                     } else {
                         dccData.exec(NetManager.SetConnectInfo, "", nConfig)
                     }
-
+                    root.modified = false
                     root.finished()
                 }
             }

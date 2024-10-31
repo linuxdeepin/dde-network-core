@@ -59,6 +59,7 @@ set(DccNetwork_Libraries
         # Qt6::Quick
         Dtk6::Core
         KF6::NetworkManagerQt
+        Dde::Control-Center
         dde-network-core6
 )
 

@@ -8,60 +8,58 @@ import org.deepin.dtk 1.0 as D
 
 import org.deepin.dcc 1.0
 import org.deepin.dcc.network 1.0
+import "NetUtils.js" as NetUtils
 
 DccObject {
     id: root
-    property var config: null
+    property var config: []
     property var dnsItems: []
-    property var dnsData: []
     property bool isEdit: false
 
+    property string errorKey: ""
+    signal editClicked
+
     function setConfig(c) {
+        errorKey = ""
         isEdit = false
-        config = c
-        if (config === null) {
-            dnsData = [0, 0]
+        if (c === undefined) {
+            config = ["", ""]
         } else {
-            dnsData = config
-            while (dnsData.length < 2) {
-                dnsData.push(0)
+            let tmpConfig = []
+            for (var i in c) {
+                if (c[i] !== 0) {
+                    let ip = NetUtils.numToIp(c[i])
+                    tmpConfig.push(ip)
+                }
             }
-            dnsDataChanged()
+            while (tmpConfig.length < 2) {
+                tmpConfig.push("")
+            }
+            config = tmpConfig
         }
     }
     function getConfig() {
         let saveData = []
-        for (var d of dnsData) {
-            if (d !== 0) {
-                saveData.push(d)
+        for (var ip of config) {
+            let ipNum = NetUtils.ipToNum(ip)
+            if (ipNum !== 0) {
+                saveData.push(ipNum)
             }
         }
         return saveData
     }
     function checkInput() {
+        errorKey = ""
+        for (var i in config) {
+            if (config[i] !== "" && !NetUtils.ipRegExp.test(config[i])) {
+                errorKey = "dns" + i
+                return false
+            }
+        }
+
         return true
     }
-    function numToIp(num) {
-        if (num === 0) {
-            return ""
-        }
-        let ipArray = [0, 0, 0, 0]
-        for (var i = 0; i < 4; i++) {
-            ipArray[i] = (num >> (8 * i)) & 255
-        }
-        return ipArray.join('.')
-    }
-    function ipToNum(ip) {
-        let octets = ip.split('.')
-        let cidr = 0
-        let ipNum = 0
-        for (let octet of octets) {
-            let num = parseInt(octet, 10)
-            ipNum |= ((num & 255) << cidr)
-            cidr += 8
-        }
-        return ipNum
-    }
+
     name: "dnsTitle"
     displayName: qsTr("DNS")
     pageType: DccObject.Item
@@ -103,26 +101,38 @@ DccObject {
             weight: root.weight + 30 + index
             name: "dns" + index
             displayName: qsTr("DNS") + index
-            // hasBackground: true
             parentName: root.parentName + "/dnsGroup"
             pageType: DccObject.Editor
             page: RowLayout {
                 D.LineEdit {
-                    text: numToIp(dnsData[index])
+                    text: config[index]
+                    validator: RegularExpressionValidator {
+                        regularExpression: NetUtils.ipRegExp
+                    }
                     onTextChanged: {
-                        if (text.lenght !== 0 && dnsData.length > index) {
-                            let ipNum = ipToNum(text)
-                            if (ipNum > 0) {
-                                dnsData[index] = ipNum
-                            }
+                        if (showAlert) {
+                            errorKey = ""
+                        }
+                        if (text !== config[index]) {
+                            config[index] = text
+                            root.editClicked()
+                        }
+                    }
+                    showAlert: errorKey === dccObj.name
+                    alertDuration: 2000
+                    alertText: qsTr("Invalid IP address")
+                    onShowAlertChanged: {
+                        if (showAlert) {
+                            dccObj.trigger()
+                            forceActiveFocus()
                         }
                     }
                 }
                 D.IconLabel {
                     Layout.margins: 0
                     Layout.maximumHeight: 16
-                    visible: isEdit && root.dnsData.length < 3
-                    // enabled: root.dnsData.length < 3
+                    visible: isEdit && root.config.length < 3
+                    // enabled: root.config.length < 3
                     icon {
                         name: "list_add"
                         width: 16
@@ -132,16 +142,16 @@ DccObject {
                         anchors.fill: parent
                         acceptedButtons: Qt.LeftButton
                         onClicked: {
-                            root.dnsData.push(0)
-                            root.dnsDataChanged()
+                            root.config.push("")
+                            root.configChanged()
                         }
                     }
                 }
                 D.IconLabel {
                     Layout.margins: 0
                     Layout.maximumHeight: 16
-                    visible: isEdit && root.dnsData.length > 2
-                    // enabled: root.dnsData.length > 2
+                    visible: isEdit && root.config.length > 2
+                    // enabled: root.config.length > 2
                     icon {
                         name: "list_delete"
                         width: 16
@@ -151,8 +161,8 @@ DccObject {
                         anchors.fill: parent
                         acceptedButtons: Qt.LeftButton
                         onClicked: {
-                            root.dnsData.splice(index, 1)
-                            root.dnsDataChanged()
+                            root.config.splice(index, 1)
+                            root.configChanged()
                         }
                     }
                 }
@@ -172,11 +182,11 @@ DccObject {
         tmpItem.destroy()
     }
 
-    onDnsDataChanged: {
-        while (dnsData.length > dnsItems.length) {
+    onConfigChanged: {
+        while (config.length > dnsItems.length) {
             addIpItem()
         }
-        while (dnsData.length < dnsItems.length) {
+        while (config.length < dnsItems.length) {
             removeIpItem()
         }
     }

@@ -16,6 +16,7 @@ DccObject {
     property var config: null
     property var item: null
     property int vpnType: NetUtils.VpnTypeEnum["l2tp"]
+    property bool modified: false
     signal finished
     readonly property string parentUrl: parentName + "/" + name
 
@@ -30,6 +31,7 @@ DccObject {
         sectionIPv4.setConfig(config.ipv4)
         sectionIPv6.setConfig(config.ipv6)
         sectionDNS.setConfig((config.hasOwnProperty("ipv4") && config.ipv4.hasOwnProperty("dns")) ? config.ipv4.dns : null)
+        modified = config.connection.uuid === "{00000000-0000-0000-0000-000000000000}"
     }
 
     weight: 10
@@ -98,18 +100,21 @@ DccObject {
             id: sectionGeneric
             parentName: root.parentUrl + "/body"
             weight: 100
+            onEditClicked: modified = true
         }
         SectionVPN {
             id: sectionVPN
             vpnType: root.vpnType
             parentName: root.parentUrl + "/body"
             weight: 200
+            onEditClicked: modified = true
         }
         SectionIPv4 {
             id: sectionIPv4
             type: NetType.VPNControlItem
             parentName: root.parentUrl + "/body"
             weight: 1000
+            onEditClicked: modified = true
         }
         SectionIPv6 {
             id: sectionIPv6
@@ -117,11 +122,13 @@ DccObject {
             parentName: root.parentUrl + "/body"
             visible: vpnType & (NetUtils.VpnTypeEnum["openvpn"] | NetUtils.VpnTypeEnum["openconnect"])
             weight: 1100
+            onEditClicked: modified = true
         }
         SectionDNS {
             id: sectionDNS
             parentName: root.parentUrl + "/body"
             weight: 1200
+            onEditClicked: modified = true
         }
     }
 
@@ -250,6 +257,7 @@ DccObject {
             name: "save"
             parentName: root.parentUrl + "/footer"
             weight: 50
+            enabled: root.modified
             pageType: DccObject.Item
             page: NetButton {
                 text: qsTr("Save")
@@ -273,7 +281,7 @@ DccObject {
                     } else {
                         dccData.exec(NetManager.SetConnectInfo, "", nConfig)
                     }
-
+                    root.modified = false
                     root.finished()
                 }
             }

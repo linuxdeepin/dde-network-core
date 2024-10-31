@@ -8,10 +8,11 @@ import org.deepin.dtk 1.0 as D
 
 import org.deepin.dcc 1.0
 import org.deepin.dcc.network 1.0
+import "NetUtils.js" as NetUtils
 
 DccTitleObject {
     id: root
-    property var config: null
+    property var config: new Object
     property int type: NetType.WiredItem
     property bool canNotBind: true
     property var devItems: []
@@ -21,9 +22,18 @@ DccTitleObject {
     property string ssid: ""
     property bool ssidEnabled: false
 
+    property string errorKey: ""
+    signal editClicked
+
     function setConfig(c) {
-        config = c
-        hasMTU = config && config.hasOwnProperty("mtu")
+        errorKey = ""
+        if (c === undefined) {
+            config = {}
+        } else {
+            config = c
+        }
+
+        hasMTU = config.hasOwnProperty("mtu")
         hasMTUChanged()
         if (canNotBind) {
             if (devModel.count > 1) {
@@ -40,17 +50,21 @@ DccTitleObject {
                                 })
             }
         }
+        config["mac-address"] = config.hasOwnProperty("mac-address") ? NetUtils.macToStr(config["mac-address"]) : ""
+        if (config.hasOwnProperty("cloned-mac-address")) {
+            config["cloned-mac-address"] = NetUtils.macToStr(config["cloned-mac-address"])
+        }
         ssid = config.hasOwnProperty("ssid") ? config["ssid"] : ""
         ssidEnabled = type === NetType.WirelessItem && !config.hasOwnProperty("ssid")
     }
     function getConfig() {
         let saveConfig = config ? config : {}
         saveConfig["interfaceName"] = interfaceName
-        if (config.hasOwnProperty("mac-address")) {
-            saveConfig["mac-address"] = config["mac-address"]
+        if (config.hasOwnProperty("mac-address") && config["mac-address"] !== "") {
+            saveConfig["mac-address"] = NetUtils.strToMac(config["mac-address"])
         }
         if (config.hasOwnProperty("cloned-mac-address")) {
-            saveConfig["cloned-mac-address"] = config["cloned-mac-address"]
+            saveConfig["cloned-mac-address"] = NetUtils.strToMac(config["cloned-mac-address"])
         }
         if (hasMTU) {
             saveConfig["mtu"] = config["mtu"]
@@ -65,32 +79,20 @@ DccTitleObject {
         return saveConfig
     }
     function checkInput() {
+        errorKey = ""
+        if (type === NetType.WirelessItem && ssid.length === 0) {
+            errorKey = "ssid"
+            return false
+        }
+        if (config.hasOwnProperty("cloned-mac-address") && !NetUtils.macRegExp.test(config["cloned-mac-address"])) {
+            errorKey = "cloned-mac-address"
+            console.log(errorKey, config[errorKey])
+            return false
+        }
+
         return true
     }
-    function macToString(mac) {
-        return Array.prototype.map.call(new Uint8Array(mac), x => ('00' + x.toString(16)).toUpperCase().slice(-2)).join(':')
-    }
-    function strToMac(str) {
-        if (str.length === 0)
-            return new Uint8Array()
-        let arr = str.split(":")
-        let hexArr = arr.join("")
-        return new Uint8Array(hexArr.match(/[\da-f]{2}/gi).map(bb => {
-                                                                   return parseInt(bb, 16)
-                                                               })).buffer
-    }
-
-    function ipToNum(ip) {
-        let octets = ip.split('.')
-        let cidr = 0
-        let ipNum = 0
-        for (let octet of octets) {
-            let num = parseInt(octet, 10)
-            ipNum |= ((num & 255) << cidr)
-            cidr += 8
-        }
-        return ipNum
-    }
+    onErrorKeyChanged: console.log("dev errorKey", errorKey)
     ListModel {
         id: devModel
         ListElement {
@@ -116,11 +118,27 @@ DccTitleObject {
             page: D.LineEdit {
                 enabled: ssidEnabled
                 text: ssid
-                onTextChanged: ssid = text
+                onTextChanged: {
+                    if (showAlert) {
+                        errorKey = ""
+                    }
+                    if (text !== ssid) {
+                        ssid = text
+                        root.editClicked()
+                    }
+                }
+                showAlert: errorKey === dccObj.name
+                alertDuration: 2000
+                onShowAlertChanged: {
+                    if (showAlert) {
+                        dccObj.trigger()
+                        forceActiveFocus()
+                    }
+                }
             }
         }
         DccObject {
-            name: "deviceMAC"
+            name: "mac-address"
             parentName: root.parentName + "/devGroup"
             weight: 20
             displayName: qsTr("Device MAC Addr")
@@ -128,16 +146,17 @@ DccTitleObject {
             page: D.ComboBox {
                 textRole: "text"
                 valueRole: "value"
-                currentIndex: config.hasOwnProperty("mac-address") ? indexOfValue(macToString(config["mac-address"])) : 0
+                currentIndex: config.hasOwnProperty("mac-address") ? indexOfValue(config["mac-address"]) : 0
                 model: devModel
                 onActivated: {
-                    config["mac-address"] = strToMac(currentValue)
+                    config["mac-address"] = currentValue
                     let name = /\((\w+)\)/.exec(currentText)
                     interfaceName = (name && name.length > 1) ? name[1] : ""
+                    root.editClicked()
                 }
                 Component.onCompleted: {
                     if (config.hasOwnProperty("mac-address")) {
-                        currentIndex = indexOfValue(macToString(config["mac-address"]))
+                        currentIndex = indexOfValue(config["mac-address"])
                         let name = /\((\w+)\)/.exec(currentText)
                         interfaceName = (name && name.length > 1) ? name[1] : ""
                     }
@@ -145,21 +164,35 @@ DccTitleObject {
             }
         }
         DccObject {
-            name: "clonedMAC"
+            name: "cloned-mac-address"
             parentName: root.parentName + "/devGroup"
             weight: 30
             displayName: qsTr("Cloned MAC Addr")
             visible: type === NetType.WiredItem
             pageType: DccObject.Editor
             page: D.LineEdit {
-                text: config.hasOwnProperty("cloned-mac-address") ? macToString(config["cloned-mac-address"]) : ""
+                text: config.hasOwnProperty("cloned-mac-address") ? config["cloned-mac-address"] : ""
+                validator: RegularExpressionValidator {
+                    regularExpression: NetUtils.macRegExp
+                }
                 onTextChanged: {
+                    if (showAlert) {
+                        errorKey = ""
+                    }
                     if (text.length === 0) {
                         delete config["cloned-mac-address"]
                         delete config["assigned-mac-address"]
-                    } else {
-                        let mac = strToMac(text)
-                        config["cloned-mac-address"] = mac
+                    } else if (config["cloned-mac-address"] !== text) {
+                        config["cloned-mac-address"] = text
+                        root.editClicked()
+                    }
+                }
+                showAlert: errorKey === dccObj.name
+                alertDuration: 2000
+                onShowAlertChanged: {
+                    if (showAlert) {
+                        dccObj.trigger()
+                        forceActiveFocus()
                     }
                 }
             }
@@ -172,7 +205,10 @@ DccTitleObject {
             pageType: DccObject.Editor
             page: D.Switch {
                 checked: hasMTU
-                onClicked: hasMTU = checked
+                onClicked: {
+                    hasMTU = checked
+                    root.editClicked()
+                }
             }
         }
         DccObject {
@@ -187,6 +223,7 @@ DccTitleObject {
                 onValueChanged: {
                     if (hasMTU && (!config.hasOwnProperty("mtu") || config.mtu !== value)) {
                         config.mtu = value
+                        root.editClicked()
                     }
                 }
             }
@@ -216,6 +253,7 @@ DccTitleObject {
             currentIndex: indexOfValue(config["band"])
             onActivated: {
                 config["band"] = currentValue
+                root.editClicked()
             }
             Component.onCompleted: {
                 currentIndex = indexOfValue(config["band"])
