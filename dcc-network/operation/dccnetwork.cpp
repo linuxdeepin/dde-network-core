@@ -37,6 +37,11 @@ NetItem *DccNetwork::root() const
     return m_manager->root();
 }
 
+bool DccNetwork::CheckPasswordValid(const QString &key, const QString &password)
+{
+    return NetManager::CheckPasswordValid(key, password);
+}
+
 void DccNetwork::exec(NetManager::CmdType cmd, const QString &id, const QVariantMap &param)
 {
     switch (cmd) {

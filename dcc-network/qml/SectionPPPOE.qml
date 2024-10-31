@@ -11,12 +11,12 @@ import org.deepin.dcc.network 1.0
 DccTitleObject {
     id: root
     property var config: null
-    property bool userAlert: false
-    property bool passwordAlert: false
-    name: "pppoeTitle"
-    displayName: qsTr("PPPoE")
+
+    property string errorKey: ""
+    signal editClicked
 
     function setConfig(c) {
+        errorKey = ""
         config = c !== undefined ? c : {}
     }
     function getConfig() {
@@ -24,16 +24,18 @@ DccTitleObject {
     }
     function checkInput() {
         if (!config.hasOwnProperty("username") || config.username.trim().length === 0) {
-            userAlert = true
+            errorKey = "username"
             return false
         }
         if (!config.hasOwnProperty("password") || config.password.length === 0) {
-            passwordAlert = true
+            errorKey = "password"
             return false
         }
         return true
     }
 
+    name: "pppoeTitle"
+    displayName: qsTr("PPPoE")
     DccObject {
         name: "pppoeGroup"
         parentName: root.parentName
@@ -49,11 +51,16 @@ DccTitleObject {
             page: D.LineEdit {
                 placeholderText: qsTr("Required")
                 text: config.hasOwnProperty("username") ? config.username : ""
-                showAlert: userAlert
+                showAlert: errorKey === dccObj.name
                 alertDuration: 2000
                 onTextChanged: {
-                    userAlert = false
-                    config.username = text
+                    if (showAlert) {
+                        errorKey = ""
+                    }
+                    if (config.username !== text) {
+                        config.username = text
+                        root.editClicked()
+                    }
                 }
                 onShowAlertChanged: {
                     if (showAlert) {
@@ -71,7 +78,12 @@ DccTitleObject {
             pageType: DccObject.Editor
             page: D.LineEdit {
                 text: config.hasOwnProperty("service") ? config.service : ""
-                onTextChanged: config.service = text
+                onTextChanged: {
+                    if (config.service !== text) {
+                        config.service = text
+                        root.editClicked()
+                    }
+                }
             }
         }
         DccObject {
@@ -84,13 +96,18 @@ DccTitleObject {
                 property bool newInput: false
                 placeholderText: qsTr("Required")
                 text: config.hasOwnProperty("password") ? config.password : ""
-                showAlert: passwordAlert
-                alertDuration: 2000
                 echoButtonVisible: newInput
                 onTextChanged: {
-                    passwordAlert = false
-                    config.password = text
+                    if (showAlert) {
+                        errorKey = ""
+                    }
+                    if (config.password !== text) {
+                        config.password = text
+                        root.editClicked()
+                    }
                 }
+                showAlert: errorKey === dccObj.name
+                alertDuration: 2000
                 onShowAlertChanged: {
                     if (showAlert) {
                         dccObj.trigger()

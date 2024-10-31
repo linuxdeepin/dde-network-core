@@ -24,6 +24,7 @@ class DccNetwork : public QObject
 public:
     explicit DccNetwork(QObject *parent = nullptr);
     NetItem *root() const;
+    Q_INVOKABLE static bool CheckPasswordValid(const QString &key, const QString &password);
 
     NetManager *manager() const { return m_manager; }
 

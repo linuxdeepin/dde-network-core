@@ -44,6 +44,11 @@ void NetManager::setServerKey(const QString &serverKey)
     d->setServerKey(serverKey);
 }
 
+bool NetManager::CheckPasswordValid(const QString &key, const QString &password)
+{
+    return NetManagerThreadPrivate::CheckPasswordValid(key, password);
+}
+
 void NetManager::setAutoScanInterval(int ms)
 {
     Q_D(NetManager);

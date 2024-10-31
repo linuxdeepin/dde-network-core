@@ -184,10 +184,11 @@ DccObject {
                 name: "addNetwork"
                 parentName: root.name + "/page/footer"
                 hasBackground: false
+                displayName: qsTr("Add Network Connection")
                 weight: 40
                 pageType: DccObject.Item
                 page: NetButton {
-                    text: qsTr("Add Network Connection")
+                    text: dccObj.displayName
                     Layout.alignment: Qt.AlignRight
                     onClicked: {
                         dccData.exec(NetManager.ConnectInfo, item.id, {})

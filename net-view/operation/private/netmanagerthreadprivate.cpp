@@ -120,21 +120,23 @@ NetManagerThreadPrivate::~NetManagerThreadPrivate()
 QVariantMap NetManagerThreadPrivate::CheckParamValid(const QVariantMap &param)
 {
     QVariantMap validMap;
-    bool isValid = true;
     for (auto &&it = param.cbegin(); it != param.cend(); ++it) {
         const QString &key = it.key();
-        if (key == "psk") {
-            isValid = NetworkManager::wpaPskIsValid(it.value().toString());
-        } else if (key == "wep-key0" || key == "wep-key1" || key == "wep-key2" || key == "wep-key3") {
-            isValid = NetworkManager::wepKeyIsValid(it.value().toString(), WirelessSecuritySetting::WepKeyType::Passphrase);
-        } else {
-            isValid = !it.value().toString().isEmpty();
-        }
-        if (!isValid) {
+        if (!CheckPasswordValid(key, it.value().toString())) {
             validMap.insert(key, QString());
         }
     }
     return validMap;
+}
+
+bool NetManagerThreadPrivate::CheckPasswordValid(const QString &key, const QString &password)
+{
+    if (key == "psk") {
+        return NetworkManager::wpaPskIsValid(password);
+    } else if (key == "wep-key0" || key == "wep-key1" || key == "wep-key2" || key == "wep-key3") {
+        return NetworkManager::wepKeyIsValid(password, WirelessSecuritySetting::WepKeyType::Passphrase);
+    }
+    return !password.isEmpty();
 }
 
 void NetManagerThreadPrivate::getNetCheckAvailableFromDBus()
@@ -503,8 +505,8 @@ void NetManagerThreadPrivate::doInit()
     if (m_flags.testFlags(NetType::NetManagerFlag::Net_Airplane)) {
         m_airplaneModeEnabled = false;
         getAirplaneModeEnabled();
-        QDBusConnection::systemBus().connect("com.deepin.daemon.AirplaneMode",
-                                             "/com/deepin/daemon/AirplaneMode",
+        QDBusConnection::systemBus().connect("org.deepin.dde.AirplaneMode1",
+                                             "/org/deepin/dde/AirplaneMode1",
                                              "org.freedesktop.DBus.Properties",
                                              "PropertiesChanged",
                                              this,
@@ -789,6 +791,7 @@ void NetManagerThreadPrivate::updateNetCheckAvailabled(const QDBusVariant &avail
 void NetManagerThreadPrivate::updateAirplaneModeEnabled(const QDBusVariant &enabled)
 {
     m_airplaneModeEnabled = enabled.variant().toBool() && supportAirplaneMode();
+    qWarning()<<__FUNCTION__<<__LINE__<<enabled.variant()<<supportAirplaneMode()<<m_airplaneModeEnabled;
     Q_EMIT dataChanged(DataChanged::EnabledChanged, "Root", QVariant(m_airplaneModeEnabled));
 }
 
@@ -2557,16 +2560,16 @@ NetworkManager::WirelessSecuritySetting::KeyMgmt NetManagerThreadPrivate::getKey
         keyMgmt = WirelessSecuritySetting::KeyMgmt::Wep;
     }
 
-// #ifdef USE_DEEPIN_NMQT
-//     // 判断是否是wpa3加密的，因为wpa3加密方式，实际上是wpa2的扩展，所以其中会包含KeyMgmtPsk枚举值
-//     if (wpaFlags.testFlag(NetworkManager::AccessPoint::WpaFlag::keyMgmtSae) || rsnFlags.testFlag(NetworkManager::AccessPoint::WpaFlag::keyMgmtSae)) {
-//         keyMgmt = NetworkManager::WirelessSecuritySetting::KeyMgmt::WpaSae;
-//     }
-// #else
+    // #ifdef USE_DEEPIN_NMQT
+    //     // 判断是否是wpa3加密的，因为wpa3加密方式，实际上是wpa2的扩展，所以其中会包含KeyMgmtPsk枚举值
+    //     if (wpaFlags.testFlag(NetworkManager::AccessPoint::WpaFlag::keyMgmtSae) || rsnFlags.testFlag(NetworkManager::AccessPoint::WpaFlag::keyMgmtSae)) {
+    //         keyMgmt = NetworkManager::WirelessSecuritySetting::KeyMgmt::WpaSae;
+    //     }
+    // #else
     if (wpaFlags.testFlag(NetworkManager::AccessPoint::WpaFlag::KeyMgmtSAE) || rsnFlags.testFlag(NetworkManager::AccessPoint::WpaFlag::KeyMgmtSAE)) {
         keyMgmt = NetworkManager::WirelessSecuritySetting::KeyMgmt::SAE;
     }
-// #endif
+    // #endif
 
     if (wpaFlags.testFlag(AccessPoint::WpaFlag::KeyMgmt8021x) || rsnFlags.testFlag(AccessPoint::WpaFlag::KeyMgmt8021x)) {
         keyMgmt = WirelessSecuritySetting::KeyMgmt::WpaEap;
