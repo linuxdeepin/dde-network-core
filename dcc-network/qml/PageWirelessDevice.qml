@@ -14,6 +14,7 @@ import org.deepin.dcc.network 1.0
 DccObject {
     id: root
     property var item: null
+    property var airplaneItem: null
     readonly property var c_levelString: ["-signal-no", "-signal-low", "-signal-medium", "-signal-high", "-signal-full"]
 
     name: "wireless" + item.pathIndex
@@ -180,7 +181,7 @@ DccObject {
             weight: 40
             pageType: DccObject.Item
             hasBackground: true
-            visible: root.item && root.item.isEnabled && !root.item.apMode
+            visible: root.item && root.item.isEnabled && !root.item.apMode && this.item && this.item.children.length > 0
             page: networkList
         }
         DccObject {
@@ -211,10 +212,38 @@ DccObject {
             name: "otherNetwork"
             parentName: root.name + "/page"
             weight: 60
-            visible: root.item && root.item.isEnabled && !root.item.apMode
+            visible: root.item && root.item.isEnabled && !root.item.apMode && this.item && this.item.children.length > 0
             pageType: DccObject.Item
             hasBackground: true
             page: networkList
+        }
+        DccObject {
+            name: "airplaneTips"
+            parentName: root.name + "/page"
+            visible: root.airplaneItem && root.airplaneItem.isEnabled && root.airplaneItem.enabledable
+            displayName: qsTr("Disable Airplane Mode first if you want to connect to a wireless network")
+            weight: 70
+            pageType: DccObject.Item
+            page: D.Label {
+                textFormat: Text.RichText
+                text: qsTr("Disable <a style='text-decoration: none;' href='network/airplaneMode'>Airplane Mode</a> first if you want to connect to a wireless network")
+                wrapMode: Text.WordWrap
+                onLinkActivated: link => DccApp.showPage(link)
+            }
+        }
+        DccObject {
+            name: "airplaneTips"
+            parentName: root.name + "/page"
+            visible: root.item && root.item.apMode
+            displayName: qsTr("Disable hotspot first if you want to connect to a wireless network")
+            weight: 70
+            pageType: DccObject.Item
+            page: D.Label {
+                textFormat: Text.RichText
+                text: qsTr("<a style='text-decoration: none;' href='NetHotspotControlItem'>Disable hotspot</a> first if you want to connect to a wireless network")
+                wrapMode: Text.WordWrap
+                onLinkActivated: link => dccData.exec(NetManager.DisabledDevice, link, {})
+            }
         }
         PageSettings {
             id: wirelessSettings

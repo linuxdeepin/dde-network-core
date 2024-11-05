@@ -15,6 +15,7 @@ import org.deepin.dcc.network 1.0
 DccObject {
     id: root
     property var item: null
+    property var airplaneItem: null
     property var config: null
     property string interfaceName: ""
 
@@ -77,7 +78,7 @@ DccObject {
             value: ""
         }
     }
-    // visible: item && item.enabledable
+    visible: item && item.enabledable
     displayName: qsTr("Personal Hotspot")
     icon: "dcc_hotspot"
     hasBackground: true
@@ -460,6 +461,20 @@ DccObject {
                         }
                     }
                 }
+            }
+        }
+        DccObject {
+            name: "airplaneTips"
+            parentName: root.name + "/menu"
+            visible: root.airplaneItem && root.airplaneItem.isEnabled && root.airplaneItem.enabledable
+            displayName: qsTr("If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.")
+            weight: 70
+            pageType: DccObject.Item
+            page: D.Label {
+                textFormat: Text.RichText
+                text: qsTr("If you want to use the personal hotspot, disable <a style='text-decoration: none;' href='network/airplaneMode'>Airplane Mode</a> first and then enable the wireless network adapter.")
+                wrapMode: Text.WordWrap
+                onLinkActivated: link => DccApp.showPage(link)
             }
         }
     }

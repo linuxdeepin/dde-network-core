@@ -92,7 +92,8 @@ DccObject {
                     delWirelessDevs.splice(index, 1)
                 } else {
                     let dev = wirelessComponent.createObject(root, {
-                                                                 "item": item
+                                                                 "item": item,
+                                                                 "airplaneItem": dccData.root
                                                              })
                     DccApp.addObject(dev)
                     wirelessDevs.push(dev)
