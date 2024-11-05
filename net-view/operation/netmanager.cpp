@@ -854,6 +854,7 @@ void NetManagerPrivate::setDeviceEnabled(const QString &id, bool enabled)
     case NetType::NetItemType::WiredDeviceItem:
     case NetType::NetItemType::WirelessDeviceItem:
     case NetType::NetItemType::VPNControlItem:
+    case NetType::NetItemType::HotspotControlItem:
     case NetType::NetItemType::SystemProxyControlItem: {
         setDeviceEnabled(NetItemPrivate::toItem<NetControlItemPrivate>(item), enabled);
     } break;
@@ -886,6 +887,7 @@ void NetManagerPrivate::setDeviceEnabled(NetControlItemPrivate *controlItem, boo
             m_managerThread->setDeviceEnabled(controlItem->id(), enabled);
         }
     } break;
+    case NetType::NetItemType::HotspotControlItem:
     case NetType::NetItemType::VPNControlItem:
     case NetType::NetItemType::SystemProxyControlItem: {
         if (controlItem->enabledable() && controlItem->isEnabled() != enabled) {

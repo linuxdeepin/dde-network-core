@@ -36,12 +36,14 @@ Q_SIGNALS:
 
 private Q_SLOTS:
     void updateEnabled();
+    void updateEnabledable();
     void updateData();
     void updateConfig();
 
 private:
     HotspotController *m_hotspotController;
     bool m_isEnabled;
+    bool m_enabledable;
     QVariantMap m_config;
     QStringList m_shareDevice;
     QStringList m_optionalDevice;

@@ -17,6 +17,7 @@ namespace network {
 NetHotspotController::NetHotspotController(QObject *parent)
     : QObject(parent)
     , m_isEnabled(false)
+    , m_enabledable(true)
     , m_updatedTimer(new QTimer(this))
 {
     m_updatedTimer->setSingleShot(true);
@@ -24,6 +25,7 @@ NetHotspotController::NetHotspotController(QObject *parent)
     m_hotspotController = NetworkController::instance()->hotspotController();
     updateData();
     updateConfig();
+    m_enabledable = m_hotspotController->supportHotspot();
     connect(m_hotspotController, &HotspotController::deviceAdded, this, &NetHotspotController::updateData);
     connect(m_hotspotController, &HotspotController::deviceRemove, this, &NetHotspotController::updateData);
     connect(m_hotspotController, &HotspotController::activeConnectionChanged, this, &NetHotspotController::updateEnabled);
@@ -40,7 +42,7 @@ bool NetHotspotController::isEnabled() const
 
 bool NetHotspotController::enabledable() const
 {
-    return m_hotspotController->supportHotspot();
+    return m_enabledable;
 }
 
 const QVariantMap &NetHotspotController::config() const
@@ -73,6 +75,15 @@ void NetHotspotController::updateEnabled()
     }
 }
 
+void NetHotspotController::updateEnabledable()
+{
+    bool enabledable = m_hotspotController->supportHotspot();
+    if (enabledable != m_enabledable) {
+        m_enabledable = enabledable;
+        Q_EMIT enabledableChanged(m_enabledable);
+    }
+}
+
 void NetHotspotController::updateData()
 {
     QStringList optionalDevice;
@@ -86,6 +97,8 @@ void NetHotspotController::updateData()
         connect(dev, &WirelessDevice::hotspotEnableChanged, this, &NetHotspotController::updateEnabled, Qt::UniqueConnection);
     }
     updateEnabled();
+    updateEnabledable();
+
     if (optionalDevice != m_optionalDevice) {
         m_optionalDevice = optionalDevice;
         Q_EMIT optionalDeviceChanged(m_optionalDevice);
@@ -123,6 +136,7 @@ void NetHotspotController::updateConfig()
         settings.reset(new NetworkManager::ConnectionSettings(NetworkManager::ConnectionSettings::Wireless));
 
         settings->setId(NetworkManager::hostname());
+        settings->setAutoconnect(false);
         NetworkManager::WirelessSetting::Ptr wSetting = settings->setting(NetworkManager::Setting::SettingType::Wireless).staticCast<NetworkManager::WirelessSetting>();
         wSetting->setSsid(settings->id().toUtf8());
         wSetting->setMode(NetworkManager::WirelessSetting::Ap);
@@ -131,8 +145,6 @@ void NetHotspotController::updateConfig()
         NetworkManager::Ipv4Setting::Ptr ipv4Setting = settings->setting(NetworkManager::Setting::SettingType::Ipv4).staticCast<NetworkManager::Ipv4Setting>();
         ipv4Setting->setMethod(NetworkManager::Ipv4Setting::ConfigMethod::Shared);
         ipv4Setting->setInitialized(true);
-        // } else if (m_config.contains("connection") && m_config.value("connection").value<QVariantMap>().value("uuid").toString() == settings->uuid()) {
-        //     return;
     } else {
         // conn->secrets会触发两次itemChanged信号
         m_updatedTimer->start();

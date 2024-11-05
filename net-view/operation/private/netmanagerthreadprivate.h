@@ -126,7 +126,8 @@ public Q_SLOTS:
                     const QVariantMap &hints = {},
                     int expireTimeout = 5000);
     void onNetCheckPropertiesChanged(QString, QVariantMap properties, QStringList);
-    void onAirplaneModeEnabledPropertiesChanged(QString, QVariantMap properties, QStringList);
+    void onAirplaneModeEnabledPropertiesChanged(const QString &, const QVariantMap &properties, const QStringList &);
+    void onAirplaneModePropertiesChanged(const QVariantMap &properties);
 
     void connectOrInfo(const QString &id, NetType::NetItemType type, const QVariantMap &param);
     void getConnectInfo(const QString &id, NetType::NetItemType type, const QVariantMap &param);
@@ -152,6 +153,7 @@ protected Q_SLOTS:
     void doRetranslate(const QString &locale);
     void updateNetCheckAvailabled(const QDBusVariant &availabled);
     void updateAirplaneModeEnabled(const QDBusVariant &enabled);
+    void updateAirplaneModeEnabledable(const QDBusVariant &enabledable);
     bool supportAirplaneMode() const;
     void doConnectOrInfo(const QString &id, NetType::NetItemType type, const QVariantMap &param);
     void doGetConnectInfo(const QString &id, NetType::NetItemType type, const QVariantMap &param);

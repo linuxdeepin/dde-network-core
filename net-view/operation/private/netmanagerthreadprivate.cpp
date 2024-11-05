@@ -149,10 +149,9 @@ void NetManagerThreadPrivate::getNetCheckAvailableFromDBus()
 
 void NetManagerThreadPrivate::getAirplaneModeEnabled()
 {
-    QDBusMessage message = QDBusMessage::createMethodCall("org.deepin.dde.AirplaneMode1", "/org/deepin/dde/AirplaneMode1", "org.freedesktop.DBus.Properties", "Get");
-    message << "org.deepin.dde.AirplaneMode1"
-            << "Enabled";
-    QDBusConnection::systemBus().callWithCallback(message, this, SLOT(updateAirplaneModeEnabled(QDBusVariant)));
+    QDBusMessage message = QDBusMessage::createMethodCall("org.deepin.dde.AirplaneMode1", "/org/deepin/dde/AirplaneMode1", "org.freedesktop.DBus.Properties", "GetAll");
+    message << "org.deepin.dde.AirplaneMode1";
+    QDBusConnection::systemBus().callWithCallback(message, this, SLOT(onAirplaneModePropertiesChanged(QVariantMap)));
 }
 
 void NetManagerThreadPrivate::setAirplaneModeEnabled(bool enabled)
@@ -336,10 +335,18 @@ void NetManagerThreadPrivate::onNetCheckPropertiesChanged(QString, QVariantMap p
     }
 }
 
-void NetManagerThreadPrivate::onAirplaneModeEnabledPropertiesChanged(QString, QVariantMap properties, QStringList)
+void NetManagerThreadPrivate::onAirplaneModeEnabledPropertiesChanged(const QString &, const QVariantMap &properties, const QStringList &)
+{
+    onAirplaneModePropertiesChanged(properties);
+}
+
+void NetManagerThreadPrivate::onAirplaneModePropertiesChanged(const QVariantMap &properties)
 {
     if (properties.contains("Enabled")) {
         updateAirplaneModeEnabled(QDBusVariant(properties.value("Enabled").value<bool>()));
+    }
+    if (properties.contains("HasAirplaneMode")) {
+        updateAirplaneModeEnabledable(QDBusVariant(properties.value("HasAirplaneMode").value<bool>()));
     }
 }
 
@@ -489,7 +496,7 @@ void NetManagerThreadPrivate::doInit()
         NetHotspotController *netHotspotController = new NetHotspotController(this);
         NetHotspotControlItemPrivate *hotspotcontrolitem = NetItemNew(HotspotControlItem, "NetHotspotControlItem");
         hotspotcontrolitem->updateconfig(netHotspotController->config());
-        hotspotcontrolitem->updateenabled(netHotspotController->enabledable());
+        hotspotcontrolitem->updateenabledable(netHotspotController->enabledable());
         hotspotcontrolitem->updateenabled(netHotspotController->isEnabled());
         hotspotcontrolitem->updateoptionalDevice(netHotspotController->optionalDevice());
         hotspotcontrolitem->updateshareDevice(netHotspotController->shareDevice());
@@ -567,9 +574,18 @@ void NetManagerThreadPrivate::doSetDeviceEnabled(const QString &id, bool enabled
 {
     if (id == "NetVPNControlItem") {
         NetworkController::instance()->vpnController()->setEnabled(enabled);
+        return;
     }
     if (id == "NetSystemProxyControlItem") {
         NetworkController::instance()->proxyController()->setProxyMethod(enabled ? ConfigWatcher::instance()->proxyMethod() : ProxyMethod::None);
+        return;
+    }
+    if (id == "NetHotspotControlItem") {
+        HotspotController *hotspotController = NetworkController::instance()->hotspotController();
+        for (auto dev : hotspotController->devices()) {
+            hotspotController->setEnabled(dev, enabled);
+        }
+        return;
     }
 
     for (NetworkDeviceBase *device : NetworkController::instance()->devices()) {
@@ -791,8 +807,13 @@ void NetManagerThreadPrivate::updateNetCheckAvailabled(const QDBusVariant &avail
 void NetManagerThreadPrivate::updateAirplaneModeEnabled(const QDBusVariant &enabled)
 {
     m_airplaneModeEnabled = enabled.variant().toBool() && supportAirplaneMode();
-    qWarning()<<__FUNCTION__<<__LINE__<<enabled.variant()<<supportAirplaneMode()<<m_airplaneModeEnabled;
     Q_EMIT dataChanged(DataChanged::EnabledChanged, "Root", QVariant(m_airplaneModeEnabled));
+}
+
+void NetManagerThreadPrivate::updateAirplaneModeEnabledable(const QDBusVariant &enabledable)
+{
+    bool airplaneEnabledable = enabledable.variant().toBool();
+    Q_EMIT dataChanged(DataChanged::DeviceAvailableChanged, "Root", QVariant(airplaneEnabledable));
 }
 
 bool NetManagerThreadPrivate::supportAirplaneMode() const
