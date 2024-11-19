@@ -145,7 +145,7 @@ DccObject {
         name: "ipv6Type"
         parentName: root.parentName
         weight: root.weight + 20
-        hasBackground: true
+        backgroundType: DccObject.Normal
         visible: root.visible
         displayName: qsTr("Method")
         pageType: DccObject.Editor
@@ -291,7 +291,7 @@ DccObject {
                         alertText: qsTr("Invalid IP address")
                         onShowAlertChanged: {
                             if (showAlert) {
-                                dccObj.trigger()
+                                DccApp.showPage(dccObj)
                                 forceActiveFocus()
                             }
                         }
@@ -320,7 +320,7 @@ DccObject {
                         alertDuration: 2000
                         onShowAlertChanged: {
                             if (showAlert) {
-                                dccObj.trigger()
+                                DccApp.showPage(dccObj)
                                 forceActiveFocus()
                             }
                         }
@@ -352,7 +352,7 @@ DccObject {
                         alertText: qsTr("Invalid IP address")
                         onShowAlertChanged: {
                             if (showAlert) {
-                                dccObj.trigger()
+                                DccApp.showPage(dccObj)
                                 forceActiveFocus()
                             }
                         }

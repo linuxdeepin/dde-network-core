@@ -17,6 +17,7 @@ DccObject {
     property bool hasAuth: config.auth
     property bool userAlert: false
     property bool passwordAlert: false
+    property bool hasUrl: false
 
     function checkInput() {
         if (hasAuth) {
@@ -47,6 +48,7 @@ DccObject {
             text: config.url
             placeholderText: qsTr("Optional")
             onTextChanged: {
+                hasUrl = text.length !== 0
                 if (config.url !== text) {
                     config.url = text
                 }
@@ -113,7 +115,7 @@ DccObject {
             }
             onShowAlertChanged: {
                 if (showAlert) {
-                    dccObj.trigger()
+                    DccApp.showPage(dccObj)
                     forceActiveFocus()
                 }
             }
@@ -140,7 +142,7 @@ DccObject {
             }
             onShowAlertChanged: {
                 if (showAlert) {
-                    dccObj.trigger()
+                    DccApp.showPage(dccObj)
                     forceActiveFocus()
                 }
             }

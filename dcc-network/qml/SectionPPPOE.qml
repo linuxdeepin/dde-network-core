@@ -64,7 +64,7 @@ DccTitleObject {
                 }
                 onShowAlertChanged: {
                     if (showAlert) {
-                        dccObj.trigger()
+                        DccApp.showPage(dccObj)
                         forceActiveFocus()
                     }
                 }
@@ -110,7 +110,7 @@ DccTitleObject {
                 alertDuration: 2000
                 onShowAlertChanged: {
                     if (showAlert) {
-                        dccObj.trigger()
+                        DccApp.showPage(dccObj)
                         forceActiveFocus()
                     }
                 }

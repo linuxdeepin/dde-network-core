@@ -81,7 +81,7 @@ DccObject {
     visible: item && item.enabledable
     displayName: qsTr("Personal Hotspot")
     icon: "dcc_hotspot"
-    hasBackground: true
+    backgroundType: DccObject.Normal
     pageType: DccObject.MenuEditor
     page: devCheck
     Component {
@@ -123,7 +123,7 @@ DccObject {
             displayName: root.displayName
             icon: "dcc_hotspot"
             weight: 10
-            hasBackground: true
+            backgroundType: DccObject.Normal
             pageType: DccObject.Editor
             page: devCheck
         }
@@ -328,7 +328,7 @@ DccObject {
                 parentName: hotspotConfig.parentName + "/" + hotspotConfig.name
                 displayName: qsTr("Name (SSID)")
                 weight: 10
-                hasBackground: true
+                backgroundType: DccObject.Normal
                 pageType: DccObject.Editor
                 page: DccLabel {
                     text: root.config["802-11-wireless"].ssid
@@ -339,7 +339,7 @@ DccObject {
                 parentName: hotspotConfig.parentName + "/" + hotspotConfig.name
                 displayName: qsTr("Security")
                 weight: 20
-                hasBackground: true
+                backgroundType: DccObject.Normal
                 pageType: DccObject.Editor
                 page: DccLabel {
                     text: securityName(root.config.hasOwnProperty("802-11-wireless-security") ? root.config["802-11-wireless-security"]["key-mgmt"] : "")
@@ -350,7 +350,7 @@ DccObject {
                 parentName: hotspotConfig.parentName + "/" + hotspotConfig.name
                 displayName: qsTr("Password")
                 weight: 30
-                hasBackground: true
+                backgroundType: DccObject.Normal
                 pageType: DccObject.Editor
                 visible: root.config.hasOwnProperty("802-11-wireless-security")
                 page: Rectangle {
@@ -382,7 +382,7 @@ DccObject {
                 parentName: hotspotConfig.parentName + "/" + hotspotConfig.name
                 displayName: qsTr("Band")
                 weight: 40
-                hasBackground: true
+                backgroundType: DccObject.Normal
                 pageType: DccObject.Editor
                 page: DccLabel {
                     text: bandName(root.config["802-11-wireless"].band)
@@ -408,7 +408,7 @@ DccObject {
             //     parentName: shareConfig.parentName + "/" + shareConfig.name
             //     displayName: qsTr("Priority Shared Network")
             //     weight: 10
-            //     hasBackground: true
+            //     backgroundType: DccObject.Normal
             //     pageType: DccObject.Editor
             //     page: D.ComboBox {
             //         textRole: "text"
@@ -421,7 +421,7 @@ DccObject {
                 parentName: shareConfig.parentName + "/" + shareConfig.name
                 displayName: qsTr("Hotspot Sharing Device")
                 weight: 20
-                hasBackground: true
+                backgroundType: DccObject.Normal
                 pageType: DccObject.Editor
                 page: D.ComboBox {
                     function updateCurrentIndex() {

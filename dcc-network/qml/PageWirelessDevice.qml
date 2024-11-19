@@ -20,7 +20,7 @@ DccObject {
     name: "wireless" + item.pathIndex
     parentName: "network"
     displayName: item.name
-    hasBackground: true
+    backgroundType: DccObject.Normal
     icon: "dcc_wifi"
     weight: 2010 + item.pathIndex
     pageType: DccObject.MenuEditor
@@ -107,7 +107,6 @@ DccObject {
                             }
                             background: DccItemBackground {
                                 separatorVisible: true
-                                highlightEnable: false
                             }
                         }
                     }
@@ -130,7 +129,6 @@ DccObject {
                             }
                             background: DccItemBackground {
                                 separatorVisible: true
-                                highlightEnable: false
                             }
                         }
                     }
@@ -147,7 +145,7 @@ DccObject {
             displayName: item.name
             icon: "dcc_wifi"
             weight: 10
-            hasBackground: true
+            backgroundType: DccObject.Normal
             pageType: DccObject.Editor
             page: devCheck
         }
@@ -180,7 +178,7 @@ DccObject {
             parentName: root.name + "/page"
             weight: 40
             pageType: DccObject.Item
-            hasBackground: true
+            backgroundType: DccObject.Normal
             visible: root.item && root.item.isEnabled && !root.item.apMode && this.item && this.item.children.length > 0
             page: networkList
         }
@@ -214,7 +212,7 @@ DccObject {
             weight: 60
             visible: root.item && root.item.isEnabled && !root.item.apMode && this.item && this.item.children.length > 0
             pageType: DccObject.Item
-            hasBackground: true
+            backgroundType: DccObject.Normal
             page: networkList
         }
         DccObject {
@@ -249,7 +247,7 @@ DccObject {
             id: wirelessSettings
             name: "wirelessSettings"
             parentName: root.name + "/page/otherNetwork"
-            onFinished: root.trigger()
+            onFinished: DccApp.showPage(root)
             type: NetType.WirelessItem
             Connections {
                 target: dccData
@@ -266,7 +264,7 @@ DccObject {
                             wirelessSettings.item = tmpItem
                             wirelessSettings.config = param
 
-                            wirelessSettings.trigger()
+                            DccApp.showPage(wirelessSettings)
                             break
                         }
                         for (let i in tmpItem.children) {

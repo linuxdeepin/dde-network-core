@@ -123,7 +123,7 @@ DccObject {
                     alertText: qsTr("Invalid IP address")
                     onShowAlertChanged: {
                         if (showAlert) {
-                            dccObj.trigger()
+                            DccApp.showPage(dccObj)
                             forceActiveFocus()
                         }
                     }

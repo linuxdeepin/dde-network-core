@@ -29,7 +29,7 @@ DccObject {
             name: "mainTitle"
             parentName: root.parentUrl + "/body"
             weight: 10
-            displayName: sectionGeneric.settingsID + qsTr("网络属性")
+            displayName: sectionGeneric.settingsID + qsTr(" Network Properties")
         }
         SectionGeneric {
             id: sectionGeneric
@@ -97,7 +97,7 @@ DccObject {
             visible: config && config.connection.uuid !== "{00000000-0000-0000-0000-000000000000}"
             page: NetButton {
                 contentItem: IconLabel {
-                    text: qsTr("Delete Network")
+                    text: qsTr("Delete")
                     color: "red"
                 }
                 onClicked: {
@@ -159,7 +159,6 @@ DccObject {
         DccObject {
             name: "spacer"
             parentName: root.parentUrl + "/footer"
-            hasBackground: false
             weight: 20
             pageType: DccObject.Item
             page: Item {

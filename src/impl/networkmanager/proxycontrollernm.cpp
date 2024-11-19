@@ -56,7 +56,7 @@ void ProxyController_NM::initConnection()
 
 void ProxyController_NM::onPropertiesChanged(const QString &interface, const QVariantMap &values)
 {
-    if (interface != "com.deepin.daemon.Network.ProxyChains")
+    if (interface != proxyChainsInterface)
         return;
 
     if (values.contains("Enable")) {

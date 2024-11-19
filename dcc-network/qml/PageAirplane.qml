@@ -19,7 +19,7 @@ DccObject {
     description: qsTr("Turn off wireless communication")
     icon: "dcc_airplane_mode"
     visible: item && item.enabledable
-    hasBackground: true
+    backgroundType: DccObject.Normal
     pageType: DccObject.MenuEditor
     page: devCheck
     Component {
@@ -44,7 +44,7 @@ DccObject {
             displayName: root.displayName
             icon: "dcc_airplane_mode"
             weight: 10
-            hasBackground: true
+            backgroundType: DccObject.Normal
             pageType: DccObject.Editor
             page: devCheck
         }
