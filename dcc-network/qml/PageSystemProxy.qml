@@ -16,6 +16,7 @@ DccObject {
     property var item: null
     property int method: NetType.None
     property bool autoUrlAlert: false
+    property int inputItem: 0
 
     function setItem(netItem) {
         item = netItem
@@ -39,7 +40,7 @@ DccObject {
             displayName: root.displayName
             icon: "dcc_system_agent"
             weight: 10
-            hasBackground: true
+            backgroundType: DccObject.Normal
             pageType: DccObject.Editor
             page: D.Switch {
                 checked: item.isEnabled
@@ -70,7 +71,7 @@ DccObject {
             parentName: root.name + "/body"
             displayName: qsTr("Proxy Type")
             weight: 20
-            hasBackground: true
+            backgroundType: DccObject.Normal
             visible: method !== NetType.None
             pageType: DccObject.Editor
             page: ComboBox {
@@ -105,7 +106,7 @@ DccObject {
             parentName: root.name + "/body"
             displayName: qsTr("Configuration URL")
             weight: 30
-            hasBackground: true
+            backgroundType: DccObject.Normal
             pageType: DccObject.Editor
             visible: method === NetType.Auto
             page: D.LineEdit {
@@ -116,6 +117,12 @@ DccObject {
                 showAlert: autoUrlAlert
                 onTextChanged: {
                     autoUrlAlert = false
+                    if (text.length === 0) {
+                        inputItem &= 0x0f
+                    } else {
+                        inputItem |= 0x10
+                    }
+
                     if (dccObj.config !== text) {
                         dccObj.config = text
                     }
@@ -135,6 +142,13 @@ DccObject {
             visible: method === NetType.Manual
             weight: 40
             config: root.item.manualProxy.http
+            onHasUrlChanged: {
+                if (hasUrl) {
+                    inputItem |= 0x01
+                } else {
+                    inputItem &= ~0x01
+                }
+            }
         }
         SystemProxyConfigItem {
             id: https
@@ -144,6 +158,13 @@ DccObject {
             visible: method === NetType.Manual
             weight: 50
             config: root.item.manualProxy.https
+            onHasUrlChanged: {
+                if (hasUrl) {
+                    inputItem |= 0x02
+                } else {
+                    inputItem &= ~0x02
+                }
+            }
         }
         SystemProxyConfigItem {
             id: ftp
@@ -153,6 +174,13 @@ DccObject {
             visible: method === NetType.Manual
             weight: 60
             config: root.item.manualProxy.ftp
+            onHasUrlChanged: {
+                if (hasUrl) {
+                    inputItem |= 0x04
+                } else {
+                    inputItem &= ~0x04
+                }
+            }
         }
         SystemProxyConfigItem {
             id: socks
@@ -162,6 +190,13 @@ DccObject {
             visible: method === NetType.Manual
             weight: 70
             config: root.item.manualProxy.socks
+            onHasUrlChanged: {
+                if (hasUrl) {
+                    inputItem |= 0x08
+                } else {
+                    inputItem &= ~0x08
+                }
+            }
         }
         DccObject {
             id: ignoreHosts
@@ -252,6 +287,7 @@ DccObject {
                 leftPadding: 0
                 rightPadding: 0
                 spacing: 0
+                enabled: (method === NetType.Auto && (inputItem & 0xf0)) || (method === NetType.Manual && (inputItem & 0x0f))
                 text: dccObj.displayName
                 Layout.alignment: Qt.AlignRight
                 function printfObj(obj) {

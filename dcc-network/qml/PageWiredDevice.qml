@@ -18,7 +18,7 @@ DccObject {
     name: "wired" + item.pathIndex
     parentName: "network"
     displayName: item.name
-    hasBackground: true
+    backgroundType: DccObject.Normal
     icon: "dcc_ethernet"
     weight: 1010 + item.pathIndex
     pageType: DccObject.MenuEditor
@@ -49,7 +49,7 @@ DccObject {
                 displayName: item.name
                 icon: "dcc_ethernet"
                 weight: 10
-                hasBackground: true
+                backgroundType: DccObject.Normal
                 pageType: DccObject.Editor
                 page: devCheck
             }
@@ -58,14 +58,14 @@ DccObject {
                 parentName: root.name + "/page/body"
                 displayName: item.name
                 weight: 20
-                hasBackground: true
+                backgroundType: DccObject.Normal
                 pageType: DccObject.Item
                 visible: item.status === NetType.DS_NoCable
                 page: Item {
                     implicitHeight: 80
                     Label {
                         anchors.centerIn: parent
-                        text: qsTr("请您先插入网线")
+                        text: qsTr("Plug in the network cable first")
                     }
                 }
             }
@@ -74,7 +74,7 @@ DccObject {
                 parentName: root.name + "/page/body"
                 weight: 30
                 pageType: DccObject.Item
-                hasBackground: true
+                backgroundType: DccObject.Normal
                 page: ColumnLayout {
                     objectName: "noPadding"
                     clip: true
@@ -133,7 +133,6 @@ DccObject {
 
                             background: DccItemBackground {
                                 separatorVisible: true
-                                highlightEnable: false
                             }
                         }
                     }
@@ -142,7 +141,7 @@ DccObject {
                     id: wiredSettings
                     name: "wiredSettings"
                     parentName: root.name + "/page/body/networkList"
-                    onFinished: root.trigger()
+                    onFinished: DccApp.showPage(root)
                     type: NetType.WiredItem
                     Connections {
                         target: dccData
@@ -162,7 +161,7 @@ DccObject {
                                     wiredSettings.item = tmpItem
                                     wiredSettings.config = param
 
-                                    wiredSettings.trigger()
+                                    DccApp.showPage(wiredSettings)
                                     break
                                 }
                                 for (let i in tmpItem.children) {
@@ -183,7 +182,6 @@ DccObject {
             DccObject {
                 name: "addNetwork"
                 parentName: root.name + "/page/footer"
-                hasBackground: false
                 displayName: qsTr("Add Network Connection")
                 weight: 40
                 pageType: DccObject.Item

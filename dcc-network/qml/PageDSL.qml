@@ -29,7 +29,7 @@ DccObject {
             parentName: root.name + "/body"
             weight: 20
             pageType: DccObject.Item
-            hasBackground: true
+            backgroundType: DccObject.Normal
             page: ColumnLayout {
                 clip: true
                 spacing: 0
@@ -83,7 +83,6 @@ DccObject {
                         }
                         background: DccItemBackground {
                             separatorVisible: true
-                            highlightEnable: false
                         }
                     }
                 }
@@ -93,7 +92,7 @@ DccObject {
             id: dslSettings
             name: "dslSettings"
             parentName: root.name + "/body/networkList"
-            onFinished: root.trigger()
+            onFinished: DccApp.showPage(root)
             type: NetType.WiredItem
             Connections {
                 target: dccData
@@ -113,7 +112,7 @@ DccObject {
                             dslSettings.item = tmpItem
                             dslSettings.config = param
 
-                            dslSettings.trigger()
+                            DccApp.showPage(dslSettings)
                             break
                         }
                         for (let i in tmpItem.children) {
@@ -133,7 +132,6 @@ DccObject {
         DccObject {
             name: "addDSL"
             parentName: root.name + "/footer"
-            hasBackground: false
             weight: 40
             pageType: DccObject.Item
             page: NetButton {

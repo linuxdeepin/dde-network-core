@@ -148,7 +148,7 @@ DccObject {
         name: "ipv4Type"
         parentName: root.parentName
         weight: root.weight + 20
-        hasBackground: true
+        backgroundType: DccObject.Normal
         displayName: qsTr("Method")
         pageType: DccObject.Editor
         page: ComboBox {
@@ -289,7 +289,7 @@ DccObject {
                         alertText: qsTr("Invalid IP address")
                         onShowAlertChanged: {
                             if (showAlert) {
-                                dccObj.trigger()
+                                DccApp.showPage(dccObj)
                                 forceActiveFocus()
                             }
                         }
@@ -319,7 +319,7 @@ DccObject {
                         alertDuration: 1
                         onShowAlertChanged: {
                             if (showAlert) {
-                                dccObj.trigger()
+                                DccApp.showPage(dccObj)
                                 forceActiveFocus()
                             }
                         }
@@ -350,7 +350,7 @@ DccObject {
                         alertDuration: 2000
                         onShowAlertChanged: {
                             if (showAlert) {
-                                dccObj.trigger()
+                                DccApp.showPage(dccObj)
                                 forceActiveFocus()
                             }
                         }

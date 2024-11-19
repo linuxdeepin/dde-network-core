@@ -68,3 +68,5 @@ target_link_libraries(${DccNetwork_Name} PRIVATE
 )
 
 dcc_install_plugin(NAME ${DccNetwork_Name} TARGET ${DccNetwork_Name})
+
+dcc_handle_plugin_translation(NAME ${DccNetwork_Name} )

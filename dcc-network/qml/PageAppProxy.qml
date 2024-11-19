@@ -58,7 +58,7 @@ DccObject {
             displayName: root.displayName
             icon: "dcc_app_agent"
             weight: 10
-            hasBackground: true
+            backgroundType: DccObject.Normal
             pageType: DccObject.Editor
             page: D.Switch {
                 checked: proxyEnable
@@ -80,7 +80,7 @@ DccObject {
             name: "config"
             parentName: root.name + "/body"
             weight: 20
-            hasBackground: true
+            backgroundType: DccObject.Normal
             visible: proxyEnable
             pageType: DccObject.Item
             page: DccGroupView {}
@@ -135,7 +135,7 @@ DccObject {
                     alertText: qsTr("Invalid IP address")
                     onShowAlertChanged: {
                         if (showAlert) {
-                            dccObj.trigger()
+                            DccApp.showPage(dccObj)
                             forceActiveFocus()
                         }
                     }
@@ -166,7 +166,7 @@ DccObject {
                     alertText: qsTr("Invalid port")
                     onShowAlertChanged: {
                         if (showAlert) {
-                            dccObj.trigger()
+                            DccApp.showPage(dccObj)
                             forceActiveFocus()
                         }
                     }

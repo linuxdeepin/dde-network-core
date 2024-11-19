@@ -45,7 +45,7 @@ DccObject {
             name: "mainTitle"
             parentName: root.parentUrl + "/body"
             weight: 10
-            displayName: sectionGeneric.settingsID + qsTr("网络属性")
+            displayName: sectionGeneric.settingsID + qsTr(" Network Properties")
         }
         DccObject {
             name: "vpnType"
@@ -53,7 +53,7 @@ DccObject {
             weight: 50
             visible: config && config.connection.uuid === "{00000000-0000-0000-0000-000000000000}"
             displayName: qsTr("VPN Type")
-            hasBackground: true
+            backgroundType: DccObject.Normal
             pageType: DccObject.Editor
             page: D.ComboBox {
                 textRole: "text"
@@ -145,7 +145,7 @@ DccObject {
             visible: config && config.connection.uuid !== "{00000000-0000-0000-0000-000000000000}"
             page: NetButton {
                 contentItem: IconLabel {
-                    text: qsTr("Delete Network")
+                    text: qsTr("Delete")
                     color: "red"
                 }
                 onClicked: {
@@ -234,7 +234,6 @@ DccObject {
         DccObject {
             name: "spacer"
             parentName: root.parentUrl + "/footer"
-            hasBackground: false
             weight: 30
             pageType: DccObject.Item
             page: Item {

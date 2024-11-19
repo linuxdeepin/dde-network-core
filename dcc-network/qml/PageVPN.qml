@@ -40,7 +40,7 @@ DccObject {
             displayName: root.displayName
             icon: "dcc_vpn"
             weight: 10
-            hasBackground: true
+            backgroundType: DccObject.Normal
             pageType: DccObject.Editor
             page: devCheck
         }
@@ -49,7 +49,7 @@ DccObject {
             parentName: root.name + "/body"
             weight: 20
             pageType: DccObject.Item
-            hasBackground: true
+            backgroundType: DccObject.Normal
             page: ColumnLayout {
                 clip: true
                 spacing: 0
@@ -103,7 +103,6 @@ DccObject {
                         }
                         background: DccItemBackground {
                             separatorVisible: true
-                            highlightEnable: false
                         }
                     }
                 }
@@ -112,7 +111,7 @@ DccObject {
                 id: vpnSettings
                 name: "vpnSettings"
                 parentName: root.name + "/body/networkList"
-                onFinished: root.trigger()
+                onFinished: DccApp.showPage(root)
                 Connections {
                     target: dccData
                     function onRequest(cmd, id, param) {
@@ -131,7 +130,7 @@ DccObject {
                                 vpnSettings.item = tmpItem
                                 vpnSettings.setConfig(param)
 
-                                vpnSettings.trigger()
+                                DccApp.showPage(vpnSettings)
                                 break
                             }
                             for (let i in tmpItem.children) {
@@ -151,7 +150,6 @@ DccObject {
         DccObject {
             name: "spacer"
             parentName: root.name + "/footer"
-            hasBackground: false
             weight: 20
             pageType: DccObject.Item
             page: Item {
@@ -161,7 +159,6 @@ DccObject {
         DccObject {
             name: "importVPN"
             parentName: root.name + "/footer"
-            hasBackground: false
             weight: 30
             pageType: DccObject.Item
             page: NetButton {
@@ -233,7 +230,6 @@ DccObject {
         DccObject {
             name: "addVPN"
             parentName: root.name + "/footer"
-            hasBackground: false
             weight: 40
             pageType: DccObject.Item
             page: NetButton {

@@ -62,7 +62,7 @@ DccObject {
                                     text.push(infoItem.details[i][0] + "\t" + infoItem.details[i][1])
                                 }
                                 dccData.setClipboard(text.join("\n"))
-                                tip.show(qsTr("信息已复制"), 2000)
+                                tip.show(qsTr("Details has been copied"), 2000)
                             }
                         }
                     }
@@ -72,7 +72,6 @@ DccObject {
                 name: "details"
                 parentName: root.name + "/body/" + infoItem.name
                 weight: 20
-                // hasBackground: true
                 pageType: DccObject.Item
                 onParentItemChanged: {
                     if (parentItem) {
@@ -137,7 +136,7 @@ DccObject {
                             }
                             background: DccItemBackground {
                                 separatorVisible: true
-                                highlightEnable: false
+                                backgroundType: DccObject.Normal
                             }
                         }
                     }
@@ -158,7 +157,6 @@ DccObject {
         DccObject {
             name: "checkNetwork"
             parentName: root.name + "/footer"
-            hasBackground: false
             weight: 40
             pageType: DccObject.Item
             page: NetButton {
