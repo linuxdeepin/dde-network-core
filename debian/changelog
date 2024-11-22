@@ -1,3 +1,10 @@
+dde-network-core (2.0.37) unstable; urgency=medium
+
+  * fix: Adaptation control center interface adjustment
+  * fix: Handling hidden logic on web pages
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Fri, 22 Nov 2024 17:38:47 +0800
+
 dde-network-core (2.0.36) unstable; urgency=medium
 
   * release 2.0.36
