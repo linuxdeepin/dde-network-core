@@ -144,7 +144,7 @@ DccObject {
             pageType: DccObject.Item
             visible: config && config.connection.uuid !== "{00000000-0000-0000-0000-000000000000}"
             page: NetButton {
-                contentItem: IconLabel {
+                contentItem: D.IconLabel {
                     text: qsTr("Delete")
                     color: "red"
                 }
@@ -187,7 +187,7 @@ DccObject {
 
                         D.Button {
                             Layout.fillWidth: true
-                            contentItem: IconLabel {
+                            contentItem: D.IconLabel {
                                 text: qsTr("Delete")
                                 color: "red"
                             }

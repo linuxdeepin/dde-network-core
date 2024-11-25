@@ -46,7 +46,7 @@ DccObject {
                                                 })
                         text: dccObj.displayName
                     }
-                    IconLabel {
+                    D.IconLabel {
                         property bool clipboard: false
                         Layout.alignment: Qt.AlignRight
                         icon.name: "editcopy"
