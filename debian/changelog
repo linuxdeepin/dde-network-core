@@ -1,3 +1,9 @@
+dde-network-core (2.0.38) unstable; urgency=medium
+
+  * fix: Standardize IconLabel writing
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Mon, 25 Nov 2024 14:08:47 +0800
+
 dde-network-core (2.0.37) unstable; urgency=medium
 
   * fix: Adaptation control center interface adjustment

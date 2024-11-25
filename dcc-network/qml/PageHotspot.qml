@@ -287,7 +287,7 @@ DccObject {
 
                             D.Button {
                                 Layout.fillWidth: true
-                                // contentItem: IconLabel {
+                                // contentItem: D.IconLabel {
                                 text: qsTr("Save")
                                 //     color: "red"
                                 // }
