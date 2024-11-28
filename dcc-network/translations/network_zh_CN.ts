@@ -1538,6 +1538,116 @@
     </message>
 </context>
 <context>
+    <name>dde::network::NetManagerPrivate</name>
+    <message>
+        <source>IP conflict</source>
+        <translation>IP冲突</translation>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation>网络</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetManagerThreadPrivate</name>
+    <message>
+        <source>Wired Connection %1</source>
+        <translation>有线连接 %1</translation>
+    </message>
+    <message>
+        <source>VPN L2TP %1</source>
+        <translation>VPN L2TP %1</translation>
+    </message>
+    <message>
+        <source>VPN PPTP %1</source>
+        <translation>VPN PPTP %1</translation>
+    </message>
+    <message>
+        <source>VPN VPNC %1</source>
+        <translation>VPN VPNC %1</translation>
+    </message>
+    <message>
+        <source>VPN OpenVPN %1</source>
+        <translation>VPN OpenVPN %1</translation>
+    </message>
+    <message>
+        <source>VPN StrongSwan %1</source>
+        <translation>VPN StrongSwan %1</translation>
+    </message>
+    <message>
+        <source>VPN OpenConnect %1</source>
+        <translation>VPN OpenConnect %1</translation>
+    </message>
+    <message>
+        <source>PPPoE Connection %1</source>
+        <translation>PPPoE连接 %1</translation>
+    </message>
+    <message>
+        <source>Connecting &quot;%1&quot;</source>
+        <translation>正在连接“%1”</translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; connected</source>
+        <translation>“%1”已连接</translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; disconnected</source>
+        <translation>“%1”已断开连接</translation>
+    </message>
+    <message>
+        <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
+        <translation>无法连接“%1”，请检查您的路由器或网线。</translation>
+    </message>
+    <message>
+        <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
+        <translation>无法连接“%1”，请靠近无线路由器</translation>
+    </message>
+    <message>
+        <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
+        <translation>连接失败，无法连接“%1”，密码错误</translation>
+    </message>
+    <message>
+        <source>Password is required to connect &quot;%1&quot;</source>
+        <translation>连接“%1”需要密码</translation>
+    </message>
+    <message>
+        <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
+        <translation>找不到无线网络“%1”</translation>
+    </message>
+    <message>
+        <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
+        <translation>要连接“%1”，请在登录后设置您的身份验证信息</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetVPNTipsItem</name>
+    <message>
+        <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
+        <translation>VPN配置未连接或连接失败。请&lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;前往控制中心&lt;/a&gt;进行检查。</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWiredControlItem</name>
+    <message>
+        <source>Wired Network</source>
+        <translation>有线网络</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessControlItem</name>
+    <message>
+        <source>Wireless Network</source>
+        <translation>无线网络</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessHiddenItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation>连接到隐藏网络</translation>
+    </message>
+</context>
+<context>
     <name>network</name>
     <message>
         <source>Network</source>
