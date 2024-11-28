@@ -7,5 +7,5 @@ DccObject {
     parentName: "root"
     displayName: qsTr("Network")
     icon: "dcc_network"
-    weight: 40
+    weight: 50
 }
