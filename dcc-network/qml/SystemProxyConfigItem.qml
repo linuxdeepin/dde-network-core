@@ -15,20 +15,20 @@ DccObject {
     id: root
     property var config: null
     property bool hasAuth: config.auth
-    property bool userAlert: false
-    property bool passwordAlert: false
     property bool hasUrl: false
 
+    property string errorKey: ""
+    signal editClicked
+
     function checkInput() {
+        errorKey = ""
         if (hasAuth) {
-            userAlert = false
-            if (!config.user || config.user.lenght === 0) {
-                userAlert = true
+            if (!config.user || config.user.length === 0) {
+                errorKey = "user"
                 return false
             }
-            passwordAlert = false
-            if (!config.password || config.password.lenght === 0) {
-                passwordAlert = true
+            if (!config.password || config.password.length === 0) {
+                errorKey = "password"
                 return false
             }
         }
@@ -106,9 +106,11 @@ DccObject {
             bottomInset: 4
             text: config.user
             placeholderText: qsTr("Required")
-            showAlert: userAlert
+            showAlert: errorKey === dccObj.name
             onTextChanged: {
-                userAlert = false
+                if (showAlert) {
+                    errorKey = ""
+                }
                 if (config.user !== text) {
                     config.user = text
                 }
@@ -128,24 +130,10 @@ DccObject {
         visible: hasAuth
         weight: 50
         pageType: DccObject.Editor
-        page: D.PasswordEdit {
-            topInset: 4
-            bottomInset: 4
+        page: NetPasswordEdit {
+            dataItem: root
             text: config.password
-            placeholderText: qsTr("Required")
-            showAlert: passwordAlert
-            onTextChanged: {
-                passwordAlert = false
-                if (config.password !== text) {
-                    config.password = text
-                }
-            }
-            onShowAlertChanged: {
-                if (showAlert) {
-                    DccApp.showPage(dccObj)
-                    forceActiveFocus()
-                }
-            }
+            onTextUpdated: config.password = text
         }
     }
 }

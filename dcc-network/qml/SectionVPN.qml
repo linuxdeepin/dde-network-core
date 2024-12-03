@@ -806,26 +806,10 @@ DccTitleObject {
             weight: 180
             visible: ((vpnType & NetUtils.VpnTypeEnum["strongswan"]) && (dataMap["method"] === "eap" || dataMap["method"] === "psk")) || (dataMap["password-flags"] === "0" && ((vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])) || (vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (dataMap["connection-type"] === "password" || dataMap["connection-type"] === "password-tls")))
             pageType: DccObject.Editor
-            page: D.PasswordEdit {
-                placeholderText: qsTr("Required")
+            page: NetPasswordEdit {
+                dataItem: root
                 text: secretMap.hasOwnProperty(dccObj.name) ? secretMap[dccObj.name] : ""
-                onTextChanged: {
-                    if (showAlert) {
-                        errorKey = ""
-                    }
-                    if (secretMap[dccObj.name] !== text) {
-                        secretMap[dccObj.name] = text
-                        root.editClicked()
-                    }
-                }
-                showAlert: errorKey === dccObj.name
-                alertDuration: 2000
-                onShowAlertChanged: {
-                    if (showAlert) {
-                        DccApp.showPage(dccObj)
-                        forceActiveFocus()
-                    }
-                }
+                onTextUpdated: secretMap[dccObj.name] = text
             }
         }
         DccObject {
@@ -1086,26 +1070,10 @@ DccTitleObject {
             weight: 380
             visible: dataMap["Xauth password-flags"] === "0" && (vpnType & (NetUtils.VpnTypeEnum["vpnc"]))
             pageType: DccObject.Editor
-            page: D.PasswordEdit {
-                placeholderText: qsTr("Required")
+            page: NetPasswordEdit {
+                dataItem: root
                 text: secretMap.hasOwnProperty(dccObj.name) ? secretMap[dccObj.name] : ""
-                onTextChanged: {
-                    if (showAlert) {
-                        errorKey = ""
-                    }
-                    if (secretMap[dccObj.name] !== text) {
-                        secretMap[dccObj.name] = text
-                        root.editClicked()
-                    }
-                }
-                showAlert: errorKey === dccObj.name
-                alertDuration: 2000
-                onShowAlertChanged: {
-                    if (showAlert) {
-                        DccApp.showPage(dccObj)
-                        forceActiveFocus()
-                    }
-                }
+                onTextUpdated: secretMap[dccObj.name] = text
             }
         }
         DccObject {
@@ -1153,26 +1121,10 @@ DccTitleObject {
             weight: 410
             visible: dataMap["IPSec secret-flags"] === "0" && (vpnType & (NetUtils.VpnTypeEnum["vpnc"]))
             pageType: DccObject.Editor
-            page: D.PasswordEdit {
-                placeholderText: qsTr("Required")
+            page: NetPasswordEdit {
+                dataItem: root
                 text: secretMap.hasOwnProperty(dccObj.name) ? secretMap[dccObj.name] : ""
-                onTextChanged: {
-                    if (showAlert) {
-                        errorKey = ""
-                    }
-                    if (secretMap[dccObj.name] !== text) {
-                        secretMap[dccObj.name] = text
-                        root.editClicked()
-                    }
-                }
-                showAlert: errorKey === dccObj.name
-                alertDuration: 2000
-                onShowAlertChanged: {
-                    if (showAlert) {
-                        DccApp.showPage(dccObj)
-                        forceActiveFocus()
-                    }
-                }
+                onTextUpdated: secretMap[dccObj.name] = text
             }
         }
         DccObject {
@@ -2076,7 +2028,7 @@ DccTitleObject {
             visible: dataMap["proxy-type"] !== "none"
             pageType: DccObject.Editor
             page: D.SpinBox {
-                value: dataMap.hasOwnProperty(dccObj.name) ? parseInt(dataMap[dccObj.name], 10) : 1300
+                value: dataMap.hasOwnProperty(dccObj.name) ? parseInt(dataMap[dccObj.name], 10) : 0
                 from: 0
                 to: 65535
                 onValueChanged: {
@@ -2115,26 +2067,10 @@ DccTitleObject {
             weight: 60
             visible: dataMap["proxy-type"] === "http"
             pageType: DccObject.Editor
-            page: D.PasswordEdit {
-                placeholderText: qsTr("Required")
+            page: NetPasswordEdit {
                 text: secretMap.hasOwnProperty(dccObj.name) ? secretMap[dccObj.name] : ""
-                onTextChanged: {
-                    if (showAlert) {
-                        errorKey = ""
-                    }
-                    if (secretMap[dccObj.name] !== text) {
-                        secretMap[dccObj.name] = text
-                        root.editClicked()
-                    }
-                }
-                showAlert: errorKey === dccObj.name
-                alertDuration: 2000
-                onShowAlertChanged: {
-                    if (showAlert) {
-                        DccApp.showPage(dccObj)
-                        forceActiveFocus()
-                    }
-                }
+                dataItem: root
+                onTextUpdated: secretMap[dccObj.name] = text
             }
         }
     }

@@ -92,29 +92,10 @@ DccTitleObject {
             displayName: qsTr("Password")
             weight: 30
             pageType: DccObject.Editor
-            page: D.PasswordEdit {
-                property bool newInput: false
-                placeholderText: qsTr("Required")
+            page: NetPasswordEdit {
+                dataItem: root
                 text: config.hasOwnProperty("password") ? config.password : ""
-                echoButtonVisible: newInput
-                onTextChanged: {
-                    if (showAlert) {
-                        errorKey = ""
-                    }
-                    if (config.password !== text) {
-                        config.password = text
-                        root.editClicked()
-                    }
-                }
-                showAlert: errorKey === dccObj.name
-                alertDuration: 2000
-                onShowAlertChanged: {
-                    if (showAlert) {
-                        DccApp.showPage(dccObj)
-                        forceActiveFocus()
-                    }
-                }
-                Component.onCompleted: newInput = !config.hasOwnProperty("password")
+                onTextUpdated: config.password = text
             }
         }
     }

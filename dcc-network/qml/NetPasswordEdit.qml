@@ -4,6 +4,8 @@ import QtQuick 2.15
 
 import org.deepin.dtk 1.0 as D
 
+import org.deepin.dcc 1.0
+
 D.PasswordEdit {
     property var dataItem
     property bool newInput: false
