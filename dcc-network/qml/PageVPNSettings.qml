@@ -221,6 +221,7 @@ DccObject {
                     visible: false
                     fileMode: FileDialog.SaveFile
                     nameFilters: [qsTr("*.conf")]
+                    currentFile: root.config.connection.id
                     onAccepted: {
                         dccData.exec(NetManager.ExportConnect, item.id, {
                                          "file": currentFile.toString().replace("file://", "")
