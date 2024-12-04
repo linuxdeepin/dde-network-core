@@ -22,12 +22,12 @@
         <translation>飞行模式</translation>
     </message>
     <message>
-        <source>Turn off wireless communication</source>
-        <translation>关闭无线通信</translation>
-    </message>
-    <message>
         <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
         <translation>打开飞行模式将关闭无线网络、个人热点和蓝牙功能</translation>
+    </message>
+    <message>
+        <source>Stop wireless communication</source>
+        <translation>停止无线通信</translation>
     </message>
 </context>
 <context>
@@ -96,6 +96,10 @@
         <source>Save</source>
         <translation>保 存</translation>
     </message>
+    <message>
+        <source>Set up proxy servers</source>
+        <translation>设置代理服务器</translation>
+    </message>
 </context>
 <context>
     <name>PageDSL</name>
@@ -114,6 +118,10 @@
     <message>
         <source>Add PPPoE connection</source>
         <translation>添加PPPoE连接</translation>
+    </message>
+    <message>
+        <source>Set up a dial-up network connection</source>
+        <translation>设置拨号网络连接</translation>
     </message>
 </context>
 <context>
@@ -160,6 +168,10 @@
     <message>
         <source>Details has been copied</source>
         <translation>信息已复制</translation>
+    </message>
+    <message>
+        <source>View all network configurations</source>
+        <translation>查看所有网络配置</translation>
     </message>
 </context>
 <context>
@@ -248,6 +260,10 @@
         <source>If you want to use the personal hotspot, disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first and then enable the wireless network adapter.</source>
         <translation>若要使用个人热点功能，请先退出&lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;飞行模式&lt;/a&gt;，再启用无线网卡。</translation>
     </message>
+    <message>
+        <source>Share the network</source>
+        <translation>共享网络</translation>
+    </message>
 </context>
 <context>
     <name>PageSettings</name>
@@ -322,6 +338,10 @@
         <source>Save</source>
         <translation>保 存</translation>
     </message>
+    <message>
+        <source>Set up proxy servers</source>
+        <translation>设置代理服务器</translation>
+    </message>
 </context>
 <context>
     <name>PageVPN</name>
@@ -360,6 +380,10 @@
     <message>
         <source>OK</source>
         <translation>确定</translation>
+    </message>
+    <message>
+        <source>Connect, add, import</source>
+        <translation>连接、添加、导入</translation>
     </message>
 </context>
 <context>
@@ -439,6 +463,10 @@
         <source>Plug in the network cable first</source>
         <translation>请您先插入网线！</translation>
     </message>
+    <message>
+        <source>Connect, edit network settings</source>
+        <translation>连接、编辑网络设置</translation>
+    </message>
 </context>
 <context>
     <name>PageWirelessDevice</name>
@@ -473,6 +501,10 @@
     <message>
         <source>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Disable hotspot&lt;/a&gt; first if you want to connect to a wireless network</source>
         <translation>若要连接并使用无线网络功能，请先&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;关闭热点分享&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <source>Connect, edit network settings</source>
+        <translation>连接、编辑网络设置</translation>
     </message>
 </context>
 <context>
