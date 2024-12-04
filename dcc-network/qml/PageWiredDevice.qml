@@ -18,6 +18,7 @@ DccObject {
     name: "wired" + item.pathIndex
     parentName: "network"
     displayName: item.name
+    description: qsTr("Connect, edit network settings")
     backgroundType: DccObject.Normal
     icon: "dcc_ethernet"
     weight: 1010 + item.pathIndex

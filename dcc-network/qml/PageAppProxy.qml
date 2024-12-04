@@ -39,6 +39,7 @@ DccObject {
 
     visible: item
     displayName: qsTr("Application Proxy")
+    description: qsTr("Set up proxy servers")
     icon: "dcc_app_agent"
     page: DccSettingsView {
         Component.onDestruction: {
