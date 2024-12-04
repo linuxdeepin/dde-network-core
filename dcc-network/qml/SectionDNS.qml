@@ -23,7 +23,7 @@ DccObject {
         errorKey = ""
         isEdit = false
         if (c === undefined) {
-            config = ["", ""]
+            root.config = ["", ""]
         } else {
             let tmpConfig = []
             for (var i in c) {
@@ -35,12 +35,12 @@ DccObject {
             while (tmpConfig.length < 2) {
                 tmpConfig.push("")
             }
-            config = tmpConfig
+            root.config = tmpConfig
         }
     }
     function getConfig() {
         let saveData = []
-        for (var ip of config) {
+        for (var ip of root.config) {
             let ipNum = NetUtils.ipToNum(ip)
             if (ipNum !== 0) {
                 saveData.push(ipNum)
@@ -50,8 +50,8 @@ DccObject {
     }
     function checkInput() {
         errorKey = ""
-        for (var i in config) {
-            if (config[i] !== "" && !NetUtils.ipRegExp.test(config[i])) {
+        for (var i in root.config) {
+            if (root.config[i] !== "" && !NetUtils.ipRegExp.test(root.config[i])) {
                 errorKey = "dns" + i
                 return false
             }
@@ -105,7 +105,7 @@ DccObject {
             pageType: DccObject.Editor
             page: RowLayout {
                 D.LineEdit {
-                    text: config[index]
+                    text: root.config[index]
                     validator: RegularExpressionValidator {
                         regularExpression: NetUtils.ipRegExp
                     }
@@ -113,8 +113,8 @@ DccObject {
                         if (showAlert) {
                             errorKey = ""
                         }
-                        if (text !== config[index]) {
-                            config[index] = text
+                        if (text !== root.config[index]) {
+                            root.config[index] = text
                             root.editClicked()
                         }
                     }
@@ -183,10 +183,10 @@ DccObject {
     }
 
     onConfigChanged: {
-        while (config.length > dnsItems.length) {
+        while (root.config.length > dnsItems.length) {
             addIpItem()
         }
-        while (config.length < dnsItems.length) {
+        while (root.config.length < dnsItems.length) {
             removeIpItem()
         }
     }

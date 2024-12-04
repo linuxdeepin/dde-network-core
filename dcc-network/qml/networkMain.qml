@@ -25,7 +25,7 @@ DccObject {
 
     PageVPN {
         id: vpnPage
-        name: "vpn"
+        name: "networkVpn"
         parentName: "network"
         weight: 3010
     }

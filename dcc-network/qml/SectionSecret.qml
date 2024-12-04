@@ -13,8 +13,8 @@ import "NetUtils.js" as NetUtils
 
 DccTitleObject {
     id: root
-    property var configWSecurity: undefined
-    property var config802_1x: undefined
+    property var configWSecurity
+    property var config802_1x
     property string parentName: ""
     property int type: NetType.WiredItem
     property string eapType: "peap"
@@ -28,41 +28,41 @@ DccTitleObject {
     function setConfigWSecurity(c) {
         errorKey = ""
         if (c) {
-            configWSecurity = c
-            keyMgmt = configWSecurity.hasOwnProperty("key-mgmt") ? configWSecurity["key-mgmt"] : ""
+            root.configWSecurity = c
+            root.keyMgmt = root.configWSecurity.hasOwnProperty("key-mgmt") ? root.configWSecurity["key-mgmt"] : ""
         } else {
-            configWSecurity = {}
-            keyMgmt = ""
+            root.configWSecurity = {}
+            root.keyMgmt = ""
         }
-        switch (keyMgmt) {
+        switch (root.keyMgmt) {
         case "none":
-            pwdStr = configWSecurity.hasOwnProperty("wep-key0") ? configWSecurity["wep-key0"] : ""
-            pwdFlays = configWSecurity.hasOwnProperty("wep-key-type") ? configWSecurity["wep-key-type"] : 0
+            pwdStr = root.configWSecurity.hasOwnProperty("wep-key0") ? root.configWSecurity["wep-key0"] : ""
+            root.pwdFlays = root.configWSecurity.hasOwnProperty("wep-key-type") ? root.configWSecurity["wep-key-type"] : 0
             break
         case "wpa-psk":
         case "sae":
-            pwdStr = configWSecurity.hasOwnProperty("psk") ? configWSecurity["psk"] : ""
-            pwdFlays = configWSecurity.hasOwnProperty("psk-flags") ? configWSecurity["psk-flags"] : 0
+            pwdStr = root.configWSecurity.hasOwnProperty("psk") ? root.configWSecurity["psk"] : ""
+            root.pwdFlays = root.configWSecurity.hasOwnProperty("psk-flags") ? root.configWSecurity["psk-flags"] : 0
             break
         }
     }
     function getConfigWSecurity(c) {
         let config = {}
-        switch (keyMgmt) {
+        switch (root.keyMgmt) {
         case "none":
-            config["key-mgmt"] = keyMgmt
+            config["key-mgmt"] = root.keyMgmt
             config["wep-key0"] = pwdStr
-            config["wep-key-type"] = pwdFlays
-            config["auth-alg"] = configWSecurity["auth-alg"]
+            config["wep-key-type"] = root.pwdFlays
+            config["auth-alg"] = root.configWSecurity["auth-alg"]
             break
         case "wpa-psk":
         case "sae":
-            config["key-mgmt"] = keyMgmt
+            config["key-mgmt"] = root.keyMgmt
             config["psk"] = pwdStr
-            config["psk-flags"] = pwdFlays
+            config["psk-flags"] = root.pwdFlays
             break
         case "wpa-eap":
-            config["key-mgmt"] = keyMgmt
+            config["key-mgmt"] = root.keyMgmt
             break
         default:
             return undefined
@@ -72,101 +72,101 @@ DccTitleObject {
 
     function setConfig802_1x(c) {
         errorKey = ""
-        if (keyMgmt === "" && c !== undefined) {
-            keyMgmt = "wpa-eap"
+        if (root.keyMgmt === "" && c !== undefined) {
+            root.keyMgmt = "wpa-eap"
         }
-        switch (keyMgmt) {
+        switch (root.keyMgmt) {
         case "wpa-eap":
-            config802_1x = c
-            if (config802_1x && config802_1x.hasOwnProperty("eap") && config802_1x.eap.length > 0) {
-                eapType = config802_1x["eap"][0]
-                console.log("sss===eapType=", eapType)
+            root.config802_1x = c ? c : {}
+            if (root.config802_1x && root.config802_1x.hasOwnProperty("eap") && root.config802_1x.eap.length > 0) {
+                root.eapType = root.config802_1x["eap"][0]
+                console.log("sss===root.eapType=", root.eapType)
             }
-            switch (eapType) {
+            switch (root.eapType) {
             case "tls":
-                pwdStr = config802_1x.hasOwnProperty("private-key-password") ? config802_1x["private-key-password"] : ""
-                pwdFlays = config802_1x.hasOwnProperty("private-key-password-flags") ? config802_1x["private-key-password-flags"] : 0
+                pwdStr = root.config802_1x.hasOwnProperty("private-key-password") ? root.config802_1x["private-key-password"] : ""
+                root.pwdFlays = root.config802_1x.hasOwnProperty("private-key-password-flags") ? root.config802_1x["private-key-password-flags"] : 0
                 break
             case "md5":
             case "leap":
             case "fast":
             case "ttls":
             case "peap":
-                pwdStr = config802_1x.hasOwnProperty("password") ? config802_1x["password"] : ""
-                pwdFlays = config802_1x.hasOwnProperty("password-flags") ? config802_1x["password-flags"] : 0
+                pwdStr = root.config802_1x.hasOwnProperty("password") ? root.config802_1x["password"] : ""
+                root.pwdFlays = root.config802_1x.hasOwnProperty("password-flags") ? root.config802_1x["password-flags"] : 0
                 break
             }
             break
         case "":
             // 无密码
-            config802_1x = {}
-            eapType = "tls"
+            root.config802_1x = {}
+            root.eapType = "tls"
             pwdStr = ""
-            pwdFlays = 0
+            root.pwdFlays = 0
             break
         default:
-            config802_1x = {}
-            eapType = "tls"
+            root.config802_1x = {}
+            root.eapType = "tls"
             break
         }
     }
     function getConfig802_1x() {
         let saveConfig = {}
-        if (keyMgmt === "wpa-eap") {
-            saveConfig.eap = [eapType]
-            switch (eapType) {
+        if (root.keyMgmt === "wpa-eap") {
+            saveConfig.eap = [root.eapType]
+            switch (root.eapType) {
             case "tls":
-                saveConfig["identity"] = config802_1x["identity"]
-                saveConfig["private-key-password-flags"] = pwdFlays
+                saveConfig["identity"] = root.config802_1x["identity"]
+                saveConfig["private-key-password-flags"] = root.pwdFlays
                 saveConfig["private-key-password"] = pwdStr
                 // 文件类型需要以\0结尾
-                if (config802_1x.hasOwnProperty("private-key") && config802_1x["private-key"] !== "") {
-                    saveConfig["private-key"] = NetUtils.strToByteArray(config802_1x["private-key"])
+                if (root.config802_1x.hasOwnProperty("private-key") && root.config802_1x["private-key"] !== "") {
+                    saveConfig["private-key"] = NetUtils.strToByteArray(root.config802_1x["private-key"])
                 }
-                if (config802_1x.hasOwnProperty("ca-cert") && config802_1x["ca-cert"] !== "") {
-                    saveConfig["ca-cert"] = NetUtils.strToByteArray(config802_1x["ca-cert"])
+                if (root.config802_1x.hasOwnProperty("ca-cert") && root.config802_1x["ca-cert"] !== "") {
+                    saveConfig["ca-cert"] = NetUtils.strToByteArray(root.config802_1x["ca-cert"])
                 }
-                if (config802_1x.hasOwnProperty("client-cert") && config802_1x["client-cert"] !== "") {
-                    saveConfig["client-cert"] = NetUtils.strToByteArray(config802_1x["client-cert"])
+                if (root.config802_1x.hasOwnProperty("client-cert") && root.config802_1x["client-cert"] !== "") {
+                    saveConfig["client-cert"] = NetUtils.strToByteArray(root.config802_1x["client-cert"])
                 }
                 break
             case "md5":
             case "leap":
-                saveConfig["identity"] = config802_1x["identity"]
-                saveConfig["password-flags"] = pwdFlays
+                saveConfig["identity"] = root.config802_1x["identity"]
+                saveConfig["password-flags"] = root.pwdFlays
                 saveConfig["password"] = pwdStr
                 break
             case "fast":
-                saveConfig["identity"] = config802_1x["identity"]
-                saveConfig["password-flags"] = pwdFlays
+                saveConfig["identity"] = root.config802_1x["identity"]
+                saveConfig["password-flags"] = root.pwdFlays
                 saveConfig["password"] = pwdStr
-                saveConfig["anonymous-identity"] = config802_1x["anonymous-identity"]
-                saveConfig["phase1-fast-provisioning"] = config802_1x["phase1-fast-provisioning"]
-                if (config802_1x.hasOwnProperty("pac-file") && config802_1x["pac-file"] !== "") {
-                    saveConfig["pac-file"] = NetUtils.strToByteArray(config802_1x["pac-file"])
+                saveConfig["anonymous-identity"] = root.config802_1x["anonymous-identity"]
+                saveConfig["phase1-fast-provisioning"] = root.config802_1x["phase1-fast-provisioning"]
+                if (root.config802_1x.hasOwnProperty("pac-file") && root.config802_1x["pac-file"] !== "") {
+                    saveConfig["pac-file"] = NetUtils.strToByteArray(root.config802_1x["pac-file"])
                 }
-                saveConfig["phase2-auth"] = config802_1x["phase2-auth"]
+                saveConfig["phase2-auth"] = root.config802_1x["phase2-auth"]
                 break
             case "ttls":
-                saveConfig["identity"] = config802_1x["identity"]
-                saveConfig["password-flags"] = pwdFlays
+                saveConfig["identity"] = root.config802_1x["identity"]
+                saveConfig["password-flags"] = root.pwdFlays
                 saveConfig["password"] = pwdStr
-                saveConfig["anonymous-identity"] = config802_1x["anonymous-identity"]
-                if (config802_1x.hasOwnProperty("ca-cert") && config802_1x["ca-cert"] !== "") {
-                    saveConfig["ca-cert"] = NetUtils.strToByteArray(config802_1x["ca-cert"])
+                saveConfig["anonymous-identity"] = root.config802_1x["anonymous-identity"]
+                if (root.config802_1x.hasOwnProperty("ca-cert") && root.config802_1x["ca-cert"] !== "") {
+                    saveConfig["ca-cert"] = NetUtils.strToByteArray(root.config802_1x["ca-cert"])
                 }
-                saveConfig["phase2-auth"] = config802_1x["phase2-auth"]
+                saveConfig["phase2-auth"] = root.config802_1x["phase2-auth"]
                 break
             case "peap":
-                saveConfig["identity"] = config802_1x["identity"]
-                saveConfig["password-flags"] = pwdFlays
+                saveConfig["identity"] = root.config802_1x["identity"]
+                saveConfig["password-flags"] = root.pwdFlays
                 saveConfig["password"] = pwdStr
-                saveConfig["anonymous-identity"] = config802_1x["anonymous-identity"]
-                if (config802_1x.hasOwnProperty("ca-cert") && config802_1x["ca-cert"] !== "") {
-                    saveConfig["ca-cert"] = NetUtils.strToByteArray(config802_1x["ca-cert"])
+                saveConfig["anonymous-identity"] = root.config802_1x["anonymous-identity"]
+                if (root.config802_1x.hasOwnProperty("ca-cert") && root.config802_1x["ca-cert"] !== "") {
+                    saveConfig["ca-cert"] = NetUtils.strToByteArray(root.config802_1x["ca-cert"])
                 }
-                saveConfig["phase1-peapver"] = config802_1x["phase1-peapver"]
-                saveConfig["phase2-auth"] = config802_1x["phase2-auth"]
+                saveConfig["phase1-peapver"] = root.config802_1x["phase1-peapver"]
+                saveConfig["phase2-auth"] = root.config802_1x["phase2-auth"]
                 break
             }
         } else {
@@ -178,37 +178,37 @@ DccTitleObject {
     }
     function checkInput() {
         errorKey = ""
-        switch (keyMgmt) {
+        switch (root.keyMgmt) {
         case "none":
-            if (pwdFlays !== 2 && !dccData.CheckPasswordValid("wep-key0", pwdStr)) {
+            if (root.pwdFlays !== 2 && !dccData.CheckPasswordValid("wep-key0", pwdStr)) {
                 errorKey = "password"
                 return false
             }
             break
         case "wpa-psk":
         case "sae":
-            if (pwdFlays !== 2 && !dccData.CheckPasswordValid("psk", pwdStr)) {
+            if (root.pwdFlays !== 2 && !dccData.CheckPasswordValid("psk", pwdStr)) {
                 errorKey = "password"
                 return false
             }
             break
         case "wpa-eap":
-            console.log("identity", config802_1x["identity"], typeof config802_1x["identity"])
-            if (!config802_1x["identity"] || config802_1x["identity"] === "") {
+            console.log("identity", root.config802_1x["identity"], typeof root.config802_1x["identity"])
+            if (!root.config802_1x["identity"] || root.config802_1x["identity"] === "") {
                 errorKey = "identity"
                 return false
             }
-            if (pwdFlays !== 2 && !dccData.CheckPasswordValid("password", pwdStr)) {
+            if (root.pwdFlays !== 2 && !dccData.CheckPasswordValid("password", pwdStr)) {
                 errorKey = "password"
                 return false
             }
-            switch (eapType) {
+            switch (root.eapType) {
             case "tls":
-                if (!config802_1x["private-key"] || config802_1x["private-key"] === "") {
+                if (!root.config802_1x["private-key"] || root.config802_1x["private-key"] === "") {
                     errorKey = "private-key"
                     return false
                 }
-                if (!config802_1x["client-cert"] || config802_1x["client-cert"] === "") {
+                if (!root.config802_1x["client-cert"] || root.config802_1x["client-cert"] === "") {
                     errorKey = "client-cert"
                     return false
                 }
@@ -332,7 +332,7 @@ DccTitleObject {
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("Security")
             weight: 10
-            visible: type === NetType.WirelessItem
+            visible: root.type === NetType.WirelessItem
             pageType: DccObject.Editor
             page: D.ComboBox {
                 textRole: "text"
@@ -353,13 +353,13 @@ DccTitleObject {
                         "text": qsTr("WPA3 Personal"),
                         "value": "sae"
                     }]
-                currentIndex: indexOfValue(keyMgmt)
+                currentIndex: indexOfValue(root.keyMgmt)
                 onActivated: {
-                    keyMgmt = currentValue
+                    root.keyMgmt = currentValue
                     root.editClicked()
                 }
                 Component.onCompleted: {
-                    currentIndex = indexOfValue(keyMgmt)
+                    currentIndex = indexOfValue(root.keyMgmt)
                 }
             }
         }
@@ -368,13 +368,13 @@ DccTitleObject {
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("Security")
             weight: 20
-            visible: type === NetType.WiredItem
+            visible: root.type === NetType.WiredItem
             pageType: DccObject.Editor
             page: D.Switch {
-                checked: keyMgmt === "wpa-eap"
+                checked: root.keyMgmt === "wpa-eap"
                 onClicked: {
-                    if ((keyMgmt === "wpa-eap") !== checked) {
-                        keyMgmt = checked ? "wpa-eap" : ""
+                    if ((root.keyMgmt === "wpa-eap") !== checked) {
+                        root.keyMgmt = checked ? "wpa-eap" : ""
                         root.editClicked()
                     }
                 }
@@ -385,19 +385,19 @@ DccTitleObject {
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("EAP Auth")
             weight: 30
-            visible: keyMgmt === "wpa-eap"
+            visible: root.keyMgmt === "wpa-eap"
             pageType: DccObject.Editor
             page: D.ComboBox {
                 textRole: "text"
                 valueRole: "value"
-                currentIndex: indexOfValue(eapType)
+                currentIndex: indexOfValue(root.eapType)
                 onActivated: {
-                    eapType = currentValue
+                    root.eapType = currentValue
                     root.editClicked()
                 }
-                model: type === NetType.WiredItem ? eapModelWired : eapModelWireless
+                model: root.type === NetType.WiredItem ? eapModelWired : eapModelWireless
                 Component.onCompleted: {
-                    currentIndex = indexOfValue(eapType)
+                    currentIndex = indexOfValue(root.eapType)
                 }
             }
         }
@@ -406,17 +406,17 @@ DccTitleObject {
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("Identity")
             weight: 40
-            visible: keyMgmt === "wpa-eap"
+            visible: root.keyMgmt === "wpa-eap"
             pageType: DccObject.Editor
             page: D.LineEdit {
                 placeholderText: qsTr("Required")
-                text: config802_1x && config802_1x.hasOwnProperty("identity") ? config802_1x.identity : ""
+                text: root.config802_1x && root.config802_1x.hasOwnProperty("identity") ? root.config802_1x.identity : ""
                 onTextChanged: {
                     if (showAlert) {
                         errorKey = ""
                     }
-                    if (config802_1x.identity !== text) {
-                        config802_1x.identity = text
+                    if (root.config802_1x.identity !== text) {
+                        root.config802_1x.identity = text
                         root.editClicked()
                     }
                 }
@@ -435,7 +435,7 @@ DccTitleObject {
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("Pwd Options")
             weight: 50
-            visible: keyMgmt !== ""
+            visible: root.keyMgmt !== ""
             pageType: DccObject.Editor
             page: D.ComboBox {
                 textRole: "text"
@@ -450,27 +450,27 @@ DccTitleObject {
                         "text": qsTr("Ask me always"),
                         "value": 2
                     }]
-                currentIndex: indexOfValue(pwdFlays)
+                currentIndex: indexOfValue(root.pwdFlays)
                 onActivated: {
-                    pwdFlays = currentValue
+                    root.pwdFlays = currentValue
                     root.editClicked()
                 }
                 Component.onCompleted: {
-                    currentIndex = indexOfValue(pwdFlays)
+                    currentIndex = indexOfValue(root.pwdFlays)
                 }
             }
         }
         DccObject {
             name: "password"
             parentName: root.parentName + "/secretGroup"
-            displayName: keyMgmt === "none" ? qsTr("Key") : (eapType === "tls" ? qsTr("Private Pwd") : qsTr("Password"))
+            displayName: root.keyMgmt === "none" ? qsTr("Key") : (root.eapType === "tls" ? qsTr("Private Pwd") : qsTr("Password"))
             weight: 60
-            visible: keyMgmt !== "" && pwdFlays !== 2
+            visible: root.keyMgmt !== "" && root.pwdFlays !== 2
             pageType: DccObject.Editor
             page: NetPasswordEdit {
-                text: pwdStr
+                text: root.pwdStr
                 dataItem: root
-                onTextUpdated: pwdStr = text
+                onTextUpdated: root.pwdStr = text
             }
         }
         DccObject {
@@ -478,7 +478,7 @@ DccTitleObject {
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("Authentication")
             weight: 70
-            visible: keyMgmt === "none"
+            visible: root.keyMgmt === "none"
             pageType: DccObject.Editor
             page: D.ComboBox {
                 textRole: "text"
@@ -490,13 +490,13 @@ DccTitleObject {
                         "text": qsTr("Open system"),
                         "value": "open"
                     }]
-                currentIndex: configWSecurity && configWSecurity.hasOwnProperty("auth-alg") ? indexOfValue(configWSecurity["auth-alg"]) : 0
+                currentIndex: root.configWSecurity && root.configWSecurity.hasOwnProperty("auth-alg") ? indexOfValue(root.configWSecurity["auth-alg"]) : 0
                 onActivated: {
-                    configWSecurity["auth-alg"] = currentValue
+                    root.configWSecurity["auth-alg"] = currentValue
                     root.editClicked()
                 }
                 Component.onCompleted: {
-                    currentIndex = configWSecurity && configWSecurity.hasOwnProperty("auth-alg") ? indexOfValue(configWSecurity["auth-alg"]) : 0
+                    currentIndex = root.configWSecurity && root.configWSecurity.hasOwnProperty("auth-alg") ? indexOfValue(root.configWSecurity["auth-alg"]) : 0
                 }
             }
         }
@@ -505,13 +505,13 @@ DccTitleObject {
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("Private Key")
             weight: 80
-            visible: keyMgmt === "wpa-eap" && eapType === "tls"
+            visible: root.keyMgmt === "wpa-eap" && root.eapType === "tls"
             pageType: DccObject.Editor
             page: NetFileChooseEdit {
                 dataItem: root
                 placeholderText: qsTr("Required")
-                text: config802_1x && config802_1x.hasOwnProperty("private-key") ? removeTrailingNull(config802_1x["private-key"]) : ""
-                onTextUpdated: config802_1x["private-key"] = text
+                text: root.config802_1x && root.config802_1x.hasOwnProperty("private-key") ? removeTrailingNull(root.config802_1x["private-key"]) : ""
+                onTextUpdated: root.config802_1x["private-key"] = text
             }
         }
         DccObject {
@@ -519,13 +519,13 @@ DccTitleObject {
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("Anonymous ID")
             weight: 90
-            visible: keyMgmt === "wpa-eap" && (eapType === "fast" || eapType === "ttls" || eapType === "peap")
+            visible: root.keyMgmt === "wpa-eap" && (root.eapType === "fast" || root.eapType === "ttls" || root.eapType === "peap")
             pageType: DccObject.Editor
             page: D.LineEdit {
-                text: config802_1x && config802_1x.hasOwnProperty("anonymous-identity") ? config802_1x["anonymous-identity"] : ""
+                text: root.config802_1x && root.config802_1x.hasOwnProperty("anonymous-identity") ? root.config802_1x["anonymous-identity"] : ""
                 onTextChanged: {
-                    if (config802_1x["anonymous-identity"] !== text) {
-                        config802_1x["anonymous-identity"] = text
+                    if (root.config802_1x["anonymous-identity"] !== text) {
+                        root.config802_1x["anonymous-identity"] = text
                         root.editClicked()
                     }
                 }
@@ -536,20 +536,20 @@ DccTitleObject {
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("Provisioning")
             weight: 100
-            visible: keyMgmt === "wpa-eap" && eapType === "fast"
+            visible: root.keyMgmt === "wpa-eap" && root.eapType === "fast"
             pageType: DccObject.Editor
             page: D.ComboBox {
                 textRole: "text"
                 valueRole: "value"
-                currentIndex: (config802_1x && config802_1x.hasOwnProperty("phase1-fast-provisioning")) ? indexOfValue(config802_1x["phase1-fast-provisioning"]) : 0
+                currentIndex: (root.config802_1x && root.config802_1x.hasOwnProperty("phase1-fast-provisioning")) ? indexOfValue(root.config802_1x["phase1-fast-provisioning"]) : 0
                 onActivated: {
-                    config802_1x["phase1-fast-provisioning"] = currentValue
+                    root.config802_1x["phase1-fast-provisioning"] = currentValue
                     root.editClicked()
                 }
                 Component.onCompleted: {
-                    currentIndex = (config802_1x && config802_1x.hasOwnProperty("phase1-fast-provisioning")) ? indexOfValue(config802_1x["phase1-fast-provisioning"]) : 0
-                    if (!config802_1x.hasOwnProperty("phase1-fast-provisioning")) {
-                        config802_1x["phase1-fast-provisioning"] = currentValue
+                    currentIndex = (root.config802_1x && root.config802_1x.hasOwnProperty("phase1-fast-provisioning")) ? indexOfValue(root.config802_1x["phase1-fast-provisioning"]) : 0
+                    if (!root.config802_1x.hasOwnProperty("phase1-fast-provisioning")) {
+                        root.config802_1x["phase1-fast-provisioning"] = currentValue
                     }
                 }
                 model: [{
@@ -571,13 +571,13 @@ DccTitleObject {
             name: "pac-file"
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("PAC file")
-            visible: keyMgmt === "wpa-eap" && eapType === "fast"
+            visible: root.keyMgmt === "wpa-eap" && root.eapType === "fast"
             weight: 110
             pageType: DccObject.Editor
             page: NetFileChooseEdit {
                 dataItem: root
-                text: config802_1x && config802_1x.hasOwnProperty(dccObj.name) ? removeTrailingNull(config802_1x[dccObj.name]) : ""
-                onTextUpdated: config802_1x[dccObj.name] = text
+                text: root.config802_1x && root.config802_1x.hasOwnProperty(dccObj.name) ? removeTrailingNull(root.config802_1x[dccObj.name]) : ""
+                onTextUpdated: root.config802_1x[dccObj.name] = text
             }
         }
         DccObject {
@@ -585,12 +585,12 @@ DccTitleObject {
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("CA Cert")
             weight: 120
-            visible: keyMgmt === "wpa-eap" && (eapType === "tls" || eapType === "ttls" || eapType === "peap")
+            visible: root.keyMgmt === "wpa-eap" && (root.eapType === "tls" || root.eapType === "ttls" || root.eapType === "peap")
             pageType: DccObject.Editor
             page: NetFileChooseEdit {
                 dataItem: root
-                text: config802_1x && config802_1x.hasOwnProperty(dccObj.name) ? removeTrailingNull(config802_1x[dccObj.name]) : ""
-                onTextUpdated: config802_1x[dccObj.name] = text
+                text: root.config802_1x && root.config802_1x.hasOwnProperty(dccObj.name) ? removeTrailingNull(root.config802_1x[dccObj.name]) : ""
+                onTextUpdated: root.config802_1x[dccObj.name] = text
             }
         }
         DccObject {
@@ -598,13 +598,13 @@ DccTitleObject {
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("User Cert")
             weight: 130
-            visible: keyMgmt === "wpa-eap" && eapType === "tls"
+            visible: root.keyMgmt === "wpa-eap" && root.eapType === "tls"
             pageType: DccObject.Editor
             page: NetFileChooseEdit {
                 dataItem: root
                 placeholderText: qsTr("Required")
-                text: config802_1x && config802_1x.hasOwnProperty(dccObj.name) ? removeTrailingNull(config802_1x[dccObj.name]) : ""
-                onTextUpdated: config802_1x[dccObj.name] = text
+                text: root.config802_1x && root.config802_1x.hasOwnProperty(dccObj.name) ? removeTrailingNull(root.config802_1x[dccObj.name]) : ""
+                onTextUpdated: root.config802_1x[dccObj.name] = text
             }
         }
         DccObject {
@@ -612,20 +612,20 @@ DccTitleObject {
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("PEAP Version")
             weight: 140
-            visible: keyMgmt === "wpa-eap" && eapType === "peap"
+            visible: root.keyMgmt === "wpa-eap" && root.eapType === "peap"
             pageType: DccObject.Editor
             page: D.ComboBox {
                 textRole: "text"
                 valueRole: "value"
-                currentIndex: (config802_1x && config802_1x.hasOwnProperty("phase1-peapver")) ? indexOfValue(config802_1x["phase1-peapver"]) : 0
+                currentIndex: (root.config802_1x && root.config802_1x.hasOwnProperty("phase1-peapver")) ? indexOfValue(root.config802_1x["phase1-peapver"]) : 0
                 onActivated: {
-                    config802_1x["phase1-peapver"] = currentValue
+                    root.config802_1x["phase1-peapver"] = currentValue
                     root.editClicked()
                 }
                 Component.onCompleted: {
-                    currentIndex = (config802_1x && config802_1x.hasOwnProperty("phase1-peapver")) ? indexOfValue(config802_1x["phase1-peapver"]) : 0
-                    if (!config802_1x.hasOwnProperty("phase1-peapver")) {
-                        config802_1x["phase1-peapver"] = currentValue
+                    currentIndex = (root.config802_1x && root.config802_1x.hasOwnProperty("phase1-peapver")) ? indexOfValue(root.config802_1x["phase1-peapver"]) : 0
+                    if (!root.config802_1x.hasOwnProperty("phase1-peapver")) {
+                        root.config802_1x["phase1-peapver"] = currentValue
                     }
                 }
                 model: [{
@@ -645,21 +645,21 @@ DccTitleObject {
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("Inner Auth")
             weight: 150
-            visible: keyMgmt === "wpa-eap" && (eapType === "fast" || eapType === "ttls" || eapType === "peap")
+            visible: root.keyMgmt === "wpa-eap" && (root.eapType === "fast" || root.eapType === "ttls" || root.eapType === "peap")
             pageType: DccObject.Editor
             page: D.ComboBox {
                 textRole: "text"
                 valueRole: "value"
-                currentIndex: (config802_1x && config802_1x.hasOwnProperty("phase2-auth")) ? indexOfValue(config802_1x["phase2-auth"]) : 0
+                currentIndex: (root.config802_1x && root.config802_1x.hasOwnProperty("phase2-auth")) ? indexOfValue(root.config802_1x["phase2-auth"]) : 0
                 onActivated: {
-                    config802_1x["phase2-auth"] = currentValue
+                    root.config802_1x["phase2-auth"] = currentValue
                     root.editClicked()
                 }
-                model: eapType === "peap" ? peapAuthModel : (eapType === "fast" ? fastAuthModel : ttlsAuthModel)
+                model: root.eapType === "peap" ? peapAuthModel : (root.eapType === "fast" ? fastAuthModel : ttlsAuthModel)
                 Component.onCompleted: {
-                    currentIndex = (config802_1x && config802_1x.hasOwnProperty("phase2-auth")) ? indexOfValue(config802_1x["phase2-auth"]) : 0
-                    if (!config802_1x.hasOwnProperty("phase2-auth")) {
-                        config802_1x["phase2-auth"] = currentValue
+                    currentIndex = (root.config802_1x && root.config802_1x.hasOwnProperty("phase2-auth")) ? indexOfValue(root.config802_1x["phase2-auth"]) : 0
+                    if (!root.config802_1x.hasOwnProperty("phase2-auth")) {
+                        root.config802_1x["phase2-auth"] = currentValue
                     }
                 }
             }

@@ -26,19 +26,19 @@ DccObject {
     function setConfig(c) {
         errorKey = ""
         if (c === undefined) {
-            config = {}
+            root.config = {}
             method = "auto"
             addressData = []
             gateway = ""
         } else {
-            config = c
-            method = config.method
-            addressData = (config && config.hasOwnProperty("address-data")) ? config["address-data"] : []
-            gateway = (config && config.hasOwnProperty("gateway")) ? config["gateway"] : ""
+            root.config = c
+            method = root.config.method
+            addressData = (root.config && root.config.hasOwnProperty("address-data")) ? root.config["address-data"] : []
+            gateway = (root.config && root.config.hasOwnProperty("gateway")) ? root.config["gateway"] : ""
         }
     }
     function getConfig() {
-        let sConfig = config
+        let sConfig = root.config
         sConfig["method"] = method
         sConfig["address-data"] = addressData
         sConfig["gateway"] = gateway
@@ -66,7 +66,7 @@ DccObject {
     }
     function resetAddressData() {
         if (method === "manual") {
-            addressData = (config && config.hasOwnProperty("address-data")) ? config["address-data"] : []
+            addressData = (root.config && root.config.hasOwnProperty("address-data")) ? root.config["address-data"] : []
             if (addressData.length === 0) {
                 addressData.push({
                                      "address": "",
@@ -181,9 +181,9 @@ DccObject {
         pageType: DccObject.Item
         page: D.CheckBox {
             text: dccObj.displayName
-            checked: config.hasOwnProperty("never-default") ? config["never-default"] : false
+            checked: root.config.hasOwnProperty("never-default") ? root.config["never-default"] : false
             onClicked: {
-                config["never-default"] = checked
+                root.config["never-default"] = checked
                 root.editClicked()
             }
         }

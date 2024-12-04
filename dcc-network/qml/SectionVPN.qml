@@ -29,78 +29,75 @@ DccTitleObject {
 
     function setConfig(c) {
         errorKey = ""
-        config = c !== undefined ? c : {}
-        dataMap = config.hasOwnProperty("data") ? dccData.toMap(config.data) : {}
-        secretMap = config.hasOwnProperty("secrets") ? dccData.toMap(config.secrets) : {}
+        root.config = c !== undefined ? c : {}
+        root.dataMap = root.config.hasOwnProperty("data") ? dccData.toMap(root.config.data) : {}
+        root.secretMap = root.config.hasOwnProperty("secrets") ? dccData.toMap(root.config.secrets) : {}
 
         const mppeList = ["require-mppe", "require-mppe-40", "require-mppe-128"]
         mppe = false
         currentMppeMethod = "require-mppe"
         for (let mppeMethod of mppeList) {
-            if (dataMap.hasOwnProperty(mppeMethod) && dataMap[mppeMethod] === "yes") {
+            if (root.dataMap.hasOwnProperty(mppeMethod) && root.dataMap[mppeMethod] === "yes") {
                 mppe = true
                 currentMppeMethod = mppeMethod
             }
         }
-        ipsecEnabled = dataMap["ipsec-enabled"] === "yes"
+        ipsecEnabled = root.dataMap["ipsec-enabled"] === "yes"
         // 防止密码项没设置对应项显示错误，先给默认值
         const pwdKeys = ["password-flags", "Xauth password-flags", "IPSec secret-flags", "cert-pass-flags"]
         for (let pwdKey of pwdKeys) {
-            if (!dataMap.hasOwnProperty(pwdKey)) {
-                dataMap[pwdKey] = "0"
+            if (!root.dataMap.hasOwnProperty(pwdKey)) {
+                root.dataMap[pwdKey] = "0"
             }
         }
-        if (!dataMap.hasOwnProperty("method")) {
-            dataMap["method"] = "key"
+        if (!root.dataMap.hasOwnProperty("method")) {
+            root.dataMap["method"] = "key"
         }
-        if (!dataMap.hasOwnProperty("connection-type")) {
-            dataMap["connection-type"] = "tls"
+        if (!root.dataMap.hasOwnProperty("connection-type")) {
+            root.dataMap["connection-type"] = "tls"
         }
-        console.log("proxy-type:  ", dataMap["proxy-type"], dataMap["proxy-type"] !== "none")
-        if (!dataMap.hasOwnProperty("proxy-type")) {
-            dataMap["proxy-type"] = "none"
+        console.log("proxy-type:  ", root.dataMap["proxy-type"], root.dataMap["proxy-type"] !== "none")
+        if (!root.dataMap.hasOwnProperty("proxy-type")) {
+            root.dataMap["proxy-type"] = "none"
         }
-        console.log("proxy-type:  ", dataMap["proxy-type"], dataMap["proxy-type"] !== "none")
-        switch (vpnType) {
+        console.log("proxy-type:  ", root.dataMap["proxy-type"], root.dataMap["proxy-type"] !== "none")
+        switch (root.vpnType) {
         case NetUtils.VpnTypeEnum["vpnc"]:
-            if (dataMap["Enable no encryption"] === "yes") {
+            if (root.dataMap["Enable no encryption"] === "yes") {
                 currentEncryption = "none"
-            } else if (dataMap["Enable Single DES"] === "yes") {
+            } else if (root.dataMap["Enable Single DES"] === "yes") {
                 currentEncryption = "weak"
             } else {
                 currentEncryption = "secure"
             }
             break
         }
-        let aa = (vpnType & (NetUtils.VpnTypeEnum["openconnect"])) || ((vpnType & NetUtils.VpnTypeEnum["strongswan"]) && (dataMap["method"] === "key"))
-        console.log("aa:    ", aa, vpnType, dataMap["method"])
-
         dataMapChanged()
     }
     function getConfig() {
         if (mppe) {
             switch (currentMppeMethod) {
             case "require-mppe":
-                dataMap["require-mppe"] = "yes"
-                delete dataMap["require-mppe-40"]
-                delete dataMap["require-mppe-128"]
+                root.dataMap["require-mppe"] = "yes"
+                delete root.dataMap["require-mppe-40"]
+                delete root.dataMap["require-mppe-128"]
                 break
             case "require-mppe-40":
-                dataMap["require-mppe-40"] = "yes"
-                delete dataMap["require-mppe"]
-                delete dataMap["require-mppe-128"]
+                root.dataMap["require-mppe-40"] = "yes"
+                delete root.dataMap["require-mppe"]
+                delete root.dataMap["require-mppe-128"]
                 break
             case "require-mppe-128":
-                dataMap["require-mppe-128"] = "yes"
-                delete dataMap["require-mppe-40"]
-                delete dataMap["require-mppe"]
+                root.dataMap["require-mppe-128"] = "yes"
+                delete root.dataMap["require-mppe-40"]
+                delete root.dataMap["require-mppe"]
                 break
             }
         } else {
-            delete dataMap["require-mppe"]
-            delete dataMap["require-mppe-40"]
-            delete dataMap["require-mppe-128"]
-            delete config["mppe-stateful"]
+            delete root.dataMap["require-mppe"]
+            delete root.dataMap["require-mppe-40"]
+            delete root.dataMap["require-mppe-128"]
+            delete root.config["mppe-stateful"]
         }
         // vpn配置全在这，防止不同vpn的配置都保存，这里用key过虑下
         let dataKeys = []
@@ -108,71 +105,71 @@ DccTitleObject {
         const pppKeys = ["require-mppe", "require-mppe-40", "require-mppe-128", "mppe-stateful", "refuse-eap", "refuse-pap", "refuse-chap", "refuse-mschap", "refuse-mschapv2", "nobsdcomp", "nodeflate", "no-vj-comp", "nopcomp", "noaccomp", "lcp-echo-failure", "lcp-echo-interval"]
         const ipsecKeys = ["ipsec-enabled", "ipsec-group-name", "ipsec-gateway-id", "ipsec-psk", "ipsec-ike", "ipsec-esp"]
         const vpncAdvKeys = ["Domain", "Vendor", "Application Version", "Enable Single DES", "Enable no encryption", "NAT Traversal Mode", "IKE DH Group", "Perfect Forward Secrecy", "Local Port", "DPD idle timeout (our side)"]
-        switch (vpnType) {
+        switch (root.vpnType) {
         case NetUtils.VpnTypeEnum["l2tp"]:
             dataKeys = ["gateway", "user", "password-flags", "domain"]
             dataKeys = dataKeys.concat(pppKeys)
             dataKeys = dataKeys.concat(ipsecKeys)
-            if (dataMap["password-flags"] === "0") {
+            if (root.dataMap["password-flags"] === "0") {
                 secretKeys = ["password"]
             }
             break
         case NetUtils.VpnTypeEnum["pptp"]:
             dataKeys = ["gateway", "user", "password-flags", "domain"]
             dataKeys = dataKeys.concat(pppKeys)
-            if (dataMap["password-flags"] === "0") {
+            if (root.dataMap["password-flags"] === "0") {
                 secretKeys = ["password"]
             }
             break
         case NetUtils.VpnTypeEnum["vpnc"]:
             dataKeys = ["IPSec gateway", "Xauth username", "Xauth password-flags", "xauth-password-type", "IPSec ID", "IPSec secret-flags", "ipsec-secret-type", "IKE Authmode", "CA-File"]
             dataKeys = dataKeys.concat(vpncAdvKeys)
-            if (dataMap["Xauth password-flags"] === "0") {
+            if (root.dataMap["Xauth password-flags"] === "0") {
                 secretKeys.push("Xauth password")
             }
-            if (dataMap["IPSec secret-flags"] === "0") {
+            if (root.dataMap["IPSec secret-flags"] === "0") {
                 secretKeys.push("IPSec secret")
             }
             switch (currentEncryption) {
             case "none":
-                delete dataMap["Enable Single DES"]
-                dataMap["Enable no encryption"] = "yes"
+                delete root.dataMap["Enable Single DES"]
+                root.dataMap["Enable no encryption"] = "yes"
                 break
             case "weak":
-                delete dataMap["Enable no encryption"]
-                dataMap["Enable Single DES"] = "yes"
+                delete root.dataMap["Enable no encryption"]
+                root.dataMap["Enable Single DES"] = "yes"
                 break
             case "secure":
-                delete dataMap["Enable Single DES"]
-                delete dataMap["Enable no encryption"]
+                delete root.dataMap["Enable Single DES"]
+                delete root.dataMap["Enable no encryption"]
                 break
             }
-            switch (dataMap["Xauth password-flags"]) {
+            switch (root.dataMap["Xauth password-flags"]) {
             case "0":
-                dataMap["xauth-password-type"] = "save"
+                root.dataMap["xauth-password-type"] = "save"
                 break
             case "1":
-                dataMap["xauth-password-type"] = "ask"
+                root.dataMap["xauth-password-type"] = "ask"
                 break
             case "2":
-                dataMap["xauth-password-type"] = "unused"
+                root.dataMap["xauth-password-type"] = "unused"
                 break
             }
-            switch (dataMap["IPSec secret-flags"]) {
+            switch (root.dataMap["IPSec secret-flags"]) {
             case "0":
-                dataMap["ipsec-secret-type"] = "save"
+                root.dataMap["ipsec-secret-type"] = "save"
                 break
             case "1":
-                dataMap["ipsec-secret-type"] = "ask"
+                root.dataMap["ipsec-secret-type"] = "ask"
                 break
             case "2":
-                dataMap["ipsec-secret-type"] = "unused"
+                root.dataMap["ipsec-secret-type"] = "unused"
                 break
             }
             break
         case NetUtils.VpnTypeEnum["openconnect"]:
             dataKeys = ["gateway", "cacert", "proxy", "enable_csd_trojan", "csd_wrapper", "usercert", "userkey", "pem_passphrase_fsid", "cookie-flags"]
-            dataMap["cookie-flags"] = "2"
+            root.dataMap["cookie-flags"] = "2"
             break
         case NetUtils.VpnTypeEnum["strongswan"]:
             dataKeys = ["address", "certificate", "method", "usercert", "userkey", "user", "virtual", "encap", "ipcomp", "proposal", "ike", "esp"]
@@ -180,25 +177,25 @@ DccTitleObject {
             break
         case NetUtils.VpnTypeEnum["openvpn"]:
             dataKeys = ["remote", "connection-type", "port", "reneg-seconds", "comp-lzo", "proto-tcp", "dev-type", "tunnel-mtu", "fragment-size", "mssfix", "remote-random", "tls-remote", "remote-cert-tls", "ta", "ta-dir"]
-            switch (dataMap["connection-type"]) {
+            switch (root.dataMap["connection-type"]) {
             case "tls":
                 dataKeys = dataKeys.concat(["ca", "cert", "key", "cert-pass-flags"])
-                if (dataMap["cert-pass-flags"] === "0") {
+                if (root.dataMap["cert-pass-flags"] === "0") {
                     secretKeys.push("cert-pass")
                 }
                 break
             case "password":
                 dataKeys = dataKeys.concat(["ca", "username", "password-flags"])
-                if (dataMap["password-flags"] === "0") {
+                if (root.dataMap["password-flags"] === "0") {
                     secretKeys.push("password")
                 }
                 break
             case "password-tls":
                 dataKeys = dataKeys.concat(["ca", "username", "password-flags", "cert", "key", "cert-pass-flags"])
-                if (dataMap["password-flags"] === "0") {
+                if (root.dataMap["password-flags"] === "0") {
                     secretKeys.push("password")
                 }
-                if (dataMap["cert-pass-flags"] === "0") {
+                if (root.dataMap["cert-pass-flags"] === "0") {
                     secretKeys.push("cert-pass")
                 }
                 break
@@ -206,17 +203,17 @@ DccTitleObject {
                 dataKeys = dataKeys.concat(["static-key", "static-key-direction", "remote-ip", "local-ip"])
                 break
             }
-            if (dataMap["cipher"] !== "default") {
+            if (root.dataMap["cipher"] !== "default") {
                 dataKeys.push("cipher")
             }
-            if (dataMap["auth"] !== "default") {
+            if (root.dataMap["auth"] !== "default") {
                 dataKeys.push("auth")
             }
 
-            switch (dataMap["proxy-type"]) {
+            switch (root.dataMap["proxy-type"]) {
             case "http":
                 dataKeys = dataKeys.concat(["proxy-type", "proxy-server", "proxy-port", "proxy-retry", "http-proxy-username", "http-proxy-password-flags"])
-                dataMap["http-proxy-password-flags"] = "0"
+                root.dataMap["http-proxy-password-flags"] = "0"
                 secretKeys.push("http-proxy-password")
                 break
             case "socks":
@@ -229,98 +226,98 @@ DccTitleObject {
         }
         let tmpDataMap = {}
         for (var key of dataKeys) {
-            if (dataMap.hasOwnProperty(key)) {
-                tmpDataMap[key] = dataMap[key]
+            if (root.dataMap.hasOwnProperty(key)) {
+                tmpDataMap[key] = root.dataMap[key]
             }
         }
         let tmpSecretMap = {}
         for (key of secretKeys) {
-            if (secretMap.hasOwnProperty(key)) {
-                tmpSecretMap[key] = secretMap[key]
+            if (root.secretMap.hasOwnProperty(key)) {
+                tmpSecretMap[key] = root.secretMap[key]
             }
         }
 
-        config.data = dccData.toStringMap(tmpDataMap)
-        config.secrets = dccData.toStringMap(tmpSecretMap)
-        return config
+        root.config.data = dccData.toStringMap(tmpDataMap)
+        root.config.secrets = dccData.toStringMap(tmpSecretMap)
+        return root.config
     }
     function checkInput() {
         errorKey = ""
         let checkKeys = []
-        switch (vpnType) {
+        switch (root.vpnType) {
         case NetUtils.VpnTypeEnum["pptp"]:
         case NetUtils.VpnTypeEnum["l2tp"]:
             // ipv6 不支持，这里过滤掉，不然后面host 会反向解析浪费时间。
-            if (!dataMap.hasOwnProperty("gateway") || dataMap["gateway"].length === 0 || NetUtils.ipv6RegExp.test(dataMap["gateway"])) {
+            if (!root.dataMap.hasOwnProperty("gateway") || root.dataMap["gateway"].length === 0 || NetUtils.ipv6RegExp.test(root.dataMap["gateway"])) {
                 errorKey = "gateway"
                 return false
             }
-            checkKeys = [[dataMap, "gateway"], [dataMap, "user"]]
-            console.log("password-flags", dataMap["password-flags"])
-            if (!dataMap.hasOwnProperty("password-flags") || dataMap["password-flags"] === "0") {
-                checkKeys.push([secretMap, "password"])
+            checkKeys = [[root.dataMap, "gateway"], [root.dataMap, "user"]]
+            console.log("password-flags", root.dataMap["password-flags"])
+            if (!root.dataMap.hasOwnProperty("password-flags") || root.dataMap["password-flags"] === "0") {
+                checkKeys.push([root.secretMap, "password"])
             }
             console.log("length", checkKeys.length)
             break
         case NetUtils.VpnTypeEnum["vpnc"]:
-            checkKeys = [[dataMap, "IPSec gateway"], [dataMap, "Xauth username"]]
-            if (!dataMap.hasOwnProperty("Xauth password-flags") || dataMap["Xauth password-flags"] === "0") {
-                checkKeys.push([secretMap, "Xauth password"])
+            checkKeys = [[root.dataMap, "IPSec gateway"], [root.dataMap, "Xauth username"]]
+            if (!root.dataMap.hasOwnProperty("Xauth password-flags") || root.dataMap["Xauth password-flags"] === "0") {
+                checkKeys.push([root.secretMap, "Xauth password"])
             }
-            checkKeys.push([dataMap, "IPSec ID"])
-            if (!dataMap.hasOwnProperty("IPSec secret-flags") || dataMap["IPSec secret-flags"] === "0") {
-                checkKeys.push([secretMap, "IPSec secret"])
+            checkKeys.push([root.dataMap, "IPSec ID"])
+            if (!root.dataMap.hasOwnProperty("IPSec secret-flags") || root.dataMap["IPSec secret-flags"] === "0") {
+                checkKeys.push([root.secretMap, "IPSec secret"])
             }
-            if (dataMap["IKE Authmode"] === "hybrid") {
-                checkKeys.push([dataMap, "CA-File"])
+            if (root.dataMap["IKE Authmode"] === "hybrid") {
+                checkKeys.push([root.dataMap, "CA-File"])
             }
             break
         case NetUtils.VpnTypeEnum["openconnect"]:
-            checkKeys = [[dataMap, "gateway"], [dataMap, "usercert"], [dataMap, "userkey"]]
+            checkKeys = [[root.dataMap, "gateway"], [root.dataMap, "usercert"], [root.dataMap, "userkey"]]
             break
         case NetUtils.VpnTypeEnum["strongswan"]:
-            checkKeys = [[dataMap, "address"]]
+            checkKeys = [[root.dataMap, "address"]]
             break
         case NetUtils.VpnTypeEnum["openvpn"]:
-            checkKeys = [[dataMap, "remote"]]
-            const openvpnTlsKeys = [[dataMap, "cert"], [dataMap, "key"]]
-            const openvpnPwdKeys = [[dataMap, "username"]]
-            switch (dataMap["connection-type"]) {
+            checkKeys = [[root.dataMap, "remote"]]
+            const openvpnTlsKeys = [[root.dataMap, "cert"], [root.dataMap, "key"]]
+            const openvpnPwdKeys = [[root.dataMap, "username"]]
+            switch (root.dataMap["connection-type"]) {
             case "tls":
-                checkKeys.push([dataMap, "ca"])
+                checkKeys.push([root.dataMap, "ca"])
                 checkKeys = checkKeys.concat(openvpnTlsKeys)
-                if (dataMap["cert-pass-flags"] === "0") {
-                    checkKeys.push([secretMap, "cert-pass"])
+                if (root.dataMap["cert-pass-flags"] === "0") {
+                    checkKeys.push([root.secretMap, "cert-pass"])
                 }
                 break
             case "password":
-                checkKeys.push([dataMap, "ca"])
+                checkKeys.push([root.dataMap, "ca"])
                 checkKeys = checkKeys.concat(openvpnPwdKeys)
-                if (dataMap["password-flags"] === "0") {
-                    checkKeys.push([secretMap, "password"])
+                if (root.dataMap["password-flags"] === "0") {
+                    checkKeys.push([root.secretMap, "password"])
                 }
                 break
             case "password-tls":
-                checkKeys.push([dataMap, "ca"])
+                checkKeys.push([root.dataMap, "ca"])
                 checkKeys = checkKeys.concat(openvpnPwdKeys)
                 checkKeys = checkKeys.concat(openvpnTlsKeys)
-                if (dataMap["password-flags"] === "0") {
-                    checkKeys.push([secretMap, "password"])
+                if (root.dataMap["password-flags"] === "0") {
+                    checkKeys.push([root.secretMap, "password"])
                 }
-                if (dataMap["cert-pass-flags"] === "0") {
-                    checkKeys.push([secretMap, "cert-pass"])
+                if (root.dataMap["cert-pass-flags"] === "0") {
+                    checkKeys.push([root.secretMap, "cert-pass"])
                 }
                 break
             case "static-key":
-                checkKeys = checkKeys.concat([[dataMap, "static-key"], [dataMap, "remote-ip"], [dataMap, "local-ip"]])
+                checkKeys = checkKeys.concat([[root.dataMap, "static-key"], [root.dataMap, "remote-ip"], [root.dataMap, "local-ip"]])
                 break
             }
-            switch (dataMap["proxy-type"]) {
+            switch (root.dataMap["proxy-type"]) {
             case "http":
-                checkKeys = checkKeys.concat([[dataMap, "proxy-server"], [dataMap, "http-proxy-username"], [secretMap, "http-proxy-password"]])
+                checkKeys = checkKeys.concat([[root.dataMap, "proxy-server"], [root.dataMap, "http-proxy-username"], [root.secretMap, "http-proxy-password"]])
                 break
             case "socks":
-                checkKeys.push([dataMap, "proxy-server"])
+                checkKeys.push([root.dataMap, "proxy-server"])
                 break
             case "none":
                 break
@@ -357,13 +354,13 @@ DccTitleObject {
         RowLayout {
             D.LineEdit {
                 id: fileEdit
-                text: dataMap.hasOwnProperty(dccObj.name) ? NetUtils.removeTrailingNull(dataMap[dccObj.name]) : ""
+                text: root.dataMap.hasOwnProperty(dccObj.name) ? NetUtils.removeTrailingNull(root.dataMap[dccObj.name]) : ""
                 onTextChanged: {
                     if (showAlert) {
                         errorKey = ""
                     }
-                    if (dataMap[dccObj.name] !== text) {
-                        dataMap[dccObj.name] = text
+                    if (root.dataMap[dccObj.name] !== text) {
+                        root.dataMap[dccObj.name] = text
                         root.editClicked()
                     }
                 }
@@ -392,13 +389,13 @@ DccTitleObject {
             D.LineEdit {
                 id: fileEdit
                 placeholderText: qsTr("Required")
-                text: dataMap.hasOwnProperty(dccObj.name) ? NetUtils.removeTrailingNull(dataMap[dccObj.name]) : ""
+                text: root.dataMap.hasOwnProperty(dccObj.name) ? NetUtils.removeTrailingNull(root.dataMap[dccObj.name]) : ""
                 onTextChanged: {
                     if (showAlert) {
                         errorKey = ""
                     }
-                    if (dataMap[dccObj.name] !== text) {
-                        dataMap[dccObj.name] = text
+                    if (root.dataMap[dccObj.name] !== text) {
+                        root.dataMap[dccObj.name] = text
                         root.editClicked()
                     }
                 }
@@ -425,13 +422,13 @@ DccTitleObject {
         id: gatewayLineEdit
         D.LineEdit {
             placeholderText: qsTr("Required")
-            text: dataMap.hasOwnProperty(dccObj.name) ? dataMap[dccObj.name] : ""
+            text: root.dataMap.hasOwnProperty(dccObj.name) ? root.dataMap[dccObj.name] : ""
             onTextChanged: {
                 if (showAlert) {
                     errorKey = ""
                 }
-                if (dataMap[dccObj.name] !== text) {
-                    dataMap[dccObj.name] = text
+                if (root.dataMap[dccObj.name] !== text) {
+                    root.dataMap[dccObj.name] = text
                     root.editClicked()
                 }
             }
@@ -450,13 +447,13 @@ DccTitleObject {
         id: requiredLineEdit
         D.LineEdit {
             placeholderText: qsTr("Required")
-            text: dataMap.hasOwnProperty(dccObj.name) ? dataMap[dccObj.name] : ""
+            text: root.dataMap.hasOwnProperty(dccObj.name) ? root.dataMap[dccObj.name] : ""
             onTextChanged: {
                 if (showAlert) {
                     errorKey = ""
                 }
-                if (dataMap[dccObj.name] !== text) {
-                    dataMap[dccObj.name] = text
+                if (root.dataMap[dccObj.name] !== text) {
+                    root.dataMap[dccObj.name] = text
                     root.editClicked()
                 }
             }
@@ -473,13 +470,13 @@ DccTitleObject {
     Component {
         id: lineEdit
         D.LineEdit {
-            text: dataMap.hasOwnProperty(dccObj.name) ? dataMap[dccObj.name] : ""
+            text: root.dataMap.hasOwnProperty(dccObj.name) ? root.dataMap[dccObj.name] : ""
             onTextChanged: {
                 if (showAlert) {
                     errorKey = ""
                 }
-                if (dataMap[dccObj.name] !== text) {
-                    dataMap[dccObj.name] = text
+                if (root.dataMap[dccObj.name] !== text) {
+                    root.dataMap[dccObj.name] = text
                     root.editClicked()
                 }
             }
@@ -496,12 +493,12 @@ DccTitleObject {
     Component {
         id: switchItem
         D.Switch {
-            checked: dataMap.hasOwnProperty(dccObj.name) && dataMap[dccObj.name] === "yes"
+            checked: root.dataMap.hasOwnProperty(dccObj.name) && root.dataMap[dccObj.name] === "yes"
             onClicked: {
                 if (checked) {
-                    dataMap[dccObj.name] = "yes"
+                    root.dataMap[dccObj.name] = "yes"
                 } else {
-                    delete dataMap[dccObj.name]
+                    delete root.dataMap[dccObj.name]
                 }
                 dataMapChanged()
                 root.editClicked()
@@ -521,7 +518,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Gateway")
             weight: 10
-            visible: vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"] | NetUtils.VpnTypeEnum["openconnect"])
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"] | NetUtils.VpnTypeEnum["openconnect"])
             pageType: DccObject.Editor
             page: gatewayLineEdit
         }
@@ -530,7 +527,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("CA Cert")
             weight: 20
-            visible: vpnType & (NetUtils.VpnTypeEnum["openconnect"])
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["openconnect"])
             pageType: DccObject.Editor
             page: fileLineEdit
         }
@@ -539,7 +536,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Proxy")
             weight: 30
-            visible: vpnType & (NetUtils.VpnTypeEnum["openconnect"])
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["openconnect"])
             pageType: DccObject.Editor
             page: requiredLineEdit
         }
@@ -548,7 +545,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Allow Cisco Secure Desktop Trojan")
             weight: 40
-            visible: vpnType & (NetUtils.VpnTypeEnum["openconnect"])
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["openconnect"])
             pageType: DccObject.Editor
             page: switchItem
         }
@@ -557,7 +554,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("CSD Script")
             weight: 50
-            visible: vpnType & (NetUtils.VpnTypeEnum["openconnect"])
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["openconnect"])
             pageType: DccObject.Editor
             page: lineEdit
         }
@@ -566,7 +563,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Gateway")
             weight: 60
-            visible: vpnType & (NetUtils.VpnTypeEnum["strongswan"])
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["strongswan"])
             pageType: DccObject.Editor
             page: gatewayLineEdit
         }
@@ -575,7 +572,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("CA Cert")
             weight: 70
-            visible: vpnType & (NetUtils.VpnTypeEnum["strongswan"])
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["strongswan"])
             pageType: DccObject.Editor
             page: fileLineEdit
         }
@@ -584,7 +581,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Auth Type")
             weight: 80
-            visible: vpnType & (NetUtils.VpnTypeEnum["strongswan"])
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["strongswan"])
             pageType: DccObject.Editor
             page: D.ComboBox {
                 textRole: "text"
@@ -605,13 +602,13 @@ DccTitleObject {
                         "text": qsTr("Pre-Shared Key"),
                         "value": "psk"
                     }]
-                currentIndex: dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                currentIndex: root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
                 onActivated: {
-                    dataMap[dccObj.name] = currentValue
+                    root.dataMap[dccObj.name] = currentValue
                     dataMapChanged()
                     root.editClicked()
                 }
-                Component.onCompleted: currentIndex = dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                Component.onCompleted: currentIndex = root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
             }
         }
         DccObject {
@@ -619,19 +616,19 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("User Cert")
             weight: 90
-            visible: (vpnType & (NetUtils.VpnTypeEnum["openconnect"])) || ((vpnType & NetUtils.VpnTypeEnum["strongswan"]) && (dataMap["method"] === "key" || dataMap["method"] === "agent"))
+            visible: (root.vpnType & (NetUtils.VpnTypeEnum["openconnect"])) || ((root.vpnType & NetUtils.VpnTypeEnum["strongswan"]) && (root.dataMap["method"] === "key" || root.dataMap["method"] === "agent"))
             pageType: DccObject.Editor
             page: RowLayout {
                 D.LineEdit {
                     id: usercertEdit
-                    placeholderText: vpnType === NetUtils.VpnTypeEnum["strongswan"] ? "" : qsTr("Required")
-                    text: dataMap.hasOwnProperty(dccObj.name) ? NetUtils.removeTrailingNull(dataMap[dccObj.name]) : ""
+                    placeholderText: root.vpnType === NetUtils.VpnTypeEnum["strongswan"] ? "" : qsTr("Required")
+                    text: root.dataMap.hasOwnProperty(dccObj.name) ? NetUtils.removeTrailingNull(root.dataMap[dccObj.name]) : ""
                     onTextChanged: {
                         if (showAlert) {
                             errorKey = ""
                         }
-                        if (dataMap[dccObj.name] !== text) {
-                            dataMap[dccObj.name] = text
+                        if (root.dataMap[dccObj.name] !== text) {
+                            root.dataMap[dccObj.name] = text
                             root.editClicked()
                         }
                     }
@@ -659,19 +656,19 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Private Key")
             weight: 100
-            visible: (vpnType & (NetUtils.VpnTypeEnum["openconnect"])) || ((vpnType & NetUtils.VpnTypeEnum["strongswan"]) && (dataMap["method"] === "key"))
+            visible: (root.vpnType & (NetUtils.VpnTypeEnum["openconnect"])) || ((root.vpnType & NetUtils.VpnTypeEnum["strongswan"]) && (root.dataMap["method"] === "key"))
             pageType: DccObject.Editor
             page: RowLayout {
                 D.LineEdit {
                     id: userkeyEdit
-                    placeholderText: vpnType === NetUtils.VpnTypeEnum["strongswan"] ? "" : qsTr("Required")
-                    text: dataMap.hasOwnProperty(dccObj.name) ? NetUtils.removeTrailingNull(dataMap[dccObj.name]) : ""
+                    placeholderText: root.vpnType === NetUtils.VpnTypeEnum["strongswan"] ? "" : qsTr("Required")
+                    text: root.dataMap.hasOwnProperty(dccObj.name) ? NetUtils.removeTrailingNull(root.dataMap[dccObj.name]) : ""
                     onTextChanged: {
                         if (showAlert) {
                             errorKey = ""
                         }
-                        if (dataMap[dccObj.name] !== text) {
-                            dataMap[dccObj.name] = text
+                        if (root.dataMap[dccObj.name] !== text) {
+                            root.dataMap[dccObj.name] = text
                             root.editClicked()
                         }
                     }
@@ -699,7 +696,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Username")
             weight: 110
-            visible: (vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])) || ((vpnType & NetUtils.VpnTypeEnum["strongswan"]) && (dataMap["method"] === "eap" || dataMap["method"] === "psk"))
+            visible: (root.vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])) || ((root.vpnType & NetUtils.VpnTypeEnum["strongswan"]) && (root.dataMap["method"] === "eap" || root.dataMap["method"] === "psk"))
             pageType: DccObject.Editor
             page: requiredLineEdit
         }
@@ -708,7 +705,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Use FSID for Key Passphrase")
             weight: 120
-            visible: vpnType & (NetUtils.VpnTypeEnum["openconnect"])
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["openconnect"])
             pageType: DccObject.Editor
             page: switchItem
         }
@@ -717,7 +714,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Gateway")
             weight: 130
-            visible: vpnType & (NetUtils.VpnTypeEnum["openvpn"])
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])
             pageType: DccObject.Editor
             page: gatewayLineEdit
         }
@@ -726,7 +723,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Auth Type")
             weight: 140
-            visible: vpnType & (NetUtils.VpnTypeEnum["openvpn"])
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])
             pageType: DccObject.Editor
             page: D.ComboBox {
                 textRole: "text"
@@ -744,12 +741,12 @@ DccTitleObject {
                         "text": qsTr("Static Key"),
                         "value": "static-key"
                     }]
-                currentIndex: dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                currentIndex: root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
                 onActivated: {
-                    dataMap[dccObj.name] = currentValue
+                    root.dataMap[dccObj.name] = currentValue
                     dataMapChanged()
                 }
-                Component.onCompleted: currentIndex = dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                Component.onCompleted: currentIndex = root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
             }
         }
         DccObject {
@@ -757,7 +754,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("CA Cert")
             weight: 150
-            visible: vpnType & (NetUtils.VpnTypeEnum["openvpn"]) && (dataMap["connection-type"] === "tls" || dataMap["connection-type"] === "password" || dataMap["connection-type"] === "password-tls")
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["openvpn"]) && (root.dataMap["connection-type"] === "tls" || root.dataMap["connection-type"] === "password" || root.dataMap["connection-type"] === "password-tls")
             pageType: DccObject.Editor
             page: requiredFileLineEdit
         }
@@ -766,7 +763,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Username")
             weight: 160
-            visible: (vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (dataMap["connection-type"] === "password" || dataMap["connection-type"] === "password-tls")
+            visible: (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "password" || root.dataMap["connection-type"] === "password-tls")
             pageType: DccObject.Editor
             page: requiredLineEdit
         }
@@ -775,7 +772,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Pwd Options")
             weight: 170
-            visible: (vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])) || (vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (dataMap["connection-type"] === "password" || dataMap["connection-type"] === "password-tls")
+            visible: (root.vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])) || (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "password" || root.dataMap["connection-type"] === "password-tls")
             pageType: DccObject.Editor
             page: D.ComboBox {
                 textRole: "text"
@@ -790,13 +787,13 @@ DccTitleObject {
                         "text": qsTr("Not Required"),
                         "value": "4"
                     }]
-                currentIndex: dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                currentIndex: root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
                 onActivated: {
-                    dataMap[dccObj.name] = currentValue
+                    root.dataMap[dccObj.name] = currentValue
                     dataMapChanged()
                     root.editClicked()
                 }
-                Component.onCompleted: currentIndex = dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                Component.onCompleted: currentIndex = root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
             }
         }
         DccObject {
@@ -804,12 +801,12 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Password")
             weight: 180
-            visible: ((vpnType & NetUtils.VpnTypeEnum["strongswan"]) && (dataMap["method"] === "eap" || dataMap["method"] === "psk")) || (dataMap["password-flags"] === "0" && ((vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])) || (vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (dataMap["connection-type"] === "password" || dataMap["connection-type"] === "password-tls")))
+            visible: ((root.vpnType & NetUtils.VpnTypeEnum["strongswan"]) && (root.dataMap["method"] === "eap" || root.dataMap["method"] === "psk")) || (root.dataMap["password-flags"] === "0" && ((root.vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])) || (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "password" || root.dataMap["connection-type"] === "password-tls")))
             pageType: DccObject.Editor
             page: NetPasswordEdit {
                 dataItem: root
-                text: secretMap.hasOwnProperty(dccObj.name) ? secretMap[dccObj.name] : ""
-                onTextUpdated: secretMap[dccObj.name] = text
+                text: root.secretMap.hasOwnProperty(dccObj.name) ? root.secretMap[dccObj.name] : ""
+                onTextUpdated: root.secretMap[dccObj.name] = text
             }
         }
         DccObject {
@@ -817,7 +814,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("User Cert")
             weight: 190
-            visible: (vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (dataMap["connection-type"] === "password-tls" || dataMap["connection-type"] === "tls")
+            visible: (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "password-tls" || root.dataMap["connection-type"] === "tls")
             pageType: DccObject.Editor
             page: fileLineEdit
         }
@@ -826,7 +823,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Private Key")
             weight: 200
-            visible: (vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (dataMap["connection-type"] === "password-tls" || dataMap["connection-type"] === "tls")
+            visible: (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "password-tls" || root.dataMap["connection-type"] === "tls")
             pageType: DccObject.Editor
             page: fileLineEdit
         }
@@ -835,7 +832,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Pwd Options")
             weight: 210
-            visible: (vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (dataMap["connection-type"] === "password-tls" || dataMap["connection-type"] === "tls")
+            visible: (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "password-tls" || root.dataMap["connection-type"] === "tls")
             pageType: DccObject.Editor
             page: D.ComboBox {
                 textRole: "text"
@@ -850,12 +847,12 @@ DccTitleObject {
                         "text": qsTr("Not Required"),
                         "value": "4"
                     }]
-                currentIndex: dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                currentIndex: root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
                 onActivated: {
-                    dataMap[dccObj.name] = currentValue
+                    root.dataMap[dccObj.name] = currentValue
                     dataMapChanged()
                 }
-                Component.onCompleted: currentIndex = dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                Component.onCompleted: currentIndex = root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
             }
         }
         DccObject {
@@ -863,12 +860,12 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Private Pwd")
             weight: 220
-            visible: dataMap["cert-pass-flags"] === "0" && (vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (dataMap["connection-type"] === "password-tls" || dataMap["connection-type"] === "tls")
+            visible: root.dataMap["cert-pass-flags"] === "0" && (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "password-tls" || root.dataMap["connection-type"] === "tls")
             pageType: DccObject.Editor
             page: NetPasswordEdit {
                 dataItem: root
-                text: secretMap.hasOwnProperty(dccObj.name) ? secretMap[dccObj.name] : ""
-                onTextUpdated: secretMap[dccObj.name] = text
+                text: root.secretMap.hasOwnProperty(dccObj.name) ? root.secretMap[dccObj.name] : ""
+                onTextUpdated: root.secretMap[dccObj.name] = text
             }
         }
         DccObject {
@@ -876,7 +873,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Static Key")
             weight: 230
-            visible: (vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (dataMap["connection-type"] === "static-key")
+            visible: (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "static-key")
             pageType: DccObject.Editor
             page: requiredFileLineEdit
         }
@@ -885,15 +882,15 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Customize Key Direction")
             weight: 240
-            visible: (vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (dataMap["connection-type"] === "static-key")
+            visible: (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "static-key")
             pageType: DccObject.Editor
             page: D.Switch {
-                checked: dataMap.hasOwnProperty("static-key-direction")
+                checked: root.dataMap.hasOwnProperty("static-key-direction")
                 onClicked: {
                     if (checked) {
-                        dataMap["static-key-direction"] = "0"
+                        root.dataMap["static-key-direction"] = "0"
                     } else {
-                        delete dataMap["static-key-direction"]
+                        delete root.dataMap["static-key-direction"]
                     }
                     dataMapChanged()
                 }
@@ -904,7 +901,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Key Direction")
             weight: 250
-            visible: dataMap.hasOwnProperty(this.name) && (vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (dataMap["connection-type"] === "static-key")
+            visible: root.dataMap.hasOwnProperty(this.name) && (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "static-key")
             pageType: DccObject.Editor
             page: D.ComboBox {
                 textRole: "text"
@@ -917,13 +914,13 @@ DccTitleObject {
                         "value": "1"
                     }]
                 onActivated: {
-                    dataMap[dccObj.name] = currentValue
+                    root.dataMap[dccObj.name] = currentValue
                 }
-                Component.onCompleted: currentIndex = dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                Component.onCompleted: currentIndex = root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
                 Connections {
                     target: root
                     function onDataMapChanged() {
-                        currentIndex = dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                        currentIndex = root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
                     }
                 }
             }
@@ -933,7 +930,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Remote IP")
             weight: 260
-            visible: (vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (dataMap["connection-type"] === "static-key")
+            visible: (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "static-key")
             pageType: DccObject.Editor
             page: requiredFileLineEdit
         }
@@ -942,7 +939,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Local IP")
             weight: 270
-            visible: (vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (dataMap["connection-type"] === "static-key")
+            visible: (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "static-key")
             pageType: DccObject.Editor
             page: requiredFileLineEdit
         }
@@ -951,7 +948,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("NT Domain")
             weight: 280
-            visible: vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])
             pageType: DccObject.Editor
             page: requiredLineEdit
         }
@@ -960,7 +957,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Request an Inner IP Address")
             weight: 290
-            visible: vpnType & (NetUtils.VpnTypeEnum["strongswan"])
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["strongswan"])
             pageType: DccObject.Editor
             page: switchItem
         }
@@ -969,7 +966,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Enforce UDP Encapsulation")
             weight: 300
-            visible: vpnType & (NetUtils.VpnTypeEnum["strongswan"])
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["strongswan"])
             pageType: DccObject.Editor
             page: switchItem
         }
@@ -978,7 +975,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Use IP Compression")
             weight: 310
-            visible: vpnType & (NetUtils.VpnTypeEnum["strongswan"])
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["strongswan"])
             pageType: DccObject.Editor
             page: switchItem
         }
@@ -987,12 +984,12 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Enable Custom Cipher Proposals")
             weight: 320
-            visible: vpnType & (NetUtils.VpnTypeEnum["strongswan"])
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["strongswan"])
             pageType: DccObject.Editor
             page: D.Switch {
-                checked: dataMap.hasOwnProperty(dccObj.name) ? dataMap[dccObj.name] === "yes" : false
+                checked: root.dataMap.hasOwnProperty(dccObj.name) ? root.dataMap[dccObj.name] === "yes" : false
                 onClicked: {
-                    dataMap[dccObj.name] = checked ? "yes" : "no"
+                    root.dataMap[dccObj.name] = checked ? "yes" : "no"
                     dataMapChanged()
                 }
             }
@@ -1002,7 +999,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("IKE")
             weight: 330
-            visible: (vpnType & (NetUtils.VpnTypeEnum["strongswan"])) && dataMap["proposal"] === "yes"
+            visible: (root.vpnType & (NetUtils.VpnTypeEnum["strongswan"])) && root.dataMap["proposal"] === "yes"
             pageType: DccObject.Editor
             page: requiredLineEdit
         }
@@ -1011,7 +1008,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("ESP")
             weight: 340
-            visible: (vpnType & (NetUtils.VpnTypeEnum["strongswan"])) && dataMap["proposal"] === "yes"
+            visible: (root.vpnType & (NetUtils.VpnTypeEnum["strongswan"])) && root.dataMap["proposal"] === "yes"
             pageType: DccObject.Editor
             page: requiredLineEdit
         }
@@ -1021,7 +1018,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Gateway")
             weight: 350
-            visible: vpnType & (NetUtils.VpnTypeEnum["vpnc"])
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["vpnc"])
             pageType: DccObject.Editor
             page: gatewayLineEdit
         }
@@ -1030,7 +1027,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Username")
             weight: 360
-            visible: vpnType & (NetUtils.VpnTypeEnum["vpnc"])
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["vpnc"])
             pageType: DccObject.Editor
             page: requiredLineEdit
         }
@@ -1039,7 +1036,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Pwd Options")
             weight: 370
-            visible: vpnType & (NetUtils.VpnTypeEnum["vpnc"])
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["vpnc"])
             pageType: DccObject.Editor
             page: D.ComboBox {
                 textRole: "text"
@@ -1054,13 +1051,13 @@ DccTitleObject {
                         "text": qsTr("Not Required"),
                         "value": "4"
                     }]
-                currentIndex: dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                currentIndex: root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
                 onActivated: {
-                    dataMap[dccObj.name] = currentValue
+                    root.dataMap[dccObj.name] = currentValue
                     dataMapChanged()
                     root.editClicked()
                 }
-                Component.onCompleted: currentIndex = dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                Component.onCompleted: currentIndex = root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
             }
         }
         DccObject {
@@ -1068,12 +1065,12 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Password")
             weight: 380
-            visible: dataMap["Xauth password-flags"] === "0" && (vpnType & (NetUtils.VpnTypeEnum["vpnc"]))
+            visible: root.dataMap["Xauth password-flags"] === "0" && (root.vpnType & (NetUtils.VpnTypeEnum["vpnc"]))
             pageType: DccObject.Editor
             page: NetPasswordEdit {
                 dataItem: root
-                text: secretMap.hasOwnProperty(dccObj.name) ? secretMap[dccObj.name] : ""
-                onTextUpdated: secretMap[dccObj.name] = text
+                text: root.secretMap.hasOwnProperty(dccObj.name) ? root.secretMap[dccObj.name] : ""
+                onTextUpdated: root.secretMap[dccObj.name] = text
             }
         }
         DccObject {
@@ -1081,7 +1078,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Group Name")
             weight: 390
-            visible: vpnType & (NetUtils.VpnTypeEnum["vpnc"])
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["vpnc"])
             pageType: DccObject.Editor
             page: requiredLineEdit
         }
@@ -1090,7 +1087,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Pwd Options")
             weight: 400
-            visible: vpnType & (NetUtils.VpnTypeEnum["vpnc"])
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["vpnc"])
             pageType: DccObject.Editor
             page: D.ComboBox {
                 textRole: "text"
@@ -1105,13 +1102,13 @@ DccTitleObject {
                         "text": qsTr("Not Required"),
                         "value": "4"
                     }]
-                currentIndex: dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                currentIndex: root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
                 onActivated: {
-                    dataMap[dccObj.name] = currentValue
+                    root.dataMap[dccObj.name] = currentValue
                     dataMapChanged()
                     root.editClicked()
                 }
-                Component.onCompleted: currentIndex = dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                Component.onCompleted: currentIndex = root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
             }
         }
         DccObject {
@@ -1119,12 +1116,12 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Group Pwd")
             weight: 410
-            visible: dataMap["IPSec secret-flags"] === "0" && (vpnType & (NetUtils.VpnTypeEnum["vpnc"]))
+            visible: root.dataMap["IPSec secret-flags"] === "0" && (root.vpnType & (NetUtils.VpnTypeEnum["vpnc"]))
             pageType: DccObject.Editor
             page: NetPasswordEdit {
                 dataItem: root
-                text: secretMap.hasOwnProperty(dccObj.name) ? secretMap[dccObj.name] : ""
-                onTextUpdated: secretMap[dccObj.name] = text
+                text: root.secretMap.hasOwnProperty(dccObj.name) ? root.secretMap[dccObj.name] : ""
+                onTextUpdated: root.secretMap[dccObj.name] = text
             }
         }
         DccObject {
@@ -1132,15 +1129,15 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Use Hybrid Authentication")
             weight: 420
-            visible: vpnType & (NetUtils.VpnTypeEnum["vpnc"])
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["vpnc"])
             pageType: DccObject.Editor
             page: D.Switch {
-                checked: dataMap.hasOwnProperty(dccObj.name) && dataMap[dccObj.name] === "hybrid"
+                checked: root.dataMap.hasOwnProperty(dccObj.name) && root.dataMap[dccObj.name] === "hybrid"
                 onClicked: {
                     if (checked) {
-                        dataMap[dccObj.name] = "hybrid"
+                        root.dataMap[dccObj.name] = "hybrid"
                     } else {
-                        delete dataMap[dccObj.name]
+                        delete root.dataMap[dccObj.name]
                     }
                     dataMapChanged()
                     root.editClicked()
@@ -1152,7 +1149,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("CA File")
             weight: 430
-            visible: (vpnType & (NetUtils.VpnTypeEnum["vpnc"])) && dataMap["IKE Authmode"] === "hybrid"
+            visible: (root.vpnType & (NetUtils.VpnTypeEnum["vpnc"])) && root.dataMap["IKE Authmode"] === "hybrid"
             pageType: DccObject.Editor
             page: fileLineEdit
         }
@@ -1164,13 +1161,13 @@ DccTitleObject {
         parentName: root.parentName
         displayName: qsTr("VPN PPP")
         weight: root.weight + 100
-        visible: vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])
+        visible: root.vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])
     }
     DccObject {
         name: "vpnPPPMPPEGroup"
         parentName: root.parentName
         weight: root.weight + 110
-        visible: vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])
+        visible: root.vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])
         pageType: DccObject.Item
         page: DccGroupView {}
         DccObject {
@@ -1229,7 +1226,7 @@ DccTitleObject {
         name: "vpnPPPGroup"
         parentName: root.parentName
         weight: root.weight + 120
-        visible: vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])
+        visible: root.vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])
         pageType: DccObject.Item
         page: DccGroupView {}
         DccObject {
@@ -1301,7 +1298,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnPPPGroup"
             displayName: qsTr("No Protocol Field Compression")
             weight: 120
-            visible: vpnType & (NetUtils.VpnTypeEnum["l2tp"])
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["l2tp"])
             pageType: DccObject.Editor
             page: switchItem
         }
@@ -1310,7 +1307,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnPPPGroup"
             displayName: qsTr("No Address/Control Compression")
             weight: 130
-            visible: vpnType & (NetUtils.VpnTypeEnum["l2tp"])
+            visible: root.vpnType & (NetUtils.VpnTypeEnum["l2tp"])
             pageType: DccObject.Editor
             page: switchItem
         }
@@ -1321,14 +1318,14 @@ DccTitleObject {
             weight: 140
             pageType: DccObject.Editor
             page: D.Switch {
-                checked: dataMap["lcp-echo-failure"] === "5" && dataMap["lcp-echo-interval"] === "30"
+                checked: root.dataMap["lcp-echo-failure"] === "5" && root.dataMap["lcp-echo-interval"] === "30"
                 onClicked: {
                     if (checked) {
-                        dataMap["lcp-echo-failure"] = "5"
-                        dataMap["lcp-echo-interval"] = "30"
+                        root.dataMap["lcp-echo-failure"] = "5"
+                        root.dataMap["lcp-echo-interval"] = "30"
                     } else {
-                        delete dataMap["lcp-echo-failure"]
-                        delete dataMap["lcp-echo-interval"]
+                        delete root.dataMap["lcp-echo-failure"]
+                        delete root.dataMap["lcp-echo-interval"]
                     }
                     root.editClicked()
                 }
@@ -1341,13 +1338,13 @@ DccTitleObject {
         parentName: root.parentName
         displayName: qsTr("VPN IPsec")
         weight: root.weight + 200
-        visible: vpnType & (NetUtils.VpnTypeEnum["l2tp"])
+        visible: root.vpnType & (NetUtils.VpnTypeEnum["l2tp"])
     }
     DccObject {
         name: "vpnIPsecGroup"
         parentName: root.parentName
         weight: root.weight + 210
-        visible: vpnType & (NetUtils.VpnTypeEnum["l2tp"])
+        visible: root.vpnType & (NetUtils.VpnTypeEnum["l2tp"])
         pageType: DccObject.Item
         page: DccGroupView {}
         DccObject {
@@ -1363,7 +1360,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnIPsecGroup"
             displayName: qsTr("Group Name")
             weight: 20
-            visible: dataMap["ipsec-enabled"] === "yes"
+            visible: root.dataMap["ipsec-enabled"] === "yes"
             pageType: DccObject.Editor
             page: lineEdit
         }
@@ -1372,7 +1369,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnIPsecGroup"
             displayName: qsTr("Group ID")
             weight: 30
-            visible: dataMap["ipsec-enabled"] === "yes"
+            visible: root.dataMap["ipsec-enabled"] === "yes"
             pageType: DccObject.Editor
             page: lineEdit
         }
@@ -1381,7 +1378,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnIPsecGroup"
             displayName: qsTr("Pre-Shared Key")
             weight: 40
-            visible: dataMap["ipsec-enabled"] === "yes"
+            visible: root.dataMap["ipsec-enabled"] === "yes"
             pageType: DccObject.Editor
             page: lineEdit
         }
@@ -1390,7 +1387,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnIPsecGroup"
             displayName: qsTr("Phase1 Algorithms")
             weight: 50
-            visible: dataMap["ipsec-enabled"] === "yes"
+            visible: root.dataMap["ipsec-enabled"] === "yes"
             pageType: DccObject.Editor
             page: lineEdit
         }
@@ -1399,7 +1396,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnIPsecGroup"
             displayName: qsTr("Phase2 Algorithms")
             weight: 60
-            visible: dataMap["ipsec-enabled"] === "yes"
+            visible: root.dataMap["ipsec-enabled"] === "yes"
             pageType: DccObject.Editor
             page: lineEdit
         }
@@ -1410,13 +1407,13 @@ DccTitleObject {
         parentName: root.parentName
         displayName: qsTr("VPN Advanced")
         weight: root.weight + 300
-        visible: vpnType & (NetUtils.VpnTypeEnum["openvpn"])
+        visible: root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])
     }
     DccObject {
         name: "vpnAdvancedGroup"
         parentName: root.parentName
         weight: root.weight + 310
-        visible: vpnType & (NetUtils.VpnTypeEnum["openvpn"])
+        visible: root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])
         pageType: DccObject.Item
         page: DccGroupView {}
         DccObject {
@@ -1426,12 +1423,12 @@ DccTitleObject {
             weight: 10
             pageType: DccObject.Editor
             page: D.Switch {
-                checked: dataMap.hasOwnProperty("port")
+                checked: root.dataMap.hasOwnProperty("port")
                 onClicked: {
                     if (checked) {
-                        dataMap["port"] = "1194"
+                        root.dataMap["port"] = "1194"
                     } else {
-                        delete dataMap["port"]
+                        delete root.dataMap["port"]
                     }
                     dataMapChanged()
                     root.editClicked()
@@ -1443,15 +1440,15 @@ DccTitleObject {
             parentName: root.parentName + "/vpnAdvancedGroup"
             displayName: qsTr("Gateway Port")
             weight: 20
-            visible: dataMap.hasOwnProperty("port")
+            visible: root.dataMap.hasOwnProperty("port")
             pageType: DccObject.Editor
             page: D.SpinBox {
-                value: dataMap.hasOwnProperty(dccObj.name) ? parseInt(dataMap[dccObj.name], 10) : 1194
+                value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 1194
                 from: 0
                 to: 65535
                 onValueChanged: {
-                    if (dataMap[dccObj.name] !== value) {
-                        dataMap[dccObj.name] = value
+                    if (root.dataMap[dccObj.name] !== value) {
+                        root.dataMap[dccObj.name] = value
                         root.editClicked()
                     }
                 }
@@ -1464,12 +1461,12 @@ DccTitleObject {
             weight: 30
             pageType: DccObject.Editor
             page: D.Switch {
-                checked: dataMap.hasOwnProperty("reneg-seconds")
+                checked: root.dataMap.hasOwnProperty("reneg-seconds")
                 onClicked: {
                     if (checked) {
-                        dataMap["reneg-seconds"] = "0"
+                        root.dataMap["reneg-seconds"] = "0"
                     } else {
-                        delete dataMap["reneg-seconds"]
+                        delete root.dataMap["reneg-seconds"]
                     }
                     dataMapChanged()
                     root.editClicked()
@@ -1481,15 +1478,15 @@ DccTitleObject {
             parentName: root.parentName + "/vpnAdvancedGroup"
             displayName: qsTr("Renegotiation Interval")
             weight: 40
-            visible: dataMap.hasOwnProperty("reneg-seconds")
+            visible: root.dataMap.hasOwnProperty("reneg-seconds")
             pageType: DccObject.Editor
             page: D.SpinBox {
-                value: dataMap.hasOwnProperty(dccObj.name) ? parseInt(dataMap[dccObj.name], 10) : 0
+                value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 0
                 from: 0
                 to: 65535
                 onValueChanged: {
-                    if (dataMap[dccObj.name] !== value) {
-                        dataMap[dccObj.name] = value
+                    if (root.dataMap[dccObj.name] !== value) {
+                        root.dataMap[dccObj.name] = value
                         root.editClicked()
                     }
                 }
@@ -1502,12 +1499,12 @@ DccTitleObject {
             weight: 50
             pageType: DccObject.Editor
             page: D.Switch {
-                checked: dataMap["comp-lzo"] === "yes" || dataMap["comp-lzo"] === "adaptive"
+                checked: root.dataMap["comp-lzo"] === "yes" || root.dataMap["comp-lzo"] === "adaptive"
                 onClicked: {
                     if (checked) {
-                        dataMap[dccObj.name] = "yes"
+                        root.dataMap[dccObj.name] = "yes"
                     } else {
-                        delete dataMap[dccObj.name]
+                        delete root.dataMap[dccObj.name]
                     }
                     dataMapChanged()
                     root.editClicked()
@@ -1537,12 +1534,12 @@ DccTitleObject {
             weight: 80
             pageType: DccObject.Editor
             page: D.Switch {
-                checked: dataMap.hasOwnProperty("tunnel-mtu")
+                checked: root.dataMap.hasOwnProperty("tunnel-mtu")
                 onClicked: {
                     if (checked) {
-                        dataMap["tunnel-mtu"] = "1500"
+                        root.dataMap["tunnel-mtu"] = "1500"
                     } else {
-                        delete dataMap["tunnel-mtu"]
+                        delete root.dataMap["tunnel-mtu"]
                     }
                     dataMapChanged()
                     root.editClicked()
@@ -1554,15 +1551,15 @@ DccTitleObject {
             parentName: root.parentName + "/vpnAdvancedGroup"
             displayName: qsTr("MTU")
             weight: 90
-            visible: dataMap.hasOwnProperty("tunnel-mtu")
+            visible: root.dataMap.hasOwnProperty("tunnel-mtu")
             pageType: DccObject.Editor
             page: D.SpinBox {
-                value: dataMap.hasOwnProperty(dccObj.name) ? parseInt(dataMap[dccObj.name], 10) : 1500
+                value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 1500
                 from: 0
                 to: 65535
                 onValueChanged: {
-                    if (dataMap[dccObj.name] !== value) {
-                        dataMap[dccObj.name] = value
+                    if (root.dataMap[dccObj.name] !== value) {
+                        root.dataMap[dccObj.name] = value
                         root.editClicked()
                     }
                 }
@@ -1575,12 +1572,12 @@ DccTitleObject {
             weight: 100
             pageType: DccObject.Editor
             page: D.Switch {
-                checked: dataMap.hasOwnProperty("fragment-size")
+                checked: root.dataMap.hasOwnProperty("fragment-size")
                 onClicked: {
                     if (checked) {
-                        dataMap["fragment-size"] = "1300"
+                        root.dataMap["fragment-size"] = "1300"
                     } else {
-                        delete dataMap["fragment-size"]
+                        delete root.dataMap["fragment-size"]
                     }
                     dataMapChanged()
                     root.editClicked()
@@ -1592,15 +1589,15 @@ DccTitleObject {
             parentName: root.parentName + "/vpnAdvancedGroup"
             displayName: qsTr("UDP Fragment Size")
             weight: 110
-            visible: dataMap.hasOwnProperty("fragment-size")
+            visible: root.dataMap.hasOwnProperty("fragment-size")
             pageType: DccObject.Editor
             page: D.SpinBox {
-                value: dataMap.hasOwnProperty(dccObj.name) ? parseInt(dataMap[dccObj.name], 10) : 1300
+                value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 1300
                 from: 0
                 to: 65535
                 onValueChanged: {
-                    if (dataMap[dccObj.name] !== value) {
-                        dataMap[dccObj.name] = value
+                    if (root.dataMap[dccObj.name] !== value) {
+                        root.dataMap[dccObj.name] = value
                         root.editClicked()
                     }
                 }
@@ -1629,13 +1626,13 @@ DccTitleObject {
         parentName: root.parentName
         displayName: qsTr("VPN Advanced")
         weight: root.weight + 350
-        visible: vpnType & (NetUtils.VpnTypeEnum["vpnc"])
+        visible: root.vpnType & (NetUtils.VpnTypeEnum["vpnc"])
     }
     DccObject {
         name: "vpncAdvancedGroup"
         parentName: root.parentName
         weight: root.weight + 360
-        visible: vpnType & (NetUtils.VpnTypeEnum["vpnc"])
+        visible: root.vpnType & (NetUtils.VpnTypeEnum["vpnc"])
         pageType: DccObject.Item
         page: DccGroupView {}
         DccObject {
@@ -1662,12 +1659,12 @@ DccTitleObject {
                         "text": qsTr("Netscreen"),
                         "value": "netscreen"
                     }]
-                currentIndex: dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                currentIndex: root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
                 onActivated: {
-                    dataMap[dccObj.name] = currentValue
+                    root.dataMap[dccObj.name] = currentValue
                     root.editClicked()
                 }
-                Component.onCompleted: currentIndex = dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                Component.onCompleted: currentIndex = root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
             }
         }
         DccObject {
@@ -1727,12 +1724,12 @@ DccTitleObject {
                         "text": qsTr("Disabled"),
                         "value": "none"
                     }]
-                currentIndex: dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                currentIndex: root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
                 onActivated: {
-                    dataMap[dccObj.name] = currentValue
+                    root.dataMap[dccObj.name] = currentValue
                     root.editClicked()
                 }
-                Component.onCompleted: currentIndex = dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                Component.onCompleted: currentIndex = root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
             }
         }
         DccObject {
@@ -1754,12 +1751,12 @@ DccTitleObject {
                         "text": qsTr("DH Group 5"),
                         "value": "dh5"
                     }]
-                currentIndex: dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                currentIndex: root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
                 onActivated: {
-                    dataMap[dccObj.name] = currentValue
+                    root.dataMap[dccObj.name] = currentValue
                     root.editClicked()
                 }
-                Component.onCompleted: currentIndex = dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                Component.onCompleted: currentIndex = root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
             }
         }
         DccObject {
@@ -1787,12 +1784,12 @@ DccTitleObject {
                         "text": qsTr("DH Group 5"),
                         "value": "dh5"
                     }]
-                currentIndex: dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                currentIndex: root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
                 onActivated: {
-                    dataMap[dccObj.name] = currentValue
+                    root.dataMap[dccObj.name] = currentValue
                     root.editClicked()
                 }
-                Component.onCompleted: currentIndex = dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                Component.onCompleted: currentIndex = root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
             }
         }
         DccObject {
@@ -1802,12 +1799,12 @@ DccTitleObject {
             weight: 80
             pageType: DccObject.Editor
             page: D.SpinBox {
-                value: dataMap.hasOwnProperty(dccObj.name) ? parseInt(dataMap[dccObj.name], 10) : 0
+                value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 0
                 from: 0
                 to: 65535
                 onValueChanged: {
-                    if (dataMap[dccObj.name] !== value) {
-                        dataMap[dccObj.name] = value
+                    if (root.dataMap[dccObj.name] !== value) {
+                        root.dataMap[dccObj.name] = value
                         root.editClicked()
                     }
                 }
@@ -1820,12 +1817,12 @@ DccTitleObject {
             weight: 90
             pageType: DccObject.Editor
             page: D.Switch {
-                checked: dataMap[dccObj.name] === "0"
+                checked: root.dataMap[dccObj.name] === "0"
                 onClicked: {
                     if (checked) {
-                        dataMap[dccObj.name] = "0"
+                        root.dataMap[dccObj.name] = "0"
                     } else {
-                        delete dataMap[dccObj.name]
+                        delete root.dataMap[dccObj.name]
                     }
                     root.editClicked()
                 }
@@ -1838,13 +1835,13 @@ DccTitleObject {
         parentName: root.parentName
         displayName: qsTr("VPN Security")
         weight: root.weight + 400
-        visible: vpnType & (NetUtils.VpnTypeEnum["openvpn"])
+        visible: root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])
     }
     DccObject {
         name: "vpnSecurityGroup"
         parentName: root.parentName
         weight: root.weight + 410
-        visible: vpnType & (NetUtils.VpnTypeEnum["openvpn"])
+        visible: root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])
         pageType: DccObject.Item
         page: DccGroupView {}
         DccObject {
@@ -1856,7 +1853,7 @@ DccTitleObject {
             page: D.ComboBox {
                 textRole: "text"
                 valueRole: "value"
-                currentIndex: dataMap.hasOwnProperty("cipher") ? indexOfValue(dataMap["cipher"]) : 0
+                currentIndex: root.dataMap.hasOwnProperty("cipher") ? indexOfValue(root.dataMap["cipher"]) : 0
                 model: [{
                         "text": qsTr("Default"),
                         "value": "default"
@@ -1913,10 +1910,10 @@ DccTitleObject {
                         "value": "SEED-CBC"
                     }]
                 onActivated: {
-                    dataMap["cipher"] = currentValue
+                    root.dataMap["cipher"] = currentValue
                     root.editClicked()
                 }
-                Component.onCompleted: currentIndex = dataMap.hasOwnProperty("cipher") ? indexOfValue(dataMap["cipher"]) : 0
+                Component.onCompleted: currentIndex = root.dataMap.hasOwnProperty("cipher") ? indexOfValue(root.dataMap["cipher"]) : 0
             }
         }
         DccObject {
@@ -1928,7 +1925,7 @@ DccTitleObject {
             page: D.ComboBox {
                 textRole: "text"
                 valueRole: "value"
-                currentIndex: dataMap.hasOwnProperty("auth") ? indexOfValue(dataMap["auth"]) : 0
+                currentIndex: root.dataMap.hasOwnProperty("auth") ? indexOfValue(root.dataMap["auth"]) : 0
                 model: [{
                         "text": qsTr("Default"),
                         "value": "default"
@@ -1961,10 +1958,10 @@ DccTitleObject {
                         "value": "RIPEMD160"
                     }]
                 onActivated: {
-                    dataMap["auth"] = currentValue
+                    root.dataMap["auth"] = currentValue
                     root.editClicked()
                 }
-                Component.onCompleted: currentIndex = dataMap.hasOwnProperty("auth") ? indexOfValue(dataMap["auth"]) : 0
+                Component.onCompleted: currentIndex = root.dataMap.hasOwnProperty("auth") ? indexOfValue(root.dataMap["auth"]) : 0
             }
         }
     }
@@ -1974,13 +1971,13 @@ DccTitleObject {
         parentName: root.parentName
         displayName: qsTr("VPN Proxy")
         weight: root.weight + 500
-        visible: vpnType & (NetUtils.VpnTypeEnum["openvpn"])
+        visible: root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])
     }
     DccObject {
         name: "vpnProxyGroup"
         parentName: root.parentName
         weight: root.weight + 510
-        visible: vpnType & (NetUtils.VpnTypeEnum["openvpn"])
+        visible: root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])
         pageType: DccObject.Item
         page: DccGroupView {}
         DccObject {
@@ -1992,7 +1989,7 @@ DccTitleObject {
             page: D.ComboBox {
                 textRole: "text"
                 valueRole: "value"
-                currentIndex: dataMap.hasOwnProperty("proxy-type") ? indexOfValue(dataMap["proxy-type"]) : 0
+                currentIndex: root.dataMap.hasOwnProperty("proxy-type") ? indexOfValue(root.dataMap["proxy-type"]) : 0
                 model: [{
                         "text": qsTr("Not Required"),
                         "value": "none"
@@ -2004,11 +2001,11 @@ DccTitleObject {
                         "value": "socks"
                     }]
                 onActivated: {
-                    dataMap["proxy-type"] = currentValue
+                    root.dataMap["proxy-type"] = currentValue
                     dataMapChanged()
                     root.editClicked()
                 }
-                Component.onCompleted: currentIndex = dataMap.hasOwnProperty("proxy-type") ? indexOfValue(dataMap["proxy-type"]) : 0
+                Component.onCompleted: currentIndex = root.dataMap.hasOwnProperty("proxy-type") ? indexOfValue(root.dataMap["proxy-type"]) : 0
             }
         }
         DccObject {
@@ -2016,7 +2013,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnProxyGroup"
             displayName: qsTr("Server IP")
             weight: 20
-            visible: dataMap["proxy-type"] !== "none"
+            visible: root.dataMap["proxy-type"] !== "none"
             pageType: DccObject.Editor
             page: requiredLineEdit
         }
@@ -2025,20 +2022,20 @@ DccTitleObject {
             parentName: root.parentName + "/vpnProxyGroup"
             displayName: qsTr("Port")
             weight: 30
-            visible: dataMap["proxy-type"] !== "none"
+            visible: root.dataMap["proxy-type"] !== "none"
             pageType: DccObject.Editor
             page: D.SpinBox {
-                value: dataMap.hasOwnProperty(dccObj.name) ? parseInt(dataMap[dccObj.name], 10) : 0
+                value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 0
                 from: 0
                 to: 65535
                 onValueChanged: {
-                    if (dataMap[dccObj.name] !== value) {
-                        dataMap[dccObj.name] = value
+                    if (root.dataMap[dccObj.name] !== value) {
+                        root.dataMap[dccObj.name] = value
                         root.editClicked()
                     }
                 }
                 Component.onCompleted: {
-                    console.log("onCompleted-type:  ", dataMap["proxy-type"], dataMap["proxy-type"] !== "none", dccObj.visible)
+                    console.log("onCompleted-type:  ", root.dataMap["proxy-type"], root.dataMap["proxy-type"] !== "none", dccObj.visible)
                 }
             }
         }
@@ -2047,7 +2044,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnProxyGroup"
             displayName: qsTr("Retry Indefinitely When Failed")
             weight: 40
-            visible: dataMap["proxy-type"] !== "none"
+            visible: root.dataMap["proxy-type"] !== "none"
             pageType: DccObject.Editor
             page: switchItem
         }
@@ -2056,7 +2053,7 @@ DccTitleObject {
             parentName: root.parentName + "/vpnProxyGroup"
             displayName: qsTr("Username")
             weight: 50
-            visible: dataMap["proxy-type"] === "http"
+            visible: root.dataMap["proxy-type"] === "http"
             pageType: DccObject.Editor
             page: requiredLineEdit
         }
@@ -2065,12 +2062,12 @@ DccTitleObject {
             parentName: root.parentName + "/vpnProxyGroup"
             displayName: qsTr("Password")
             weight: 60
-            visible: dataMap["proxy-type"] === "http"
+            visible: root.dataMap["proxy-type"] === "http"
             pageType: DccObject.Editor
             page: NetPasswordEdit {
-                text: secretMap.hasOwnProperty(dccObj.name) ? secretMap[dccObj.name] : ""
+                text: root.secretMap.hasOwnProperty(dccObj.name) ? root.secretMap[dccObj.name] : ""
                 dataItem: root
-                onTextUpdated: secretMap[dccObj.name] = text
+                onTextUpdated: root.secretMap[dccObj.name] = text
             }
         }
     }
@@ -2080,13 +2077,13 @@ DccTitleObject {
         parentName: root.parentName
         displayName: qsTr("VPN TLS Authentication")
         weight: 2000
-        visible: (vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (dataMap["connection-type"] !== "static-key")
+        visible: (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] !== "static-key")
     }
     DccObject {
         name: "vpnTLSAuthenticationGroup"
         parentName: root.parentName
         weight: 2010
-        visible: (vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (dataMap["connection-type"] !== "static-key")
+        visible: (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] !== "static-key")
         pageType: DccObject.Item
         page: DccGroupView {}
         DccObject {
@@ -2106,12 +2103,12 @@ DccTitleObject {
             page: D.ComboBox {
                 textRole: "text"
                 valueRole: "value"
-                currentIndex: dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                currentIndex: root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
                 onActivated: {
                     if (currentValue === "default") {
-                        delete dataMap[dccObj.name]
+                        delete root.dataMap[dccObj.name]
                     } else {
-                        dataMap[dccObj.name] = currentValue
+                        root.dataMap[dccObj.name] = currentValue
                     }
                     root.editClicked()
                 }
@@ -2125,7 +2122,7 @@ DccTitleObject {
                         "text": qsTr("Server"),
                         "value": "server"
                     }]
-                Component.onCompleted: currentIndex = dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                Component.onCompleted: currentIndex = root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
             }
         }
         DccObject {
@@ -2143,12 +2140,12 @@ DccTitleObject {
             weight: 40
             pageType: DccObject.Editor
             page: D.Switch {
-                checked: dataMap.hasOwnProperty("ta-dir")
+                checked: root.dataMap.hasOwnProperty("ta-dir")
                 onClicked: {
                     if (checked) {
-                        dataMap["ta-dir"] = "0"
+                        root.dataMap["ta-dir"] = "0"
                     } else {
-                        delete dataMap["ta-dir"]
+                        delete root.dataMap["ta-dir"]
                     }
                     dataMapChanged()
                     root.editClicked()
@@ -2160,14 +2157,14 @@ DccTitleObject {
             parentName: root.parentName + "/vpnTLSAuthenticationGroup"
             displayName: qsTr("Key Direction")
             weight: 50
-            visible: dataMap.hasOwnProperty(this.name)
+            visible: root.dataMap.hasOwnProperty(this.name)
             pageType: DccObject.Editor
             page: D.ComboBox {
                 textRole: "text"
                 valueRole: "value"
-                currentIndex: dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                currentIndex: root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
                 onActivated: {
-                    dataMap[dccObj.name] = currentValue
+                    root.dataMap[dccObj.name] = currentValue
                     root.editClicked()
                 }
                 model: [{
@@ -2177,11 +2174,11 @@ DccTitleObject {
                         "text": qsTr("1"),
                         "value": "1"
                     }]
-                Component.onCompleted: currentIndex = dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                Component.onCompleted: currentIndex = root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
                 Connections {
                     target: root
                     function onDataMapChanged() {
-                        currentIndex = dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(dataMap[dccObj.name]) : 0
+                        currentIndex = root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
                     }
                 }
             }

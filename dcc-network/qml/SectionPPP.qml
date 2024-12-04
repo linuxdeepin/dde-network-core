@@ -18,17 +18,17 @@ DccTitleObject {
 
     function setConfig(c) {
         errorKey = ""
-        config = c !== undefined ? c : {}
-        mppe = config.hasOwnProperty("require-mppe") && config["require-mppe"]
+        root.config = c !== undefined ? c : {}
+        mppe = root.config.hasOwnProperty("require-mppe") && root.config["require-mppe"]
         root.configChanged()
     }
     function getConfig() {
-        config["require-mppe"] = mppe
+        root.config["require-mppe"] = mppe
         if (!mppe) {
-            delete config["require-mppe-128"]
-            delete config["mppe-stateful"]
+            delete root.config["require-mppe-128"]
+            delete root.config["mppe-stateful"]
         }
-        return config
+        return root.config
     }
     function checkInput() {
         return true
@@ -38,9 +38,9 @@ DccTitleObject {
     Component {
         id: switchItem
         D.Switch {
-            checked: config.hasOwnProperty(dccObj.name) && config[dccObj.name]
+            checked: root.config.hasOwnProperty(dccObj.name) && root.config[dccObj.name]
             onClicked: {
-                config[dccObj.name] = checked
+                root.config[dccObj.name] = checked
                 root.editClicked()
             }
         }
@@ -170,14 +170,14 @@ DccTitleObject {
             weight: 140
             pageType: DccObject.Editor
             page: D.Switch {
-                checked: config["lcp-echo-failure"] === 5 && config["lcp-echo-interval"] === 30
+                checked: root.config["lcp-echo-failure"] === 5 && root.config["lcp-echo-interval"] === 30
                 onClicked: {
                     if (checked) {
-                        config["lcp-echo-failure"] = 5
-                        config["lcp-echo-interval"] = 30
+                        root.config["lcp-echo-failure"] = 5
+                        root.config["lcp-echo-interval"] = 30
                     } else {
-                        config["lcp-echo-failure"] = 0
-                        config["lcp-echo-interval"] = 0
+                        root.config["lcp-echo-failure"] = 0
+                        root.config["lcp-echo-interval"] = 0
                     }
                     root.editClicked()
                 }

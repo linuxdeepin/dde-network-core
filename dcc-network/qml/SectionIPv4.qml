@@ -25,17 +25,17 @@ DccObject {
     function setConfig(c) {
         errorKey = ""
         if (c === undefined) {
-            config = {}
+            root.config = {}
             method = "auto"
             addressData = []
         } else {
-            config = c
-            method = config.method
+            root.config = c
+            method = root.config.method
             resetAddressData()
         }
     }
     function getConfig() {
-        let sConfig = config
+        let sConfig = root.config
         sConfig["method"] = method
         if (method === "manual") {
             let tmpIpData = []
@@ -74,8 +74,8 @@ DccObject {
     function resetAddressData() {
         if (method === "manual") {
             let tmpIpData = []
-            if (config.hasOwnProperty("addresses")) {
-                for (let ipData of config["addresses"]) {
+            if (root.config.hasOwnProperty("addresses")) {
+                for (let ipData of root.config["addresses"]) {
                     let ip = NetUtils.numToIp(ipData[0])
                     let prefix = NetUtils.prefixToIp(ipData[1])
                     let gateway = ipData[2] === 0 ? "" : NetUtils.numToIp(ipData[2])
@@ -183,9 +183,9 @@ DccObject {
         pageType: DccObject.Item
         page: D.CheckBox {
             text: dccObj.displayName
-            checked: config && config.hasOwnProperty("never-default") ? config["never-default"] : false
+            checked: root.config && root.config.hasOwnProperty("never-default") ? root.config["never-default"] : false
             onClicked: {
-                config["never-default"] = checked
+                root.config["never-default"] = checked
                 root.editClicked()
             }
         }

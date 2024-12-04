@@ -29,10 +29,10 @@ DccObject {
     Component {
         id: devCheck
         D.Switch {
-            checked: item.isEnabled
-            enabled: item.enabledable
+            checked: root.item.isEnabled
+            enabled: root.item.enabledable
             onClicked: {
-                dccData.exec(item.isEnabled ? NetManager.DisabledDevice : NetManager.EnabledDevice, item.id, {})
+                dccData.exec(root.item.isEnabled ? NetManager.DisabledDevice : NetManager.EnabledDevice, root.item.id, {})
             }
         }
     }
@@ -142,7 +142,7 @@ DccObject {
         DccObject {
             name: "title"
             parentName: root.name + "/page"
-            displayName: item.name
+            displayName: root.item.name
             icon: "dcc_wifi"
             weight: 10
             backgroundType: DccObject.Normal
@@ -279,8 +279,8 @@ DccObject {
     }
     function updateItem() {
         let hasNet = 0
-        for (let i in item.children) {
-            const child = item.children[i]
+        for (let i in root.item.children) {
+            const child = root.item.children[i]
             switch (child.itemType) {
             case NetType.WirelessMineItem:
                 if (mineNetwork.item !== child) {
@@ -305,7 +305,7 @@ DccObject {
     }
 
     Connections {
-        target: item
+        target: root.item
         function onChildrenChanged() {
             updateItem()
         }

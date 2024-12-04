@@ -28,12 +28,12 @@ DccTitleObject {
     function setConfig(c) {
         errorKey = ""
         if (c === undefined) {
-            config = {}
+            root.config = {}
         } else {
-            config = c
+            root.config = c
         }
 
-        hasMTU = config.hasOwnProperty("mtu")
+        hasMTU = root.config.hasOwnProperty("mtu")
         hasMTUChanged()
         if (canNotBind) {
             if (devModel.count > 1) {
@@ -42,32 +42,32 @@ DccTitleObject {
         } else {
             devModel.clear()
         }
-        if (config.hasOwnProperty("optionalDevice")) {
-            for (let dev of config.optionalDevice) {
+        if (root.config.hasOwnProperty("optionalDevice")) {
+            for (let dev of root.config.optionalDevice) {
                 devModel.append({
                                     "text": dev,
                                     "value": dev.split(' ')[0]
                                 })
             }
         }
-        config["mac-address"] = config.hasOwnProperty("mac-address") ? NetUtils.macToStr(config["mac-address"]) : ""
-        if (config.hasOwnProperty("cloned-mac-address")) {
-            config["cloned-mac-address"] = NetUtils.macToStr(config["cloned-mac-address"])
+        root.config["mac-address"] = root.config.hasOwnProperty("mac-address") ? NetUtils.macToStr(root.config["mac-address"]) : ""
+        if (root.config.hasOwnProperty("cloned-mac-address")) {
+            root.config["cloned-mac-address"] = NetUtils.macToStr(root.config["cloned-mac-address"])
         }
-        ssid = config.hasOwnProperty("ssid") ? config["ssid"] : ""
-        ssidEnabled = type === NetType.WirelessItem && !config.hasOwnProperty("ssid")
+        ssid = root.config.hasOwnProperty("ssid") ? root.config["ssid"] : ""
+        ssidEnabled = type === NetType.WirelessItem && !root.config.hasOwnProperty("ssid")
     }
     function getConfig() {
-        let saveConfig = config ? config : {}
+        let saveConfig = root.config ? root.config : {}
         saveConfig["interfaceName"] = interfaceName
-        if (config.hasOwnProperty("mac-address") && config["mac-address"] !== "") {
-            saveConfig["mac-address"] = NetUtils.strToMac(config["mac-address"])
+        if (root.config.hasOwnProperty("mac-address") && root.config["mac-address"] !== "") {
+            saveConfig["mac-address"] = NetUtils.strToMac(root.config["mac-address"])
         }
-        if (config.hasOwnProperty("cloned-mac-address")) {
-            saveConfig["cloned-mac-address"] = NetUtils.strToMac(config["cloned-mac-address"])
+        if (root.config.hasOwnProperty("cloned-mac-address")) {
+            saveConfig["cloned-mac-address"] = NetUtils.strToMac(root.config["cloned-mac-address"])
         }
         if (hasMTU) {
-            saveConfig["mtu"] = config["mtu"]
+            saveConfig["mtu"] = root.config["mtu"]
         } else {
             delete saveConfig["mtu"]
         }
@@ -75,7 +75,7 @@ DccTitleObject {
         if (type === NetType.WirelessItem) {
             saveConfig["ssid"] = ssid
         }
-        saveConfig["band"] = config["band"]
+        saveConfig["band"] = root.config["band"]
         return saveConfig
     }
     function checkInput() {
@@ -84,9 +84,9 @@ DccTitleObject {
             errorKey = "ssid"
             return false
         }
-        if (config.hasOwnProperty("cloned-mac-address") && !NetUtils.macRegExp.test(config["cloned-mac-address"])) {
+        if (root.config.hasOwnProperty("cloned-mac-address") && !NetUtils.macRegExp.test(root.config["cloned-mac-address"])) {
             errorKey = "cloned-mac-address"
-            console.log(errorKey, config[errorKey])
+            console.log(errorKey, root.config[errorKey])
             return false
         }
 
@@ -146,17 +146,17 @@ DccTitleObject {
             page: D.ComboBox {
                 textRole: "text"
                 valueRole: "value"
-                currentIndex: config.hasOwnProperty("mac-address") ? indexOfValue(config["mac-address"]) : 0
+                currentIndex: root.config.hasOwnProperty("mac-address") ? indexOfValue(root.config["mac-address"]) : 0
                 model: devModel
                 onActivated: {
-                    config["mac-address"] = currentValue
+                    root.config["mac-address"] = currentValue
                     let name = /\((\w+)\)/.exec(currentText)
                     interfaceName = (name && name.length > 1) ? name[1] : ""
                     root.editClicked()
                 }
                 Component.onCompleted: {
-                    if (config.hasOwnProperty("mac-address")) {
-                        currentIndex = indexOfValue(config["mac-address"])
+                    if (root.config.hasOwnProperty("mac-address")) {
+                        currentIndex = indexOfValue(root.config["mac-address"])
                         let name = /\((\w+)\)/.exec(currentText)
                         interfaceName = (name && name.length > 1) ? name[1] : ""
                     }
@@ -171,7 +171,7 @@ DccTitleObject {
             visible: type === NetType.WiredItem
             pageType: DccObject.Editor
             page: D.LineEdit {
-                text: config.hasOwnProperty("cloned-mac-address") ? config["cloned-mac-address"] : ""
+                text: root.config.hasOwnProperty("cloned-mac-address") ? root.config["cloned-mac-address"] : ""
                 validator: RegularExpressionValidator {
                     regularExpression: NetUtils.macRegExp
                 }
@@ -180,10 +180,10 @@ DccTitleObject {
                         errorKey = ""
                     }
                     if (text.length === 0) {
-                        delete config["cloned-mac-address"]
-                        delete config["assigned-mac-address"]
-                    } else if (config["cloned-mac-address"] !== text) {
-                        config["cloned-mac-address"] = text
+                        delete root.config["cloned-mac-address"]
+                        delete root.config["assigned-mac-address"]
+                    } else if (root.config["cloned-mac-address"] !== text) {
+                        root.config["cloned-mac-address"] = text
                         root.editClicked()
                     }
                 }
@@ -219,17 +219,17 @@ DccTitleObject {
             visible: hasMTU
             pageType: DccObject.Editor
             page: D.SpinBox {
-                value: config.hasOwnProperty("mtu") ? config.mtu : 0
+                value: root.config.hasOwnProperty("mtu") ? root.config.mtu : 0
                 onValueChanged: {
-                    if (hasMTU && (!config.hasOwnProperty("mtu") || config.mtu !== value)) {
-                        config.mtu = value
+                    if (hasMTU && (!root.config.hasOwnProperty("mtu") || root.config.mtu !== value)) {
+                        root.config.mtu = value
                         root.editClicked()
                     }
                 }
             }
         }
     }
-    // 配置在config[config.connection.type]中，显示在Generic中
+    // 配置在config[root.config.connection.type]中，显示在Generic中
     DccObject {
         name: "band"
         parentName: root.parentName + "/genericGroup"
@@ -250,13 +250,13 @@ DccTitleObject {
                     "text": qsTr("5 GHz"),
                     "value": "a"
                 }]
-            currentIndex: indexOfValue(config["band"])
+            currentIndex: indexOfValue(root.config["band"])
             onActivated: {
-                config["band"] = currentValue
+                root.config["band"] = currentValue
                 root.editClicked()
             }
             Component.onCompleted: {
-                currentIndex = indexOfValue(config["band"])
+                currentIndex = indexOfValue(root.config["band"])
             }
         }
     }

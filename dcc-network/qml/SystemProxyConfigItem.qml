@@ -23,11 +23,11 @@ DccObject {
     function checkInput() {
         errorKey = ""
         if (hasAuth) {
-            if (!config.user || config.user.length === 0) {
+            if (!root.config.user || root.config.user.length === 0) {
                 errorKey = "user"
                 return false
             }
-            if (!config.password || config.password.length === 0) {
+            if (!root.config.password || root.config.password.length === 0) {
                 errorKey = "password"
                 return false
             }
@@ -45,12 +45,12 @@ DccObject {
         page: D.LineEdit {
             topInset: 4
             bottomInset: 4
-            text: config.url
+            text: root.config.url
             placeholderText: qsTr("Optional")
             onTextChanged: {
                 hasUrl = text.length !== 0
-                if (config.url !== text) {
-                    config.url = text
+                if (root.config.url !== text) {
+                    root.config.url = text
                 }
             }
         }
@@ -68,11 +68,11 @@ DccObject {
                 bottom: 0
                 top: 65535
             }
-            text: config.port
+            text: root.config.port
             placeholderText: qsTr("Optional")
             onTextChanged: {
-                if (config.port !== text) {
-                    config.port = text
+                if (root.config.port !== text) {
+                    root.config.port = text
                 }
             }
         }
@@ -84,11 +84,11 @@ DccObject {
         weight: 30
         pageType: DccObject.Editor
         page: Switch {
-            checked: config.auth
+            checked: root.config.auth
             onClicked: {
-                if (config.auth !== checked) {
-                    config.auth = checked
-                    hasAuth = config.auth
+                if (root.config.auth !== checked) {
+                    root.config.auth = checked
+                    hasAuth = root.config.auth
                 }
             }
         }
@@ -104,15 +104,15 @@ DccObject {
         page: D.LineEdit {
             topInset: 4
             bottomInset: 4
-            text: config.user
+            text: root.config.user
             placeholderText: qsTr("Required")
             showAlert: errorKey === dccObj.name
             onTextChanged: {
                 if (showAlert) {
                     errorKey = ""
                 }
-                if (config.user !== text) {
-                    config.user = text
+                if (root.config.user !== text) {
+                    root.config.user = text
                 }
             }
             onShowAlertChanged: {
@@ -132,8 +132,8 @@ DccObject {
         pageType: DccObject.Editor
         page: NetPasswordEdit {
             dataItem: root
-            text: config.password
-            onTextUpdated: config.password = text
+            text: root.config.password
+            onTextUpdated: root.config.password = text
         }
     }
 }
