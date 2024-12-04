@@ -16,7 +16,7 @@ DccObject {
     property var item: null
 
     displayName: qsTr("Airplane mode")
-    description: qsTr("Turn off wireless communication")
+    description: qsTr("Stop wireless communication")
     icon: "dcc_airplane_mode"
     visible: item && item.enabledable
     backgroundType: DccObject.Normal

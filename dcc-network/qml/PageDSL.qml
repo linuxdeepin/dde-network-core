@@ -16,6 +16,7 @@ DccObject {
     property var item: null
 
     displayName: qsTr("DSL")
+    description: qsTr("Set up a dial-up network connection")
     icon: "dcc_dsl"
     visible: item
     page: DccSettingsView {}

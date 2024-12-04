@@ -18,6 +18,7 @@ DccObject {
 
     visible: item
     displayName: qsTr("Network Details")
+    description: qsTr("View all network configurations")
     icon: "dcc_netinfo"
     page: DccSettingsView {}
     Component {

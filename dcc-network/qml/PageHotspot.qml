@@ -80,6 +80,7 @@ DccObject {
     }
     visible: item && item.enabledable
     displayName: qsTr("Personal Hotspot")
+    description: qsTr("Share the network")
     icon: "dcc_hotspot"
     backgroundType: DccObject.Normal
     pageType: DccObject.MenuEditor

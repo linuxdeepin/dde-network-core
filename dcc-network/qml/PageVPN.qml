@@ -17,6 +17,7 @@ DccObject {
 
     visible: item
     displayName: qsTr("VPN")
+    description: qsTr("Connect, add, import")
     icon: "dcc_vpn"
     page: DccSettingsView {}
     Component {

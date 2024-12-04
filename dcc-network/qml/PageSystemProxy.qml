@@ -27,6 +27,7 @@ DccObject {
 
     visible: item
     displayName: qsTr("System Proxy")
+    description: qsTr("Set up proxy servers")
     icon: "dcc_system_agent"
     page: DccSettingsView {}
 
