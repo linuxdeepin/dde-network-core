@@ -18,18 +18,18 @@ DccTitleObject {
 
     function setConfig(c) {
         errorKey = ""
-        config = c
-        settingsID = config.hasOwnProperty("id") ? config.id : ""
+        root.config = c
+        settingsID = root.config.hasOwnProperty("id") ? root.config.id : ""
         root.configChanged()
     }
     function getConfig() {
-        return config
+        return root.config
     }
     function checkInput() {
-        config.id = settingsID
+        root.config.id = settingsID
         errorKey = ""
-        console.log("config.id.length", config.id, config.id.length)
-        if (config.type !== "802-11-wireless" && config.id.length === 0) {
+        console.log("root.config.id.length", root.config.id, root.config.id.length)
+        if (root.config.type !== "802-11-wireless" && root.config.id.length === 0) {
             errorKey = "id"
         }
 
@@ -49,7 +49,7 @@ DccTitleObject {
             parentName: root.parentName + "/genericGroup"
             displayName: qsTr("Name")
             weight: 10
-            enabled: config.type !== "802-11-wireless"
+            enabled: root.config.type !== "802-11-wireless"
             pageType: DccObject.Editor
             page: D.LineEdit {
                 text: settingsID
@@ -79,9 +79,9 @@ DccTitleObject {
             weight: 20
             pageType: DccObject.Editor
             page: D.Switch {
-                checked: !config.hasOwnProperty("autoconnect") || config.autoconnect
+                checked: !root.config.hasOwnProperty("autoconnect") || root.config.autoconnect
                 onClicked: {
-                    config.autoconnect = checked
+                    root.config.autoconnect = checked
                     root.editClicked()
                 }
             }

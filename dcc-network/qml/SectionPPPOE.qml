@@ -17,17 +17,17 @@ DccTitleObject {
 
     function setConfig(c) {
         errorKey = ""
-        config = c !== undefined ? c : {}
+        root.config = c !== undefined ? c : {}
     }
     function getConfig() {
-        return config
+        return root.config
     }
     function checkInput() {
-        if (!config.hasOwnProperty("username") || config.username.trim().length === 0) {
+        if (!root.config.hasOwnProperty("username") || root.config.username.trim().length === 0) {
             errorKey = "username"
             return false
         }
-        if (!config.hasOwnProperty("password") || config.password.length === 0) {
+        if (!root.config.hasOwnProperty("password") || root.config.password.length === 0) {
             errorKey = "password"
             return false
         }
@@ -50,15 +50,15 @@ DccTitleObject {
             pageType: DccObject.Editor
             page: D.LineEdit {
                 placeholderText: qsTr("Required")
-                text: config.hasOwnProperty("username") ? config.username : ""
+                text: root.config.hasOwnProperty("username") ? root.config.username : ""
                 showAlert: errorKey === dccObj.name
                 alertDuration: 2000
                 onTextChanged: {
                     if (showAlert) {
                         errorKey = ""
                     }
-                    if (config.username !== text) {
-                        config.username = text
+                    if (root.config.username !== text) {
+                        root.config.username = text
                         root.editClicked()
                     }
                 }
@@ -77,10 +77,10 @@ DccTitleObject {
             weight: 20
             pageType: DccObject.Editor
             page: D.LineEdit {
-                text: config.hasOwnProperty("service") ? config.service : ""
+                text: root.config.hasOwnProperty("service") ? root.config.service : ""
                 onTextChanged: {
-                    if (config.service !== text) {
-                        config.service = text
+                    if (root.config.service !== text) {
+                        root.config.service = text
                         root.editClicked()
                     }
                 }
@@ -94,8 +94,8 @@ DccTitleObject {
             pageType: DccObject.Editor
             page: NetPasswordEdit {
                 dataItem: root
-                text: config.hasOwnProperty("password") ? config.password : ""
-                onTextUpdated: config.password = text
+                text: root.config.hasOwnProperty("password") ? root.config.password : ""
+                onTextUpdated: root.config.password = text
             }
         }
     }
