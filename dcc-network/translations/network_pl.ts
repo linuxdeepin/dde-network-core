@@ -22,11 +22,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Turn off wireless communication</source>
+        <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
+        <source>Stop wireless communication</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -96,6 +96,10 @@
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Set up proxy servers</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PageDSL</name>
@@ -113,6 +117,10 @@
     </message>
     <message>
         <source>Add PPPoE connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set up a dial-up network connection</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -159,6 +167,10 @@
     </message>
     <message>
         <source>Details has been copied</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View all network configurations</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -248,6 +260,10 @@
         <source>If you want to use the personal hotspot, disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first and then enable the wireless network adapter.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Share the network</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PageSettings</name>
@@ -322,6 +338,10 @@
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Set up proxy servers</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PageVPN</name>
@@ -359,6 +379,10 @@
     </message>
     <message>
         <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect, add, import</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -439,6 +463,10 @@
         <source>Plug in the network cable first</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Connect, edit network settings</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PageWirelessDevice</name>
@@ -472,6 +500,10 @@
     </message>
     <message>
         <source>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Disable hotspot&lt;/a&gt; first if you want to connect to a wireless network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect, edit network settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
