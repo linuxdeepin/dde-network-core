@@ -14,6 +14,11 @@ DccObject {
     property var wiredDevs: []
     property var wirelessDevs: []
 
+    name: "network"
+    parentName: "root"
+    displayName: qsTr("Network")
+    icon: "dcc_network"
+    weight: 50
     Component {
         id: wiredComponent
         PageWiredDevice {}
@@ -153,6 +158,11 @@ DccObject {
             updateDevice()
         }
     }
+    onActive: cmd => {
+                  if (cmd.length !== 0) {
+                      dccData.exec(NetManager.FindConnectInfo, cmd, {})
+                  }
+              }
     Component.onCompleted: {
         updateDevice()
     }

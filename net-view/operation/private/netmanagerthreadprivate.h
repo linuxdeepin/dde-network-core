@@ -135,6 +135,7 @@ public Q_SLOTS:
     void deleteConnect(const QString &uuid);
     void importConnect(const QString &id, const QString &file);
     void exportConnect(const QString &id, const QString &file);
+    void findConnectInfo(const QString &cmd);
 
 protected Q_SLOTS:
     void doInit();
@@ -163,6 +164,9 @@ protected Q_SLOTS:
     void doExportConnect(const QString &id, const QString &file);
     void doSetSystemProxy(const QVariantMap &param);
     void doSetAppProxy(const QVariantMap &param);
+    void clearFindApConnectInfo();
+    bool findApConnectInfo();
+    void doFindConnectInfo(const QString &cmd);
 
     void sendRequest(NetManager::CmdType cmd, const QString &id, const QVariantMap &param = QVariantMap());
 
@@ -283,6 +287,8 @@ private:
     bool m_isSleeping;
     QString m_serverKey;
     QSet<QString> m_detailsItems;
+    QString m_findApcmd;
+    QTimer *m_findApTimer;
 };
 
 } // namespace network

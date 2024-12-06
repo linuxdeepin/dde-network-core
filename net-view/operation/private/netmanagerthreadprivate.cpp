@@ -100,6 +100,7 @@ NetManagerThreadPrivate::NetManagerThreadPrivate()
     , m_secretAgent(nullptr)
     , m_netCheckAvailable(false)
     , m_isSleeping(false)
+    , m_findApTimer(nullptr)
 {
     moveToThread(m_thread);
     m_thread->start();
@@ -378,6 +379,11 @@ void NetManagerThreadPrivate::importConnect(const QString &id, const QString &fi
 void NetManagerThreadPrivate::exportConnect(const QString &id, const QString &file)
 {
     QMetaObject::invokeMethod(this, "doExportConnect", Qt::QueuedConnection, Q_ARG(QString, id), Q_ARG(QString, file));
+}
+
+void NetManagerThreadPrivate::findConnectInfo(const QString &cmd)
+{
+    QMetaObject::invokeMethod(this, "doFindConnectInfo", Qt::QueuedConnection, Q_ARG(QString, cmd));
 }
 
 void NetManagerThreadPrivate::doInit()
@@ -747,7 +753,7 @@ void NetManagerThreadPrivate::doGotoControlCenter(const QString &page)
 {
     if (!m_enabled)
         return;
-    QDBusMessage message = QDBusMessage::createMethodCall("com.deepin.dde.ControlCenter", "/com/deepin/dde/ControlCenter", "com.deepin.dde.ControlCenter", "ShowPage");
+    QDBusMessage message = QDBusMessage::createMethodCall("org.deepin.dde.ControlCenter1", "/org/deepin/dde/ControlCenter1", "org.deepin.dde.ControlCenter1", "ShowPage");
     message << "network" << page;
     QDBusConnection::sessionBus().asyncCall(message);
     Q_EMIT toControlCenter();
@@ -1602,6 +1608,71 @@ void NetManagerThreadPrivate::doSetAppProxy(const QVariantMap &param)
         controller->setAppProxyEnabled(true);
     } else {
         controller->setAppProxyEnabled(false);
+    }
+}
+
+void NetManagerThreadPrivate::clearFindApConnectInfo()
+{
+    m_findApcmd.clear();
+    if (m_findApTimer) {
+        m_findApTimer->stop();
+        m_findApTimer->deleteLater();
+        m_findApTimer = nullptr;
+    }
+}
+
+bool NetManagerThreadPrivate::findApConnectInfo()
+{
+    QString devPath;
+    QString ssid;
+    QStringList params = m_findApcmd.split('&');
+    for (auto param : params) {
+        auto keyMap = param.split('=');
+        if (keyMap.size() != 2) {
+            continue;
+        }
+        if (keyMap.at(0) == "device") {
+            devPath = keyMap.at(1);
+        } else if (keyMap.at(0) == "ssid") {
+            ssid = keyMap.at(1);
+        }
+    }
+    if (ssid.isEmpty()) {
+        clearFindApConnectInfo();
+        return true;
+    }
+    for (auto dev : NetworkController::instance()->devices()) {
+        if (dev->deviceType() == DeviceType::Wireless && (devPath.isEmpty() || dev->path() == devPath)) {
+            WirelessDevice *wDev = qobject_cast<WirelessDevice *>(dev);
+            if (!wDev) {
+                continue;
+            }
+            for (auto ap : wDev->accessPointItems()) {
+                if (ap->ssid() == ssid) {
+                    doGetConnectInfo(apID(ap), NetType::WirelessItem, QVariantMap());
+                    QDBusMessage message = QDBusMessage::createMethodCall("org.deepin.dde.ControlCenter1", "/org/deepin/dde/ControlCenter1", "org.deepin.dde.ControlCenter1", "Show");
+                    QDBusConnection::sessionBus().asyncCall(message);
+                    clearFindApConnectInfo();
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+void NetManagerThreadPrivate::doFindConnectInfo(const QString &cmd)
+{
+    if (m_findApcmd != cmd) {
+        m_findApcmd = cmd;
+        if (!findApConnectInfo()) {
+            if (!m_findApTimer) {
+                m_findApTimer = new QTimer(this);
+                connect(m_findApTimer, &QTimer::timeout, this, &NetManagerThreadPrivate::findApConnectInfo);
+                QTimer::singleShot(10000, this, &NetManagerThreadPrivate::clearFindApConnectInfo);
+                m_findApTimer->start(100);
+            }
+        }
     }
 }
 

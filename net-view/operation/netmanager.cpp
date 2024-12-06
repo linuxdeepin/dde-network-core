@@ -432,6 +432,11 @@ void NetManagerPrivate::exec(NetManager::CmdType cmd, const QString &id, const Q
         QString file = param.value("file").toString();
         m_managerThread->exportConnect(id, file);
     } break;
+    case NetManager::FindConnectInfo: {
+        if (!id.isEmpty()) {
+            m_managerThread->findConnectInfo(id);
+        }
+    } break;
     default:
         break;
     }

@@ -213,9 +213,6 @@ DccObject {
                                             }, {
                                                 "text": qsTr("WPA/WPA2 Personal"),
                                                 "value": "wpa-psk"
-                                            }, {
-                                                "text": qsTr("WPA3 Personal"),
-                                                "value": "sae"
                                             }]
                                         currentIndex: indexOfValue(keyMgmt)
                                         onActivated: {

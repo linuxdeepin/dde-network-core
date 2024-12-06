@@ -1680,7 +1680,7 @@
     </message>
 </context>
 <context>
-    <name>network</name>
+    <name>networkMain</name>
     <message>
         <source>Network</source>
         <translation>网络</translation>
