@@ -1445,6 +1445,31 @@ void NetManagerThreadPrivate::doDeleteConnect(const QString &uuid)
     }
 }
 
+void NetManagerThreadPrivate::changeVpnId()
+{
+    if (m_newVPNuuid.isEmpty()) {
+        return;
+    }
+    NetworkManager::Connection::Ptr uuidConn = findConnectionByUuid(m_newVPNuuid);
+    if (uuidConn) {
+        ConnectionSettings::Ptr connSettings = uuidConn->settings();
+        QString vpnName = connectionSuffixNum(connSettings->id() + "(%1)");
+        if (vpnName.isEmpty()) {
+            m_newVPNuuid.clear();
+            return;
+        }
+        connSettings->setId(vpnName);
+        QDBusPendingReply<> reply = uuidConn->update(connSettings->toMap());
+        reply.waitForFinished();
+        if (reply.isError()) {
+            qCWarning(DNC) << "Error occurred while updating the connection, error: " << reply.error();
+            return;
+        }
+        qCInfo(DNC) << "Find connection by uuid successed";
+        m_newVPNuuid.clear();
+    }
+}
+
 QString vpnConfigType(const QString &path)
 {
     QFile f(path);
@@ -1467,19 +1492,9 @@ QString vpnConfigType(const QString &path)
 void NetManagerThreadPrivate::doImportConnect(const QString &id, const QString &file)
 {
     QFileInfo fInfo(file);
-    QString importName = fInfo.baseName();
-    QString vpnName = connectionSuffixNum(importName + "(%1)", importName);
-    QString importFilePath = file;
-    QTemporaryDir dir;
-    if (dir.isValid()) { // 创建软连接，防止重名
-        importFilePath = dir.filePath(vpnName);
-        const QStringList lnArgs = { "-s", file, importFilePath };
-        QProcess lnP;
-        lnP.start("ln", lnArgs);
-        lnP.waitForFinished();
-    }
-    const auto args = QStringList{ "connection", "import", "type", vpnConfigType(file), "file", importFilePath };
+    const auto args = QStringList{ "connection", "import", "type", vpnConfigType(file), "file", file };
     QProcess p;
+    p.setWorkingDirectory(fInfo.absolutePath());
     p.start("nmcli", args);
     p.waitForFinished();
     const auto stat = p.exitCode();
@@ -1488,6 +1503,13 @@ void NetManagerThreadPrivate::doImportConnect(const QString &id, const QString &
     qCDebug(DNC) << "Import VPN, process exit code: " << stat << ", output:" << output << ", error: " << error;
     if (stat) {
         Q_EMIT request(NetManager::ImportError, id, { { "file", file } });
+    } else {
+        const QRegularExpression regexp(R"(\((\w{8}(-\w{4}){3}-\w{12})\))");
+        const auto match = regexp.match(output);
+        if (match.hasCaptured(1)) {
+            m_newVPNuuid = match.captured(1);
+            changeVpnId();
+        }
     }
 }
 
@@ -1981,8 +2003,10 @@ void NetManagerThreadPrivate::onAPSecureChanged(bool secure)
 
 void NetManagerThreadPrivate::onVPNAdded(const QList<VPNItem *> &vpns)
 {
+    changeVpnId();
     for (auto &&item : vpns) {
         NetConnectionItemPrivate *connItem = NetItemNew(ConnectionItem, item->connection()->path());
+        connect(item, &VPNItem::connectionChanged, this, &NetManagerThreadPrivate::onVPNConnectionChanged, Qt::UniqueConnection);
         connItem->updatename(item->connection()->id());
         connItem->updatestatus(toNetConnectionStatus(item->status()));
         connItem->item()->moveToThread(m_parentThread);
@@ -2014,6 +2038,15 @@ void NetManagerThreadPrivate::onVpnActiveConnectionChanged()
     if (m_flags.testFlags(NetType::Net_Details)) {
         updateDetails();
     }
+}
+
+void NetManagerThreadPrivate::onVPNConnectionChanged()
+{
+    VPNItem *vpnItem = qobject_cast<VPNItem *>(sender());
+    if (!vpnItem) {
+        return;
+    }
+    Q_EMIT dataChanged(DataChanged::NameChanged, vpnItem->connection()->path(), QVariant::fromValue(vpnItem->connection()->id()));
 }
 
 void NetManagerThreadPrivate::onSystemProxyExistChanged(bool exist)

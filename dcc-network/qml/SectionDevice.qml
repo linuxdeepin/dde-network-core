@@ -117,6 +117,7 @@ DccTitleObject {
             visible: type === NetType.WirelessItem
             page: D.LineEdit {
                 enabled: ssidEnabled
+                placeholderText: qsTr("Required")
                 text: ssid
                 onTextChanged: {
                     if (showAlert) {
