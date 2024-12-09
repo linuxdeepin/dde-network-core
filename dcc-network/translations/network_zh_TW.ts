@@ -576,6 +576,10 @@
         <source>5 GHz</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Required</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SectionGeneric</name>

@@ -576,6 +576,10 @@
         <source>5 GHz</source>
         <translation></translation>
     </message>
+    <message>
+        <source>Required</source>
+        <translation>必填</translation>
+    </message>
 </context>
 <context>
     <name>SectionGeneric</name>

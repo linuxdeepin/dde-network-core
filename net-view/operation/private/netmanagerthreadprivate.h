@@ -160,6 +160,7 @@ protected Q_SLOTS:
     void doGetConnectInfo(const QString &id, NetType::NetItemType type, const QVariantMap &param);
     void doSetConnectInfo(const QString &id, NetType::NetItemType type, const QVariantMap &param);
     void doDeleteConnect(const QString &uuid);
+    void changeVpnId();
     void doImportConnect(const QString &id, const QString &file);
     void doExportConnect(const QString &id, const QString &file);
     void doSetSystemProxy(const QVariantMap &param);
@@ -202,6 +203,7 @@ protected Q_SLOTS:
     void onVPNRemoved(const QList<VPNItem *> &vpns);
     void onVPNEnableChanged(const bool enable);
     void onVpnActiveConnectionChanged();
+    void onVPNConnectionChanged();
     // 系统代理
     void onSystemProxyExistChanged(bool exist);
     void onSystemProxyMethodChanged(const ProxyMethod &method);
@@ -289,6 +291,7 @@ private:
     QSet<QString> m_detailsItems;
     QString m_findApcmd;
     QTimer *m_findApTimer;
+    QString m_newVPNuuid;
 };
 
 } // namespace network
