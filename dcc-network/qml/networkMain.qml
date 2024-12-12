@@ -14,61 +14,8 @@ DccObject {
     property var wiredDevs: []
     property var wirelessDevs: []
 
-    name: "network"
-    parentName: "root"
-    displayName: qsTr("Network")
-    icon: "dcc_network"
-    weight: 50
-    Component {
-        id: wiredComponent
-        PageWiredDevice {}
-    }
-    Component {
-        id: wirelessComponent
-        PageWirelessDevice {}
-    }
-
-    PageVPN {
-        id: vpnPage
-        name: "networkVpn"
-        parentName: "network"
-        weight: 3010
-    }
-    PageSystemProxy {
-        id: systemProxyPage
-        name: "systemProxy"
-        parentName: "network"
-        weight: 3020
-    }
-    PageAppProxy {
-        id: appProxyPage
-        name: "applicationProxy"
-        parentName: "network"
-        weight: 3030
-    }
-    PageHotspot {
-        id: hotspotPage
-        name: "personalHotspot"
-        parentName: "network"
-        weight: 3040
-    }
-    PageAirplane {
-        name: "airplaneMode"
-        parentName: "network"
-        weight: 3050
-        item: dccData.root
-    }
-    PageDSL {
-        id: dslPage
-        name: "dsl"
-        parentName: "network"
-        weight: 3060
-    }
-    PageDetails {
-        id: detailsPage
-        name: "networkDetails"
-        parentName: "network"
-        weight: 3070
+    function showPage(cmd) {
+        dccData.exec(NetManager.ShowPage, cmd, {})
     }
     function updateDevice() {
         const delWiredDevs = wiredDevs.concat()
@@ -152,17 +99,74 @@ DccObject {
             delDev.destroy()
         }
     }
+    Component {
+        id: wiredComponent
+        PageWiredDevice {
+            property var showPage: root.showPage
+        }
+    }
+    Component {
+        id: wirelessComponent
+        PageWirelessDevice {
+            property var showPage: root.showPage
+        }
+    }
+
+    PageVPN {
+        id: vpnPage
+        property var showPage: root.showPage
+        name: "networkVpn"
+        parentName: "network"
+        weight: 3010
+    }
+    PageSystemProxy {
+        id: systemProxyPage
+        property var showPage: root.showPage
+        name: "systemProxy"
+        parentName: "network"
+        weight: 3020
+    }
+    PageAppProxy {
+        id: appProxyPage
+        property var showPage: root.showPage
+        name: "applicationProxy"
+        parentName: "network"
+        weight: 3030
+    }
+    PageHotspot {
+        id: hotspotPage
+        property var showPage: root.showPage
+        name: "personalHotspot"
+        parentName: "network"
+        weight: 3040
+    }
+    PageAirplane {
+        name: "airplaneMode"
+        property var showPage: root.showPage
+        parentName: "network"
+        weight: 3050
+        item: dccData.root
+    }
+    PageDSL {
+        id: dslPage
+        property var showPage: root.showPage
+        name: "dsl"
+        parentName: "network"
+        weight: 3060
+    }
+    PageDetails {
+        id: detailsPage
+        property var showPage: root.showPage
+        name: "networkDetails"
+        parentName: "network"
+        weight: 3070
+    }
     Connections {
         target: dccData.root
         function onChildrenChanged() {
             updateDevice()
         }
     }
-    onActive: cmd => {
-                  if (cmd.length !== 0) {
-                      dccData.exec(NetManager.FindConnectInfo, cmd, {})
-                  }
-              }
     Component.onCompleted: {
         updateDevice()
     }

@@ -78,7 +78,7 @@ public:
         ImportConnect,     // 导入配置
         ImportError,       // 导入出错
         ExportConnect,     // 导出配置
-        FindConnectInfo,   // 查找配置 任务栏打开网络配置界面
+        ShowPage,          // 查找配置 任务栏打开网络配置界面
     };
     Q_ENUM(CmdType)
 
