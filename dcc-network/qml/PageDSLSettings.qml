@@ -61,11 +61,6 @@ DccObject {
             weight: 500
             canNotBind: false
             onEditClicked: modified = true
-            onSsidChanged: {
-                if (root.type === NetType.WirelessItem && !root.config[root.config.connection.type].hasOwnProperty("id")) {
-                    sectionGeneric.settingsID = sectionDevice.ssid
-                }
-            }
         }
         SectionPPP {
             id: sectionPPP

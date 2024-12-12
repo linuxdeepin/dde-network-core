@@ -109,6 +109,7 @@ public Q_SLOTS:
     void setDeviceEnabled(const QString &id, bool enabled);
     void requestScan(const QString &id);
     void disconnectDevice(const QString &id);
+    void disconnectConnection(const QString &path);
     void connectHidden(const QString &id, const QString &ssid);
     void connectWired(const QString &id, const QVariantMap &param);
     void connectWireless(const QString &id, const QVariantMap &param);
@@ -144,6 +145,7 @@ protected Q_SLOTS:
     void doSetDeviceEnabled(const QString &id, bool enabled);
     void doRequestScan(const QString &id);
     void doDisconnectDevice(const QString &id);
+    void doDisconnectConnection(const QString &path);
     void doConnectHidden(const QString &id, const QString &ssid);
     void doConnectWired(const QString &id, const QVariantMap &param);
     void doConnectWireless(const QString &id, const QVariantMap &param);

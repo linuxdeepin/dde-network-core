@@ -122,6 +122,7 @@ DccObject {
                             Layout.fillWidth: true
                             leftPadding: 36
                             contentItem: Label {
+                                verticalAlignment: Text.AlignVCenter
                                 text: model.item.name
                                 color: palette.link
                             }

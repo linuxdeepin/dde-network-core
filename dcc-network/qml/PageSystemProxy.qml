@@ -55,7 +55,6 @@ DccObject {
                                          "method": method
                                      })
                     }
-                    console.log("method=====", method)
                 }
             }
             Connections {
@@ -113,6 +112,7 @@ DccObject {
             page: D.LineEdit {
                 topInset: 4
                 bottomInset: 4
+                placeholderText: qsTr("Required")
                 text: dccObj.config
                 Layout.fillWidth: true
                 showAlert: autoUrlAlert

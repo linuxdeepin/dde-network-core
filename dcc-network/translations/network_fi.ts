@@ -342,6 +342,10 @@
         <source>Set up proxy servers</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Required</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PageVPN</name>
@@ -541,10 +545,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>SSID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Device MAC Addr</source>
         <translation type="unfinished"></translation>
     </message>
@@ -576,10 +576,6 @@
         <source>5 GHz</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Required</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>SectionGeneric</name>
@@ -593,6 +589,14 @@
     </message>
     <message>
         <source>Auto Connect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -301,6 +301,10 @@ void NetManagerPrivate::exec(NetManager::CmdType cmd, const QString &id, const Q
                 m_managerThread->connectHotspot(id, param, false);
                 item = nullptr;
             } break;
+            case NetType::NetItemType::ConnectionItem: {
+                m_managerThread->disconnectConnection(id);
+                item = nullptr;
+            } break;
             default:
                 item = item->getParentPrivate();
                 break;

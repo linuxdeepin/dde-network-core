@@ -342,6 +342,10 @@
         <source>Set up proxy servers</source>
         <translation>设置代理服务器</translation>
     </message>
+    <message>
+        <source>Required</source>
+        <translation>必填</translation>
+    </message>
 </context>
 <context>
     <name>PageVPN</name>
@@ -541,10 +545,6 @@
         <translation>以太网</translation>
     </message>
     <message>
-        <source>SSID</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Device MAC Addr</source>
         <translation>设备MAC地址</translation>
     </message>
@@ -576,10 +576,6 @@
         <source>5 GHz</source>
         <translation></translation>
     </message>
-    <message>
-        <source>Required</source>
-        <translation>必填</translation>
-    </message>
 </context>
 <context>
     <name>SectionGeneric</name>
@@ -594,6 +590,14 @@
     <message>
         <source>Auto Connect</source>
         <translation>自动连接</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>必填</translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation>名称（SSID）</translation>
     </message>
 </context>
 <context>

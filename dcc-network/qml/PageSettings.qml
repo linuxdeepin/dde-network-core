@@ -67,11 +67,6 @@ DccObject {
             weight: 600
             type: root.type
             onEditClicked: modified = true
-            onSsidChanged: {
-                if (root.type === NetType.WirelessItem && !root.config[root.config.connection.type].hasOwnProperty("id")) {
-                    sectionGeneric.settingsID = sectionDevice.ssid
-                }
-            }
         }
     }
     onConfigChanged: {
@@ -208,6 +203,9 @@ DccObject {
                         delete nConfig["connection"]["interface-name"]
                     } else {
                         nConfig["connection"]["interface-name"] = devConfig.interfaceName
+                    }
+                    if (nConfig["connection"].type === "802-11-wireless" && !devConfig.hasOwnProperty("ssid")) {
+                        devConfig["ssid"] = nConfig["connection"]["id"]
                     }
 
                     nConfig[config.connection.type] = devConfig
