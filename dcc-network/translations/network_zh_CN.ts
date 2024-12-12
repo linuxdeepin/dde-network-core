@@ -1688,7 +1688,7 @@
     </message>
 </context>
 <context>
-    <name>networkMain</name>
+    <name>network</name>
     <message>
         <source>Network</source>
         <translation>网络</translation>

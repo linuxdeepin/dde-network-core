@@ -100,7 +100,7 @@ NetManagerThreadPrivate::NetManagerThreadPrivate()
     , m_secretAgent(nullptr)
     , m_netCheckAvailable(false)
     , m_isSleeping(false)
-    , m_findApTimer(nullptr)
+    , m_showPageTimer(nullptr)
 {
     moveToThread(m_thread);
     m_thread->start();
@@ -386,9 +386,9 @@ void NetManagerThreadPrivate::exportConnect(const QString &id, const QString &fi
     QMetaObject::invokeMethod(this, "doExportConnect", Qt::QueuedConnection, Q_ARG(QString, id), Q_ARG(QString, file));
 }
 
-void NetManagerThreadPrivate::findConnectInfo(const QString &cmd)
+void NetManagerThreadPrivate::showPage(const QString &cmd)
 {
-    QMetaObject::invokeMethod(this, "doFindConnectInfo", Qt::QueuedConnection, Q_ARG(QString, cmd));
+    QMetaObject::invokeMethod(this, "doShowPage", Qt::QueuedConnection, Q_ARG(QString, cmd));
 }
 
 void NetManagerThreadPrivate::doInit()
@@ -1667,66 +1667,96 @@ void NetManagerThreadPrivate::doSetAppProxy(const QVariantMap &param)
     }
 }
 
-void NetManagerThreadPrivate::clearFindApConnectInfo()
+void NetManagerThreadPrivate::clearShowPageCmd()
 {
-    m_findApcmd.clear();
-    if (m_findApTimer) {
-        m_findApTimer->stop();
-        m_findApTimer->deleteLater();
-        m_findApTimer = nullptr;
+    m_showPageCmd.clear();
+    if (m_showPageTimer) {
+        m_showPageTimer->stop();
+        m_showPageTimer->deleteLater();
+        m_showPageTimer = nullptr;
     }
 }
 
-bool NetManagerThreadPrivate::findApConnectInfo()
+bool NetManagerThreadPrivate::toShowPage()
 {
-    QString devPath;
-    QString ssid;
-    QStringList params = m_findApcmd.split('&');
+    QMap<QString, QString> paramMap;
+    QStringList params = m_showPageCmd.split('&');
     for (auto param : params) {
         auto keyMap = param.split('=');
         if (keyMap.size() != 2) {
             continue;
         }
-        if (keyMap.at(0) == "device") {
-            devPath = keyMap.at(1);
-        } else if (keyMap.at(0) == "ssid") {
-            ssid = keyMap.at(1);
+        paramMap.insert(keyMap.at(0), keyMap.at(1));
+    }
+    if (paramMap.contains("page")) {
+        QString page = paramMap.value("page");
+        DeviceType type = DeviceType::Unknown;
+        if (page == "wired") {
+            type = DeviceType::Wired;
+        } else if (page == "wireless") {
+            type = DeviceType::Wireless;
         }
-    }
-    if (ssid.isEmpty()) {
-        clearFindApConnectInfo();
-        return true;
-    }
-    for (auto dev : NetworkController::instance()->devices()) {
-        if (dev->deviceType() == DeviceType::Wireless && (devPath.isEmpty() || dev->path() == devPath)) {
-            WirelessDevice *wDev = qobject_cast<WirelessDevice *>(dev);
-            if (!wDev) {
-                continue;
+        if (type != DeviceType::Unknown) {
+            QString index;
+            for (auto dev : NetworkController::instance()->devices()) {
+                if (dev->deviceType() == type) {
+                    qsizetype i = dev->path().lastIndexOf('/');
+                    if (i > 0) {
+                        index = dev->path().mid(i + 1);
+                    }
+                }
             }
-            for (auto ap : wDev->accessPointItems()) {
-                if (ap->ssid() == ssid) {
-                    doGetConnectInfo(apID(ap), NetType::WirelessItem, QVariantMap());
-                    QDBusMessage message = QDBusMessage::createMethodCall("org.deepin.dde.ControlCenter1", "/org/deepin/dde/ControlCenter1", "org.deepin.dde.ControlCenter1", "Show");
-                    QDBusConnection::sessionBus().asyncCall(message);
-                    clearFindApConnectInfo();
-                    return true;
+            if (index.isEmpty()) {
+                return false;
+            }
+            page += index;
+        }
+        QDBusMessage message = QDBusMessage::createMethodCall("org.deepin.dde.ControlCenter1", "/org/deepin/dde/ControlCenter1", "org.deepin.dde.ControlCenter1", "ShowPage");
+        message << page;
+        QDBusConnection::sessionBus().asyncCall(message);
+        clearShowPageCmd();
+        return true;
+    } else if (paramMap.contains("ssid")) {
+        QString devPath = paramMap.value("device");
+        QString ssid = paramMap.value("ssid");
+        if (ssid.isEmpty()) {
+            clearShowPageCmd();
+            return true;
+        }
+        for (auto dev : NetworkController::instance()->devices()) {
+            if (dev->deviceType() == DeviceType::Wireless && (devPath.isEmpty() || dev->path() == devPath)) {
+                WirelessDevice *wDev = qobject_cast<WirelessDevice *>(dev);
+                if (!wDev) {
+                    continue;
+                }
+                for (auto ap : wDev->accessPointItems()) {
+                    if (ap->ssid() == ssid) {
+                        doGetConnectInfo(apID(ap), NetType::WirelessItem, QVariantMap());
+                        QDBusMessage message = QDBusMessage::createMethodCall("org.deepin.dde.ControlCenter1", "/org/deepin/dde/ControlCenter1", "org.deepin.dde.ControlCenter1", "Show");
+                        QDBusConnection::sessionBus().asyncCall(message);
+                        clearShowPageCmd();
+                        return true;
+                    }
                 }
             }
         }
+    } else {
+        clearShowPageCmd();
+        return true;
     }
     return false;
 }
 
-void NetManagerThreadPrivate::doFindConnectInfo(const QString &cmd)
+void NetManagerThreadPrivate::doShowPage(const QString &cmd)
 {
-    if (m_findApcmd != cmd) {
-        m_findApcmd = cmd;
-        if (!findApConnectInfo()) {
-            if (!m_findApTimer) {
-                m_findApTimer = new QTimer(this);
-                connect(m_findApTimer, &QTimer::timeout, this, &NetManagerThreadPrivate::findApConnectInfo);
-                QTimer::singleShot(10000, this, &NetManagerThreadPrivate::clearFindApConnectInfo);
-                m_findApTimer->start(100);
+    if (m_showPageCmd != cmd) {
+        m_showPageCmd = cmd;
+        if (!toShowPage()) {
+            if (!m_showPageTimer) {
+                m_showPageTimer = new QTimer(this);
+                connect(m_showPageTimer, &QTimer::timeout, this, &NetManagerThreadPrivate::toShowPage);
+                QTimer::singleShot(10000, this, &NetManagerThreadPrivate::clearShowPageCmd);
+                m_showPageTimer->start(100);
             }
         }
     }
