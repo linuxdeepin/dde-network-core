@@ -19,8 +19,6 @@ DccTitleObject {
     property var devData: []
     property bool hasMTU: false
     property string interfaceName: ""
-    property string ssid: ""
-    property bool ssidEnabled: false
 
     property string errorKey: ""
     signal editClicked
@@ -54,8 +52,6 @@ DccTitleObject {
         if (root.config.hasOwnProperty("cloned-mac-address")) {
             root.config["cloned-mac-address"] = NetUtils.macToStr(root.config["cloned-mac-address"])
         }
-        ssid = root.config.hasOwnProperty("ssid") ? root.config["ssid"] : ""
-        ssidEnabled = type === NetType.WirelessItem && !root.config.hasOwnProperty("ssid")
     }
     function getConfig() {
         let saveConfig = root.config ? root.config : {}
@@ -72,18 +68,11 @@ DccTitleObject {
             delete saveConfig["mtu"]
         }
 
-        if (type === NetType.WirelessItem) {
-            saveConfig["ssid"] = ssid
-        }
         saveConfig["band"] = root.config["band"]
         return saveConfig
     }
     function checkInput() {
         errorKey = ""
-        if (type === NetType.WirelessItem && ssid.length === 0) {
-            errorKey = "ssid"
-            return false
-        }
         if (root.config.hasOwnProperty("cloned-mac-address") && !NetUtils.macRegExp.test(root.config["cloned-mac-address"])) {
             errorKey = "cloned-mac-address"
             console.log(errorKey, root.config[errorKey])
@@ -108,36 +97,6 @@ DccTitleObject {
         weight: root.weight + 20
         pageType: DccObject.Item
         page: DccGroupView {}
-        DccObject {
-            name: "ssid"
-            parentName: root.parentName + "/devGroup"
-            weight: 10
-            displayName: qsTr("SSID")
-            pageType: DccObject.Editor
-            visible: type === NetType.WirelessItem
-            page: D.LineEdit {
-                enabled: ssidEnabled
-                placeholderText: qsTr("Required")
-                text: ssid
-                onTextChanged: {
-                    if (showAlert) {
-                        errorKey = ""
-                    }
-                    if (text !== ssid) {
-                        ssid = text
-                        root.editClicked()
-                    }
-                }
-                showAlert: errorKey === dccObj.name
-                alertDuration: 2000
-                onShowAlertChanged: {
-                    if (showAlert) {
-                        DccApp.showPage(dccObj)
-                        forceActiveFocus()
-                    }
-                }
-            }
-        }
         DccObject {
             name: "mac-address"
             parentName: root.parentName + "/devGroup"

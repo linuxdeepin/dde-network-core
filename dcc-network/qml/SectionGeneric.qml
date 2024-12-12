@@ -29,7 +29,7 @@ DccTitleObject {
         root.config.id = settingsID
         errorKey = ""
         console.log("root.config.id.length", root.config.id, root.config.id.length)
-        if (root.config.type !== "802-11-wireless" && root.config.id.length === 0) {
+        if (root.config.id.length === 0) {
             errorKey = "id"
         }
 
@@ -47,12 +47,13 @@ DccTitleObject {
         DccObject {
             name: "name"
             parentName: root.parentName + "/genericGroup"
-            displayName: qsTr("Name")
+            displayName: root.config.type === "802-11-wireless" ? qsTr("Name (SSID)") : qsTr("Name")
             weight: 10
-            enabled: root.config.type !== "802-11-wireless"
+            enabled: !root.config.hasOwnProperty("id") || root.config.id.length === 0
             pageType: DccObject.Editor
             page: D.LineEdit {
                 text: settingsID
+                placeholderText: qsTr("Required")
                 onTextChanged: {
                     if (showAlert) {
                         errorKey = ""

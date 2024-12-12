@@ -273,6 +273,11 @@ void NetManagerThreadPrivate::disconnectDevice(const QString &id)
         QMetaObject::invokeMethod(this, "doDisconnectDevice", Qt::QueuedConnection, Q_ARG(QString, id));
 }
 
+void NetManagerThreadPrivate::disconnectConnection(const QString &path)
+{
+    QMetaObject::invokeMethod(this, "doDisconnectConnection", Qt::QueuedConnection, Q_ARG(QString, path));
+}
+
 void NetManagerThreadPrivate::connectHidden(const QString &id, const QString &ssid)
 {
     if (m_isInitialized)
@@ -626,6 +631,17 @@ void NetManagerThreadPrivate::doDisconnectDevice(const QString &id)
     }
 }
 
+void NetManagerThreadPrivate::doDisconnectConnection(const QString &path)
+{
+    NetworkManager::ActiveConnection::List activeConnections = NetworkManager::activeConnections();
+    for (NetworkManager::ActiveConnection::Ptr activeConnection : activeConnections) {
+        if (activeConnection->connection()->path() == path) {
+            qCInfo(DNC) << "disconnect item:" << activeConnection->path();
+            NetworkManager::deactivateConnection(activeConnection->path());
+        }
+    }
+}
+
 void NetManagerThreadPrivate::doConnectHidden(const QString &id, const QString &ssid)
 {
     QList<NetworkDeviceBase *> devices = NetworkController::instance()->devices();
@@ -880,11 +896,32 @@ void NetManagerThreadPrivate::doConnectOrInfo(const QString &id, NetType::NetIte
                 return;
             }
             WirelessSecuritySetting::KeyMgmt keyMgmt = getKeyMgmtByAp(nmAp.get());
-            if (keyMgmt == WirelessSecuritySetting::WpaNone) {
+            if (keyMgmt == WirelessSecuritySetting::WpaEap) {
+                doGetConnectInfo(id, type, param);
+            } else {
                 NetworkManager::ConnectionSettings::Ptr settings = NetworkManager::ConnectionSettings::Ptr(new ConnectionSettings(ConnectionSettings::Wireless));
                 settings->setId(ap->ssid());
-                settings->setting(Setting::SettingType::Wireless).staticCast<WirelessSetting>()->setSsid(ap->ssid().toUtf8());
-                settings->setting(Setting::SettingType::Wireless).staticCast<WirelessSetting>()->setInitialized(true);
+                NetworkManager::WirelessSetting::Ptr wSetting = settings->setting(Setting::SettingType::Wireless).staticCast<WirelessSetting>();
+                wSetting->setSsid(ap->ssid().toUtf8());
+                wSetting->setInitialized(true);
+                WirelessSecuritySetting::Ptr wsSetting = settings->setting(Setting::WirelessSecurity).dynamicCast<WirelessSecuritySetting>();
+                switch (keyMgmt) {
+                case WirelessSecuritySetting::KeyMgmt::WpaNone:
+                    break;
+                case WirelessSecuritySetting::KeyMgmt::Wep:
+                    wsSetting->setKeyMgmt(keyMgmt);
+                    wsSetting->setWepKeyFlags(Setting::None);
+                    break;
+                case WirelessSecuritySetting::KeyMgmt::WpaPsk:
+                case WirelessSecuritySetting::KeyMgmt::SAE:
+                    wsSetting->setKeyMgmt(keyMgmt);
+                    wsSetting->setPskFlags(Setting::None);
+                    break;
+                default:
+                    wsSetting->setKeyMgmt(keyMgmt);
+                    break;
+                }
+                wsSetting->setInitialized(true);
                 QString uuid = settings->createNewUuid();
                 while (findConnectionByUuid(uuid)) {
                     qint64 second = QDateTime::currentDateTime().toSecsSinceEpoch();
@@ -895,9 +932,6 @@ void NetManagerThreadPrivate::doConnectOrInfo(const QString &id, NetType::NetIte
                 if (reply.isError()) {
                     qCWarning(DNC) << "activateConnection fiald:" << reply.error().message();
                 }
-                break;
-            } else {
-                doGetConnectInfo(id, type, param);
             }
         }
 
