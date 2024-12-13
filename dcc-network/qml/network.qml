@@ -13,7 +13,7 @@ DccObject {
     parentName: "root"
     displayName: qsTr("Network")
     icon: "dcc_network"
-    weight: 50
+    weight: 20
     onChildrenChanged: showPage()
     onActive: cmdParam => {
                   cmd = cmdParam
