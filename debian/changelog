@@ -1,3 +1,12 @@
+dde-network-core (2.0.40) unstable; urgency=medium
+
+  * feat: Update weight
+  * fix: Add network parameter jump function
+  * fix: Modify the SSID location on the wireless network configuration page
+  * fix: Failed to modify VPN import issue
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Fri, 13 Dec 2024 16:22:47 +0800
+
 dde-network-core (2.0.39) unstable; urgency=medium
 
   * fix: Implement entering the dde-control-center network configuration page from the dock
