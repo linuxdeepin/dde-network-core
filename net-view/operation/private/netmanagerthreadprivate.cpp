@@ -1079,7 +1079,18 @@ void NetManagerThreadPrivate::doGetConnectInfo(const QString &id, NetType::NetIt
             settings = con->settings();
 
             WirelessSecuritySetting::Ptr const sSetting = settings->setting(Setting::SettingType::WirelessSecurity).staticCast<WirelessSecuritySetting>();
-            sSetting->secretsFromMap(con->secrets(sSetting->name()).value().value(sSetting->name()));
+            switch (sSetting->keyMgmt()) {
+            case WirelessSecuritySetting::Unknown:
+            case WirelessSecuritySetting::WpaNone:
+                break;
+            case WirelessSecuritySetting::WpaEap: {
+                Security8021xSetting::Ptr const xSetting = settings->setting(Setting::SettingType::Security8021x).staticCast<Security8021xSetting>();
+                xSetting->secretsFromMap(con->secrets(xSetting->name()).value().value(xSetting->name()));
+            } break;
+            default:
+                sSetting->secretsFromMap(con->secrets(sSetting->name()).value().value(sSetting->name()));
+                break;
+            }
             ///////////
             QVariantMap retParam;
             const NMVariantMapMap &settingsMap = settings->toMap();
