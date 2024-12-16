@@ -213,6 +213,9 @@ DccObject {
                                             }, {
                                                 "text": qsTr("WPA/WPA2 Personal"),
                                                 "value": "wpa-psk"
+                                            }, {
+                                                "text": qsTr("WPA3 Personal"),
+                                                "value": "sae"
                                             }]
                                         currentIndex: indexOfValue(keyMgmt)
                                         onActivated: {
@@ -300,10 +303,24 @@ DccObject {
                                         return
                                     }
                                     close()
-                                    if (keyMgmt.length === 0) {
-                                        delete editDlg.config["802-11-wireless-security"]
-                                    } else {
+                                    switch (keyMgmt) {
+                                    case "wpa-psk":
+                                        editDlg.config["802-11-wireless-security"]["proto"] = ['wpa', 'rsn']
+                                        editDlg.config["802-11-wireless-security"]["group"] = ['ccmp']
+                                        editDlg.config["802-11-wireless-security"]["pairwise"] = ['ccmp']
+                                        editDlg.config["802-11-wireless-security"]["psk-flags"] = 1
                                         editDlg.config["802-11-wireless-security"]["key-mgmt"] = keyMgmt
+                                        break
+                                    case "sae":
+                                        editDlg.config["802-11-wireless-security"]["proto"] = ['rsn']
+                                        editDlg.config["802-11-wireless-security"]["group"] = ['ccmp']
+                                        editDlg.config["802-11-wireless-security"]["pairwise"] = ['ccmp']
+                                        editDlg.config["802-11-wireless-security"]["psk-flags"] = 1
+                                        editDlg.config["802-11-wireless-security"]["key-mgmt"] = keyMgmt
+                                        break
+                                    default:
+                                        delete editDlg.config["802-11-wireless-security"]
+                                        break
                                     }
                                     editDlg.config["connection"]["id"] = editDlg.config["802-11-wireless"].ssid
                                     dccData.exec(NetManager.SetConnectInfo, item.id, editDlg.config)
