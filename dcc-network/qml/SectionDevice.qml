@@ -81,7 +81,6 @@ DccTitleObject {
 
         return true
     }
-    onErrorKeyChanged: console.log("dev errorKey", errorKey)
     ListModel {
         id: devModel
         ListElement {
@@ -90,7 +89,7 @@ DccTitleObject {
         }
     }
     name: "devTitle"
-    displayName: type === NetType.WirelessItem ? qsTr("WLAN") : qsTr("Ethernet")
+    displayName: (type === NetType.WirelessItem || type === NetType.WirelessHiddenItem) ? qsTr("WLAN") : qsTr("Ethernet")
     DccObject {
         name: "devGroup"
         parentName: root.parentName
@@ -104,6 +103,7 @@ DccTitleObject {
             displayName: qsTr("Device MAC Addr")
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 currentIndex: root.config.hasOwnProperty("mac-address") ? indexOfValue(root.config["mac-address"]) : 0
@@ -198,6 +198,7 @@ DccTitleObject {
         visible: type === NetType.WirelessItem
         pageType: DccObject.Editor
         page: ComboBox {
+            flat: true
             textRole: "text"
             valueRole: "value"
             model: [{

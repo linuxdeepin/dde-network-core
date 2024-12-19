@@ -92,6 +92,7 @@ DccObject {
                 weight: 10
                 pageType: DccObject.Editor
                 page: ComboBox {
+                    flat: true
                     textRole: "text"
                     valueRole: "value"
                     currentIndex: indexOfValue(root.config.type)

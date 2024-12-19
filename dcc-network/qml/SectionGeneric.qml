@@ -35,7 +35,6 @@ DccTitleObject {
 
         return errorKey.length === 0
     }
-    onErrorKeyChanged: console.log("generic errorKey", errorKey)
     name: "genericTitle"
     displayName: qsTr("General")
     DccObject {
