@@ -83,9 +83,12 @@ DccObject {
                                     visible: model.item.status === NetType.CS_Connected && !itemDelegate.hovered
                                 }
                                 NetButton {
+                                    implicitHeight: implicitContentHeight - 4
+                                    topInset: -4
+                                    bottomInset: -4
                                     visible: model.item.status !== NetType.CS_Connecting && itemDelegate.hovered
                                     text: model.item.status === NetType.CS_Connected ? qsTr("Disconnect") : qsTr("Connect")
-                                    Layout.alignment: Qt.AlignCenter
+                                    Layout.alignment: Qt.AlignVCenter
                                     onClicked: {
                                         dccData.exec(model.item.status === NetType.CS_Connected ? NetManager.Disconnect : NetManager.ConnectOrInfo, model.item.id, {})
                                     }
@@ -263,6 +266,7 @@ DccObject {
                         let tmpItem = items[0]
                         if (tmpItem.id === id) {
                             wirelessSettings.displayName = tmpItem.name
+                            wirelessSettings.type = tmpItem.itemType
                             wirelessSettings.item = tmpItem
                             wirelessSettings.config = param
 

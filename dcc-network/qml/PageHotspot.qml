@@ -205,6 +205,7 @@ DccObject {
                                 NetItemEditor {
                                     text: qsTr("Security")
                                     content: D.ComboBox {
+                                        flat: true
                                         textRole: "text"
                                         valueRole: "value"
                                         model: [{
@@ -249,6 +250,7 @@ DccObject {
                                 NetItemEditor {
                                     text: qsTr("Band")
                                     content: D.ComboBox {
+                                        flat: true
                                         textRole: "text"
                                         valueRole: "value"
                                         model: [{
@@ -448,7 +450,7 @@ DccObject {
                             currentIndex = 0
                         }
                     }
-
+                    flat: true
                     textRole: "text"
                     valueRole: "value"
                     // currentIndex: root.config["802-11-wireless"].hasOwnProperty("mac-address") ? indexOfValue(macToString(root.config["802-11-wireless"]["mac-address"])) : 0

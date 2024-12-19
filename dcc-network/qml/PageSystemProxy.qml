@@ -75,6 +75,7 @@ DccObject {
             visible: method !== NetType.None
             pageType: DccObject.Editor
             page: ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 currentIndex: indexOfValue(method)

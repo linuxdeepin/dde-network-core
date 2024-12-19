@@ -227,7 +227,7 @@ void DSLController_NM::updateActiveConnectionInfo(NetworkManager::WiredDevice *w
         Q_EMIT activeConnectionChanged();
     };
 
-    connect(activeConnection.data(), &NetworkManager::ActiveConnection::stateChanged, this, updateActiveConnection, Qt::UniqueConnection);
+    connect(activeConnection.data(), &NetworkManager::ActiveConnection::stateChanged, this, updateActiveConnection);
     updateActiveConnection(activeConnection->state());
 }
 
