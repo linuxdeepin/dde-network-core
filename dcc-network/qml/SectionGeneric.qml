@@ -35,7 +35,6 @@ DccTitleObject {
 
         return errorKey.length === 0
     }
-    onErrorKeyChanged: console.log("generic errorKey", errorKey)
     name: "genericTitle"
     displayName: qsTr("General")
     DccObject {
@@ -49,7 +48,7 @@ DccTitleObject {
             parentName: root.parentName + "/genericGroup"
             displayName: root.config.type === "802-11-wireless" ? qsTr("Name (SSID)") : qsTr("Name")
             weight: 10
-            enabled: !root.config.hasOwnProperty("id") || root.config.id.length === 0
+            enabled: root.config.type !== "802-11-wireless" || !root.config.hasOwnProperty("id") || root.config.id.length === 0
             pageType: DccObject.Editor
             page: D.LineEdit {
                 text: settingsID
