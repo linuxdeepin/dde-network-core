@@ -56,6 +56,7 @@ DccObject {
             backgroundType: DccObject.Normal
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 currentIndex: indexOfValue(vpnType)

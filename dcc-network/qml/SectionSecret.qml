@@ -15,7 +15,6 @@ DccTitleObject {
     id: root
     property var configWSecurity
     property var config802_1x
-    property string parentName: ""
     property int type: NetType.WiredItem
     property string eapType: "peap"
     property int pwdFlays: 0
@@ -332,9 +331,10 @@ DccTitleObject {
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("Security")
             weight: 10
-            visible: root.type === NetType.WirelessItem
+            visible: root.type === NetType.WirelessItem || root.type === NetType.WirelessHiddenItem
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 model: [{
@@ -388,6 +388,7 @@ DccTitleObject {
             visible: root.keyMgmt === "wpa-eap"
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 currentIndex: indexOfValue(root.eapType)
@@ -438,6 +439,7 @@ DccTitleObject {
             visible: root.keyMgmt !== ""
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 model: [{
@@ -481,6 +483,7 @@ DccTitleObject {
             visible: root.keyMgmt === "none"
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 model: [{
@@ -539,6 +542,7 @@ DccTitleObject {
             visible: root.keyMgmt === "wpa-eap" && root.eapType === "fast"
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 currentIndex: (root.config802_1x && root.config802_1x.hasOwnProperty("phase1-fast-provisioning")) ? indexOfValue(root.config802_1x["phase1-fast-provisioning"]) : 0
@@ -615,6 +619,7 @@ DccTitleObject {
             visible: root.keyMgmt === "wpa-eap" && root.eapType === "peap"
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 currentIndex: (root.config802_1x && root.config802_1x.hasOwnProperty("phase1-peapver")) ? indexOfValue(root.config802_1x["phase1-peapver"]) : 0
@@ -648,6 +653,7 @@ DccTitleObject {
             visible: root.keyMgmt === "wpa-eap" && (root.eapType === "fast" || root.eapType === "ttls" || root.eapType === "peap")
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 currentIndex: (root.config802_1x && root.config802_1x.hasOwnProperty("phase2-auth")) ? indexOfValue(root.config802_1x["phase2-auth"]) : 0

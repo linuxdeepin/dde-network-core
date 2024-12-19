@@ -7,6 +7,7 @@ DccObject {
     function showPage() {
         if (cmd.length !== 0 && children.length !== 0) {
             children[0].showPage(cmd)
+            cmd = ""
         }
     }
     name: "network"
@@ -15,8 +16,8 @@ DccObject {
     icon: "dcc_network"
     weight: 20
     onChildrenChanged: showPage()
-    onActive: cmdParam => {
-                  cmd = cmdParam
-                  showPage()
-              }
+    onActive: function (cmdParam) {
+        cmd = cmdParam
+        showPage()
+    }
 }

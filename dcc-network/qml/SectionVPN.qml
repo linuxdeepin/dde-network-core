@@ -584,6 +584,7 @@ DccTitleObject {
             visible: root.vpnType & (NetUtils.VpnTypeEnum["strongswan"])
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 model: [{
@@ -726,6 +727,7 @@ DccTitleObject {
             visible: root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 model: [{
@@ -775,6 +777,7 @@ DccTitleObject {
             visible: (root.vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])) || (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "password" || root.dataMap["connection-type"] === "password-tls")
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 model: [{
@@ -835,6 +838,7 @@ DccTitleObject {
             visible: (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "password-tls" || root.dataMap["connection-type"] === "tls")
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 model: [{
@@ -904,6 +908,7 @@ DccTitleObject {
             visible: root.dataMap.hasOwnProperty(this.name) && (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "static-key")
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 model: [{
@@ -1039,6 +1044,7 @@ DccTitleObject {
             visible: root.vpnType & (NetUtils.VpnTypeEnum["vpnc"])
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 model: [{
@@ -1090,6 +1096,7 @@ DccTitleObject {
             visible: root.vpnType & (NetUtils.VpnTypeEnum["vpnc"])
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 model: [{
@@ -1192,6 +1199,7 @@ DccTitleObject {
             visible: mppe
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 currentIndex: indexOfValue(currentMppeMethod)
@@ -1650,6 +1658,7 @@ DccTitleObject {
             weight: 20
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 model: [{
@@ -1682,6 +1691,7 @@ DccTitleObject {
             weight: 40
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 model: [{
@@ -1709,6 +1719,7 @@ DccTitleObject {
             weight: 50
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 model: [{
@@ -1739,6 +1750,7 @@ DccTitleObject {
             weight: 60
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 model: [{
@@ -1766,6 +1778,7 @@ DccTitleObject {
             weight: 70
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 model: [{
@@ -1851,6 +1864,7 @@ DccTitleObject {
             weight: 10
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 currentIndex: root.dataMap.hasOwnProperty("cipher") ? indexOfValue(root.dataMap["cipher"]) : 0
@@ -1923,6 +1937,7 @@ DccTitleObject {
             weight: 20
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 currentIndex: root.dataMap.hasOwnProperty("auth") ? indexOfValue(root.dataMap["auth"]) : 0
@@ -1987,6 +2002,7 @@ DccTitleObject {
             weight: 10
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 currentIndex: root.dataMap.hasOwnProperty("proxy-type") ? indexOfValue(root.dataMap["proxy-type"]) : 0
@@ -2101,6 +2117,7 @@ DccTitleObject {
             weight: 20
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 currentIndex: root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
@@ -2160,6 +2177,7 @@ DccTitleObject {
             visible: root.dataMap.hasOwnProperty(this.name)
             pageType: DccObject.Editor
             page: D.ComboBox {
+                flat: true
                 textRole: "text"
                 valueRole: "value"
                 currentIndex: root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
