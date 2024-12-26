@@ -15,7 +15,7 @@ static Dtk::Core::DConfig *dConfig = nullptr;
 
 ConfigSetting::ConfigSetting(QObject *parent)
     : QObject(parent)
-    , m_alwaysFromNM(false)
+    , m_alwaysFromNM(true)
     , m_loadServiceFromNM(false)
     , m_enableConnectivity(false)
     , m_checkPortal(false)

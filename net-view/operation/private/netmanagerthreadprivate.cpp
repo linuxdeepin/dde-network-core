@@ -523,6 +523,7 @@ void NetManagerThreadPrivate::doInit()
     if (m_flags.testFlags(NetType::NetManagerFlag::Net_Airplane)) {
         m_airplaneModeEnabled = false;
         getAirplaneModeEnabled();
+        connect(ConfigSetting::instance(), &ConfigSetting::enableAirplaneModeChanged, this, &NetManagerThreadPrivate::getAirplaneModeEnabled);
         QDBusConnection::systemBus().connect("org.deepin.dde.AirplaneMode1",
                                              "/org/deepin/dde/AirplaneMode1",
                                              "org.freedesktop.DBus.Properties",
@@ -834,7 +835,7 @@ void NetManagerThreadPrivate::updateAirplaneModeEnabled(const QDBusVariant &enab
 
 void NetManagerThreadPrivate::updateAirplaneModeEnabledable(const QDBusVariant &enabledable)
 {
-    bool airplaneEnabledable = enabledable.variant().toBool();
+    bool airplaneEnabledable = enabledable.variant().toBool() && ConfigSetting::instance()->networkAirplaneMode();
     Q_EMIT dataChanged(DataChanged::DeviceAvailableChanged, "Root", QVariant(airplaneEnabledable));
 }
 
@@ -928,13 +929,15 @@ void NetManagerThreadPrivate::doConnectOrInfo(const QString &id, NetType::NetIte
                     uuid.replace(24, QString::number(second).length(), QString::number(second));
                 }
                 settings->setUuid(uuid);
-                QDBusPendingReply<QDBusObjectPath, QDBusObjectPath> reply = NetworkManager::addAndActivateConnection(settings->toMap(), devPath, ap->path());
+                QVariantMap options;
+                options.insert("persist", "memory");
+                options.insert("flags", MANULCONNECTION);
+                QDBusPendingReply<QDBusObjectPath, QDBusObjectPath> reply = NetworkManager::addAndActivateConnection2(settings->toMap(), devPath, ap->path(), options);
                 if (reply.isError()) {
                     qCWarning(DNC) << "activateConnection fiald:" << reply.error().message();
                 }
             }
         }
-
     } break;
     case NetType::ConnectionItem: {
         NetworkManager::Connection::Ptr conn = findConnection(id);
