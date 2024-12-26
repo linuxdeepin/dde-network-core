@@ -266,7 +266,7 @@ void ProxyController::queryProxyAuthByType(const QString &type)
         }
 
         // 先查找原来是否存在响应的代理，如果存在，就直接更新最新的数据
-        auto iterator = std::find_if(m_sysProxyConfig.begin(), m_sysProxyConfig.end(), [ = ](SysProxyConfig conf) {
+        auto iterator = std::find_if(m_sysProxyConfig.begin(), m_sysProxyConfig.end(), [ = ](SysProxyConfig &conf) {
             if (conf.type == uType) {
                 QString userName = reply.argumentAt(0).toString();
                 QString password = reply.argumentAt(1).toString();
