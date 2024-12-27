@@ -3,20 +3,29 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
 #include "networkinitialization.h"
+
 #include "settingconfig.h"
 #include "systemservice.h"
 
-#include <QApplication>
-#include <QEventLoop>
-
-#include <NetworkManagerQt/WiredDevice>
-#include <NetworkManagerQt/WirelessDevice>
 #include <NetworkManagerQt/Manager>
 #include <NetworkManagerQt/Settings>
+#include <NetworkManagerQt/WiredDevice>
 #include <NetworkManagerQt/WiredSetting>
+#include <NetworkManagerQt/WirelessDevice>
 
-#include <com_deepin_daemon_accounts_user.h>
-#include <com_deepin_daemon_accounts.h>
+#include <QCoreApplication>
+#include <QDBusConnection>
+#include <QDBusConnectionInterface>
+#include <QDBusInterface>
+#include <QDBusMessage>
+#include <QDBusServiceWatcher>
+#include <QEventLoop>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonParseError>
+#include <QMutex>
+#include <QTimer>
+#include <QTranslator>
 
 using namespace network::systemservice;
 
@@ -25,13 +34,13 @@ using namespace network::systemservice;
 
 #define NETWORKMANAGER_SERVICE "org.freedesktop.NetworkManager"
 
-#define LOCKERVICE "com.deepin.dde.LockService"
-#define LOCKPATH "/com/deepin/dde/LockService"
-#define LOCKINTERFACE "com.deepin.dde.LockService"
+#define LOCKERVICE "org.deepin.dde.LockService1"
+#define LOCKPATH "/org/deepin/dde/LockService1"
+#define LOCKINTERFACE "org.deepin.dde.LockService1"
 
-#define DEAMONACCOUNTSERVICE "com.deepin.daemon.Accounts"
-#define DEAMONACCOUNTPATH "/com/deepin/daemon/Accounts"
-#define DEAMONACCOUNTINTERFACE "com.deepin.daemon.Accounts"
+#define DEAMONACCOUNTSERVICE "org.deepin.dde.Accounts1"
+#define DEAMONACCOUNTPATH "/org/deepin/dde/Accounts1"
+#define DEAMONACCOUNTINTERFACE "org.deepin.dde.Accounts1"
 
 void NetworkInitialization::doInit()
 {
@@ -280,29 +289,57 @@ bool NetworkInitialization::installUserTranslator(const QString &json)
     qCDebug(DSM) << "user changed " << json;
     QString locale;
     if (json.startsWith("/")) {
-        com::deepin::daemon::accounts::User user("com.deepin.daemon.Accounts", json, QDBusConnection::systemBus());
-        locale = user.locale().split(".").first().trimmed();
+        QDBusMessage userMsg = QDBusMessage::createMethodCall(DEAMONACCOUNTSERVICE, json, "org.freedesktop.DBus.Properties", "Get");
+        userMsg << DEAMONACCOUNTINTERFACE ".User"
+                << "Locale";
+        QDBusPendingReply<QVariant> userProp = QDBusConnection::systemBus().asyncCall(userMsg);
+        if (userProp.value().isValid()) {
+            locale = userProp.value().toString().split(".").first().trimmed();
+        }
         qCDebug(DSM) << "get locale: " << locale;
     }
 
     QJsonParseError error;
     QJsonDocument doc = QJsonDocument::fromJson(json.toUtf8(), &error);
-    if (!locale.isEmpty() ) {
-        //do nothing
+    if (!locale.isEmpty()) {
+        // do nothing
     } else if (error.error == QJsonParseError::NoError && doc.isObject()) {
-        int uid = doc.object().value("Uid").toInt();
-        com::deepin::daemon::accounts::User user("com.deepin.daemon.Accounts", QString("/com/deepin/daemon/Accounts/User%1").arg(uid), QDBusConnection::systemBus());
-        locale = user.locale().split(".").first();
+        const QString name = doc.object().value("Name").toString();
+        if (name.isEmpty()) {
+            return false;
+        }
+        QDBusMessage msg = QDBusMessage::createMethodCall(DEAMONACCOUNTSERVICE, DEAMONACCOUNTPATH, DEAMONACCOUNTINTERFACE, "FindUserByName");
+        msg << name;
+        QDBusPendingReply<QString> path = QDBusConnection::systemBus().asyncCall(msg);
+        if (path.isError()) {
+            return false;
+        }
+        QDBusMessage userMsg = QDBusMessage::createMethodCall(DEAMONACCOUNTSERVICE, path, "org.freedesktop.DBus.Properties", "Get");
+        userMsg << DEAMONACCOUNTINTERFACE ".User"
+                << "Locale";
+        QDBusPendingReply<QVariant> userProp = QDBusConnection::systemBus().asyncCall(userMsg);
+        if (userProp.value().isValid()) {
+            locale = userProp.value().toString().split(".").first().trimmed();
+        }
     } else if (m_accountServiceRegister) {
         // 如果是非法的json，就直接从Accounts服务中获取
-        com::deepin::daemon::Accounts account("com.deepin.daemon.Accounts", "/com/deepin/daemon/Accounts", QDBusConnection::systemBus());
-        const QStringList userList = account.userList();
+        QDBusMessage msg = QDBusMessage::createMethodCall(DEAMONACCOUNTSERVICE, DEAMONACCOUNTPATH, "org.freedesktop.DBus.Properties", "Get");
+        msg << DEAMONACCOUNTINTERFACE << "UserList";
+        QDBusPendingReply<QVariant> prop = QDBusConnection::systemBus().asyncCall(msg);
+        if (!prop.value().isValid()) {
+            return false;
+        }
+        const QStringList userList = prop.value().toStringList();
         qCDebug(DSM) << "found users" << userList;
         if (userList.isEmpty())
             return false;
-
-        com::deepin::daemon::accounts::User user("com.deepin.daemon.Accounts", userList.first(), QDBusConnection::systemBus());
-        locale = user.locale().split(".").first();
+        QDBusMessage userMsg = QDBusMessage::createMethodCall(DEAMONACCOUNTSERVICE, userList.first(), "org.freedesktop.DBus.Properties", "Get");
+        userMsg << DEAMONACCOUNTINTERFACE ".User"
+                << "Locale";
+        QDBusPendingReply<QVariant> userProp = QDBusConnection::systemBus().asyncCall(userMsg);
+        if (userProp.value().isValid()) {
+            locale = userProp.value().toString().split(".").first().trimmed();
+        }
     } else {
         return false;
     }
@@ -317,10 +354,10 @@ bool NetworkInitialization::installUserTranslator(const QString &json)
     if (localTmp != locale) {
         localTmp = locale;
         static QTranslator translator;
-        QApplication::removeTranslator(&translator);
+        QCoreApplication::removeTranslator(&translator);
         const QString qmFile = QString("%1/network-service-plugin_%2.qm").arg(QM_FILES_DIR).arg(locale);
         translator.load(qmFile);
-        QApplication::installTranslator(&translator);
+        QCoreApplication::installTranslator(&translator);
         qCDebug(DSM) << "install translation file" << qmFile;
     }
 

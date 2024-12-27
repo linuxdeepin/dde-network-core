@@ -1,0 +1,6 @@
+/usr/share/deepin-service-manager/system/plugin-system-network.json
+/usr/share/deepin-service-manager/user/plugin-session-network.json
+/usr/share/dbus-1/system.d/org.deepin.service.SessionNetwork.conf
+/usr/share/dbus-1/system.d/org.deepin.service.SystemNetwork.conf
+/usr/lib/*/deepin-service-manager/libnetwork-service.so
+/usr/share/deepin-service-manager/network-service/translations

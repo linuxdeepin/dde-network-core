@@ -21,13 +21,13 @@
 #define LOGIN1SERVICE "org.freedesktop.login1"
 #define LOGIN1MANAGERINTERFACE "org.freedesktop.login1.Session"
 
-#define LOCKERVICE "com.deepin.dde.LockService"
-#define LOCKPATH "/com/deepin/dde/LockService"
-#define LOCKINTERFACE "com.deepin.dde.LockService"
+#define LOCKERVICE "org.deepin.dde.LockService1"
+#define LOCKPATH "/org/deepin/dde/LockService1"
+#define LOCKINTERFACE "org.deepin.dde.LockService1"
 
-#define SESSIONMANAGERSERVICE "com.deepin.SessionManager"
-#define SESSIONMANAGERPATH "/com/deepin/SessionManager"
-#define SESSIONMANAGERINTERFACE "com.deepin.SessionManager"
+#define SESSIONMANAGERSERVICE "org.deepin.dde.SessionManager1"
+#define SESSIONMANAGERPATH "/org/deepin/dde/SessionManager1"
+#define SESSIONMANAGERINTERFACE "org.deepin.dde.SessionManager1"
 
 #define IAM_SERVICE "com.deepin.udcp.iam"
 #define IAM_PATH "/com/deepin/udcp/iam"

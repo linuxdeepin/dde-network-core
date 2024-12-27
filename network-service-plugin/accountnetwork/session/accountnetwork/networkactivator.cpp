@@ -9,6 +9,7 @@
 #include "constants.h"
 
 #include <QDBusConnection>
+#include <QDBusInterface>
 
 #include <NetworkManagerQt/WirelessDevice>
 #include <NetworkManagerQt/WiredDevice>
@@ -21,9 +22,9 @@
 
 using namespace accountnetwork::sessionservice;
 
-#define SYS_NETWORK_SERVICE "com.deepin.system.Network"
-#define SYS_NETWORK_PATH "/com/deepin/system/Network"
-#define SYS_NETWORK_INTERFACE "com.deepin.system.Network"
+#define SYS_NETWORK_SERVICE "org.deepin.dde.Network1"
+#define SYS_NETWORK_PATH "/org/deepin/dde/Network1"
+#define SYS_NETWORK_INTERFACE "org.deepin.dde.Network1"
 
 NetworkActivator::NetworkActivator(AccountNetworkConfig *config, QObject *parent)
     : QObject(parent)

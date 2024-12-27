@@ -28,7 +28,7 @@ Vcs-Browser: https://gerrit.uniontech.com/admin/repos/dde-network-core
 
 Package: libdde-network-core
 Architecture: any
-Depends: ${misc:Depends},${shlibs:Depends},
+Depends: ${misc:Depends},${shlibs:Depends},deepin-service-plugin-network
 Description: the library of network
  libdde-network-core module
 
@@ -49,3 +49,9 @@ Architecture: any
 Depends: ${misc:Depends},${shlibs:Depends},libdde-network-core (= ${binary:Version})
 Description: the plugin of network for dde-lock
  dss-network-plugin module
+
+Package: deepin-service-plugin-network
+Architecture: any
+Depends: ${misc:Depends},${shlibs:Depends},curl
+Description: the plugin of network service for deepin-service-manager
+ deepin-service-plugin-network module

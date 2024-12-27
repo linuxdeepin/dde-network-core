@@ -8,6 +8,7 @@
 #include "browserassist.h"
 
 #include <QDBusConnection>
+#include <QDBusInterface>
 
 using namespace network::sessionservice;
 
@@ -37,7 +38,7 @@ void SessionContainer::initConnection()
     QDBusConnection::systemBus().connect(networkService, networkPath, networkInterface, "IpConflictChanged", this, SLOT(onIPConflictChanged(const QString &, const QString &, bool)));
     QDBusConnection::systemBus().connect(networkService, networkPath, networkInterface, "PortalDetected", this, SLOT(onPortalDetected(const QString &)));
     // 当系统代理发生变化的时候需要主动调用SystemNetwork服务的检查网络连通性的接口
-    QDBusConnection::sessionBus().connect("com.deepin.daemon.Network", "/com/deepin/daemon/Network", "com.deepin.daemon.Network", "ProxyMethodChanged", this, SLOT(onProxyMethodChanged(const QString &)));
+    QDBusConnection::sessionBus().connect("org.deepin.dde.Network1", "/org/deepin/dde/Network1", "org.deepin.dde.Network1", "ProxyMethodChanged", this, SLOT(onProxyMethodChanged(const QString &)));
 }
 
 void SessionContainer::initMember()

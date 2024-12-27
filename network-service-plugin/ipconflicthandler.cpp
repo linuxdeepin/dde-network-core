@@ -44,7 +44,7 @@ NetworkManager::Setting::SecretFlags IPConflictHandler::secretFlags(const Networ
             return wirelessSecretSetting->wepKeyFlags();
         }
         if (currentKeyMgmt == NetworkManager::WirelessSecuritySetting::KeyMgmt::WpaPsk ||
-                    currentKeyMgmt == NetworkManager::WirelessSecuritySetting::KeyMgmt::WpaSae) {
+                    currentKeyMgmt == NetworkManager::WirelessSecuritySetting::KeyMgmt::SAE) {
             return wirelessSecretSetting->pskFlags();
         }
     } else {
