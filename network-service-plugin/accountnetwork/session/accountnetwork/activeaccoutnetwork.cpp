@@ -9,10 +9,15 @@
 #include "constants.h"
 
 #include <QDBusConnection>
+#include <QDBusConnectionInterface>
 #include <QDBusInterface>
 #include <QDBusPendingCall>
 #include <QDBusPendingReply>
 #include <QDBusMetaType>
+#include <QDBusServiceWatcher>
+#include <QStandardPaths>
+#include <QFile>
+#include <QDir>
 
 #include <NetworkManagerQt/Device>
 #include <NetworkManagerQt/Manager>
@@ -29,7 +34,7 @@ using namespace accountnetwork::sessionservice;
 
 #define NETWORKMANAGERINTERFACE "org.freedesktop.NetworkManager"
 
-#define DEAMON_NETWORK_SERVICE "com.deepin.daemon.Network"
+#define DEAMON_NETWORK_SERVICE "org.deepin.dde.Network1"
 #define SECRET_SERVICE "org.freedesktop.secrets"
 
 #define MANULCONNECTION 1

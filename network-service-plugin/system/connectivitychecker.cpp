@@ -12,6 +12,7 @@
 #include <NetworkManagerQt/WirelessNetwork>
 
 #include <QTimer>
+#include <QProcess>
 
 // 当没有进行配置的时候, 则访问我们官网
 static const QStringList CheckUrls{

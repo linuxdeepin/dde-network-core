@@ -18,9 +18,10 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug")
 else()
     ADD_DEFINITIONS(-DQM_FILES_DIR="/usr/share/deepin-service-manager/network-service/translations")
 endif()
-
-find_package(Qt5 COMPONENTS Core Widgets DBus Network REQUIRED)
-find_package(KF5NetworkManagerQt REQUIRED)
+set(QT_NS 5)
+set(DTK_NS Dtk)
+find_package(Qt${QT_NS} COMPONENTS Core Widgets DBus Network LinguistTools REQUIRED)
+find_package(KF${QT_NS}NetworkManagerQt REQUIRED)
 find_package(DtkCore REQUIRED)
 
 file(GLOB TS_FILES "translations/*.ts")
@@ -34,12 +35,11 @@ add_library(${BIN_NAME} MODULE
 )
 
 target_include_directories(${BIN_NAME} PUBLIC
-  Qt5::Core
-  Qt5::DBus
-  ${Qt5Network_INCLUDE_DIRS}
-  ${DFrameworkDBus_INCLUDE_DIRS}
-  ${KF5_QT_INCLUDE_DIRS}
-  ${DtkCore_INCLUDE_DIRS}
+  Qt${QT_NS}::Core
+  Qt${QT_NS}::DBus
+  Qt${QT_NS}::Network
+  KF${QT_NS}::NetworkManagerQt
+  ${DTK_NS}::Core
   .
   system
   session
@@ -51,13 +51,11 @@ target_include_directories(${BIN_NAME} PUBLIC
 )
 
 target_link_libraries(${BIN_NAME} PRIVATE
-  Qt5::Core
-  Qt5::DBus
-  ${Qt5Network_LIBRARIES}
-  ${Qt5Widgets_LIBRARIES}
-  ${DFrameworkDBus_LIBRARIES}
-  ${KF5_QT_LIBRARIES}
-  ${DtkCore_LIBRARIES}
+  Qt${QT_NS}::Core
+  Qt${QT_NS}::DBus
+  Qt${QT_NS}::Network
+  KF${QT_NS}::NetworkManagerQt
+  ${DTK_NS}::Core
 )
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")

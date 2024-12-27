@@ -19,13 +19,13 @@
 
 using namespace accountnetwork::systemservice;
 
-#define LOCKERVICE "com.deepin.dde.LockService"
-#define LOCKPATH "/com/deepin/dde/LockService"
-#define LOCKINTERFACE "com.deepin.dde.LockService"
+#define LOCKERVICE "org.deepin.dde.LockService1"
+#define LOCKPATH "/org/deepin/dde/LockService1"
+#define LOCKINTERFACE "org.deepin.dde.LockService1"
 
-#define ACCOUNT_SERVICE "com.deepin.daemon.Accounts"
-#define ACCOUNT_PATH "/com/deepin/daemon/Accounts"
-#define ACCOUNT_INTERFACE "com.deepin.daemon.Accounts"
+#define ACCOUNT_SERVICE "org.deepin.dde.Accounts1"
+#define ACCOUNT_PATH "/org/deepin/dde/Accounts1"
+#define ACCOUNT_INTERFACE "org.deepin.dde.Accounts1"
 
 AccountManager::AccountManager(NetworkConfig *conf, QObject *parent)
     : QObject (parent)
@@ -50,7 +50,7 @@ AccountManager::AccountManager(NetworkConfig *conf, QObject *parent)
     QDBusInterface dbusInter(ACCOUNT_SERVICE, ACCOUNT_PATH, ACCOUNT_INTERFACE, QDBusConnection::systemBus());
     QStringList userLists = dbusInter.property("UserList").toStringList();
     for (const QString &user : userLists) {
-        QDBusInterface userInterface(ACCOUNT_SERVICE, user, "com.deepin.daemon.Accounts.User", QDBusConnection::systemBus());
+        QDBusInterface userInterface(ACCOUNT_SERVICE, user, "org.deepin.dde.Accounts1.User", QDBusConnection::systemBus());
         m_userMap[user] = userInterface.property("UserName").toString();
     }
 }
@@ -70,7 +70,7 @@ QStringList AccountManager::primaryAccount() const
     QDBusInterface dbusInter(ACCOUNT_SERVICE, ACCOUNT_PATH, ACCOUNT_INTERFACE, QDBusConnection::systemBus());
     QStringList userLists = dbusInter.property("UserList").toStringList();
     for (const QString &userPath : userLists) {
-        QDBusInterface interface(ACCOUNT_SERVICE, userPath, "com.deepin.daemon.Accounts.User", QDBusConnection::systemBus());
+        QDBusInterface interface(ACCOUNT_SERVICE, userPath, "org.deepin.dde.Accounts1.User", QDBusConnection::systemBus());
         if (iamUsers.contains(interface.property("UserName").toString()))
             continue;
 
@@ -131,7 +131,7 @@ void AccountManager::onAccountChanged(const QString &username)
 void AccountManager::onUserAdded(const QString &path)
 {
     // 新增用户的时候，需要告知外部，如果是新增的域账户，外部需要处理
-    QDBusInterface interface(ACCOUNT_SERVICE, path, "com.deepin.daemon.Accounts.User", QDBusConnection::systemBus());
+    QDBusInterface interface(ACCOUNT_SERVICE, path, "org.deepin.dde.Accounts1.User", QDBusConnection::systemBus());
     QString userName = interface.property("UserName").toString();
     m_userMap[path] = userName;
     emit accountAdded(userName, iamUserList().contains(QString::number(interface.property("Uid").toUInt())));
