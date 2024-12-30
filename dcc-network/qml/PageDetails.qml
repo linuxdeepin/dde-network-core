@@ -50,9 +50,11 @@ DccObject {
                     D.IconLabel {
                         property bool clipboard: false
                         Layout.alignment: Qt.AlignRight
-                        icon.name: "editcopy"
-                        ToolTip {
+                        icon.name: "dcc_network_edit"
+                        icon.palette: D.DTK.makeIconPalette(parent.palette)
+                        D.ToolTip {
                             id: tip
+                            palette: parent.palette
                         }
                         MouseArea {
                             anchors.fill: parent

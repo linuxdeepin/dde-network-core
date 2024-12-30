@@ -274,7 +274,7 @@ DccObject {
                     displayName: qsTr("IP Address")
                     pageType: DccObject.Editor
                     page: D.LineEdit {
-                        text: addressData.length > index ? addressData[index].address : ""
+                        text: root.addressData.length > index ? root.addressData[index].address : ""
                         validator: RegularExpressionValidator {
                             regularExpression: NetUtils.ipv6RegExp
                         }
@@ -282,8 +282,10 @@ DccObject {
                             if (showAlert) {
                                 errorKey = ""
                             }
-                            if (addressData.length > index && addressData[index].address !== text) {
-                                addressData[index].address = text
+                            if (root.addressData.length > index && root.addressData[index].address !== text) {
+                                var addr = root.addressData[index]
+                                addr.address = text
+                                root.addressData[index] = addr
                                 root.editClicked()
                             }
                         }
@@ -305,15 +307,17 @@ DccObject {
                     displayName: qsTr("Prefix")
                     pageType: DccObject.Editor
                     page: D.SpinBox {
-                        value: addressData.length > index ? addressData[index].prefix : 64
+                        value: root.addressData.length > index ? root.addressData[index].prefix : 64
                         from: 0
                         to: 128
                         onValueChanged: {
                             if (showAlert) {
                                 errorKey = ""
                             }
-                            if (addressData.length > index && addressData[index].prefix !== value) {
-                                addressData[index].prefix = value
+                            if (root.addressData.length > index && root.addressData[index].prefix !== value) {
+                                var addr = root.addressData[index]
+                                addr.prefix = value
+                                root.addressData[index] = addr
                                 root.editClicked()
                             }
                         }
@@ -376,10 +380,10 @@ DccObject {
     }
 
     onAddressDataChanged: {
-        while (addressData.length > ipItems.length) {
+        while (root.addressData.length > ipItems.length) {
             addIpItem()
         }
-        while (addressData.length < ipItems.length) {
+        while (root.addressData.length < ipItems.length) {
             removeIpItem()
         }
     }
