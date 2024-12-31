@@ -922,7 +922,7 @@ void NetManagerThreadPrivate::doConnectOrInfo(const QString &id, NetType::NetIte
                     wsSetting->setKeyMgmt(keyMgmt);
                     break;
                 }
-                wsSetting->setInitialized(true);
+                wsSetting->setInitialized(keyMgmt != WirelessSecuritySetting::KeyMgmt::WpaNone);
                 QString uuid = settings->createNewUuid();
                 while (findConnectionByUuid(uuid)) {
                     qint64 second = QDateTime::currentDateTime().toSecsSinceEpoch();
