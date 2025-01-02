@@ -1,3 +1,13 @@
+dde-network-core (2.0.42) unstable; urgency=medium
+
+  * fix: Password configuration should not be saved without a password
+  * fix: IPv6 regular expression error
+  * fix: Add deepin-service-plugin-network
+  * fix: Create a temporary connection to an unconnected wireless network
+  * fix: The data of the network proxy is not saved correctly
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 02 Jan 2025 13:46:12 +0800
+
 dde-network-core (2.0.41) unstable; urgency=medium
 
   * fix: Change the network configuration interface to 107x style
