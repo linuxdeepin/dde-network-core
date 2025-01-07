@@ -119,7 +119,10 @@ DccObject {
                                     }
                                 }
                                 D.IconLabel {
-                                    icon.name: "arrow_ordinary_right"
+                                    icon {
+                                        name: "arrow_ordinary_right"
+                                        palette: D.DTK.makeIconPalette(palette)
+                                    }
                                     MouseArea {
                                         anchors.fill: parent
                                         acceptedButtons: Qt.LeftButton

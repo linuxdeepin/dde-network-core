@@ -71,8 +71,6 @@ DccObject {
                                 height: 16
                                 width: 16
                             }
-                            // "network-online-symbolic"
-                            // "network-setting"
                             content: RowLayout {
                                 spacing: 10
                                 BusyIndicator {
@@ -94,7 +92,10 @@ DccObject {
                                     }
                                 }
                                 D.IconLabel {
-                                    icon.name: "arrow_ordinary_right"
+                                    icon {
+                                        name: "arrow_ordinary_right"
+                                        palette: D.DTK.makeIconPalette(palette)
+                                    }
                                     MouseArea {
                                         anchors.fill: parent
                                         acceptedButtons: Qt.LeftButton
