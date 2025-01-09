@@ -136,7 +136,7 @@ DccObject {
             pageType: DccObject.Item
             page: RowLayout {
                 Label {
-                    font: DccUtils.copyFont(D.DTK.fontManager.t4, {
+                    font: DccUtils.copyFont(D.DTK.fontManager.t5, {
                                                 "bold": true
                                             })
                     text: dccObj.displayName
@@ -146,7 +146,7 @@ DccObject {
                     Layout.alignment: Qt.AlignRight
                     focusPolicy: Qt.NoFocus
                     icon {
-                        name: "edit"
+                        name: "dcc_network_edit"
                         width: 16
                         height: 16
                     }
@@ -191,6 +191,7 @@ DccObject {
                                 width: parent.width
                                 NetItemEditor {
                                     text: qsTr("Name (SSID)")
+                                    corners: getCornersForBackground(0, colLayout.children.length)
                                     content: D.LineEdit {
                                         showAlert: ssidAlert
                                         alertDuration: 2000
@@ -204,6 +205,7 @@ DccObject {
                                 }
                                 NetItemEditor {
                                     text: qsTr("Security")
+                                    corners: getCornersForBackground(1, colLayout.children.length)
                                     content: D.ComboBox {
                                         flat: true
                                         textRole: "text"
@@ -232,6 +234,7 @@ DccObject {
                                 }
                                 NetItemEditor {
                                     text: qsTr("Password")
+                                    corners: getCornersForBackground(2, colLayout.children.length)
                                     visible: keyMgmt.length !== 0
                                     content: D.PasswordEdit {
                                         showAlert: passwordAlert
@@ -249,6 +252,7 @@ DccObject {
                                 }
                                 NetItemEditor {
                                     text: qsTr("Band")
+                                    corners: getCornersForBackground(3, colLayout.children.length)
                                     content: D.ComboBox {
                                         flat: true
                                         textRole: "text"
