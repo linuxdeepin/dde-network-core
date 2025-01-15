@@ -52,6 +52,7 @@ private:
     bool m_accountServiceRegister;
     bool m_hasAddFirstConnection;
     QMap<QString, QDateTime> m_lastCreateTime;
+    QMap<QString, QSharedPointer<NetworkManager::Device>> m_devs;
 };
 
 }
