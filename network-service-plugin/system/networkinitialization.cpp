@@ -78,7 +78,9 @@ void NetworkInitialization::initConnection()
     QDBusConnection::systemBus().callWithCallback(lock, this, SLOT(onUserChanged(QString)));
     QDBusConnection::systemBus().connect(LOCKERVICE, LOCKPATH, LOCKINTERFACE, "UserChanged", this, SLOT(onUserChanged(QString)));
     QDBusConnection::systemBus().connect(DEAMONACCOUNTSERVICE, DEAMONACCOUNTPATH, DEAMONACCOUNTINTERFACE, "UserAdded", this, SLOT(onUserAdded(QString)));
-
+    connect(NetworkManager::notifier(), &NetworkManager::Notifier::deviceAdded, this, [this](const QString &uni) {
+        addFirstConnection();
+    });
     m_accountServiceRegister = QDBusConnection::systemBus().interface()->isServiceRegistered(DEAMONACCOUNTINTERFACE);
     if (!m_accountServiceRegister) {
         // 如果服务未启动，则等待服务启动
@@ -123,14 +125,33 @@ void NetworkInitialization::addFirstConnection()
     if (m_hasAddFirstConnection) {
         return;
     }
-    m_hasAddFirstConnection = true;
-    NetworkManager::Device::List devices = NetworkManager::networkInterfaces();
-    for (NetworkManager::Device::Ptr device : devices) {
+    QDBusMessage devs = QDBusMessage::createMethodCall("org.freedesktop.NetworkManager", "/org/freedesktop/NetworkManager", "org.freedesktop.NetworkManager", "GetDevices");
+    QDBusPendingReply<QList<QDBusObjectPath>> reply = QDBusConnection::systemBus().asyncCall(devs);
+    reply.waitForFinished();
+    for (auto objPath : reply.value()) {
+        NetworkManager::Device::Ptr device;
+        bool isNMDev = true;
+        if (device.isNull()) {
+            if (m_devs.contains(objPath.path())) {
+                device = m_devs.value(objPath.path());
+            } else {
+                device.reset(new NetworkManager::Device(objPath.path()));
+                isNMDev = false;
+            }
+        }
+
         if (device->type() != NetworkManager::Device::Type::Ethernet)
             continue;
 
+        m_hasAddFirstConnection = true;
         qCDebug(DSM) << "device" << device->interfaceName() << "add first connection";
-        NetworkManager::WiredDevice::Ptr wiredDevice = device.staticCast<NetworkManager::WiredDevice>();
+        NetworkManager::WiredDevice::Ptr wiredDevice;
+        if (isNMDev) {
+            wiredDevice = device.staticCast<NetworkManager::WiredDevice>();
+        } else {
+            wiredDevice.reset(new NetworkManager::WiredDevice(objPath.path(), this));
+            m_devs.insert(objPath.path(), wiredDevice);
+        }
         initDeviceConnection(wiredDevice);
         addFirstConnection(wiredDevice);
     }
@@ -176,11 +197,13 @@ void NetworkInitialization::addFirstConnection(const QSharedPointer<NetworkManag
         conn->setUuid(conn->createNewUuid());
         conn->setInterfaceName(device->interfaceName());
         conn->setAutoconnect(!SettingConfig::instance()->enableAccountNetwork());
-        NetworkManager::WiredSetting::Ptr wiredSetting = conn->setting(NetworkManager::Setting::Wired).staticCast<NetworkManager::WiredSetting>();
-        QString macAddress = device->permanentHardwareAddress();
-        macAddress.remove(":");
-        wiredSetting->setMacAddress(QByteArray::fromHex(macAddress.toUtf8()));
-        wiredSetting->setInitialized(true);
+        // TODO: permanentHardwareAddress会崩溃，暂时屏蔽
+        // NetworkManager::WiredSetting::Ptr wiredSetting = conn->setting(NetworkManager::Setting::Wired).staticCast<NetworkManager::WiredSetting>();
+        // QString macAddress = device->permanentHardwareAddress();
+        // macAddress.remove(":");
+        // wiredSetting->setMacAddress(QByteArray::fromHex(macAddress.toUtf8()));
+        // wiredSetting->setInitialized(true);
+        qWarning()<<__LINE__<<__FUNCTION__<<conn->toMap();
         QDBusPendingReply<QDBusObjectPath> reply = NetworkManager::addConnection(conn->toMap());
         reply.waitForFinished();
         qCDebug(DSM) << "device" << device->interfaceName() << "create connection success,count:" << device->availableConnections().size();
