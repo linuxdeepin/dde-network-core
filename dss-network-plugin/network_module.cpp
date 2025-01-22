@@ -439,7 +439,7 @@ QWidget *NetworkPlugin::itemWidget() const
     iconButton->setFlat(true);
     iconButton->setAttribute(Qt::WA_TransparentForMouseEvents);
     iconButton->setIconSize({26, 26});
-    QTimer::singleShot(1, [this, iconButton]() {
+    QTimer::singleShot(1, iconButton, [this, iconButton]() {
         const_cast<NetworkPlugin *>(this)->ensureNetwork();
         auto helper = m_network->networkHelper();
         iconButton->setIcon(*helper->trayIcon());
