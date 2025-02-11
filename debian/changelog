@@ -1,6 +1,12 @@
+dde-network-core (2.0.46) unstable; urgency=medium
+
+  * fix: Pop up authentication dialog box
+
+ -- Robertkill <lvpeilong@uniontech.com>  Tue, 11 Feb 2025 13:56:20 +0800
+
 dde-network-core (2.0.45) unstable; urgency=medium
 
-  * 2.0.45
+  * 2.0.44
 
  -- YeShanShan <yeshanshan@uniontech.com>  Fri, 24 Jan 2025 10:55:51 +0800
 
