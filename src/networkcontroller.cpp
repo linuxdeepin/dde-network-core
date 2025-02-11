@@ -20,8 +20,8 @@
 
 #include <DLog>
 
-const static QString networkService = "com.deepin.daemon.Network";
-const static QString networkPath = "/com/deepin/daemon/Network";
+const static QString networkService = "org.deepin.dde.Network1";
+const static QString networkPath = "/org/deepin/dde/Network1";
 static QString localeName;
 
 using namespace dde::network;

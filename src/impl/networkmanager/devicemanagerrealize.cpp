@@ -31,8 +31,8 @@
 #define WpaSae SAE
 using namespace dde::network;
 
-const static QString networkService = "com.deepin.daemon.Network";
-const static QString networkPath = "/com/deepin/daemon/Network";
+const static QString networkService = "org.deepin.dde.Network1";
+const static QString networkPath = "/org/deepin/dde/Network1";
 
 #define MANUAL 1
 
@@ -79,8 +79,8 @@ private:
     AccessPoints *m_accessPoint;
 };
 
-#define SYS_NETWORK_INTER "com.deepin.system.Network"
-#define SYS_NETWORK_PATH "/com/deepin/system/Network"
+#define SYS_NETWORK_INTER "org.deepin.dde.Network1"
+#define SYS_NETWORK_PATH "/org/deepin/dde/Network1"
 
 DeviceManagerRealize::DeviceManagerRealize(NetworkManager::Device::Ptr device, QObject *parent)
     : NetworkDeviceRealize(parent)
