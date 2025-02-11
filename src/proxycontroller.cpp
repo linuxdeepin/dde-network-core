@@ -7,9 +7,9 @@
 #include <QDBusConnection>
 #include <QDBusInterface>
 
-const static QString networkService     = "com.deepin.daemon.Network";
-const static QString networkPath        = "/com/deepin/daemon/Network";
-const static QString networkInterface   = "com.deepin.daemon.Network";
+const static QString networkService     = "org.deepin.dde.Network1";
+const static QString networkPath        = "/org/deepin/dde/Network1";
+const static QString networkInterface   = "org.deepin.dde.Network1";
 
 using namespace dde::network;
 
