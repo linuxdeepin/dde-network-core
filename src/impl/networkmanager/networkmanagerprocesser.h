@@ -51,6 +51,9 @@ protected:
 private:
     void initConnections();
     void sortDevice();
+    void createOrRemoveDevice(const QString &path);
+    bool deviceExist(const QString &path) const;
+    NetworkDeviceBase *createDevice(const NetworkManager::Device::Ptr &device);
 
 private slots:
     void onDeviceAdded(const QString &uni);
