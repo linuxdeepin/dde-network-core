@@ -173,6 +173,90 @@ void NetworkManagerProcesser::sortDevice()
     });
 }
 
+// 无线网卡不管是否down，都显示，因为在开启飞行模式后，需要显示网卡的信息
+void NetworkManagerProcesser::createOrRemoveDevice(const QString &path)
+{
+    NetworkManager::Device::Ptr device = NetworkManager::findNetworkInterface(path);
+    if (device.isNull())
+        return;
+
+    auto updateHotspot = [ this ] {
+        if (m_hotspotController) {
+            m_hotspotController->updateDevices(m_devices);
+        }
+    };
+
+    if (device->managed()
+#ifdef USE_DEEPIN_NMQT
+                && ((device->interfaceFlags() & DEVICE_INTERFACE_FLAG_UP) ||
+                device->type() == NetworkManager::Device::Wifi)
+#endif
+            ) {
+        // 如果由非manager变成manager的模式，则新增设备
+        if (!deviceExist(device->uni())) {
+            NetworkDeviceBase *newDevice = createDevice(device);
+            if (newDevice) {
+                m_devices << newDevice;
+                sortDevice();
+                updateDeviceName();
+                onUpdateNetworkDetail();
+                Q_EMIT deviceAdded({ newDevice });
+                updateHotspot();
+            }
+        }
+    } else {
+        // 如果由manager变成非manager模式，则移除设备
+        NetworkDeviceBase *rmDevice = nullptr;
+        for (NetworkDeviceBase *dev : m_devices) {
+            if (dev->path() == device->uni()) {
+                m_devices.removeOne(dev);
+                rmDevice = dev;
+                break;
+            }
+        }
+        if (rmDevice) {
+            Q_EMIT rmDevice->removed();
+            sortDevice();
+            updateDeviceName();
+            onUpdateNetworkDetail();
+            Q_EMIT deviceRemoved({ rmDevice });
+            rmDevice->deleteLater();
+            rmDevice = nullptr;
+            updateHotspot();
+        }
+    }
+}
+
+bool NetworkManagerProcesser::deviceExist(const QString &path) const
+{
+    for (NetworkDeviceBase *device : m_devices) {
+        if (device->path() == path)
+            return true;
+    }
+
+    return false;
+}
+
+NetworkDeviceBase *NetworkManagerProcesser::createDevice(const NetworkManager::Device::Ptr &device)
+{
+    if (device->type() == NetworkManager::Device::Wifi) {
+        // 无线网络
+        NetworkManager::WirelessDevice::Ptr wDevice = device.staticCast<NetworkManager::WirelessDevice>();
+        WirelessDeviceManagerRealize *deviceRealize = new WirelessDeviceManagerRealize(wDevice);
+        deviceRealize->addProcesser(this);
+        return new WirelessDevice(deviceRealize, Q_NULLPTR);
+    }
+
+    if (device->type() == NetworkManager::Device::Ethernet) {
+        // 有线网络
+        NetworkManager::WiredDevice::Ptr wDevice = device.staticCast<NetworkManager::WiredDevice>();
+        DeviceManagerRealize *deviceRealize = new WiredDeviceManagerRealize(wDevice);
+        return new WiredDevice(deviceRealize, Q_NULLPTR);
+    }
+
+    return nullptr;
+}
+
 void NetworkManagerProcesser::onUpdateNetworkDetail()
 {
     if (!m_needDetails)
@@ -212,15 +296,6 @@ void NetworkManagerProcesser::onUpdateNetworkDetail()
 
 void NetworkManagerProcesser::onDeviceAdded(const QString &uni)
 {
-    auto deviceExist = [ this ](const QString &uni)->bool {
-        for (NetworkDeviceBase *device : m_devices) {
-            if (device->path() == uni)
-                return true;
-        }
-
-        return false;
-    };
-
     if (deviceExist(uni))
         return;
 
@@ -228,74 +303,6 @@ void NetworkManagerProcesser::onDeviceAdded(const QString &uni)
     if (currentDevice.isNull() ||
             (currentDevice->type() != NetworkManager::Device::Wifi && currentDevice->type() != NetworkManager::Device::Ethernet))
         return;
-
-    auto updateHotspot = [ this ] {
-        if (m_hotspotController) {
-            m_hotspotController->updateDevices(m_devices);
-        }
-    };
-
-    auto createDevice = [ = ](const NetworkManager::Device::Ptr &device)->NetworkDeviceBase *{
-        if (device->type() == NetworkManager::Device::Wifi) {
-            // 无线网络
-            NetworkManager::WirelessDevice::Ptr wDevice = device.staticCast<NetworkManager::WirelessDevice>();
-            WirelessDeviceManagerRealize *deviceRealize = new WirelessDeviceManagerRealize(wDevice);
-            deviceRealize->addProcesser(this);
-            return new WirelessDevice(deviceRealize, Q_NULLPTR);
-        }
-
-        if (device->type() == NetworkManager::Device::Ethernet) {
-            // 有线网络
-            NetworkManager::WiredDevice::Ptr wDevice = device.staticCast<NetworkManager::WiredDevice>();
-            DeviceManagerRealize *deviceRealize = new WiredDeviceManagerRealize(wDevice);
-            return new WiredDevice(deviceRealize, Q_NULLPTR);
-        }
-
-        return nullptr;
-    };
-
-    // 无线网卡不管是否down，都显示，因为在开启飞行模式后，需要显示网卡的信息
-    auto deviceCreateOrRemove = [ this, deviceExist, createDevice, updateHotspot ](const NetworkManager::Device::Ptr &device) {
-        if (device->managed()
-#ifdef USE_DEEPIN_NMQT
-                    && ((device->interfaceFlags() & DEVICE_INTERFACE_FLAG_UP) ||
-                    device->type() == NetworkManager::Device::Wifi)
-#endif
-                ) {
-            // 如果由非manager变成manager的模式，则新增设备
-            if (!deviceExist(device->uni())) {
-                NetworkDeviceBase *newDevice = createDevice(device);
-                if (newDevice) {
-                    m_devices << newDevice;
-                    sortDevice();
-                    updateDeviceName();
-                    onUpdateNetworkDetail();
-                    Q_EMIT deviceAdded({ newDevice });
-                    updateHotspot();
-                }
-            }
-        } else {
-            // 如果由manager变成非manager模式，则移除设备
-            NetworkDeviceBase *rmDevice = nullptr;
-            for (NetworkDeviceBase *dev : m_devices) {
-                if (dev->path() == device->uni()) {
-                    m_devices.removeOne(dev);
-                    rmDevice = dev;
-                    break;
-                }
-            }
-            if (rmDevice) {
-                Q_EMIT rmDevice->removed();
-                sortDevice();
-                updateDeviceName();
-                onUpdateNetworkDetail();
-                Q_EMIT deviceRemoved({ rmDevice });
-                rmDevice->deleteLater();
-                rmDevice = nullptr;
-                updateHotspot();
-            }
-        }
-    };
 
     if (!currentDevice->managed() || currentDevice->interfaceFlags() == 0) {
         // TODO: 临时解决方案，适用于ARM平台，从根本上解决需要从NetworkManagerQt入手
@@ -318,12 +325,12 @@ void NetworkManagerProcesser::onDeviceAdded(const QString &uni)
     }
 
 #ifdef USE_DEEPIN_NMQT
-    connect(currentDevice.get(), &NetworkManager::Device::interfaceFlagsChanged, currentDevice.get(), [ currentDevice, deviceCreateOrRemove ] {
-        deviceCreateOrRemove(currentDevice);
+    connect(currentDevice.get(), &NetworkManager::Device::interfaceFlagsChanged, currentDevice.get(), [ uni, this ] {
+        createOrRemoveDevice(uni);
     });
 #endif
-    connect(currentDevice.get(), &NetworkManager::Device::managedChanged, currentDevice.get(), [ currentDevice, deviceCreateOrRemove ] {
-        deviceCreateOrRemove(currentDevice);
+    connect(currentDevice.get(), &NetworkManager::Device::managedChanged, currentDevice.get(), [ uni, this ] {
+        createOrRemoveDevice(uni);
     });
 
     if (currentDevice->managed()
@@ -341,7 +348,9 @@ void NetworkManagerProcesser::onDeviceAdded(const QString &uni)
         updateDeviceName();
         onUpdateNetworkDetail();
         Q_EMIT deviceAdded({ newDevice });
-        updateHotspot();
+        if (m_hotspotController) {
+            m_hotspotController->updateDevices(m_devices);
+        }
     }
 }
 
