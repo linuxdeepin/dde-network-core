@@ -220,6 +220,7 @@ DccObject {
             name: "ignoreHostsTips"
             parentName: root.name + "/body"
             displayName: qsTr("Check \"Use a proxy\" in application context menu in Launcher after configured")
+            canSearch: false
             weight: 90
             pageType: DccObject.Item
             page: Label {
