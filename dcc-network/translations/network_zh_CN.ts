@@ -214,7 +214,7 @@
     </message>
     <message>
         <source>Edit My Hotspot</source>
-        <translation>编译我的热点</translation>
+        <translation>编辑我的热点</translation>
     </message>
     <message>
         <source>Name (SSID)</source>
