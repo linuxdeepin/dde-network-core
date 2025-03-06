@@ -131,7 +131,13 @@ void IPConflictHandler::onReceiveIPConflictReslove(const QString &ip, const QStr
 /**
  * @brief IP冲突的数据存储
  */
-
+bool IPConflictStore::DeviceIpData::operator==(const struct DeviceIpData &data) const
+{
+    return this->m_ip == data.m_ip
+           && this->m_uni == data.m_uni
+           && this->m_localMac == data.m_localMac
+           && this->m_remoteMac == data.m_remoteMac;
+}
 IPConflictStore::IPConflictStore()
 {
 }

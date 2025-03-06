@@ -5,7 +5,6 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QPainter>
-#include <QSvgRenderer>
 #include <QIcon>
 #include <QApplication>
 #include <QScreen>

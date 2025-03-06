@@ -183,7 +183,9 @@ bool ActiveAccountNetwork::canResetCurrentNetwork(const QSharedPointer<NetworkMa
     }
 
     // 如果标记为手动，则无需自动连接(手动连接的时候，这个flags值为1)
-    return activeConnection->flags() != MANULCONNECTION;
+    QDBusInterface activeInter("org.freedesktop.NetworkManager",activeConnection->path(),"org.freedesktop.NetworkManager.Connection.Active",QDBusConnection::systemBus());
+    return activeInter.property("Flags").toUInt() != MANULCONNECTION;
+    // return activeConnection->flags() != MANULCONNECTION;
 }
 
 void ActiveAccountNetwork::onConnectionStateChanged(const QSharedPointer<NetworkManager::Device> &device, const QSharedPointer<NetworkManager::ActiveConnection> &activeConnection)

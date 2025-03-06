@@ -23,7 +23,7 @@
 const static QString networkService = "org.deepin.dde.Network1";
 const static QString networkPath = "/org/deepin/dde/Network1";
 static QString localeName;
-
+Q_LOGGING_CATEGORY(DNC, "org.deepin.dde.dcc.network");
 using namespace dde::network;
 
 NetworkController *NetworkController::m_networkController = nullptr;

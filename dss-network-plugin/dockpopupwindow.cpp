@@ -7,7 +7,6 @@
 
 #include <QScreen>
 #include <QApplication>
-#include <QDesktopWidget>
 #include <QAccessible>
 #include <QAccessibleEvent>
 #include <QTimer>
@@ -112,7 +111,7 @@ void DockPopupWindow::showEvent(QShowEvent *e)
     QTimer::singleShot(1, this, &DockPopupWindow::ensureRaised);
 }
 
-void DockPopupWindow::enterEvent(QEvent *e)
+void DockPopupWindow::enterEvent(QEnterEvent *e)
 {
     DArrowRectangle::enterEvent(e);
 

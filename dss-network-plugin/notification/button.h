@@ -145,7 +145,7 @@ private:
 
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
-    virtual void enterEvent(QEvent *event) override;
+    virtual void enterEvent(QEnterEvent *event) override;
     virtual void leaveEvent(QEvent *event) override;
     virtual void focusInEvent(QFocusEvent *event) override;          //当焦点移入或移出时背景发生变化
     virtual void focusOutEvent(QFocusEvent *event) override;

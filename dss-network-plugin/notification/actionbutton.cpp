@@ -118,13 +118,13 @@ void ActionButton::initUI()
     m_menuButton->hide();
 
     m_layout = new QHBoxLayout;
-    m_layout->setMargin(0);
+    m_layout->setContentsMargins(0, 0, 0, 0);
     m_layout->setSpacing(10);
     m_layout->setAlignment(Qt::AlignRight);
 
     QHBoxLayout *layout = new QHBoxLayout;
     layout->setSpacing(10);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->addLayout(m_layout);
     layout->addWidget(m_menuButton);
 

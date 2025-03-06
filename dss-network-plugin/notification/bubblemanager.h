@@ -12,7 +12,6 @@
 #include <QStringList>
 #include <QVariantMap>
 #include <QQueue>
-#include <QDesktopWidget>
 #include <QApplication>
 #include <QGuiApplication>
 #include <QTimer>
