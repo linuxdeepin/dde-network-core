@@ -11,7 +11,6 @@
 #include <QDir>
 #include <QProcess>
 #include <QSettings>
-#include <QTextCodec>
 #include <QDBusArgument>
 
 #include <DDesktopEntry>

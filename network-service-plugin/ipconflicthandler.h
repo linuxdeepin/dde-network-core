@@ -64,12 +64,7 @@ private:
         QString m_localMac;
         QString m_remoteMac;
         QString m_uni;
-        bool operator==(const struct DeviceIpData &data) {
-            return this->m_ip == data.m_ip
-                    && this->m_uni == data.m_uni
-                    && this->m_localMac == data.m_localMac
-                    && this->m_remoteMac == data.m_remoteMac;
-        }
+        bool operator==(const struct DeviceIpData &data) const;
     } DeviceIpData;
 
     QMap<QString, QList<DeviceIpData>> m_conflictData;

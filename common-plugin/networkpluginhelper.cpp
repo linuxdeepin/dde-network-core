@@ -9,7 +9,6 @@
 #include "networkdialog.h"
 
 #include <DHiDPIHelper>
-#include <DApplicationHelper>
 #include <DMenu>
 
 #include <QTimer>
@@ -31,7 +30,7 @@
 #include <NetworkManagerQt/WirelessSecuritySetting>
 #include <NetworkManagerQt/WirelessSetting>
 
-#include "networkdbusproxy.h"
+#include "networkdialog/networkdbusproxy.h"
 
 NETWORKPLUGIN_USE_NAMESPACE
 

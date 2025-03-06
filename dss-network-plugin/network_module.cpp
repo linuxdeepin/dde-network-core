@@ -45,9 +45,6 @@ NetworkModule::NetworkModule(QObject *parent)
 {
     QDBusConnection::sessionBus().connect("org.deepin.dde.LockFront1", "/org/deepin/dde/LockFront1", "org.deepin.dde.LockFront1", "Visible", this, SLOT(updateLockScreenStatus(bool)));
     m_isLockModel = (-1 == qAppName().indexOf("greeter"));
-    if (!m_isLockModel) {
-        dde::network::NetworkController::setServiceType(dde::network::ServiceLoadType::LoadFromManager);
-    }
 
     m_networkDialog = new NetworkDialog(this);
     m_networkHelper = new NetworkPluginHelper(m_networkDialog, this);
@@ -169,7 +166,7 @@ void NetworkModule::installTranslator(QString locale)
                                                   QStandardPaths::LocateDirectory);
     translator.load(QString(languagePath+"/dss-network-plugin_%1.qm").arg(locale));
     QApplication::installTranslator(&translator);
-    dde::network::NetworkController::instance()->retranslate();
+    dde::network::NetworkController::instance()->retranslate(locale);
     m_networkHelper->updateTooltips();
     m_panelContainer->onPluginStateChanged(m_networkHelper->getPluginState());
 }

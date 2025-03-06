@@ -18,6 +18,7 @@ class AppIcon;
 class AppBody;
 class Button;
 class ActionButton;
+class QEnterEvent;
 /*!
  * \~chinese \class Bubble
  * \~chinese \brief 自定义控件类,屏幕上方通知气泡的窗口类
@@ -59,7 +60,7 @@ protected:
     virtual bool eventFilter(QObject *obj, QEvent *event) override;
     virtual void showEvent(QShowEvent *event) override;
     virtual void hideEvent(QHideEvent *event) override;
-    virtual void enterEvent(QEvent *event) override;
+    virtual void enterEvent(QEnterEvent *event) override;
     virtual void leaveEvent(QEvent *event) override;
 
 private Q_SLOTS:

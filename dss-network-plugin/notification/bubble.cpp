@@ -16,8 +16,8 @@
 #include <QTimer>
 #include <QPropertyAnimation>
 #include <QApplication>
-#include <QGSettings>
 #include <QMoveEvent>
+#include <QEnterEvent>
 #include <QBoxLayout>
 #include <QParallelAnimationGroup>
 #include <QTextDocument>
@@ -156,7 +156,7 @@ void Bubble::hideEvent(QHideEvent *event)
     m_quitTimer->start();
 }
 
-void Bubble::enterEvent(QEvent *event)
+void Bubble::enterEvent(QEnterEvent *event)
 {
     if (!isEnabled())
         return;

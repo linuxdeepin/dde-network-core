@@ -39,7 +39,7 @@ signals:
 
 protected:
     void showEvent(QShowEvent *e);
-    void enterEvent(QEvent *e);
+    void enterEvent(QEnterEvent *e);
     bool eventFilter(QObject *o, QEvent *e);
     void blockButtonRelease();
 

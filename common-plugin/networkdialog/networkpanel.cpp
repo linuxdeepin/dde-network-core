@@ -7,11 +7,10 @@
 #include "item/netitem.h"
 #include "item/devicestatushandler.h"
 #include "thememanager.h"
+#include "networkdbusproxy.h"
 
 #include <NetworkManagerQt/WirelessDevice>
 
-#include <DIcon>
-#include <DApplicationHelper>
 #include <DDBusSender>
 #include <DGuiApplicationHelper>
 #include <DSwitchButton>
@@ -31,7 +30,9 @@
 #include <networkdevicebase.h>
 #include <wireddevice.h>
 #include <wirelessdevice.h>
-#include <networkdbusproxy.h>
+
+#include <DIcon>
+#include <DConfig>
 
 #define SWITCH_WIDTH 50
 #define SWITCH_HEIGHT 24
@@ -189,13 +190,13 @@ void NetworkPanel::initConnection()
     // 点击列表的信号
     connect(m_netListView, &DListView::pressed, this, &NetworkPanel::onClickListView);
 
-    int wirelessScanInterval = Utils::SettingValue("com.deepin.dde.dock", QByteArray(), "wireless-scan-interval", 10).toInt() * 1000;
+    Dtk::Core::DConfig *dConfig = Dtk::Core::DConfig::create("org.deepin.dde.network", "org.deepin.dde.network", QString(), this);
+    int wirelessScanInterval = dConfig->value("wirelessScanInterval", 10).toInt() * 1000;
     m_wirelessScanTimer->setInterval(wirelessScanInterval);
-    const QGSettings *gsetting = Utils::SettingsPtr("com.deepin.dde.dock", QByteArray(), this);
-    if (gsetting)
-        connect(gsetting, &QGSettings::changed, [ & ](const QString &key) {
-            if (key == "wireless-scan-interval") {
-                int interval = gsetting->get("wireless-scan-interval").toInt() * 1000;
+    if (dConfig)
+        connect(dConfig, &Dtk::Core::DConfig::valueChanged, [this, dConfig](const QString &key) {
+            if (key == "wirelessScanInterval") {
+                int interval = dConfig->value("wirelessScanInterval", 10).toInt() * 1000;
                 m_wirelessScanTimer->setInterval(interval);
             }
         });

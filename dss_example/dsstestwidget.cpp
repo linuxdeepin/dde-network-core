@@ -37,13 +37,12 @@ DssTestWidget::~DssTestWidget()
 
 void DssTestWidget::loadDssPlugin()
 {
-    NetworkController::setServiceType(ServiceLoadType::LoadFromManager);
     m_pModule->init();
     if (QWidget *trayWidget = m_pModule->itemWidget()) {
         trayWidget->setParent(this);
         QHBoxLayout *layout = new QHBoxLayout(this);
         layout->setSpacing(0);
-        layout->setMargin(0);
+        layout->setContentsMargins(0, 0, 0, 0);
         layout->addWidget(trayWidget);
 
         m_button->setLayout(layout);
@@ -62,7 +61,7 @@ bool DssTestWidget::eventFilter(QObject *watched, QEvent *event)
                     const QString itemMenu = m_pModule->itemContextMenu();
                     qInfo() << itemMenu;
                 } else if (mouseEvent->button() == Qt::LeftButton) {
-                    m_pModule->content();
+                    m_pModule->content()->show();
                 }
             }
             break;

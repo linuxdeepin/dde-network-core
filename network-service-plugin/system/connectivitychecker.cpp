@@ -190,7 +190,7 @@ void LocalConnectionvityChecker::startCheck()
     }
     for (auto it = m_checkUrls.begin(); it != m_checkUrls.end(); ++it) {
         QProcess *process = new QProcess(this);
-        connect(process, QOverload<int>::of(&QProcess::finished), this, &LocalConnectionvityChecker::onFinished);
+        connect(process, &QProcess::finished, this, &LocalConnectionvityChecker::onFinished);
         it.value() = process;
         process->start("curl", { "-Li", "--connect-timeout", "5", it.key() });
         QTimer::singleShot(10000, process, &QProcess::terminate);

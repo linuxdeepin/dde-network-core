@@ -5,7 +5,7 @@
 #include "dsstestwidget.h"
 
 #include <QApplication>
-#include <QDesktopWidget>
+#include <QScreen>
 
 using namespace std;
 
@@ -14,8 +14,8 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     DssTestWidget testPluginWidget;
-    QDesktopWidget *deskdop = QApplication::desktop();
-    testPluginWidget.move((deskdop->width() - testPluginWidget.width()) / 2, (deskdop->height() - testPluginWidget.height()) / 2);
+    QScreen *deskdop = QApplication::primaryScreen();
+    testPluginWidget.move((deskdop->size().width() - testPluginWidget.width()) / 2, (deskdop->size().height() - testPluginWidget.height()) / 2);
 
     testPluginWidget.show();
 

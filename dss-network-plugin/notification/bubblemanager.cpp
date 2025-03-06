@@ -16,8 +16,6 @@
 #include <QDebug>
 #include <QScreen>
 #include <QDateTime>
-#include <QGSettings>
-#include <QDesktopWidget>
 #include <QPointer>
 #include <QFile>
 #include <QDir>

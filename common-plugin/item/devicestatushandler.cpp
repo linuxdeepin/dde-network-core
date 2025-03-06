@@ -69,7 +69,7 @@ NetDeviceStatus DeviceStatusHandler::wiredStatus(WiredDevice *device)
     case DeviceStatus::Activated:      return NetDeviceStatus::Connected;
     case DeviceStatus::Deactivation:
     case DeviceStatus::Failed:         return NetDeviceStatus::ConnectFailed;
-    case DeviceStatus::IpConfilct:     return NetDeviceStatus::IpConflicted;
+    case DeviceStatus::IpConflict:     return NetDeviceStatus::IpConflicted;
     default:                           return NetDeviceStatus::Unknown;
     }
 
@@ -103,11 +103,6 @@ NetDeviceStatus DeviceStatusHandler::wirelessStatus(WirelessDevice *device)
     if (!device->isEnabled())
         return NetDeviceStatus::Disabled;
 
-    if (device->deviceStatus() == DeviceStatus::Activated
-            && device->connectivity() != Connectivity::Full) {
-        return NetDeviceStatus::ConnectNoInternet;
-    }
-
     if (!device->IPValid())
         return NetDeviceStatus::ObtainIpFailed;
 
@@ -125,7 +120,7 @@ NetDeviceStatus DeviceStatusHandler::wirelessStatus(WirelessDevice *device)
     case DeviceStatus::Activated:     return NetDeviceStatus::Connected;
     case DeviceStatus::Deactivation:
     case DeviceStatus::Failed:        return NetDeviceStatus::ConnectFailed;
-    case DeviceStatus::IpConfilct:    return NetDeviceStatus::IpConflicted;
+    case DeviceStatus::IpConflict:    return NetDeviceStatus::IpConflicted;
     default:                          return NetDeviceStatus::Unknown;
     }
 
