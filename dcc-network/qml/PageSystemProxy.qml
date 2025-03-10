@@ -44,7 +44,7 @@ DccObject {
             backgroundType: DccObject.Normal
             pageType: DccObject.Editor
             page: D.Switch {
-                checked: item.isEnabled
+                checked: root.method !== NetType.None
                 enabled: item.enabledable
                 onClicked: {
                     if (checked) {
