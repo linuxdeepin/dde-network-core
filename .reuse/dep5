@@ -34,7 +34,7 @@ Copyright: None
 License: CC0-1.0
 
 # png svg
-Files: *.png *.svg *.dci *.gif
+Files: *.png *.svg *.dci *.gif *.svg.background
 Copyright: UnionTech Software Technology Co., Ltd.
 License: LGPL-3.0-or-later
 
