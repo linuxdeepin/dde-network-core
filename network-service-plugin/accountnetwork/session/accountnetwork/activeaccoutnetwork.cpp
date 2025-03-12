@@ -361,6 +361,7 @@ void ActiveAccountNetwork::onStateChanged(NetworkManager::ActiveConnection::Stat
             break;
         }
     }
-
-    onConnectionStateChanged(device, activeConnection);
+    if (!device.isNull()) {
+        onConnectionStateChanged(device, activeConnection);
+    }
 }

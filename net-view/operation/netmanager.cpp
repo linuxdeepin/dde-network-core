@@ -593,14 +593,7 @@ void NetManagerPrivate::onDataChanged(int dataType, const QString &id, const QVa
             NetType::NetDeviceStatus deviceStatus = value.value<NetType::NetDeviceStatus>();
             if (item->status() != NetType::NetDeviceStatus::DS_IpConflicted && deviceStatus == NetType::NetDeviceStatus::DS_IpConflicted) {
                 // 如果IP冲突，需要发送横幅通知
-                m_managerThread->sendNotify((item->itemType() & NET_WIRED ? "notification-network-wired-local" : "notification-network-wireless-local"),
-                                            tr("IP conflict"),
-                                            tr("Network"),
-                                            "dde-control-center",
-                                            -1,
-                                            {},
-                                            {},
-                                            3000);
+                m_managerThread->sendNotify((item->itemType() & NET_WIRED ? "notification-network-wired-local" : "notification-network-wireless-local"), tr("IP conflict"), tr("Network"), "dde-control-center", -1, {}, {}, 3000);
             }
             item->updatestatus(deviceStatus);
         }
@@ -661,6 +654,11 @@ void NetManagerPrivate::onDataChanged(int dataType, const QString &id, const QVa
         NetSystemProxyControlItemPrivate *item = NetItemPrivate::toItem<NetSystemProxyControlItemPrivate>(findItem(id));
         if (item)
             item->updatemethod(value.value<NetType::ProxyMethod>());
+    } break;
+    case NetManagerThreadPrivate::ProxyLastMethodChanged: {
+        NetSystemProxyControlItemPrivate *item = NetItemPrivate::toItem<NetSystemProxyControlItemPrivate>(findItem(id));
+        if (item)
+            item->updatelastMethod(value.value<NetType::ProxyMethod>());
     } break;
     case NetManagerThreadPrivate::SystemAutoProxyChanged: {
         NetSystemProxyControlItemPrivate *item = NetItemPrivate::toItem<NetSystemProxyControlItemPrivate>(findItem(id));

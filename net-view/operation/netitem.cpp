@@ -105,6 +105,7 @@ QString NetVPNTipsItem::name() const
 // VPN
 
 // 系统代理
+GETFUN(NetType::ProxyMethod, NetSystemProxyControlItem, lastMethod)
 GETFUN(NetType::ProxyMethod, NetSystemProxyControlItem, method)
 GETFUN(const QString &, NetSystemProxyControlItem, autoProxy)
 GETFUN(const QVariantMap &, NetSystemProxyControlItem, manualProxy)
