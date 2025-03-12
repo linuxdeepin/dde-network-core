@@ -45,6 +45,8 @@ private slots:
     void onUserChanged(const QString &json);
     void onUserAdded(const QString &json);
     void onInitDeviceConnection();
+    void onAddFirstConnection();
+    void onManagedChanged();
 
 private:
     QStringList m_newConnectionNames;

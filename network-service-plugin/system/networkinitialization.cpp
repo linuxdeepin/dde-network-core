@@ -398,30 +398,14 @@ void NetworkInitialization::hideWirelessDevice(const QSharedPointer<NetworkManag
         QDBusInterface dbusInter("org.freedesktop.NetworkManager", device->uni(), "org.freedesktop.NetworkManager.Device", QDBusConnection::systemBus());
         dbusInter.setProperty("Managed", managed);
     }
-    connect(device.data(), &NetworkManager::Device::managedChanged, this, [ device, managed ] {
-        if (device->managed() == managed)
-            return ;
-
-        qCDebug(DSM) << "device" << device->interfaceName() << "managed changed" << device->managed() << ", will set it managed" << managed;
-        QDBusInterface dbusInter("org.freedesktop.NetworkManager", device->uni(), "org.freedesktop.NetworkManager.Device", QDBusConnection::systemBus());
-        dbusInter.setProperty("Managed", managed);
-    }, Qt::UniqueConnection);
+    connect(device.data(), &NetworkManager::Device::managedChanged, this, &NetworkInitialization::onManagedChanged, Qt::UniqueConnection);
 }
 
 void NetworkInitialization::initDeviceConnection(const QSharedPointer<NetworkManager::WiredDevice> &device)
 {
-    connect(device.data(), &NetworkManager::WiredDevice::interfaceFlagsChanged, this, [ this, device ] {
-        qCDebug(DSM) << "device" << device->interfaceName() << "interfaceFlags changed" << device->interfaceFlags();
-        addFirstConnection(device);
-    }, Qt::UniqueConnection);
-    connect(device.data(), &NetworkManager::WiredDevice::managedChanged, this, [ this, device ] {
-        qCDebug(DSM) << "device" << device->interfaceName() << "managed changed" << device->managed();
-        addFirstConnection(device);
-    }, Qt::UniqueConnection);
-    connect(device.data(), &NetworkManager::WiredDevice::carrierChanged, this, [ this, device ] {
-        qCDebug(DSM) << "device" << device->interfaceName() << "carrier changed" << device->carrier();
-        addFirstConnection(device);
-    }, Qt::UniqueConnection);
+    connect(device.data(), &NetworkManager::WiredDevice::interfaceFlagsChanged, this, &NetworkInitialization::onAddFirstConnection, Qt::UniqueConnection);
+    connect(device.data(), &NetworkManager::WiredDevice::managedChanged, this, &NetworkInitialization::onAddFirstConnection, Qt::UniqueConnection);
+    connect(device.data(), &NetworkManager::WiredDevice::carrierChanged, this, &NetworkInitialization::onAddFirstConnection, Qt::UniqueConnection);
 }
 
 void NetworkInitialization::checkAccountStatus()
@@ -479,7 +463,29 @@ void NetworkInitialization::onInitDeviceConnection()
         default:
             break;
         }
-    }, Qt::UniqueConnection);
+    });
+}
+
+void NetworkInitialization::onAddFirstConnection()
+{
+    QSharedPointer<NetworkManager::WiredDevice> device(qobject_cast<NetworkManager::WiredDevice *>(sender()));
+    qCDebug(DSM) << "device" << device->interfaceName() << " carrier:" << device->carrier() << " managed:" << device->managed() << " interfaceFlags:" << device->interfaceFlags();
+    addFirstConnection(device);
+}
+
+void NetworkInitialization::onManagedChanged()
+{
+    NetworkManager::Device *device = qobject_cast<NetworkManager::Device *>(sender());
+    if (!device) {
+        return;
+    }
+    bool managed = SettingConfig::instance()->disableNetwork();
+    if (device->managed() == managed)
+        return;
+
+    qCDebug(DSM) << "device" << device->interfaceName() << "managed changed" << device->managed() << ", will set it managed" << managed;
+    QDBusInterface dbusInter("org.freedesktop.NetworkManager", device->uni(), "org.freedesktop.NetworkManager.Device", QDBusConnection::systemBus());
+    dbusInter.setProperty("Managed", managed);
 }
 
 void NetworkInitialization::onUserChanged(const QString &json)
