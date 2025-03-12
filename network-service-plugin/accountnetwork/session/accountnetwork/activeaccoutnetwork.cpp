@@ -103,25 +103,7 @@ void ActiveAccountNetwork::initDevice()
 
 void ActiveAccountNetwork::addDevice(const QSharedPointer<NetworkManager::Device> &device)
 {
-    connect(device.data(), &NetworkManager::Device::activeConnectionChanged, this, [ this, device ] {
-        NetworkManager::ActiveConnection::Ptr activeConnection = device->activeConnection();
-        if (activeConnection.isNull())
-            return;
-
-        connect(activeConnection.data(), &NetworkManager::ActiveConnection::stateChanged, activeConnection.data(), [ this, device ](NetworkManager::ActiveConnection::State state) {
-            // 连接成功或者失败后，如果当前网络不是当前用户连接的网络，并且不是手动连接的网络，则断开并连接当前用户自己的网络
-            if (state != NetworkManager::ActiveConnection::State::Activated
-                    && state != NetworkManager::ActiveConnection::State::Deactivated)
-                return;
-
-            // 此处使用当前设备正在使用的活动的连接网络，这样避免了上一个网络在断开的时候，下方的判断中还是使用上一个网络的信息导致出错
-            NetworkManager::ActiveConnection::Ptr activeConnection = device->activeConnection();
-            if (activeConnection.isNull())
-                return;
-
-            onConnectionStateChanged(device, activeConnection);
-        }, Qt::UniqueConnection);
-    }, Qt::UniqueConnection);
+    connect(device.data(), &NetworkManager::Device::activeConnectionChanged, this, &ActiveAccountNetwork::onActiveConnectionChanged, Qt::UniqueConnection);
     // 如果是无线网卡，则处理无线网络回复的重连
     if (device->type() == NetworkManager::Device::Type::Wifi) {
         NetworkManager::WirelessDevice::Ptr wirelessDevice = device.staticCast<NetworkManager::WirelessDevice>();
@@ -346,4 +328,39 @@ void ActiveAccountNetwork::onCollectionCreated(const QDBusObjectPath &path)
         m_network.clear();
         m_authenInfo.clear();
     }
+}
+
+void ActiveAccountNetwork::onActiveConnectionChanged()
+{
+    NetworkManager::Device *device = qobject_cast<NetworkManager::Device *>(sender());
+    if (!device) {
+        return;
+    }
+    NetworkManager::ActiveConnection::Ptr activeConnection = device->activeConnection();
+    if (activeConnection.isNull())
+        return;
+
+    connect(activeConnection.data(), &NetworkManager::ActiveConnection::stateChanged, this, &ActiveAccountNetwork::onStateChanged, Qt::UniqueConnection);
+}
+
+void ActiveAccountNetwork::onStateChanged(NetworkManager::ActiveConnection::State state)
+{
+    NetworkManager::ActiveConnection::Ptr activeConnection(qobject_cast<NetworkManager::ActiveConnection *>(sender()));
+    if (!activeConnection) {
+        return;
+    }
+    // 连接成功或者失败后，如果当前网络不是当前用户连接的网络，并且不是手动连接的网络，则断开并连接当前用户自己的网络
+    if (state != NetworkManager::ActiveConnection::State::Activated && state != NetworkManager::ActiveConnection::State::Deactivated)
+        return;
+
+    QSharedPointer<NetworkManager::Device> device;
+    for (auto devUni : activeConnection->devices()) {
+        NetworkManager::Device::Ptr dev = NetworkManager::findNetworkInterface(devUni);
+        if (!dev.isNull() && (device->type() == NetworkManager::Device::Type::Wifi && device->type() == NetworkManager::Device::Type::Ethernet)) {
+            device = dev;
+            break;
+        }
+    }
+
+    onConnectionStateChanged(device, activeConnection);
 }

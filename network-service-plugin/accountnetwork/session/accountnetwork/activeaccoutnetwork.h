@@ -48,6 +48,8 @@ private:
 private slots:
     void onAuthen(const QVariantMap &identity);
     void onCollectionCreated(const QDBusObjectPath &path);
+    void onActiveConnectionChanged();
+    void onStateChanged(NetworkManager::ActiveConnection::State state);
 
 private:
     Account *m_account;
