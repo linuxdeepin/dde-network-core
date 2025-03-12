@@ -311,15 +311,18 @@ protected:
 class NetSystemProxyControlItem : public NetControlItem
 {
     Q_OBJECT
+    Q_PROPERTY(NetType::ProxyMethod lastMethod READ lastMethod NOTIFY lastMethodChanged)
     Q_PROPERTY(NetType::ProxyMethod method READ method NOTIFY methodChanged)
     Q_PROPERTY(QString autoProxy READ autoProxy NOTIFY autoProxyChanged)
     Q_PROPERTY(QVariantMap manualProxy READ manualProxy NOTIFY manualProxyChanged)
 public:
+    NetType::ProxyMethod lastMethod() const;
     NetType::ProxyMethod method() const;
     const QString &autoProxy() const;
     const QVariantMap &manualProxy() const;
 
 Q_SIGNALS:
+    void lastMethodChanged(NetType::ProxyMethod method);
     void methodChanged(NetType::ProxyMethod method);
     void autoProxyChanged(const QString &autoProxy);
     void manualProxyChanged(const QVariantMap &manualProxy);

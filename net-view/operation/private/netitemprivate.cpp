@@ -293,10 +293,12 @@ NetVPNControlItemPrivate::NetVPNControlItemPrivate()
 }
 // 系统代理
 GETFUN(NetType::NetItemType, NetSystemProxyControlItem, itemType, NetType::NetItemType::SystemProxyControlItem)
+GETFUN(NetType::ProxyMethod, NetSystemProxyControlItem, lastMethod, m_lastMethod)
 GETFUN(NetType::ProxyMethod, NetSystemProxyControlItem, method, m_method)
 GETFUN(const QString &, NetSystemProxyControlItem, autoProxy, m_autoProxy)
 GETFUN(const QVariantMap &, NetSystemProxyControlItem, manualProxy, m_manualProxy)
 UPDATEFUN(NetSystemProxyControlItem, NetType::ProxyMethod, method)
+UPDATEFUN(NetSystemProxyControlItem, NetType::ProxyMethod, lastMethod)
 UPDATEFUN(NetSystemProxyControlItem, const QString &, autoProxy)
 UPDATEFUN(NetSystemProxyControlItem, const QVariantMap &, manualProxy)
 

@@ -24,12 +24,23 @@ DccObject {
         autoUrlAlert = false
         // methodChanged()
     }
+    function resetData() {
+        root.method = root.item.method
+        autoUrl.config = root.item.autoProxy
+        http.config = root.item.manualProxy.http
+        https.config = root.item.manualProxy.https
+        ftp.config = root.item.manualProxy.ftp
+        socks.config = root.item.manualProxy.socks
+        ignoreHosts.config = root.item.manualProxy.ignoreHosts
+    }
 
     visible: item
     displayName: qsTr("System Proxy")
     description: qsTr("Set up proxy servers")
     icon: "dcc_system_agent"
-    page: DccSettingsView {}
+    page: DccSettingsView {
+        Component.onCompleted: root.resetData()
+    }
 
     DccObject {
         name: "body"
@@ -48,7 +59,7 @@ DccObject {
                 enabled: item.enabledable
                 onClicked: {
                     if (checked) {
-                        root.method = NetType.Auto
+                        root.method = item.lastMethod
                     } else {
                         root.method = NetType.None
                         dccData.exec(NetManager.SetConnectInfo, item.id, {
@@ -263,15 +274,7 @@ DccObject {
                 spacing: 0
                 text: dccObj.displayName
                 Layout.alignment: Qt.AlignRight
-                onClicked: {
-                    method = root.item.method
-                    autoUrl.config = root.item.autoProxy
-                    http.config = root.item.manualProxy.http
-                    https.config = root.item.manualProxy.https
-                    ftp.config = root.item.manualProxy.ftp
-                    socks.config = root.item.manualProxy.socks
-                    ignoreHosts.config = root.item.manualProxy.ignoreHosts
-                }
+                onClicked: root.resetData()
             }
         }
         DccObject {

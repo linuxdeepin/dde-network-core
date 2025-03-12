@@ -259,9 +259,11 @@ class NetSystemProxyControlItemPrivate : public NetControlItemPrivate
 {
 public:
     NetType::NetItemType itemType() const override;
+    NetType::ProxyMethod lastMethod() const;
     NetType::ProxyMethod method() const;
     const QString &autoProxy() const;
     const QVariantMap &manualProxy() const;
+    void updatelastMethod(NetType::ProxyMethod method);
     void updatemethod(NetType::ProxyMethod method);
     void updateautoProxy(const QString &autoProxy);
     void updatemanualProxy(const QVariantMap &manualProxy);
@@ -270,6 +272,7 @@ protected:
     using NetControlItemPrivate::NetControlItemPrivate;
 
 private:
+    NetType::ProxyMethod m_lastMethod;
     NetType::ProxyMethod m_method;
     QString m_autoProxy;
     QVariantMap m_manualProxy;

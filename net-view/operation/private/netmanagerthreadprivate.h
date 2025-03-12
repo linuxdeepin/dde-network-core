@@ -83,6 +83,7 @@ public:
         DetailsChanged,
         IndexChanged,
         ProxyMethodChanged,
+        ProxyLastMethodChanged,
         SystemAutoProxyChanged,
         SystemManualProxyChanged,
         AppProxyChanged,
@@ -208,6 +209,7 @@ protected Q_SLOTS:
     void onVPNConnectionChanged();
     // 系统代理
     void onSystemProxyExistChanged(bool exist);
+    void onLastProxyMethodChanged(const ProxyMethod &method);
     void onSystemProxyMethodChanged(const ProxyMethod &method);
     void onSystemAutoProxyChanged(const QString &url);
     void onSystemManualProxyChanged();

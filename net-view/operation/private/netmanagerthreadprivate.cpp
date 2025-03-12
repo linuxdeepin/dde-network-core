@@ -334,6 +334,7 @@ void NetManagerThreadPrivate::sendNotify(const QString &appIcon, const QString &
 }
 
 // clang-format on
+
 void NetManagerThreadPrivate::onNetCheckPropertiesChanged(QString, QVariantMap properties, QStringList)
 {
     if (properties.contains("Availabled")) {
@@ -450,6 +451,8 @@ void NetManagerThreadPrivate::doInit()
         NetSystemProxyControlItemPrivate *item = NetItemNew(SystemProxyControlItem, "NetSystemProxyControlItem");
         item->updatename("SystemProxy");
         item->updateenabled(method == ProxyMethod::Auto || method == ProxyMethod::Manual);
+        item->updatelastMethod(NetType::ProxyMethod(ConfigWatcher::instance()->proxyMethod()));
+        item->updatemethod(NetType::ProxyMethod(method));
         // item->updateenabledable(networkController->proxyController()->systemProxyExist());
         item->item()->moveToThread(m_parentThread);
         Q_EMIT itemAdded("Root", item);
@@ -462,6 +465,7 @@ void NetManagerThreadPrivate::doInit()
         connect(networkController->proxyController(), &ProxyController::proxyChanged, this, &NetManagerThreadPrivate::onSystemManualProxyChanged);
         connect(networkController->proxyController(), &ProxyController::proxyAuthChanged, this, &NetManagerThreadPrivate::onSystemManualProxyChanged);
         connect(networkController->proxyController(), &ProxyController::proxyIgnoreHostsChanged, this, &NetManagerThreadPrivate::onSystemManualProxyChanged);
+        connect(ConfigWatcher::instance(), &ConfigWatcher::lastProxyMethodChanged, this, &NetManagerThreadPrivate::onLastProxyMethodChanged);
     }
     // 应用代理
     if (m_flags.testFlags(NetType::NetManagerFlag::Net_AppProxy)) {
@@ -486,12 +490,7 @@ void NetManagerThreadPrivate::doInit()
     m_netCheckAvailable = false;
     getNetCheckAvailableFromDBus();
 
-    QDBusConnection::systemBus().connect("com.deepin.defender.netcheck",
-                                         "/com/deepin/defender/netcheck",
-                                         "org.freedesktop.DBus.Properties",
-                                         "PropertiesChanged",
-                                         this,
-                                         SLOT(onNetCheckPropertiesChanged(QString, QVariantMap, QStringList)));
+    QDBusConnection::systemBus().connect("com.deepin.defender.netcheck", "/com/deepin/defender/netcheck", "org.freedesktop.DBus.Properties", "PropertiesChanged", this, SLOT(onNetCheckPropertiesChanged(QString, QVariantMap, QStringList)));
 
     QDBusConnection::systemBus().connect("org.freedesktop.login1", "/org/freedesktop/login1", "org.freedesktop.login1.Manager", "PrepareForSleep", this, SLOT(onPrepareForSleep(bool)));
 
@@ -524,12 +523,8 @@ void NetManagerThreadPrivate::doInit()
         m_airplaneModeEnabled = false;
         getAirplaneModeEnabled();
         connect(ConfigSetting::instance(), &ConfigSetting::enableAirplaneModeChanged, this, &NetManagerThreadPrivate::getAirplaneModeEnabled);
-        QDBusConnection::systemBus().connect("org.deepin.dde.AirplaneMode1",
-                                             "/org/deepin/dde/AirplaneMode1",
-                                             "org.freedesktop.DBus.Properties",
-                                             "PropertiesChanged",
-                                             this,
-                                             SLOT(onAirplaneModeEnabledPropertiesChanged(QString, QVariantMap, QStringList)));
+        QDBusConnection::systemBus()
+                .connect("org.deepin.dde.AirplaneMode1", "/org/deepin/dde/AirplaneMode1", "org.freedesktop.DBus.Properties", "PropertiesChanged", this, SLOT(onAirplaneModeEnabledPropertiesChanged(QString, QVariantMap, QStringList)));
     }
     // DSL
     if (m_flags.testFlags(NetType::NetManagerFlag::Net_DSL)) {
@@ -1007,8 +1002,7 @@ void NetManagerThreadPrivate::doGetConnectInfo(const QString &id, NetType::NetIt
                 WiredDevice *netDevice = qobject_cast<WiredDevice *>(device);
                 for (auto &&conn : netDevice->items()) {
                     if (conn->connection() && conn->connection()->path() == ids.at(1)) {
-                        qCInfo(DNC) << "ConnectInfo wired, device name: " << netDevice->deviceName() << "connection name: " << conn->connection()->id()
-                                    << "connection uuid: " << conn->connection()->uuid();
+                        qCInfo(DNC) << "ConnectInfo wired, device name: " << netDevice->deviceName() << "connection name: " << conn->connection()->id() << "connection uuid: " << conn->connection()->uuid();
                         auto connection = findConnectionByUuid(conn->connection()->uuid());
                         if (!connection) {
                             qCWarning(DNC) << "Can not find connection by uuid, uuid: " << conn->connection()->uuid();
@@ -2132,6 +2126,11 @@ void NetManagerThreadPrivate::onSystemProxyExistChanged(bool exist)
     Q_EMIT dataChanged(DataChanged::DeviceAvailableChanged, "NetSystemProxyControlItem", exist);
 }
 
+void NetManagerThreadPrivate::onLastProxyMethodChanged(const ProxyMethod &method)
+{
+    Q_EMIT dataChanged(DataChanged::ProxyLastMethodChanged, "NetSystemProxyControlItem", QVariant::fromValue(NetType::ProxyMethod(method)));
+}
+
 void NetManagerThreadPrivate::onSystemProxyMethodChanged(const ProxyMethod &method)
 {
     Q_EMIT dataChanged(DataChanged::EnabledChanged, "NetSystemProxyControlItem", (method == ProxyMethod::Auto || method == ProxyMethod::Manual));
@@ -2522,8 +2521,7 @@ void NetManagerThreadPrivate::updateHiddenNetworkConfig(WirelessDevice *wireless
 
             // 隐藏网络配置错误时提示重连
             if ((wSetting) && wSetting->hidden()) {
-                NetworkManager::WirelessSecuritySetting::Ptr const wsSetting =
-                        connSettings->setting(NetworkManager::Setting::SettingType::WirelessSecurity).staticCast<NetworkManager::WirelessSecuritySetting>();
+                NetworkManager::WirelessSecuritySetting::Ptr const wsSetting = connSettings->setting(NetworkManager::Setting::SettingType::WirelessSecurity).staticCast<NetworkManager::WirelessSecuritySetting>();
                 if ((wsSetting) && NetworkManager::WirelessSecuritySetting::KeyMgmt::Unknown == wsSetting->keyMgmt()) {
                     for (auto *ap : wireless->accessPointItems()) {
                         if (ap->ssid() == wSetting->ssid() && ap->secured() && ap->strength() > 0) {
