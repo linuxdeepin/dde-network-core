@@ -203,7 +203,6 @@ void NetworkInitialization::addFirstConnection(const QSharedPointer<NetworkManag
         // macAddress.remove(":");
         // wiredSetting->setMacAddress(QByteArray::fromHex(macAddress.toUtf8()));
         // wiredSetting->setInitialized(true);
-        qWarning()<<__LINE__<<__FUNCTION__<<conn->toMap();
         QDBusPendingReply<QDBusObjectPath> reply = NetworkManager::addConnection(conn->toMap());
         reply.waitForFinished();
         qCDebug(DSM) << "device" << device->interfaceName() << "create connection success,count:" << device->availableConnections().size();
@@ -468,7 +467,15 @@ void NetworkInitialization::onInitDeviceConnection()
 
 void NetworkInitialization::onAddFirstConnection()
 {
-    QSharedPointer<NetworkManager::WiredDevice> device(qobject_cast<NetworkManager::WiredDevice *>(sender()));
+    NetworkManager::WiredDevice *dev = qobject_cast<NetworkManager::WiredDevice *>(sender());
+    if (!dev) {
+        return;
+    }
+    NetworkManager::Device::Ptr devPtr = NetworkManager::findNetworkInterface(dev->uni());
+    if (!devPtr) {
+        return;
+    }
+    NetworkManager::WiredDevice::Ptr device = devPtr.staticCast<NetworkManager::WiredDevice>();
     qCDebug(DSM) << "device" << device->interfaceName() << " carrier:" << device->carrier() << " managed:" << device->managed() << " interfaceFlags:" << device->interfaceFlags();
     addFirstConnection(device);
 }

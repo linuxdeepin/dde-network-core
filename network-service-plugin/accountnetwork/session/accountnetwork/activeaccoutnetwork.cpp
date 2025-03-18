@@ -345,7 +345,11 @@ void ActiveAccountNetwork::onActiveConnectionChanged()
 
 void ActiveAccountNetwork::onStateChanged(NetworkManager::ActiveConnection::State state)
 {
-    NetworkManager::ActiveConnection::Ptr activeConnection(qobject_cast<NetworkManager::ActiveConnection *>(sender()));
+    NetworkManager::ActiveConnection *activeConn = qobject_cast<NetworkManager::ActiveConnection *>(sender());
+    if (!activeConn) {
+        return;
+    }
+    const NetworkManager::ActiveConnection::Ptr activeConnection = NetworkManager::findActiveConnection(activeConn->path());
     if (!activeConnection) {
         return;
     }
