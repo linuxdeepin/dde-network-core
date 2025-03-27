@@ -1,3 +1,9 @@
+dde-network-core (2.0.52) unstable; urgency=medium
+
+  * fix: Remove Qt5 dependencies
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Thu, 27 Mar 2025 15:52:20 +0800
+
 dde-network-core (2.0.51) unstable; urgency=medium
 
   * fix: Modify network service crash issue
