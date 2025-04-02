@@ -1,4 +1,4 @@
-﻿// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #include "bubblemanager.h"
@@ -370,7 +370,7 @@ bool BubbleManager::calcReplaceId(EntityPtr notify)
         for (int i = 0; i < m_bubbleList.size(); ++i) {
             Bubble *bubble = m_bubbleList.at(i);
             if (bubble->entity()->replacesId() == notify->replacesId()
-                    && bubble->entity()->appName() == notify->appName()) {
+                && bubble->entity()->appName() == notify->appName()) {
                 if (i != 0) {
                     bubble->setEntity(m_bubbleList.at(i)->entity());
                 }
@@ -381,7 +381,7 @@ bool BubbleManager::calcReplaceId(EntityPtr notify)
 
         for (int i = 0; i < m_oldEntities.size(); ++i) {
             if (m_oldEntities.at(i)->replacesId() == notify->replacesId()
-                    && m_oldEntities.at(i)->appName() == notify->appName()) {
+                && m_oldEntities.at(i)->appName() == notify->appName()) {
                 m_oldEntities.removeAt(i);
             }
         }

@@ -46,11 +46,11 @@ QVariant NetModel::data(const QModelIndex &index, int role) const
     switch (role) {
     case Qt::DisplayRole:
         return item->name();
-    case SORTROLE:
-        return item->sortValue();
-    case IDROLE:
+    case NetItemRole:
+        return QVariant::fromValue(item);
+    case NetItemIdRole:
         return item->id();
-    case TYPEROLE:
+    case NetItemTypeRole:
         return item->itemType();
     default:
         break;
@@ -170,7 +170,7 @@ void NetModel::updateObject()
     NetItem *obj = qobject_cast<NetItem *>(sender());
     if (obj) {
         QModelIndex i = index(obj);
-        emit dataChanged(i, i, { SORTROLE });
+        emit dataChanged(i, i, { NetItemRole });
     }
 }
 

@@ -35,7 +35,6 @@ public:
 
     void setMonitorNetworkNotify(bool monitor);
     void setUseSecretAgent(bool enabled);
-    void setNetwork8021XMode(NetManager::Network8021XMode mode);
     void setAutoScanInterval(int ms);
     void setAutoScanEnabled(bool enabled);
     void setEnabled(bool enabled);

@@ -5,6 +5,7 @@
 #define NETSECRETWIDGET_H
 
 #include <QMap>
+#include <QPointer>
 #include <QWidget>
 
 namespace dde {
@@ -23,6 +24,7 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     void initUI(const QVariantMap &param);
+    void setFocusToEdit();
     void showError(const QVariantMap &param);
     void updateInputValid(const QVariantMap &param);
     void onCancel();
@@ -35,6 +37,7 @@ private:
     QWidget *m_connectButton;
     const QMap<QString, QString> m_secretKeyStrMap;
     const QMap<QString, QString> m_propMap;
+    QPointer<QWidget> m_passwordWidget;
 };
 
 } // namespace network

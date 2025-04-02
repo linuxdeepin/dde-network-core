@@ -7,10 +7,6 @@
 #include <QAbstractItemModel>
 #define CUSTOMROLE (Qt::UserRole + 100)
 
-#define SORTROLE (CUSTOMROLE)
-#define IDROLE (CUSTOMROLE + 1)
-#define TYPEROLE (CUSTOMROLE + 2)
-
 namespace dde {
 namespace network {
 
@@ -22,6 +18,12 @@ class NetModel : public QAbstractItemModel
 public:
     explicit NetModel(QObject *parent = nullptr);
     ~NetModel() override;
+
+    enum NetModelRole {
+        NetItemRole = Qt::UserRole + 300,
+        NetItemIdRole,
+        NetItemTypeRole,
+    };
 
     void setRoot(NetItem *object);
     NetItem *toObject(const QModelIndex &index);

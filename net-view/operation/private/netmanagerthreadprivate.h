@@ -57,7 +57,6 @@ public:
     void setUseSecretAgent(bool enabled);
 
     void setEnabled(bool enabled);
-    void setNetwork8021XMode(NetManager::Network8021XMode mode);
     void setAutoUpdateHiddenConfig(bool autoUpdate);
     void setAutoScanInterval(int ms);
     void setAutoScanEnabled(bool enabled);
@@ -244,7 +243,7 @@ protected Q_SLOTS:
     void updateHiddenNetworkConfig(WirelessDevice *wireless);
     bool needSetPassword(AccessPoints *accessPoint) const;
     void handleAccessPointSecure(AccessPoints *accessPoint);
-    void handle8021xAccessPoint(AccessPoints *ap);
+    bool handle8021xAccessPoint(AccessPoints *ap);
     void onPrepareForSleep(bool state);
 
 protected:
@@ -272,7 +271,6 @@ private:
     // bool m_loadForNM;
     bool m_monitorNetworkNotify;
     bool m_useSecretAgent;
-    NetManager::Network8021XMode m_network8021XMode;
     bool m_autoUpdateHiddenConfig; // 自动更新隐藏网络配置
     bool m_isInitialized;
     bool m_enabled;

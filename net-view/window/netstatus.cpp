@@ -61,7 +61,7 @@ NetStatus::NetStatus(NetManager *manager, QObject *parent)
     , m_networkBut(nullptr)
     , m_vpnAndProxyBut(nullptr)
     , m_tipsLabel(nullptr)
-    , m_vpnAndProxyIconVisibel(false)
+    , m_vpnAndProxyIconVisibel(true)
 {
     NetItem *root = m_manager->root();
     connect(root, &NetItem::childRemoved, this, &NetStatus::onChildRemoved);
@@ -131,7 +131,7 @@ bool NetStatus::needShowControlCenter() const
     // 如果没有网络设备，则直接唤起控制中心
     if (!(m_deviceFlag & HAS_DEVICE_MASK))
         return true;
-    if ((m_deviceFlag & HAS_DEVICE_MASK) == HAS_WIRED_DEVICE && getDeviceConnections(NET_WIRED, static_cast<unsigned>(NetConnectionStatus::AllConnectionStatus)).isEmpty()) // 只有有线,且无配置
+    if ((m_deviceFlag & HAS_DEVICE_MASK) == HAS_WIRED_DEVICE && getDeviceConnections(NET_WIRED, static_cast<unsigned>(NetType::CS_AllConnectionStatus)).isEmpty()) // 只有有线,且无配置
         return true;
     return false;
 }
@@ -175,7 +175,7 @@ const QString NetStatus::contextMenu(bool hasSetting) const
         enable["isActive"] = bool(m_deviceFlag & ENABLEDABLE_DEVICE_MASK);
         items.push_back(enable);
     }
-    if (!m_manager->isGreeterMode()) {
+    // if (!m_manager->isGreeterMode()) {
         if (m_vpnItem.Availabled) {
             QMap<QString, QVariant> vpnEnable;
             if (m_vpnItem.Enabled) {
@@ -202,7 +202,7 @@ const QString NetStatus::contextMenu(bool hasSetting) const
             proxyEnable["isActive"] = m_proxyItem.Availabled;
             items.push_back(proxyEnable);
         }
-    }
+    // }
     if (hasSetting) {
         QMap<QString, QVariant> settings;
         settings["itemId"] = QString::number(MenuSettings);
@@ -262,7 +262,7 @@ QWidget *NetStatus::createDockIconWidget()
     QWidget *contentWidget = new QWidget;
     contentWidget->setMouseTracking(true);
     m_dockIconWidgetlayout = new QBoxLayout(QBoxLayout::LeftToRight, contentWidget);
-    m_dockIconWidgetlayout->setMargin(0);
+    m_dockIconWidgetlayout->setContentsMargins(0, 0, 0, 0);
     m_dockIconWidgetlayout->setSpacing(10);
     m_networkBut = new NetIconButton(contentWidget);
     m_networkBut->setForegroundRole(QPalette::BrightText);
@@ -284,8 +284,10 @@ QWidget *NetStatus::createDockIconWidget()
 
 void NetStatus::setDirection(QBoxLayout::Direction position)
 {
-    if (m_dockIconWidgetlayout)
+    if (m_dockIconWidgetlayout) {
         m_dockIconWidgetlayout->setDirection(position);
+        updateItemWidgetSize();
+    }
 }
 
 void NetStatus::refreshIcon()
@@ -395,24 +397,24 @@ void NetStatus::onChildAdded(const NetItem *child)
         const NetItem *obj = objs.takeFirst();
 
         switch (obj->itemType()) {
-        case NetItemType::VPNControlItem: {
+        case NetType::VPNControlItem: {
             const NetVPNControlItem *deviceItem = qobject_cast<const NetVPNControlItem *>(obj);
             connect(deviceItem, &NetDeviceItem::statusChanged, this, &NetStatus::updateVpnAndProxyStatus);
             connect(deviceItem, &NetDeviceItem::ipsChanged, this, &NetStatus::updateVpnAndProxyStatus);
             connect(deviceItem, &NetDeviceItem::nameChanged, this, &NetStatus::updateVpnAndProxyStatus);
             connect(deviceItem, &NetDeviceItem::enabledableChanged, this, &NetStatus::updateVpnAndProxyStatus);
             connect(deviceItem, &NetDeviceItem::enabledChanged, this, &NetStatus::updateVpnAndProxyStatus);
-            connect(m_manager, &NetManager::vpnStatusChanged, this, &NetStatus::updateVpnAndProxyStatus);
+            // connect(m_manager, &NetManager::vpnStatusChanged, this, &NetStatus::updateVpnAndProxyStatus);
             updateVpnAndProxyStatus();
         } break;
-        case NetItemType::SystemProxyControlItem: {
+        case NetType::SystemProxyControlItem: {
             const NetSystemProxyControlItem *deviceItem = qobject_cast<const NetSystemProxyControlItem *>(obj);
             connect(deviceItem, &NetControlItem::enabledChanged, this, &NetStatus::updateVpnAndProxyStatus);
             connect(deviceItem, &NetControlItem::enabledableChanged, this, &NetStatus::updateVpnAndProxyStatus);
             updateVpnAndProxyStatus();
         } break;
-        case NetItemType::WiredDeviceItem:
-        case NetItemType::WirelessDeviceItem: {
+        case NetType::WiredDeviceItem:
+        case NetType::WirelessDeviceItem: {
             const NetDeviceItem *deviceItem = qobject_cast<const NetDeviceItem *>(obj);
             connect(deviceItem, &NetDeviceItem::statusChanged, this, &NetStatus::updateStatus);
             // 有线网无网线连接时不再发出status变化信号，因此还需要处理enable
@@ -421,11 +423,11 @@ void NetStatus::onChildAdded(const NetItem *child)
             connect(deviceItem, &NetDeviceItem::nameChanged, this, &NetStatus::updateStatus);
             updateStatus();
         } break;
-        case NetItemType::WiredItem: {
+        case NetType::WiredItem: {
             const NetWiredItem *item = qobject_cast<const NetWiredItem *>(obj);
             connect(item, &NetWiredItem::statusChanged, this, &NetStatus::updateStatus);
         } break;
-        case NetItemType::WirelessItem: {
+        case NetType::WirelessItem: {
             const NetWirelessItem *item = qobject_cast<const NetWirelessItem *>(obj);
             connect(item, &NetWirelessItem::statusChanged, this, &NetStatus::updateStatus);
             connect(item, &NetWirelessItem::strengthLevelChanged, this, &NetStatus::onStrengthLevelChanged);
@@ -451,7 +453,7 @@ void NetStatus::onChildRemoved(const NetItem *child)
 void NetStatus::onStrengthLevelChanged()
 {
     const NetWirelessItem *item = qobject_cast<const NetWirelessItem *>(sender());
-    if (item && item->status() != NetConnectionStatus::UnConnected) {
+    if (item && item->status() != NetType::CS_UnConnected) {
         updateStatus();
     }
 }
@@ -461,12 +463,12 @@ void NetStatus::updateVpnAndProxyStatus()
     NetItem *root = m_manager->root();
     NetVPNControlItem *vpnControlItem = nullptr;
     NetSystemProxyControlItem *systemProxyControlItem = nullptr;
-    for (auto it = root->childBegin(); it != root->childEnd(); ++it) {
-        if (NetItemType::VPNControlItem == (*it)->itemType()) {
-            vpnControlItem = qobject_cast<NetVPNControlItem *>(*it);
+    for(const auto &it : root->getChildren()){
+        if (NetType::VPNControlItem == it->itemType()) {
+            vpnControlItem = qobject_cast<NetVPNControlItem *>(it);
         }
-        if (NetItemType::SystemProxyControlItem == (*it)->itemType()) {
-            systemProxyControlItem = qobject_cast<NetSystemProxyControlItem *>(*it);
+        if (NetType::SystemProxyControlItem == it->itemType()) {
+            systemProxyControlItem = qobject_cast<NetSystemProxyControlItem *>(it);
         }
         if (vpnControlItem && systemProxyControlItem)
             break;
@@ -474,7 +476,7 @@ void NetStatus::updateVpnAndProxyStatus()
 
     m_vpnItem.Availabled = vpnControlItem && vpnControlItem->enabledable();
     m_vpnItem.Enabled = vpnControlItem && vpnControlItem->isEnabled();
-    m_vpnItem.Connected = vpnControlItem && vpnControlItem->status() == NetDeviceStatus::Connected;
+    m_vpnItem.Connected = vpnControlItem && vpnControlItem->status() == NetType::DS_Connected;
     m_proxyItem.Availabled = systemProxyControlItem && systemProxyControlItem->enabledable();
     m_proxyItem.Enabled = systemProxyControlItem && systemProxyControlItem->isEnabled();
     QString tips;
@@ -493,9 +495,10 @@ void NetStatus::updateVpnAndProxyStatus()
         const bool visible = m_vpnItem.Connected || m_proxyItem.Enabled;
         if (m_vpnAndProxyIconVisibel != visible) {
             m_vpnAndProxyIconVisibel = visible;
+            m_vpnAndProxyBut->setVisible(m_vpnAndProxyIconVisibel);
+            updateItemWidgetSize();
             Q_EMIT vpnAndProxyIconVisibelChanged(m_vpnAndProxyIconVisibel);
         }
-        m_vpnAndProxyBut->setVisible(m_vpnAndProxyIconVisibel);
         m_vpnAndProxyBut->setIcon(m_vpnAndProxyIcon);
     }
     if (m_vpnAndProxyTips != tips) {
@@ -520,28 +523,29 @@ void NetStatus::doUpdateStatus()
 {
     NetItem *root = m_manager->root();
     QStringList iphtml[DEVICE_ITEM_COUNT];
-    unsigned devStatus[DEVICE_ITEM_COUNT] = { NetDeviceStatus::Unknown, NetDeviceStatus::Unknown };
+    unsigned devStatus[DEVICE_ITEM_COUNT] = { NetType::DS_Unknown, NetType::DS_Unknown };
     m_deviceFlag = 0;
     // 获取各设备状态
-    for (auto it = root->childBegin(); it != root->childEnd(); ++it) {
+    for(const auto &it : root->getChildren()){
+    // for (auto it = root->childBegin(); it != root->childEnd(); ++it) {
         int index = WIRELESS_DEVICE_INDEX;
-        switch ((*it)->itemType()) {
-        case NetItemType::WiredDeviceItem:
+        switch (it->itemType()) {
+        case NetType::WiredDeviceItem:
             index = WIRED_DEVICE_INDEX;
             [[clang::fallthrough]]; // 去无break警告
-        case NetItemType::WirelessDeviceItem: {
-            NetDeviceItem *devItem = qobject_cast<NetDeviceItem *>(*it);
+        case NetType::WirelessDeviceItem: {
+            NetDeviceItem *devItem = qobject_cast<NetDeviceItem *>(it);
             bool needShowIp = false;
             if (devItem && devItem->isEnabled() && !devItem->ips().isEmpty()) {
-                if (devItem->status() == NetDeviceStatus::Connected) {
+                if (devItem->status() == NetType::DS_Connected) {
                     needShowIp = true;
-                } else if (devItem->status() == NetDeviceStatus::IpConflicted) {
+                } else if (devItem->status() == NetType::DS_IpConflicted) {
                     // IP冲突的情况下，如果当前设备是有线连接，且主连接是无线连接，那么此时需显示可上网的图标
                     // 需要显示IP；相反如果当前设备是无线连接，且主连接是有线连接，那么此时需要显示可上网，需显示IP
-                    if ((*it)->itemType() == NetItemType::WiredDeviceItem) {
+                    if (it->itemType() == NetType::WiredDeviceItem) {
                         // 获取当前的主连接
                         needShowIp = (m_manager->primaryConnectionType() == NetManager::Wireless);
-                    } else if ((*it)->itemType() == NetItemType::WirelessDeviceItem) {
+                    } else if (it->itemType() == NetType::WirelessDeviceItem) {
                         // 如果当前主连接为有线连接，则需要显示IP
                         needShowIp = (m_manager->primaryConnectionType() == NetManager::Wired);
                     }
@@ -577,9 +581,9 @@ void NetStatus::doUpdateStatus()
     // 汇总有线无线状态
     // 优先级: 连接中 ip冲突 已连接但无网络 已连接 未连接 禁用 无网线 未知
     switch (netStatus) {
-    case NetDeviceStatus::Authenticating:
-    case NetDeviceStatus::ObtainingIP:
-    case NetDeviceStatus::Connecting:
+    case NetType::DS_Authenticating:
+    case NetType::DS_ObtainingIP:
+    case NetType::DS_Connecting:
         if (devStatus[WIRELESS_DEVICE_INDEX] == devStatus[WIRED_DEVICE_INDEX]) {
             networkStatus = NetworkStatus::Connecting;
         } else if (isWirelessStatus) {
@@ -588,27 +592,27 @@ void NetStatus::doUpdateStatus()
             networkStatus = NetworkStatus::WiredConnecting;
         }
         break;
-    case NetDeviceStatus::IpConflicted:
+    case NetType::DS_IpConflicted:
         if (devStatus[WIRELESS_DEVICE_INDEX] == devStatus[WIRED_DEVICE_INDEX]) {
             networkStatus = NetworkStatus::WirelessIpConflicted;
         } else if (isWirelessStatus) {
             if (m_manager->primaryConnectionType() == NetManager::Wired) {
                 // 如果当前的主连接不是无线，那么就判断有线网是否可以上网
-                networkStatus = (devStatus[WIRED_DEVICE_INDEX] == NetDeviceStatus::Connected) ?
+                networkStatus = (devStatus[WIRED_DEVICE_INDEX] == NetType::DS_Connected) ?
                             NetworkStatus::WiredConnected : NetworkStatus::ConnectNoInternet;
             } else {
                 networkStatus = NetworkStatus::WirelessIpConflicted;
             }
         } else {
             if (m_manager->primaryConnectionType() == NetManager::Wireless) {
-                networkStatus = devStatus[WIRELESS_DEVICE_INDEX] == NetDeviceStatus::Connected ?
+                networkStatus = devStatus[WIRELESS_DEVICE_INDEX] == NetType::DS_Connected ?
                             NetworkStatus::WirelessConnected : NetworkStatus::ConnectNoInternet;
             } else {
                 networkStatus = NetworkStatus::WiredIpConflicted;
             }
         }
         break;
-    case NetDeviceStatus::ConnectNoInternet:
+    case NetType::DS_ConnectNoInternet:
         if (devStatus[WIRELESS_DEVICE_INDEX] == devStatus[WIRED_DEVICE_INDEX]) {
             networkStatus = NetworkStatus::ConnectNoInternet;
         } else if (isWirelessStatus) {
@@ -617,7 +621,7 @@ void NetStatus::doUpdateStatus()
             networkStatus = NetworkStatus::WiredConnectNoInternet;
         }
         break;
-    case NetDeviceStatus::Connected:
+    case NetType::DS_Connected:
         if (devStatus[WIRELESS_DEVICE_INDEX] == devStatus[WIRED_DEVICE_INDEX]) {
             networkStatus = NetworkStatus::Connected;
         } else if (isWirelessStatus) {
@@ -626,7 +630,7 @@ void NetStatus::doUpdateStatus()
             networkStatus = NetworkStatus::WiredConnected;
         }
         break;
-    case NetDeviceStatus::Disconnected:
+    case NetType::DS_Disconnected:
         if (devStatus[WIRELESS_DEVICE_INDEX] == devStatus[WIRED_DEVICE_INDEX]) {
             networkStatus = NetworkStatus::Disconnected;
         } else if (isWirelessStatus) {
@@ -635,7 +639,7 @@ void NetStatus::doUpdateStatus()
             networkStatus = NetworkStatus::WiredDisconnected;
         }
         break;
-    case NetDeviceStatus::ConnectFailed:
+    case NetType::DS_ConnectFailed:
         if (devStatus[WIRELESS_DEVICE_INDEX] == devStatus[WIRED_DEVICE_INDEX]) {
             networkStatus = NetworkStatus::Disconnected;
         } else if (isWirelessStatus) {
@@ -644,7 +648,7 @@ void NetStatus::doUpdateStatus()
             networkStatus = NetworkStatus::WiredDisconnected;
         }
         break;
-    case NetDeviceStatus::ObtainIpFailed:
+    case NetType::DS_ObtainIpFailed:
         if (devStatus[WIRELESS_DEVICE_INDEX] == devStatus[WIRED_DEVICE_INDEX]) {
             networkStatus = NetworkStatus::Failed;
         } else if (isWirelessStatus) {
@@ -653,7 +657,7 @@ void NetStatus::doUpdateStatus()
             networkStatus = NetworkStatus::WiredFailed;
         }
         break;
-    case NetDeviceStatus::Disabled:
+    case NetType::DS_Disabled:
         if (devStatus[WIRELESS_DEVICE_INDEX] == devStatus[WIRED_DEVICE_INDEX]) {
             networkStatus = NetworkStatus::Disabled;
         } else if (isWirelessStatus) {
@@ -662,7 +666,7 @@ void NetStatus::doUpdateStatus()
             networkStatus = NetworkStatus::WiredDisabled;
         }
         break;
-    case NetDeviceStatus::Enabled:
+    case NetType::DS_Enabled:
         if (devStatus[WIRELESS_DEVICE_INDEX] == devStatus[WIRED_DEVICE_INDEX]) {
             networkStatus = NetworkStatus::Disconnected;
         } else if (isWirelessStatus) {
@@ -671,10 +675,10 @@ void NetStatus::doUpdateStatus()
             networkStatus = NetworkStatus::WiredDisconnected;
         }
         break;
-    case NetDeviceStatus::NoCable:
+    case NetType::DS_NoCable:
         networkStatus = NetworkStatus::Nocable;
         break;
-    case NetDeviceStatus::Unknown:
+    case NetType::DS_Unknown:
         networkStatus = NetworkStatus::Unknown;
         break;
     }
@@ -695,7 +699,7 @@ void NetStatus::doUpdateStatus()
         updateNetworkTips();
     }
     updateQuick(devStatus[WIRELESS_DEVICE_INDEX], devStatus[WIRED_DEVICE_INDEX]);
-    qCInfo(DNC) << "Update status, wireless network: " << NetDeviceStatus(devStatus[WIRELESS_DEVICE_INDEX]) << ", wired network: " << NetDeviceStatus(devStatus[WIRED_DEVICE_INDEX])
+    qCInfo(DNC) << "Update status, wireless network: " << NetType::NetDeviceStatus(devStatus[WIRELESS_DEVICE_INDEX]) << ", wired network: " << NetType::NetDeviceStatus(devStatus[WIRED_DEVICE_INDEX])
             << ", status: " << networkStatus << ", device flag: " << QString::number(m_deviceFlag, 16) << ", ip: " << m_iphtml;
 }
 
@@ -779,7 +783,7 @@ void NetStatus::updateNetworkIcon()
             break;
         }
         if (type == NetManager::ConnectionType::Wireless) {
-            QVector<NetItem *> items = getDeviceConnections(NET_WIRELESS, static_cast<unsigned>(NetConnectionStatus::Connected));
+            QVector<NetItem *> items = getDeviceConnections(NET_WIRELESS, static_cast<unsigned>(NetType::CS_Connected));
             if (items.isEmpty()) {
                 iconString = QString("network-wireless-signal-full-symbolic");
             } else {
@@ -845,7 +849,7 @@ void NetStatus::updateNetworkIcon()
     case NetworkStatus::ConnectNoInternet:
     case NetworkStatus::WirelessConnectNoInternet: {
         // 无线已连接但无法访问互联网 offline
-        QVector<NetItem *> items = getDeviceConnections(NET_WIRELESS, static_cast<unsigned>(NetConnectionStatus::Connected));
+        QVector<NetItem *> items = getDeviceConnections(NET_WIRELESS, static_cast<unsigned>(NetType::CS_Connected));
         if (items.isEmpty()) {
             iconString = QString("network-wireless-offline-signal-full-symbolic");
         } else {
@@ -925,12 +929,12 @@ void NetStatus::updateQuick(unsigned wirelessStatus, unsigned wiredStatus)
     QString quickDescription;
     QString quickIconStr;
     m_quickAnimationIcon.clear();
-    if (wirelessStatus != NetDeviceStatus::Unknown) {
+    if (wirelessStatus != NetType::DS_Unknown) {
         quickTitle = tr("Wireless Network");
         switch (wirelessStatus) {
-        case NetDeviceStatus::Authenticating:
-        case NetDeviceStatus::ObtainingIP:
-        case NetDeviceStatus::Connecting:
+        case NetType::DS_Authenticating:
+        case NetType::DS_ObtainingIP:
+        case NetType::DS_Connecting:
             quickDescription = tr("Connecting");
             m_quickAnimationIcon = QStringList({
                     "network-wireless-signal-no-symbolic",
@@ -941,9 +945,9 @@ void NetStatus::updateQuick(unsigned wirelessStatus, unsigned wiredStatus)
             });
             quickIconStr = m_quickAnimationIcon.first();
             break;
-        case NetDeviceStatus::IpConflicted:
+        case NetType::DS_IpConflicted:
             if (m_manager->primaryConnectionType() == NetManager::Wired
-                    && wiredStatus == NetDeviceStatus::Connected) {
+                    && wiredStatus == NetType::DS_Connected) {
                     // 如果主连接是有线连接，则判断主线连接是否可以上网
                 quickDescription = tr("Connected");
                 quickIconStr = "network-wireless-signal-full-symbolic";
@@ -952,12 +956,12 @@ void NetStatus::updateQuick(unsigned wirelessStatus, unsigned wiredStatus)
                 quickIconStr = "network-wireless-offline-signal-full-symbolic";
             }
             break;
-        case NetDeviceStatus::ConnectNoInternet: {
+        case NetType::DS_ConnectNoInternet: {
             quickDescription = tr("Connected but no Internet access");
             quickIconStr = QString("network-wireless-offline-signal-full-symbolic");
         } break;
-        case NetDeviceStatus::Connected: {
-            QVector<NetItem *> items = getDeviceConnections(NET_WIRELESS, static_cast<unsigned>(NetConnectionStatus::Connected));
+        case NetType::DS_Connected: {
+            QVector<NetItem *> items = getDeviceConnections(NET_WIRELESS, static_cast<unsigned>(NetType::CS_Connected));
             if (items.isEmpty()) {
                 quickDescription = tr("Connected");
             } else if (items.size() == 1) {
@@ -968,14 +972,14 @@ void NetStatus::updateQuick(unsigned wirelessStatus, unsigned wiredStatus)
             }
             quickIconStr = "network-wireless-signal-full-symbolic";
         } break;
-        case NetDeviceStatus::Disconnected:
-        case NetDeviceStatus::ConnectFailed:
-        case NetDeviceStatus::ObtainIpFailed:
-        case NetDeviceStatus::Enabled:
+        case NetType::DS_Disconnected:
+        case NetType::DS_ConnectFailed:
+        case NetType::DS_ObtainIpFailed:
+        case NetType::DS_Enabled:
             quickDescription = tr("Not connected");
             quickIconStr = "network-wireless-disconnect";
             break;
-        case NetDeviceStatus::Disabled:
+        case NetType::DS_Disabled:
             networkActive = false;
             quickDescription = tr("Off");
             quickIconStr = "network-wireless-disabled-symbolic";
@@ -985,12 +989,12 @@ void NetStatus::updateQuick(unsigned wirelessStatus, unsigned wiredStatus)
             quickIconStr = "network-wireless-disconnect";
             break;
         }
-    } else if (wiredStatus != NetDeviceStatus::Unknown) {
+    } else if (wiredStatus != NetType::DS_Unknown) {
         quickTitle = tr("Wired Network");
         switch (wiredStatus) {
-        case NetDeviceStatus::Authenticating:
-        case NetDeviceStatus::ObtainingIP:
-        case NetDeviceStatus::Connecting:
+        case NetType::DS_Authenticating:
+        case NetType::DS_ObtainingIP:
+        case NetType::DS_Connecting:
             quickDescription = tr("Connecting");
             m_quickAnimationIcon = QStringList({
                     "network-wired-symbolic-connecting1",
@@ -1001,9 +1005,9 @@ void NetStatus::updateQuick(unsigned wirelessStatus, unsigned wiredStatus)
             });
             quickIconStr = m_quickAnimationIcon.first();
             break;
-        case NetDeviceStatus::IpConflicted:
+        case NetType::DS_IpConflicted:
             if (m_manager->primaryConnectionType() == NetManager::Wireless
-                    && wirelessStatus == NetDeviceStatus::Connected) {
+                    && wirelessStatus == NetType::DS_Connected) {
                 quickDescription = tr("Connected");
                 quickIconStr = "network-online-symbolic";
             } else {
@@ -1011,12 +1015,12 @@ void NetStatus::updateQuick(unsigned wirelessStatus, unsigned wiredStatus)
                 quickIconStr = "network-offline-symbolic";
             }
             break;
-        case NetDeviceStatus::ConnectNoInternet:
+        case NetType::DS_ConnectNoInternet:
             quickDescription = tr("Connected but no Internet access");
             quickIconStr = "network-offline-symbolic";
             break;
-        case NetDeviceStatus::Connected: {
-            QVector<NetItem *> items = getDeviceConnections(NET_WIRED, static_cast<unsigned>(NetConnectionStatus::Connected));
+        case NetType::DS_Connected: {
+            QVector<NetItem *> items = getDeviceConnections(NET_WIRED, static_cast<unsigned>(NetType::CS_Connected));
             if (items.isEmpty()) {
                 quickDescription = tr("Connected");
             } else if (items.size() == 1) {
@@ -1026,19 +1030,19 @@ void NetStatus::updateQuick(unsigned wirelessStatus, unsigned wiredStatus)
             }
             quickIconStr = "network-online-symbolic";
         } break;
-        case NetDeviceStatus::Disconnected:
-        case NetDeviceStatus::ConnectFailed:
-        case NetDeviceStatus::ObtainIpFailed:
-        case NetDeviceStatus::Enabled:
+        case NetType::DS_Disconnected:
+        case NetType::DS_ConnectFailed:
+        case NetType::DS_ObtainIpFailed:
+        case NetType::DS_Enabled:
             quickDescription = tr("Not connected");
             quickIconStr = "network-none-symbolic";
             break;
-        case NetDeviceStatus::Disabled:
+        case NetType::DS_Disabled:
             networkActive = false;
             quickDescription = tr("Off");
             quickIconStr = "network-disabled-symbolic";
             break;
-        case NetDeviceStatus::NoCable:
+        case NetType::DS_NoCable:
             quickDescription = tr("Network cable unplugged");
             quickIconStr = "network-error-symbolic";
             break;
@@ -1097,16 +1101,16 @@ QVector<NetItem *> NetStatus::getDeviceConnections(unsigned type, unsigned conne
     while (!items.isEmpty()) {
         NetItem *item = items.takeFirst();
         switch (item->itemType()) {
-        case NetItemType::WirelessItem: {
-            if (NetItemType::WirelessItem & type) {
+        case NetType::WirelessItem: {
+            if (NetType::WirelessItem & type) {
                 NetWirelessItem *netItem = NetItem::toItem<NetWirelessItem>(item);
                 unsigned status = static_cast<unsigned>(netItem->status());
                 if (status & connectType)
                     activeItems[status].append(netItem);
             }
         } break;
-        case NetItemType::WiredItem:
-            if (NetItemType::WiredItem & type) {
+        case NetType::WiredItem:
+            if (NetType::WiredItem & type) {
                 NetWiredItem *netItem = NetItem::toItem<NetWiredItem>(item);
                 unsigned status = static_cast<unsigned>(netItem->status());
                 if (status & connectType)
@@ -1114,19 +1118,35 @@ QVector<NetItem *> NetStatus::getDeviceConnections(unsigned type, unsigned conne
             }
             break;
         default:
-            items.append(item->getchildren());
+            items.append(item->getChildren());
             break;
         }
     }
     // 排序
-    auto sortFun = [](const NetItem *item1, const NetItem *item2) {
-        return item1->sortValue() < item2->sortValue();
-    };
     for (int i = 0; i < 5; i++) {
-        qSort(activeItems[i].begin(), activeItems[i].end(), sortFun);
+        std::sort(activeItems[i].begin(), activeItems[i].end(), &NetItem::compare);
     }
-    return activeItems[static_cast<unsigned>(NetConnectionStatus::Connecting)] + activeItems[static_cast<unsigned>(NetConnectionStatus::Connected)]
-            + activeItems[static_cast<unsigned>(NetConnectionStatus::UnConnected)];
+    return activeItems[static_cast<unsigned>(NetType::CS_Connecting)] + activeItems[static_cast<unsigned>(NetType::CS_Connected)]
+            + activeItems[static_cast<unsigned>(NetType::CS_UnConnected)];
+}
+
+void NetStatus::updateItemWidgetSize()
+{
+    if (!m_dockIconWidgetlayout)
+        return;
+
+    if (auto itemWidget = m_dockIconWidgetlayout->parentWidget()) {
+        itemWidget->setFixedSize(itemWidget->sizeHint());
+    }
+}
+
+bool NetStatus::event(QEvent *event)
+{
+    if (event->type() == QEvent::ApplicationFontChange) {
+        m_tipsLabel->adjustSize();
+    }
+
+    return QObject::event(event);
 }
 
 } // namespace network

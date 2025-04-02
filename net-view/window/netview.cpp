@@ -7,6 +7,7 @@
 #include "netmanager.h"
 #include "private/netdelegate.h"
 #include "private/netmodel.h"
+#include "private/netsortproxymodel.h"
 
 #include <DStyle>
 #include <DStyleOption>
@@ -42,8 +43,8 @@ NetView::NetView(NetManager *manager)
     m_model = new NetModel(this);
     m_model->setRoot(m_manager->root());
 
-    m_proxyModel = new QSortFilterProxyModel(m_model);
-    m_proxyModel->setSortRole(SORTROLE);
+    m_proxyModel = new NetSortProxyModel(m_model);
+    m_proxyModel->setSortRole(NetModel::NetItemRole);
     m_proxyModel->setSourceModel(m_model);
 
     setModel(m_proxyModel);
@@ -82,9 +83,9 @@ NetView::NetView(NetManager *manager)
     connect(this, &NetView::activated, this, &NetView::onActivated);
 
     // 支持在触摸屏上滚动
-    QScroller::grabGesture(viewport(), QScroller::LeftMouseButtonGesture);
-    QScrollerProperties sp;
-    sp.setScrollMetric(QScrollerProperties::VerticalOvershootPolicy, QScrollerProperties::OvershootAlwaysOff);
+    //QScroller::grabGesture(viewport(), QScroller::LeftMouseButtonGesture);
+    //QScrollerProperties sp;
+    //sp.setScrollMetric(QScrollerProperties::VerticalOvershootPolicy, QScrollerProperties::OvershootAlwaysOff);
 }
 
 NetView::~NetView() = default;
@@ -138,17 +139,17 @@ void NetView::rowsInserted(const QModelIndex &parent, int start, int end)
         return;
 
     switch (item->itemType()) {
-    case NetItemType::WirelessOtherItem: {
+    case NetType::WirelessOtherItem: {
         NetWirelessOtherItem *otherItem = NetItem::toItem<NetWirelessOtherItem>(item);
         if (otherItem) {
             updateItemExpand(otherItem);
             connect(otherItem, &NetWirelessOtherItem::expandedChanged, this, &NetView::onExpandStatusChanged);
         }
     } break;
-    case NetItemType::WirelessMineItem:
+    case NetType::WirelessMineItem:
         updateItemExpand(item);
         break;
-    case NetItemType::VPNControlItem: {
+    case NetType::VPNControlItem: {
         NetVPNControlItem *vpnControlItem = NetItem::toItem<NetVPNControlItem>(item);
         if (vpnControlItem) {
             connect(vpnControlItem, &NetVPNControlItem::expandedChanged, this, &NetView::onExpandStatusChanged);
@@ -156,15 +157,15 @@ void NetView::rowsInserted(const QModelIndex &parent, int start, int end)
             updateItemExpand(vpnControlItem);
         }
     } break;
-    case NetItemType::WirelessControlItem:
-    case NetItemType::WiredControlItem:
-    case NetItemType::WirelessDeviceItem:
-    case NetItemType::WiredDeviceItem: {
+    case NetType::WirelessControlItem:
+    case NetType::WiredControlItem:
+    case NetType::WirelessDeviceItem:
+    case NetType::WiredDeviceItem: {
         NetDeviceItem *dev = NetItem::toItem<NetDeviceItem>(item);
         if (dev) {
             updateItemExpand(dev);
             connect(dev, &NetDeviceItem::enabledChanged, this, &NetView::onExpandStatusChanged);
-            if (dev->itemType() == NetItemType::WirelessDeviceItem)
+            if (dev->itemType() == NetType::WirelessDeviceItem)
                 connect(NetItem::toItem<NetWirelessDeviceItem>(dev), &NetWirelessDeviceItem::apModeChanged, this, &NetView::onExpandStatusChanged);
         }
     } break;
@@ -182,7 +183,7 @@ bool NetView::viewportEvent(QEvent *event)
     case QEvent::HoverEnter:
     case QEvent::HoverMove: {
         QHoverEvent *he = static_cast<QHoverEvent *>(event);
-        QModelIndex newIndex = indexAt(he->pos());
+        QModelIndex newIndex = indexAt(QPoint(he->position().x(), he->position().y()));
         setCurrentIndex(newIndex);
         break;
     }
@@ -229,12 +230,12 @@ void NetView::onExec(NetManager::CmdType cmd, const QString &id, const QVariantM
 
 void NetView::onActivated(const QModelIndex &index)
 {
-    switch (index.data(TYPEROLE).value<NetItemType>()) {
-    case NetItemType::WirelessOtherItem:
-        m_manager->exec(NetManager::ToggleExpand, index.data(IDROLE).toString());
+    switch (index.data(NetModel::NetItemTypeRole).value<NetType::NetItemType>()) {
+    case NetType::WirelessOtherItem:
+        m_manager->exec(NetManager::ToggleExpand, index.data(NetModel::NetItemIdRole).toString());
         break;
     default:
-        m_manager->exec(NetManager::Connect, index.data(IDROLE).toString());
+        m_manager->exec(NetManager::Connect, index.data(NetModel::NetItemIdRole).toString());
         break;
     }
 }
@@ -257,22 +258,22 @@ void NetView::updateItemExpand(NetItem *item)
 {
     bool expandItem = false;
     switch (item->itemType()) {
-    case NetItemType::WiredDeviceItem: {
+    case NetType::WiredDeviceItem: {
         NetWiredDeviceItem *dev = NetItem::toItem<NetWiredDeviceItem>(item);
         expandItem = dev->isEnabled();
     } break;
-    case NetItemType::WirelessDeviceItem: { // 无线禁用或热点模式时折叠
+    case NetType::WirelessDeviceItem: { // 无线禁用或热点模式时折叠
         NetWirelessDeviceItem *dev = NetItem::toItem<NetWirelessDeviceItem>(item);
-        expandItem = dev->isEnabled() && !dev->isApMode();
+        expandItem = dev->isEnabled() && !dev->apMode();
     } break;
-    case NetItemType::WirelessMineItem: {
+    case NetType::WirelessMineItem: {
         expandItem = true;
     } break;
-    case NetItemType::WirelessOtherItem: {
+    case NetType::WirelessOtherItem: {
         NetWirelessOtherItem *dev = NetItem::toItem<NetWirelessOtherItem>(item);
         expandItem = dev->isExpanded();
     } break;
-    case NetItemType::VPNControlItem: {
+    case NetType::VPNControlItem: {
         NetVPNControlItem *dev = NetItem::toItem<NetVPNControlItem>(item);
         expandItem = dev->isExpanded();
     } break;
@@ -295,7 +296,7 @@ void NetView::scrollToItem(const QString &id)
     indexes.append(QModelIndex());
     while (!indexes.isEmpty()) {
         QModelIndex index = indexes.takeFirst();
-        if (index.data(IDROLE).toString() == id) {
+        if (index.data(NetModel::NetItemIdRole).toString() == id) {
             scrollTo(index);
             return;
         }
@@ -313,7 +314,7 @@ QModelIndex NetView::traverseAndSearch(const QModelIndex &parent, const QString 
     int row = m_proxyModel->rowCount(parent);
     while (row--) {
         QModelIndex index = m_proxyModel->index(row, 0, parent);
-        if (index.isValid() && index.data(IDROLE).toString() == id) {
+        if (index.isValid() && index.data(NetModel::NetItemIdRole).toString() == id) {
             return index;
         }
         QModelIndex retIndex = traverseAndSearch(index, id);

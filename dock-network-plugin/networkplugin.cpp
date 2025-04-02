@@ -1,45 +1,68 @@
 // SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
 //
-// SPDX-License-Identifier: LGPL-3.0-or-later
+// SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "networkplugin.h"
-#include "networkpluginhelper.h"
-#include "networkdialog.h"
-#include "quickpanel.h"
-#include "item/devicestatushandler.h"
-#include "networkdialog/thememanager.h"
 
-#include <DDBusSender>
+#include "dockcontentwidget.h"
+#include "netmanager.h"
+#include "netstatus.h"
+#include "netview.h"
+#include "quickpanelwidget.h"
 
+#include <DGuiApplicationHelper>
+
+#include <QDBusConnection>
+#include <QDBusMessage>
+#include <QMouseEvent>
 #include <QTime>
 
-#include <networkcontroller.h>
-#include <networkdevicebase.h>
-#include <wireddevice.h>
-#include <wirelessdevice.h>
+#include <unistd.h>
 
 #define STATE_KEY "enabled"
 
-NETWORKPLUGIN_USE_NAMESPACE
+using namespace dde::network;
+DGUI_USE_NAMESPACE
 
+static Q_LOGGING_CATEGORY(DNC, "org.deepin.dde.dock.network");
+
+namespace dde {
+namespace network {
 NetworkPlugin::NetworkPlugin(QObject *parent)
     : QObject(parent)
-    , m_networkHelper(Q_NULLPTR)
-    , m_networkDialog(Q_NULLPTR)
-    , m_quickPanel(Q_NULLPTR)
-    , m_clickTime(-10000)
+    , m_trayIcon(nullptr)
+    , m_tipsWidget(nullptr)
+    , m_manager(nullptr)
+    , m_netView(nullptr)
+    , m_netStatus(nullptr)
+    , m_isLockScreen(false)
+    , m_replacesId(0)
+    , m_dockContentWidget(nullptr)
+    , m_netCheckAvailable(false)
+    , m_netLimited(false)
 {
-    NetworkController::setIPConflictCheck(true);
     QTranslator *translator = new QTranslator(this);
-    QString languagePath = QStandardPaths::locate(QStandardPaths::GenericDataLocation,
-                                                  QString("dock-network-plugin/translations"),
-                                                  QStandardPaths::LocateDirectory);
-    translator->load(QString(languagePath+"/dock-network-plugin_%1.qm").arg(QLocale::system().name()));
-    QCoreApplication::installTranslator(translator);
+    if (translator->load(QString("/usr/share/dock-network-plugin/translations/dock-network-plugin_%1").arg(QLocale().name()))) {
+        QCoreApplication::installTranslator(translator);
+    }
 }
 
 NetworkPlugin::~NetworkPlugin()
 {
+    if (m_netView)
+        m_netView->deleteLater();
+
+    if (m_netStatus)
+        delete m_netStatus;
+
+    if (m_manager)
+        delete m_manager;
+
+    if (m_tipsWidget)
+        m_tipsWidget->deleteLater();
+
+    if (m_trayIcon)
+        m_trayIcon->deleteLater();
 }
 
 const QString NetworkPlugin::pluginName() const
@@ -55,30 +78,55 @@ const QString NetworkPlugin::pluginDisplayName() const
 void NetworkPlugin::init(PluginProxyInterface *proxyInter)
 {
     m_proxyInter = proxyInter;
-    if (m_networkHelper)
+    if (m_manager)
         return;
 
-    m_networkDialog = new NetworkDialog(this);
-    m_networkDialog->setServerName("dde-network-dialog" + QString::number(getuid()) + "dock");
-    m_networkHelper.reset(new NetworkPluginHelper(m_networkDialog));
-    connect(m_networkHelper.data(), &NetworkPluginHelper::iconChanged, this, &NetworkPlugin::onIconUpdated);
-    m_quickPanel = new QuickPanel();
+    m_manager = new NetManager(NetType::Net_DockFlags,this);
+    m_manager->setServerKey("dock");
+    m_netView = new NetView(m_manager);
+    m_netStatus = new NetStatus(m_manager);
+    m_dockContentWidget = new DockContentWidget(m_netView, m_manager);
+
+    m_netStatus->setDirection(position() == Dock::Top || position() == Dock::Bottom ? QBoxLayout::LeftToRight : QBoxLayout::TopToBottom);
 
     if (!pluginIsDisable())
         loadPlugin();
 
-    connect(m_networkDialog, &NetworkDialog::requestShow, this, &NetworkPlugin::showNetworkDialog);
-
-    connect(m_quickPanel, &QuickPanel::iconClicked, this, [this]() {
-        m_networkHelper->invokeMenuItem(m_quickPanel->userData().toString());
+    connect(m_netStatus, &NetStatus::networkStatusChanged, this, &NetworkPlugin::onNetworkStatusChanged);
+    connect(m_manager, &NetManager::netCheckAvailableChanged, this, &NetworkPlugin::onNetCheckAvailableChanged);
+    connect(m_netView, &NetView::requestShow, this, &NetworkPlugin::showNetworkDialog);
+    connect(m_manager, &NetManager::toControlCenter, this, [ = ] {
+        m_proxyInter->requestSetAppletVisible(this, NETWORK_KEY, false);
     });
-    connect(m_quickPanel, &QuickPanel::panelClicked, this, &NetworkPlugin::showNetworkDialog);
 
-    m_networkHelper->setIconDark(Dtk::Gui::DGuiApplicationHelper::instance()->themeType() == DGuiApplicationHelper::DarkType);
-    // 主题发生变化触发的信号
-    connect(Dtk::Gui::DGuiApplicationHelper::instance(), &Dtk::Gui::DGuiApplicationHelper::themeTypeChanged, this, [this]() {
-        m_networkHelper->setIconDark(Dtk::Gui::DGuiApplicationHelper::instance()->themeType() == DGuiApplicationHelper::DarkType);
-    });
+    m_netCheckAvailable = m_manager->netCheckAvailable();
+
+    connect(m_manager,
+            &NetManager::networkNotify,
+            this,
+            [ this ](const QString &inAppName,
+                   int replacesId,
+                   const QString &appIcon,
+                   const QString &summary,
+                   const QString &body,
+                   const QStringList &actions,
+                   const QVariantMap &hints,
+                   int expireTimeout) {
+                QDBusMessage notify = QDBusMessage::createMethodCall("org.freedesktop.Notifications", "/org/freedesktop/Notifications", "org.freedesktop.Notifications", "Notify");
+                uint id = replacesId == -1 ? m_replacesId : static_cast<uint>(replacesId);
+                notify << inAppName << id << appIcon << summary << body << actions << hints << expireTimeout;
+                QDBusConnection::sessionBus().callWithCallback(notify, this, SLOT(onNotify(uint)));
+            });
+    connect(m_netStatus, &NetStatus::hasDeviceChanged, this, &NetworkPlugin::refreshPluginItemsVisible);
+    connect(DGuiApplicationHelper::instance(), &DGuiApplicationHelper::themeTypeChanged, this, &NetworkPlugin::updateIconColor);
+    QDBusConnection::sessionBus().connect("org.deepin.dde.LockFront1", "/org/deepin/dde/LockFront1", "org.deepin.dde.LockFront1", "Visible", this, SLOT(updateLockScreenStatus(bool)));
+}
+
+void NetworkPlugin::positionChanged(const Dock::Position position)
+{
+    m_proxyInter->itemUpdate(this, pluginName());
+    if (m_netStatus)
+        m_netStatus->setDirection(position == Dock::Top || position == Dock::Bottom ? QBoxLayout::LeftToRight : QBoxLayout::TopToBottom);
 }
 
 void NetworkPlugin::invokedMenuItem(const QString &itemKey, const QString &menuId, const bool checked)
@@ -86,13 +134,13 @@ void NetworkPlugin::invokedMenuItem(const QString &itemKey, const QString &menuI
     Q_UNUSED(checked)
 
     if (itemKey == NETWORK_KEY)
-        m_networkHelper->invokeMenuItem(menuId);
+        m_netStatus->invokeMenuItem(menuId);
 }
 
 void NetworkPlugin::refreshIcon(const QString &itemKey)
 {
     if (itemKey == NETWORK_KEY)
-        emit m_networkHelper->viewUpdate();
+        m_netStatus->refreshIcon();
 }
 
 void NetworkPlugin::pluginStateSwitched()
@@ -100,6 +148,11 @@ void NetworkPlugin::pluginStateSwitched()
     m_proxyInter->saveValue(this, STATE_KEY, pluginIsDisable());
 
     refreshPluginItemsVisible();
+}
+
+bool NetworkPlugin::pluginIsAllowDisable()
+{
+    return true;
 }
 
 bool NetworkPlugin::pluginIsDisable()
@@ -110,12 +163,12 @@ bool NetworkPlugin::pluginIsDisable()
 const QString NetworkPlugin::itemCommand(const QString &itemKey)
 {
     Q_UNUSED(itemKey)
-    if (m_networkHelper->needShowControlCenter()) {
+    if (m_netStatus->needShowControlCenter()) {
         return QString("dbus-send --print-reply "
-                       "--dest=org.deepin.dde.ControlCenter1"
-                       "/org/deepin/dde/ControlCenter1"
+                       "--dest=org.deepin.dde.ControlCenter1 "
+                       "/org/deepin/dde/ControlCenter1 "
                        "org.deepin.dde.ControlCenter1.ShowModule "
-                       "\"string:network\"");
+                       "string:network");
     }
 
     return QString();
@@ -123,21 +176,51 @@ const QString NetworkPlugin::itemCommand(const QString &itemKey)
 
 const QString NetworkPlugin::itemContextMenu(const QString &itemKey)
 {
+    if (itemKey == NETWORK_KEY)
+        return m_netStatus->contextMenu(true);
+
     return QString();
 }
 
 QWidget *NetworkPlugin::itemWidget(const QString &itemKey)
 {
-    if (itemKey == QUICK_ITEM_KEY) {
-        return m_quickPanel;
+    if (itemKey == NETWORK_KEY) {
+        if (m_trayIcon.isNull()) {
+            m_trayIcon = m_netStatus->createDockIconWidget();
+            positionChanged(position());
+            updateIconColor();
+            m_trayIcon->installEventFilter(this);
+        }
+        return m_trayIcon.data();
+    }
+    if (itemKey == "quick_item_key") { // QUICK_ITEM_KEY
+        if (m_quickPanel.isNull()) {
+            m_quickPanel = new QuickPanelWidget();
+            m_netStatus->initQuickData();
+            m_quickPanel->setActive(m_netStatus->networkActive());
+            m_quickPanel->setText(m_netStatus->quickTitle());
+            m_quickPanel->setDescription(m_netStatus->quickDescription());
+            m_quickPanel->setIcon(m_netStatus->quickIcon());
+            connect(m_quickPanel.data(), &QuickPanelWidget::iconClicked, this, &NetworkPlugin::onQuickIconClicked);
+            connect(m_quickPanel.data(), &QuickPanelWidget::panelClicked, this, &NetworkPlugin::onQuickPanelClicked);
+            connect(m_netStatus, &NetStatus::quickTitleChanged, m_quickPanel.data(), &QuickPanelWidget::setText);
+            connect(m_netStatus, &NetStatus::quickDescriptionChanged, m_quickPanel.data(), &QuickPanelWidget::setDescription);
+            connect(m_netStatus, &NetStatus::quickIconChanged, m_quickPanel.data(), &QuickPanelWidget::setIcon);
+            connect(m_netStatus, &NetStatus::networkActiveChanged, m_quickPanel.data(), &QuickPanelWidget::setActive);
+        }
+        return m_quickPanel.data();
     }
     return Q_NULLPTR;
 }
 
 QWidget *NetworkPlugin::itemTipsWidget(const QString &itemKey)
 {
-    if (itemKey == NETWORK_KEY && !m_networkDialog->panel()->isVisible())
-        return m_networkHelper->itemTips();
+    if (itemKey == NETWORK_KEY && !m_netView->isVisible()) {
+        if (m_tipsWidget.isNull())
+            m_tipsWidget = m_netStatus->createDockItemTips();
+
+        return m_tipsWidget.data();
+    }
 
     return Q_NULLPTR;
 }
@@ -145,13 +228,13 @@ QWidget *NetworkPlugin::itemTipsWidget(const QString &itemKey)
 QWidget *NetworkPlugin::itemPopupApplet(const QString &itemKey)
 {
     Q_UNUSED(itemKey);
-    return m_networkDialog->panel();
+    return m_dockContentWidget;
 }
 
 int NetworkPlugin::itemSortKey(const QString &itemKey)
 {
     const QString key = QString("pos_%1_%2").arg(itemKey).arg(Dock::Efficient);
-    return m_proxyInter->getValue(this, key, 3).toInt();
+    return m_proxyInter->getValue(this, key, 1).toInt();
 }
 
 void NetworkPlugin::setSortKey(const QString &itemKey, const int order)
@@ -165,179 +248,158 @@ void NetworkPlugin::pluginSettingsChanged()
     refreshPluginItemsVisible();
 }
 
-PluginFlags NetworkPlugin::flags() const
-{
-    return PluginFlag::Type_Common | PluginFlag::Quick_Multi | PluginFlag::Attribute_CanDrag | PluginFlag::Attribute_CanInsert | PluginFlag::Attribute_CanSetting;
-}
-
 void NetworkPlugin::loadPlugin()
 {
-    m_proxyInter->itemAdded(this, NETWORK_KEY);
+    if (m_netStatus && m_netStatus->hasDevice()) {
+        m_proxyInter->itemAdded(this, NETWORK_KEY);
+    }
 }
 
 void NetworkPlugin::refreshPluginItemsVisible()
 {
-    if (pluginIsDisable())
+    if (pluginIsDisable() || !m_netStatus->hasDevice())
         m_proxyInter->itemRemoved(this, NETWORK_KEY);
     else
         m_proxyInter->itemAdded(this, NETWORK_KEY);
 }
 
-void NetworkPlugin::updateQuickPanel()
+bool NetworkPlugin::eventFilter(QObject *watched, QEvent *event)
 {
-    QList<NetworkDeviceBase *> devices = NetworkController::instance()->devices();
-    int wiredConnectionCount = 0;
-    int wirelessConnectionCount = 0;
-    QString wiredConnection;
-    QString wirelessConnection;
-    QList<WiredDevice *> wiredList;
-    QList<WirelessDevice *> wirelessList;
-
-    for (NetworkDeviceBase *device : devices) {
-        switch (device->deviceType()) {
-        case DeviceType::Wired: {
-            WiredDevice *wiredDevice = static_cast<WiredDevice *>(device);
-            wiredList.append(wiredDevice);
-            if (wiredDevice->isConnected()) {
-                QList<WiredConnection *> items = wiredDevice->items();
-                for (WiredConnection *item : items) {
-                    if (item->status() == ConnectionStatus::Activated) {
-                        wiredConnectionCount++;
-                        wiredConnection = item->connection()->id();
-                    }
-                }
-            }
-        } break;
-        case DeviceType::Wireless: {
-            WirelessDevice *wirelessDevice = static_cast<WirelessDevice *>(device);
-            wirelessList.append(wirelessDevice);
-            if (wirelessDevice->isConnected()) {
-                QList<WirelessConnection *> items = wirelessDevice->items();
-                for (WirelessConnection *item : items) {
-                    if (item->status() == ConnectionStatus::Activated) {
-                        wirelessConnectionCount++;
-                        wirelessConnection = item->connection()->ssid();
-                    }
-                }
-            }
-        } break;
-        default:
-            break;
+    switch (event->type()) {
+    case QEvent::ParentChange: {
+        if (watched == m_trayIcon && m_trayIcon->parentWidget()) {
+            m_trayIcon->parentWidget()->setMouseTracking(true);
+            m_trayIcon->parentWidget()->installEventFilter(this);
         }
+    } break;
+    case QEvent::Resize: {
+        if (m_trayIcon && watched == m_trayIcon->parentWidget())
+            updateIconColor();
+    } break;
+    case QEvent::Enter:
+    case QEvent::MouseMove: {
+        const QPoint &p = m_trayIcon->mapFromGlobal(QCursor::pos());
+        const bool isHorizontal = position() == Dock::Top || position() == Dock::Bottom;
+        m_netStatus->setHoverTips((isHorizontal ? p.x() : p.y()) > ((isHorizontal ? m_trayIcon->width() : m_trayIcon->height()) / 2) && m_netStatus->vpnAndProxyIconVisibel()
+                    ? NetStatus::HoverType::vpnAndProxy : NetStatus::HoverType::Network);
+    } break;
+    default:
+        break;
     }
+    return QObject::eventFilter(watched, event);
+}
 
-    if (!wirelessList.isEmpty()) {
-        NetDeviceStatus status = DeviceStatusHandler::wirelessStatus(wirelessList);
-        updateQuickPanelDescription(status, wirelessConnectionCount, wirelessConnection, NetworkPluginHelper::MenuWirelessEnable);
-        m_quickPanel->setText(tr("Wireless Network"));
-        m_quickPanel->setIcon(QIcon::fromTheme(ThemeManager::ref().getIcon("wireless-80-symbolic")));
-    } else if (!wiredList.isEmpty()) {
-        NetDeviceStatus status = DeviceStatusHandler::wiredStatus(wiredList);
-        updateQuickPanelDescription(status, wiredConnectionCount, wiredConnection, NetworkPluginHelper::MenuWiredEnable);
-        m_quickPanel->setText(tr("Wired Network"));
-        m_quickPanel->setIcon(QIcon::fromTheme(ThemeManager::ref().getIcon("network-wired-symbolic")));
+void NetworkPlugin::updateLockScreenStatus(bool visible)
+{
+    m_isLockScreen = visible;
+    m_manager->setEnabled(!m_isLockScreen);
+}
+
+void NetworkPlugin::updateIconColor()
+{
+    if (m_trayIcon.isNull())
+        return;
+
+    Qt::GlobalColor color = Qt::white;
+    if (DGuiApplicationHelper::instance()->themeType() == DGuiApplicationHelper::LightType) {
+        color = Qt::black;
+    }
+    QPalette p = m_trayIcon->palette();
+    if (p.brightText() != color) {
+        p.setColor(QPalette::BrightText, color);
+        m_trayIcon->setPalette(p);
+    }
+}
+
+void NetworkPlugin::onNotify(uint replacesId)
+{
+    m_replacesId = replacesId;
+}
+
+void NetworkPlugin::onNetworkStatusChanged(NetStatus::NetworkStatus networkStatus)
+{
+    switch (networkStatus) {
+    case NetStatus::NetworkStatus::ConnectNoInternet:
+    case NetStatus::NetworkStatus::WirelessConnectNoInternet:
+    case NetStatus::NetworkStatus::WiredConnectNoInternet:
+    case NetStatus::NetworkStatus::WiredIpConflicted:
+    case NetStatus::NetworkStatus::WirelessIpConflicted:
+        m_netLimited = true;
+        break;
+    default:
+        m_netLimited = false;
+        break;
+    }
+    updateNetCheckVisible();
+}
+
+void NetworkPlugin::onNetCheckAvailableChanged(const bool &netCheckAvailable)
+{
+    if (m_netCheckAvailable != netCheckAvailable) {
+        m_netCheckAvailable = netCheckAvailable;
+        updateNetCheckVisible();
+    }
+}
+
+void NetworkPlugin::updateNetCheckVisible()
+{
+    m_dockContentWidget->setNetCheckBtnVisible(m_netLimited && m_netCheckAvailable);
+}
+
+
+void NetworkPlugin::onQuickIconClicked()
+{
+    if (m_netStatus->needShowControlCenter()) {
+        m_manager->gotoControlCenter();
     } else {
-        m_quickPanel->setText(pluginDisplayName());
-        m_quickPanel->setDescription(description());
-        m_quickPanel->setActive(false);
-        m_quickPanel->setUserData(NetworkPluginHelper::MenuSettings);
-        m_quickPanel->setIcon(QIcon::fromTheme(ThemeManager::ref().getIcon("network-error-symbolic")));
+        m_netStatus->toggleNetworkActive();
     }
 }
 
-void NetworkPlugin::updateQuickPanelDescription(NetDeviceStatus status, int connectionCount, const QString &Connection, int enableMenu)
+void NetworkPlugin::onQuickPanelClicked()
 {
-    QString statusName = networkStateName(status);
-    bool isEnabled = (status != NetDeviceStatus::Disabled);
-
-    if (statusName.isEmpty() && connectionCount != 0) {
-        if (connectionCount == 1) {
-            m_quickPanel->setDescription(Connection);
-        } else {
-            m_quickPanel->setDescription(tr("Connected") + QString(" (%1)").arg(connectionCount));
-        }
+    if (m_netStatus->needShowControlCenter()) {
+        m_manager->gotoControlCenter();
     } else {
-        m_quickPanel->setDescription(statusName);
+        showNetworkDialog();
     }
-    m_quickPanel->setActive(isEnabled);
-    m_quickPanel->setUserData(isEnabled ? (enableMenu + 1) : enableMenu);
-}
-
-QString NetworkPlugin::networkStateName(NetDeviceStatus status) const
-{
-    switch (status) {
-    case NetDeviceStatus::Disabled:
-        return tr("Device disabled");
-    case NetDeviceStatus::Unknown:
-    case NetDeviceStatus::Nocable:
-        return tr("Network cable unplugged");
-    case NetDeviceStatus::Disconnected:
-        return tr("Not connected");
-    case NetDeviceStatus::Connecting:
-    case NetDeviceStatus::Authenticating:
-        return tr("Connecting");
-    case NetDeviceStatus::ObtainingIP:
-    case NetDeviceStatus::ObtainIpFailed:
-        return tr("Obtaining address");
-    case NetDeviceStatus::ConnectNoInternet:
-        return tr("Connected but no Internet access");
-    case NetDeviceStatus::IpConflicted:
-        return tr("IP conflict");
-    case NetDeviceStatus::ConnectFailed:
-        return tr("Connection failed");
-    default:
-        break;
-    }
-    return QString();
-}
-
-void NetworkPlugin::onIconUpdated()
-{
-    // update quick panel
-    m_proxyInter->updateDockInfo(this, DockPart::QuickPanel);
-    // update quick plugin area
-    m_proxyInter->updateDockInfo(this, DockPart::QuickShow);
-
-    updateQuickPanel();
-}
-
-QIcon NetworkPlugin::icon(const DockPart &dockPart, DGuiApplicationHelper::ColorType themeType)
-{
-    switch(dockPart) {
-    case DockPart::DCCSetting:
-    case DockPart::QuickShow:
-        return m_networkHelper->icon(themeType);
-    default:
-        break;
-    }
-
-    return QIcon();
-}
-
-PluginsItemInterface::PluginMode NetworkPlugin::status() const
-{
-    // get the plugin status
-    PluginState plugState = m_networkHelper->getPluginState();
-    switch (plugState) {
-    case PluginState::Unknown:
-    case PluginState::Disabled:
-    case PluginState::Nocable:
-        return PluginMode::Disabled;
-    default:
-        break;
-    }
-
-    return PluginMode::Active;
-}
-
-QString NetworkPlugin::description() const
-{
-    return m_quickPanel ? m_quickPanel->description() : QString();
 }
 
 void NetworkPlugin::showNetworkDialog()
 {
-    if (m_networkDialog->panel()->isVisible())
+    // 第一次连接隐藏网络会回弹，此时锁屏和任务栏都会收到信号
+    if (m_isLockScreen || m_netView->isVisible())
         return;
     m_proxyInter->requestSetAppletVisible(this, NETWORK_KEY, true);
 }
+
+#ifdef USE_NEW_DOCK_API
+
+QString NetworkPlugin::message(const QString &msg)
+{
+    QJsonParseError jsonParseError;
+    const QJsonDocument &resultDoc = QJsonDocument::fromJson(msg.toLocal8Bit(), &jsonParseError);
+    if (jsonParseError.error != QJsonParseError::NoError || resultDoc.isEmpty()) {
+        qCWarning(DNC) << "Result json parse error";
+        return "{}";
+    }
+
+    const auto &msgObj = resultDoc.object();
+    if (msgObj.value(Dock::MSG_TYPE).toString() == Dock::MSG_SET_APPLET_MIN_HEIGHT) {
+        const int minHeight = msgObj.value(Dock::MSG_DATA).toInt(-1);
+        if (m_dockContentWidget && minHeight > 0)
+            m_dockContentWidget->setMinHeight(minHeight);
+    }
+
+    if (msgObj.value(Dock::MSG_TYPE).toString() == Dock::MSG_APPLET_CONTAINER && m_dockContentWidget) {
+        m_dockContentWidget->setMainLayoutMargins(QMargins(0, msgObj.value(Dock::MSG_DATA).toInt(-1) ==
+            Dock::APPLET_CONTAINER_QUICK_PANEL ? 6 : 10, 0, 0));
+    }
+
+    return "{}";
+}
+
+#endif //USE_NEW_DOCK_API
+
+} // namespace network
+} // namespace dde

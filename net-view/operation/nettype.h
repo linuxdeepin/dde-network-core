@@ -83,9 +83,12 @@ public:
         Net_CheckPortal = 0x00000010,       // 设置检查认证网页
         Net_tipsLinkEnabled = 0x00000020,   // 可跳转连接
 
-        Net_8021xToConnect = 0x00000100,       // 连接
-        Net_8021xToControlCenter = 0x00000200, // 跳转控制中心
-        Net_8021xSendNotify = 0x00000400,      // 发通知
+        Net_8021xToConnect = 0x00000100,                                               // 连接
+        Net_8021xToControlCenter = 0x00000200,                                         // 跳转控制中心
+        Net_8021xSendNotify = 0x00000400,                                              // 发通知
+        Net_8021xUnderConnect = 0x00000800,                                            // 优先读配置
+        Net_8021xToControlCenterUnderConnect = Net_8021xUnderConnect | Net_8021xToControlCenter,   // 如果设置了此项，则先于配置读取是否直接连接，如果配置中没有，就设置为跳转到控制中心
+        Net_8021xSendNotifyUnderConnect = Net_8021xUnderConnect | Net_8021xSendNotify, // 如果设置了此项，则先于配置中读取是否直接连接，如果配置中没有，就设置为直接发送消息
 
         Net_Device = 0x00010000,
         Net_VPN = 0x00020000,
@@ -96,11 +99,17 @@ public:
         Net_DSL = 0x00400000,
         Net_Details = 0x00800000,
 
+        Net_AirplaneTips = 0x01000000,
+        Net_VPNTips = 0x02000000,
+        Net_VPNChildren = 0x04000000,
+
         //
-        Net_DockFlags = Net_Device | Net_VPN | Net_SysProxy | Net_UseSecretAgent | Net_CheckPortal | Net_8021xToControlCenter,
-        Net_LockFlags = Net_Device | Net_VPN | Net_SysProxy | Net_UseSecretAgent | Net_CheckPortal | Net_8021xSendNotify,
-        Net_GreeterFlags = Net_Device | Net_VPN | Net_SysProxy | Net_ServiceNM | Net_MonitorNotify | Net_AutoAddConnection | Net_UseSecretAgent | Net_CheckPortal | Net_8021xSendNotify,
-        Net_DccFlags = Net_Device | Net_VPN | Net_SysProxy | Net_AppProxy | Net_Hotspot | Net_Airplane | Net_DSL | Net_Details,
+        Net_DockFlags = Net_Device | Net_VPN | Net_SysProxy | Net_Airplane | Net_AirplaneTips | Net_VPNTips | Net_tipsLinkEnabled | Net_UseSecretAgent | Net_CheckPortal | Net_8021xToControlCenterUnderConnect,
+        Net_LockFlags = Net_Device | Net_VPN | Net_SysProxy | Net_Airplane | Net_AirplaneTips | Net_VPNTips | Net_UseSecretAgent | Net_CheckPortal | Net_8021xSendNotify,
+        Net_GreeterFlags = Net_Device | Net_Airplane | Net_AirplaneTips | Net_ServiceNM | Net_MonitorNotify | Net_AutoAddConnection | Net_UseSecretAgent | Net_CheckPortal | Net_8021xSendNotify,
+        Net_DccFlags = Net_Device | Net_VPN | Net_VPNChildren | Net_SysProxy | Net_AppProxy | Net_Hotspot | Net_Airplane | Net_DSL | Net_Details,
+        //
+        Net_8021xMask = 0x00000F00,
     };
 
     Q_FLAG(NetManagerFlag);

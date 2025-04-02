@@ -11,6 +11,34 @@
 namespace dde {
 namespace network {
 
+bool NetItem::compare(NetItem *item1, NetItem *item2)
+{
+    if (item1->itemType() != item2->itemType())
+        return item1->itemType() < item2->itemType();
+    switch (item1->itemType()) {
+    case NetType::WirelessItem: {
+        NetWirelessItem *lItem = qobject_cast<NetWirelessItem *>(item1);
+        NetWirelessItem *rItem = qobject_cast<NetWirelessItem *>(item2);
+        if ((lItem->status() | rItem->status()) & NetType::CS_Connected) { // 存在已连接的
+            return lItem->status() & NetType::CS_Connected;
+        }
+        if (lItem->strengthLevel() != rItem->strengthLevel())
+            return lItem->strengthLevel() > rItem->strengthLevel();
+        return item1->name().toLower() < item2->name().toLower();
+    }
+    // case NetType::ConnectionItem:
+    // case NetType::WiredItem: {
+    //     NetConnectionItem *lItem = qobject_cast<NetConnectionItem *>(item1);
+    //     NetConnectionItem *rItem = qobject_cast<NetConnectionItem *>(item2);
+    //     if (lItem->status() != rItem->status())
+    //         return lItem->status() > rItem->status();
+    //     return item1->name().toLower() < item2->name().toLower();
+    // }
+    default:
+        return item1->name().toLower() < item2->name().toLower();
+    }
+}
+
 /**
  * 单个列表项的基类
  */
@@ -57,6 +85,8 @@ GETFUN(NetType::NetDeviceStatus, NetDeviceItem, status)
 GETFUN(QStringList, NetDeviceItem, ips)
 GETFUN(int, NetDeviceItem, pathIndex)
 
+GETFUN(const QString &, NetTipsItem, linkActivatedText)
+GETFUN(bool, NetTipsItem, tipsLinkEnabled)
 // 有线设备
 
 // 无线设备
@@ -91,6 +121,16 @@ QString NetWirelessControlItem::name() const
     return tr("Wireless Network");
 }
 
+QString NetWirelessMineItem::name() const
+{
+    return tr("My Networks");
+}
+
+QString NetWirelessOtherItem::name() const
+{
+    return tr("Other Networks");
+}
+
 QString NetWirelessHiddenItem::name() const
 {
     return tr("Connect to hidden network");
@@ -103,6 +143,7 @@ QString NetVPNTipsItem::name() const
 }
 
 // VPN
+GETFUN(bool, NetVPNControlItem, isExpanded)
 
 // 系统代理
 GETFUN(NetType::ProxyMethod, NetSystemProxyControlItem, lastMethod)
@@ -120,5 +161,12 @@ GETFUN(const QStringList &, NetHotspotControlItem, shareDevice)
 // DetailsItem
 GETFUN(const QList<QStringList> &, NetDetailsInfoItem, details)
 GETFUN(const int &, NetDetailsInfoItem, index)
+
+QString NetAirplaneModeTipsItem::name() const
+{
+    return tr("Disable <a style=\"text-decoration: none;\" href=\"Airplane Mode\">Airplane Mode</a> first if you want to connect to a wireless network");
+    // return tr("Disable Airplane Mode first if you want to connect to a wireless network");
+}
+
 } // namespace network
 } // namespace dde
