@@ -1,6 +1,6 @@
 // SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
 //
-// SPDX-License-Identifier: LGPL-3.0-or-later
+// SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "bubble.h"
 #include "notificationentity.h"
@@ -17,7 +17,6 @@
 #include <QPropertyAnimation>
 #include <QApplication>
 #include <QMoveEvent>
-#include <QEnterEvent>
 #include <QBoxLayout>
 #include <QParallelAnimationGroup>
 #include <QTextDocument>
@@ -238,7 +237,7 @@ void Bubble::initConnections()
         Q_EMIT actionInvoked(this, action_id);
     });
 
-    connect(m_closeButton, &DDialogCloseButton::clicked, this, [ = ]() {
+    connect(m_closeButton, &DDialogCloseButton::clicked, this, [ = ] {
         Q_EMIT dismissed(this);
     });
 
@@ -304,7 +303,7 @@ void Bubble::startMove(const QRect &startRect, const QRect &endRect, bool needDe
 
     // 当需要更新位置，停止动画，直接刷新最终位置
     if (!needDelete) {
-        connect(this, &Bubble::resetGeometry, this, [group, this] {
+        connect(this, &Bubble::resetGeometry, this, [ group, this ] {
             if (!group.isNull())
                 group->stop();
             // 当接收到该信号，则表示已经geometry已经更新，直接使用即可

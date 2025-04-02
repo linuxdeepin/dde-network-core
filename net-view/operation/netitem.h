@@ -29,6 +29,7 @@ class NetItem : public QObject
     Q_PROPERTY(QVector<NetItem *> children READ getChildren NOTIFY childrenChanged DESIGNABLE false)
 
 public:
+    static bool compare(NetItem *item1, NetItem *item2);
     QString id() const;
     virtual NetType::NetItemType itemType() const;
     virtual QString name() const;
@@ -136,21 +137,15 @@ class NetTipsItem : public NetItem
 {
     Q_OBJECT
 public:
-    NetType::NetItemType itemType() const override { return NetType::NetItemType::Item; }
+    const QString &linkActivatedText() const;
+    bool tipsLinkEnabled() const;
 
-    const QString &linkActivatedText() const { return m_linkActivatedText; }
-
-    const bool tipsLinkEnabled() const { return m_tipsLinkEnabled; }
+Q_SIGNALS:
+    void linkActivatedTextChanged(const QString &text) const;
+    void tipsLinkEnabledChanged(bool enable) const;
 
 protected:
-    explicit NetTipsItem(const QString &id, const QString &linkActivatedText, const bool tipsLinkEnabled);
-
-    friend class NetManagerPrivate;
-    friend class NetManagerThreadPrivate;
-
-private:
-    QString m_linkActivatedText;
-    bool m_tipsLinkEnabled;
+    using NetItem::NetItem;
 };
 
 class NetWiredDeviceItem : public NetDeviceItem
@@ -175,18 +170,18 @@ protected:
     using NetDeviceItem::NetDeviceItem;
 };
 
-// class NetAirplaneModeTipsItem : public NetTipsItem
-// {
-//     Q_OBJECT
-// public:
-//     NetType::NetItemType itemType() const override;
+class NetAirplaneModeTipsItem : public NetTipsItem
+{
+    Q_OBJECT
+public:
+    QString name() const override;
 
-// protected:
-//     explicit NetAirplaneModeTipsItem(const QString &id, const QString &linkActivatedText, const bool tipsLinkEnabled);
+protected:
+    using NetTipsItem::NetTipsItem;
 
-//     friend class NetManagerPrivate;
-//     friend class NetManagerThreadPrivate;
-// };
+    friend class NetManagerPrivate;
+    friend class NetManagerThreadPrivate;
+};
 
 ///////////////////////////////////////////////
 class NetConnectionItem : public NetItem
@@ -259,6 +254,7 @@ class NetWirelessOtherItem : public NetItem
 {
     Q_OBJECT
 public:
+    QString name() const override;
     bool isExpanded() const;
 
 Q_SIGNALS:
@@ -272,6 +268,7 @@ class NetWirelessMineItem : public NetItem
 {
     Q_OBJECT
 protected:
+    QString name() const override;
     using NetItem::NetItem;
 };
 
@@ -284,7 +281,7 @@ protected:
 
 ///////////////////////////////////////////
 
-class NetVPNControlItem : public NetControlItem
+class NetVPNControlItem : public NetDeviceItem
 {
     Q_OBJECT
 
@@ -295,7 +292,7 @@ Q_SIGNALS:
     void expandedChanged(bool expanded);
 
 protected:
-    using NetControlItem::NetControlItem;
+    using NetDeviceItem::NetDeviceItem;
 };
 
 class NetVPNTipsItem : public NetTipsItem

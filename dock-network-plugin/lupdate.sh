@@ -3,8 +3,6 @@ if [ ! -d "translations/" ];then
   mkdir translations
 fi
 cd ./translations
-rm -f dock-hotspot-plugin_en_US.ts
-lupdate ../ ../../src ../../common-plugin -ts -no-ui-lines -locations none -no-obsolete dock-network-plugin_en_US.ts
+rm -f dock-network-plugin.ts
+lupdate ../ ../../net-view/ -ts -no-ui-lines -locations none -no-obsolete dock-network-plugin.ts
 cd ../
-
-tx push -s --branch m23

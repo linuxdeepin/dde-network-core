@@ -365,6 +365,45 @@ protected:
     int m_index;
     friend class NetItemPrivate;
 };
+
+class NetTipsItemPrivate : public NetItemPrivate
+{
+public:
+    NetType::NetItemType itemType() const override;
+    const QString &linkActivatedText() const;
+    bool tipsLinkEnabled() const;
+    void updatelinkActivatedText(const QString &linkActivatedText);
+    void updatetipsLinkEnabled(bool tipsLinkEnabled);
+
+protected:
+    using NetItemPrivate::NetItemPrivate;
+
+private:
+    QString m_linkActivatedText;
+    bool m_tipsLinkEnabled;
+};
+
+class NetAirplaneModeTipsItemPrivate : public NetTipsItemPrivate
+{
+public:
+    NetType::NetItemType itemType() const override;
+
+protected:
+    using NetTipsItemPrivate::NetTipsItemPrivate;
+
+    friend class NetItemPrivate;
+};
+
+class NetVPNTipsItemPrivate : public NetTipsItemPrivate
+{
+public:
+    NetType::NetItemType itemType() const override;
+
+protected:
+    using NetTipsItemPrivate::NetTipsItemPrivate;
+
+    friend class NetItemPrivate;
+};
 } // namespace network
 } // namespace dde
 

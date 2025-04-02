@@ -88,7 +88,6 @@ NetManagerThreadPrivate::NetManagerThreadPrivate()
     , m_parentThread(QThread::currentThread())
     , m_monitorNetworkNotify(false)
     , m_useSecretAgent(true)
-    , m_network8021XMode(NetManager::ToControlCenter)
     , m_autoUpdateHiddenConfig(true)
     , m_isInitialized(false)
     , m_enabled(true)
@@ -198,26 +197,6 @@ void NetManagerThreadPrivate::setUseSecretAgent(bool enabled)
 void NetManagerThreadPrivate::setEnabled(bool enabled)
 {
     m_enabled = enabled;
-}
-
-void NetManagerThreadPrivate::setNetwork8021XMode(NetManager::Network8021XMode mode)
-{
-    NetManager::Network8021XMode networkMode = mode;
-    switch (mode) {
-    case NetManager::Network8021XMode::ToControlCenterUnderConnect: {
-        // 如果开起该配置，那么在第一次连接企业网的时候，弹出用户名密码输入框，否则就跳转到控制中心（工行定制）
-        networkMode = ConfigSetting::instance()->enableEapInput() ? NetManager::Network8021XMode::ToConnect : NetManager::Network8021XMode::ToControlCenter;
-        break;
-    }
-    case NetManager::Network8021XMode::SendNotifyUnderConnect: {
-        // 如果开启该配置，那么在第一次连接企业网的时候，弹出用户名密码输入框，否则给出提示消息（工行定制）
-        networkMode = ConfigSetting::instance()->enableEapInput() ? NetManager::Network8021XMode::ToConnect : NetManager::Network8021XMode::SendNotify;
-        break;
-    }
-    default:
-        break;
-    }
-    m_network8021XMode = networkMode;
 }
 
 void NetManagerThreadPrivate::setAutoUpdateHiddenConfig(bool autoUpdate)
@@ -435,14 +414,53 @@ void NetManagerThreadPrivate::doInit()
         vpnControlItem->updatename("VPN");
         vpnControlItem->updateenabled(networkController->vpnController()->enabled());
         vpnControlItem->item()->moveToThread(m_parentThread);
+        if (m_flags.testFlags(NetType::NetManagerFlag::Net_VPNTips)) {
+            NetVPNTipsItemPrivate *vpnTipsItem = NetItemNew(VPNTipsItem, "NetVPNTipsItem");
+            vpnTipsItem->updatelinkActivatedText("networkVpn");
+            vpnTipsItem->updatetipsLinkEnabled(m_flags.testFlags(NetType::NetManagerFlag::Net_tipsLinkEnabled));
+            vpnControlItem->addChild(vpnTipsItem);
+        }
         Q_EMIT itemAdded("Root", vpnControlItem);
 
+        auto updateVPNConnectionState = [this]() {
+            auto itemList = NetworkController::instance()->vpnController()->items();
+            NetType::NetDeviceStatus state = NetType::DS_Disconnected;
+            // 有一个连接或者正在连接中，则不显示提示项
+            for (const auto item : itemList) {
+                if (item->status() == ConnectionStatus::Activated || item->status() == ConnectionStatus::Activating || item->status() == ConnectionStatus::Deactivating) {
+                    state = toNetDeviceStatus(item->status());
+                    if (item->status() == ConnectionStatus::Activated)
+                        Q_EMIT dataChanged(DataChanged::IPChanged, "NetVPNControlItem", QVariant::fromValue(item->connection()->id()));
+                    break;
+                }
+                continue;
+            }
+            Q_EMIT dataChanged(DataChanged::VPNConnectionStateChanged, "NetVPNControlItem", QVariant::fromValue(state));
+        };
+        auto vpnConnectionStateChanged = [this, updateVPNConnectionState] {
+            QTimer::singleShot(50, this, updateVPNConnectionState);
+        };
+
+        auto vpnItemChanged = [this, vpnConnectionStateChanged] {
+            auto itemList = NetworkController::instance()->vpnController()->items();
+            Q_EMIT dataChanged(DataChanged::DeviceAvailableChanged, "NetVPNControlItem", itemList.size() > 0);
+            vpnConnectionStateChanged();
+        };
         connect(networkController->vpnController(), &VPNController::enableChanged, this, &NetManagerThreadPrivate::onVPNEnableChanged);
-        // connect(networkController->vpnController(), &VPNController::itemChanged, this, vpnItemChanged);
-        connect(networkController->vpnController(), &VPNController::itemAdded, this, &NetManagerThreadPrivate::onVPNAdded);
-        connect(networkController->vpnController(), &VPNController::itemRemoved, this, &NetManagerThreadPrivate::onVPNRemoved);
+        if (m_flags.testFlags(NetType::NetManagerFlag::Net_VPNChildren)) {
+            connect(networkController->vpnController(), &VPNController::itemAdded, this, &NetManagerThreadPrivate::onVPNAdded);
+            connect(networkController->vpnController(), &VPNController::itemRemoved, this, &NetManagerThreadPrivate::onVPNRemoved);
+            onVPNAdded(networkController->vpnController()->items());
+        }
         connect(networkController->vpnController(), &VPNController::activeConnectionChanged, this, &NetManagerThreadPrivate::onVpnActiveConnectionChanged);
-        onVPNAdded(networkController->vpnController()->items());
+        if (m_flags.testFlags(NetType::NetManagerFlag::Net_VPNTips)) {
+            connect(networkController->vpnController(), &VPNController::itemChanged, this, vpnItemChanged);
+            connect(networkController->vpnController(), &VPNController::itemAdded, this, vpnItemChanged);
+            connect(networkController->vpnController(), &VPNController::itemRemoved, this, vpnItemChanged);
+            connect(networkController->vpnController(), &VPNController::enableChanged, this, vpnConnectionStateChanged);
+            connect(networkController->vpnController(), &VPNController::activeConnectionChanged, this, vpnConnectionStateChanged);
+            vpnItemChanged();
+        }
     }
     // 系统代理
     if (m_flags.testFlags(NetType::NetManagerFlag::Net_SysProxy)) {
@@ -725,8 +743,7 @@ void NetManagerThreadPrivate::doConnectWireless(const QString &id, const QVarian
         else
             sendRequest(NetManager::InputError, id, err);
     } else if (wConnect.needInputIdentify()) { // 未配置，需要输入Identify
-        handle8021xAccessPoint(ap);
-        if (m_network8021XMode != NetManager::ToConnect)
+        if (handle8021xAccessPoint(ap))
             sendRequest(NetManager::CloseInput, id);
     } else if (wConnect.needInputPassword()) {
         sendRequest(NetManager::RequestPassword, id, { { "secrets", { secret } } });
@@ -826,6 +843,7 @@ void NetManagerThreadPrivate::updateAirplaneModeEnabled(const QDBusVariant &enab
 {
     m_airplaneModeEnabled = enabled.variant().toBool() && supportAirplaneMode();
     Q_EMIT dataChanged(DataChanged::EnabledChanged, "Root", QVariant(m_airplaneModeEnabled));
+    Q_EMIT dataChanged(DataChanged::AirplaneModeEnabledChanged, "Root", QVariant(m_airplaneModeEnabled));
 }
 
 void NetManagerThreadPrivate::updateAirplaneModeEnabledable(const QDBusVariant &enabledable)
@@ -2666,28 +2684,42 @@ void NetManagerThreadPrivate::handleAccessPointSecure(AccessPoints *accessPoint)
     }
 }
 
-void NetManagerThreadPrivate::handle8021xAccessPoint(AccessPoints *ap)
+bool NetManagerThreadPrivate::handle8021xAccessPoint(AccessPoints *ap)
 {
     // 每次ap状态变化时都会做一次处理，频繁地向控制中心发送showPage指令，导致控制中心卡顿甚至卡死
     // 故增加防抖措施
     int msecs = QTime::currentTime().msecsSinceStartOfDay();
     if (qFabs(msecs - m_lastThroughTime) < 500) {
-        return;
+        return true;
     }
     m_lastThroughTime = msecs;
-
-    switch (m_network8021XMode) {
-    case NetManager::ToControlCenter:
-        gotoControlCenter(ap->devicePath() + "," + ap->ssid());
+    int flag = m_flags.toInt() & NetType::Net_8021xMask;
+    switch (flag) {
+    case NetType::Net_8021xToControlCenterUnderConnect:
+        // 如果开起该配置，那么在第一次连接企业网的时候，弹出用户名密码输入框，否则就跳转到控制中心（工行定制）
+        flag = ConfigSetting::instance()->enableEapInput() ? NetType::Net_8021xToConnect : NetType::Net_8021xToControlCenter;
         break;
-    case NetManager::SendNotify:
+    case NetType::Net_8021xSendNotifyUnderConnect:
+        // 如果开启该配置，那么在第一次连接企业网的时候，弹出用户名密码输入框，否则给出提示消息（工行定制）
+        flag = ConfigSetting::instance()->enableEapInput() ? NetType::Net_8021xToConnect : NetType::Net_8021xSendNotify;
+        break;
+    }
+    switch (flag) {
+    case NetType::Net_8021xToControlCenter:
+        gotoControlCenter("?device=" + ap->devicePath() + "&ssid=" + ap->ssid());
+        return true;
+        break;
+    case NetType::Net_8021xSendNotify:
         sendNetworkNotify(NetworkNotifyType::Wireless8021X, ap->ssid());
+        return true;
         break;
-    case NetManager::ToConnect: {
+    case NetType::Net_8021xToConnect: {
         QStringList secrets = { "identity", "password" };
         sendRequest(NetManager::RequestPassword, apID(ap), { { "secrets", secrets } });
+        return false;
     } break;
     }
+    return true;
 }
 
 void NetManagerThreadPrivate::onPrepareForSleep(bool state)

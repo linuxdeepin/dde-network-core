@@ -73,10 +73,10 @@ NetItemPrivate *NetItemPrivate::New(NetType::NetItemType type, const QString &id
         CaseNewItem(DetailsInfoItem);
         CaseNewItem(SystemProxyControlItem);
         CaseNewItem(AppProxyControlItem);
+        CaseNewItem(AirplaneModeTipsItem);
+        CaseNewItem(VPNTipsItem);
     case NetType::WirelessDisabledItem:
-    case NetType::AirplaneModeTipsItem:
     case NetType::WiredDisabledItem:
-    case NetType::VPNTipsItem:
         break;
     }
     return netItemPrivate;
@@ -208,7 +208,6 @@ GETFUN(NetType::NetItemType, NetWiredControlItem, itemType, NetType::NetItemType
 
 // 无线控制
 GETFUN(NetType::NetItemType, NetWirelessControlItem, itemType, NetType::NetItemType::WirelessControlItem)
-
 // 有线设备
 GETFUN(NetType::NetItemType, NetWiredDeviceItem, itemType, NetType::NetItemType::WiredDeviceItem)
 // 无线设备
@@ -327,6 +326,14 @@ GETFUN(const QList<QStringList> &, NetDetailsInfoItem, details, m_details)
 GETFUN(const int &, NetDetailsInfoItem, index, m_index)
 UPDATEFUN(NetDetailsInfoItem, const QList<QStringList> &, details)
 UPDATEFUN(NetDetailsInfoItem, const int &, index)
-
+// NetTipsItem
+GETFUN(NetType::NetItemType, NetTipsItem, itemType, NetType::NetItemType::VPNTipsItem)
+GETFUN(const QString &, NetTipsItem, linkActivatedText, m_linkActivatedText)
+GETFUN(bool, NetTipsItem, tipsLinkEnabled, m_tipsLinkEnabled)
+UPDATEFUN(NetTipsItem, const QString &, linkActivatedText)
+UPDATEFUN(NetTipsItem, bool, tipsLinkEnabled)
+//
+GETFUN(NetType::NetItemType, NetAirplaneModeTipsItem, itemType, NetType::NetItemType::AirplaneModeTipsItem)
+GETFUN(NetType::NetItemType, NetVPNTipsItem, itemType, NetType::NetItemType::VPNTipsItem)
 } // namespace network
 } // namespace dde

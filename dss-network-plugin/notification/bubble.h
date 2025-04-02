@@ -1,6 +1,6 @@
 // SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
 //
-// SPDX-License-Identifier: LGPL-3.0-or-later
+// SPDX-License-Identifier: GPL-3.0-or-later
 
 #ifndef BUBBLE_H
 #define BUBBLE_H
@@ -11,6 +11,9 @@
 #include <DBlurEffectWidget>
 
 #include <memory>
+// #include <com_deepin_sessionmanager.h>
+
+// using UserInter = com::deepin::SessionManager;
 
 DWIDGET_USE_NAMESPACE
 
@@ -18,7 +21,6 @@ class AppIcon;
 class AppBody;
 class Button;
 class ActionButton;
-class QEnterEvent;
 /*!
  * \~chinese \class Bubble
  * \~chinese \brief 自定义控件类,屏幕上方通知气泡的窗口类
@@ -48,7 +50,7 @@ Q_SIGNALS:
     void dismissed(Bubble *);            // 点击后发出，动画执行完成后自动删除
     void notProcessedYet(EntityPtr ptr); // 触发'暂不处理'操作时发出，不会主动删除自身
 
-    void actionInvoked(Bubble *, QString); // 不会主动删除自身
+    void actionInvoked(Bubble *, const QString &); // 不会主动删除自身
     void resetGeometry();
 
 public Q_SLOTS:

@@ -1,16 +1,18 @@
 // SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
 //
-// SPDX-License-Identifier: LGPL-3.0-or-later
+// SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "bubbletool.h"
 #include "actionbutton.h"
 #include "appicon.h"
 #include "notificationentity.h"
+#include "networkconst.h"
 
 #include <QDebug>
 #include <QDir>
 #include <QProcess>
 #include <QSettings>
+// #include <QTextCodec>
 #include <QDBusArgument>
 
 #include <DDesktopEntry>
@@ -51,11 +53,11 @@ QImage BubbleTool::decodeNotificationSpecImageHint(const QDBusArgument &arg)
     arg.beginStructure();
     arg >> width >> height >> rowStride >> hasAlpha >> bitsPerSample >> channels >> pixels;
     arg.endStructure();
-    //qDebug() << width << height << rowStride << hasAlpha << bitsPerSample << channels;
+    //qCDebug(DNC) << width << height << rowStride << hasAlpha << bitsPerSample << channels;
 
 #define SANITY_CHECK(condition) \
     if (!(condition)) { \
-        qWarning() << "Sanity check failed on" << #condition; \
+        qCWarning(DNC) << "Sanity check failed on " << #condition; \
         return QImage(); \
     }
 
@@ -79,7 +81,7 @@ QImage BubbleTool::decodeNotificationSpecImageHint(const QDBusArgument &arg)
         }
     }
     if (format == QImage::Format_Invalid) {
-        qWarning() << "Unsupported image format (hasAlpha:" << hasAlpha << "bitsPerSample:" << bitsPerSample << "channels:" << channels << ")";
+        qCWarning(DNC) << "Unsupported image format: alpha:" << hasAlpha << ", bits per sample: " << bitsPerSample << ", channels: " << channels;
         return QImage();
     }
 
@@ -88,7 +90,7 @@ QImage BubbleTool::decodeNotificationSpecImageHint(const QDBusArgument &arg)
     end = ptr + pixels.length();
     for (int y = 0; y < height; ++y, ptr += rowStride) {
         if (ptr + channels * width > end) {
-            qWarning() << "Image data is incomplete. y:" << y << "height:" << height;
+            qCWarning(DNC) << "Image data is incomplete: y: " << y << ", height: " << height;
             break;
         }
         fcn((QRgb *)image.scanLine(y), ptr, width);
@@ -189,7 +191,7 @@ const QString BubbleTool::getDeepinAppName(const QString &name)
 
 void BubbleTool::actionInvoke(const QString &actionId, EntityPtr entity)
 {
-    qDebug() << "actionId:" << actionId;
+    qCDebug(DNC) << "Action invoke, action id: " << actionId;
     QMap<QString, QVariant> hints = entity->hints();
     QMap<QString, QVariant>::const_iterator i = hints.constBegin();
     while (i != hints.constEnd()) {

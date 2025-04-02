@@ -37,15 +37,6 @@ public:
 
     enum ConnectionType { Unknown = 0, Adsl, Bluetooth, Bond, Bridge, Cdma, Gsm, Infiniband, OLPCMesh, Pppoe, Vlan, Vpn, Wimax, Wired, Wireless, Team, Generic, Tun, IpTunnel };
 
-    enum Network8021XMode {          // 企业网处理方式
-        ToControlCenter,             // 跳转控制中心
-        SendNotify,                  // 发通知
-        ToConnect,                   // 连接
-        ToControlCenterUnderConnect, // 如果设置了此项，则先于配置读取是否直接连接，如果配置中没有，就设置为跳转到控制中心
-        SendNotifyUnderConnect       // 如果设置了此项，则先于配置中读取是否直接连接，如果配置中没有，就设置为直接发送消息
-    };
-
-    // void setNetwork8021XMode(Network8021XMode mode); // 8021X企业网络处理方式，跳转控制中心or发通知
     void setAutoScanInterval(int ms);      // 设置自动扫描无线网间隔，0为不扫描
     void setAutoScanEnabled(bool enabled); // 设置自动扫描，网络面板关闭时禁用
     void setEnabled(bool enabled);         // 禁用时不发通知，不请求交互
@@ -54,7 +45,7 @@ public:
     NetItem *root() const;
 
     // bool isAirplaneMode() const; // 开启了飞行模式
-    // NetManager::ConnectionType primaryConnectionType() const;
+    NetManager::ConnectionType primaryConnectionType() const;
 
     enum CmdType {
         EnabledDevice,     // 启用
@@ -109,7 +100,7 @@ Q_SIGNALS:
     void languageChange(const QString &locale);
     void toControlCenter();
     void netCheckAvailableChanged(const bool &netCheckAvailable);
-    // void primaryConnectionTypeChanged(ConnectionType type);
+    void primaryConnectionTypeChanged(ConnectionType type);
     // void vpnStatusChanged();
 
 private:

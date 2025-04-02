@@ -85,6 +85,7 @@ public:
     ~NetWidget() Q_DECL_OVERRIDE;
 
     void setCentralWidget(QWidget *widget);
+    QWidget *centralWidget() const;
     void addPasswordWidget(QWidget *widget);
     void setNoMousePropagation(bool noMousePropagation);
     void removePasswordWidget();
@@ -104,7 +105,6 @@ public Q_SLOTS:
     void closeInput();
 
 protected:
-    bool event(QEvent *e) override;
     void mousePressEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
     void sendRequest(NetManager::CmdType cmd, const QString &id, const QVariantMap &param = QVariantMap());
@@ -157,7 +157,7 @@ public:
 
 public Q_SLOTS:
     void updateIcon();
-    void onStatusChanged(dde::network::NetConnectionStatus status);
+    void onStatusChanged(NetType::NetConnectionStatus status);
     void onDisconnectClicked();
 
 private:
@@ -208,7 +208,7 @@ public:
     ~NetWiredWidget() Q_DECL_OVERRIDE;
 
 public Q_SLOTS:
-    void onStatusChanged(NetConnectionStatus status);
+    void onStatusChanged(NetType::NetConnectionStatus status);
     void onDisconnectClicked();
 
 private:

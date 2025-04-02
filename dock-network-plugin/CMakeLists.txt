@@ -1,70 +1,76 @@
-cmake_minimum_required(VERSION 3.7)
+# SPDX-FileCopyrightText: 2025 UnionTech Software Technology Co., Ltd.
+#
+# SPDX-License-Identifier: CC0-1.0
 
 set(PLUGIN_NAME "dock-network-plugin")
 
+set(QT_NS Qt6)
+set(DTK_NS Dtk6)
+
 project(${PLUGIN_NAME})
+include(GNUInstallDirs)
 # 启用 qt moc 的支持
 set(CMAKE_AUTOMOC ON)
 # 启用 qrc 资源文件的支持
 set(CMAKE_AUTORCC ON)
 
-file(GLOB_RECURSE SRCS "*.h" "*.cpp" "item/*.h" "item/*.cpp" "../common-plugin/*.h" "../common-plugin/*.cpp")
+file(GLOB_RECURSE SRCS
+    "networkplugin.h"
+    "networkplugin.cpp"
+    "quickpanelwidget.h"
+    "quickpanelwidget.cpp"
+    "dockcontentwidget.h"
+    "../net-view/*.h"
+    "../net-view/*.cpp"
+    "widget/jumpsettingbutton.h"
+    "widget/jumpsettingbutton.cpp"
+    "widget/commoniconbutton.h"
+    "widget/commoniconbutton.cpp"
+)
 
-find_package(Qt5 COMPONENTS Core Widgets DBus Network LinguistTools REQUIRED)
+find_package(${QT_NS} COMPONENTS Core Widgets DBus Network LinguistTools REQUIRED)
 find_package(PkgConfig REQUIRED)
-find_package(Qt5Svg REQUIRED)
-find_package(DtkCore REQUIRED)
-find_package(DtkWidget REQUIRED)
-
-set(DTKCORE_INCLUDE_DIR DTKCORE_INCLUDE_DIRS)
-
+find_package(${DTK_NS} REQUIRED COMPONENTS Widget)
+find_package(KF6NetworkManagerQt REQUIRED)
 find_package(DdeDock REQUIRED)
-find_package(KF5NetworkManagerQt REQUIRED)
 
-pkg_check_modules(QGSettings REQUIRED gsettings-qt)
-pkg_check_modules(DDE-Dock REQUIRED dde-dock)
+#if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+#    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -fsanitize=address -O0")
+#    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -fsanitize=address -O0")
+#endif()
 
 file(GLOB TS_FILES "translations/*.ts")
-qt5_add_translation(QM_FILES ${TS_FILES})
+qt_add_translation(QM_FILES ${TS_FILES})
 add_custom_target(language ALL DEPENDS ${QM_FILES})
 
 add_definitions("${QT_DEFINITIONS} -DQT_PLUGIN")
-add_library(${PLUGIN_NAME} SHARED ${SRCS} ../common-plugin/network.qrc)
+add_library(${PLUGIN_NAME} SHARED ${SRCS} ../net-view/window/qrc/network.qrc)
+set_target_properties(${PLUGIN_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ../../dde-dock)
 
-get_target_property(KF5_QT_INCLUDE_DIRS KF5::NetworkManagerQt INTERFACE_INCLUDE_DIRECTORIES)
-
-set(TRY_KF5_LIBRARIES
-IMPORTED_LOCATION_DEBIAN
-IMPORTED_LOCATION_NOCONFIG
-)
-
-if (NOT KF5_QT_LIBRARIES)
-    find_library(KF5_QT_LIBRARIES libKF5NetworkManagerQt.so)
-endif()
+# get_target_property(KF6_QT_INCLUDE_DIRS KF6::NetworkManagerQt INTERFACE_INCLUDE_DIRECTORIES)
 
 target_include_directories(${PLUGIN_NAME} PUBLIC
-    ${DtkWidget_INCLUDE_DIRS}
-    ${Qt5DBus_INCLUDE_DIRS}
-    ${QGSettings_INCLUDE_DIRS}
-    ${DDE-Network-Core_INCLUDE_DIRS}
-    ${DDE_DOCK_INCLUDE_DIR}
-    ${Qt5Network_INCLUDE_DIRS}
-    ${KF5_QT_INCLUDE_DIRS}
-    ${NETINTERFACEINCLUDE}
-    "../common-plugin/"
+    ${DTK_NS}::Widget
+    ${QT_NS}::Dbus
+    ${QT_NS}::Network
+    KF6::NetworkManagerQt
+    # "../../../interfaces"
+    "../net-view/operation"
+    "../net-view/window"
+    "../src"
 )
 
 target_link_libraries(${PLUGIN_NAME} PRIVATE
-    ${DtkWidget_LIBRARIES}
-    ${Qt5Widgets_LIBRARIES}
-    ${Qt5Svg_LIBRARIES}
-    ${Qt5DBus_LIBRARIES}
-    ${QGSettings_LIBRARIES}
-    ${DDE-Network-Core_LIBRARIES}
-    ${KF5_QT_LIBRARIES}
-    ${Qt5Network_LIBRARIES}
+    ${QT_NS}::Widgets
+    ${QT_NS}::DBus
+    ${QT_NS}::Network
+    ${DTK_NS}::Widget
+    KF6::NetworkManagerQt
+    dde-network-core6
 )
 
-install(TARGETS ${PLUGIN_NAME} LIBRARY DESTINATION lib/dde-dock/plugins/quick-trays)
+install(TARGETS ${PLUGIN_NAME} LIBRARY DESTINATION lib/dde-dock/plugins/system-trays)
 # 安装 .qm 文件
 install(FILES ${QM_FILES} DESTINATION ${CMAKE_INSTALL_DATADIR}/${PLUGIN_NAME}/translations)
+# 安装显示在控制中心-个性化-任务栏-插件区域的图标
+install(FILES "resources/dcc-network.dci" DESTINATION share/dde-dock/icons/dcc-setting)

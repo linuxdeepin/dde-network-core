@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
 #include "dsstestwidget.h"
-#include "network_module.h"
+#include "networkmodule.h"
 #include <QPushButton>
 
 #include <DPalette>

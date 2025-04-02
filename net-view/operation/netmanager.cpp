@@ -73,6 +73,11 @@ NetItem *NetManager::root() const
     return d->m_root->item();
 }
 
+NetManager::ConnectionType NetManager::primaryConnectionType() const
+{
+    return Unknown;
+}
+
 /**
  * @brief NetManager::exec
  * @param cmd 执行命令 @see NetManager::CmdType
@@ -230,11 +235,6 @@ void NetManagerPrivate::setUseSecretAgent(bool enabled)
     m_managerThread->setUseSecretAgent(enabled);
 }
 
-void NetManagerPrivate::setNetwork8021XMode(NetManager::Network8021XMode mode)
-{
-    m_managerThread->setNetwork8021XMode(mode);
-}
-
 void NetManagerPrivate::setAutoScanInterval(int ms)
 {
     m_managerThread->setAutoScanInterval(ms);
@@ -258,6 +258,12 @@ void NetManagerPrivate::setServerKey(const QString &serverKey)
 void NetManagerPrivate::init(NetType::NetManagerFlags flags)
 {
     m_managerThread->init(flags);
+    if (flags.testFlags(NetType::Net_AirplaneTips)) {
+        NetAirplaneModeTipsItemPrivate *airplaneTipsItem = NetItemNew(AirplaneModeTipsItem, "NetAirplaneModeTipsItem");
+        airplaneTipsItem->updatelinkActivatedText("airplaneMode");
+        airplaneTipsItem->updatetipsLinkEnabled(flags.testFlags(NetType::Net_tipsLinkEnabled));
+        addItem(airplaneTipsItem, m_root);
+    }
 }
 
 bool NetManagerPrivate::netCheckAvailable()
@@ -547,6 +553,9 @@ void NetManagerPrivate::onDataChanged(int dataType, const QString &id, const QVa
         if (item) {
             item->updateenabled(value.toBool());
             updateControlEnabled(item->itemType());
+            if (id == "Root") {
+                updateAirplaneMode(value.toBool());
+            }
         }
     } break;
     case NetManagerThreadPrivate::DeviceAvailableChanged: {

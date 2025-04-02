@@ -102,6 +102,9 @@ public:
 public Q_SLOTS:
     void toggleNetworkActive();
 
+protected:
+    bool event(QEvent *event) override;
+
 protected Q_SLOTS:
     void onChildAdded(const NetItem *child);
     void onChildRemoved(const NetItem *child);
@@ -137,6 +140,7 @@ Q_SIGNALS:
 
 private:
     QVector<NetItem *> getDeviceConnections(unsigned type, unsigned connectType) const;
+    void updateItemWidgetSize();
 
 private:
     NetManager *m_manager;

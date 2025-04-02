@@ -51,21 +51,21 @@ ItemSpacing NetDelegate::getItemSpacing(const QModelIndex &index) const
     spacing.height = -1;
     spacing.viewItemPosition = QStyleOptionViewItem::OnlyOne; // 显示样式
 
-    switch (index.data(TYPEROLE).value<NetItemType>()) {
-    case NetItemType::WirelessDeviceItem:
-    case NetItemType::WiredDeviceItem:
-    case NetItemType::VPNControlItem:
-    case NetItemType::SystemProxyControlItem: {
+    switch (index.data(NetModel::NetItemTypeRole).value<NetType::NetItemType>()) {
+    case NetType::WirelessDeviceItem:
+    case NetType::WiredDeviceItem:
+    case NetType::VPNControlItem:
+    case NetType::SystemProxyControlItem: {
         spacing.height = 40;
         spacing.top = index.row() == 0 ? 0 : 6;
         spacing.right = 10;
     } break;
-    case NetItemType::WirelessMineItem: {
+    case NetType::WirelessMineItem: {
         spacing.height = 24;
     } break;
-    case NetItemType::WiredItem:
-    case NetItemType::WirelessHiddenItem:
-    case NetItemType::WirelessItem: {
+    case NetType::WiredItem:
+    case NetType::WirelessHiddenItem:
+    case NetType::WirelessItem: {
         spacing.height = 30;
         spacing.bottom = 1;
         // 计算ViewItemPosition,WirelessOtherItem的子项根据实际viewItemPosition显示
@@ -82,13 +82,13 @@ ItemSpacing NetDelegate::getItemSpacing(const QModelIndex &index) const
             viewItemPosition = QStyleOptionViewItem::Middle;
         }
         // 处理显示差异
-        switch (parentIndex.data(TYPEROLE).value<NetItemType>()) {
-        case NetItemType::WirelessMineItem:
-        case NetItemType::WiredDeviceItem:
+        switch (parentIndex.data(NetModel::NetItemTypeRole).value<NetType::NetItemType>()) {
+        case NetType::WirelessMineItem:
+        case NetType::WiredDeviceItem:
             spacing.height = 36;
             spacing.bottom = 10;
             break;
-        case NetItemType::WirelessOtherItem:
+        case NetType::WirelessOtherItem:
             spacing.viewItemPosition = viewItemPosition;
             break;
         default:
@@ -104,13 +104,13 @@ ItemSpacing NetDelegate::getItemSpacing(const QModelIndex &index) const
             break;
         }
     } break;
-    case NetItemType::WirelessOtherItem: {
+    case NetType::WirelessOtherItem: {
         spacing.top = 10;
         spacing.height = 24;
         spacing.bottom = 4;
     } break;
-    case NetItemType::WirelessDisabledItem:
-    case NetItemType::WiredDisabledItem:
+    case NetType::WirelessDisabledItem:
+    case NetType::WiredDisabledItem:
         spacing.height = 220;
         break;
     default:
@@ -132,8 +132,8 @@ void NetDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, c
     }
 
     QColor bgColor, textColor;
-    switch (index.data(TYPEROLE).value<NetItemType>()) {
-    case NetItemType::WirelessOtherItem: {
+    switch (index.data(NetModel::NetItemTypeRole).value<NetType::NetItemType>()) {
+    case NetType::WirelessOtherItem: {
         if (m_view->currentIndex() == index) {
             textColor = boption.dpalette.highlightedText().color();
             bgColor = boption.dpalette.highlight().color();
@@ -144,15 +144,15 @@ void NetDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, c
             bgColor.setAlphaF(0.05);
         }
     } break;
-    case NetItemType::WirelessDisabledItem:
-    case NetItemType::WiredDisabledItem:
-    case NetItemType::WirelessMineItem: {
+    case NetType::WirelessDisabledItem:
+    case NetType::WiredDisabledItem:
+    case NetType::WirelessMineItem: {
         textColor = boption.dpalette.brightText().color();
         textColor.setAlphaF(0.6);
     } break;
-    case NetItemType::WirelessItem:
-    case NetItemType::WiredItem:
-    case NetItemType::WirelessHiddenItem: {
+    case NetType::WirelessItem:
+    case NetType::WiredItem:
+    case NetType::WirelessHiddenItem: {
         if (m_view->currentIndex() == index) {
             if (option.rect.height() > 100) {
                 textColor = boption.dpalette.brightText().color();
@@ -174,9 +174,10 @@ void NetDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, c
     if (textColor.isValid()) {
         boption.palette.setBrush(QPalette::BrightText, textColor);
         boption.palette.setBrush(QPalette::Highlight, textColor);
-        QWidget *w = m_view->indexWidget(index);
-        if (w) {
-            w->setPalette(boption.palette);
+        if (auto widget = qobject_cast<NetWidget *>(m_view->indexWidget(index))) {
+            if (auto w = widget->centralWidget()) {
+                w->setPalette(boption.palette);
+            }
         }
     }
     if (bgColor.isValid()) {
@@ -194,37 +195,37 @@ QWidget *NetDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &
     NetWidget *netWidget = nullptr;
     if (item) {
         switch (item->itemType()) {
-        case NetItemType::WirelessControlItem:
-        case NetItemType::WiredControlItem:
-        case NetItemType::WirelessDeviceItem:
-        case NetItemType::WiredDeviceItem:
-        case NetItemType::VPNControlItem:
-        case NetItemType::SystemProxyControlItem: {
+        case NetType::WirelessControlItem:
+        case NetType::WiredControlItem:
+        case NetType::WirelessDeviceItem:
+        case NetType::WiredDeviceItem:
+        case NetType::VPNControlItem:
+        case NetType::SystemProxyControlItem: {
             netWidget = new NetDeviceWidget(static_cast<NetDeviceItem *>(item), parent);
         } break;
-        case NetItemType::WirelessMineItem: {
+        case NetType::WirelessMineItem: {
             netWidget = new NetWirelessTypeControlWidget(static_cast<NetWirelessMineItem *>(item), parent);
         } break;
-        case NetItemType::WirelessOtherItem: {
+        case NetType::WirelessOtherItem: {
             netWidget = new NetWirelessTypeControlWidget(static_cast<NetWirelessOtherItem *>(item), parent);
         } break;
-        case NetItemType::WirelessItem: {
+        case NetType::WirelessItem: {
             netWidget = new NetWirelessWidget(static_cast<NetWirelessItem *>(item), parent);
         } break;
-        case NetItemType::WirelessHiddenItem: {
+        case NetType::WirelessHiddenItem: {
             netWidget = new NetWirelessHiddenWidget(static_cast<NetWirelessHiddenItem *>(item), parent);
         } break;
-        case NetItemType::WiredItem: {
+        case NetType::WiredItem: {
             netWidget = new NetWiredWidget(static_cast<NetWiredItem *>(item), parent);
         } break;
-        case NetItemType::WirelessDisabledItem:
-        case NetItemType::WiredDisabledItem: {
+        case NetType::WirelessDisabledItem:
+        case NetType::WiredDisabledItem: {
             netWidget = new NetDisabledWidget(item, parent);
         } break;
-        case NetItemType::AirplaneModeTipsItem: {
+        case NetType::AirplaneModeTipsItem: {
             netWidget = new NetAirplaneModeTipsWidget(static_cast<NetAirplaneModeTipsItem *>(item), parent);
         } break;
-        case NetItemType::VPNTipsItem: {
+        case NetType::VPNTipsItem: {
             netWidget = new NetVPNTipsWidget(static_cast<NetVPNTipsItem *>(item), parent);
         } break;
         default:
@@ -346,6 +347,13 @@ void NetWidget::setCentralWidget(QWidget *widget)
     m_mainLayout->addWidget(widget);
 }
 
+QWidget *NetWidget::centralWidget() const
+{
+    if (m_mainLayout->count() <= 0)
+        return nullptr;
+    return m_mainLayout->itemAt(0)->widget();
+}
+
 void NetWidget::addPasswordWidget(QWidget *widget)
 {
     m_mainLayout->addWidget(widget);
@@ -441,23 +449,6 @@ void NetWidget::closeInput()
     Q_EMIT requestUpdateLayout();
 }
 
-bool NetWidget::event(QEvent *e)
-{
-    switch (e->type()) {
-    case QEvent::PaletteChange: {
-        QLayout *layout = this->layout();
-        for (int i = 0; i < layout->count(); i++) {
-            QWidget *widget = layout->itemAt(i)->widget();
-            if (widget && !qobject_cast<NetSecretWidget *>(widget))
-                widget->setPalette(palette());
-        }
-    } break;
-    default:
-        break;
-    }
-    return QWidget::event(e);
-}
-
 void NetWidget::mousePressEvent(QMouseEvent *event)
 {
     if (!m_noMousePropagation)
@@ -499,11 +490,11 @@ NetDeviceWidget::NetDeviceWidget(NetDeviceItem *item, QWidget *parent)
     layout->addWidget(label);
     layout->addStretch();
     switch (item->itemType()) {
-    case NetItemType::WiredControlItem:
-    case NetItemType::WirelessControlItem:
+    case NetType::WiredControlItem:
+    case NetType::WirelessControlItem:
         DFontSizeManager::instance()->bind(label, DFontSizeManager::T4);
         break;
-    case NetItemType::WirelessDeviceItem: {
+    case NetType::WirelessDeviceItem: {
         NetIconButton *refreshBut = new NetIconButton(this);
         refreshBut->setFixedSize(16, 16);
         refreshBut->setIcon(QIcon::fromTheme("refresh"));
@@ -558,7 +549,7 @@ NetWirelessTypeControlWidget::NetWirelessTypeControlWidget(NetItem *item, QWidge
     layout->addStretch();
 
     switch (item->itemType()) {
-    case NetItemType::WirelessOtherItem: {
+    case NetType::WirelessOtherItem: {
         m_expandButton = new NetIconButton(this);
         m_expandButton->setBackgroundRole(DPalette::Base);
         m_expandButton->setIcon(QIcon::fromTheme("network-arrow-down"));
@@ -645,15 +636,15 @@ void NetWirelessWidget::updateIcon()
     m_iconBut->setIcon(QIcon::fromTheme(QString("network-wireless%1-symbolic").arg((item->flags() ? "-6" : "") + NetManager::StrengthLevelString(item->strengthLevel()) + (item->isSecure() ? "-secure" : ""))));
 }
 
-void NetWirelessWidget::onStatusChanged(NetConnectionStatus status)
+void NetWirelessWidget::onStatusChanged(NetType::NetConnectionStatus status)
 {
     switch (status) {
-    case NetConnectionStatus::Connected:
+    case NetType::CS_Connected:
         m_connBut->setVisible(true);
         m_loading->stop();
         m_loading->setVisible(false);
         break;
-    case NetConnectionStatus::Connecting:
+    case NetType::CS_Connecting:
         m_connBut->setVisible(false);
         m_loading->start();
         m_loading->setVisible(true);
@@ -712,7 +703,6 @@ NetTipsWidget::NetTipsWidget(NetTipsItem *item, QWidget *parent)
         label->setFixedHeight(line * fm.boundingRect(plainText).height());
         label->setText(item->tipsLinkEnabled() ? name : plainText);
     };
-
     connect(item, &NetTipsItem::nameChanged, this, updateHeight);
     connect(qApp, &QGuiApplication::fontChanged, this, updateHeight);
     updateHeight();
@@ -772,15 +762,15 @@ NetWiredWidget::NetWiredWidget(NetWiredItem *item, QWidget *parent)
 
 NetWiredWidget::~NetWiredWidget() { }
 
-void NetWiredWidget::onStatusChanged(NetConnectionStatus status)
+void NetWiredWidget::onStatusChanged(NetType::NetConnectionStatus status)
 {
     switch (status) {
-    case NetConnectionStatus::Connected:
+    case NetType::CS_Connected:
         m_connBut->setVisible(true);
         m_loading->stop();
         m_loading->setVisible(false);
         break;
-    case NetConnectionStatus::Connecting:
+    case NetType::CS_Connecting:
         m_connBut->setVisible(false);
         m_loading->start();
         m_loading->setVisible(true);
@@ -803,7 +793,6 @@ NetDisabledWidget::NetDisabledWidget(NetItem *item, QWidget *parent)
 {
     QWidget *widget = new QWidget(this);
     QVBoxLayout *layout = new QVBoxLayout(widget);
-    layout->setMargin(0);
     layout->setSpacing(0);
     layout->setContentsMargins(3, 0, 5, 10);
 
@@ -812,7 +801,7 @@ NetDisabledWidget::NetDisabledWidget(NetItem *item, QWidget *parent)
     icon->setFixedSize(96, 96);
     icon->setAttribute(Qt::WA_TransparentForMouseEvents);
     icon->setFocusPolicy(Qt::NoFocus);
-    if (item->itemType() == NetItemType::WiredDisabledItem) {
+    if (item->itemType() == NetType::WiredDisabledItem) {
         icon->setIcon(QIcon::fromTheme("network-wired-disabled"));
     } else {
         icon->setIcon(QIcon::fromTheme("network-wireless-disabled"));
