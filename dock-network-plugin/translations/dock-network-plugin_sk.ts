@@ -1,201 +1,312 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="sk" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="sk">
 <context>
-    <name>NetworkPlugin</name>
+    <name>dde::network::DockContentWidget</name>
+    <message>
+        <source>Network settings</source>
+        <translation type="unfinished">Nastavenia siete</translation>
+    </message>
+    <message>
+        <source>Network Detection</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetAirplaneModeTipsItem</name>
+    <message>
+        <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetManagerPrivate</name>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Network</source>
-        <translation>Sieť</translation>
+        <translation type="unfinished">Sieť</translation>
     </message>
 </context>
 <context>
-    <name>dde::network::NetworkDetails</name>
+    <name>dde::network::NetManagerThreadPrivate</name>
     <message>
-        <source>Hotspot</source>
-        <translation>Hotspot</translation>
+        <source>Wired Connection %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>SSID</source>
-        <translation>SSID</translation>
+        <source>VPN L2TP %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Protocol</source>
-        <translation type="unfinished"/>
+        <source>VPN PPTP %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Security Type</source>
-        <translation type="unfinished"/>
+        <source>VPN VPNC %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Band</source>
-        <translation>Pásmo</translation>
+        <source>VPN OpenVPN %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>Kanál</translation>
+        <source>VPN StrongSwan %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Interface</source>
-        <translation>Rozhranie</translation>
+        <source>VPN OpenConnect %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>MAC</source>
-        <translation>MAC</translation>
+        <source>PPPoE Connection %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>IPv4</source>
-        <translation>IPv4</translation>
+        <source>Connecting &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Netmask</source>
-        <translation>Maska</translation>
+        <source>&quot;%1&quot; connected</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Gateway</source>
-        <translation>Brána</translation>
+        <source>&quot;%1&quot; disconnected</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Primary DNS</source>
-        <translation> Primárna DNS</translation>
+        <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>IPv6</source>
-        <translation>IPv6</translation>
+        <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Prefix</source>
-        <translation>Prefix</translation>
+        <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Speed</source>
-        <translation>Rýchlosť</translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetworkDeviceRealize</name>
-    <message>
-        <source>Device disabled</source>
-        <translation>Zariadenie zakázané</translation>
+        <source>Password is required to connect &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Connected but no Internet access</source>
-        <translation>Pripojené, ale bez prístupu na internet</translation>
+        <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Not connected</source>
-        <translation>Nepripojené</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>Sieťový kábel odpojený</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>Pripájanie</translation>
-    </message>
-    <message>
-        <source>Authenticating</source>
-        <translation>Overujem</translation>
-    </message>
-    <message>
-        <source>Obtaining IP address</source>
-        <translation>Získavanie IP adresy</translation>
-    </message>
-    <message>
-        <source>Connected</source>
-        <translation>Pripojené</translation>
-    </message>
-    <message>
-        <source>Disconnected</source>
-        <translation>Odpojené</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Failed</source>
-        <translation>Zlyhanie</translation>
-    </message>
-    <message>
-        <source>Obtaining address</source>
-        <translation type="unfinished"/>
+        <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>dde::network::NetworkProcesser</name>
+    <name>dde::network::NetSecretWidget</name>
     <message>
-        <source>Wired Network</source>
-        <translation>Drôtová sieť</translation>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Wired Network %1</source>
-        <translation>Káblová sieť %1</translation>
+        <source>Private Pwd</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Wireless Network</source>
-        <translation>Bezdrôtová sieť</translation>
+        <source>key</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Wireless Network %1</source>
-        <translation>Bezdrôtová sieť %1</translation>
+        <source>Proxy Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Group Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <comment>button</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>dde::networkplugin::NetworkPluginHelper</name>
-    <message>
-        <source>Device disabled</source>
-        <translation>Zariadenie zakázané</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>Sieťový kábel odpojený</translation>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation>Nepripojené</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>Pripájanie</translation>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation>Pripojené, ale bez prístupu na internet</translation>
-    </message>
-    <message>
-        <source>Connection failed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation type="unfinished"/>
-    </message>
+    <name>dde::network::NetStatus</name>
     <message>
         <source>Disable wired connection</source>
-        <translation>Vypnúť káblové pripojenie</translation>
+        <translation type="unfinished">Vypnúť káblové pripojenie</translation>
     </message>
     <message>
         <source>Enable wired connection</source>
-        <translation>Zapnúť káblové pripojenie</translation>
+        <translation type="unfinished">Zapnúť káblové pripojenie</translation>
     </message>
     <message>
         <source>Disable wireless connection</source>
-        <translation>Vypnúť bezdrôtové pripojenie</translation>
+        <translation type="unfinished">Vypnúť bezdrôtové pripojenie</translation>
     </message>
     <message>
         <source>Enable wireless connection</source>
-        <translation>Zapnúť bezdrôtové pripojenie</translation>
+        <translation type="unfinished">Zapnúť bezdrôtové pripojenie</translation>
     </message>
     <message>
         <source>Disable network</source>
-        <translation>Zakázať sieť</translation>
+        <translation type="unfinished">Zakázať sieť</translation>
     </message>
     <message>
         <source>Enable network</source>
-        <translation>Povoliť sieť</translation>
+        <translation type="unfinished">Povoliť sieť</translation>
+    </message>
+    <message>
+        <source>Disable VPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable VPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable system proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable system proxy</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Network settings</source>
-        <translation>Nastavenia siete</translation>
+        <translation type="unfinished">Nastavenia siete</translation>
+    </message>
+    <message>
+        <source>Multiple services started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected to: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>System proxy enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished">Pripojené</translation>
+    </message>
+    <message>
+        <source>Network off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network cable unplugged</source>
+        <translation type="unfinished">Sieťový kábel odpojený</translation>
+    </message>
+    <message>
+        <source>Not connected</source>
+        <translation type="unfinished">Nepripojené</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation type="unfinished">Pripájanie</translation>
+    </message>
+    <message>
+        <source>Connected but no Internet access</source>
+        <translation type="unfinished">Pripojené, ale bez prístupu na internet</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished">Bezdrôtová sieť</translation>
+    </message>
+    <message>
+        <source>Connected %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation type="unfinished">Drôtová sieť</translation>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished">Sieť</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetSystemProxyControlItem</name>
+    <message>
+        <source>System Proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetVPNTipsItem</name>
+    <message>
+        <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWiredControlItem</name>
+    <message>
+        <source>Wired Network</source>
+        <translation type="unfinished">Drôtová sieť</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessControlItem</name>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished">Bezdrôtová sieť</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessHiddenItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessMineItem</name>
+    <message>
+        <source>My Networks</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessOtherItem</name>
+    <message>
+        <source>Other Networks</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetworkPlugin</name>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished">Sieť</translation>
     </message>
 </context>
 </TS>

@@ -1,201 +1,312 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ar" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ar">
 <context>
-    <name>NetworkPlugin</name>
+    <name>dde::network::DockContentWidget</name>
+    <message>
+        <source>Network settings</source>
+        <translation type="unfinished">إعدادات الشبكة</translation>
+    </message>
+    <message>
+        <source>Network Detection</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetAirplaneModeTipsItem</name>
+    <message>
+        <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetManagerPrivate</name>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Network</source>
-        <translation>الشبكة</translation>
+        <translation type="unfinished">الشبكة</translation>
     </message>
 </context>
 <context>
-    <name>dde::network::NetworkDetails</name>
+    <name>dde::network::NetManagerThreadPrivate</name>
     <message>
-        <source>Hotspot</source>
-        <translation>نقطة الإتصال</translation>
+        <source>Wired Connection %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>SSID</source>
-        <translation>SSID </translation>
+        <source>VPN L2TP %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Protocol</source>
-        <translation type="unfinished"/>
+        <source>VPN PPTP %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Security Type</source>
-        <translation type="unfinished"/>
+        <source>VPN VPNC %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Band</source>
-        <translation>الحزمة</translation>
+        <source>VPN OpenVPN %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>القناة</translation>
+        <source>VPN StrongSwan %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Interface</source>
-        <translation>الواجهة</translation>
+        <source>VPN OpenConnect %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>MAC</source>
-        <translation>ماك</translation>
+        <source>PPPoE Connection %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>IPv4</source>
-        <translation>IPv4</translation>
+        <source>Connecting &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Netmask</source>
-        <translation>قناع الشبكة</translation>
+        <source>&quot;%1&quot; connected</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Gateway</source>
-        <translation>البوابة</translation>
+        <source>&quot;%1&quot; disconnected</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Primary DNS</source>
-        <translation>DNS رئيسي</translation>
+        <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>IPv6</source>
-        <translation>IPv6</translation>
+        <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Prefix</source>
-        <translation>البادئة</translation>
+        <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Speed</source>
-        <translation>السرعة</translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetworkDeviceRealize</name>
-    <message>
-        <source>Device disabled</source>
-        <translation>جهاز ملغى</translation>
+        <source>Password is required to connect &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Connected but no Internet access</source>
-        <translation>متصل لكن لا يوجد اتصال بالإنترنت</translation>
+        <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Not connected</source>
-        <translation>غير متصل</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>سلك الشبكة غير موصول</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>يتصل</translation>
-    </message>
-    <message>
-        <source>Authenticating</source>
-        <translation>المصادقة</translation>
-    </message>
-    <message>
-        <source>Obtaining IP address</source>
-        <translation>جاري الحصول على عنوان IP</translation>
-    </message>
-    <message>
-        <source>Connected</source>
-        <translation>متصل</translation>
-    </message>
-    <message>
-        <source>Disconnected</source>
-        <translation>غير متصل</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Failed</source>
-        <translation>فشل</translation>
-    </message>
-    <message>
-        <source>Obtaining address</source>
-        <translation type="unfinished"/>
+        <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>dde::network::NetworkProcesser</name>
+    <name>dde::network::NetSecretWidget</name>
     <message>
-        <source>Wired Network</source>
-        <translation>شبكة سلكية</translation>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Wired Network %1</source>
-        <translation>شبكة سلكية 1%</translation>
+        <source>Private Pwd</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Wireless Network</source>
-        <translation>شبكة لاسلكية</translation>
+        <source>key</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Wireless Network %1</source>
-        <translation>الشبكة اللاسلكية : %1</translation>
+        <source>Proxy Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Group Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>button</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <comment>button</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>dde::networkplugin::NetworkPluginHelper</name>
-    <message>
-        <source>Device disabled</source>
-        <translation>جهاز ملغى</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>سلك الشبكة غير موصول</translation>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation>غير متصل</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>يتصل</translation>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation>متصل لكن لا يوجد اتصال بالإنترنت</translation>
-    </message>
-    <message>
-        <source>Connection failed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation type="unfinished"/>
-    </message>
+    <name>dde::network::NetStatus</name>
     <message>
         <source>Disable wired connection</source>
-        <translation>تعطيل الاتصال السلكي</translation>
+        <translation type="unfinished">تعطيل الاتصال السلكي</translation>
     </message>
     <message>
         <source>Enable wired connection</source>
-        <translation>تفعيل الاتصال السلكي</translation>
+        <translation type="unfinished">تفعيل الاتصال السلكي</translation>
     </message>
     <message>
         <source>Disable wireless connection</source>
-        <translation>تعطيل الاتصال اللاسلكي</translation>
+        <translation type="unfinished">تعطيل الاتصال اللاسلكي</translation>
     </message>
     <message>
         <source>Enable wireless connection</source>
-        <translation>تفعيل الاتصال اللاسلكي</translation>
+        <translation type="unfinished">تفعيل الاتصال اللاسلكي</translation>
     </message>
     <message>
         <source>Disable network</source>
-        <translation>تعطيل الشبكة</translation>
+        <translation type="unfinished">تعطيل الشبكة</translation>
     </message>
     <message>
         <source>Enable network</source>
-        <translation>تمكين الشبكة</translation>
+        <translation type="unfinished">تمكين الشبكة</translation>
+    </message>
+    <message>
+        <source>Disable VPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable VPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable system proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable system proxy</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Network settings</source>
-        <translation>إعدادات الشبكة</translation>
+        <translation type="unfinished">إعدادات الشبكة</translation>
+    </message>
+    <message>
+        <source>Multiple services started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected to: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>System proxy enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished">متصل</translation>
+    </message>
+    <message>
+        <source>Network off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network cable unplugged</source>
+        <translation type="unfinished">سلك الشبكة غير موصول</translation>
+    </message>
+    <message>
+        <source>Not connected</source>
+        <translation type="unfinished">غير متصل</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation type="unfinished">يتصل</translation>
+    </message>
+    <message>
+        <source>Connected but no Internet access</source>
+        <translation type="unfinished">متصل لكن لا يوجد اتصال بالإنترنت</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished">شبكة لاسلكية</translation>
+    </message>
+    <message>
+        <source>Connected %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation type="unfinished">شبكة سلكية</translation>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished">الشبكة</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetSystemProxyControlItem</name>
+    <message>
+        <source>System Proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetVPNTipsItem</name>
+    <message>
+        <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWiredControlItem</name>
+    <message>
+        <source>Wired Network</source>
+        <translation type="unfinished">شبكة سلكية</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessControlItem</name>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished">شبكة لاسلكية</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessHiddenItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessMineItem</name>
+    <message>
+        <source>My Networks</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessOtherItem</name>
+    <message>
+        <source>Other Networks</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetworkPlugin</name>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished">الشبكة</translation>
     </message>
 </context>
 </TS>

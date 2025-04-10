@@ -146,6 +146,12 @@ QString NetVPNTipsItem::name() const
 GETFUN(bool, NetVPNControlItem, isExpanded)
 
 // 系统代理
+
+QString NetSystemProxyControlItem::name() const
+{
+    return tr("System Proxy");
+}
+
 GETFUN(NetType::ProxyMethod, NetSystemProxyControlItem, lastMethod)
 GETFUN(NetType::ProxyMethod, NetSystemProxyControlItem, method)
 GETFUN(const QString &, NetSystemProxyControlItem, autoProxy)

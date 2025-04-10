@@ -1,279 +1,301 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="hi_IN">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="hi_IN">
 <context>
     <name>Bubble</name>
     <message>
         <source>1 new message</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>DeviceControllItem</name>
+    <name>dde::network::NetAirplaneModeTipsItem</name>
     <message>
-        <source>Wireless Network</source>
-        <translation>केबल रहित नेटवर्क</translation>
-    </message>
-    <message>
-        <source>Wired Network</source>
-        <translation>केबल नेटवर्क</translation>
+        <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>QObject</name>
+    <name>dde::network::NetManagerPrivate</name>
     <message>
-        <source>Connecting %1</source>
-        <translation type="unfinished"/>
+        <source>IP conflict</source>
+        <translation type="unfinished">आईपी विरोधाभास</translation>
     </message>
     <message>
-        <source>%1 connected</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1 disconnected</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Unable to connect %1, please check your router or net cable.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Unable to connect %1, please keep closer to the wireless router</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Connection failed, unable to connect %1, wrong password</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Password is required to connect %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The %1 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"/>
+        <source>Network</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
+    <name>dde::network::NetManagerThreadPrivate</name>
     <message>
-        <source>Connect to hidden network</source>
-        <translation>छुपे नेटवर्क से जुड़ें</translation>
+        <source>Wired Connection %1</source>
+        <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>VPN L2TP %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN PPTP %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN VPNC %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN OpenVPN %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN StrongSwan %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN OpenConnect %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PPPoE Connection %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connecting &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; disconnected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password is required to connect &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetSecretWidget</name>
     <message>
         <source>Password</source>
-        <translation>कूटशब्द</translation>
+        <translation type="unfinished">कूटशब्द</translation>
+    </message>
+    <message>
+        <source>Private Pwd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Proxy Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Group Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Cancel</source>
         <comment>button</comment>
-        <translation>रद्द करें</translation>
+        <translation type="unfinished">रद्द करें</translation>
     </message>
     <message>
         <source>Connect</source>
         <comment>button</comment>
-        <translation>कनेक्ट करें</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">कनेक्ट करें</translation>
     </message>
 </context>
 <context>
-    <name>dde::network::NetworkDetails</name>
-    <message>
-        <source>Hotspot</source>
-        <translation>हॉटस्पॉट</translation>
-    </message>
-    <message>
-        <source>SSID</source>
-        <translation>SSID</translation>
-    </message>
-    <message>
-        <source>Protocol</source>
-        <translation>प्रोटोकॉल</translation>
-    </message>
-    <message>
-        <source>Security Type</source>
-        <translation>सुरक्षा प्रकार</translation>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation>बैंड </translation>
-    </message>
-    <message>
-        <source>Channel</source>
-        <translation>चैनल </translation>
-    </message>
-    <message>
-        <source>Interface</source>
-        <translation>इंटरफेस </translation>
-    </message>
-    <message>
-        <source>MAC</source>
-        <translation>MAC</translation>
-    </message>
-    <message>
-        <source>IPv4</source>
-        <translation>आईपीवी4</translation>
-    </message>
-    <message>
-        <source>Netmask</source>
-        <translation>Netmask</translation>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>नेटवर्क गेटवे</translation>
-    </message>
-    <message>
-        <source>Primary DNS</source>
-        <translation>प्राथमिक DNS</translation>
-    </message>
-    <message>
-        <source>IPv6</source>
-        <translation>आईपीवी6</translation>
-    </message>
-    <message>
-        <source>Prefix</source>
-        <translation>नेटवर्क उपसर्ग </translation>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation>गति</translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetworkDeviceRealize</name>
-    <message>
-        <source>Device disabled</source>
-        <translation>उपकरण निष्क्रिय है</translation>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation>कनेक्ट है परंतु नेटवर्क हेतु अभिगम नहीं है </translation>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation>कनेक्ट नहीं है</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>नेटवर्क केबल हटी हुई है</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>कनेक्ट हो रहा है </translation>
-    </message>
-    <message>
-        <source>Authenticating</source>
-        <translation>प्रमाणीकृत किया जा रहा है</translation>
-    </message>
-    <message>
-        <source>Obtaining IP address</source>
-        <translation>IP अड्रेस प्राप्त किया जा रहा है</translation>
-    </message>
-    <message>
-        <source>Connected</source>
-        <translation>कनेक्ट है </translation>
-    </message>
-    <message>
-        <source>Disconnected</source>
-        <translation>डिस्कनेक्ट है</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>आईपी विरोधाभास</translation>
-    </message>
-    <message>
-        <source>Failed</source>
-        <translation>विफल रहा</translation>
-    </message>
-    <message>
-        <source>Obtaining address</source>
-        <translation>नेटवर्क पता प्राप्त करना जारी</translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetworkProcesser</name>
-    <message>
-        <source>Wired Network</source>
-        <translation>केबल नेटवर्क</translation>
-    </message>
-    <message>
-        <source>Wired Network %1</source>
-        <translation>केबल नेटवर्क %1</translation>
-    </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation>केबल रहित नेटवर्क</translation>
-    </message>
-    <message>
-        <source>Wireless Network %1</source>
-        <translation>केबल रहित नेटवर्क %1</translation>
-    </message>
-</context>
-<context>
-    <name>dde::networkplugin::NetworkPluginHelper</name>
-    <message>
-        <source>Device disabled</source>
-        <translation>उपकरण निष्क्रिय है</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>नेटवर्क केबल हटी हुई है</translation>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation>कनेक्ट नहीं है</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>कनेक्ट हो रहा है </translation>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation>कनेक्ट है परंतु नेटवर्क हेतु अभिगम नहीं है </translation>
-    </message>
-    <message>
-        <source>Connection failed</source>
-        <translation>कनेक्ट करना विफल रहा</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>आईपी विरोधाभास</translation>
-    </message>
+    <name>dde::network::NetStatus</name>
     <message>
         <source>Disable wired connection</source>
-        <translation>केबल कनेक्शन निष्क्रिय करें</translation>
+        <translation type="unfinished">केबल कनेक्शन निष्क्रिय करें</translation>
     </message>
     <message>
         <source>Enable wired connection</source>
-        <translation>केबल कनेक्शन सक्रिय करें</translation>
+        <translation type="unfinished">केबल कनेक्शन सक्रिय करें</translation>
     </message>
     <message>
         <source>Disable wireless connection</source>
-        <translation>केबल रहित कनेक्शन निष्क्रिय करें</translation>
+        <translation type="unfinished">केबल रहित कनेक्शन निष्क्रिय करें</translation>
     </message>
     <message>
         <source>Enable wireless connection</source>
-        <translation>केबल रहित कनेक्शन सक्रिय करें</translation>
+        <translation type="unfinished">केबल रहित कनेक्शन सक्रिय करें</translation>
     </message>
     <message>
         <source>Disable network</source>
-        <translation>नेटवर्क निष्क्रिय करें</translation>
+        <translation type="unfinished">नेटवर्क निष्क्रिय करें</translation>
     </message>
     <message>
         <source>Enable network</source>
-        <translation>नेटवर्क सक्रिय करें</translation>
+        <translation type="unfinished">नेटवर्क सक्रिय करें</translation>
+    </message>
+    <message>
+        <source>Disable VPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable VPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable system proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable system proxy</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Network settings</source>
-        <translation>नेटवर्क सेटिंग्स</translation>
+        <translation type="unfinished">नेटवर्क सेटिंग्स</translation>
+    </message>
+    <message>
+        <source>Multiple services started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected to: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>System proxy enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished">कनेक्ट है </translation>
+    </message>
+    <message>
+        <source>Network off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network cable unplugged</source>
+        <translation type="unfinished">नेटवर्क केबल हटी हुई है</translation>
+    </message>
+    <message>
+        <source>Not connected</source>
+        <translation type="unfinished">कनेक्ट नहीं है</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation type="unfinished">कनेक्ट हो रहा है </translation>
+    </message>
+    <message>
+        <source>Connected but no Internet access</source>
+        <translation type="unfinished">कनेक्ट है परंतु नेटवर्क हेतु अभिगम नहीं है </translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation type="unfinished">कनेक्ट करना विफल रहा</translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished">आईपी विरोधाभास</translation>
+    </message>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished">केबल रहित नेटवर्क</translation>
+    </message>
+    <message>
+        <source>Connected %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation type="unfinished">केबल नेटवर्क</translation>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>dss::module::NetworkModule</name>
+    <name>dde::network::NetSystemProxyControlItem</name>
     <message>
-        <source>Wired Connection</source>
-        <translation>वायर्ड कनेक्शन </translation>
+        <source>System Proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetVPNTipsItem</name>
+    <message>
+        <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWiredControlItem</name>
+    <message>
+        <source>Wired Network</source>
+        <translation type="unfinished">केबल नेटवर्क</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessControlItem</name>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished">केबल रहित नेटवर्क</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessHiddenItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation type="unfinished">छुपे नेटवर्क से जुड़ें</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessMineItem</name>
+    <message>
+        <source>My Networks</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessOtherItem</name>
+    <message>
+        <source>Other Networks</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

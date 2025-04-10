@@ -25,11 +25,6 @@ find_package(DdeSessionShell REQUIRED)
 #     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -fsanitize=address -O0")
 # endif()
 
-
-file(GLOB TS_FILES "translations/*.ts")
-qt_add_translation(QM_FILES ${TS_FILES})
-add_custom_target(${TARGET_NAME}_language ALL DEPENDS ${QM_FILES})
-
 add_definitions("${QT_DEFINITIONS} -DQT_PLUGIN")
 
 if (NET_USE_NOTIFICATION)
@@ -38,6 +33,15 @@ if (NET_USE_NOTIFICATION)
     set(SRCS ${SRCS} ${NOTIFICATION_SRCS})
 endif()
 
+file(GLOB TS_FILES "translations/*.ts")
+qt_add_translations(${TARGET_NAME}_language
+    TS_FILES ${TS_FILES}
+    SOURCES ${SRCS}
+    LUPDATE_OPTIONS -no-obsolete -no-ui-lines -locations none
+    QM_FILES_OUTPUT_VARIABLE QM_FILES
+)
+
+add_custom_target(${TARGET_NAME}_language ALL DEPENDS ${QM_FILES})
 add_library(${PLUGIN_NAME} SHARED ${SRCS} ../net-view/window/qrc/network.qrc)
 
 target_include_directories(${PLUGIN_NAME} PUBLIC

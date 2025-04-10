@@ -1,75 +1,135 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_CN">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh_CN">
 <context>
-    <name>DeviceControllItem</name>
+    <name>dde::network::DockContentWidget</name>
     <message>
-        <source>Wireless Network</source>
-        <translation>无线网络</translation>
+        <source>Network settings</source>
+        <translation>网络设置</translation>
     </message>
     <message>
-        <source>Wired Network</source>
-        <translation>有线网络</translation>
+        <source>Network Detection</source>
+        <translation>网络检测</translation>
     </message>
 </context>
 <context>
-    <name>NetworkPlugin</name>
+    <name>dde::network::NetAirplaneModeTipsItem</name>
     <message>
-        <source>Network</source>
-        <translation>网络</translation>
+        <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
+        <translation>若要使用无线网络功能，请先关闭 &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;飞行模式&lt;/a&gt; </translation>
     </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation>无线网络</translation>
-    </message>
-    <message>
-        <source>Wired Network</source>
-        <translation>有线网络</translation>
-    </message>
-    <message>
-        <source>Connected</source>
-        <translation>已连接</translation>
-    </message>
-    <message>
-        <source>Device disabled</source>
-        <translation>设备已禁用</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>未插入网线</translation>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation>未连接</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>正在连接</translation>
-    </message>
-    <message>
-        <source>Obtaining address</source>
-        <translation>获取地址中</translation>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation>已连接网络但无法访问互联网</translation>
-    </message>
+</context>
+<context>
+    <name>dde::network::NetManagerPrivate</name>
     <message>
         <source>IP conflict</source>
         <translation>IP地址冲突</translation>
     </message>
     <message>
-        <source>Connection failed</source>
-        <translation>连接失败</translation>
+        <source>Network</source>
+        <translation>网络</translation>
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
+    <name>dde::network::NetManagerThreadPrivate</name>
     <message>
-        <source>Connect to hidden network</source>
-        <translation>连接到隐藏网络</translation>
+        <source>Connecting &quot;%1&quot;</source>
+        <translation>正在连接&quot;%1&quot;</translation>
     </message>
+    <message>
+        <source>&quot;%1&quot; connected</source>
+        <translation>&quot;%1&quot;已连接</translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; disconnected</source>
+        <translation>&quot;%1&quot;已断开</translation>
+    </message>
+    <message>
+        <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
+        <translation>未能加入&quot;%1&quot;，请检查路由器或网线。</translation>
+    </message>
+    <message>
+        <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
+        <translation>未能加入&quot;%1&quot;，请尝试靠近无线路由器</translation>
+    </message>
+    <message>
+        <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
+        <translation>连接失败，未能加入&quot;%1&quot;，密码不正确</translation>
+    </message>
+    <message>
+        <source>Password is required to connect &quot;%1&quot;</source>
+        <translation>连接&quot;%1&quot;需要密码</translation>
+    </message>
+    <message>
+        <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
+        <translation>&quot;%1&quot; 802.11 WLAN网络无法找到</translation>
+    </message>
+    <message>
+        <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
+        <translation>连接“%1”需要登录后配置认证信息</translation>
+    </message>
+    <message>
+        <source>Wired Connection %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN L2TP %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN PPTP %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN VPNC %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN OpenVPN %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN StrongSwan %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN OpenConnect %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PPPoE Connection %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetSecretWidget</name>
     <message>
         <source>Password</source>
         <translation>请输入密码</translation>
+    </message>
+    <message>
+        <source>Private Pwd</source>
+        <translation>私钥密码</translation>
+    </message>
+    <message>
+        <source>key</source>
+        <translation>密钥</translation>
+    </message>
+    <message>
+        <source>Proxy Password</source>
+        <translation>代理密码</translation>
+    </message>
+    <message>
+        <source>Group Password</source>
+        <translation>组密码</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>请输入用户名</translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation>请输入网络名称（SSID）</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -81,149 +141,72 @@
         <comment>button</comment>
         <translation>连 接</translation>
     </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation>请输入网络名称（SSID）</translation>
-    </message>
 </context>
 <context>
-    <name>dde::network::NetworkDetails</name>
+    <name>dde::network::NetStatus</name>
     <message>
-        <source>Hotspot</source>
-        <translation>热点</translation>
+        <source>Disable wired connection</source>
+        <translation>关闭有线网络</translation>
     </message>
     <message>
-        <source>SSID</source>
-        <translation>SSID</translation>
+        <source>Enable wired connection</source>
+        <translation>开启有线网络</translation>
     </message>
     <message>
-        <source>Protocol</source>
-        <translation>协议</translation>
+        <source>Disable wireless connection</source>
+        <translation>关闭无线网络</translation>
     </message>
     <message>
-        <source>Security Type</source>
-        <translation>安全类型</translation>
+        <source>Enable wireless connection</source>
+        <translation>开启无线网络</translation>
     </message>
     <message>
-        <source>Band</source>
-        <translation>频段</translation>
+        <source>Disable network</source>
+        <translation>关闭网络</translation>
     </message>
     <message>
-        <source>Channel</source>
-        <translation>网络通道</translation>
+        <source>Enable network</source>
+        <translation>开启网络</translation>
     </message>
     <message>
-        <source>Interface</source>
-        <translation>接口</translation>
+        <source>Disable VPN</source>
+        <translation>关闭VPN</translation>
     </message>
     <message>
-        <source>MAC</source>
-        <translation>MAC</translation>
+        <source>Enable VPN</source>
+        <translation>开启VPN</translation>
     </message>
     <message>
-        <source>IPv4</source>
-        <translation>IPv4</translation>
+        <source>Disable system proxy</source>
+        <translation>关闭系统代理</translation>
     </message>
     <message>
-        <source>Netmask</source>
-        <translation>子网掩码</translation>
+        <source>Enable system proxy</source>
+        <translation>开启系统代理</translation>
     </message>
     <message>
-        <source>Gateway</source>
-        <translation>网关</translation>
+        <source>Network settings</source>
+        <translation>网络设置</translation>
     </message>
     <message>
-        <source>Primary DNS</source>
-        <translation>首选DNS</translation>
+        <source>Multiple services started</source>
+        <translation>多个服务已开启</translation>
     </message>
     <message>
-        <source>IPv6</source>
-        <translation>IPv6</translation>
+        <source>Connected to: %1</source>
+        <translation>已连接至：%1</translation>
     </message>
     <message>
-        <source>Prefix</source>
-        <translation>前缀</translation>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation>速率</translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetworkDeviceRealize</name>
-    <message>
-        <source>Device disabled</source>
-        <translation>设备已禁用</translation>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation>已连接网络但无法访问互联网</translation>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation>未连接</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>未插入网线</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>正在连接</translation>
-    </message>
-    <message>
-        <source>Authenticating</source>
-        <translation>认证中</translation>
-    </message>
-    <message>
-        <source>Obtaining IP address</source>
-        <translation>正在获取IP地址</translation>
+        <source>System proxy enabled</source>
+        <translation>系统代理已开启</translation>
     </message>
     <message>
         <source>Connected</source>
         <translation>已连接</translation>
     </message>
     <message>
-        <source>Disconnected</source>
-        <translation>已断开</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>IP地址冲突</translation>
-    </message>
-    <message>
-        <source>Failed</source>
-        <translation>失败</translation>
-    </message>
-    <message>
-        <source>Obtaining address</source>
-        <translation>获取地址中</translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetworkProcesser</name>
-    <message>
-        <source>Wired Network</source>
-        <translation>有线网络</translation>
-    </message>
-    <message>
-        <source>Wired Network %1</source>
-        <translation>有线网络%1</translation>
-    </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation>无线网络</translation>
-    </message>
-    <message>
-        <source>Wireless Network %1</source>
-        <translation>无线网络%1</translation>
-    </message>
-</context>
-<context>
-    <name>dde::networkplugin::NetworkPluginHelper</name>
-    <message>
-        <source>Device disabled</source>
-        <translation>设备已禁用</translation>
+        <source>Network off</source>
+        <translation>网络关闭</translation>
     </message>
     <message>
         <source>Network cable unplugged</source>
@@ -250,32 +233,80 @@
         <translation>IP地址冲突</translation>
     </message>
     <message>
-        <source>Disable wired connection</source>
-        <translation>关闭有线网络</translation>
+        <source>Wireless Network</source>
+        <translation>无线网络</translation>
     </message>
     <message>
-        <source>Enable wired connection</source>
-        <translation>启用有线网络</translation>
+        <source>Connected %1</source>
+        <translation>已连接%1</translation>
     </message>
     <message>
-        <source>Disable wireless connection</source>
-        <translation>关闭无线网络</translation>
+        <source>Off</source>
+        <translation>关闭</translation>
     </message>
     <message>
-        <source>Enable wireless connection</source>
-        <translation>启用无线网络</translation>
+        <source>Wired Network</source>
+        <translation>有线网络</translation>
     </message>
     <message>
-        <source>Disable network</source>
-        <translation>关闭网络</translation>
+        <source>Network</source>
+        <translation>网络</translation>
     </message>
+</context>
+<context>
+    <name>dde::network::NetSystemProxyControlItem</name>
     <message>
-        <source>Enable network</source>
-        <translation>启用网络</translation>
+        <source>System Proxy</source>
+        <translation>系统代理</translation>
     </message>
+</context>
+<context>
+    <name>dde::network::NetVPNTipsItem</name>
     <message>
-        <source>Network settings</source>
-        <translation>网络设置</translation>
+        <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
+        <translation>VPN配置未连接或连接失败，请 &lt;a style=&quot;text-decoration: none;&quot;href=&quot;go to the control center&quot;&gt;前往控制中心 &lt;/a&gt;检查</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWiredControlItem</name>
+    <message>
+        <source>Wired Network</source>
+        <translation>有线网络</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessControlItem</name>
+    <message>
+        <source>Wireless Network</source>
+        <translation>无线网络</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessHiddenItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation>连接到隐藏网络</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessMineItem</name>
+    <message>
+        <source>My Networks</source>
+        <translation>我的网络</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessOtherItem</name>
+    <message>
+        <source>Other Networks</source>
+        <translation>其他网络</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetworkPlugin</name>
+    <message>
+        <source>Network</source>
+        <translation>网络</translation>
     </message>
 </context>
 </TS>

@@ -1,273 +1,312 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="nl">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="nl">
 <context>
-    <name>DeviceControllItem</name>
+    <name>dde::network::DockContentWidget</name>
     <message>
-        <source>Wireless Network</source>
-        <translation>Draadloos netwerk</translation>
+        <source>Network settings</source>
+        <translation type="unfinished">Netwerkinstellingen</translation>
     </message>
     <message>
-        <source>Wired Network</source>
-        <translation>Bekabeld netwerk</translation>
+        <source>Network Detection</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>NetworkPlugin</name>
+    <name>dde::network::NetAirplaneModeTipsItem</name>
     <message>
-        <source>Network</source>
-        <translation>Netwerk</translation>
+        <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
+        <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Wired Network</source>
-        <translation>Bekabeld netwerk</translation>
-    </message>
-    <message>
-        <source>Device disabled</source>
-        <translation>Apparaat uitgeschakeld</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>Geen netwerkkabel aangesloten</translation>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation>Niet verbonden</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>Bezig met verbinden…</translation>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation>Verbonden, maar geen internettoegang</translation>
-    </message>
+</context>
+<context>
+    <name>dde::network::NetManagerPrivate</name>
     <message>
         <source>IP conflict</source>
-        <translation>IP-conflict</translation>
+        <translation type="unfinished">IP-conflict</translation>
     </message>
     <message>
-        <source>Connection failed</source>
-        <translation>Verbinding mislukt</translation>
+        <source>Network</source>
+        <translation type="unfinished">Netwerk</translation>
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
+    <name>dde::network::NetManagerThreadPrivate</name>
     <message>
-        <source>Connect to hidden network</source>
-        <translation>Verbinden met verborgen netwerk</translation>
+        <source>Wired Connection %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>VPN L2TP %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN PPTP %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN VPNC %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN OpenVPN %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN StrongSwan %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN OpenConnect %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PPPoE Connection %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connecting &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; disconnected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password is required to connect &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetSecretWidget</name>
+    <message>
         <source>Password</source>
-        <translation>Wachtwoord</translation>
+        <translation type="unfinished">Wachtwoord</translation>
+    </message>
+    <message>
+        <source>Private Pwd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Proxy Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Group Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation type="unfinished">Naam (SSID)</translation>
     </message>
     <message>
         <source>Cancel</source>
         <comment>button</comment>
-        <translation>Annuleren</translation>
+        <translation type="unfinished">Annuleren</translation>
     </message>
     <message>
         <source>Connect</source>
         <comment>button</comment>
-        <translation>Verbinden</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation>Naam (SSID)</translation>
+        <translation type="unfinished">Verbinden</translation>
     </message>
 </context>
 <context>
-    <name>dde::network::NetworkDetails</name>
-    <message>
-        <source>Hotspot</source>
-        <translation>Hotspot</translation>
-    </message>
-    <message>
-        <source>SSID</source>
-        <translation>SSID</translation>
-    </message>
-    <message>
-        <source>Protocol</source>
-        <translation>Protocol</translation>
-    </message>
-    <message>
-        <source>Security Type</source>
-        <translation>Soort beveiliging</translation>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation>Band</translation>
-    </message>
-    <message>
-        <source>Channel</source>
-        <translation>Kanaal</translation>
-    </message>
-    <message>
-        <source>Interface</source>
-        <translation>Interface</translation>
-    </message>
-    <message>
-        <source>MAC</source>
-        <translation>MAC</translation>
-    </message>
-    <message>
-        <source>IPv4</source>
-        <translation>IPv4</translation>
-    </message>
-    <message>
-        <source>Netmask</source>
-        <translation>Netmasker</translation>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Gateway</translation>
-    </message>
-    <message>
-        <source>Primary DNS</source>
-        <translation>Primaire dns-server</translation>
-    </message>
-    <message>
-        <source>IPv6</source>
-        <translation>IPv6</translation>
-    </message>
-    <message>
-        <source>Prefix</source>
-        <translation>Voorvoegsel</translation>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation>Snelheid</translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetworkDeviceRealize</name>
-    <message>
-        <source>Device disabled</source>
-        <translation>Apparaat uitgeschakeld</translation>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation>Verbonden, maar geen internettoegang</translation>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation>Niet verbonden</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>Geen netwerkkabel aangesloten</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>Bezig met verbinden…</translation>
-    </message>
-    <message>
-        <source>Authenticating</source>
-        <translation>Bezig met authenticeren…</translation>
-    </message>
-    <message>
-        <source>Obtaining IP address</source>
-        <translation>Bezig met verkrijgen van ip-adres…</translation>
-    </message>
-    <message>
-        <source>Connected</source>
-        <translation>Verbonden</translation>
-    </message>
-    <message>
-        <source>Disconnected</source>
-        <translation>Niet verbonden</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>IP-conflict</translation>
-    </message>
-    <message>
-        <source>Failed</source>
-        <translation>Mislukt</translation>
-    </message>
-    <message>
-        <source>Obtaining address</source>
-        <translation>Bezig met verkrijgen van adres…</translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetworkProcesser</name>
-    <message>
-        <source>Wired Network</source>
-        <translation>Bekabeld netwerk</translation>
-    </message>
-    <message>
-        <source>Wired Network %1</source>
-        <translation>Bekabeld netwerk: %1</translation>
-    </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation>Draadloos netwerk</translation>
-    </message>
-    <message>
-        <source>Wireless Network %1</source>
-        <translation>Draadloos netwerk: %1</translation>
-    </message>
-</context>
-<context>
-    <name>dde::networkplugin::NetworkPluginHelper</name>
-    <message>
-        <source>Device disabled</source>
-        <translation>Apparaat uitgeschakeld</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>Geen netwerkkabel aangesloten</translation>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation>Niet verbonden</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>Bezig met verbinden…</translation>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation>Verbonden, maar geen internettoegang</translation>
-    </message>
-    <message>
-        <source>Connection failed</source>
-        <translation>Verbinding mislukt</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>IP-conflict</translation>
-    </message>
+    <name>dde::network::NetStatus</name>
     <message>
         <source>Disable wired connection</source>
-        <translation>Bekabelde verbinding uitschakelen</translation>
+        <translation type="unfinished">Bekabelde verbinding uitschakelen</translation>
     </message>
     <message>
         <source>Enable wired connection</source>
-        <translation>Bekabelde verbinding inschakelen</translation>
+        <translation type="unfinished">Bekabelde verbinding inschakelen</translation>
     </message>
     <message>
         <source>Disable wireless connection</source>
-        <translation>Draadloze verbinding uitschakelen</translation>
+        <translation type="unfinished">Draadloze verbinding uitschakelen</translation>
     </message>
     <message>
         <source>Enable wireless connection</source>
-        <translation>Draadloze verbinding inschakelen</translation>
+        <translation type="unfinished">Draadloze verbinding inschakelen</translation>
     </message>
     <message>
         <source>Disable network</source>
-        <translation>Netwerk uitschakelen</translation>
+        <translation type="unfinished">Netwerk uitschakelen</translation>
     </message>
     <message>
         <source>Enable network</source>
-        <translation>Netwerk inschakelen</translation>
+        <translation type="unfinished">Netwerk inschakelen</translation>
+    </message>
+    <message>
+        <source>Disable VPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable VPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable system proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable system proxy</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Network settings</source>
-        <translation>Netwerkinstellingen</translation>
+        <translation type="unfinished">Netwerkinstellingen</translation>
+    </message>
+    <message>
+        <source>Multiple services started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected to: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>System proxy enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished">Verbonden</translation>
+    </message>
+    <message>
+        <source>Network off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network cable unplugged</source>
+        <translation type="unfinished">Geen netwerkkabel aangesloten</translation>
+    </message>
+    <message>
+        <source>Not connected</source>
+        <translation type="unfinished">Niet verbonden</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation type="unfinished">Bezig met verbinden…</translation>
+    </message>
+    <message>
+        <source>Connected but no Internet access</source>
+        <translation type="unfinished">Verbonden, maar geen internettoegang</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation type="unfinished">Verbinding mislukt</translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished">IP-conflict</translation>
+    </message>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished">Draadloos netwerk</translation>
+    </message>
+    <message>
+        <source>Connected %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation type="unfinished">Bekabeld netwerk</translation>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished">Netwerk</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetSystemProxyControlItem</name>
+    <message>
+        <source>System Proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetVPNTipsItem</name>
+    <message>
+        <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWiredControlItem</name>
+    <message>
+        <source>Wired Network</source>
+        <translation type="unfinished">Bekabeld netwerk</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessControlItem</name>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished">Draadloos netwerk</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessHiddenItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation type="unfinished">Verbinden met verborgen netwerk</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessMineItem</name>
+    <message>
+        <source>My Networks</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessOtherItem</name>
+    <message>
+        <source>Other Networks</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetworkPlugin</name>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished">Netwerk</translation>
     </message>
 </context>
 </TS>
