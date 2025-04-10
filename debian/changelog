@@ -1,3 +1,10 @@
+dde-network-core (2.0.53) unstable; urgency=medium
+
+  * fix: Update translation
+  * feat: Synchronize to 107x
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Thu, 10 Apr 2025 16:32:20 +0800
+
 dde-network-core (2.0.52) unstable; urgency=medium
 
   * fix: Remove Qt5 dependencies
