@@ -1,269 +1,312 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="si">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="si">
 <context>
-    <name>DeviceControllItem</name>
+    <name>dde::network::DockContentWidget</name>
     <message>
-        <source>Wireless Network</source>
-        <translation>රැහැන් රහිත ජාලය</translation>
+        <source>Network settings</source>
+        <translation type="unfinished">ජාල සැකසුම්</translation>
     </message>
     <message>
-        <source>Wired Network</source>
-        <translation>රැහැන්ගත ජාලය</translation>
+        <source>Network Detection</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>NetworkPlugin</name>
+    <name>dde::network::NetAirplaneModeTipsItem</name>
     <message>
-        <source>Network</source>
-        <translation>ජාලය</translation>
+        <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
+        <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Wired Network</source>
-        <translation>රැහැන්ගත ජාලය</translation>
-    </message>
-    <message>
-        <source>Device disabled</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation type="unfinished"/>
-    </message>
+</context>
+<context>
+    <name>dde::network::NetManagerPrivate</name>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Connection failed</source>
-        <translation type="unfinished"/>
+        <source>Network</source>
+        <translation type="unfinished">ජාලය</translation>
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
+    <name>dde::network::NetManagerThreadPrivate</name>
     <message>
-        <source>Connect to hidden network</source>
-        <translation>සැඟවුණු ජාලයකට සම්බන්ධ වන්න</translation>
+        <source>Wired Connection %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>VPN L2TP %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN PPTP %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN VPNC %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN OpenVPN %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN StrongSwan %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN OpenConnect %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PPPoE Connection %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connecting &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; disconnected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password is required to connect &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetSecretWidget</name>
+    <message>
         <source>Password</source>
-        <translation>මුර පදය</translation>
+        <translation type="unfinished">මුර පදය</translation>
+    </message>
+    <message>
+        <source>Private Pwd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Proxy Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Group Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Cancel</source>
         <comment>button</comment>
-        <translation>අවලංගු කරන්න</translation>
+        <translation type="unfinished">අවලංගු කරන්න</translation>
     </message>
     <message>
         <source>Connect</source>
         <comment>button</comment>
-        <translation>සම්බන්ධ කරන්න</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">සම්බන්ධ කරන්න</translation>
     </message>
 </context>
 <context>
-    <name>dde::network::NetworkDetails</name>
-    <message>
-        <source>Hotspot</source>
-        <translation>හොට්ස්පොට්</translation>
-    </message>
-    <message>
-        <source>SSID</source>
-        <translation>SSID</translation>
-    </message>
-    <message>
-        <source>Protocol</source>
-        <translation>ප්රොටෝකෝලය</translation>
-    </message>
-    <message>
-        <source>Security Type</source>
-        <translation>ආරක්ෂක වර්ගය</translation>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation>කලාපය</translation>
-    </message>
-    <message>
-        <source>Channel</source>
-        <translation>නාලිකාව</translation>
-    </message>
-    <message>
-        <source>Interface</source>
-        <translation>අතුරුමුහුණත</translation>
-    </message>
-    <message>
-        <source>MAC</source>
-        <translation>MAC</translation>
-    </message>
-    <message>
-        <source>IPv4</source>
-        <translation>IPv4</translation>
-    </message>
-    <message>
-        <source>Netmask</source>
-        <translation>නෙට්මාස්ක්</translation>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>දොරටුව-gateway</translation>
-    </message>
-    <message>
-        <source>Primary DNS</source>
-        <translation>ප්‍රාථමික DNS</translation>
-    </message>
-    <message>
-        <source>IPv6</source>
-        <translation>IPv6</translation>
-    </message>
-    <message>
-        <source>Prefix</source>
-        <translation>උපසර්ගය</translation>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation>වේගය</translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetworkDeviceRealize</name>
-    <message>
-        <source>Device disabled</source>
-        <translation>උපාංගය අක්‍රීය කර ඇත</translation>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation>ජාලගතව ඇතත් අන්තර්ජාල ප්‍රවේශය නොමැත</translation>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation>සම්බන්ධතා නොමැත</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>ජාල කේබලය විසන්ධි කර ඇත</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>සම්බන්ධ වෙමින් පවතී</translation>
-    </message>
-    <message>
-        <source>Authenticating</source>
-        <translation>සත්‍යාපනය කිරීම</translation>
-    </message>
-    <message>
-        <source>Obtaining IP address</source>
-        <translation>IP ලිපිනය ලබා ගැනීම</translation>
-    </message>
-    <message>
-        <source>Connected</source>
-        <translation>සම්බන්ධයි</translation>
-    </message>
-    <message>
-        <source>Disconnected</source>
-        <translation>විසන්ධි වි ඇත</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Failed</source>
-        <translation>අසමත් විය</translation>
-    </message>
-    <message>
-        <source>Obtaining address</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetworkProcesser</name>
-    <message>
-        <source>Wired Network</source>
-        <translation>රැහැන්ගත ජාලය</translation>
-    </message>
-    <message>
-        <source>Wired Network %1</source>
-        <translation>රැහැන්ගත ජාලය %1</translation>
-    </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation>රැහැන් රහිත ජාලය</translation>
-    </message>
-    <message>
-        <source>Wireless Network %1</source>
-        <translation>රැහැන් රහිත ජාලය %1</translation>
-    </message>
-</context>
-<context>
-    <name>dde::networkplugin::NetworkPluginHelper</name>
-    <message>
-        <source>Device disabled</source>
-        <translation>උපාංගය අක්‍රීය කර ඇත</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>ජාල කේබලය විසන්ධි කර ඇත</translation>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation>සම්බන්ධතා නොමැත</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>සම්බන්ධ වෙමින් පවතී</translation>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation>ජාලගතව ඇතත් අන්තර්ජාල ප්‍රවේශය නොමැත</translation>
-    </message>
-    <message>
-        <source>Connection failed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation type="unfinished"/>
-    </message>
+    <name>dde::network::NetStatus</name>
     <message>
         <source>Disable wired connection</source>
-        <translation>රැහැන් සම්බන්ධතාවය අක්‍රීය කරන්න</translation>
+        <translation type="unfinished">රැහැන් සම්බන්ධතාවය අක්‍රීය කරන්න</translation>
     </message>
     <message>
         <source>Enable wired connection</source>
-        <translation>රැහැන් සම්බන්ධතාවය සක්‍රීය කරන්න</translation>
+        <translation type="unfinished">රැහැන් සම්බන්ධතාවය සක්‍රීය කරන්න</translation>
     </message>
     <message>
         <source>Disable wireless connection</source>
-        <translation>රැහැන් රහිත සම්බන්ධතාවය අක්‍රීය කරන්න</translation>
+        <translation type="unfinished">රැහැන් රහිත සම්බන්ධතාවය අක්‍රීය කරන්න</translation>
     </message>
     <message>
         <source>Enable wireless connection</source>
-        <translation>රැහැන් රහිත සම්බන්ධතාවය සක්‍රීය කරන්න</translation>
+        <translation type="unfinished">රැහැන් රහිත සම්බන්ධතාවය සක්‍රීය කරන්න</translation>
     </message>
     <message>
         <source>Disable network</source>
-        <translation>ජාලය අක්‍රීය කරන්න</translation>
+        <translation type="unfinished">ජාලය අක්‍රීය කරන්න</translation>
     </message>
     <message>
         <source>Enable network</source>
-        <translation>ජාලය සක්‍රීය කරන්න</translation>
+        <translation type="unfinished">ජාලය සක්‍රීය කරන්න</translation>
+    </message>
+    <message>
+        <source>Disable VPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable VPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable system proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable system proxy</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Network settings</source>
-        <translation>ජාල සැකසුම්</translation>
+        <translation type="unfinished">ජාල සැකසුම්</translation>
+    </message>
+    <message>
+        <source>Multiple services started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected to: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>System proxy enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished">සම්බන්ධයි</translation>
+    </message>
+    <message>
+        <source>Network off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network cable unplugged</source>
+        <translation type="unfinished">ජාල කේබලය විසන්ධි කර ඇත</translation>
+    </message>
+    <message>
+        <source>Not connected</source>
+        <translation type="unfinished">සම්බන්ධතා නොමැත</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation type="unfinished">සම්බන්ධ වෙමින් පවතී</translation>
+    </message>
+    <message>
+        <source>Connected but no Internet access</source>
+        <translation type="unfinished">ජාලගතව ඇතත් අන්තර්ජාල ප්‍රවේශය නොමැත</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished">රැහැන් රහිත ජාලය</translation>
+    </message>
+    <message>
+        <source>Connected %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation type="unfinished">රැහැන්ගත ජාලය</translation>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished">ජාලය</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetSystemProxyControlItem</name>
+    <message>
+        <source>System Proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetVPNTipsItem</name>
+    <message>
+        <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWiredControlItem</name>
+    <message>
+        <source>Wired Network</source>
+        <translation type="unfinished">රැහැන්ගත ජාලය</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessControlItem</name>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished">රැහැන් රහිත ජාලය</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessHiddenItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation type="unfinished">සැඟවුණු ජාලයකට සම්බන්ධ වන්න</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessMineItem</name>
+    <message>
+        <source>My Networks</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessOtherItem</name>
+    <message>
+        <source>Other Networks</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetworkPlugin</name>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished">ජාලය</translation>
     </message>
 </context>
 </TS>

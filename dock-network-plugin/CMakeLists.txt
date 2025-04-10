@@ -39,14 +39,18 @@ find_package(DdeDock REQUIRED)
 #    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -fsanitize=address -O0")
 #endif()
 
-file(GLOB TS_FILES "translations/*.ts")
-qt_add_translation(QM_FILES ${TS_FILES})
-add_custom_target(language ALL DEPENDS ${QM_FILES})
-
 add_definitions("${QT_DEFINITIONS} -DQT_PLUGIN")
 add_library(${PLUGIN_NAME} SHARED ${SRCS} ../net-view/window/qrc/network.qrc)
 set_target_properties(${PLUGIN_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ../../dde-dock)
 
+file(GLOB TS_FILES "translations/*.ts")
+qt_add_translations(${PLUGIN_NAME}_language
+    TS_FILES ${TS_FILES}
+    SOURCES ${SRCS}
+    LUPDATE_OPTIONS -no-obsolete -no-ui-lines -locations none
+    QM_FILES_OUTPUT_VARIABLE QM_FILES
+)
+add_custom_target(${PLUGIN_NAME}_language ALL DEPENDS ${QM_FILES})
 # get_target_property(KF6_QT_INCLUDE_DIRS KF6::NetworkManagerQt INTERFACE_INCLUDE_DIRECTORIES)
 
 target_include_directories(${PLUGIN_NAME} PUBLIC

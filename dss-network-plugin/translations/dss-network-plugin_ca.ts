@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ca">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ca">
 <context>
     <name>Bubble</name>
     <message>
@@ -7,273 +9,293 @@
     </message>
 </context>
 <context>
-    <name>DeviceControllItem</name>
+    <name>dde::network::NetAirplaneModeTipsItem</name>
     <message>
-        <source>Wireless Network</source>
-        <translation>Xarxa sense fil</translation>
-    </message>
-    <message>
-        <source>Wired Network</source>
-        <translation>Xarxa amb fil</translation>
+        <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>QObject</name>
+    <name>dde::network::NetManagerPrivate</name>
     <message>
-        <source>Connecting %1</source>
-        <translation>Es connecta amb %1</translation>
+        <source>IP conflict</source>
+        <translation type="unfinished">Conflicte d&apos;IP</translation>
     </message>
     <message>
-        <source>%1 connected</source>
-        <translation>%1 connectat</translation>
-    </message>
-    <message>
-        <source>%1 disconnected</source>
-        <translation>%s desconnectat</translation>
-    </message>
-    <message>
-        <source>Unable to connect %1, please check your router or net cable.</source>
-        <translation>No es pot connectar amb %1. Comproveu l&apos;encaminador o el cable de xarxa.</translation>
-    </message>
-    <message>
-        <source>Unable to connect %1, please keep closer to the wireless router</source>
-        <translation>No es pot connectar amb %1. Si us plau, mantingueu-vos a prop de l&apos;encaminador.</translation>
-    </message>
-    <message>
-        <source>Connection failed, unable to connect %1, wrong password</source>
-        <translation>Ha fallat la connexió. No es pot connectar amb %1: contrasenya incorrecta.</translation>
-    </message>
-    <message>
-        <source>Password is required to connect %1</source>
-        <translation>Cal la contrasenya per connectar amb %1.</translation>
-    </message>
-    <message>
-        <source>The %1 802.11 WLAN network could not be found</source>
-        <translation>No s&apos;ha pogut trobar la xarxa WLAN 802.11 %1.</translation>
+        <source>Network</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
+    <name>dde::network::NetManagerThreadPrivate</name>
     <message>
-        <source>Connect to hidden network</source>
-        <translation>Connecta amb una xarxa oculta</translation>
+        <source>Wired Connection %1</source>
+        <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>VPN L2TP %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN PPTP %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN VPNC %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN OpenVPN %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN StrongSwan %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN OpenConnect %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PPPoE Connection %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connecting &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; disconnected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password is required to connect &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetSecretWidget</name>
     <message>
         <source>Password</source>
-        <translation>Contrasenya</translation>
+        <translation type="unfinished">Contrasenya</translation>
+    </message>
+    <message>
+        <source>Private Pwd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Proxy Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Group Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation type="unfinished">Nom (SSID)</translation>
     </message>
     <message>
         <source>Cancel</source>
         <comment>button</comment>
-        <translation>Cancel·la</translation>
+        <translation type="unfinished">Cancel·la</translation>
     </message>
     <message>
         <source>Connect</source>
         <comment>button</comment>
-        <translation>Connecta</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation>Nom (SSID)</translation>
+        <translation type="unfinished">Connecta</translation>
     </message>
 </context>
 <context>
-    <name>dde::network::NetworkDetails</name>
-    <message>
-        <source>Hotspot</source>
-        <translation>Punt d&apos;accés</translation>
-    </message>
-    <message>
-        <source>SSID</source>
-        <translation>SSID</translation>
-    </message>
-    <message>
-        <source>Protocol</source>
-        <translation>Protocol</translation>
-    </message>
-    <message>
-        <source>Security Type</source>
-        <translation>Tipus de seguretat</translation>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation>Banda</translation>
-    </message>
-    <message>
-        <source>Channel</source>
-        <translation>Canal</translation>
-    </message>
-    <message>
-        <source>Interface</source>
-        <translation>Interfície</translation>
-    </message>
-    <message>
-        <source>MAC</source>
-        <translation>MAC</translation>
-    </message>
-    <message>
-        <source>IPv4</source>
-        <translation>IPv4</translation>
-    </message>
-    <message>
-        <source>Netmask</source>
-        <translation>Màscara de xarxa</translation>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Passarel·la</translation>
-    </message>
-    <message>
-        <source>Primary DNS</source>
-        <translation>DNS primari</translation>
-    </message>
-    <message>
-        <source>IPv6</source>
-        <translation>IPv6</translation>
-    </message>
-    <message>
-        <source>Prefix</source>
-        <translation>Prefix</translation>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation>Velocitat</translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetworkDeviceRealize</name>
-    <message>
-        <source>Device disabled</source>
-        <translation>Dispositiu inhabilitat</translation>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation>Connectat però sense accés a Internet</translation>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation>No connectat</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>Cable de xarxa desendollat</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>Es connecta</translation>
-    </message>
-    <message>
-        <source>Authenticating</source>
-        <translation>S&apos;autentica</translation>
-    </message>
-    <message>
-        <source>Obtaining IP address</source>
-        <translation>S&apos;obté l&apos;adreça IP</translation>
-    </message>
-    <message>
-        <source>Connected</source>
-        <translation>Connectat</translation>
-    </message>
-    <message>
-        <source>Disconnected</source>
-        <translation>Desconnectat</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>Conflicte d&apos;IP</translation>
-    </message>
-    <message>
-        <source>Failed</source>
-        <translation>Ha fallat</translation>
-    </message>
-    <message>
-        <source>Obtaining address</source>
-        <translation>S&apos;obté l&apos;adreça</translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetworkProcesser</name>
-    <message>
-        <source>Wired Network</source>
-        <translation>Xarxa amb fil</translation>
-    </message>
-    <message>
-        <source>Wired Network %1</source>
-        <translation>Xarxa amb fil %1</translation>
-    </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation>Xarxa sense fil</translation>
-    </message>
-    <message>
-        <source>Wireless Network %1</source>
-        <translation>Xarxa sense fil %1</translation>
-    </message>
-</context>
-<context>
-    <name>dde::networkplugin::NetworkPluginHelper</name>
-    <message>
-        <source>Device disabled</source>
-        <translation>Dispositiu inhabilitat</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>Cable de xarxa desendollat</translation>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation>No connectat</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>Es connecta</translation>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation>Connectat però sense accés a Internet</translation>
-    </message>
-    <message>
-        <source>Connection failed</source>
-        <translation>Ha fallat la connexió.</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>Conflicte d&apos;IP</translation>
-    </message>
+    <name>dde::network::NetStatus</name>
     <message>
         <source>Disable wired connection</source>
-        <translation>Inhabilita la connexió amb fil</translation>
+        <translation type="unfinished">Inhabilita la connexió amb fil</translation>
     </message>
     <message>
         <source>Enable wired connection</source>
-        <translation>Habilita la connexió amb fil</translation>
+        <translation type="unfinished">Habilita la connexió amb fil</translation>
     </message>
     <message>
         <source>Disable wireless connection</source>
-        <translation>Inhabilita la connexió sense fil</translation>
+        <translation type="unfinished">Inhabilita la connexió sense fil</translation>
     </message>
     <message>
         <source>Enable wireless connection</source>
-        <translation>Habilita la connexió sense fil</translation>
+        <translation type="unfinished">Habilita la connexió sense fil</translation>
     </message>
     <message>
         <source>Disable network</source>
-        <translation>Inhabilita la xarxa</translation>
+        <translation type="unfinished">Inhabilita la xarxa</translation>
     </message>
     <message>
         <source>Enable network</source>
-        <translation>Habilita la xarxa</translation>
+        <translation type="unfinished">Habilita la xarxa</translation>
+    </message>
+    <message>
+        <source>Disable VPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable VPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable system proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable system proxy</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Network settings</source>
-        <translation>Configuració de la xarxa</translation>
+        <translation type="unfinished">Configuració de la xarxa</translation>
+    </message>
+    <message>
+        <source>Multiple services started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected to: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>System proxy enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished">Connectat</translation>
+    </message>
+    <message>
+        <source>Network off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network cable unplugged</source>
+        <translation type="unfinished">Cable de xarxa desendollat</translation>
+    </message>
+    <message>
+        <source>Not connected</source>
+        <translation type="unfinished">No connectat</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation type="unfinished">Es connecta</translation>
+    </message>
+    <message>
+        <source>Connected but no Internet access</source>
+        <translation type="unfinished">Connectat però sense accés a Internet</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation type="unfinished">Ha fallat la connexió.</translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished">Conflicte d&apos;IP</translation>
+    </message>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished">Xarxa sense fil</translation>
+    </message>
+    <message>
+        <source>Connected %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation type="unfinished">Xarxa amb fil</translation>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>dss::module::NetworkModule</name>
+    <name>dde::network::NetSystemProxyControlItem</name>
     <message>
-        <source>Wired Connection</source>
-        <translation>Connexió amb fil</translation>
+        <source>System Proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetVPNTipsItem</name>
+    <message>
+        <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWiredControlItem</name>
+    <message>
+        <source>Wired Network</source>
+        <translation type="unfinished">Xarxa amb fil</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessControlItem</name>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished">Xarxa sense fil</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessHiddenItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation type="unfinished">Connecta amb una xarxa oculta</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessMineItem</name>
+    <message>
+        <source>My Networks</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessOtherItem</name>
+    <message>
+        <source>Other Networks</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

@@ -1,269 +1,312 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="vi">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="vi">
 <context>
-    <name>DeviceControllItem</name>
+    <name>dde::network::DockContentWidget</name>
     <message>
-        <source>Wireless Network</source>
-        <translation>Mạng không dây</translation>
+        <source>Network settings</source>
+        <translation type="unfinished">Thiết lập mạng</translation>
     </message>
     <message>
-        <source>Wired Network</source>
-        <translation>Mạng kết nối dây</translation>
+        <source>Network Detection</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>NetworkPlugin</name>
+    <name>dde::network::NetAirplaneModeTipsItem</name>
     <message>
-        <source>Network</source>
-        <translation>Mạng</translation>
+        <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
+        <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Wired Network</source>
-        <translation>Mạng kết nối dây</translation>
-    </message>
-    <message>
-        <source>Device disabled</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation type="unfinished"/>
-    </message>
+</context>
+<context>
+    <name>dde::network::NetManagerPrivate</name>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Connection failed</source>
-        <translation type="unfinished"/>
+        <source>Network</source>
+        <translation type="unfinished">Mạng</translation>
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
+    <name>dde::network::NetManagerThreadPrivate</name>
     <message>
-        <source>Connect to hidden network</source>
-        <translation>Kết nối với mạng ẩn</translation>
+        <source>Wired Connection %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>VPN L2TP %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN PPTP %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN VPNC %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN OpenVPN %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN StrongSwan %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN OpenConnect %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PPPoE Connection %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connecting &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; disconnected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password is required to connect &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetSecretWidget</name>
+    <message>
         <source>Password</source>
-        <translation>Mật mã</translation>
+        <translation type="unfinished">Mật mã</translation>
+    </message>
+    <message>
+        <source>Private Pwd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Proxy Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Group Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Cancel</source>
         <comment>button</comment>
-        <translation>Hủy</translation>
+        <translation type="unfinished">Hủy</translation>
     </message>
     <message>
         <source>Connect</source>
         <comment>button</comment>
-        <translation>Kết nối</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">Kết nối</translation>
     </message>
 </context>
 <context>
-    <name>dde::network::NetworkDetails</name>
-    <message>
-        <source>Hotspot</source>
-        <translation>Điểm truy cập</translation>
-    </message>
-    <message>
-        <source>SSID</source>
-        <translation>SSID</translation>
-    </message>
-    <message>
-        <source>Protocol</source>
-        <translation>Giao thức</translation>
-    </message>
-    <message>
-        <source>Security Type</source>
-        <translation>Loại bảo mật</translation>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation>Băng tần</translation>
-    </message>
-    <message>
-        <source>Channel</source>
-        <translation>Kênh</translation>
-    </message>
-    <message>
-        <source>Interface</source>
-        <translation>Giao diện</translation>
-    </message>
-    <message>
-        <source>MAC</source>
-        <translation>MAC</translation>
-    </message>
-    <message>
-        <source>IPv4</source>
-        <translation>IPv4</translation>
-    </message>
-    <message>
-        <source>Netmask</source>
-        <translation>Mặt nạ mạng</translation>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Cổng vào</translation>
-    </message>
-    <message>
-        <source>Primary DNS</source>
-        <translation>DNS Đầu</translation>
-    </message>
-    <message>
-        <source>IPv6</source>
-        <translation>IPv6</translation>
-    </message>
-    <message>
-        <source>Prefix</source>
-        <translation>Tiền tố</translation>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation>Tốt độ</translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetworkDeviceRealize</name>
-    <message>
-        <source>Device disabled</source>
-        <translation>Thiết bị bị vô hiệu hóa</translation>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation>Đã kết nối nhưng không có truy cập Internet</translation>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation>Không được kết nối</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>Mạng dây đã ngắt</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>Đang kết nối</translation>
-    </message>
-    <message>
-        <source>Authenticating</source>
-        <translation>Đang xác nhận</translation>
-    </message>
-    <message>
-        <source>Obtaining IP address</source>
-        <translation>Đang lấy địa chỉ IP</translation>
-    </message>
-    <message>
-        <source>Connected</source>
-        <translation>Đã kết nối</translation>
-    </message>
-    <message>
-        <source>Disconnected</source>
-        <translation>Đã ngắt kết nối</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Failed</source>
-        <translation>Thất bại</translation>
-    </message>
-    <message>
-        <source>Obtaining address</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetworkProcesser</name>
-    <message>
-        <source>Wired Network</source>
-        <translation>Mạng kết nối dây</translation>
-    </message>
-    <message>
-        <source>Wired Network %1</source>
-        <translation>Mạng kết nối dây %1</translation>
-    </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation>Mạng không dây</translation>
-    </message>
-    <message>
-        <source>Wireless Network %1</source>
-        <translation>Mạng Không dây %1</translation>
-    </message>
-</context>
-<context>
-    <name>dde::networkplugin::NetworkPluginHelper</name>
-    <message>
-        <source>Device disabled</source>
-        <translation>Thiết bị bị vô hiệu hóa</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>Mạng dây đã ngắt</translation>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation>Không được kết nối</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>Đang kết nối</translation>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation>Đã kết nối nhưng không có truy cập Internet</translation>
-    </message>
-    <message>
-        <source>Connection failed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation type="unfinished"/>
-    </message>
+    <name>dde::network::NetStatus</name>
     <message>
         <source>Disable wired connection</source>
-        <translation>Tắt kết nối mạng dây</translation>
+        <translation type="unfinished">Tắt kết nối mạng dây</translation>
     </message>
     <message>
         <source>Enable wired connection</source>
-        <translation>Mở kết nối mạng dây</translation>
+        <translation type="unfinished">Mở kết nối mạng dây</translation>
     </message>
     <message>
         <source>Disable wireless connection</source>
-        <translation>Tắt kết nối wifi</translation>
+        <translation type="unfinished">Tắt kết nối wifi</translation>
     </message>
     <message>
         <source>Enable wireless connection</source>
-        <translation>Bật kết nối wifi</translation>
+        <translation type="unfinished">Bật kết nối wifi</translation>
     </message>
     <message>
         <source>Disable network</source>
-        <translation>Vô hiệu hóa mạng</translation>
+        <translation type="unfinished">Vô hiệu hóa mạng</translation>
     </message>
     <message>
         <source>Enable network</source>
-        <translation>Cho phép mạng</translation>
+        <translation type="unfinished">Cho phép mạng</translation>
+    </message>
+    <message>
+        <source>Disable VPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable VPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable system proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable system proxy</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Network settings</source>
-        <translation>Thiết lập mạng</translation>
+        <translation type="unfinished">Thiết lập mạng</translation>
+    </message>
+    <message>
+        <source>Multiple services started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected to: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>System proxy enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished">Đã kết nối</translation>
+    </message>
+    <message>
+        <source>Network off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network cable unplugged</source>
+        <translation type="unfinished">Mạng dây đã ngắt</translation>
+    </message>
+    <message>
+        <source>Not connected</source>
+        <translation type="unfinished">Không được kết nối</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation type="unfinished">Đang kết nối</translation>
+    </message>
+    <message>
+        <source>Connected but no Internet access</source>
+        <translation type="unfinished">Đã kết nối nhưng không có truy cập Internet</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished">Mạng không dây</translation>
+    </message>
+    <message>
+        <source>Connected %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation type="unfinished">Mạng kết nối dây</translation>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished">Mạng</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetSystemProxyControlItem</name>
+    <message>
+        <source>System Proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetVPNTipsItem</name>
+    <message>
+        <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWiredControlItem</name>
+    <message>
+        <source>Wired Network</source>
+        <translation type="unfinished">Mạng kết nối dây</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessControlItem</name>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished">Mạng không dây</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessHiddenItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation type="unfinished">Kết nối với mạng ẩn</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessMineItem</name>
+    <message>
+        <source>My Networks</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessOtherItem</name>
+    <message>
+        <source>Other Networks</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetworkPlugin</name>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished">Mạng</translation>
     </message>
 </context>
 </TS>

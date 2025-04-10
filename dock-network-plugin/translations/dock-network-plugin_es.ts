@@ -1,273 +1,312 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="es">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="es">
 <context>
-    <name>DeviceControllItem</name>
+    <name>dde::network::DockContentWidget</name>
     <message>
-        <source>Wireless Network</source>
-        <translation>Red inalámbrica</translation>
+        <source>Network settings</source>
+        <translation type="unfinished">Ajustes de red</translation>
     </message>
     <message>
-        <source>Wired Network</source>
-        <translation>Red cableada</translation>
+        <source>Network Detection</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>NetworkPlugin</name>
+    <name>dde::network::NetAirplaneModeTipsItem</name>
     <message>
-        <source>Network</source>
-        <translation>Red</translation>
+        <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
+        <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Wired Network</source>
-        <translation>Red cableada</translation>
-    </message>
-    <message>
-        <source>Device disabled</source>
-        <translation>Dispositivo deshabilitado</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>Cable de red desconectado</translation>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation>Sin conexión</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>Conectando</translation>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation>Conectado pero sin acceso a Internet</translation>
-    </message>
+</context>
+<context>
+    <name>dde::network::NetManagerPrivate</name>
     <message>
         <source>IP conflict</source>
-        <translation>Conflicto de IP</translation>
+        <translation type="unfinished">Conflicto de IP</translation>
     </message>
     <message>
-        <source>Connection failed</source>
-        <translation>Conexión fallida</translation>
+        <source>Network</source>
+        <translation type="unfinished">Red</translation>
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
+    <name>dde::network::NetManagerThreadPrivate</name>
     <message>
-        <source>Connect to hidden network</source>
-        <translation>Conectarse a una red oculta</translation>
+        <source>Wired Connection %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>VPN L2TP %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN PPTP %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN VPNC %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN OpenVPN %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN StrongSwan %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN OpenConnect %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PPPoE Connection %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connecting &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; disconnected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password is required to connect &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetSecretWidget</name>
+    <message>
         <source>Password</source>
-        <translation>Contraseña</translation>
+        <translation type="unfinished">Contraseña</translation>
+    </message>
+    <message>
+        <source>Private Pwd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Proxy Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Group Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation type="unfinished">Nombre (SSID)</translation>
     </message>
     <message>
         <source>Cancel</source>
         <comment>button</comment>
-        <translation>Cancelar</translation>
+        <translation type="unfinished">Cancelar</translation>
     </message>
     <message>
         <source>Connect</source>
         <comment>button</comment>
-        <translation>Conectar</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation>Nombre (SSID)</translation>
+        <translation type="unfinished">Conectar</translation>
     </message>
 </context>
 <context>
-    <name>dde::network::NetworkDetails</name>
-    <message>
-        <source>Hotspot</source>
-        <translation>Punto de acceso</translation>
-    </message>
-    <message>
-        <source>SSID</source>
-        <translation>SSID</translation>
-    </message>
-    <message>
-        <source>Protocol</source>
-        <translation>Protocolo</translation>
-    </message>
-    <message>
-        <source>Security Type</source>
-        <translation>Tipo de seguridad</translation>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation>Banda</translation>
-    </message>
-    <message>
-        <source>Channel</source>
-        <translation>Canal</translation>
-    </message>
-    <message>
-        <source>Interface</source>
-        <translation>Interfaz</translation>
-    </message>
-    <message>
-        <source>MAC</source>
-        <translation>MAC</translation>
-    </message>
-    <message>
-        <source>IPv4</source>
-        <translation>IPv4</translation>
-    </message>
-    <message>
-        <source>Netmask</source>
-        <translation>Máscara de red</translation>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Puerta de enlace</translation>
-    </message>
-    <message>
-        <source>Primary DNS</source>
-        <translation>DNS primario</translation>
-    </message>
-    <message>
-        <source>IPv6</source>
-        <translation>IPv6</translation>
-    </message>
-    <message>
-        <source>Prefix</source>
-        <translation>Prefijo</translation>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation>Velocidad</translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetworkDeviceRealize</name>
-    <message>
-        <source>Device disabled</source>
-        <translation>Dispositivo deshabilitado</translation>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation>Conectado pero sin acceso a Internet</translation>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation>Sin conexión</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>Cable de red desconectado</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>Conectando</translation>
-    </message>
-    <message>
-        <source>Authenticating</source>
-        <translation>Autentificando</translation>
-    </message>
-    <message>
-        <source>Obtaining IP address</source>
-        <translation>Obteniendo dirección IP</translation>
-    </message>
-    <message>
-        <source>Connected</source>
-        <translation>Conectado</translation>
-    </message>
-    <message>
-        <source>Disconnected</source>
-        <translation>Desconectado</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>Conflicto de IP</translation>
-    </message>
-    <message>
-        <source>Failed</source>
-        <translation>Fallido</translation>
-    </message>
-    <message>
-        <source>Obtaining address</source>
-        <translation>Obtención de la dirección</translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetworkProcesser</name>
-    <message>
-        <source>Wired Network</source>
-        <translation>Red cableada</translation>
-    </message>
-    <message>
-        <source>Wired Network %1</source>
-        <translation>Red cableada %1</translation>
-    </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation>Red inalámbrica</translation>
-    </message>
-    <message>
-        <source>Wireless Network %1</source>
-        <translation>Red inalámbrica %1</translation>
-    </message>
-</context>
-<context>
-    <name>dde::networkplugin::NetworkPluginHelper</name>
-    <message>
-        <source>Device disabled</source>
-        <translation>Dispositivo deshabilitado</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>Cable de red desconectado</translation>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation>Sin conexión</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>Conectando</translation>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation>Conectado pero sin acceso a Internet</translation>
-    </message>
-    <message>
-        <source>Connection failed</source>
-        <translation>Conexión fallida</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>Conflicto de IP</translation>
-    </message>
+    <name>dde::network::NetStatus</name>
     <message>
         <source>Disable wired connection</source>
-        <translation>Desactivar conexión por cable</translation>
+        <translation type="unfinished">Desactivar conexión por cable</translation>
     </message>
     <message>
         <source>Enable wired connection</source>
-        <translation>Activar conexión por cable</translation>
+        <translation type="unfinished">Activar conexión por cable</translation>
     </message>
     <message>
         <source>Disable wireless connection</source>
-        <translation>Desactivar conexión inalámbrica</translation>
+        <translation type="unfinished">Desactivar conexión inalámbrica</translation>
     </message>
     <message>
         <source>Enable wireless connection</source>
-        <translation>Activar conexión inalámbrica</translation>
+        <translation type="unfinished">Activar conexión inalámbrica</translation>
     </message>
     <message>
         <source>Disable network</source>
-        <translation>Desactivar red</translation>
+        <translation type="unfinished">Desactivar red</translation>
     </message>
     <message>
         <source>Enable network</source>
-        <translation>Activar red</translation>
+        <translation type="unfinished">Activar red</translation>
+    </message>
+    <message>
+        <source>Disable VPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable VPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable system proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable system proxy</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Network settings</source>
-        <translation>Ajustes de red</translation>
+        <translation type="unfinished">Ajustes de red</translation>
+    </message>
+    <message>
+        <source>Multiple services started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected to: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>System proxy enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished">Conectado</translation>
+    </message>
+    <message>
+        <source>Network off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network cable unplugged</source>
+        <translation type="unfinished">Cable de red desconectado</translation>
+    </message>
+    <message>
+        <source>Not connected</source>
+        <translation type="unfinished">Sin conexión</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation type="unfinished">Conectando</translation>
+    </message>
+    <message>
+        <source>Connected but no Internet access</source>
+        <translation type="unfinished">Conectado pero sin acceso a Internet</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation type="unfinished">Conexión fallida</translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished">Conflicto de IP</translation>
+    </message>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished">Red inalámbrica</translation>
+    </message>
+    <message>
+        <source>Connected %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation type="unfinished">Red cableada</translation>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished">Red</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetSystemProxyControlItem</name>
+    <message>
+        <source>System Proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetVPNTipsItem</name>
+    <message>
+        <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWiredControlItem</name>
+    <message>
+        <source>Wired Network</source>
+        <translation type="unfinished">Red cableada</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessControlItem</name>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished">Red inalámbrica</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessHiddenItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation type="unfinished">Conectarse a una red oculta</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessMineItem</name>
+    <message>
+        <source>My Networks</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessOtherItem</name>
+    <message>
+        <source>Other Networks</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetworkPlugin</name>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished">Red</translation>
     </message>
 </context>
 </TS>

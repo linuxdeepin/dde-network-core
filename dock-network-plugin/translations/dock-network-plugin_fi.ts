@@ -1,269 +1,312 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fi">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="fi">
 <context>
-    <name>DeviceControllItem</name>
+    <name>dde::network::DockContentWidget</name>
     <message>
-        <source>Wireless Network</source>
-        <translation>Langaton verkko</translation>
+        <source>Network settings</source>
+        <translation type="unfinished">Verkon asetukset</translation>
     </message>
     <message>
-        <source>Wired Network</source>
-        <translation>Kaapeli</translation>
+        <source>Network Detection</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>NetworkPlugin</name>
+    <name>dde::network::NetAirplaneModeTipsItem</name>
     <message>
-        <source>Network</source>
-        <translation>Verkko</translation>
+        <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
+        <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Wired Network</source>
-        <translation>Kaapeli</translation>
-    </message>
-    <message>
-        <source>Device disabled</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation type="unfinished"/>
-    </message>
+</context>
+<context>
+    <name>dde::network::NetManagerPrivate</name>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">IP ristiriita</translation>
     </message>
     <message>
-        <source>Connection failed</source>
-        <translation type="unfinished"/>
+        <source>Network</source>
+        <translation type="unfinished">Verkko</translation>
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
+    <name>dde::network::NetManagerThreadPrivate</name>
     <message>
-        <source>Connect to hidden network</source>
-        <translation>Yhdistä piilotettuun verkkoon</translation>
+        <source>Wired Connection %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>VPN L2TP %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN PPTP %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN VPNC %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN OpenVPN %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN StrongSwan %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN OpenConnect %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PPPoE Connection %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connecting &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; disconnected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password is required to connect &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetSecretWidget</name>
+    <message>
         <source>Password</source>
-        <translation>Salasana</translation>
+        <translation type="unfinished">Salasana</translation>
+    </message>
+    <message>
+        <source>Private Pwd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Proxy Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Group Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation type="unfinished">Nimi (SSID)</translation>
     </message>
     <message>
         <source>Cancel</source>
         <comment>button</comment>
-        <translation>Peruuta</translation>
+        <translation type="unfinished">Peruuta</translation>
     </message>
     <message>
         <source>Connect</source>
         <comment>button</comment>
-        <translation>Yhdistä</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation>Nimi (SSID)</translation>
+        <translation type="unfinished">Yhdistä</translation>
     </message>
 </context>
 <context>
-    <name>dde::network::NetworkDetails</name>
-    <message>
-        <source>Hotspot</source>
-        <translation>Tukiasema</translation>
-    </message>
-    <message>
-        <source>SSID</source>
-        <translation>SSID</translation>
-    </message>
-    <message>
-        <source>Protocol</source>
-        <translation>Protokolla</translation>
-    </message>
-    <message>
-        <source>Security Type</source>
-        <translation>Suojaustyyppi</translation>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation>Taajuusalue</translation>
-    </message>
-    <message>
-        <source>Channel</source>
-        <translation>Kanava</translation>
-    </message>
-    <message>
-        <source>Interface</source>
-        <translation>Liitäntä</translation>
-    </message>
-    <message>
-        <source>MAC</source>
-        <translation>MAC</translation>
-    </message>
-    <message>
-        <source>IPv4</source>
-        <translation>IPv4</translation>
-    </message>
-    <message>
-        <source>Netmask</source>
-        <translation>Verkkopeite</translation>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Yhdyskäytävä</translation>
-    </message>
-    <message>
-        <source>Primary DNS</source>
-        <translation>Ensisijainen DNS</translation>
-    </message>
-    <message>
-        <source>IPv6</source>
-        <translation>IPv6</translation>
-    </message>
-    <message>
-        <source>Prefix</source>
-        <translation>Etuliite</translation>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation>Nopeus</translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetworkDeviceRealize</name>
-    <message>
-        <source>Device disabled</source>
-        <translation>Laite suljettu</translation>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation>Yhdistetty, mutta ei internet osoitetta</translation>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation>Ei yhteyttä</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>Verkkokaapeli irrotettu</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>Yhdistää</translation>
-    </message>
-    <message>
-        <source>Authenticating</source>
-        <translation>Todennus</translation>
-    </message>
-    <message>
-        <source>Obtaining IP address</source>
-        <translation>Hakee IP osoitetta</translation>
-    </message>
-    <message>
-        <source>Connected</source>
-        <translation>Yhdistetty</translation>
-    </message>
-    <message>
-        <source>Disconnected</source>
-        <translation>Katkaistu</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>IP ristiriita</translation>
-    </message>
-    <message>
-        <source>Failed</source>
-        <translation>Epäonnistui</translation>
-    </message>
-    <message>
-        <source>Obtaining address</source>
-        <translation>Osoitteen haku</translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetworkProcesser</name>
-    <message>
-        <source>Wired Network</source>
-        <translation>Kaapeli</translation>
-    </message>
-    <message>
-        <source>Wired Network %1</source>
-        <translation>Kaapeli %1</translation>
-    </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation>Langaton verkko</translation>
-    </message>
-    <message>
-        <source>Wireless Network %1</source>
-        <translation>Langaton verkko: %1</translation>
-    </message>
-</context>
-<context>
-    <name>dde::networkplugin::NetworkPluginHelper</name>
-    <message>
-        <source>Device disabled</source>
-        <translation>Laite suljettu</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>Verkkokaapeli irrotettu</translation>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation>Ei yhteyttä</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>Yhdistää</translation>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation>Yhdistetty, mutta ei internet osoitetta</translation>
-    </message>
-    <message>
-        <source>Connection failed</source>
-        <translation>Yhteys epäonnistui</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>IP ristiriita</translation>
-    </message>
+    <name>dde::network::NetStatus</name>
     <message>
         <source>Disable wired connection</source>
-        <translation>Poista kiinteä yhteys</translation>
+        <translation type="unfinished">Poista kiinteä yhteys</translation>
     </message>
     <message>
         <source>Enable wired connection</source>
-        <translation>Kytke kiinteä yhteys</translation>
+        <translation type="unfinished">Kytke kiinteä yhteys</translation>
     </message>
     <message>
         <source>Disable wireless connection</source>
-        <translation>Poista langaton käytöstä</translation>
+        <translation type="unfinished">Poista langaton käytöstä</translation>
     </message>
     <message>
         <source>Enable wireless connection</source>
-        <translation>Kytke langaton käyttöön</translation>
+        <translation type="unfinished">Kytke langaton käyttöön</translation>
     </message>
     <message>
         <source>Disable network</source>
-        <translation>Poista verkko käytöstä</translation>
+        <translation type="unfinished">Poista verkko käytöstä</translation>
     </message>
     <message>
         <source>Enable network</source>
-        <translation>Kytke verkko käyttöön</translation>
+        <translation type="unfinished">Kytke verkko käyttöön</translation>
+    </message>
+    <message>
+        <source>Disable VPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable VPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable system proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable system proxy</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Network settings</source>
-        <translation>Verkon asetukset</translation>
+        <translation type="unfinished">Verkon asetukset</translation>
+    </message>
+    <message>
+        <source>Multiple services started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected to: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>System proxy enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished">Yhdistetty</translation>
+    </message>
+    <message>
+        <source>Network off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network cable unplugged</source>
+        <translation type="unfinished">Verkkokaapeli irrotettu</translation>
+    </message>
+    <message>
+        <source>Not connected</source>
+        <translation type="unfinished">Ei yhteyttä</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation type="unfinished">Yhdistää</translation>
+    </message>
+    <message>
+        <source>Connected but no Internet access</source>
+        <translation type="unfinished">Yhdistetty, mutta ei internet osoitetta</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation type="unfinished">Yhteys epäonnistui</translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished">IP ristiriita</translation>
+    </message>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished">Langaton verkko</translation>
+    </message>
+    <message>
+        <source>Connected %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation type="unfinished">Kaapeli</translation>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished">Verkko</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetSystemProxyControlItem</name>
+    <message>
+        <source>System Proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetVPNTipsItem</name>
+    <message>
+        <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWiredControlItem</name>
+    <message>
+        <source>Wired Network</source>
+        <translation type="unfinished">Kaapeli</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessControlItem</name>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished">Langaton verkko</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessHiddenItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation type="unfinished">Yhdistä piilotettuun verkkoon</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessMineItem</name>
+    <message>
+        <source>My Networks</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessOtherItem</name>
+    <message>
+        <source>Other Networks</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetworkPlugin</name>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished">Verkko</translation>
     </message>
 </context>
 </TS>

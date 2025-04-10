@@ -313,6 +313,7 @@ class NetSystemProxyControlItem : public NetControlItem
     Q_PROPERTY(QString autoProxy READ autoProxy NOTIFY autoProxyChanged)
     Q_PROPERTY(QVariantMap manualProxy READ manualProxy NOTIFY manualProxyChanged)
 public:
+    QString name() const override;
     NetType::ProxyMethod lastMethod() const;
     NetType::ProxyMethod method() const;
     const QString &autoProxy() const;

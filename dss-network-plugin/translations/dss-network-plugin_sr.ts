@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="sr">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="sr">
 <context>
     <name>Bubble</name>
     <message>
@@ -7,273 +9,293 @@
     </message>
 </context>
 <context>
-    <name>DeviceControllItem</name>
+    <name>dde::network::NetAirplaneModeTipsItem</name>
     <message>
-        <source>Wireless Network</source>
-        <translation>Бежична мрежа</translation>
-    </message>
-    <message>
-        <source>Wired Network</source>
-        <translation>Жична мрежа</translation>
+        <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>QObject</name>
+    <name>dde::network::NetManagerPrivate</name>
     <message>
-        <source>Connecting %1</source>
-        <translation type="unfinished"/>
+        <source>IP conflict</source>
+        <translation type="unfinished">ИП сукоб</translation>
     </message>
     <message>
-        <source>%1 connected</source>
-        <translation>%1 повезано</translation>
-    </message>
-    <message>
-        <source>%1 disconnected</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Unable to connect %1, please check your router or net cable.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Unable to connect %1, please keep closer to the wireless router</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Connection failed, unable to connect %1, wrong password</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Password is required to connect %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The %1 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"/>
+        <source>Network</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
+    <name>dde::network::NetManagerThreadPrivate</name>
     <message>
-        <source>Connect to hidden network</source>
-        <translation>Повежи се на скривену мрежу</translation>
+        <source>Wired Connection %1</source>
+        <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>VPN L2TP %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN PPTP %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN VPNC %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN OpenVPN %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN StrongSwan %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN OpenConnect %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PPPoE Connection %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connecting &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; disconnected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password is required to connect &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetSecretWidget</name>
     <message>
         <source>Password</source>
-        <translation>Лозинка</translation>
+        <translation type="unfinished">Лозинка</translation>
+    </message>
+    <message>
+        <source>Private Pwd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Proxy Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Group Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Cancel</source>
         <comment>button</comment>
-        <translation>Откажи</translation>
+        <translation type="unfinished">Откажи</translation>
     </message>
     <message>
         <source>Connect</source>
         <comment>button</comment>
-        <translation>Повежи се</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">Повежи се</translation>
     </message>
 </context>
 <context>
-    <name>dde::network::NetworkDetails</name>
-    <message>
-        <source>Hotspot</source>
-        <translation>Врућа тачка</translation>
-    </message>
-    <message>
-        <source>SSID</source>
-        <translation>ССИД</translation>
-    </message>
-    <message>
-        <source>Protocol</source>
-        <translation>Протокол</translation>
-    </message>
-    <message>
-        <source>Security Type</source>
-        <translation>Врста безбедности</translation>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation>Опсег</translation>
-    </message>
-    <message>
-        <source>Channel</source>
-        <translation>Канал</translation>
-    </message>
-    <message>
-        <source>Interface</source>
-        <translation>Сучеље</translation>
-    </message>
-    <message>
-        <source>MAC</source>
-        <translation>МАК</translation>
-    </message>
-    <message>
-        <source>IPv4</source>
-        <translation>ИПв4</translation>
-    </message>
-    <message>
-        <source>Netmask</source>
-        <translation>Мрежна маска</translation>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Мрежни пролаз</translation>
-    </message>
-    <message>
-        <source>Primary DNS</source>
-        <translation>Основни ДНС</translation>
-    </message>
-    <message>
-        <source>IPv6</source>
-        <translation>ИПв6</translation>
-    </message>
-    <message>
-        <source>Prefix</source>
-        <translation>Префикс</translation>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation>Брзина протока</translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetworkDeviceRealize</name>
-    <message>
-        <source>Device disabled</source>
-        <translation>Уређај је онемогућен</translation>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation>Повезани сте, али нема интернета</translation>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation>Нисте повезани</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>Мрежни кабл је ископчан</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>Повезивање</translation>
-    </message>
-    <message>
-        <source>Authenticating</source>
-        <translation>Идентификовање</translation>
-    </message>
-    <message>
-        <source>Obtaining IP address</source>
-        <translation>Прибављање ИП адресе</translation>
-    </message>
-    <message>
-        <source>Connected</source>
-        <translation>Повезани сте</translation>
-    </message>
-    <message>
-        <source>Disconnected</source>
-        <translation>Нисте поевзани</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>ИП сукоб</translation>
-    </message>
-    <message>
-        <source>Failed</source>
-        <translation>Неуспешно</translation>
-    </message>
-    <message>
-        <source>Obtaining address</source>
-        <translation>Прибављање адресе</translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetworkProcesser</name>
-    <message>
-        <source>Wired Network</source>
-        <translation>Жична мрежа</translation>
-    </message>
-    <message>
-        <source>Wired Network %1</source>
-        <translation>Жичана мрежа %1</translation>
-    </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation>Бежична мрежа</translation>
-    </message>
-    <message>
-        <source>Wireless Network %1</source>
-        <translation>Бежична мрежа %1</translation>
-    </message>
-</context>
-<context>
-    <name>dde::networkplugin::NetworkPluginHelper</name>
-    <message>
-        <source>Device disabled</source>
-        <translation>Уређај је онемогућен</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>Мрежни кабл је ископчан</translation>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation>Нисте повезани</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>Повезивање</translation>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation>Повезани сте, али нема интернета</translation>
-    </message>
-    <message>
-        <source>Connection failed</source>
-        <translation>Неуспешно повезивање</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>ИП сукоб</translation>
-    </message>
+    <name>dde::network::NetStatus</name>
     <message>
         <source>Disable wired connection</source>
-        <translation>Искључи жичану везу</translation>
+        <translation type="unfinished">Искључи жичану везу</translation>
     </message>
     <message>
         <source>Enable wired connection</source>
-        <translation>Укључи жичану везу</translation>
+        <translation type="unfinished">Укључи жичану везу</translation>
     </message>
     <message>
         <source>Disable wireless connection</source>
-        <translation>Искључи бежичану везу</translation>
+        <translation type="unfinished">Искључи бежичану везу</translation>
     </message>
     <message>
         <source>Enable wireless connection</source>
-        <translation>Укључи бежичану везу</translation>
+        <translation type="unfinished">Укључи бежичану везу</translation>
     </message>
     <message>
         <source>Disable network</source>
-        <translation>Искључи мрежу</translation>
+        <translation type="unfinished">Искључи мрежу</translation>
     </message>
     <message>
         <source>Enable network</source>
-        <translation>Укључи мрежу</translation>
+        <translation type="unfinished">Укључи мрежу</translation>
+    </message>
+    <message>
+        <source>Disable VPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable VPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable system proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable system proxy</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Network settings</source>
-        <translation>Подешавање мреже</translation>
+        <translation type="unfinished">Подешавање мреже</translation>
+    </message>
+    <message>
+        <source>Multiple services started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected to: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>System proxy enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished">Повезани сте</translation>
+    </message>
+    <message>
+        <source>Network off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network cable unplugged</source>
+        <translation type="unfinished">Мрежни кабл је ископчан</translation>
+    </message>
+    <message>
+        <source>Not connected</source>
+        <translation type="unfinished">Нисте повезани</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation type="unfinished">Повезивање</translation>
+    </message>
+    <message>
+        <source>Connected but no Internet access</source>
+        <translation type="unfinished">Повезани сте, али нема интернета</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation type="unfinished">Неуспешно повезивање</translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished">ИП сукоб</translation>
+    </message>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished">Бежична мрежа</translation>
+    </message>
+    <message>
+        <source>Connected %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation type="unfinished">Жична мрежа</translation>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>dss::module::NetworkModule</name>
+    <name>dde::network::NetSystemProxyControlItem</name>
     <message>
-        <source>Wired Connection</source>
-        <translation>Жичана веза</translation>
+        <source>System Proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetVPNTipsItem</name>
+    <message>
+        <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWiredControlItem</name>
+    <message>
+        <source>Wired Network</source>
+        <translation type="unfinished">Жична мрежа</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessControlItem</name>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished">Бежична мрежа</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessHiddenItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation type="unfinished">Повежи се на скривену мрежу</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessMineItem</name>
+    <message>
+        <source>My Networks</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessOtherItem</name>
+    <message>
+        <source>Other Networks</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

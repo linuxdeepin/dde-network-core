@@ -1,269 +1,312 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ru">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ru">
 <context>
-    <name>DeviceControllItem</name>
+    <name>dde::network::DockContentWidget</name>
     <message>
-        <source>Wireless Network</source>
-        <translation>Беспроводная сеть</translation>
+        <source>Network settings</source>
+        <translation type="unfinished">Настройки сети</translation>
     </message>
     <message>
-        <source>Wired Network</source>
-        <translation>Проводная сеть</translation>
+        <source>Network Detection</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>NetworkPlugin</name>
+    <name>dde::network::NetAirplaneModeTipsItem</name>
     <message>
-        <source>Network</source>
-        <translation>Сеть</translation>
+        <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
+        <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Wired Network</source>
-        <translation>Проводная сеть</translation>
-    </message>
-    <message>
-        <source>Device disabled</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation type="unfinished"/>
-    </message>
+</context>
+<context>
+    <name>dde::network::NetManagerPrivate</name>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">Конфликт IP-адресов</translation>
     </message>
     <message>
-        <source>Connection failed</source>
-        <translation type="unfinished"/>
+        <source>Network</source>
+        <translation type="unfinished">Сеть</translation>
     </message>
 </context>
 <context>
-    <name>WirelessItem</name>
+    <name>dde::network::NetManagerThreadPrivate</name>
     <message>
-        <source>Connect to hidden network</source>
-        <translation>Подключиться к скрытой сети</translation>
+        <source>Wired Connection %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>VPN L2TP %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN PPTP %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN VPNC %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN OpenVPN %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN StrongSwan %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN OpenConnect %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PPPoE Connection %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connecting &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; disconnected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password is required to connect &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetSecretWidget</name>
+    <message>
         <source>Password</source>
-        <translation>Пароль</translation>
+        <translation type="unfinished">Пароль</translation>
+    </message>
+    <message>
+        <source>Private Pwd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Proxy Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Group Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation type="unfinished">Имя (SSID)</translation>
     </message>
     <message>
         <source>Cancel</source>
         <comment>button</comment>
-        <translation>Отмена</translation>
+        <translation type="unfinished">Отмена</translation>
     </message>
     <message>
         <source>Connect</source>
         <comment>button</comment>
-        <translation>Подключить</translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation>Имя (SSID)</translation>
+        <translation type="unfinished">Подключить</translation>
     </message>
 </context>
 <context>
-    <name>dde::network::NetworkDetails</name>
-    <message>
-        <source>Hotspot</source>
-        <translation>Точка доступа</translation>
-    </message>
-    <message>
-        <source>SSID</source>
-        <translation>SSID</translation>
-    </message>
-    <message>
-        <source>Protocol</source>
-        <translation>Протокол</translation>
-    </message>
-    <message>
-        <source>Security Type</source>
-        <translation>Тип безопасности</translation>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation>Диапазон</translation>
-    </message>
-    <message>
-        <source>Channel</source>
-        <translation>Канал</translation>
-    </message>
-    <message>
-        <source>Interface</source>
-        <translation>Интерфейс</translation>
-    </message>
-    <message>
-        <source>MAC</source>
-        <translation>MAC</translation>
-    </message>
-    <message>
-        <source>IPv4</source>
-        <translation>IPv4</translation>
-    </message>
-    <message>
-        <source>Netmask</source>
-        <translation>Маска сети</translation>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Шлюз</translation>
-    </message>
-    <message>
-        <source>Primary DNS</source>
-        <translation>Основной DNS</translation>
-    </message>
-    <message>
-        <source>IPv6</source>
-        <translation>IPv6</translation>
-    </message>
-    <message>
-        <source>Prefix</source>
-        <translation>Префикс</translation>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation>Скорость</translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetworkDeviceRealize</name>
-    <message>
-        <source>Device disabled</source>
-        <translation>Устройство отключено</translation>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation>Подключено, без доступа к Интернету</translation>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation>Не подключено</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>Сетевой кабель отключен</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>Соединение</translation>
-    </message>
-    <message>
-        <source>Authenticating</source>
-        <translation>Аутентификация</translation>
-    </message>
-    <message>
-        <source>Obtaining IP address</source>
-        <translation>Получение IP адреса</translation>
-    </message>
-    <message>
-        <source>Connected</source>
-        <translation>Подключено</translation>
-    </message>
-    <message>
-        <source>Disconnected</source>
-        <translation>Отключено</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>Конфликт IP-адресов</translation>
-    </message>
-    <message>
-        <source>Failed</source>
-        <translation>Ошибка</translation>
-    </message>
-    <message>
-        <source>Obtaining address</source>
-        <translation>Получение адреса</translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetworkProcesser</name>
-    <message>
-        <source>Wired Network</source>
-        <translation>Проводная сеть</translation>
-    </message>
-    <message>
-        <source>Wired Network %1</source>
-        <translation>Проводная сеть %1</translation>
-    </message>
-    <message>
-        <source>Wireless Network</source>
-        <translation>Беспроводная сеть</translation>
-    </message>
-    <message>
-        <source>Wireless Network %1</source>
-        <translation>Беспроводная сеть %1</translation>
-    </message>
-</context>
-<context>
-    <name>dde::networkplugin::NetworkPluginHelper</name>
-    <message>
-        <source>Device disabled</source>
-        <translation>Устройство отключено</translation>
-    </message>
-    <message>
-        <source>Network cable unplugged</source>
-        <translation>Сетевой кабель отключен</translation>
-    </message>
-    <message>
-        <source>Not connected</source>
-        <translation>Не подключено</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>Соединение</translation>
-    </message>
-    <message>
-        <source>Connected but no Internet access</source>
-        <translation>Подключено, без доступа к Интернету</translation>
-    </message>
-    <message>
-        <source>Connection failed</source>
-        <translation>Ошибка подключения</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>Конфликт IP-адресов</translation>
-    </message>
+    <name>dde::network::NetStatus</name>
     <message>
         <source>Disable wired connection</source>
-        <translation>Отключить проводное соединение</translation>
+        <translation type="unfinished">Отключить проводное соединение</translation>
     </message>
     <message>
         <source>Enable wired connection</source>
-        <translation>Включить проводное соединение</translation>
+        <translation type="unfinished">Включить проводное соединение</translation>
     </message>
     <message>
         <source>Disable wireless connection</source>
-        <translation>Отключить проводное соединение</translation>
+        <translation type="unfinished">Отключить проводное соединение</translation>
     </message>
     <message>
         <source>Enable wireless connection</source>
-        <translation>Включить проводное соединение</translation>
+        <translation type="unfinished">Включить проводное соединение</translation>
     </message>
     <message>
         <source>Disable network</source>
-        <translation>Отключить сеть</translation>
+        <translation type="unfinished">Отключить сеть</translation>
     </message>
     <message>
         <source>Enable network</source>
-        <translation>Включить сеть</translation>
+        <translation type="unfinished">Включить сеть</translation>
+    </message>
+    <message>
+        <source>Disable VPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable VPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable system proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable system proxy</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Network settings</source>
-        <translation>Настройки сети</translation>
+        <translation type="unfinished">Настройки сети</translation>
+    </message>
+    <message>
+        <source>Multiple services started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected to: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>System proxy enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished">Подключено</translation>
+    </message>
+    <message>
+        <source>Network off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network cable unplugged</source>
+        <translation type="unfinished">Сетевой кабель отключен</translation>
+    </message>
+    <message>
+        <source>Not connected</source>
+        <translation type="unfinished">Не подключено</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation type="unfinished">Соединение</translation>
+    </message>
+    <message>
+        <source>Connected but no Internet access</source>
+        <translation type="unfinished">Подключено, без доступа к Интернету</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation type="unfinished">Ошибка подключения</translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished">Конфликт IP-адресов</translation>
+    </message>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished">Беспроводная сеть</translation>
+    </message>
+    <message>
+        <source>Connected %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wired Network</source>
+        <translation type="unfinished">Проводная сеть</translation>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished">Сеть</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetSystemProxyControlItem</name>
+    <message>
+        <source>System Proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetVPNTipsItem</name>
+    <message>
+        <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWiredControlItem</name>
+    <message>
+        <source>Wired Network</source>
+        <translation type="unfinished">Проводная сеть</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessControlItem</name>
+    <message>
+        <source>Wireless Network</source>
+        <translation type="unfinished">Беспроводная сеть</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessHiddenItem</name>
+    <message>
+        <source>Connect to hidden network</source>
+        <translation type="unfinished">Подключиться к скрытой сети</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessMineItem</name>
+    <message>
+        <source>My Networks</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessOtherItem</name>
+    <message>
+        <source>Other Networks</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetworkPlugin</name>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished">Сеть</translation>
     </message>
 </context>
 </TS>
