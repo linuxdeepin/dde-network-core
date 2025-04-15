@@ -138,6 +138,7 @@ DccObject {
         property var showPage: root.showPage
         name: "personalHotspot"
         parentName: "network"
+        isAirplane: dccData.root.isEnabled
         weight: 3040
     }
     PageAirplane {
