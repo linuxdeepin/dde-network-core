@@ -17,6 +17,7 @@ DccObject {
     property var item: null
     property var airplaneItem: null
     property var config: null
+    property bool isAirplane: false
     property string interfaceName: ""
 
     function setItem(netItem) {
@@ -87,22 +88,28 @@ DccObject {
     page: devCheck
     Component {
         id: devCheck
-        D.Switch {
-            checked: item.isEnabled
-            enabled: item.enabledable
-            onClicked: {
-                if (checked) {
-                    if (config["connection"]["uuid"] === "{00000000-0000-0000-0000-000000000000}") {
-                        dccData.exec(NetManager.SetConnectInfo, item.id, config)
+        Item {
+            implicitHeight: switchControl.implicitHeight
+            implicitWidth: switchControl.implicitWidth
+            D.Switch {
+                id: switchControl
+                anchors.fill: parent
+                checked: item.isEnabled
+                enabled: item.enabledable && !isAirplane
+                onClicked: {
+                    if (checked) {
+                        if (config["connection"]["uuid"] === "{00000000-0000-0000-0000-000000000000}") {
+                            dccData.exec(NetManager.SetConnectInfo, item.id, config)
+                        } else {
+                            dccData.exec(NetManager.Connect, item.id, {
+                                             "uuid": config["connection"]["uuid"]
+                                         })
+                        }
                     } else {
-                        dccData.exec(NetManager.Connect, item.id, {
+                        dccData.exec(NetManager.Disconnect, item.id, {
                                          "uuid": config["connection"]["uuid"]
                                      })
                     }
-                } else {
-                    dccData.exec(NetManager.Disconnect, item.id, {
-                                     "uuid": config["connection"]["uuid"]
-                                 })
                 }
             }
         }
@@ -132,6 +139,7 @@ DccObject {
             name: "hotspotTitle"
             parentName: root.name + "/menu"
             weight: 20
+            visible: !isAirplane
             displayName: qsTr("My Hotspot")
             pageType: DccObject.Item
             page: RowLayout {
@@ -342,6 +350,7 @@ DccObject {
             name: "hotspotConfig"
             parentName: root.name + "/menu"
             weight: 30
+            visible: !isAirplane
             pageType: DccObject.Item
             page: DccGroupView {}
             DccObject {
@@ -413,6 +422,7 @@ DccObject {
         DccTitleObject {
             name: "shareTitle"
             parentName: root.name + "/menu"
+            visible: !isAirplane
             weight: 40
             displayName: qsTr("Shared Settings")
         }
@@ -420,6 +430,7 @@ DccObject {
             id: shareConfig
             name: "shareConfig"
             parentName: root.name + "/menu"
+            visible: !isAirplane
             weight: 50
             pageType: DccObject.Item
             page: DccGroupView {}
@@ -487,7 +498,7 @@ DccObject {
         DccObject {
             name: "airplaneTips"
             parentName: root.name + "/menu"
-            visible: root.airplaneItem && root.airplaneItem.isEnabled && root.airplaneItem.enabledable
+            visible: isAirplane
             displayName: qsTr("If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.")
             weight: 70
             pageType: DccObject.Item

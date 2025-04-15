@@ -27,11 +27,13 @@ DccObject {
 
     Component {
         id: devCheck
-        D.Switch {
-            checked: item.isEnabled
-            enabled: item.enabledable
-            onClicked: {
-                dccData.exec(item.isEnabled ? NetManager.DisabledDevice : NetManager.EnabledDevice, item.id, {})
+        RowLayout {
+            D.Switch {
+                checked: item.isEnabled
+                enabled: item.enabledable
+                onClicked: {
+                    dccData.exec(item.isEnabled ? NetManager.DisabledDevice : NetManager.EnabledDevice, item.id, {})
+                }
             }
         }
     }

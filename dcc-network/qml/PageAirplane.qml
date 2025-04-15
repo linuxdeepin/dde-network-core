@@ -24,13 +24,19 @@ DccObject {
     page: devCheck
     Component {
         id: devCheck
-        D.Switch {
-            checked: item.isEnabled
-            enabled: item.enabledable
-            onClicked: {
-                dccData.exec(NetManager.SetConnectInfo, item.id, {
-                                 "enable": checked
-                             })
+        Item {
+            implicitHeight: switchControl.implicitHeight
+            implicitWidth: switchControl.implicitWidth
+            D.Switch {
+                id: switchControl
+                anchors.fill: parent
+                checked: item.isEnabled
+                enabled: item.enabledable
+                onClicked: {
+                    dccData.exec(NetManager.SetConnectInfo, item.id, {
+                                     "enable": checked
+                                 })
+                }
             }
         }
     }
