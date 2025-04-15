@@ -1474,7 +1474,9 @@ void NetManagerThreadPrivate::doSetConnectInfo(const QString &id, NetType::NetIt
     switch (type) {
     case NetType::HotspotControlItem:
         // case NetType::ConnectionItem:
-        NetworkManager::activateConnection(connection->path(), devPath, QString());
+        if (param.value("setAndConn", true).toBool()) {
+            NetworkManager::activateConnection(connection->path(), devPath, QString());
+        }
         break;
     default:
         if (!id.isEmpty() && (settings->autoconnect() || dde::network::ConfigSetting::instance()->enableAccountNetwork())) {
