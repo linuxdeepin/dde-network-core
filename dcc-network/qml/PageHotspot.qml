@@ -482,6 +482,7 @@ DccObject {
                         } else {
                             root.config["connection"]["interface-name"] = interfaceName
                         }
+                        root.config["setAndConn"] = item.isEnabled
                         dccData.exec(NetManager.SetConnectInfo, item.id, root.config)
                     }
                     Component.onCompleted: {
