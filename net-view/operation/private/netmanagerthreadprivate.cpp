@@ -541,6 +541,8 @@ void NetManagerThreadPrivate::doInit()
         m_airplaneModeEnabled = false;
         getAirplaneModeEnabled();
         connect(ConfigSetting::instance(), &ConfigSetting::enableAirplaneModeChanged, this, &NetManagerThreadPrivate::getAirplaneModeEnabled);
+        QDBusConnection::systemBus().connect("org.deepin.dde.Bluetooth1", "/org/deepin/dde/Bluetooth1", "org.deepin.dde.Bluetooth1", "AdapterAdded", this, SLOT(getAirplaneModeEnabled()));
+        QDBusConnection::systemBus().connect("org.deepin.dde.Bluetooth1", "/org/deepin/dde/Bluetooth1", "org.deepin.dde.Bluetooth1", "AdapterRemoved", this, SLOT(getAirplaneModeEnabled()));
         QDBusConnection::systemBus()
                 .connect("org.deepin.dde.AirplaneMode1", "/org/deepin/dde/AirplaneMode1", "org.freedesktop.DBus.Properties", "PropertiesChanged", this, SLOT(onAirplaneModeEnabledPropertiesChanged(QString, QVariantMap, QStringList)));
     }
@@ -857,6 +859,18 @@ bool NetManagerThreadPrivate::supportAirplaneMode() const
     // dde-dconfig配置优先级高于设备优先级
     if (!ConfigSetting::instance()->networkAirplaneMode()) {
         return false;
+    }
+
+    // 蓝牙和无线网络,只要有其中一个就允许显示飞行模式
+    QDBusInterface inter("org.deepin.dde.Bluetooth1", "/org/deepin/dde/Bluetooth1", "org.deepin.dde.Bluetooth1", QDBusConnection::systemBus());
+    if (inter.isValid()) {
+        QDBusReply<QString> reply = inter.call("GetAdapters");
+        QString replyStr = reply.value();
+        QJsonDocument json = QJsonDocument::fromJson(replyStr.toUtf8());
+        QJsonArray array = json.array();
+        if (!array.empty() && !array[0].toObject()["Path"].toString().isEmpty()) {
+            return true;
+        }
     }
 
     NetworkManager::Device::List devices = NetworkManager::networkInterfaces();
