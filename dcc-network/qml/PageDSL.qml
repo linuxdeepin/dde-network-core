@@ -18,7 +18,7 @@ DccObject {
     displayName: qsTr("DSL")
     description: qsTr("Set up a dial-up network connection")
     icon: "dcc_dsl"
-    visible: item
+    visible: item.enabledable
     page: DccSettingsView {}
 
     DccObject {

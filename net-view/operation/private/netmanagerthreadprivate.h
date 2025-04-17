@@ -178,6 +178,7 @@ protected Q_SLOTS:
     void onDeviceAdded(QList<NetworkDeviceBase *> devices);
     void onDeviceRemoved(QList<NetworkDeviceBase *> devices);
     void onConnectivityChanged();
+    void updateDSLEnabledable();
     // Wired
     void onConnectionAdded(const QList<WiredConnection *> &conns);
     void onConnectionRemoved(const QList<WiredConnection *> &conns);

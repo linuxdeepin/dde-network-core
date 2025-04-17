@@ -548,18 +548,16 @@ void NetManagerThreadPrivate::doInit()
     }
     // DSL
     if (m_flags.testFlags(NetType::NetManagerFlag::Net_DSL)) {
-        NetDSLControlItemPrivate *vpnControlItem = NetItemNew(DSLControlItem, "NetDSLControlItem");
-        vpnControlItem->updatename("DSL");
-        vpnControlItem->updateenabled(networkController->vpnController()->enabled());
-        vpnControlItem->item()->moveToThread(m_parentThread);
-        Q_EMIT itemAdded("Root", vpnControlItem);
+        NetDSLControlItemPrivate *dslControlItem = NetItemNew(DSLControlItem, "NetDSLControlItem");
+        dslControlItem->updatename("DSL");
+        dslControlItem->item()->moveToThread(m_parentThread);
+        Q_EMIT itemAdded("Root", dslControlItem);
 
         networkController->dslController()->connectItem("");
-        // connect(networkController->dslController(), &DSLController::enableChanged, this, &NetManagerThreadPrivate::onVPNEnableChanged);
-        // connect(networkController->vpnController(), &VPNController::itemChanged, this, vpnItemChanged);
         connect(networkController->dslController(), &DSLController::itemAdded, this, &NetManagerThreadPrivate::onDSLAdded);
         connect(networkController->dslController(), &DSLController::itemRemoved, this, &NetManagerThreadPrivate::onDSLRemoved);
         connect(networkController->dslController(), &DSLController::activeConnectionChanged, this, &NetManagerThreadPrivate::onDslActiveConnectionChanged);
+        updateDSLEnabledable();
         onDSLAdded(networkController->dslController()->items());
     }
     // Details
@@ -1847,6 +1845,7 @@ void NetManagerThreadPrivate::onDeviceAdded(QList<NetworkDeviceBase *> devices)
             break;
         }
     }
+    updateDSLEnabledable();
 }
 
 void NetManagerThreadPrivate::onDeviceRemoved(QList<NetworkDeviceBase *> devices)
@@ -1858,12 +1857,27 @@ void NetManagerThreadPrivate::onDeviceRemoved(QList<NetworkDeviceBase *> devices
     if (m_flags.testFlags(NetType::Net_Details)) {
         updateDetails();
     }
+    updateDSLEnabledable();
 }
 
 void NetManagerThreadPrivate::onConnectivityChanged()
 {
     for (auto &&dev : NetworkController::instance()->devices())
         Q_EMIT dataChanged(DataChanged::DeviceStatusChanged, dev->path(), QVariant::fromValue(deviceStatus(dev)));
+}
+
+void NetManagerThreadPrivate::updateDSLEnabledable()
+{
+    if (!m_flags.testFlags(NetType::NetManagerFlag::Net_DSL)) {
+        return;
+    }
+    for (auto &&dev : NetworkController::instance()->devices()) {
+        if (dev->deviceType() == DeviceType::Wired) {
+            Q_EMIT dataChanged(DataChanged::DeviceAvailableChanged, "NetDSLControlItem", QVariant::fromValue(true));
+            return;
+        }
+    }
+    Q_EMIT dataChanged(DataChanged::DeviceAvailableChanged, "NetDSLControlItem", QVariant::fromValue(false));
 }
 
 void NetManagerThreadPrivate::onConnectionAdded(const QList<WiredConnection *> &conns)
