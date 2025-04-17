@@ -835,9 +835,13 @@ void NetManagerPrivate::clearPasswordRequest(const QString &id)
 
 void NetManagerPrivate::retranslateUi()
 {
-    // for (auto &&item : m_dataMap) {
-    //     item->retranslateUi();
-    // }
+    QVector<NetItem *> items;
+    items.append(m_root->item());
+    while (!items.isEmpty()) {
+        NetItem *item = items.takeFirst();
+        Q_EMIT item->nameChanged(item->name());
+        items.append(item->getChildren());
+    }
 }
 
 void NetManagerPrivate::onItemDestroyed(QObject *obj)
