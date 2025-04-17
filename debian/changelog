@@ -1,3 +1,14 @@
+dde-network-core (2.0.54) unstable; urgency=medium
+
+  * fix: Synchronize dss-network-plugin 107x interface
+  * fix: DSL should not be displayed without wired network devices
+  * fix: Airplane mode not monitoring Bluetooth status
+  * fix: Do not enable hotspots when modifying hotspot configurations
+  * fix: import QtQml.Models
+  * fix: Personal hotspot status when modifying airplane mode
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Thu, 17 Apr 2025 16:22:20 +0800
+
 dde-network-core (2.0.53) unstable; urgency=medium
 
   * fix: Update translation
