@@ -299,7 +299,7 @@ void NetManagerThreadPrivate::userCancelRequest(const QString &id)
 
 void NetManagerThreadPrivate::retranslate(const QString &locale)
 {
-    NetworkController::installTranslator(QLocale().name());
+    NetworkController::installTranslator(locale);
     if (m_isInitialized)
         QMetaObject::invokeMethod(this, "doRetranslate", Qt::QueuedConnection, Q_ARG(QString, locale));
 }

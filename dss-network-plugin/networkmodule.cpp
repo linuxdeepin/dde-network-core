@@ -13,12 +13,18 @@
 
 #include <QApplication>
 #include <QDBusConnection>
+#include <QDBusConnectionInterface>
 #include <QDBusInterface>
 #include <QDBusMessage>
+#include <QDBusServiceWatcher>
 #include <QTime>
 #include <QWidget>
 
 #define NETWORK_KEY "network-item-key"
+
+static QString networkService = "org.deepin.service.SystemNetwork";
+static QString networkPath = "/org/deepin/service/SystemNetwork";
+static QString networkInterface = "org.deepin.service.SystemNetwork";
 
 const int CONTENT_SPACING = 10;
 
@@ -167,7 +173,7 @@ void NetworkModule::installTranslator(const QString &locale)
     QApplication::removeTranslator(&translator);
     translator.load(QString("/usr/share/dss-network-plugin/translations/dss-network-plugin_%1").arg(locale));
     QApplication::installTranslator(&translator);
-    // m_manager->updateLanguage(localTmp);
+    m_manager->updateLanguage(localTmp);
 }
 
 NetworkPlugin::NetworkPlugin(QObject *parent)
@@ -277,6 +283,50 @@ void NetworkPlugin::setMessage(bool visible)
     doc.setObject(obj);
     m_messageCallback(doc.toJson(), m_appData);
     qCInfo(DNC) << "Set message:" << doc.toJson();
+}
+
+QString NetworkPlugin::message(const QString &msgData)
+{
+    qDebug() << "message" << msgData;
+    QJsonDocument json = QJsonDocument::fromJson(msgData.toLatin1());
+    QJsonObject jsonObject = json.object();
+    if (!jsonObject.contains("data")) {
+        qWarning() << "msgData don't containt data" << msgData;
+        QJsonDocument jsonResult;
+        QJsonObject resultObject;
+        resultObject.insert("data", QString("msgData don't containt data %1").arg(msgData));
+        jsonResult.setObject(resultObject);
+        return jsonResult.toJson();
+    }
+    QJsonObject dataObject = jsonObject.value("data").toObject();
+    QString locale = dataObject.value("locale").toString();
+    qDebug() << "read locale" << locale;
+    m_network->installTranslator(locale);
+    // 同时更新网络服务的语言
+    if (QDBusConnection::systemBus().interface()->isServiceRegistered(networkService)) {
+        qDebug() << "update SystemNetworm Language" << locale;
+        QDBusInterface dbusInter(networkService, networkPath, networkInterface, QDBusConnection::systemBus());
+        QDBusPendingCall reply = dbusInter.asyncCall("UpdateLanguage", locale);
+        reply.waitForFinished();
+    } else {
+        qWarning() << networkService << "don't start, wait for it start";
+        QDBusServiceWatcher *serviceWatcher = new QDBusServiceWatcher(this);
+        serviceWatcher->setConnection(QDBusConnection::systemBus());
+        serviceWatcher->addWatchedService(networkService);
+        connect(serviceWatcher, &QDBusServiceWatcher::serviceRegistered, this, [locale](const QString &service) {
+            if (service == networkService) {
+                QDBusInterface dbusInter(networkService, networkPath, networkInterface, QDBusConnection::systemBus());
+                QDBusPendingCall reply = dbusInter.asyncCall("UpdateLanguage", locale);
+                reply.waitForFinished();
+            }
+        });
+    }
+
+    QJsonDocument jsonResult;
+    QJsonObject resultObject;
+    resultObject.insert("data", "success");
+    jsonResult.setObject(resultObject);
+    return jsonResult.toJson();
 }
 
 } // namespace network

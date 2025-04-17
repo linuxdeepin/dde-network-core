@@ -32,6 +32,7 @@ public:
     virtual QWidget *itemTipsWidget() const;
     virtual const QString itemContextMenu() const;
     virtual void invokedMenuItem(const QString &menuId, const bool checked) const;
+    void installTranslator(const QString &locale);
 
     inline dde::network::NetStatus *netStatus() const { return m_netStatus; }
 
@@ -43,9 +44,6 @@ protected Q_SLOTS:
     virtual void updateLockScreenStatus(bool visible);
     void onUserChanged(const QString &json);
     void onNotify(uint replacesId);
-
-private:
-    void installTranslator(const QString &locale);
 
 protected:
     QWidget *m_contentWidget;
@@ -93,6 +91,7 @@ public:
 
     void requestShowContent();
     void setMessage(bool visible);
+    QString message(const QString &msgData) override;
 
 Q_SIGNALS:
     void notifyNetworkStateChanged(bool);
