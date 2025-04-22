@@ -83,9 +83,9 @@ NetView::NetView(NetManager *manager)
     connect(this, &NetView::activated, this, &NetView::onActivated);
 
     // 支持在触摸屏上滚动
-    //QScroller::grabGesture(viewport(), QScroller::LeftMouseButtonGesture);
-    //QScrollerProperties sp;
-    //sp.setScrollMetric(QScrollerProperties::VerticalOvershootPolicy, QScrollerProperties::OvershootAlwaysOff);
+    // QScroller::grabGesture(viewport(), QScroller::LeftMouseButtonGesture);
+    // QScrollerProperties sp;
+    // sp.setScrollMetric(QScrollerProperties::VerticalOvershootPolicy, QScrollerProperties::OvershootAlwaysOff);
 }
 
 NetView::~NetView() = default;
@@ -143,7 +143,7 @@ void NetView::rowsInserted(const QModelIndex &parent, int start, int end)
         NetWirelessOtherItem *otherItem = NetItem::toItem<NetWirelessOtherItem>(item);
         if (otherItem) {
             updateItemExpand(otherItem);
-            connect(otherItem, &NetWirelessOtherItem::expandedChanged, this, &NetView::onExpandStatusChanged);
+            connect(otherItem, &NetWirelessOtherItem::expandedChanged, this, &NetView::onExpandStatusChanged, Qt::UniqueConnection);
         }
     } break;
     case NetType::WirelessMineItem:
@@ -152,8 +152,8 @@ void NetView::rowsInserted(const QModelIndex &parent, int start, int end)
     case NetType::VPNControlItem: {
         NetVPNControlItem *vpnControlItem = NetItem::toItem<NetVPNControlItem>(item);
         if (vpnControlItem) {
-            connect(vpnControlItem, &NetVPNControlItem::expandedChanged, this, &NetView::onExpandStatusChanged);
-            connect(vpnControlItem, &NetVPNControlItem::enabledChanged, this, &NetView::onExpandStatusChanged);
+            connect(vpnControlItem, &NetVPNControlItem::expandedChanged, this, &NetView::onExpandStatusChanged, Qt::UniqueConnection);
+            connect(vpnControlItem, &NetVPNControlItem::enabledChanged, this, &NetView::onExpandStatusChanged, Qt::UniqueConnection);
             updateItemExpand(vpnControlItem);
         }
     } break;
@@ -164,9 +164,9 @@ void NetView::rowsInserted(const QModelIndex &parent, int start, int end)
         NetDeviceItem *dev = NetItem::toItem<NetDeviceItem>(item);
         if (dev) {
             updateItemExpand(dev);
-            connect(dev, &NetDeviceItem::enabledChanged, this, &NetView::onExpandStatusChanged);
+            connect(dev, &NetDeviceItem::enabledChanged, this, &NetView::onExpandStatusChanged, Qt::UniqueConnection);
             if (dev->itemType() == NetType::WirelessDeviceItem)
-                connect(NetItem::toItem<NetWirelessDeviceItem>(dev), &NetWirelessDeviceItem::apModeChanged, this, &NetView::onExpandStatusChanged);
+                connect(NetItem::toItem<NetWirelessDeviceItem>(dev), &NetWirelessDeviceItem::apModeChanged, this, &NetView::onExpandStatusChanged, Qt::UniqueConnection);
         }
     } break;
     default:
@@ -281,6 +281,9 @@ void NetView::updateItemExpand(NetItem *item)
         return;
     }
     QModelIndex sIndex = m_model->index(item);
+    if (!sIndex.isValid()) {
+        return;
+    }
     QModelIndex index = m_proxyModel->mapFromSource(sIndex);
     if (isExpanded(index) != expandItem) {
         setExpanded(index, expandItem);

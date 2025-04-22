@@ -30,6 +30,7 @@ namespace network {
  */
 NetItemPrivate::NetItemPrivate()
     : m_item(nullptr)
+    , m_parent(nullptr)
 {
 }
 
