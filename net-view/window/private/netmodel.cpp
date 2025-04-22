@@ -87,6 +87,13 @@ QModelIndex NetModel::index(const NetItem *object)
     if (!parent) {
         return QModelIndex();
     }
+    NetItem *ancestor = parent;
+    while (ancestor && ancestor != m_treeRoot) {
+        ancestor = ancestor->getParent();
+    }
+    if (ancestor != m_treeRoot) {
+        return QModelIndex();
+    }
 
     int pos = parent->getChildIndex(object);
     assert(pos >= 0);
