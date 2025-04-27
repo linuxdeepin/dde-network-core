@@ -56,7 +56,6 @@ protected:
         }
         option->palette.setBrush(QPalette::Button, bgColor);
         option->palette.setBrush(QPalette::ButtonText, textColor);
-        option->palette.setBrush(QPalette::WindowText, Qt::red);
         option->state.setFlag(QStyle::State_MouseOver, false);
         option->state.setFlag(QStyle::State_Sunken, false);
         option->state.setFlag(QStyle::State_Raised, true);
@@ -79,19 +78,12 @@ QuickPanelWidget::~QuickPanelWidget() { }
 void QuickPanelWidget::setIcon(const QIcon &icon)
 {
 
-    // DDciIcon dciIcon = DDciIcon::fromTheme(icon.name());
-    // if(dciIcon.isNull()){
+    DDciIcon dciIcon = DDciIcon::fromTheme(icon.name());
+    if (dciIcon.isNull()) {
         m_iconWidget->setIcon(icon);
-    // }else{
-    //     m_iconWidget->setIcon(dciIcon);
-    // }
-    // m_iconWidget->setIcon(icon);
-    // // "network-wireless-6-offline-secure-symbolic"
-    // DDciIcon::fromTheme("network-wireless-6-offline-secure-symbolic");
-    // m_iconWidget->setIcon(DDciIcon::fromTheme("network-wireless-6-offline-secure-symbolic"));
-    // DDciIcon::fromTheme("network-wireless-6-offline-secure-symbolic");
-    // m_iconWidget->setIcon(QIcon::fromTheme("network-wireless-6-offline-secure-symbolic"));
-    // network-wireless-6-signal-full-secure-symbolic_16px.svg
+    } else {
+        m_iconWidget->setIcon(dciIcon);
+    }
 }
 
 void QuickPanelWidget::setText(const QString &text)

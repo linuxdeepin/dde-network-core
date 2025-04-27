@@ -17,6 +17,7 @@ NetIconButton::NetIconButton(QWidget *parent)
     , m_clickable(false)
     , m_rotatable(false)
     , m_hover(false)
+    , m_textType(true)
 {
     setAccessibleName("NetIconButton");
     setFixedSize(24, 24);
@@ -48,6 +49,12 @@ void NetIconButton::setRotatable(bool rotatable)
             delete m_refreshTimer;
         m_refreshTimer = nullptr;
     }
+}
+
+void NetIconButton::setTextType(bool textType)
+{
+    m_textType = textType;
+    update();
 }
 
 void NetIconButton::startRotate()
@@ -93,18 +100,27 @@ void NetIconButton::paintEvent(QPaintEvent *e)
         return;
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-
+    QRect r = rect();
     if (m_rotateAngle != 0) {
-        painter.translate(this->width() / 2, this->height() / 2);
+        painter.translate(r.width() / 2, r.height() / 2);
         painter.rotate(m_rotateAngle);
-        painter.translate(-(this->width() / 2), -(this->height() / 2));
+        painter.translate(-(r.width() / 2), -(r.height() / 2));
     }
-
+    const qreal scale = devicePixelRatio();
+    QSize pixmapSize = r.size() * scale;
+    QPixmap pm;
     if (m_hover && !m_hoverIcon.isNull()) {
-        m_hoverIcon.paint(&painter, rect());
+        pm = m_hoverIcon.pixmap(pixmapSize);
     } else {
-        m_icon.paint(&painter, rect());
+        pm = m_icon.pixmap(pixmapSize);
     }
+    if (m_textType) {
+        QPainter pa(&pm);
+        pa.setCompositionMode(QPainter::CompositionMode_SourceIn);
+        pa.fillRect(r, painter.pen().brush());
+    }
+    pm.setDevicePixelRatio(scale);
+    painter.drawPixmap(r, pm);
 }
 
 void NetIconButton::mousePressEvent(QMouseEvent *event)

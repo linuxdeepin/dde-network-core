@@ -22,6 +22,7 @@ public Q_SLOTS:
 
     void setClickable(bool clickable);
     void setRotatable(bool rotatable);
+    void setTextType(bool textType);
 
 signals:
     void clicked();
@@ -44,6 +45,7 @@ private:
     bool m_clickable;
     bool m_rotatable;
     bool m_hover;
+    bool m_textType;
 };
 
 } // namespace network
