@@ -88,7 +88,6 @@ NetManagerThreadPrivate::NetManagerThreadPrivate()
     , m_parentThread(QThread::currentThread())
     , m_monitorNetworkNotify(false)
     , m_useSecretAgent(true)
-    , m_autoUpdateHiddenConfig(true)
     , m_isInitialized(false)
     , m_enabled(true)
     , m_autoScanInterval(0)
@@ -197,11 +196,6 @@ void NetManagerThreadPrivate::setUseSecretAgent(bool enabled)
 void NetManagerThreadPrivate::setEnabled(bool enabled)
 {
     m_enabled = enabled;
-}
-
-void NetManagerThreadPrivate::setAutoUpdateHiddenConfig(bool autoUpdate)
-{
-    m_autoUpdateHiddenConfig = autoUpdate;
 }
 
 void NetManagerThreadPrivate::setAutoScanInterval(int ms)
@@ -743,7 +737,7 @@ void NetManagerThreadPrivate::doConnectWireless(const QString &id, const QVarian
         else
             sendRequest(NetManager::InputError, id, err);
     } else if (wConnect.needInputIdentify()) { // 未配置，需要输入Identify
-        if (handle8021xAccessPoint(ap))
+        if (handle8021xAccessPoint(ap, false))
             sendRequest(NetManager::CloseInput, id);
     } else if (wConnect.needInputPassword()) {
         sendRequest(NetManager::RequestPassword, id, { { "secrets", { secret } } });
@@ -1096,7 +1090,7 @@ void NetManagerThreadPrivate::doGetConnectInfo(const QString &id, NetType::NetIt
             qCWarning(DNC) << "not find Device";
             return;
         }
-
+        bool hidden = param.value("hidden").toBool();
         ConnectionSettings::Ptr settings;
         for (const NetworkManager::Connection::Ptr &con : netDevice->availableConnections()) {
             NetworkManager::WirelessSetting::Ptr wSetting = con->settings()->setting(NetworkManager::Setting::SettingType::Wireless).staticCast<NetworkManager::WirelessSetting>();
@@ -1105,8 +1099,20 @@ void NetManagerThreadPrivate::doGetConnectInfo(const QString &id, NetType::NetIt
             }
             settings = con->settings();
 
-            WirelessSecuritySetting::Ptr const sSetting = settings->setting(Setting::SettingType::WirelessSecurity).staticCast<WirelessSecuritySetting>();
-            switch (sSetting->keyMgmt()) {
+            WirelessSecuritySetting::Ptr sSetting = settings->setting(Setting::SettingType::WirelessSecurity).staticCast<WirelessSecuritySetting>();
+            WirelessSecuritySetting::KeyMgmt keyMgmt = sSetting->keyMgmt();
+            if (wSetting->hidden()) {
+                AccessPoint::Ptr nmAp = netDevice->findAccessPoint(ap->path());
+                if (nmAp.isNull()) {
+                    qCWarning(DNC) << "not find NetworkManager AccessPoint";
+                    return;
+                }
+                keyMgmt = getKeyMgmtByAp(nmAp.get());
+                sSetting->setKeyMgmt(keyMgmt);
+                sSetting->setAuthAlg(WirelessSecuritySetting::None);
+                sSetting->setInitialized(true);
+            }
+            switch (keyMgmt) {
             case WirelessSecuritySetting::Unknown:
             case WirelessSecuritySetting::WpaNone:
                 break;
@@ -1160,6 +1166,7 @@ void NetManagerThreadPrivate::doGetConnectInfo(const QString &id, NetType::NetIt
             settings->setId(ap->ssid());
             NetworkManager::WirelessSetting::Ptr wSetting = settings->setting(Setting::SettingType::Wireless).staticCast<WirelessSetting>();
             wSetting->setSsid(ap->ssid().toUtf8());
+            wSetting->setHidden(hidden);
             wSetting->setInitialized(true);
             WirelessSecuritySetting::Ptr wsSetting = settings->setting(Setting::WirelessSecurity).dynamicCast<WirelessSecuritySetting>();
             WirelessSecuritySetting::KeyMgmt keyMgmt = getKeyMgmtByAp(nmAp.get());
@@ -1759,6 +1766,7 @@ bool NetManagerThreadPrivate::toShowPage()
     } else if (paramMap.contains("ssid")) {
         QString devPath = paramMap.value("device");
         QString ssid = paramMap.value("ssid");
+        bool hidden = paramMap.value("hidden") == "true";
         if (ssid.isEmpty()) {
             clearShowPageCmd();
             return true;
@@ -1771,7 +1779,7 @@ bool NetManagerThreadPrivate::toShowPage()
                 }
                 for (auto ap : wDev->accessPointItems()) {
                     if (ap->ssid() == ssid) {
-                        doGetConnectInfo(apID(ap), NetType::WirelessItem, QVariantMap());
+                        doGetConnectInfo(apID(ap), NetType::WirelessItem, { { "hidden", hidden } });
                         QDBusMessage message = QDBusMessage::createMethodCall("org.deepin.dde.ControlCenter1", "/org/deepin/dde/ControlCenter1", "org.deepin.dde.ControlCenter1", "Show");
                         QDBusConnection::sessionBus().asyncCall(message);
                         clearShowPageCmd();
@@ -2546,7 +2554,7 @@ void NetManagerThreadPrivate::sendNetworkNotify(NetworkNotifyType type, const QS
 
 void NetManagerThreadPrivate::updateHiddenNetworkConfig(WirelessDevice *wireless)
 {
-    if (!m_autoUpdateHiddenConfig || !m_enabled)
+    if (!m_flags.testFlag(NetType::Net_autoUpdateHiddenConfig))
         return;
 
     DeviceStatus const status = wireless->deviceStatus();
@@ -2682,11 +2690,21 @@ bool NetManagerThreadPrivate::needSetPassword(AccessPoints *accessPoint) const
 
 void NetManagerThreadPrivate::handleAccessPointSecure(AccessPoints *accessPoint)
 {
-    if (!m_autoUpdateHiddenConfig || !m_enabled)
+    if (!m_flags.testFlag(NetType::Net_autoUpdateHiddenConfig))
         return;
 
     if (needSetPassword(accessPoint)) {
         if (accessPoint->hidden()) {
+            NetworkManager::Device::Ptr device = NetworkManager::findNetworkInterface(accessPoint->devicePath());
+            if (device.isNull()) {
+                device.reset(new NetworkManager::WirelessDevice(accessPoint->devicePath()));
+            }
+            NetworkManager::ActiveConnection::Ptr aConn = device->activeConnection();
+            NetworkManager::Connection::Ptr conn = aConn->connection();
+            if (conn && conn->isUnsaved()) {
+                conn->remove();
+            }
+            // device->disconnectInterface();
             // 隐藏网络逻辑是要输入密码重连，所以后端无等待，前端重连
             // wpa2企业版ap,第一次连接时,需要先删除之前默认创建的conn,然后跳转控制中心完善设置.
             qCInfo(DNC) << "Reconnect hidden wireless, access point path: " << accessPoint->path();
@@ -2695,7 +2713,7 @@ void NetManagerThreadPrivate::handleAccessPointSecure(AccessPoints *accessPoint)
             NetworkManager::AccessPoint::WpaFlags const rsnFlags = nmAp.rsnFlags();
             bool const needIdentify = (wpaFlags.testFlag(NetworkManager::AccessPoint::WpaFlag::KeyMgmt8021x) || rsnFlags.testFlag(NetworkManager::AccessPoint::WpaFlag::KeyMgmt8021x));
             if (needIdentify) {
-                handle8021xAccessPoint(accessPoint);
+                handle8021xAccessPoint(accessPoint, true);
                 return;
             }
         }
@@ -2710,11 +2728,14 @@ void NetManagerThreadPrivate::handleAccessPointSecure(AccessPoints *accessPoint)
         NetWirelessConnect wConnect(dynamic_cast<WirelessDevice *>(*it), accessPoint, this);
         wConnect.setSsid(accessPoint->ssid());
         wConnect.initConnection();
-        requestPassword(accessPoint->devicePath(), accessPoint->ssid(), { { "secrets", { wConnect.needSecrets() } } });
+        QVariantMap param;
+        param.insert("secrets", { wConnect.needSecrets() });
+        param.insert("hidden", true);
+        requestPassword(accessPoint->devicePath(), accessPoint->ssid(), param);
     }
 }
 
-bool NetManagerThreadPrivate::handle8021xAccessPoint(AccessPoints *ap)
+bool NetManagerThreadPrivate::handle8021xAccessPoint(AccessPoints *ap, bool hidden)
 {
     // 每次ap状态变化时都会做一次处理，频繁地向控制中心发送showPage指令，导致控制中心卡顿甚至卡死
     // 故增加防抖措施
@@ -2736,7 +2757,7 @@ bool NetManagerThreadPrivate::handle8021xAccessPoint(AccessPoints *ap)
     }
     switch (flag) {
     case NetType::Net_8021xToControlCenter:
-        gotoControlCenter("?device=" + ap->devicePath() + "&ssid=" + ap->ssid());
+        gotoControlCenter("?device=" + ap->devicePath() + "&ssid=" + ap->ssid() + (hidden ? "&hidden=true" : ""));
         return true;
         break;
     case NetType::Net_8021xSendNotify:

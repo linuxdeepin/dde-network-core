@@ -57,7 +57,6 @@ public:
     void setUseSecretAgent(bool enabled);
 
     void setEnabled(bool enabled);
-    void setAutoUpdateHiddenConfig(bool autoUpdate);
     void setAutoScanInterval(int ms);
     void setAutoScanEnabled(bool enabled);
     void setServerKey(const QString &serverKey);
@@ -244,7 +243,7 @@ protected Q_SLOTS:
     void updateHiddenNetworkConfig(WirelessDevice *wireless);
     bool needSetPassword(AccessPoints *accessPoint) const;
     void handleAccessPointSecure(AccessPoints *accessPoint);
-    bool handle8021xAccessPoint(AccessPoints *ap);
+    bool handle8021xAccessPoint(AccessPoints *ap, bool hidden);
     void onPrepareForSleep(bool state);
 
 protected:
@@ -272,7 +271,6 @@ private:
     // bool m_loadForNM;
     bool m_monitorNetworkNotify;
     bool m_useSecretAgent;
-    bool m_autoUpdateHiddenConfig; // 自动更新隐藏网络配置
     bool m_isInitialized;
     bool m_enabled;
     int m_autoScanInterval;
