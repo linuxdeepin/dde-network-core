@@ -78,9 +78,9 @@ DccTitleObject {
         switch (root.keyMgmt) {
         case "wpa-eap":
             root.config802_1x = c ? c : {}
+            root.eapType = "peap"
             if (root.config802_1x && root.config802_1x.hasOwnProperty("eap") && root.config802_1x.eap.length > 0) {
                 root.eapType = root.config802_1x["eap"][0]
-                console.log("sss===root.eapType=", root.eapType)
             }
             switch (root.eapType) {
             case "tls":

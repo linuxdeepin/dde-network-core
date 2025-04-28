@@ -5,6 +5,7 @@
 #include "netwirelessconnect.h"
 
 #include "configsetting.h"
+#include "nmnetworkmanager.h"
 
 #include <NetworkManagerQt/AccessPoint>
 #include <NetworkManagerQt/ActiveConnection>
@@ -440,8 +441,9 @@ void NetWirelessConnect::activateConnection()
         m_device->connectNetwork(id);
     } else {
         QVariantMap options;
+        options.insert("persist", "memory");
         options.insert("flags", MANUAL);
-        // NetworkManager::activateConnection2(conn->path(), m_device->path(), accessPointPath, options);
+        NetworkManager::activateConnection2(conn->path(), m_device->path(), accessPointPath, options);
     }
 }
 
