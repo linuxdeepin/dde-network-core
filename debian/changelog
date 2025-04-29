@@ -1,3 +1,11 @@
+dde-network-core (2.0.55) unstable; urgency=medium
+
+  * fix: Modify icon color processing
+  * fix: Modifying network configuration displays errors
+  * fix: Modifying the opening and closing of VPN caused a crash issue
+
+ -- YeShanShan <yeshanshan@uniontech.com>  Tue, 29 Apr 2025 13:11:37 +0800
+
 dde-network-core (2.0.54) unstable; urgency=medium
 
   * fix: Synchronize dss-network-plugin 107x interface
