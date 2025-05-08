@@ -796,7 +796,14 @@ DccTitleObject {
                     dataMapChanged()
                     root.editClicked()
                 }
-                Component.onCompleted: currentIndex = root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
+                Component.onCompleted: {
+                    currentIndex = root.dataMap.hasOwnProperty(dccObj.name) ? indexOfValue(root.dataMap[dccObj.name]) : 0
+                    if (currentIndex < 0) {
+                        currentIndex = 0
+                        root.dataMap[dccObj.name] = currentValue
+                        dataMapChanged()
+                    }
+                }
             }
         }
         DccObject {

@@ -32,6 +32,10 @@ DccObject {
         sectionIPv6.setConfig(config.ipv6)
         sectionDNS.setConfig((config.hasOwnProperty("ipv4") && config.ipv4.hasOwnProperty("dns")) ? config.ipv4.dns : null)
         modified = config.connection.uuid === "{00000000-0000-0000-0000-000000000000}"
+
+        if (c.check && (!sectionGeneric.checkInput() || !sectionVPN.checkInput() || !sectionIPv4.checkInput() || !sectionIPv6.checkInput() || !sectionDNS.checkInput())) {
+            return
+        }
     }
 
     weight: 10
