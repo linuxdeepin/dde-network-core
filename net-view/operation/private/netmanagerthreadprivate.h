@@ -255,7 +255,7 @@ protected:
 
     AccessPoints *fromApID(const QString &id);
     void requestPassword(const QString &dev, const QString &id, const QVariantMap &param);
-    QString connectionSuffixNum(const QString &matchConnName, const QString &name = QString());
+    QString connectionSuffixNum(const QString &matchConnName, const QString &name = QString(), NetworkManager::Connection *exception = nullptr);
     NetworkManager::WirelessSecuritySetting::KeyMgmt getKeyMgmtByAp(NetworkManager::AccessPoint *ap);
 
     static NetType::NetDeviceStatus toNetDeviceStatus(ConnectionStatus status);

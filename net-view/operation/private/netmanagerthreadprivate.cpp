@@ -17,6 +17,7 @@
 #include "networkdetails.h"
 #include "networkdevicebase.h"
 #include "networkmanagerqt/manager.h"
+#include "private/vpnparameterschecker.h"
 #include "wireddevice.h"
 #include "wirelessdevice.h"
 
@@ -961,8 +962,16 @@ void NetManagerThreadPrivate::doConnectOrInfo(const QString &id, NetType::NetIte
     case NetType::ConnectionItem: {
         NetworkManager::Connection::Ptr conn = findConnection(id);
         if (conn) {
+            if (conn->settings()->connectionType() == NetworkManager::ConnectionSettings::ConnectionType::Vpn) {
+                QSharedPointer<VPNParametersChecker> checker(VPNParametersChecker::createVpnChecker(conn.data()));
+                if (!checker->isValid()) {
+                    QVariantMap p = param;
+                    p.insert("check", true);
+                    doGetConnectInfo(id, type, p);
+                    return;
+                }
+            }
             QString devicePath;
-            NetworkManager::isNetworkingEnabled();
             for (NetworkManager::Device::Ptr device : NetworkManager::networkInterfaces()) {
                 NetworkManager::Connection::List connections = device->availableConnections();
                 NetworkManager::Connection::List::iterator itConnection = std::find_if(connections.begin(), connections.end(), [conn](NetworkManager::Connection::Ptr connection) {
@@ -1356,6 +1365,9 @@ void NetManagerThreadPrivate::doGetConnectInfo(const QString &id, NetType::NetIt
             typeMap.insert("optionalDevice", optionalDevice);
             retParam[deviceKey] = typeMap;
         }
+        if (param.value("check").toBool()) {
+            retParam.insert("check", true);
+        }
         Q_EMIT request(NetManager::ConnectInfo, id, retParam);
     } break;
     case NetType::HotspotControlItem:
@@ -1534,8 +1546,8 @@ void NetManagerThreadPrivate::changeVpnId()
     NetworkManager::Connection::Ptr uuidConn = findConnectionByUuid(m_newVPNuuid);
     if (uuidConn) {
         ConnectionSettings::Ptr connSettings = uuidConn->settings();
-        QString vpnName = connectionSuffixNum(connSettings->id() + "(%1)");
-        if (vpnName.isEmpty()) {
+        QString vpnName = connectionSuffixNum(connSettings->id() + "(%1)", connSettings->id(), uuidConn.data());
+        if (vpnName.isEmpty() || vpnName == connSettings->id()) {
             m_newVPNuuid.clear();
             return;
         }
@@ -2804,7 +2816,7 @@ void NetManagerThreadPrivate::requestPassword(const QString &dev, const QString 
     Q_EMIT requestInputPassword(dev, id, param);
 }
 
-QString NetManagerThreadPrivate::connectionSuffixNum(const QString &matchConnName, const QString &name)
+QString NetManagerThreadPrivate::connectionSuffixNum(const QString &matchConnName, const QString &name, NetworkManager::Connection *exception)
 {
     if (matchConnName.isEmpty()) {
         return QString();
@@ -2814,7 +2826,9 @@ QString NetManagerThreadPrivate::connectionSuffixNum(const QString &matchConnNam
     QStringList connNameList;
 
     for (const auto &conn : connList) {
-        connNameList.append(conn->name());
+        if (conn.data() != exception) {
+            connNameList.append(conn->name());
+        }
     }
     if (!name.isEmpty() && !connNameList.contains(name)) {
         return name;
