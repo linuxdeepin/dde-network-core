@@ -69,7 +69,7 @@ DccObject {
                             rightPadding: 10
                             spacing: 10
                             icon {
-                                name: "network-wireless" + (item.flags & 0x10 ? "-6" : "") + c_levelString[item.strengthLevel] + (item.secure ? "-secure" : "") + "-symbolic"
+                                name: "network-wireless" + (item.flags ? "-6" : "") + c_levelString[item.strengthLevel] + (item.secure ? "-secure" : "") + "-symbolic"
                                 height: 16
                                 width: 16
                             }
