@@ -63,9 +63,9 @@ DccObject {
                 }
                 break
             case NetType.AppProxyControlItem:
-                if (appProxyPage.item !== item) {
-                    appProxyPage.item = item
-                }
+                // if (appProxyPage.item !== item) {
+                //     appProxyPage.item = item
+                // }
                 break
             case NetType.HotspotControlItem:
                 hotspotPage.setItem(item)
