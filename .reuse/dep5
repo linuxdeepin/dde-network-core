@@ -64,7 +64,7 @@ Copyright: None
 License: CC0-1.0
 
 # xml toml json conf yaml
-Files: src/*.xml .clog.toml configs/*.json src/*conf src/*.yaml .tx/config .tx/deepin.conf *.conf
+Files: src/*.xml .clog.toml configs/*.json src/*conf src/*.yaml .tx/config .tx/deepin.conf *.conf .tx/*.yaml
 Copyright: None
 License: CC0-1.0
 
