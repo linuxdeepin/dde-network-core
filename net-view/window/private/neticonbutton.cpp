@@ -117,7 +117,7 @@ void NetIconButton::paintEvent(QPaintEvent *e)
     if (m_textType) {
         QPainter pa(&pm);
         pa.setCompositionMode(QPainter::CompositionMode_SourceIn);
-        pa.fillRect(r, painter.pen().brush());
+        pa.fillRect(pm.rect(), painter.pen().brush());
     }
     pm.setDevicePixelRatio(scale);
     painter.drawPixmap(r, pm);
