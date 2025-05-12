@@ -192,7 +192,7 @@
     </message>
     <message>
         <source>Authenticating</source>
-        <translation>Ověřování</translation>
+        <translation>Ověřování se</translation>
     </message>
     <message>
         <source>Obtaining IP address</source>
@@ -208,7 +208,7 @@
     </message>
     <message>
         <source>IP conflict</source>
-        <translation>Střet IP adres</translation>
+        <translation>Kolize IP adres</translation>
     </message>
     <message>
         <source>Failed</source>
