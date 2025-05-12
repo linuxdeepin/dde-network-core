@@ -46,7 +46,7 @@
     <name>dde::network::NetworkDetailInterRealize</name>
     <message>
         <source>Hotspot</source>
-        <translation>Punto de acceso</translation>
+        <translation>Compartir conexión</translation>
     </message>
     <message>
         <source>SSID</source>
@@ -113,7 +113,7 @@
     </message>
     <message>
         <source>Hotspot</source>
-        <translation>Punto de acceso</translation>
+        <translation>Compartir conexión</translation>
     </message>
     <message>
         <source>SSID</source>
@@ -212,7 +212,7 @@
     </message>
     <message>
         <source>Failed</source>
-        <translation>Fallido</translation>
+        <translation>Falló</translation>
     </message>
     <message>
         <source>Obtaining address</source>
