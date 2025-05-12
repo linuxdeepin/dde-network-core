@@ -46,130 +46,130 @@
     <name>dde::network::NetworkDetailInterRealize</name>
     <message>
         <source>Hotspot</source>
-        <translation type="unfinished"/>
+        <translation>Bağlantı Noktası</translation>
     </message>
     <message>
         <source>SSID</source>
-        <translation type="unfinished"/>
+        <translation>SSID</translation>
     </message>
     <message>
         <source>Protocol</source>
-        <translation type="unfinished"/>
+        <translation>Protokol</translation>
     </message>
     <message>
         <source>Security Type</source>
-        <translation type="unfinished"/>
+        <translation>Güvenlik Türü</translation>
     </message>
     <message>
         <source>Channel</source>
-        <translation type="unfinished"/>
+        <translation>Kanal</translation>
     </message>
     <message>
         <source>Band</source>
-        <translation type="unfinished"/>
+        <translation>Bant</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished"/>
+        <translation>Arayüz</translation>
     </message>
     <message>
         <source>MAC</source>
-        <translation type="unfinished"/>
+        <translation>MAC</translation>
     </message>
     <message>
         <source>IPv4</source>
-        <translation type="unfinished"/>
+        <translation>IPv4</translation>
     </message>
     <message>
         <source>Netmask</source>
-        <translation type="unfinished"/>
+        <translation>Ağ Maskesi</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"/>
+        <translation>Ağ Geçidi</translation>
     </message>
     <message>
         <source>Primary DNS</source>
-        <translation type="unfinished"/>
+        <translation>Birincil DNS</translation>
     </message>
     <message>
         <source>IPv6</source>
-        <translation type="unfinished"/>
+        <translation>IPv6</translation>
     </message>
     <message>
         <source>Prefix</source>
-        <translation type="unfinished"/>
+        <translation>Ön Ek</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished"/>
+        <translation>Hız</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetworkDetailNMRealize</name>
     <message>
         <source>automatic</source>
-        <translation type="unfinished"/>
+        <translation>otomatik</translation>
     </message>
     <message>
         <source>Hotspot</source>
-        <translation type="unfinished"/>
+        <translation>Bağlantı Noktası</translation>
     </message>
     <message>
         <source>SSID</source>
-        <translation type="unfinished"/>
+        <translation>SSID</translation>
     </message>
     <message>
         <source>Protocol</source>
-        <translation type="unfinished"/>
+        <translation>Protokol</translation>
     </message>
     <message>
         <source>Security Type</source>
-        <translation type="unfinished"/>
+        <translation>Güvenlik Türü</translation>
     </message>
     <message>
         <source>Channel</source>
-        <translation type="unfinished"/>
+        <translation>Kanal</translation>
     </message>
     <message>
         <source>Band</source>
-        <translation type="unfinished"/>
+        <translation>Bant</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished"/>
+        <translation>Arayüz</translation>
     </message>
     <message>
         <source>MAC</source>
-        <translation type="unfinished"/>
+        <translation>MAC</translation>
     </message>
     <message>
         <source>IPv4</source>
-        <translation type="unfinished"/>
+        <translation>IPv4</translation>
     </message>
     <message>
         <source>Netmask</source>
-        <translation type="unfinished"/>
+        <translation>Ağ Maskesi</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"/>
+        <translation>Ağ Geçidi</translation>
     </message>
     <message>
         <source>Primary DNS</source>
-        <translation type="unfinished"/>
+        <translation>Birincil DNS</translation>
     </message>
     <message>
         <source>IPv6</source>
-        <translation type="unfinished"/>
+        <translation>IPv6</translation>
     </message>
     <message>
         <source>Prefix</source>
-        <translation type="unfinished"/>
+        <translation>Ön Ek</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished"/>
+        <translation>Hız</translation>
     </message>
 </context>
 <context>
