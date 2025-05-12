@@ -15,7 +15,7 @@
     </message>
     <message>
         <source>WPA3 Personal</source>
-        <translation type="unfinished"/>
+        <translation>WPA3 Personal</translation>
     </message>
     <message>
         <source>TLS</source>
@@ -46,130 +46,130 @@
     <name>dde::network::NetworkDetailInterRealize</name>
     <message>
         <source>Hotspot</source>
-        <translation type="unfinished"/>
+        <translation>Точка доступа</translation>
     </message>
     <message>
         <source>SSID</source>
-        <translation type="unfinished"/>
+        <translation>SSID</translation>
     </message>
     <message>
         <source>Protocol</source>
-        <translation type="unfinished"/>
+        <translation>Протокол</translation>
     </message>
     <message>
         <source>Security Type</source>
-        <translation type="unfinished"/>
+        <translation>Тип безопасности</translation>
     </message>
     <message>
         <source>Channel</source>
-        <translation type="unfinished"/>
+        <translation>Канал</translation>
     </message>
     <message>
         <source>Band</source>
-        <translation type="unfinished"/>
+        <translation>Диапазон</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished"/>
+        <translation>Интерфейс</translation>
     </message>
     <message>
         <source>MAC</source>
-        <translation type="unfinished"/>
+        <translation>MAC</translation>
     </message>
     <message>
         <source>IPv4</source>
-        <translation type="unfinished"/>
+        <translation>IPv4</translation>
     </message>
     <message>
         <source>Netmask</source>
-        <translation type="unfinished"/>
+        <translation>Маска сети</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"/>
+        <translation>Шлюз</translation>
     </message>
     <message>
         <source>Primary DNS</source>
-        <translation type="unfinished"/>
+        <translation>Основной DNS</translation>
     </message>
     <message>
         <source>IPv6</source>
-        <translation type="unfinished"/>
+        <translation>IPv6</translation>
     </message>
     <message>
         <source>Prefix</source>
-        <translation type="unfinished"/>
+        <translation>Префикс</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished"/>
+        <translation>Скорость</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetworkDetailNMRealize</name>
     <message>
         <source>automatic</source>
-        <translation type="unfinished"/>
+        <translation>Автоматически</translation>
     </message>
     <message>
         <source>Hotspot</source>
-        <translation type="unfinished"/>
+        <translation>Точка доступа</translation>
     </message>
     <message>
         <source>SSID</source>
-        <translation type="unfinished"/>
+        <translation>SSID</translation>
     </message>
     <message>
         <source>Protocol</source>
-        <translation type="unfinished"/>
+        <translation>Протокол</translation>
     </message>
     <message>
         <source>Security Type</source>
-        <translation type="unfinished"/>
+        <translation>Тип безопасности</translation>
     </message>
     <message>
         <source>Channel</source>
-        <translation type="unfinished"/>
+        <translation>Канал</translation>
     </message>
     <message>
         <source>Band</source>
-        <translation type="unfinished"/>
+        <translation>Диапазон</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished"/>
+        <translation>Интерфейс</translation>
     </message>
     <message>
         <source>MAC</source>
-        <translation type="unfinished"/>
+        <translation>MAC</translation>
     </message>
     <message>
         <source>IPv4</source>
-        <translation type="unfinished"/>
+        <translation>IPv4</translation>
     </message>
     <message>
         <source>Netmask</source>
-        <translation type="unfinished"/>
+        <translation>Маска сети</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"/>
+        <translation>Шлюз</translation>
     </message>
     <message>
         <source>Primary DNS</source>
-        <translation type="unfinished"/>
+        <translation>Основной DNS</translation>
     </message>
     <message>
         <source>IPv6</source>
-        <translation type="unfinished"/>
+        <translation>IPv6</translation>
     </message>
     <message>
         <source>Prefix</source>
-        <translation type="unfinished"/>
+        <translation>Префикс</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished"/>
+        <translation>Скорость</translation>
     </message>
 </context>
 <context>
