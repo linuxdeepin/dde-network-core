@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="zh_TW">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_TW">
 <context>
     <name>dde::network::DockContentWidget</name>
     <message>
@@ -32,6 +30,38 @@
 </context>
 <context>
     <name>dde::network::NetManagerThreadPrivate</name>
+    <message>
+        <source>Wired Connection %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VPN L2TP %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VPN PPTP %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VPN VPNC %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VPN OpenVPN %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VPN StrongSwan %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VPN OpenConnect %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>PPPoE Connection %1</source>
+        <translation type="unfinished"/>
+    </message>
     <message>
         <source>Connecting &quot;%1&quot;</source>
         <translation>正在連線&quot;%1&quot;</translation>
@@ -67,38 +97,6 @@
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
         <translation>連接“%1”需要登入後配置認證資訊</translation>
-    </message>
-    <message>
-        <source>Wired Connection %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VPN L2TP %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VPN PPTP %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VPN VPNC %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VPN OpenVPN %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VPN StrongSwan %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VPN OpenConnect %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>PPPoE Connection %1</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -257,7 +255,7 @@
     <name>dde::network::NetSystemProxyControlItem</name>
     <message>
         <source>System Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>系統代理</translation>
     </message>
 </context>
 <context>
