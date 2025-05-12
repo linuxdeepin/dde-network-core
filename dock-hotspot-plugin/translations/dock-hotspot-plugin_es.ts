@@ -1,0 +1,32 @@
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="es">
+<context>
+    <name>dde::hotspotplugin::HotspotPlugin</name>
+    <message>
+        <source>hotspot</source>
+        <translation>Compartir conexión</translation>
+    </message>
+    <message>
+        <source>Hotspot is unsupported</source>
+        <translation>Conexión compartida no soportada</translation>
+    </message>
+    <message>
+        <source>Personal Hotspot On</source>
+        <translation>Conexión compartida activada</translation>
+    </message>
+    <message>
+        <source>Personal Hotspot Off</source>
+        <translation>Conexión compartida desactivada</translation>
+    </message>
+    <message>
+        <source>Wireless Device is Unavailable</source>
+        <translation>El dispositivo inalámbrico no está disponible</translation>
+    </message>
+</context>
+<context>
+    <name>dde::hotspotplugin::QuickPanel</name>
+    <message>
+        <source>HotSpot</source>
+        <translation>Compartir conexión</translation>
+    </message>
+</context>
+</TS>
