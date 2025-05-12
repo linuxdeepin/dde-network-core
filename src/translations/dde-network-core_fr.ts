@@ -46,130 +46,130 @@
     <name>dde::network::NetworkDetailInterRealize</name>
     <message>
         <source>Hotspot</source>
-        <translation type="unfinished"/>
+        <translation>Point d&apos;accès</translation>
     </message>
     <message>
         <source>SSID</source>
-        <translation type="unfinished"/>
+        <translation>SSID</translation>
     </message>
     <message>
         <source>Protocol</source>
-        <translation type="unfinished"/>
+        <translation>Protocole</translation>
     </message>
     <message>
         <source>Security Type</source>
-        <translation type="unfinished"/>
+        <translation>Type de sécurité</translation>
     </message>
     <message>
         <source>Channel</source>
-        <translation type="unfinished"/>
+        <translation>Canal</translation>
     </message>
     <message>
         <source>Band</source>
-        <translation type="unfinished"/>
+        <translation>Bande</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished"/>
+        <translation>Interface</translation>
     </message>
     <message>
         <source>MAC</source>
-        <translation type="unfinished"/>
+        <translation>MAC</translation>
     </message>
     <message>
         <source>IPv4</source>
-        <translation type="unfinished"/>
+        <translation>IPv4</translation>
     </message>
     <message>
         <source>Netmask</source>
-        <translation type="unfinished"/>
+        <translation>Masque de réseau</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"/>
+        <translation>Passerelle</translation>
     </message>
     <message>
         <source>Primary DNS</source>
-        <translation type="unfinished"/>
+        <translation>DNS principal</translation>
     </message>
     <message>
         <source>IPv6</source>
-        <translation type="unfinished"/>
+        <translation>IPv6</translation>
     </message>
     <message>
         <source>Prefix</source>
-        <translation type="unfinished"/>
+        <translation>Préfixe</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished"/>
+        <translation>Vitesse</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetworkDetailNMRealize</name>
     <message>
         <source>automatic</source>
-        <translation type="unfinished"/>
+        <translation>automatique</translation>
     </message>
     <message>
         <source>Hotspot</source>
-        <translation type="unfinished"/>
+        <translation>Point d&apos;accès</translation>
     </message>
     <message>
         <source>SSID</source>
-        <translation type="unfinished"/>
+        <translation>SSID</translation>
     </message>
     <message>
         <source>Protocol</source>
-        <translation type="unfinished"/>
+        <translation>Protocole</translation>
     </message>
     <message>
         <source>Security Type</source>
-        <translation type="unfinished"/>
+        <translation>Type de sécurité</translation>
     </message>
     <message>
         <source>Channel</source>
-        <translation type="unfinished"/>
+        <translation>Canal</translation>
     </message>
     <message>
         <source>Band</source>
-        <translation type="unfinished"/>
+        <translation>Bande</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished"/>
+        <translation>Interface</translation>
     </message>
     <message>
         <source>MAC</source>
-        <translation type="unfinished"/>
+        <translation>MAC</translation>
     </message>
     <message>
         <source>IPv4</source>
-        <translation type="unfinished"/>
+        <translation>IPv4</translation>
     </message>
     <message>
         <source>Netmask</source>
-        <translation type="unfinished"/>
+        <translation>Masque de réseau</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"/>
+        <translation>Passerelle</translation>
     </message>
     <message>
         <source>Primary DNS</source>
-        <translation type="unfinished"/>
+        <translation>DNS principal</translation>
     </message>
     <message>
         <source>IPv6</source>
-        <translation type="unfinished"/>
+        <translation>IPv6</translation>
     </message>
     <message>
         <source>Prefix</source>
-        <translation type="unfinished"/>
+        <translation>Préfixe</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished"/>
+        <translation>Vitesse</translation>
     </message>
 </context>
 <context>
