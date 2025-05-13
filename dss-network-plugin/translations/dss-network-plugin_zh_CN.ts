@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="zh_CN">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_CN">
 <context>
     <name>Bubble</name>
     <message>
@@ -28,6 +26,38 @@
 </context>
 <context>
     <name>dde::network::NetManagerThreadPrivate</name>
+    <message>
+        <source>Wired Connection %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VPN L2TP %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VPN PPTP %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VPN VPNC %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VPN OpenVPN %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VPN StrongSwan %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VPN OpenConnect %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>PPPoE Connection %1</source>
+        <translation type="unfinished"/>
+    </message>
     <message>
         <source>Connecting &quot;%1&quot;</source>
         <translation>正在连接&quot;%1&quot;</translation>
@@ -63,38 +93,6 @@
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
         <translation>连接“%1”需要登录后配置认证信息</translation>
-    </message>
-    <message>
-        <source>Wired Connection %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VPN L2TP %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VPN PPTP %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VPN VPNC %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VPN OpenVPN %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VPN StrongSwan %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VPN OpenConnect %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>PPPoE Connection %1</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -146,7 +144,7 @@
     </message>
     <message>
         <source>Enable wired connection</source>
-        <translation>启用有线网络</translation>
+        <translation>开启有线网络</translation>
     </message>
     <message>
         <source>Disable wireless connection</source>
@@ -154,7 +152,7 @@
     </message>
     <message>
         <source>Enable wireless connection</source>
-        <translation>启用无线网络</translation>
+        <translation>开启无线网络</translation>
     </message>
     <message>
         <source>Disable network</source>
@@ -162,7 +160,7 @@
     </message>
     <message>
         <source>Enable network</source>
-        <translation>启用网络</translation>
+        <translation>开启网络</translation>
     </message>
     <message>
         <source>Disable VPN</source>
@@ -260,7 +258,7 @@
     <name>dde::network::NetVPNTipsItem</name>
     <message>
         <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
-        <translation>VPN配置未连接或连接失败，请前往控制中心检查</translation>
+        <translation>VPN配置未连接或连接失败，请 &lt;a style=&quot;text-decoration: none;&quot;href=&quot;go to the control center&quot;&gt;前往控制中心 &lt;/a&gt;检查</translation>
     </message>
 </context>
 <context>

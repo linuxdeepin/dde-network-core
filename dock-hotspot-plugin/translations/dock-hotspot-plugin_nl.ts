@@ -1,32 +1,32 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_CN">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="nl">
 <context>
     <name>dde::hotspotplugin::HotspotPlugin</name>
     <message>
         <source>hotspot</source>
-        <translation>热点</translation>
+        <translation>hotspot</translation>
     </message>
     <message>
         <source>Hotspot is unsupported</source>
-        <translation>不支持热点</translation>
+        <translation>Geen ondersteuning voor hotspot</translation>
     </message>
     <message>
         <source>Personal Hotspot On</source>
-        <translation>个人热点开</translation>
+        <translation>De persoonlijke hotspot staat aan</translation>
     </message>
     <message>
         <source>Personal Hotspot Off</source>
-        <translation>个人热点关</translation>
+        <translation>De persoonlijke hotspot staat uit</translation>
     </message>
     <message>
         <source>Wireless Device is Unavailable</source>
-        <translation>无线设备不可用</translation>
+        <translation>Het apparaat is niet beschikbaar</translation>
     </message>
 </context>
 <context>
     <name>dde::hotspotplugin::QuickPanel</name>
     <message>
         <source>HotSpot</source>
-        <translation>热点</translation>
+        <translation>Hotspot</translation>
     </message>
 </context>
 </TS>

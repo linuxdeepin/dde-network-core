@@ -3,7 +3,7 @@
     <name>network::systemservice::NetworkInitialization</name>
     <message>
         <source>Wired Connection</source>
-        <translation type="unfinished"/>
+        <translation>Laidinis ryšys</translation>
     </message>
 </context>
 </TS>
