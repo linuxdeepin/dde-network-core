@@ -79,6 +79,10 @@ bool JumpSettingButton::event(QEvent* e)
         m_hover = e->type() == QEvent::Enter;
         update();
         break;
+    case QEvent::Hide:
+        m_hover = false;
+        update();
+        break;
     default:
         break;
     }
