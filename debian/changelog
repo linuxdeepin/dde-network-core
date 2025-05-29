@@ -1,3 +1,10 @@
+dde-network-core (2.0.58) unstable; urgency=medium
+
+  * i18n: Translate
+  * fix: when hide plugin,setting button sholud be hided
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Thu, 29 May 2025 15:20:40 +0800
+
 dde-network-core (2.0.57) unstable; urgency=medium
 
   * fix: add transifex config
