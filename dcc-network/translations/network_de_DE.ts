@@ -44,7 +44,7 @@
     </message>
     <message>
         <source>http</source>
-        <translation type="unfinished"/>
+        <translation>http</translation>
     </message>
     <message>
         <source>socks4</source>
@@ -204,7 +204,7 @@
     </message>
     <message>
         <source>Personal Hotspot</source>
-        <translation type="unfinished"/>
+        <translation>Persönlicher Hotspot</translation>
     </message>
     <message>
         <source>Share the network</source>
@@ -1597,47 +1597,47 @@
     <name>dde::network::NetManagerThreadPrivate</name>
     <message>
         <source>Wired Connection %1</source>
-        <translation type="unfinished"/>
+        <translation>Kabelverbindung %1</translation>
     </message>
     <message>
         <source>VPN L2TP %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN L2TP %1</translation>
     </message>
     <message>
         <source>VPN PPTP %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN PPTP %1</translation>
     </message>
     <message>
         <source>VPN VPNC %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN VPNC %1</translation>
     </message>
     <message>
         <source>VPN OpenVPN %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN OpenVPN %1</translation>
     </message>
     <message>
         <source>VPN StrongSwan %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN StrongSwan %1</translation>
     </message>
     <message>
         <source>VPN OpenConnect %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN OpenConnect %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
-        <translation type="unfinished"/>
+        <translation>PPPoE-Verbindung %1</translation>
     </message>
     <message>
         <source>Connecting &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Verbinde &quot;%1&quot;</translation>
     </message>
     <message>
         <source>&quot;%1&quot; connected</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; verbunden</translation>
     </message>
     <message>
         <source>&quot;%1&quot; disconnected</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; getrennt</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
@@ -1653,11 +1653,11 @@
     </message>
     <message>
         <source>Password is required to connect &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Verbindung mit &quot;%1&quot; erfordert Passwort</translation>
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"/>
+        <translation>Das &quot;%1&quot; 802.11 WLAN-Netzwerk konnte nicht gefunden werden</translation>
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
@@ -1668,7 +1668,7 @@
     <name>dde::network::NetSystemProxyControlItem</name>
     <message>
         <source>System Proxy</source>
-        <translation type="unfinished"/>
+        <translation>System-Proxy</translation>
     </message>
 </context>
 <context>
@@ -1682,42 +1682,42 @@
     <name>dde::network::NetWiredControlItem</name>
     <message>
         <source>Wired Network</source>
-        <translation type="unfinished"/>
+        <translation>Kabelgebundenes Netzwerk</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessControlItem</name>
     <message>
         <source>Wireless Network</source>
-        <translation type="unfinished"/>
+        <translation>Drahtlosnetzwerk</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessHiddenItem</name>
     <message>
         <source>Connect to hidden network</source>
-        <translation type="unfinished"/>
+        <translation>Mit verstecktem Netzwerk verbinden</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessMineItem</name>
     <message>
         <source>My Networks</source>
-        <translation type="unfinished"/>
+        <translation>Meine Netzwerke</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessOtherItem</name>
     <message>
         <source>Other Networks</source>
-        <translation type="unfinished"/>
+        <translation>Andere Netzwerke</translation>
     </message>
 </context>
 <context>
     <name>network</name>
     <message>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Netzwerk</translation>
     </message>
 </context>
 </TS>
