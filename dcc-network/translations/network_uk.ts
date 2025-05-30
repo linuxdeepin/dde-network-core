@@ -1165,155 +1165,155 @@
     </message>
     <message>
         <source>128-bit (most secure)</source>
-        <translation type="unfinished"/>
+        <translation>128-бітове (найбезпечніше)</translation>
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation type="unfinished"/>
+        <translation>MPPE з контролем стану</translation>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Забороняти EAP-розпізнавання</translation>
     </message>
     <message>
         <source>Refuse PAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Забороняти PAP-розпізнавання</translation>
     </message>
     <message>
         <source>Refuse CHAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Забороняти CHAP-розпізнавання</translation>
     </message>
     <message>
         <source>Refuse MSCHAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Забороняти MSCHAP-розпізнавання</translation>
     </message>
     <message>
         <source>Refuse MSCHAPv2 Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Забороняти MSCHAPv2-розпізнавання</translation>
     </message>
     <message>
         <source>No BSD Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>Без стискання даних BSD</translation>
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>Без стискання даних Deflate</translation>
     </message>
     <message>
         <source>No TCP Header Compression</source>
-        <translation type="unfinished"/>
+        <translation>Без стискання  заголовків TCP</translation>
     </message>
     <message>
         <source>No Protocol Field Compression</source>
-        <translation type="unfinished"/>
+        <translation>Без стискання полів протоколів</translation>
     </message>
     <message>
         <source>No Address/Control Compression</source>
-        <translation type="unfinished"/>
+        <translation>Без стискання адреси/керування</translation>
     </message>
     <message>
         <source>Send PPP Echo Packets</source>
-        <translation type="unfinished"/>
+        <translation>Надсилати луна-пакети PPP</translation>
     </message>
     <message>
         <source>VPN IPsec</source>
-        <translation type="unfinished"/>
+        <translation>VPN IPsec</translation>
     </message>
     <message>
         <source>Enable IPsec</source>
-        <translation type="unfinished"/>
+        <translation>Увімкнути IPsec</translation>
     </message>
     <message>
         <source>Group ID</source>
-        <translation type="unfinished"/>
+        <translation>Ідентифікатор групи</translation>
     </message>
     <message>
         <source>Phase1 Algorithms</source>
-        <translation type="unfinished"/>
+        <translation>Алгоритми Фази1</translation>
     </message>
     <message>
         <source>Phase2 Algorithms</source>
-        <translation type="unfinished"/>
+        <translation>Алгоритми Фази2</translation>
     </message>
     <message>
         <source>VPN Advanced</source>
-        <translation type="unfinished"/>
+        <translation>Розширений VPN</translation>
     </message>
     <message>
         <source>Customize Gateway Port</source>
-        <translation type="unfinished"/>
+        <translation>Налаштувати порт шлюзу</translation>
     </message>
     <message>
         <source>Gateway Port</source>
-        <translation type="unfinished"/>
+        <translation>Порт шлюзу</translation>
     </message>
     <message>
         <source>Customize Renegotiation Interval</source>
-        <translation type="unfinished"/>
+        <translation>Налаштувати інтервал повторного узгодження</translation>
     </message>
     <message>
         <source>Renegotiation Interval</source>
-        <translation type="unfinished"/>
+        <translation>Інтервал повторного узгодження</translation>
     </message>
     <message>
         <source>Use LZO Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>Використати стиснення файлів LZO</translation>
     </message>
     <message>
         <source>Use TCP Connection</source>
-        <translation type="unfinished"/>
+        <translation>Використати зв‘язок TCP</translation>
     </message>
     <message>
         <source>Use TAP Device</source>
-        <translation type="unfinished"/>
+        <translation>Використати пристрій TAP</translation>
     </message>
     <message>
         <source>Customize Tunnel MTU</source>
-        <translation type="unfinished"/>
+        <translation>Налаштувати тунель MTU</translation>
     </message>
     <message>
         <source>MTU</source>
-        <translation type="unfinished"/>
+        <translation>MTU</translation>
     </message>
     <message>
         <source>Customize UDP Fragment Size</source>
-        <translation type="unfinished"/>
+        <translation>Налаштувати розмір фрагмента UDP</translation>
     </message>
     <message>
         <source>UDP Fragment Size</source>
-        <translation type="unfinished"/>
+        <translation>Розмір фрагмента UDP</translation>
     </message>
     <message>
         <source>Restrict Tunnel TCP MSS</source>
-        <translation type="unfinished"/>
+        <translation>Обмежити Tunnel TCP MSS</translation>
     </message>
     <message>
         <source>Randomize Remote Hosts</source>
-        <translation type="unfinished"/>
+        <translation>Розмістити у випадковому порядку віддалені вузли</translation>
     </message>
     <message>
         <source>Domain</source>
-        <translation type="unfinished"/>
+        <translation>Домен</translation>
     </message>
     <message>
         <source>Vendor</source>
-        <translation type="unfinished"/>
+        <translation>Постачальник</translation>
     </message>
     <message>
         <source>Cisco (default)</source>
-        <translation type="unfinished"/>
+        <translation>Cisco (типове)</translation>
     </message>
     <message>
         <source>Netscreen</source>
-        <translation type="unfinished"/>
+        <translation>Мережевий екран</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>Версія</translation>
     </message>
     <message>
         <source>Encryption</source>
-        <translation type="unfinished"/>
+        <translation>Шифрування</translation>
     </message>
     <message>
         <source>Secure (default)</source>
