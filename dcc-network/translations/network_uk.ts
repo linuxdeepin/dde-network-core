@@ -894,75 +894,75 @@
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Розпізнавання</translation>
     </message>
     <message>
         <source>Shared key</source>
-        <translation type="unfinished"/>
+        <translation>Спільний ключ</translation>
     </message>
     <message>
         <source>Open system</source>
-        <translation type="unfinished"/>
+        <translation>Відкрита система</translation>
     </message>
     <message>
         <source>Private Key</source>
-        <translation type="unfinished"/>
+        <translation>Закритий ключ</translation>
     </message>
     <message>
         <source>Anonymous ID</source>
-        <translation type="unfinished"/>
+        <translation>Анонімний ідентифікатор</translation>
     </message>
     <message>
         <source>Provisioning</source>
-        <translation type="unfinished"/>
+        <translation>Передбачення</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"/>
+        <translation>Вимкнено</translation>
     </message>
     <message>
         <source>Anonymous</source>
-        <translation type="unfinished"/>
+        <translation>Анонімно</translation>
     </message>
     <message>
         <source>Authenticated</source>
-        <translation type="unfinished"/>
+        <translation>Розпізнано</translation>
     </message>
     <message>
         <source>Both</source>
-        <translation type="unfinished"/>
+        <translation>Обидва</translation>
     </message>
     <message>
         <source>PAC file</source>
-        <translation type="unfinished"/>
+        <translation>PAC-файл</translation>
     </message>
     <message>
         <source>CA Cert</source>
-        <translation type="unfinished"/>
+        <translation>Сертифікат CA</translation>
     </message>
     <message>
         <source>User Cert</source>
-        <translation type="unfinished"/>
+        <translation>Сертифікат користувача</translation>
     </message>
     <message>
         <source>PEAP Version</source>
-        <translation type="unfinished"/>
+        <translation>PEAP-версія</translation>
     </message>
     <message>
         <source>Automatic</source>
-        <translation type="unfinished"/>
+        <translation>Автоматично</translation>
     </message>
     <message>
         <source>Version 0</source>
-        <translation type="unfinished"/>
+        <translation>Версія 0</translation>
     </message>
     <message>
         <source>Version 1</source>
-        <translation type="unfinished"/>
+        <translation>Версія 1</translation>
     </message>
     <message>
         <source>Inner Auth</source>
-        <translation type="unfinished"/>
+        <translation>Внутрішнє розпізнавання</translation>
     </message>
 </context>
 <context>
