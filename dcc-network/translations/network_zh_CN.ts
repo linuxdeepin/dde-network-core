@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="zh_CN">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_CN">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -22,12 +20,12 @@
         <translation>飞行模式</translation>
     </message>
     <message>
-        <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
-        <translation>打开飞行模式将关闭无线网络、个人热点和蓝牙功能</translation>
-    </message>
-    <message>
         <source>Stop wireless communication</source>
         <translation>停止无线通信</translation>
+    </message>
+    <message>
+        <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
+        <translation>打开飞行模式将关闭无线网络、个人热点和蓝牙功能</translation>
     </message>
 </context>
 <context>
@@ -37,20 +35,24 @@
         <translation>应用代理</translation>
     </message>
     <message>
+        <source>Set up proxy servers</source>
+        <translation>设置代理服务器</translation>
+    </message>
+    <message>
         <source>Proxy Type</source>
         <translation>代理类型</translation>
     </message>
     <message>
         <source>http</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>socks4</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>socks5</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>IP Address</source>
@@ -96,16 +98,16 @@
         <source>Save</source>
         <translation>保 存</translation>
     </message>
-    <message>
-        <source>Set up proxy servers</source>
-        <translation>设置代理服务器</translation>
-    </message>
 </context>
 <context>
     <name>PageDSL</name>
     <message>
         <source>DSL</source>
-        <translation></translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Set up a dial-up network connection</source>
+        <translation>设置拨号网络连接</translation>
     </message>
     <message>
         <source>Disconnect</source>
@@ -119,13 +121,17 @@
         <source>Add PPPoE connection</source>
         <translation>添加PPPoE连接</translation>
     </message>
-    <message>
-        <source>Set up a dial-up network connection</source>
-        <translation>设置拨号网络连接</translation>
-    </message>
 </context>
 <context>
     <name>PageDSLSettings</name>
+    <message>
+        <source> Network Properties</source>
+        <translation>网络属性</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>删除</translation>
+    </message>
     <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>您确定要删除当前配置吗？</translation>
@@ -135,16 +141,8 @@
         <translation>取 消</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <translation>删除</translation>
-    </message>
-    <message>
         <source>Save</source>
         <translation>保 存</translation>
-    </message>
-    <message>
-        <source> Network Properties</source>
-        <translation>网络属性</translation>
     </message>
 </context>
 <context>
@@ -152,6 +150,14 @@
     <message>
         <source>Network Details</source>
         <translation>网络详情</translation>
+    </message>
+    <message>
+        <source>View all network configurations</source>
+        <translation>查看所有网络配置</translation>
+    </message>
+    <message>
+        <source>Details has been copied</source>
+        <translation>信息已复制</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -164,14 +170,6 @@
     <message>
         <source>Network Detection</source>
         <translation>网络检测</translation>
-    </message>
-    <message>
-        <source>Details has been copied</source>
-        <translation>信息已复制</translation>
-    </message>
-    <message>
-        <source>View all network configurations</source>
-        <translation>查看所有网络配置</translation>
     </message>
 </context>
 <context>
@@ -190,11 +188,11 @@
     </message>
     <message>
         <source>2.4 GHz</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>5 GHz</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Auto</source>
@@ -207,6 +205,10 @@
     <message>
         <source>Personal Hotspot</source>
         <translation>个人热点</translation>
+    </message>
+    <message>
+        <source>Share the network</source>
+        <translation>共享网络</translation>
     </message>
     <message>
         <source>My Hotspot</source>
@@ -260,13 +262,17 @@
         <source>If you want to use the personal hotspot, disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first and then enable the wireless network adapter.</source>
         <translation>若要使用个人热点功能，请先退出&lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;飞行模式&lt;/a&gt;，再启用无线网卡。</translation>
     </message>
-    <message>
-        <source>Share the network</source>
-        <translation>共享网络</translation>
-    </message>
 </context>
 <context>
     <name>PageSettings</name>
+    <message>
+        <source> Network Properties</source>
+        <translation>网络属性</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>删除</translation>
+    </message>
     <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation>您确定要删除当前配置吗？</translation>
@@ -276,16 +282,8 @@
         <translation>取 消</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <translation>删除</translation>
-    </message>
-    <message>
         <source>Save</source>
         <translation>保 存</translation>
-    </message>
-    <message>
-        <source> Network Properties</source>
-        <translation>网络属性</translation>
     </message>
 </context>
 <context>
@@ -293,6 +291,10 @@
     <message>
         <source>System Proxy</source>
         <translation>系统代理</translation>
+    </message>
+    <message>
+        <source>Set up proxy servers</source>
+        <translation>设置代理服务器</translation>
     </message>
     <message>
         <source>Proxy Type</source>
@@ -309,6 +311,10 @@
     <message>
         <source>Configuration URL</source>
         <translation>配置URL</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>必填</translation>
     </message>
     <message>
         <source>HTTP Proxy</source>
@@ -338,20 +344,16 @@
         <source>Save</source>
         <translation>保 存</translation>
     </message>
-    <message>
-        <source>Set up proxy servers</source>
-        <translation>设置代理服务器</translation>
-    </message>
-    <message>
-        <source>Required</source>
-        <translation>必填</translation>
-    </message>
 </context>
 <context>
     <name>PageVPN</name>
     <message>
         <source>VPN</source>
-        <translation></translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connect, add, import</source>
+        <translation>连接、添加、导入</translation>
     </message>
     <message>
         <source>Disconnect</source>
@@ -371,7 +373,7 @@
     </message>
     <message>
         <source>*.conf</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Import Error</source>
@@ -385,40 +387,44 @@
         <source>OK</source>
         <translation>确定</translation>
     </message>
-    <message>
-        <source>Connect, add, import</source>
-        <translation>连接、添加、导入</translation>
-    </message>
 </context>
 <context>
     <name>PageVPNSettings</name>
+    <message>
+        <source> Network Properties</source>
+        <translation>网络属性</translation>
+    </message>
     <message>
         <source>VPN Type</source>
         <translation>VPN类型</translation>
     </message>
     <message>
         <source>L2TP</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>PPTP</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>OpenVPN</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>OpenConnect</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>StrongSwan</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>VPNC</source>
-        <translation></translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>删除</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this configuration?</source>
@@ -429,28 +435,28 @@
         <translation>取 消</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <translation>删除</translation>
-    </message>
-    <message>
         <source>Export</source>
         <translation>导 出</translation>
     </message>
     <message>
         <source>*.conf</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save</source>
         <translation>保 存</translation>
     </message>
-    <message>
-        <source> Network Properties</source>
-        <translation>网络属性</translation>
-    </message>
 </context>
 <context>
     <name>PageWiredDevice</name>
+    <message>
+        <source>Connect, edit network settings</source>
+        <translation>连接、编辑网络设置</translation>
+    </message>
+    <message>
+        <source>Plug in the network cable first</source>
+        <translation>请您先插入网线！</translation>
+    </message>
     <message>
         <source>Disconnect</source>
         <translation>断开</translation>
@@ -463,17 +469,13 @@
         <source>Add Network Connection</source>
         <translation>添加网络设置</translation>
     </message>
-    <message>
-        <source>Plug in the network cable first</source>
-        <translation>请您先插入网线！</translation>
-    </message>
+</context>
+<context>
+    <name>PageWirelessDevice</name>
     <message>
         <source>Connect, edit network settings</source>
         <translation>连接、编辑网络设置</translation>
     </message>
-</context>
-<context>
-    <name>PageWirelessDevice</name>
     <message>
         <source>Disconnect</source>
         <translation>断开</translation>
@@ -483,7 +485,7 @@
         <translation>连接</translation>
     </message>
     <message>
-        <source>My&#xa0;Networks</source>
+        <source>My Networks</source>
         <translation>我的网络</translation>
     </message>
     <message>
@@ -506,16 +508,12 @@
         <source>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Disable hotspot&lt;/a&gt; first if you want to connect to a wireless network</source>
         <translation>若要连接并使用无线网络功能，请先&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;关闭热点分享&lt;/a&gt;</translation>
     </message>
-    <message>
-        <source>Connect, edit network settings</source>
-        <translation>连接、编辑网络设置</translation>
-    </message>
 </context>
 <context>
     <name>SectionDNS</name>
     <message>
         <source>DNS</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Done</source>
@@ -538,7 +536,7 @@
     </message>
     <message>
         <source>WLAN</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ethernet</source>
@@ -558,7 +556,7 @@
     </message>
     <message>
         <source>MTU</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Band</source>
@@ -570,11 +568,11 @@
     </message>
     <message>
         <source>2.4 GHz</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>5 GHz</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -584,27 +582,27 @@
         <translation>通用</translation>
     </message>
     <message>
-        <source>Name</source>
-        <translation>名称</translation>
+        <source>Name (SSID)</source>
+        <translation>名称（SSID）</translation>
     </message>
     <message>
-        <source>Auto Connect</source>
-        <translation>自动连接</translation>
+        <source>Name</source>
+        <translation>名称</translation>
     </message>
     <message>
         <source>Required</source>
         <translation>必填</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
-        <translation>名称（SSID）</translation>
+        <source>Auto Connect</source>
+        <translation>自动连接</translation>
     </message>
 </context>
 <context>
     <name>SectionIPv4</name>
     <message>
         <source>IPv4</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Done</source>
@@ -671,7 +669,7 @@
     </message>
     <message>
         <source>IPv6</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Done</source>
@@ -710,7 +708,7 @@
     <name>SectionPPP</name>
     <message>
         <source>PPP</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use MPPE</source>
@@ -792,15 +790,15 @@
     </message>
     <message>
         <source>TLS</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>MD5</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>FAST</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Tunneled TLS</source>
@@ -816,15 +814,15 @@
     </message>
     <message>
         <source>GTC</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>MSCHAPV2</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>PAP</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>MSCHAP</source>
@@ -971,7 +969,7 @@
     <name>SectionVPN</name>
     <message>
         <source>VPN</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>All files (*)</source>
@@ -1578,6 +1576,13 @@
     </message>
 </context>
 <context>
+    <name>dde::network::NetAirplaneModeTipsItem</name>
+    <message>
+        <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
+        <translation>若要使用无线网络功能，请先关闭 &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;飞行模式&lt;/a&gt; </translation>
+    </message>
+</context>
+<context>
     <name>dde::network::NetManagerPrivate</name>
     <message>
         <source>IP conflict</source>
@@ -1660,6 +1665,13 @@
     </message>
 </context>
 <context>
+    <name>dde::network::NetSystemProxyControlItem</name>
+    <message>
+        <source>System Proxy</source>
+        <translation>系统代理</translation>
+    </message>
+</context>
+<context>
     <name>dde::network::NetVPNTipsItem</name>
     <message>
         <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
@@ -1685,6 +1697,20 @@
     <message>
         <source>Connect to hidden network</source>
         <translation>连接到隐藏网络</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessMineItem</name>
+    <message>
+        <source>My Networks</source>
+        <translation>我的网络</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessOtherItem</name>
+    <message>
+        <source>Other Networks</source>
+        <translation>其他网络</translation>
     </message>
 </context>
 <context>
