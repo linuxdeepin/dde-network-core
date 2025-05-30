@@ -1229,95 +1229,95 @@
     </message>
     <message>
         <source>Phase1 Algorithms</source>
-        <translation type="unfinished"/>
+        <translation>フェーズ1アルゴリズム</translation>
     </message>
     <message>
         <source>Phase2 Algorithms</source>
-        <translation type="unfinished"/>
+        <translation>フェーズ2アルゴリズム</translation>
     </message>
     <message>
         <source>VPN Advanced</source>
-        <translation type="unfinished"/>
+        <translation>高度な VPN</translation>
     </message>
     <message>
         <source>Customize Gateway Port</source>
-        <translation type="unfinished"/>
+        <translation>ゲートウェイポートのカスタマイズ</translation>
     </message>
     <message>
         <source>Gateway Port</source>
-        <translation type="unfinished"/>
+        <translation>ゲートウェイポート</translation>
     </message>
     <message>
         <source>Customize Renegotiation Interval</source>
-        <translation type="unfinished"/>
+        <translation>認識間隔のカスタマイズ</translation>
     </message>
     <message>
         <source>Renegotiation Interval</source>
-        <translation type="unfinished"/>
+        <translation>認識間隔</translation>
     </message>
     <message>
         <source>Use LZO Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>LZO データ圧縮を使う</translation>
     </message>
     <message>
         <source>Use TCP Connection</source>
-        <translation type="unfinished"/>
+        <translation>TCP 接続を使う</translation>
     </message>
     <message>
         <source>Use TAP Device</source>
-        <translation type="unfinished"/>
+        <translation>TAP デバイスを使う</translation>
     </message>
     <message>
         <source>Customize Tunnel MTU</source>
-        <translation type="unfinished"/>
+        <translation>トンネル MTU のカスタマイズ</translation>
     </message>
     <message>
         <source>MTU</source>
-        <translation type="unfinished"/>
+        <translation>MTU</translation>
     </message>
     <message>
         <source>Customize UDP Fragment Size</source>
-        <translation type="unfinished"/>
+        <translation>UDP フラグメントサイズのカスタマイズ</translation>
     </message>
     <message>
         <source>UDP Fragment Size</source>
-        <translation type="unfinished"/>
+        <translation>UDP フラグメントのサイズ</translation>
     </message>
     <message>
         <source>Restrict Tunnel TCP MSS</source>
-        <translation type="unfinished"/>
+        <translation>Tunnel TCP MSS の禁止</translation>
     </message>
     <message>
         <source>Randomize Remote Hosts</source>
-        <translation type="unfinished"/>
+        <translation>リモートホストをランダムにする</translation>
     </message>
     <message>
         <source>Domain</source>
-        <translation type="unfinished"/>
+        <translation>ドメイン</translation>
     </message>
     <message>
         <source>Vendor</source>
-        <translation type="unfinished"/>
+        <translation>ベンダー</translation>
     </message>
     <message>
         <source>Cisco (default)</source>
-        <translation type="unfinished"/>
+        <translation>Cisco (デフォルト)</translation>
     </message>
     <message>
         <source>Netscreen</source>
-        <translation type="unfinished"/>
+        <translation>ネットスクリーン</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>バージョン</translation>
     </message>
     <message>
         <source>Encryption</source>
-        <translation type="unfinished"/>
+        <translation>暗号化</translation>
     </message>
     <message>
         <source>Secure (default)</source>
-        <translation type="unfinished"/>
+        <translation>安全 (デフォルト)</translation>
     </message>
     <message>
         <source>Weak</source>
@@ -1329,163 +1329,163 @@
     </message>
     <message>
         <source>NAT Traversal Mode</source>
-        <translation type="unfinished"/>
+        <translation>NATトラバースモード</translation>
     </message>
     <message>
         <source>NAT-T When Available (default)</source>
-        <translation type="unfinished"/>
+        <translation>可能時は NAT-T (デフォルト)</translation>
     </message>
     <message>
         <source>NAT-T Always</source>
-        <translation type="unfinished"/>
+        <translation>常に NAT-T</translation>
     </message>
     <message>
         <source>Cisco UDP</source>
-        <translation type="unfinished"/>
+        <translation>Cisco UDP</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"/>
+        <translation>無効化</translation>
     </message>
     <message>
         <source>IKE DH Group</source>
-        <translation type="unfinished"/>
+        <translation>IKE DH グループ</translation>
     </message>
     <message>
         <source>DH Group 1</source>
-        <translation type="unfinished"/>
+        <translation>DH グループ 1</translation>
     </message>
     <message>
         <source>DH Group 2 (default)</source>
-        <translation type="unfinished"/>
+        <translation>DH グループ 2 (デフォルト)</translation>
     </message>
     <message>
         <source>DH Group 5</source>
-        <translation type="unfinished"/>
+        <translation>DH グループ 5</translation>
     </message>
     <message>
         <source>Forward Secrecy</source>
-        <translation type="unfinished"/>
+        <translation>前方秘匿性</translation>
     </message>
     <message>
         <source>Server (default)</source>
-        <translation type="unfinished"/>
+        <translation>サーバー (デフォルト)</translation>
     </message>
     <message>
         <source>DH Group 2</source>
-        <translation type="unfinished"/>
+        <translation>DH グループ 2</translation>
     </message>
     <message>
         <source>Local Port</source>
-        <translation type="unfinished"/>
+        <translation>ローカルポート</translation>
     </message>
     <message>
         <source>Disable Dead Peer Detection</source>
-        <translation type="unfinished"/>
+        <translation>デッドピア検知を無効化</translation>
     </message>
     <message>
         <source>VPN Security</source>
-        <translation type="unfinished"/>
+        <translation>VPN セキュリティ</translation>
     </message>
     <message>
         <source>Cipher</source>
-        <translation type="unfinished"/>
+        <translation>Cipher</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>デフォルト</translation>
     </message>
     <message>
         <source>DES-CBC</source>
-        <translation type="unfinished"/>
+        <translation>DES-CBC</translation>
     </message>
     <message>
         <source>RC2-CBC</source>
-        <translation type="unfinished"/>
+        <translation>RC2-CBC</translation>
     </message>
     <message>
         <source>DES-EDE-CBC</source>
-        <translation type="unfinished"/>
+        <translation>DES-EDE-CBC</translation>
     </message>
     <message>
         <source>DES-EDE3-CBC</source>
-        <translation type="unfinished"/>
+        <translation>DES-EDE3-CBC</translation>
     </message>
     <message>
         <source>DESX-CBC</source>
-        <translation type="unfinished"/>
+        <translation>DESX-CBC</translation>
     </message>
     <message>
         <source>BF-CBC</source>
-        <translation type="unfinished"/>
+        <translation>BF-CBC</translation>
     </message>
     <message>
         <source>RC2-40-CBC</source>
-        <translation type="unfinished"/>
+        <translation>RC2-40-CBC</translation>
     </message>
     <message>
         <source>CAST5-CBC</source>
-        <translation type="unfinished"/>
+        <translation>CAST5-CBC</translation>
     </message>
     <message>
         <source>RC2-64-CBC</source>
-        <translation type="unfinished"/>
+        <translation>RC2-64-CBC</translation>
     </message>
     <message>
         <source>AES-128-CBC</source>
-        <translation type="unfinished"/>
+        <translation>AES-128-CBC</translation>
     </message>
     <message>
         <source>AES-192-CBC</source>
-        <translation type="unfinished"/>
+        <translation>AES-192-CBC</translation>
     </message>
     <message>
         <source>AES-256-CBC</source>
-        <translation type="unfinished"/>
+        <translation>AES-256-CBC</translation>
     </message>
     <message>
         <source>CAMELLIA-128-CBC</source>
-        <translation type="unfinished"/>
+        <translation>CAMELLIA-128-CBC</translation>
     </message>
     <message>
         <source>CAMELLIA-192-CBC</source>
-        <translation type="unfinished"/>
+        <translation>CAMELLIA-192-CBC</translation>
     </message>
     <message>
         <source>CAMELLIA-256-CBC</source>
-        <translation type="unfinished"/>
+        <translation>CAMELLIA-256-CBC</translation>
     </message>
     <message>
         <source>SEED-CBC</source>
-        <translation type="unfinished"/>
+        <translation>SEED-CBC</translation>
     </message>
     <message>
         <source>HMAC Auth</source>
-        <translation type="unfinished"/>
+        <translation>HMAC 認証</translation>
     </message>
     <message>
         <source>RSA MD-4</source>
-        <translation type="unfinished"/>
+        <translation>RSA MD-4</translation>
     </message>
     <message>
         <source>MD-5</source>
-        <translation type="unfinished"/>
+        <translation>MD-5</translation>
     </message>
     <message>
         <source>SHA-1</source>
-        <translation type="unfinished"/>
+        <translation>SHA-1</translation>
     </message>
     <message>
         <source>SHA-224</source>
-        <translation type="unfinished"/>
+        <translation>SHA-224</translation>
     </message>
     <message>
         <source>SHA-256</source>
-        <translation type="unfinished"/>
+        <translation>SHA-256</translation>
     </message>
     <message>
         <source>SHA-384</source>
-        <translation type="unfinished"/>
+        <translation>SHA-384</translation>
     </message>
     <message>
         <source>SHA-512</source>
