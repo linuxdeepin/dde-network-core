@@ -1053,7 +1053,7 @@
     </message>
     <message>
         <source>Static Key</source>
-        <translation type="unfinished"/>
+        <translation>Statischer Schlüssel</translation>
     </message>
     <message>
         <source>Pwd Options</source>
@@ -1077,11 +1077,11 @@
     </message>
     <message>
         <source>Customize Key Direction</source>
-        <translation type="unfinished"/>
+        <translation>Schlüssel-Richtung bestimmen</translation>
     </message>
     <message>
         <source>Key Direction</source>
-        <translation type="unfinished"/>
+        <translation>Schlüssel-Richtung</translation>
     </message>
     <message>
         <source>0</source>
@@ -1093,11 +1093,11 @@
     </message>
     <message>
         <source>Remote IP</source>
-        <translation type="unfinished"/>
+        <translation>Fern-IP</translation>
     </message>
     <message>
         <source>Local IP</source>
-        <translation type="unfinished"/>
+        <translation>Lokale IP</translation>
     </message>
     <message>
         <source>NT Domain</source>
@@ -1105,15 +1105,15 @@
     </message>
     <message>
         <source>Request an Inner IP Address</source>
-        <translation type="unfinished"/>
+        <translation>Eine Innere IP-Adresse abfragen</translation>
     </message>
     <message>
         <source>Enforce UDP Encapsulation</source>
-        <translation type="unfinished"/>
+        <translation>UDP-Abkapselung erzwingen</translation>
     </message>
     <message>
         <source>Use IP Compression</source>
-        <translation type="unfinished"/>
+        <translation>IP-Komprimierung verwenden</translation>
     </message>
     <message>
         <source>Enable Custom Cipher Proposals</source>
@@ -1161,15 +1161,15 @@
     </message>
     <message>
         <source>40-bit (less secure)</source>
-        <translation type="unfinished"/>
+        <translation>40-bit (weniger sicher)</translation>
     </message>
     <message>
         <source>128-bit (most secure)</source>
-        <translation type="unfinished"/>
+        <translation>128-bit (am sichersten)</translation>
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation type="unfinished"/>
+        <translation>Stateful MPPE</translation>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
@@ -1221,7 +1221,7 @@
     </message>
     <message>
         <source>Enable IPsec</source>
-        <translation type="unfinished"/>
+        <translation>Ermögliche IPsec</translation>
     </message>
     <message>
         <source>Group ID</source>
@@ -1229,11 +1229,11 @@
     </message>
     <message>
         <source>Phase1 Algorithms</source>
-        <translation type="unfinished"/>
+        <translation>Phase1-Algorithmen</translation>
     </message>
     <message>
         <source>Phase2 Algorithms</source>
-        <translation type="unfinished"/>
+        <translation>Phase2-Algorithmen</translation>
     </message>
     <message>
         <source>VPN Advanced</source>
@@ -1241,11 +1241,11 @@
     </message>
     <message>
         <source>Customize Gateway Port</source>
-        <translation type="unfinished"/>
+        <translation>Gateway-Port bestimmen</translation>
     </message>
     <message>
         <source>Gateway Port</source>
-        <translation type="unfinished"/>
+        <translation>Gateway Port</translation>
     </message>
     <message>
         <source>Customize Renegotiation Interval</source>
