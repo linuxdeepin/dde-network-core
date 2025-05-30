@@ -906,166 +906,166 @@
     </message>
     <message>
         <source>Private Key</source>
-        <translation type="unfinished"/>
+        <translation>プライベートキー</translation>
     </message>
     <message>
         <source>Anonymous ID</source>
-        <translation type="unfinished"/>
+        <translation>匿名 ID</translation>
     </message>
     <message>
         <source>Provisioning</source>
-        <translation type="unfinished"/>
+        <translation>プロビジョニング</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"/>
+        <translation>無効化</translation>
     </message>
     <message>
         <source>Anonymous</source>
-        <translation type="unfinished"/>
+        <translation>匿名</translation>
     </message>
     <message>
         <source>Authenticated</source>
-        <translation type="unfinished"/>
+        <translation>認証済み</translation>
     </message>
     <message>
         <source>Both</source>
-        <translation type="unfinished"/>
+        <translation>両方</translation>
     </message>
     <message>
         <source>PAC file</source>
-        <translation type="unfinished"/>
+        <translation>PAC ファイル</translation>
     </message>
     <message>
         <source>CA Cert</source>
-        <translation type="unfinished"/>
+        <translation>CA 証明書</translation>
     </message>
     <message>
         <source>User Cert</source>
-        <translation type="unfinished"/>
+        <translation>ユーザー証明書</translation>
     </message>
     <message>
         <source>PEAP Version</source>
-        <translation type="unfinished"/>
+        <translation>PEAP バージョン</translation>
     </message>
     <message>
         <source>Automatic</source>
-        <translation type="unfinished"/>
+        <translation>自動</translation>
     </message>
     <message>
         <source>Version 0</source>
-        <translation type="unfinished"/>
+        <translation>バージョン 0</translation>
     </message>
     <message>
         <source>Version 1</source>
-        <translation type="unfinished"/>
+        <translation>バージョン 1</translation>
     </message>
     <message>
         <source>Inner Auth</source>
-        <translation type="unfinished"/>
+        <translation>Inner 認証</translation>
     </message>
 </context>
 <context>
     <name>SectionVPN</name>
     <message>
         <source>VPN</source>
-        <translation type="unfinished"/>
+        <translation>VPN</translation>
     </message>
     <message>
         <source>All files (*)</source>
-        <translation type="unfinished"/>
+        <translation>すべてのファイル (*)</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"/>
+        <translation>必須</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished"/>
+        <translation>無効なゲートウェイです</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"/>
+        <translation>ゲートウェイ</translation>
     </message>
     <message>
         <source>CA Cert</source>
-        <translation type="unfinished"/>
+        <translation>CA 証明書</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation type="unfinished"/>
+        <translation>プロキシ</translation>
     </message>
     <message>
         <source>Allow Cisco Secure Desktop Trojan</source>
-        <translation type="unfinished"/>
+        <translation>Cisco Secure Desktop トロイを許可</translation>
     </message>
     <message>
         <source>CSD Script</source>
-        <translation type="unfinished"/>
+        <translation>CSD スクリプト</translation>
     </message>
     <message>
         <source>Auth Type</source>
-        <translation type="unfinished"/>
+        <translation>認証の種類</translation>
     </message>
     <message>
         <source>Private Key</source>
-        <translation type="unfinished"/>
+        <translation>プライベートキー</translation>
     </message>
     <message>
         <source>SSH Agent</source>
-        <translation type="unfinished"/>
+        <translation>SSH エージェント</translation>
     </message>
     <message>
         <source>Smart Card</source>
-        <translation type="unfinished"/>
+        <translation>スマートカード</translation>
     </message>
     <message>
         <source>EAP</source>
-        <translation type="unfinished"/>
+        <translation>EAP</translation>
     </message>
     <message>
         <source>Pre-Shared Key</source>
-        <translation type="unfinished"/>
+        <translation>事前共有キー</translation>
     </message>
     <message>
         <source>User Cert</source>
-        <translation type="unfinished"/>
+        <translation>ユーザー証明書</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>ユーザー名</translation>
     </message>
     <message>
         <source>Use FSID for Key Passphrase</source>
-        <translation type="unfinished"/>
+        <translation>キーパスフレーズに FSID を使用</translation>
     </message>
     <message>
         <source>Certificates (TLS)</source>
-        <translation type="unfinished"/>
+        <translation>証明書 (TLS)</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>パスワード</translation>
     </message>
     <message>
         <source>Certificates with Password (TLS)</source>
-        <translation type="unfinished"/>
+        <translation>証明書パスワード(TLS)</translation>
     </message>
     <message>
         <source>Static Key</source>
-        <translation type="unfinished"/>
+        <translation>静的キー</translation>
     </message>
     <message>
         <source>Pwd Options</source>
-        <translation type="unfinished"/>
+        <translation>パスワードのオプション</translation>
     </message>
     <message>
         <source>Saved</source>
-        <translation type="unfinished"/>
+        <translation>保存済み</translation>
     </message>
     <message>
         <source>Ask</source>
-        <translation type="unfinished"/>
+        <translation>確認する</translation>
     </message>
     <message>
         <source>Not Required</source>
