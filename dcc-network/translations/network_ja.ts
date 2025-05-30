@@ -1069,63 +1069,63 @@
     </message>
     <message>
         <source>Not Required</source>
-        <translation type="unfinished"/>
+        <translation>省略可</translation>
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation type="unfinished"/>
+        <translation>プライベートパスワード</translation>
     </message>
     <message>
         <source>Customize Key Direction</source>
-        <translation type="unfinished"/>
+        <translation>キーの方向をカスタマイズ</translation>
     </message>
     <message>
         <source>Key Direction</source>
-        <translation type="unfinished"/>
+        <translation>キーの方向</translation>
     </message>
     <message>
         <source>0</source>
-        <translation type="unfinished"/>
+        <translation>0</translation>
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished"/>
+        <translation>1</translation>
     </message>
     <message>
         <source>Remote IP</source>
-        <translation type="unfinished"/>
+        <translation>リモート IP</translation>
     </message>
     <message>
         <source>Local IP</source>
-        <translation type="unfinished"/>
+        <translation>ローカル IP</translation>
     </message>
     <message>
         <source>NT Domain</source>
-        <translation type="unfinished"/>
+        <translation>NT ドメイン</translation>
     </message>
     <message>
         <source>Request an Inner IP Address</source>
-        <translation type="unfinished"/>
+        <translation>内部 IP アドレスを要求</translation>
     </message>
     <message>
         <source>Enforce UDP Encapsulation</source>
-        <translation type="unfinished"/>
+        <translation>UDP カプセル化を強制</translation>
     </message>
     <message>
         <source>Use IP Compression</source>
-        <translation type="unfinished"/>
+        <translation>IP 圧縮を使用</translation>
     </message>
     <message>
         <source>Enable Custom Cipher Proposals</source>
-        <translation type="unfinished"/>
+        <translation>カスタム暗号提案を有効にする</translation>
     </message>
     <message>
         <source>IKE</source>
-        <translation type="unfinished"/>
+        <translation>IKE</translation>
     </message>
     <message>
         <source>ESP</source>
-        <translation type="unfinished"/>
+        <translation>ESP</translation>
     </message>
     <message>
         <source>Group Name</source>
