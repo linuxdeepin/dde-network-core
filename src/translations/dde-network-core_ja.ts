@@ -11,11 +11,11 @@
     </message>
     <message>
         <source>WPA/WPA2 Personal</source>
-        <translation>WPA／WPA2 パーソナル</translation>
+        <translation>WPA/WPA2 Personal</translation>
     </message>
     <message>
         <source>WPA3 Personal</source>
-        <translation type="unfinished"/>
+        <translation>WPA3 Personal</translation>
     </message>
     <message>
         <source>TLS</source>
@@ -46,130 +46,130 @@
     <name>dde::network::NetworkDetailInterRealize</name>
     <message>
         <source>Hotspot</source>
-        <translation type="unfinished"/>
+        <translation>ホットスポット</translation>
     </message>
     <message>
         <source>SSID</source>
-        <translation type="unfinished"/>
+        <translation>SSID</translation>
     </message>
     <message>
         <source>Protocol</source>
-        <translation type="unfinished"/>
+        <translation>プロトコル</translation>
     </message>
     <message>
         <source>Security Type</source>
-        <translation type="unfinished"/>
+        <translation>セキュリティタイプ</translation>
     </message>
     <message>
         <source>Channel</source>
-        <translation type="unfinished"/>
+        <translation>チャンネル</translation>
     </message>
     <message>
         <source>Band</source>
-        <translation type="unfinished"/>
+        <translation>バンド</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished"/>
+        <translation>インターフェース</translation>
     </message>
     <message>
         <source>MAC</source>
-        <translation type="unfinished"/>
+        <translation>MAC</translation>
     </message>
     <message>
         <source>IPv4</source>
-        <translation type="unfinished"/>
+        <translation>IPv4</translation>
     </message>
     <message>
         <source>Netmask</source>
-        <translation type="unfinished"/>
+        <translation>ネットマスク</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"/>
+        <translation>ゲートウェイ</translation>
     </message>
     <message>
         <source>Primary DNS</source>
-        <translation type="unfinished"/>
+        <translation>プライマリ DNS</translation>
     </message>
     <message>
         <source>IPv6</source>
-        <translation type="unfinished"/>
+        <translation>IPv6</translation>
     </message>
     <message>
         <source>Prefix</source>
-        <translation type="unfinished"/>
+        <translation>プレフィックス</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished"/>
+        <translation>速度</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetworkDetailNMRealize</name>
     <message>
         <source>automatic</source>
-        <translation type="unfinished"/>
+        <translation>自動</translation>
     </message>
     <message>
         <source>Hotspot</source>
-        <translation type="unfinished"/>
+        <translation>ホットスポット</translation>
     </message>
     <message>
         <source>SSID</source>
-        <translation type="unfinished"/>
+        <translation>SSID</translation>
     </message>
     <message>
         <source>Protocol</source>
-        <translation type="unfinished"/>
+        <translation>プロトコル</translation>
     </message>
     <message>
         <source>Security Type</source>
-        <translation type="unfinished"/>
+        <translation>セキュリティタイプ</translation>
     </message>
     <message>
         <source>Channel</source>
-        <translation type="unfinished"/>
+        <translation>チャンネル</translation>
     </message>
     <message>
         <source>Band</source>
-        <translation type="unfinished"/>
+        <translation>バンド</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished"/>
+        <translation>インターフェース</translation>
     </message>
     <message>
         <source>MAC</source>
-        <translation type="unfinished"/>
+        <translation>MAC</translation>
     </message>
     <message>
         <source>IPv4</source>
-        <translation type="unfinished"/>
+        <translation>IPv4</translation>
     </message>
     <message>
         <source>Netmask</source>
-        <translation type="unfinished"/>
+        <translation>ネットマスク</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"/>
+        <translation>ゲートウェイ</translation>
     </message>
     <message>
         <source>Primary DNS</source>
-        <translation type="unfinished"/>
+        <translation>プライマリ DNS</translation>
     </message>
     <message>
         <source>IPv6</source>
-        <translation type="unfinished"/>
+        <translation>IPv6</translation>
     </message>
     <message>
         <source>Prefix</source>
-        <translation type="unfinished"/>
+        <translation>プレフィックス</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished"/>
+        <translation>速度</translation>
     </message>
 </context>
 <context>
@@ -208,7 +208,7 @@
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"/>
+        <translation>IP競合</translation>
     </message>
     <message>
         <source>Failed</source>
@@ -216,7 +216,7 @@
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation type="unfinished"/>
+        <translation>アドレスを取得しています</translation>
     </message>
 </context>
 <context>
