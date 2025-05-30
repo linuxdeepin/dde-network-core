@@ -252,15 +252,15 @@
     </message>
     <message>
         <source>Hotspot Sharing Device</source>
-        <translation type="unfinished"/>
+        <translation>Hotspot-Einrichte-Gerät</translation>
     </message>
     <message>
         <source>If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.</source>
-        <translation type="unfinished"/>
+        <translation>Wenn Sie den persönlichen Hotspot verwenden möchten, schalten sie zunächst den Flugmodus aus und dann den Drahtlosnetzwerk-Adapter ein.</translation>
     </message>
     <message>
         <source>If you want to use the personal hotspot, disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first and then enable the wireless network adapter.</source>
-        <translation type="unfinished"/>
+        <translation>Wenn Sie den persönlichen Hotspot verwenden möchten, schalten sie zunächst den &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Flugmodus&lt;/a&gt; aus und dann den Drahtlosnetzwerk-Adapter ein.</translation>
     </message>
 </context>
 <context>
@@ -544,7 +544,7 @@
     </message>
     <message>
         <source>Device MAC Addr</source>
-        <translation type="unfinished"/>
+        <translation>Geräte-MAC-Adresse</translation>
     </message>
     <message>
         <source>Cloned MAC Addr</source>
@@ -1025,7 +1025,7 @@
     </message>
     <message>
         <source>Pre-Shared Key</source>
-        <translation type="unfinished"/>
+        <translation>Vorverteilter Schlüssel</translation>
     </message>
     <message>
         <source>User Cert</source>
@@ -1037,11 +1037,11 @@
     </message>
     <message>
         <source>Use FSID for Key Passphrase</source>
-        <translation type="unfinished"/>
+        <translation>FSID für die Schlüsselphrase verwenden</translation>
     </message>
     <message>
         <source>Certificates (TLS)</source>
-        <translation type="unfinished"/>
+        <translation>Zertifikate (TLS)</translation>
     </message>
     <message>
         <source>Password</source>
@@ -1049,7 +1049,7 @@
     </message>
     <message>
         <source>Certificates with Password (TLS)</source>
-        <translation type="unfinished"/>
+        <translation>Zertifikate mit Passwort (TLS)</translation>
     </message>
     <message>
         <source>Static Key</source>
