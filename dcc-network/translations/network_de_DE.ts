@@ -1065,15 +1065,15 @@
     </message>
     <message>
         <source>Ask</source>
-        <translation type="unfinished"/>
+        <translation>Anfrage</translation>
     </message>
     <message>
         <source>Not Required</source>
-        <translation type="unfinished"/>
+        <translation>Nicht erforderlich</translation>
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation type="unfinished"/>
+        <translation>Privates Passwort</translation>
     </message>
     <message>
         <source>Customize Key Direction</source>
@@ -1085,11 +1085,11 @@
     </message>
     <message>
         <source>0</source>
-        <translation type="unfinished"/>
+        <translation>0</translation>
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished"/>
+        <translation>1</translation>
     </message>
     <message>
         <source>Remote IP</source>
@@ -1101,7 +1101,7 @@
     </message>
     <message>
         <source>NT Domain</source>
-        <translation type="unfinished"/>
+        <translation>NT Domain</translation>
     </message>
     <message>
         <source>Request an Inner IP Address</source>
@@ -1121,39 +1121,39 @@
     </message>
     <message>
         <source>IKE</source>
-        <translation type="unfinished"/>
+        <translation>IKE</translation>
     </message>
     <message>
         <source>ESP</source>
-        <translation type="unfinished"/>
+        <translation>ESP</translation>
     </message>
     <message>
         <source>Group Name</source>
-        <translation type="unfinished"/>
+        <translation>Gruppenname</translation>
     </message>
     <message>
         <source>Group Pwd</source>
-        <translation type="unfinished"/>
+        <translation>Gruppenpasswort</translation>
     </message>
     <message>
         <source>Use Hybrid Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Hybride Authentifizierung benutzen</translation>
     </message>
     <message>
         <source>CA File</source>
-        <translation type="unfinished"/>
+        <translation>CA-Datei</translation>
     </message>
     <message>
         <source>VPN PPP</source>
-        <translation type="unfinished"/>
+        <translation>VPN PPP</translation>
     </message>
     <message>
         <source>Use MPPE</source>
-        <translation type="unfinished"/>
+        <translation>MPPE benutzen</translation>
     </message>
     <message>
         <source>Security</source>
-        <translation type="unfinished"/>
+        <translation>Sicherheit</translation>
     </message>
     <message>
         <source>All Available (default)</source>
@@ -1173,51 +1173,51 @@
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>EAP-Authentifizierung verweigern</translation>
     </message>
     <message>
         <source>Refuse PAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>PAP-Authentifizierung verweigern</translation>
     </message>
     <message>
         <source>Refuse CHAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>CHAP-Authentifizierung verweigern</translation>
     </message>
     <message>
         <source>Refuse MSCHAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>MSCHAP-Authentifizierung verweigern</translation>
     </message>
     <message>
         <source>Refuse MSCHAPv2 Authentication</source>
-        <translation type="unfinished"/>
+        <translation>MSCHAPv2-Authentifizierung verweigern</translation>
     </message>
     <message>
         <source>No BSD Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>Keine BSD-Datenkomprimierung</translation>
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>Keine Deflate-Datenkomprimierung</translation>
     </message>
     <message>
         <source>No TCP Header Compression</source>
-        <translation type="unfinished"/>
+        <translation>Keine TCP-Header-Komprimierung</translation>
     </message>
     <message>
         <source>No Protocol Field Compression</source>
-        <translation type="unfinished"/>
+        <translation>Keine Protokollfeld-Komprimierung</translation>
     </message>
     <message>
         <source>No Address/Control Compression</source>
-        <translation type="unfinished"/>
+        <translation>Keine Adress-/Kontroll-Komprimierung</translation>
     </message>
     <message>
         <source>Send PPP Echo Packets</source>
-        <translation type="unfinished"/>
+        <translation>PPP-Echo-Pakete senden</translation>
     </message>
     <message>
         <source>VPN IPsec</source>
-        <translation type="unfinished"/>
+        <translation>VPN IPsec</translation>
     </message>
     <message>
         <source>Enable IPsec</source>
@@ -1225,7 +1225,7 @@
     </message>
     <message>
         <source>Group ID</source>
-        <translation type="unfinished"/>
+        <translation>Gruppen-ID</translation>
     </message>
     <message>
         <source>Phase1 Algorithms</source>
@@ -1237,7 +1237,7 @@
     </message>
     <message>
         <source>VPN Advanced</source>
-        <translation type="unfinished"/>
+        <translation>Erweitertes VPN</translation>
     </message>
     <message>
         <source>Customize Gateway Port</source>
