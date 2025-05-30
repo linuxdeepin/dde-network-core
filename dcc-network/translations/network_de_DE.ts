@@ -1675,7 +1675,7 @@
     <name>dde::network::NetVPNTipsItem</name>
     <message>
         <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
-        <translation type="unfinished"/>
+        <translation>VPN Konfiguration ist nicht verbunden oder fehlgeschlagen. Bitte &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;gehen Sie zum Kontrollzentrum&lt;/a&gt; zum Überprüfen.</translation>
     </message>
 </context>
 <context>
