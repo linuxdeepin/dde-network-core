@@ -786,111 +786,111 @@
     <name>SectionSecret</name>
     <message>
         <source>Security</source>
-        <translation type="unfinished"/>
+        <translation>Захист</translation>
     </message>
     <message>
         <source>TLS</source>
-        <translation type="unfinished"/>
+        <translation>TLS</translation>
     </message>
     <message>
         <source>MD5</source>
-        <translation type="unfinished"/>
+        <translation>MD5</translation>
     </message>
     <message>
         <source>FAST</source>
-        <translation type="unfinished"/>
+        <translation>FAST</translation>
     </message>
     <message>
         <source>Tunneled TLS</source>
-        <translation type="unfinished"/>
+        <translation>Тунельований TLS</translation>
     </message>
     <message>
         <source>Protected EAP</source>
-        <translation type="unfinished"/>
+        <translation>Захищений EAP</translation>
     </message>
     <message>
         <source>LEAP</source>
-        <translation type="unfinished"/>
+        <translation>LEAP</translation>
     </message>
     <message>
         <source>GTC</source>
-        <translation type="unfinished"/>
+        <translation>GTC</translation>
     </message>
     <message>
         <source>MSCHAPV2</source>
-        <translation type="unfinished"/>
+        <translation>MSCHAPV2</translation>
     </message>
     <message>
         <source>PAP</source>
-        <translation type="unfinished"/>
+        <translation>PAP</translation>
     </message>
     <message>
         <source>MSCHAP</source>
-        <translation type="unfinished"/>
+        <translation>MSCHAP</translation>
     </message>
     <message>
         <source>CHAP</source>
-        <translation type="unfinished"/>
+        <translation>CHAP</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Немає</translation>
     </message>
     <message>
         <source>WEP</source>
-        <translation type="unfinished"/>
+        <translation>WEP</translation>
     </message>
     <message>
         <source>WPA/WPA2 Personal</source>
-        <translation type="unfinished"/>
+        <translation>Особистий WPA/WPA2</translation>
     </message>
     <message>
         <source>WPA/WPA2 Enterprise</source>
-        <translation type="unfinished"/>
+        <translation>Промислова WPA/WPA2</translation>
     </message>
     <message>
         <source>WPA3 Personal</source>
-        <translation type="unfinished"/>
+        <translation>Особистий WPA3</translation>
     </message>
     <message>
         <source>EAP Auth</source>
-        <translation type="unfinished"/>
+        <translation>EAP-розпізнавання</translation>
     </message>
     <message>
         <source>Identity</source>
-        <translation type="unfinished"/>
+        <translation>Профіль</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"/>
+        <translation>Обов&apos;язкове</translation>
     </message>
     <message>
         <source>Pwd Options</source>
-        <translation type="unfinished"/>
+        <translation>Параметри pwd</translation>
     </message>
     <message>
         <source>Save password for this user</source>
-        <translation type="unfinished"/>
+        <translation>Зберегти пароль для цього користувача</translation>
     </message>
     <message>
         <source>Save password for all users</source>
-        <translation type="unfinished"/>
+        <translation>Зберігати паролі для усіх користувачів</translation>
     </message>
     <message>
         <source>Ask me always</source>
-        <translation type="unfinished"/>
+        <translation>Завжди питати</translation>
     </message>
     <message>
         <source>Key</source>
-        <translation type="unfinished"/>
+        <translation>Ключ</translation>
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation type="unfinished"/>
+        <translation>Приватний pwd</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Пароль</translation>
     </message>
     <message>
         <source>Authentication</source>
