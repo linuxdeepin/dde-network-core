@@ -969,199 +969,199 @@
     <name>SectionVPN</name>
     <message>
         <source>VPN</source>
-        <translation type="unfinished"/>
+        <translation>VPN</translation>
     </message>
     <message>
         <source>All files (*)</source>
-        <translation type="unfinished"/>
+        <translation>усі файли (*)</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"/>
+        <translation>Обов&apos;язкове</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished"/>
+        <translation>Некоректний шлюз</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"/>
+        <translation>Шлюз</translation>
     </message>
     <message>
         <source>CA Cert</source>
-        <translation type="unfinished"/>
+        <translation>Сертифікат CA</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation type="unfinished"/>
+        <translation>Проксі</translation>
     </message>
     <message>
         <source>Allow Cisco Secure Desktop Trojan</source>
-        <translation type="unfinished"/>
+        <translation>Дозволити Cisco Secure Desktop Trojan</translation>
     </message>
     <message>
         <source>CSD Script</source>
-        <translation type="unfinished"/>
+        <translation>Сценарій CSD</translation>
     </message>
     <message>
         <source>Auth Type</source>
-        <translation type="unfinished"/>
+        <translation>Тип розпізнавання</translation>
     </message>
     <message>
         <source>Private Key</source>
-        <translation type="unfinished"/>
+        <translation>Закритий ключ</translation>
     </message>
     <message>
         <source>SSH Agent</source>
-        <translation type="unfinished"/>
+        <translation>SSH-агент</translation>
     </message>
     <message>
         <source>Smart Card</source>
-        <translation type="unfinished"/>
+        <translation>Смарт-картка</translation>
     </message>
     <message>
         <source>EAP</source>
-        <translation type="unfinished"/>
+        <translation>EAP</translation>
     </message>
     <message>
         <source>Pre-Shared Key</source>
-        <translation type="unfinished"/>
+        <translation>Попередньо поширений ключ</translation>
     </message>
     <message>
         <source>User Cert</source>
-        <translation type="unfinished"/>
+        <translation>Сертифікат користувача</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Користувач</translation>
     </message>
     <message>
         <source>Use FSID for Key Passphrase</source>
-        <translation type="unfinished"/>
+        <translation>Використовувати FSID для пароля до ключа</translation>
     </message>
     <message>
         <source>Certificates (TLS)</source>
-        <translation type="unfinished"/>
+        <translation>Сертифікати (TLS)</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Пароль</translation>
     </message>
     <message>
         <source>Certificates with Password (TLS)</source>
-        <translation type="unfinished"/>
+        <translation>Сертифікати з паролем (TLS)</translation>
     </message>
     <message>
         <source>Static Key</source>
-        <translation type="unfinished"/>
+        <translation>Статичний ключ</translation>
     </message>
     <message>
         <source>Pwd Options</source>
-        <translation type="unfinished"/>
+        <translation>Параметри pwd</translation>
     </message>
     <message>
         <source>Saved</source>
-        <translation type="unfinished"/>
+        <translation>Збережено</translation>
     </message>
     <message>
         <source>Ask</source>
-        <translation type="unfinished"/>
+        <translation>Запитати</translation>
     </message>
     <message>
         <source>Not Required</source>
-        <translation type="unfinished"/>
+        <translation>Не є обов&apos;язковим</translation>
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation type="unfinished"/>
+        <translation>Приватний pwd</translation>
     </message>
     <message>
         <source>Customize Key Direction</source>
-        <translation type="unfinished"/>
+        <translation>Налаштувати напрямок ключа</translation>
     </message>
     <message>
         <source>Key Direction</source>
-        <translation type="unfinished"/>
+        <translation>Напрямок ключа</translation>
     </message>
     <message>
         <source>0</source>
-        <translation type="unfinished"/>
+        <translation>0</translation>
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished"/>
+        <translation>1</translation>
     </message>
     <message>
         <source>Remote IP</source>
-        <translation type="unfinished"/>
+        <translation>Віддалений IP</translation>
     </message>
     <message>
         <source>Local IP</source>
-        <translation type="unfinished"/>
+        <translation>Локальний IP</translation>
     </message>
     <message>
         <source>NT Domain</source>
-        <translation type="unfinished"/>
+        <translation>Домен NT</translation>
     </message>
     <message>
         <source>Request an Inner IP Address</source>
-        <translation type="unfinished"/>
+        <translation>Запит внутрішньої IP-адреси</translation>
     </message>
     <message>
         <source>Enforce UDP Encapsulation</source>
-        <translation type="unfinished"/>
+        <translation>Забезпечити інкапсуляцію UDP</translation>
     </message>
     <message>
         <source>Use IP Compression</source>
-        <translation type="unfinished"/>
+        <translation>Використовувати стиснення IP</translation>
     </message>
     <message>
         <source>Enable Custom Cipher Proposals</source>
-        <translation type="unfinished"/>
+        <translation>Увімкнути нетипові варіанти шифрування</translation>
     </message>
     <message>
         <source>IKE</source>
-        <translation type="unfinished"/>
+        <translation>IKE</translation>
     </message>
     <message>
         <source>ESP</source>
-        <translation type="unfinished"/>
+        <translation>ESP</translation>
     </message>
     <message>
         <source>Group Name</source>
-        <translation type="unfinished"/>
+        <translation>Назва групи</translation>
     </message>
     <message>
         <source>Group Pwd</source>
-        <translation type="unfinished"/>
+        <translation>Груповий пароль</translation>
     </message>
     <message>
         <source>Use Hybrid Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Використати гібридне розпізнавання</translation>
     </message>
     <message>
         <source>CA File</source>
-        <translation type="unfinished"/>
+        <translation>Файл CA</translation>
     </message>
     <message>
         <source>VPN PPP</source>
-        <translation type="unfinished"/>
+        <translation>VPN PPP</translation>
     </message>
     <message>
         <source>Use MPPE</source>
-        <translation type="unfinished"/>
+        <translation>Використати MPPE</translation>
     </message>
     <message>
         <source>Security</source>
-        <translation type="unfinished"/>
+        <translation>Захист</translation>
     </message>
     <message>
         <source>All Available (default)</source>
-        <translation type="unfinished"/>
+        <translation>Усі доступні (типове)</translation>
     </message>
     <message>
         <source>40-bit (less secure)</source>
-        <translation type="unfinished"/>
+        <translation>40-бітове (менш безпечне)</translation>
     </message>
     <message>
         <source>128-bit (most secure)</source>
