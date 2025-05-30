@@ -1117,7 +1117,7 @@
     </message>
     <message>
         <source>Enable Custom Cipher Proposals</source>
-        <translation type="unfinished"/>
+        <translation>Ermögliche eigene Cipher-Vorschläge</translation>
     </message>
     <message>
         <source>IKE</source>
@@ -1157,7 +1157,7 @@
     </message>
     <message>
         <source>All Available (default)</source>
-        <translation type="unfinished"/>
+        <translation>Alle Verfügbaren (voreingestellt)</translation>
     </message>
     <message>
         <source>40-bit (less secure)</source>
@@ -1649,7 +1649,7 @@
     </message>
     <message>
         <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
-        <translation type="unfinished"/>
+        <translation>Verbindung mit %1 fehlgeschlagen, falsches Passwort</translation>
     </message>
     <message>
         <source>Password is required to connect &quot;%1&quot;</source>
@@ -1661,7 +1661,7 @@
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
-        <translation type="unfinished"/>
+        <translation>Um sich mit %1 zu verbinden, richten Sie bitte ihre Authentifizierungs-Info nachdem Einloggen ein</translation>
     </message>
 </context>
 <context>
