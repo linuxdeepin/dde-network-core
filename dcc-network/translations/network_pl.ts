@@ -1061,7 +1061,7 @@
     </message>
     <message>
         <source>Saved</source>
-        <translation>Uzupełnione</translation>
+        <translation>Zapisz</translation>
     </message>
     <message>
         <source>Ask</source>
