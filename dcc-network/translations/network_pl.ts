@@ -1261,131 +1261,131 @@
     </message>
     <message>
         <source>Use TCP Connection</source>
-        <translation type="unfinished"/>
+        <translation>Użyj połączenia TCP</translation>
     </message>
     <message>
         <source>Use TAP Device</source>
-        <translation type="unfinished"/>
+        <translation>Użyj urządzenia TAP</translation>
     </message>
     <message>
         <source>Customize Tunnel MTU</source>
-        <translation type="unfinished"/>
+        <translation>Dostosuj tunel MTU</translation>
     </message>
     <message>
         <source>MTU</source>
-        <translation type="unfinished"/>
+        <translation>MTU</translation>
     </message>
     <message>
         <source>Customize UDP Fragment Size</source>
-        <translation type="unfinished"/>
+        <translation>Dostosuj rozmiar fragmentu UDP</translation>
     </message>
     <message>
         <source>UDP Fragment Size</source>
-        <translation type="unfinished"/>
+        <translation>Rozmiar fragmentu UDP</translation>
     </message>
     <message>
         <source>Restrict Tunnel TCP MSS</source>
-        <translation type="unfinished"/>
+        <translation>Ogranicz tunel TCP MSS</translation>
     </message>
     <message>
         <source>Randomize Remote Hosts</source>
-        <translation type="unfinished"/>
+        <translation>Losowo wybieraj zdalnych hostów</translation>
     </message>
     <message>
         <source>Domain</source>
-        <translation type="unfinished"/>
+        <translation>Domena</translation>
     </message>
     <message>
         <source>Vendor</source>
-        <translation type="unfinished"/>
+        <translation>Dostawca</translation>
     </message>
     <message>
         <source>Cisco (default)</source>
-        <translation type="unfinished"/>
+        <translation>Cisco (domyślnie)</translation>
     </message>
     <message>
         <source>Netscreen</source>
-        <translation type="unfinished"/>
+        <translation>Netscreen</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>Wersja</translation>
     </message>
     <message>
         <source>Encryption</source>
-        <translation type="unfinished"/>
+        <translation>Szyfrowanie</translation>
     </message>
     <message>
         <source>Secure (default)</source>
-        <translation type="unfinished"/>
+        <translation>Bezpieczne (domyślnie)</translation>
     </message>
     <message>
         <source>Weak</source>
-        <translation type="unfinished"/>
+        <translation>Słabe</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Brak</translation>
     </message>
     <message>
         <source>NAT Traversal Mode</source>
-        <translation type="unfinished"/>
+        <translation>Tryb NAT Traversal</translation>
     </message>
     <message>
         <source>NAT-T When Available (default)</source>
-        <translation type="unfinished"/>
+        <translation>NAT-T gdy dostępne (domyślnie)</translation>
     </message>
     <message>
         <source>NAT-T Always</source>
-        <translation type="unfinished"/>
+        <translation>NAT-T zawsze</translation>
     </message>
     <message>
         <source>Cisco UDP</source>
-        <translation type="unfinished"/>
+        <translation>Cisco UDP</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"/>
+        <translation>Wyłączone</translation>
     </message>
     <message>
         <source>IKE DH Group</source>
-        <translation type="unfinished"/>
+        <translation>Grupa IKE DH</translation>
     </message>
     <message>
         <source>DH Group 1</source>
-        <translation type="unfinished"/>
+        <translation>DH Grupa 1</translation>
     </message>
     <message>
         <source>DH Group 2 (default)</source>
-        <translation type="unfinished"/>
+        <translation>DH Grupa 2 (domyślnie)</translation>
     </message>
     <message>
         <source>DH Group 5</source>
-        <translation type="unfinished"/>
+        <translation>DH Grupa 5</translation>
     </message>
     <message>
         <source>Forward Secrecy</source>
-        <translation type="unfinished"/>
+        <translation>Forward Secrecy</translation>
     </message>
     <message>
         <source>Server (default)</source>
-        <translation type="unfinished"/>
+        <translation>Serwer (domyślnie)</translation>
     </message>
     <message>
         <source>DH Group 2</source>
-        <translation type="unfinished"/>
+        <translation>DH Grupa 2</translation>
     </message>
     <message>
         <source>Local Port</source>
-        <translation type="unfinished"/>
+        <translation>Port lokalny</translation>
     </message>
     <message>
         <source>Disable Dead Peer Detection</source>
-        <translation type="unfinished"/>
+        <translation>Wyłącz wykrywanie martwych peerów</translation>
     </message>
     <message>
         <source>VPN Security</source>
-        <translation type="unfinished"/>
+        <translation>Bezpieczeństwo VPN</translation>
     </message>
     <message>
         <source>Cipher</source>
