@@ -1717,7 +1717,7 @@
     <name>network</name>
     <message>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Sieć</translation>
     </message>
 </context>
 </TS>
