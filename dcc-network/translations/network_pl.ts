@@ -1389,111 +1389,111 @@
     </message>
     <message>
         <source>Cipher</source>
-        <translation type="unfinished"/>
+        <translation>Szyfrowanie</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Domyślny</translation>
     </message>
     <message>
         <source>DES-CBC</source>
-        <translation type="unfinished"/>
+        <translation>DES-CBC</translation>
     </message>
     <message>
         <source>RC2-CBC</source>
-        <translation type="unfinished"/>
+        <translation>RC2-CBC</translation>
     </message>
     <message>
         <source>DES-EDE-CBC</source>
-        <translation type="unfinished"/>
+        <translation>DES-EDE-CBC</translation>
     </message>
     <message>
         <source>DES-EDE3-CBC</source>
-        <translation type="unfinished"/>
+        <translation>DES-EDE3-CBC</translation>
     </message>
     <message>
         <source>DESX-CBC</source>
-        <translation type="unfinished"/>
+        <translation>DESX-CBC</translation>
     </message>
     <message>
         <source>BF-CBC</source>
-        <translation type="unfinished"/>
+        <translation>BF-CBC</translation>
     </message>
     <message>
         <source>RC2-40-CBC</source>
-        <translation type="unfinished"/>
+        <translation>RC2-40-CBC</translation>
     </message>
     <message>
         <source>CAST5-CBC</source>
-        <translation type="unfinished"/>
+        <translation>CAST5-CBC</translation>
     </message>
     <message>
         <source>RC2-64-CBC</source>
-        <translation type="unfinished"/>
+        <translation>RC2-64-CBC</translation>
     </message>
     <message>
         <source>AES-128-CBC</source>
-        <translation type="unfinished"/>
+        <translation>AES-128-CBC</translation>
     </message>
     <message>
         <source>AES-192-CBC</source>
-        <translation type="unfinished"/>
+        <translation>AES-192-CBC</translation>
     </message>
     <message>
         <source>AES-256-CBC</source>
-        <translation type="unfinished"/>
+        <translation>AES-256-CBC</translation>
     </message>
     <message>
         <source>CAMELLIA-128-CBC</source>
-        <translation type="unfinished"/>
+        <translation>CAMELLIA-128-CBC</translation>
     </message>
     <message>
         <source>CAMELLIA-192-CBC</source>
-        <translation type="unfinished"/>
+        <translation>CAMELLIA-192-CBC</translation>
     </message>
     <message>
         <source>CAMELLIA-256-CBC</source>
-        <translation type="unfinished"/>
+        <translation>CAMELLIA-256-CBC</translation>
     </message>
     <message>
         <source>SEED-CBC</source>
-        <translation type="unfinished"/>
+        <translation>SEED-CBC</translation>
     </message>
     <message>
         <source>HMAC Auth</source>
-        <translation type="unfinished"/>
+        <translation>Uwierzytelnienie HMAC</translation>
     </message>
     <message>
         <source>RSA MD-4</source>
-        <translation type="unfinished"/>
+        <translation>RSA MD-4</translation>
     </message>
     <message>
         <source>MD-5</source>
-        <translation type="unfinished"/>
+        <translation>MD-5</translation>
     </message>
     <message>
         <source>SHA-1</source>
-        <translation type="unfinished"/>
+        <translation>SHA-1</translation>
     </message>
     <message>
         <source>SHA-224</source>
-        <translation type="unfinished"/>
+        <translation>SHA-224</translation>
     </message>
     <message>
         <source>SHA-256</source>
-        <translation type="unfinished"/>
+        <translation>SHA-256</translation>
     </message>
     <message>
         <source>SHA-384</source>
-        <translation type="unfinished"/>
+        <translation>SHA-384</translation>
     </message>
     <message>
         <source>SHA-512</source>
-        <translation type="unfinished"/>
+        <translation>SHA-512</translation>
     </message>
     <message>
         <source>RIPEMD-160</source>
-        <translation type="unfinished"/>
+        <translation>RIPEMD-160</translation>
     </message>
     <message>
         <source>VPN Proxy</source>
@@ -1501,31 +1501,31 @@
     </message>
     <message>
         <source>Proxy Type</source>
-        <translation type="unfinished"/>
+        <translation>Typ proxy</translation>
     </message>
     <message>
         <source>HTTP</source>
-        <translation type="unfinished"/>
+        <translation>HTTP</translation>
     </message>
     <message>
         <source>SOCKS</source>
-        <translation type="unfinished"/>
+        <translation>SOCKS</translation>
     </message>
     <message>
         <source>Server IP</source>
-        <translation type="unfinished"/>
+        <translation>IP serwera</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished"/>
+        <translation>Port</translation>
     </message>
     <message>
         <source>Retry Indefinitely When Failed</source>
-        <translation type="unfinished"/>
+        <translation>Ponawiaj nieustannie, gdy wystąpi błąd</translation>
     </message>
     <message>
         <source>VPN TLS Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Uwierzytelnienie VPN TLS</translation>
     </message>
     <message>
         <source>Subject Match</source>
@@ -1533,46 +1533,46 @@
     </message>
     <message>
         <source>Remote Cert Type</source>
-        <translation type="unfinished"/>
+        <translation>Typ zdalnego certyfikatu</translation>
     </message>
     <message>
         <source>Client</source>
-        <translation type="unfinished"/>
+        <translation>Klient</translation>
     </message>
     <message>
         <source>Server</source>
-        <translation type="unfinished"/>
+        <translation>Serwer</translation>
     </message>
     <message>
         <source>Key File</source>
-        <translation type="unfinished"/>
+        <translation>Plik klucza</translation>
     </message>
 </context>
 <context>
     <name>SystemProxyConfigItem</name>
     <message>
         <source>Optional</source>
-        <translation type="unfinished"/>
+        <translation>Opcjonalne</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished"/>
+        <translation>Port</translation>
     </message>
     <message>
         <source>Authentication is required</source>
-        <translation type="unfinished"/>
+        <translation>Wymagane jest uwierzytelnienie</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Nazwa użytkownika</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"/>
+        <translation>Wymagane</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Hasło</translation>
     </message>
 </context>
 <context>
