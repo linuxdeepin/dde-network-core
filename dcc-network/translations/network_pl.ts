@@ -595,7 +595,7 @@
     </message>
     <message>
         <source>Auto Connect</source>
-        <translation>Automatyczne połączenie</translation>
+        <translation>Połącz automatycznie</translation>
     </message>
 </context>
 <context>
@@ -870,11 +870,11 @@
     </message>
     <message>
         <source>Save password for this user</source>
-        <translation>Zapisz hasło dla tego użytkownika</translation>
+        <translation>Zapisz dla tego użytkownika</translation>
     </message>
     <message>
         <source>Save password for all users</source>
-        <translation>Zapisz hasło dla wszystkich użytkowników</translation>
+        <translation>Zapisz dla wszystkich użytkowników</translation>
     </message>
     <message>
         <source>Ask me always</source>
@@ -1061,7 +1061,7 @@
     </message>
     <message>
         <source>Saved</source>
-        <translation>Zapisano</translation>
+        <translation>Uzupełnione</translation>
     </message>
     <message>
         <source>Ask</source>
