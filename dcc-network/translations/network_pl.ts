@@ -88,7 +88,7 @@
     </message>
     <message>
         <source>Check &quot;Use a proxy&quot; in application context menu in Launcher after configured</source>
-        <translation type="unfinished"/>
+        <translation>Zaznacz „Użyj proxy” w menu kontekstowym aplikacji programu wywołującego po skonfigurowaniu</translation>
     </message>
     <message>
         <source>Cancel</source>
