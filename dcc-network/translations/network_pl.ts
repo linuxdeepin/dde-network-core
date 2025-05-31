@@ -1241,23 +1241,23 @@
     </message>
     <message>
         <source>Customize Gateway Port</source>
-        <translation type="unfinished"/>
+        <translation>Dostosuj port bramy sieciowej</translation>
     </message>
     <message>
         <source>Gateway Port</source>
-        <translation type="unfinished"/>
+        <translation>Port bramy sieciowej</translation>
     </message>
     <message>
         <source>Customize Renegotiation Interval</source>
-        <translation type="unfinished"/>
+        <translation>Dostosuj interwał negocjacji</translation>
     </message>
     <message>
         <source>Renegotiation Interval</source>
-        <translation type="unfinished"/>
+        <translation>Interwał negocjacji</translation>
     </message>
     <message>
         <source>Use LZO Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>Użyj kompresji danych LZO</translation>
     </message>
     <message>
         <source>Use TCP Connection</source>
