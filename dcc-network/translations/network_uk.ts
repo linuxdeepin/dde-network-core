@@ -1,1697 +1,1723 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="uk">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
         <source>All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>усі файли (*)</translation>
     </message>
 </context>
 <context>
     <name>NetPasswordEdit</name>
     <message>
         <source>Required</source>
-        <translation type="unfinished"></translation>
+        <translation>Обов&apos;язкове</translation>
     </message>
 </context>
 <context>
     <name>PageAirplane</name>
     <message>
         <source>Airplane mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
-        <translation type="unfinished"></translation>
+        <translation>Режим польоту</translation>
     </message>
     <message>
         <source>Stop wireless communication</source>
-        <translation type="unfinished"></translation>
+        <translation>Припинити бездротовий обмін даними</translation>
+    </message>
+    <message>
+        <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
+        <translation>Вмикання режиму польоту вимикає бездротову мережу, особистку точку доступу та Bluetooth</translation>
     </message>
 </context>
 <context>
     <name>PageAppProxy</name>
     <message>
         <source>Application Proxy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>http</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>socks4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>socks5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>IP Address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Required</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Invalid IP address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Invalid port</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Optional</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Check &quot;Use a proxy&quot; in application context menu in Launcher after configured</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Проксі для програм</translation>
     </message>
     <message>
         <source>Set up proxy servers</source>
-        <translation type="unfinished"></translation>
+        <translation>Налаштувати проксі-сервери</translation>
+    </message>
+    <message>
+        <source>Proxy Type</source>
+        <translation>Тип проксі</translation>
+    </message>
+    <message>
+        <source>http</source>
+        <translation>http</translation>
+    </message>
+    <message>
+        <source>socks4</source>
+        <translation>socks4</translation>
+    </message>
+    <message>
+        <source>socks5</source>
+        <translation>socks5</translation>
+    </message>
+    <message>
+        <source>IP Address</source>
+        <translation>IP-адреса</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Обов&apos;язкове</translation>
+    </message>
+    <message>
+        <source>Invalid IP address</source>
+        <translation>Некоректна IP-адреса</translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation>Порт</translation>
+    </message>
+    <message>
+        <source>Invalid port</source>
+        <translation>Некоректний порт</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Користувач</translation>
+    </message>
+    <message>
+        <source>Optional</source>
+        <translation>Необов&apos;язкове</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Пароль</translation>
+    </message>
+    <message>
+        <source>Check &quot;Use a proxy&quot; in application context menu in Launcher after configured</source>
+        <translation>Позначте пункт «Використовувати проксі» у контекстному меню програми у Launcher після налаштовування</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Скасувати</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>Зберегти</translation>
     </message>
 </context>
 <context>
     <name>PageDSL</name>
     <message>
         <source>DSL</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add PPPoE connection</source>
-        <translation type="unfinished"></translation>
+        <translation>DSL</translation>
     </message>
     <message>
         <source>Set up a dial-up network connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Налаштувати комутоване з&apos;єднання з мережею</translation>
+    </message>
+    <message>
+        <source>Disconnect</source>
+        <translation>Відʼєднатися</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <translation>З&apos;єднатися</translation>
+    </message>
+    <message>
+        <source>Add PPPoE connection</source>
+        <translation>Додати PPPoE-з&apos;єднання</translation>
     </message>
 </context>
 <context>
     <name>PageDSLSettings</name>
     <message>
-        <source>Are you sure you want to delete this configuration?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <source> Network Properties</source>
+        <translation>Властивості мережі</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Вилучити</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete this configuration?</source>
+        <translation>Ви справді хочете вилучити це налаштування?</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Скасувати</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Зберегти</translation>
     </message>
 </context>
 <context>
     <name>PageDetails</name>
     <message>
         <source>Network Details</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Network Detection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Details has been copied</source>
-        <translation type="unfinished"></translation>
+        <translation>Параметри мережі</translation>
     </message>
     <message>
         <source>View all network configurations</source>
-        <translation type="unfinished"></translation>
+        <translation>Переглянути усі налаштування мережі</translation>
+    </message>
+    <message>
+        <source>Details has been copied</source>
+        <translation>Параметри скопійовано</translation>
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation>Копіювати</translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation>Позначити усе</translation>
+    </message>
+    <message>
+        <source>Network Detection</source>
+        <translation>Виявлення мережі</translation>
     </message>
 </context>
 <context>
     <name>PageHotspot</name>
     <message>
         <source>WPA/WPA2 Personal</source>
-        <translation type="unfinished"></translation>
+        <translation>Особистий WPA/WPA2</translation>
     </message>
     <message>
         <source>WPA3 Personal</source>
-        <translation type="unfinished"></translation>
+        <translation>Особистий WPA3</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Немає</translation>
     </message>
     <message>
         <source>2.4 GHz</source>
-        <translation type="unfinished"></translation>
+        <translation>2,4 ГГц</translation>
     </message>
     <message>
         <source>5 GHz</source>
-        <translation type="unfinished"></translation>
+        <translation>5 ГГц</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>Авто</translation>
     </message>
     <message>
         <source>Not Bind</source>
-        <translation type="unfinished"></translation>
+        <translation>Не прив&apos;язано</translation>
     </message>
     <message>
         <source>Personal Hotspot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>My Hotspot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Edit My Hotspot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Required</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Security</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Shared Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hotspot Sharing Device</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>If you want to use the personal hotspot, disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first and then enable the wireless network adapter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Особиста точка доступу</translation>
     </message>
     <message>
         <source>Share the network</source>
-        <translation type="unfinished"></translation>
+        <translation>Поділитися мережею</translation>
+    </message>
+    <message>
+        <source>My Hotspot</source>
+        <translation>Ваша точка доступу</translation>
+    </message>
+    <message>
+        <source>Edit My Hotspot</source>
+        <translation>Редагувати вашу точку доступу</translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation>Назва (SSID)</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Обов&apos;язкове</translation>
+    </message>
+    <message>
+        <source>Security</source>
+        <translation>Захист</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Пароль</translation>
+    </message>
+    <message>
+        <source>Band</source>
+        <translation>Смуга</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Скасувати</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>Зберегти</translation>
+    </message>
+    <message>
+        <source>Shared Settings</source>
+        <translation>Спільні параметри</translation>
+    </message>
+    <message>
+        <source>Hotspot Sharing Device</source>
+        <translation>Пристрій оприлюднення точки доступу</translation>
+    </message>
+    <message>
+        <source>If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.</source>
+        <translation>Якщо ви хочете скористатися особистою точкою доступу, спочатку вимкніть режим польоту, а потім увімкніть бездротовий мережевий адаптер.</translation>
+    </message>
+    <message>
+        <source>If you want to use the personal hotspot, disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first and then enable the wireless network adapter.</source>
+        <translation>Якщо ви хочете скористатися особистою точкою доступу, спочатку вимкніть &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;режим польоту&lt;/a&gt;, а потім увімкніть бездротовий мережевий адаптер.</translation>
     </message>
 </context>
 <context>
     <name>PageSettings</name>
     <message>
-        <source>Are you sure you want to delete this configuration?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <source> Network Properties</source>
+        <translation>Властивості мережі</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Вилучити</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete this configuration?</source>
+        <translation>Ви справді хочете вилучити це налаштування?</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Скасувати</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Зберегти</translation>
     </message>
 </context>
 <context>
     <name>PageSystemProxy</name>
     <message>
         <source>System Proxy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>HTTP Proxy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>HTTPS Proxy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>FTP Proxy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SOCKS Proxy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ignore the proxy configurations for the above hosts and domains</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Загальносистемний проксі</translation>
     </message>
     <message>
         <source>Set up proxy servers</source>
-        <translation type="unfinished"></translation>
+        <translation>Налаштувати проксі-сервери</translation>
+    </message>
+    <message>
+        <source>Proxy Type</source>
+        <translation>Тип проксі</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Авто</translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation>Вручну</translation>
+    </message>
+    <message>
+        <source>Configuration URL</source>
+        <translation>Адреса налаштувань</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"></translation>
+        <translation>Обов&apos;язкове</translation>
+    </message>
+    <message>
+        <source>HTTP Proxy</source>
+        <translation>HTTP-проксі</translation>
+    </message>
+    <message>
+        <source>HTTPS Proxy</source>
+        <translation>HTTPS-проксі</translation>
+    </message>
+    <message>
+        <source>FTP Proxy</source>
+        <translation>FTP-проксі</translation>
+    </message>
+    <message>
+        <source>SOCKS Proxy</source>
+        <translation>SOCKS-проксі</translation>
+    </message>
+    <message>
+        <source>Ignore the proxy configurations for the above hosts and domains</source>
+        <translation>Ігнорувати налаштування проксі для зазначених вище вузлів і доменів</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Скасувати</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>Зберегти</translation>
     </message>
 </context>
 <context>
     <name>PageVPN</name>
     <message>
         <source>VPN</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add VPN</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>*.conf</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Import Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>File error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN</translation>
     </message>
     <message>
         <source>Connect, add, import</source>
-        <translation type="unfinished"></translation>
+        <translation>З&apos;єднання, додавання, імпортування</translation>
+    </message>
+    <message>
+        <source>Disconnect</source>
+        <translation>Відʼєднатися</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <translation>З&apos;єднатися</translation>
+    </message>
+    <message>
+        <source>Add VPN</source>
+        <translation>Додати VPN</translation>
+    </message>
+    <message>
+        <source>Import VPN</source>
+        <translation>Імпортувати VPN</translation>
+    </message>
+    <message>
+        <source>*.conf</source>
+        <translation>*.conf</translation>
+    </message>
+    <message>
+        <source>Import Error</source>
+        <translation>Помилка імпортування</translation>
+    </message>
+    <message>
+        <source>File error</source>
+        <translation>Помилка під час роботи з файлами</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>Гаразд</translation>
     </message>
 </context>
 <context>
     <name>PageVPNSettings</name>
     <message>
+        <source> Network Properties</source>
+        <translation>Властивості мережі</translation>
+    </message>
+    <message>
         <source>VPN Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Тип VPN</translation>
     </message>
     <message>
         <source>L2TP</source>
-        <translation type="unfinished"></translation>
+        <translation>L2TP</translation>
     </message>
     <message>
         <source>PPTP</source>
-        <translation type="unfinished"></translation>
+        <translation>PPTP</translation>
     </message>
     <message>
         <source>OpenVPN</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenVPN</translation>
     </message>
     <message>
         <source>OpenConnect</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenConnect</translation>
     </message>
     <message>
         <source>StrongSwan</source>
-        <translation type="unfinished"></translation>
+        <translation>StrongSwan</translation>
     </message>
     <message>
         <source>VPNC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete this configuration?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>VPNC</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Вилучити</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete this configuration?</source>
+        <translation>Ви справді хочете вилучити це налаштування?</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Скасувати</translation>
     </message>
     <message>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Експортувати</translation>
     </message>
     <message>
         <source>*.conf</source>
-        <translation type="unfinished"></translation>
+        <translation>*.conf</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Зберегти</translation>
     </message>
 </context>
 <context>
     <name>PageWiredDevice</name>
     <message>
-        <source>Disconnect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add Network Connection</source>
-        <translation type="unfinished"></translation>
+        <source>Connect, edit network settings</source>
+        <translation>З&apos;єднання, редагування параметрів мережі</translation>
     </message>
     <message>
         <source>Plug in the network cable first</source>
-        <translation type="unfinished"></translation>
+        <translation>Спочатку, вставте кабель мережі</translation>
     </message>
     <message>
-        <source>Connect, edit network settings</source>
-        <translation type="unfinished"></translation>
+        <source>Disconnect</source>
+        <translation>Відʼєднатися</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <translation>З&apos;єднатися</translation>
+    </message>
+    <message>
+        <source>Add Network Connection</source>
+        <translation>Додати мережеве з&apos;єднання</translation>
     </message>
 </context>
 <context>
     <name>PageWirelessDevice</name>
     <message>
+        <source>Connect, edit network settings</source>
+        <translation>З&apos;єднання, редагування параметрів мережі</translation>
+    </message>
+    <message>
         <source>Disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation>Відʼєднатися</translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>З&apos;єднатися</translation>
     </message>
     <message>
-        <source>My&#xa0;Networks</source>
-        <translation type="unfinished"></translation>
+        <source>My Networks</source>
+        <translation>Ваші мережі</translation>
     </message>
     <message>
         <source>Other Networks</source>
-        <translation type="unfinished"></translation>
+        <translation>Інші мережі</translation>
     </message>
     <message>
         <source>Disable Airplane Mode first if you want to connect to a wireless network</source>
-        <translation type="unfinished"></translation>
+        <translation>Спочатку вимкніть точку доступу, якщо ви хочете з&apos;єднатися із бездротовою мережею</translation>
     </message>
     <message>
         <source>Disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation type="unfinished"></translation>
+        <translation>Якщо ви хочете встановити з&apos;єднання з бездротовою мережею, спочатку вимкніть &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Режим польоту&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Disable hotspot first if you want to connect to a wireless network</source>
-        <translation type="unfinished"></translation>
+        <translation>Спочатку вимкніть точку доступу, якщо ви хочете з&apos;єднатися із бездротовою мережею</translation>
     </message>
     <message>
         <source>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Disable hotspot&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Connect, edit network settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Якщо ви хочете з&apos;єднатися із бездротовою мережею, &lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;вимкніть точку доступу&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
     <name>SectionDNS</name>
     <message>
         <source>DNS</source>
-        <translation type="unfinished"></translation>
+        <translation>DNS</translation>
     </message>
     <message>
         <source>Done</source>
-        <translation type="unfinished"></translation>
+        <translation>Виконано</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Змінити</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
-        <translation type="unfinished"></translation>
+        <translation>Некоректна IP-адреса</translation>
     </message>
 </context>
 <context>
     <name>SectionDevice</name>
     <message>
         <source>Not Bind</source>
-        <translation type="unfinished"></translation>
+        <translation>Не прив&apos;язано</translation>
     </message>
     <message>
         <source>WLAN</source>
-        <translation type="unfinished"></translation>
+        <translation>WLAN</translation>
     </message>
     <message>
         <source>Ethernet</source>
-        <translation type="unfinished"></translation>
+        <translation>Ethernet</translation>
     </message>
     <message>
         <source>Device MAC Addr</source>
-        <translation type="unfinished"></translation>
+        <translation>MAC-адреса пристрою</translation>
     </message>
     <message>
         <source>Cloned MAC Addr</source>
-        <translation type="unfinished"></translation>
+        <translation>Клонована MAC-адреса</translation>
     </message>
     <message>
         <source>Customize MTU</source>
-        <translation type="unfinished"></translation>
+        <translation>Налаштувати MTU</translation>
     </message>
     <message>
         <source>MTU</source>
-        <translation type="unfinished"></translation>
+        <translation>MTU</translation>
     </message>
     <message>
         <source>Band</source>
-        <translation type="unfinished"></translation>
+        <translation>Смуга</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>Авто</translation>
     </message>
     <message>
         <source>2.4 GHz</source>
-        <translation type="unfinished"></translation>
+        <translation>2,4 ГГц</translation>
     </message>
     <message>
         <source>5 GHz</source>
-        <translation type="unfinished"></translation>
+        <translation>5 ГГц</translation>
     </message>
 </context>
 <context>
     <name>SectionGeneric</name>
     <message>
         <source>General</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Auto Connect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Required</source>
-        <translation type="unfinished"></translation>
+        <translation>Загальне</translation>
     </message>
     <message>
         <source>Name (SSID)</source>
-        <translation type="unfinished"></translation>
+        <translation>Назва (SSID)</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Назва</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Обов&apos;язкове</translation>
+    </message>
+    <message>
+        <source>Auto Connect</source>
+        <translation>Автоматичне з&apos;єднання</translation>
     </message>
 </context>
 <context>
     <name>SectionIPv4</name>
     <message>
         <source>IPv4</source>
-        <translation type="unfinished"></translation>
+        <translation>IPv4</translation>
     </message>
     <message>
         <source>Done</source>
-        <translation type="unfinished"></translation>
+        <translation>Виконано</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Змінити</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Вимкнено</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Вручну</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>Авто</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation type="unfinished"></translation>
+        <translation>Метод</translation>
     </message>
     <message>
         <source>Only applied in corresponding resources</source>
-        <translation type="unfinished"></translation>
+        <translation>Використовується тільки у відповідних ресурсах</translation>
     </message>
     <message>
         <source>IP Address</source>
-        <translation type="unfinished"></translation>
+        <translation>IP-адреса</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
-        <translation type="unfinished"></translation>
+        <translation>Некоректна IP-адреса</translation>
     </message>
     <message>
         <source>Netmask</source>
-        <translation type="unfinished"></translation>
+        <translation>Маска мережі</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"></translation>
+        <translation>Шлюз</translation>
     </message>
 </context>
 <context>
     <name>SectionIPv6</name>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Вимкнено</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Вручну</translation>
     </message>
     <message>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>Ігнорувати</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>Авто</translation>
     </message>
     <message>
         <source>IPv6</source>
-        <translation type="unfinished"></translation>
+        <translation>IPv6</translation>
     </message>
     <message>
         <source>Done</source>
-        <translation type="unfinished"></translation>
+        <translation>Виконано</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Змінити</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation type="unfinished"></translation>
+        <translation>Метод</translation>
     </message>
     <message>
         <source>Only applied in corresponding resources</source>
-        <translation type="unfinished"></translation>
+        <translation>Використовується тільки у відповідних ресурсах</translation>
     </message>
     <message>
         <source>IP Address</source>
-        <translation type="unfinished"></translation>
+        <translation>IP-адреса</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
-        <translation type="unfinished"></translation>
+        <translation>Некоректна IP-адреса</translation>
     </message>
     <message>
         <source>Prefix</source>
-        <translation type="unfinished"></translation>
+        <translation>Префікс</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"></translation>
+        <translation>Шлюз</translation>
     </message>
 </context>
 <context>
     <name>SectionPPP</name>
     <message>
         <source>PPP</source>
-        <translation type="unfinished"></translation>
+        <translation>PPP</translation>
     </message>
     <message>
         <source>Use MPPE</source>
-        <translation type="unfinished"></translation>
+        <translation>Використати MPPE</translation>
     </message>
     <message>
         <source>128-bit MPPE</source>
-        <translation type="unfinished"></translation>
+        <translation>128-бітове MPPE</translation>
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation type="unfinished"></translation>
+        <translation>MPPE з контролем стану</translation>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Забороняти EAP-розпізнавання</translation>
     </message>
     <message>
         <source>Refuse PAP Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Забороняти PAP-розпізнавання</translation>
     </message>
     <message>
         <source>Refuse CHAP Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Забороняти CHAP-розпізнавання</translation>
     </message>
     <message>
         <source>Refuse MSCHAP Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Забороняти MSCHAP-розпізнавання</translation>
     </message>
     <message>
         <source>Refuse MSCHAPv2 Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Забороняти MSCHAPv2-розпізнавання</translation>
     </message>
     <message>
         <source>No BSD Data Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Без стискання даних BSD</translation>
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Без стискання даних Deflate</translation>
     </message>
     <message>
         <source>No TCP Header Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Без стискання  заголовків TCP</translation>
     </message>
     <message>
         <source>Send PPP Echo Packets</source>
-        <translation type="unfinished"></translation>
+        <translation>Надсилати луна-пакети PPP</translation>
     </message>
 </context>
 <context>
     <name>SectionPPPOE</name>
     <message>
         <source>PPPoE</source>
-        <translation type="unfinished"></translation>
+        <translation>PPPoE</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Користувач</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"></translation>
+        <translation>Обов&apos;язкове</translation>
     </message>
     <message>
         <source>Service</source>
-        <translation type="unfinished"></translation>
+        <translation>Служба</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Пароль</translation>
     </message>
 </context>
 <context>
     <name>SectionSecret</name>
     <message>
         <source>Security</source>
-        <translation type="unfinished"></translation>
+        <translation>Захист</translation>
     </message>
     <message>
         <source>TLS</source>
-        <translation type="unfinished"></translation>
+        <translation>TLS</translation>
     </message>
     <message>
         <source>MD5</source>
-        <translation type="unfinished"></translation>
+        <translation>MD5</translation>
     </message>
     <message>
         <source>FAST</source>
-        <translation type="unfinished"></translation>
+        <translation>FAST</translation>
     </message>
     <message>
         <source>Tunneled TLS</source>
-        <translation type="unfinished"></translation>
+        <translation>Тунельований TLS</translation>
     </message>
     <message>
         <source>Protected EAP</source>
-        <translation type="unfinished"></translation>
+        <translation>Захищений EAP</translation>
     </message>
     <message>
         <source>LEAP</source>
-        <translation type="unfinished"></translation>
+        <translation>LEAP</translation>
     </message>
     <message>
         <source>GTC</source>
-        <translation type="unfinished"></translation>
+        <translation>GTC</translation>
     </message>
     <message>
         <source>MSCHAPV2</source>
-        <translation type="unfinished"></translation>
+        <translation>MSCHAPV2</translation>
     </message>
     <message>
         <source>PAP</source>
-        <translation type="unfinished"></translation>
+        <translation>PAP</translation>
     </message>
     <message>
         <source>MSCHAP</source>
-        <translation type="unfinished"></translation>
+        <translation>MSCHAP</translation>
     </message>
     <message>
         <source>CHAP</source>
-        <translation type="unfinished"></translation>
+        <translation>CHAP</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Немає</translation>
     </message>
     <message>
         <source>WEP</source>
-        <translation type="unfinished"></translation>
+        <translation>WEP</translation>
     </message>
     <message>
         <source>WPA/WPA2 Personal</source>
-        <translation type="unfinished"></translation>
+        <translation>Особистий WPA/WPA2</translation>
     </message>
     <message>
         <source>WPA/WPA2 Enterprise</source>
-        <translation type="unfinished"></translation>
+        <translation>Промислова WPA/WPA2</translation>
     </message>
     <message>
         <source>WPA3 Personal</source>
-        <translation type="unfinished"></translation>
+        <translation>Особистий WPA3</translation>
     </message>
     <message>
         <source>EAP Auth</source>
-        <translation type="unfinished"></translation>
+        <translation>EAP-розпізнавання</translation>
     </message>
     <message>
         <source>Identity</source>
-        <translation type="unfinished"></translation>
+        <translation>Профіль</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"></translation>
+        <translation>Обов&apos;язкове</translation>
     </message>
     <message>
         <source>Pwd Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Параметри pwd</translation>
     </message>
     <message>
         <source>Save password for this user</source>
-        <translation type="unfinished"></translation>
+        <translation>Зберегти пароль для цього користувача</translation>
     </message>
     <message>
         <source>Save password for all users</source>
-        <translation type="unfinished"></translation>
+        <translation>Зберігати паролі для усіх користувачів</translation>
     </message>
     <message>
         <source>Ask me always</source>
-        <translation type="unfinished"></translation>
+        <translation>Завжди питати</translation>
     </message>
     <message>
         <source>Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Ключ</translation>
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation type="unfinished"></translation>
+        <translation>Приватний pwd</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Пароль</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Розпізнавання</translation>
     </message>
     <message>
         <source>Shared key</source>
-        <translation type="unfinished"></translation>
+        <translation>Спільний ключ</translation>
     </message>
     <message>
         <source>Open system</source>
-        <translation type="unfinished"></translation>
+        <translation>Відкрита система</translation>
     </message>
     <message>
         <source>Private Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Закритий ключ</translation>
     </message>
     <message>
         <source>Anonymous ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Анонімний ідентифікатор</translation>
     </message>
     <message>
         <source>Provisioning</source>
-        <translation type="unfinished"></translation>
+        <translation>Передбачення</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Вимкнено</translation>
     </message>
     <message>
         <source>Anonymous</source>
-        <translation type="unfinished"></translation>
+        <translation>Анонімно</translation>
     </message>
     <message>
         <source>Authenticated</source>
-        <translation type="unfinished"></translation>
+        <translation>Розпізнано</translation>
     </message>
     <message>
         <source>Both</source>
-        <translation type="unfinished"></translation>
+        <translation>Обидва</translation>
     </message>
     <message>
         <source>PAC file</source>
-        <translation type="unfinished"></translation>
+        <translation>PAC-файл</translation>
     </message>
     <message>
         <source>CA Cert</source>
-        <translation type="unfinished"></translation>
+        <translation>Сертифікат CA</translation>
     </message>
     <message>
         <source>User Cert</source>
-        <translation type="unfinished"></translation>
+        <translation>Сертифікат користувача</translation>
     </message>
     <message>
         <source>PEAP Version</source>
-        <translation type="unfinished"></translation>
+        <translation>PEAP-версія</translation>
     </message>
     <message>
         <source>Automatic</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматично</translation>
     </message>
     <message>
         <source>Version 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Версія 0</translation>
     </message>
     <message>
         <source>Version 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Версія 1</translation>
     </message>
     <message>
         <source>Inner Auth</source>
-        <translation type="unfinished"></translation>
+        <translation>Внутрішнє розпізнавання</translation>
     </message>
 </context>
 <context>
     <name>SectionVPN</name>
     <message>
         <source>VPN</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN</translation>
     </message>
     <message>
         <source>All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>усі файли (*)</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"></translation>
+        <translation>Обов&apos;язкове</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished"></translation>
+        <translation>Некоректний шлюз</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"></translation>
+        <translation>Шлюз</translation>
     </message>
     <message>
         <source>CA Cert</source>
-        <translation type="unfinished"></translation>
+        <translation>Сертифікат CA</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Проксі</translation>
     </message>
     <message>
         <source>Allow Cisco Secure Desktop Trojan</source>
-        <translation type="unfinished"></translation>
+        <translation>Дозволити Cisco Secure Desktop Trojan</translation>
     </message>
     <message>
         <source>CSD Script</source>
-        <translation type="unfinished"></translation>
+        <translation>Сценарій CSD</translation>
     </message>
     <message>
         <source>Auth Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Тип розпізнавання</translation>
     </message>
     <message>
         <source>Private Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Закритий ключ</translation>
     </message>
     <message>
         <source>SSH Agent</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH-агент</translation>
     </message>
     <message>
         <source>Smart Card</source>
-        <translation type="unfinished"></translation>
+        <translation>Смарт-картка</translation>
     </message>
     <message>
         <source>EAP</source>
-        <translation type="unfinished"></translation>
+        <translation>EAP</translation>
     </message>
     <message>
         <source>Pre-Shared Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Попередньо поширений ключ</translation>
     </message>
     <message>
         <source>User Cert</source>
-        <translation type="unfinished"></translation>
+        <translation>Сертифікат користувача</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Користувач</translation>
     </message>
     <message>
         <source>Use FSID for Key Passphrase</source>
-        <translation type="unfinished"></translation>
+        <translation>Використовувати FSID для пароля до ключа</translation>
     </message>
     <message>
         <source>Certificates (TLS)</source>
-        <translation type="unfinished"></translation>
+        <translation>Сертифікати (TLS)</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Пароль</translation>
     </message>
     <message>
         <source>Certificates with Password (TLS)</source>
-        <translation type="unfinished"></translation>
+        <translation>Сертифікати з паролем (TLS)</translation>
     </message>
     <message>
         <source>Static Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Статичний ключ</translation>
     </message>
     <message>
         <source>Pwd Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Параметри pwd</translation>
     </message>
     <message>
         <source>Saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Збережено</translation>
     </message>
     <message>
         <source>Ask</source>
-        <translation type="unfinished"></translation>
+        <translation>Запитати</translation>
     </message>
     <message>
         <source>Not Required</source>
-        <translation type="unfinished"></translation>
+        <translation>Не є обов&apos;язковим</translation>
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation type="unfinished"></translation>
+        <translation>Приватний pwd</translation>
     </message>
     <message>
         <source>Customize Key Direction</source>
-        <translation type="unfinished"></translation>
+        <translation>Налаштувати напрямок ключа</translation>
     </message>
     <message>
         <source>Key Direction</source>
-        <translation type="unfinished"></translation>
+        <translation>Напрямок ключа</translation>
     </message>
     <message>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation>0</translation>
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation>1</translation>
     </message>
     <message>
         <source>Remote IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Віддалений IP</translation>
     </message>
     <message>
         <source>Local IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Локальний IP</translation>
     </message>
     <message>
         <source>NT Domain</source>
-        <translation type="unfinished"></translation>
+        <translation>Домен NT</translation>
     </message>
     <message>
         <source>Request an Inner IP Address</source>
-        <translation type="unfinished"></translation>
+        <translation>Запит внутрішньої IP-адреси</translation>
     </message>
     <message>
         <source>Enforce UDP Encapsulation</source>
-        <translation type="unfinished"></translation>
+        <translation>Забезпечити інкапсуляцію UDP</translation>
     </message>
     <message>
         <source>Use IP Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Використовувати стиснення IP</translation>
     </message>
     <message>
         <source>Enable Custom Cipher Proposals</source>
-        <translation type="unfinished"></translation>
+        <translation>Увімкнути нетипові варіанти шифрування</translation>
     </message>
     <message>
         <source>IKE</source>
-        <translation type="unfinished"></translation>
+        <translation>IKE</translation>
     </message>
     <message>
         <source>ESP</source>
-        <translation type="unfinished"></translation>
+        <translation>ESP</translation>
     </message>
     <message>
         <source>Group Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Назва групи</translation>
     </message>
     <message>
         <source>Group Pwd</source>
-        <translation type="unfinished"></translation>
+        <translation>Груповий пароль</translation>
     </message>
     <message>
         <source>Use Hybrid Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Використати гібридне розпізнавання</translation>
     </message>
     <message>
         <source>CA File</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл CA</translation>
     </message>
     <message>
         <source>VPN PPP</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN PPP</translation>
     </message>
     <message>
         <source>Use MPPE</source>
-        <translation type="unfinished"></translation>
+        <translation>Використати MPPE</translation>
     </message>
     <message>
         <source>Security</source>
-        <translation type="unfinished"></translation>
+        <translation>Захист</translation>
     </message>
     <message>
         <source>All Available (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>Усі доступні (типове)</translation>
     </message>
     <message>
         <source>40-bit (less secure)</source>
-        <translation type="unfinished"></translation>
+        <translation>40-бітове (менш безпечне)</translation>
     </message>
     <message>
         <source>128-bit (most secure)</source>
-        <translation type="unfinished"></translation>
+        <translation>128-бітове (найбезпечніше)</translation>
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation type="unfinished"></translation>
+        <translation>MPPE з контролем стану</translation>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Забороняти EAP-розпізнавання</translation>
     </message>
     <message>
         <source>Refuse PAP Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Забороняти PAP-розпізнавання</translation>
     </message>
     <message>
         <source>Refuse CHAP Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Забороняти CHAP-розпізнавання</translation>
     </message>
     <message>
         <source>Refuse MSCHAP Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Забороняти MSCHAP-розпізнавання</translation>
     </message>
     <message>
         <source>Refuse MSCHAPv2 Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Забороняти MSCHAPv2-розпізнавання</translation>
     </message>
     <message>
         <source>No BSD Data Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Без стискання даних BSD</translation>
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Без стискання даних Deflate</translation>
     </message>
     <message>
         <source>No TCP Header Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Без стискання  заголовків TCP</translation>
     </message>
     <message>
         <source>No Protocol Field Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Без стискання полів протоколів</translation>
     </message>
     <message>
         <source>No Address/Control Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Без стискання адреси/керування</translation>
     </message>
     <message>
         <source>Send PPP Echo Packets</source>
-        <translation type="unfinished"></translation>
+        <translation>Надсилати луна-пакети PPP</translation>
     </message>
     <message>
         <source>VPN IPsec</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN IPsec</translation>
     </message>
     <message>
         <source>Enable IPsec</source>
-        <translation type="unfinished"></translation>
+        <translation>Увімкнути IPsec</translation>
     </message>
     <message>
         <source>Group ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Ідентифікатор групи</translation>
     </message>
     <message>
         <source>Phase1 Algorithms</source>
-        <translation type="unfinished"></translation>
+        <translation>Алгоритми Фази1</translation>
     </message>
     <message>
         <source>Phase2 Algorithms</source>
-        <translation type="unfinished"></translation>
+        <translation>Алгоритми Фази2</translation>
     </message>
     <message>
         <source>VPN Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>Розширений VPN</translation>
     </message>
     <message>
         <source>Customize Gateway Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Налаштувати порт шлюзу</translation>
     </message>
     <message>
         <source>Gateway Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Порт шлюзу</translation>
     </message>
     <message>
         <source>Customize Renegotiation Interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Налаштувати інтервал повторного узгодження</translation>
     </message>
     <message>
         <source>Renegotiation Interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Інтервал повторного узгодження</translation>
     </message>
     <message>
         <source>Use LZO Data Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Використати стиснення файлів LZO</translation>
     </message>
     <message>
         <source>Use TCP Connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Використати зв‘язок TCP</translation>
     </message>
     <message>
         <source>Use TAP Device</source>
-        <translation type="unfinished"></translation>
+        <translation>Використати пристрій TAP</translation>
     </message>
     <message>
         <source>Customize Tunnel MTU</source>
-        <translation type="unfinished"></translation>
+        <translation>Налаштувати тунель MTU</translation>
     </message>
     <message>
         <source>MTU</source>
-        <translation type="unfinished"></translation>
+        <translation>MTU</translation>
     </message>
     <message>
         <source>Customize UDP Fragment Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Налаштувати розмір фрагмента UDP</translation>
     </message>
     <message>
         <source>UDP Fragment Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Розмір фрагмента UDP</translation>
     </message>
     <message>
         <source>Restrict Tunnel TCP MSS</source>
-        <translation type="unfinished"></translation>
+        <translation>Обмежити Tunnel TCP MSS</translation>
     </message>
     <message>
         <source>Randomize Remote Hosts</source>
-        <translation type="unfinished"></translation>
+        <translation>Розмістити у випадковому порядку віддалені вузли</translation>
     </message>
     <message>
         <source>Domain</source>
-        <translation type="unfinished"></translation>
+        <translation>Домен</translation>
     </message>
     <message>
         <source>Vendor</source>
-        <translation type="unfinished"></translation>
+        <translation>Постачальник</translation>
     </message>
     <message>
         <source>Cisco (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cisco (типове)</translation>
     </message>
     <message>
         <source>Netscreen</source>
-        <translation type="unfinished"></translation>
+        <translation>Мережевий екран</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Версія</translation>
     </message>
     <message>
         <source>Encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Шифрування</translation>
     </message>
     <message>
         <source>Secure (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>Захищене (типовий)</translation>
     </message>
     <message>
         <source>Weak</source>
-        <translation type="unfinished"></translation>
+        <translation>Слабке</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Немає</translation>
     </message>
     <message>
         <source>NAT Traversal Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Обхідний режим NAT</translation>
     </message>
     <message>
         <source>NAT-T When Available (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>NAT-T, коли доступно (типове)</translation>
     </message>
     <message>
         <source>NAT-T Always</source>
-        <translation type="unfinished"></translation>
+        <translation>Завжди NAT-T</translation>
     </message>
     <message>
         <source>Cisco UDP</source>
-        <translation type="unfinished"></translation>
+        <translation>Cisco UDP</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Вимкнено</translation>
     </message>
     <message>
         <source>IKE DH Group</source>
-        <translation type="unfinished"></translation>
+        <translation>Група обробки даних IKE</translation>
     </message>
     <message>
         <source>DH Group 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Група DH 1</translation>
     </message>
     <message>
         <source>DH Group 2 (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>Група DH 2 (типово)</translation>
     </message>
     <message>
         <source>DH Group 5</source>
-        <translation type="unfinished"></translation>
+        <translation>Група DH 5</translation>
     </message>
     <message>
         <source>Forward Secrecy</source>
-        <translation type="unfinished"></translation>
+        <translation>Розповсюдити конфіденційність</translation>
     </message>
     <message>
         <source>Server (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>Сервер (типова)</translation>
     </message>
     <message>
         <source>DH Group 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Група DH 2</translation>
     </message>
     <message>
         <source>Local Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Локальний порт</translation>
     </message>
     <message>
         <source>Disable Dead Peer Detection</source>
-        <translation type="unfinished"></translation>
+        <translation>Вимкнути виявлення непрацездатних однорангових пристроїв</translation>
     </message>
     <message>
         <source>VPN Security</source>
-        <translation type="unfinished"></translation>
+        <translation>Захист VPN</translation>
     </message>
     <message>
         <source>Cipher</source>
-        <translation type="unfinished"></translation>
+        <translation>Шифр</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Типове</translation>
     </message>
     <message>
         <source>DES-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>DES-CBC</translation>
     </message>
     <message>
         <source>RC2-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>RC2-CBC</translation>
     </message>
     <message>
         <source>DES-EDE-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>DES-EDE-CBC</translation>
     </message>
     <message>
         <source>DES-EDE3-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>DES-EDE3-CBC</translation>
     </message>
     <message>
         <source>DESX-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>DESX-CBC</translation>
     </message>
     <message>
         <source>BF-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>BF-CBC</translation>
     </message>
     <message>
         <source>RC2-40-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>RC2-40-CBC</translation>
     </message>
     <message>
         <source>CAST5-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>CAST5-CBC</translation>
     </message>
     <message>
         <source>RC2-64-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>RC2-64-CBC</translation>
     </message>
     <message>
         <source>AES-128-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>AES-128-CBC</translation>
     </message>
     <message>
         <source>AES-192-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>AES-192-CBC</translation>
     </message>
     <message>
         <source>AES-256-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>AES-256-CBC</translation>
     </message>
     <message>
         <source>CAMELLIA-128-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>CAMELLIA-128-CBC</translation>
     </message>
     <message>
         <source>CAMELLIA-192-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>CAMELLIA-192-CBC</translation>
     </message>
     <message>
         <source>CAMELLIA-256-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>CAMELLIA-256-CBC</translation>
     </message>
     <message>
         <source>SEED-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>SEED-CBC</translation>
     </message>
     <message>
         <source>HMAC Auth</source>
-        <translation type="unfinished"></translation>
+        <translation>HMAC Auth</translation>
     </message>
     <message>
         <source>RSA MD-4</source>
-        <translation type="unfinished"></translation>
+        <translation>RSA MD-4</translation>
     </message>
     <message>
         <source>MD-5</source>
-        <translation type="unfinished"></translation>
+        <translation>MD-5</translation>
     </message>
     <message>
         <source>SHA-1</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA-1</translation>
     </message>
     <message>
         <source>SHA-224</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA-224</translation>
     </message>
     <message>
         <source>SHA-256</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA-256</translation>
     </message>
     <message>
         <source>SHA-384</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA-384</translation>
     </message>
     <message>
         <source>SHA-512</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA-512</translation>
     </message>
     <message>
         <source>RIPEMD-160</source>
-        <translation type="unfinished"></translation>
+        <translation>RIPEMD-160</translation>
     </message>
     <message>
         <source>VPN Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN-проксі</translation>
     </message>
     <message>
         <source>Proxy Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Тип проксі</translation>
     </message>
     <message>
         <source>HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP</translation>
     </message>
     <message>
         <source>SOCKS</source>
-        <translation type="unfinished"></translation>
+        <translation>SOCKS</translation>
     </message>
     <message>
         <source>Server IP</source>
-        <translation type="unfinished"></translation>
+        <translation>IP сервера</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Порт</translation>
     </message>
     <message>
         <source>Retry Indefinitely When Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>У разі збою повторювати спроби нескінченно</translation>
     </message>
     <message>
         <source>VPN TLS Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>TLS-розпізнавання у VPN</translation>
     </message>
     <message>
         <source>Subject Match</source>
-        <translation type="unfinished"></translation>
+        <translation>Збіг теми</translation>
     </message>
     <message>
         <source>Remote Cert Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Тип віддаленого сертифіката</translation>
     </message>
     <message>
         <source>Client</source>
-        <translation type="unfinished"></translation>
+        <translation>Клієнт</translation>
     </message>
     <message>
         <source>Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Сервер</translation>
     </message>
     <message>
         <source>Key File</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл ключа</translation>
     </message>
 </context>
 <context>
     <name>SystemProxyConfigItem</name>
     <message>
         <source>Optional</source>
-        <translation type="unfinished"></translation>
+        <translation>Необов&apos;язкове</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Порт</translation>
     </message>
     <message>
         <source>Authentication is required</source>
-        <translation type="unfinished"></translation>
+        <translation>Слід пройти розпізнавання</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Користувач</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"></translation>
+        <translation>Обов&apos;язкове</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Пароль</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetAirplaneModeTipsItem</name>
+    <message>
+        <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
+        <translation>Якщо ви хочете встановити з&apos;єднання з бездротовою мережею, спочатку вимкніть &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Режим польоту&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetManagerPrivate</name>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>Конфлікт IP</translation>
     </message>
     <message>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Мережа</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetManagerThreadPrivate</name>
     <message>
         <source>Wired Connection %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Дротове з&apos;єднання %1</translation>
     </message>
     <message>
         <source>VPN L2TP %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN L2TP %1</translation>
     </message>
     <message>
         <source>VPN PPTP %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN PPTP %1</translation>
     </message>
     <message>
         <source>VPN VPNC %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN VPNC %1</translation>
     </message>
     <message>
         <source>VPN OpenVPN %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN OpenVPN %1</translation>
     </message>
     <message>
         <source>VPN StrongSwan %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN StrongSwan %1</translation>
     </message>
     <message>
         <source>VPN OpenConnect %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN OpenConnect %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
-        <translation type="unfinished"></translation>
+        <translation>З&apos;єднання PPPoE %1</translation>
     </message>
     <message>
         <source>Connecting &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Встановлюємо з&apos;єднання із «%1»</translation>
     </message>
     <message>
         <source>&quot;%1&quot; connected</source>
-        <translation type="unfinished"></translation>
+        <translation>З&apos;єднання із «%1» встановлено</translation>
     </message>
     <message>
         <source>&quot;%1&quot; disconnected</source>
-        <translation type="unfinished"></translation>
+        <translation>З&apos;єднання із «%1» розірвано</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не вдалося з&apos;єднатися із «%1». Будь ласка, перевірте, чи працює ваш маршрутизатор або мережевий кабель.</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
-        <translation type="unfinished"></translation>
+        <translation>Не вдалося встановити з&apos;єднання із «%1». Будь ласка, підійдіть ближче до бездротового маршрутизатора.</translation>
     </message>
     <message>
         <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
-        <translation type="unfinished"></translation>
+        <translation>Не вдалося встановити з&apos;єднання із «%1». Вказано помилковий пароль.</translation>
     </message>
     <message>
         <source>Password is required to connect &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Для встановлення з&apos;єднання із «%1» потрібен пароль</translation>
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"></translation>
+        <translation>Не вдалося знайти мережу WLAN 802.11 «%1»</translation>
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
-        <translation type="unfinished"></translation>
+        <translation>Для встановлення з&apos;єднання з «%1», будь ласка, налаштуйте ваші дані для розпізнавання після входу до системи</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetSystemProxyControlItem</name>
+    <message>
+        <source>System Proxy</source>
+        <translation>Загальносистемний проксі</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetVPNTipsItem</name>
     <message>
         <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
-        <translation type="unfinished"></translation>
+        <translation>Налаштування VPN не призвели до з&apos;єднання або з&apos;єднання не вдалося встановити. Будь ласка, &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;перейдіть до «Центру керування»&lt;/a&gt;, щоб перевірити, чи усе налаштовано правильно.</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWiredControlItem</name>
     <message>
         <source>Wired Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Дротова мережа</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessControlItem</name>
     <message>
         <source>Wireless Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Бездротова мережа</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessHiddenItem</name>
     <message>
         <source>Connect to hidden network</source>
-        <translation type="unfinished"></translation>
+        <translation>Встановлення з&apos;єднання із прихованою мережею</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessMineItem</name>
+    <message>
+        <source>My Networks</source>
+        <translation>Мої мережі</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessOtherItem</name>
+    <message>
+        <source>Other Networks</source>
+        <translation>Інші мережі</translation>
     </message>
 </context>
 <context>
     <name>network</name>
     <message>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Мережа</translation>
     </message>
 </context>
 </TS>
