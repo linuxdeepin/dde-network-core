@@ -1181,39 +1181,39 @@
     </message>
     <message>
         <source>Refuse CHAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Hylkää CHAP-todennus</translation>
     </message>
     <message>
         <source>Refuse MSCHAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Hylkää MSCHAP-todennus</translation>
     </message>
     <message>
         <source>Refuse MSCHAPv2 Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Hylkää MSCHAPv2-todennus</translation>
     </message>
     <message>
         <source>No BSD Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>Ei BSD-pakkausta</translation>
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>Ei tyhjää tiedon pakkausta</translation>
     </message>
     <message>
         <source>No TCP Header Compression</source>
-        <translation type="unfinished"/>
+        <translation>Ei TCP-otsakkeiden pakkausta</translation>
     </message>
     <message>
         <source>No Protocol Field Compression</source>
-        <translation type="unfinished"/>
+        <translation>Ei protokollakentän pakkausta</translation>
     </message>
     <message>
         <source>No Address/Control Compression</source>
-        <translation type="unfinished"/>
+        <translation>Ei osoiteen/ohjauksen pakkausta</translation>
     </message>
     <message>
         <source>Send PPP Echo Packets</source>
-        <translation type="unfinished"/>
+        <translation>Lähetä PPP echo-paketteja</translation>
     </message>
     <message>
         <source>VPN IPsec</source>
@@ -1249,15 +1249,15 @@
     </message>
     <message>
         <source>Customize Renegotiation Interval</source>
-        <translation type="unfinished"/>
+        <translation>Mukauta neuvotteluväli</translation>
     </message>
     <message>
         <source>Renegotiation Interval</source>
-        <translation type="unfinished"/>
+        <translation>Neuvotteluväli</translation>
     </message>
     <message>
         <source>Use LZO Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>Käytä LZO pakkausta</translation>
     </message>
     <message>
         <source>Use TCP Connection</source>
@@ -1265,11 +1265,11 @@
     </message>
     <message>
         <source>Use TAP Device</source>
-        <translation type="unfinished"/>
+        <translation>Käytä TAP-laitetta</translation>
     </message>
     <message>
         <source>Customize Tunnel MTU</source>
-        <translation type="unfinished"/>
+        <translation>Mukauta tunnelin MTU:ta</translation>
     </message>
     <message>
         <source>MTU</source>
@@ -1277,11 +1277,11 @@
     </message>
     <message>
         <source>Customize UDP Fragment Size</source>
-        <translation type="unfinished"/>
+        <translation>Mukauta UDP-fragmentin kokoa</translation>
     </message>
     <message>
         <source>UDP Fragment Size</source>
-        <translation type="unfinished"/>
+        <translation>UDP-fragmentin koko</translation>
     </message>
     <message>
         <source>Restrict Tunnel TCP MSS</source>
@@ -1521,7 +1521,7 @@
     </message>
     <message>
         <source>Retry Indefinitely When Failed</source>
-        <translation type="unfinished"/>
+        <translation>Yritä uudelleen virheen sattuessa</translation>
     </message>
     <message>
         <source>VPN TLS Authentication</source>
