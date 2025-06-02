@@ -310,7 +310,7 @@
     </message>
     <message>
         <source>Configuration URL</source>
-        <translation type="unfinished"/>
+        <translation>Määrityksen url-osoite</translation>
     </message>
     <message>
         <source>Required</source>
@@ -318,19 +318,19 @@
     </message>
     <message>
         <source>HTTP Proxy</source>
-        <translation type="unfinished"/>
+        <translation>HTTP välityspalvelin</translation>
     </message>
     <message>
         <source>HTTPS Proxy</source>
-        <translation type="unfinished"/>
+        <translation>HTTPS välityspalvelin</translation>
     </message>
     <message>
         <source>FTP Proxy</source>
-        <translation type="unfinished"/>
+        <translation>FTP välityspalvelin</translation>
     </message>
     <message>
         <source>SOCKS Proxy</source>
-        <translation type="unfinished"/>
+        <translation>SOCKS välityspalvelin</translation>
     </message>
     <message>
         <source>Ignore the proxy configurations for the above hosts and domains</source>
@@ -353,7 +353,7 @@
     </message>
     <message>
         <source>Connect, add, import</source>
-        <translation type="unfinished"/>
+        <translation>Yhdistä, lisää, tuo</translation>
     </message>
     <message>
         <source>Disconnect</source>
@@ -365,7 +365,7 @@
     </message>
     <message>
         <source>Add VPN</source>
-        <translation type="unfinished"/>
+        <translation>Lisää VPN</translation>
     </message>
     <message>
         <source>Import VPN</source>
@@ -451,11 +451,11 @@
     <name>PageWiredDevice</name>
     <message>
         <source>Connect, edit network settings</source>
-        <translation type="unfinished"/>
+        <translation>Yhdistä, muokkaa verkkoasetuksia</translation>
     </message>
     <message>
         <source>Plug in the network cable first</source>
-        <translation type="unfinished"/>
+        <translation>Kytke verkkokaapeli ensin</translation>
     </message>
     <message>
         <source>Disconnect</source>
@@ -474,7 +474,7 @@
     <name>PageWirelessDevice</name>
     <message>
         <source>Connect, edit network settings</source>
-        <translation type="unfinished"/>
+        <translation>Yhdistä, muokkaa verkkoasetuksia</translation>
     </message>
     <message>
         <source>Disconnect</source>
