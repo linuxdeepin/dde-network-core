@@ -107,7 +107,7 @@
     </message>
     <message>
         <source>Set up a dial-up network connection</source>
-        <translation type="unfinished"/>
+        <translation>Määritä modeemi ja puhelinverkkoyhteys</translation>
     </message>
     <message>
         <source>Disconnect</source>
@@ -119,14 +119,14 @@
     </message>
     <message>
         <source>Add PPPoE connection</source>
-        <translation type="unfinished"/>
+        <translation>Lisää PPPoE</translation>
     </message>
 </context>
 <context>
     <name>PageDSLSettings</name>
     <message>
         <source> Network Properties</source>
-        <translation type="unfinished"/>
+        <translation>Verkon ominaisuudet</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -149,15 +149,15 @@
     <name>PageDetails</name>
     <message>
         <source>Network Details</source>
-        <translation type="unfinished"/>
+        <translation>Verkkon tiedot</translation>
     </message>
     <message>
         <source>View all network configurations</source>
-        <translation type="unfinished"/>
+        <translation>Näytä kaikki verkkoasetukset</translation>
     </message>
     <message>
         <source>Details has been copied</source>
-        <translation type="unfinished"/>
+        <translation>Tiedot kopioitu</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -169,18 +169,18 @@
     </message>
     <message>
         <source>Network Detection</source>
-        <translation type="unfinished"/>
+        <translation>Verkon tunnistus</translation>
     </message>
 </context>
 <context>
     <name>PageHotspot</name>
     <message>
         <source>WPA/WPA2 Personal</source>
-        <translation type="unfinished"/>
+        <translation>WPA/WPA2 Personal</translation>
     </message>
     <message>
         <source>WPA3 Personal</source>
-        <translation type="unfinished"/>
+        <translation>WPA3 Personal</translation>
     </message>
     <message>
         <source>None</source>
@@ -200,23 +200,23 @@
     </message>
     <message>
         <source>Not Bind</source>
-        <translation type="unfinished"/>
+        <translation>Ei sido</translation>
     </message>
     <message>
         <source>Personal Hotspot</source>
-        <translation type="unfinished"/>
+        <translation>Oma tukiasema</translation>
     </message>
     <message>
         <source>Share the network</source>
-        <translation type="unfinished"/>
+        <translation>Jaa verkko</translation>
     </message>
     <message>
         <source>My Hotspot</source>
-        <translation type="unfinished"/>
+        <translation>Tukiasema</translation>
     </message>
     <message>
         <source>Edit My Hotspot</source>
-        <translation type="unfinished"/>
+        <translation>Muokkaa tukiasemaa</translation>
     </message>
     <message>
         <source>Name (SSID)</source>
@@ -236,7 +236,7 @@
     </message>
     <message>
         <source>Band</source>
-        <translation type="unfinished"/>
+        <translation>Taajuusalue</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -248,11 +248,11 @@
     </message>
     <message>
         <source>Shared Settings</source>
-        <translation type="unfinished"/>
+        <translation>Jakoasetukset</translation>
     </message>
     <message>
         <source>Hotspot Sharing Device</source>
-        <translation type="unfinished"/>
+        <translation>Tukiaseman jeattu laite</translation>
     </message>
     <message>
         <source>If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.</source>
@@ -1261,7 +1261,7 @@
     </message>
     <message>
         <source>Use TCP Connection</source>
-        <translation type="unfinished"/>
+        <translation>Käytä TCP-yhteyttä</translation>
     </message>
     <message>
         <source>Use TAP Device</source>
