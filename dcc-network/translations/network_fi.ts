@@ -1041,7 +1041,7 @@
     </message>
     <message>
         <source>Certificates (TLS)</source>
-        <translation type="unfinished"/>
+        <translation>Sertifikaatit (TLS)</translation>
     </message>
     <message>
         <source>Password</source>
@@ -1053,11 +1053,11 @@
     </message>
     <message>
         <source>Static Key</source>
-        <translation type="unfinished"/>
+        <translation>Kiinteä avain</translation>
     </message>
     <message>
         <source>Pwd Options</source>
-        <translation type="unfinished"/>
+        <translation>Salasanavalinnat</translation>
     </message>
     <message>
         <source>Saved</source>
@@ -1077,11 +1077,11 @@
     </message>
     <message>
         <source>Customize Key Direction</source>
-        <translation type="unfinished"/>
+        <translation>Määritä avaimen suunta</translation>
     </message>
     <message>
         <source>Key Direction</source>
-        <translation type="unfinished"/>
+        <translation>Avaimen suunta</translation>
     </message>
     <message>
         <source>0</source>
