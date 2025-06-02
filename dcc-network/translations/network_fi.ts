@@ -1525,15 +1525,15 @@
     </message>
     <message>
         <source>VPN TLS Authentication</source>
-        <translation type="unfinished"/>
+        <translation>VPN TLS todennus</translation>
     </message>
     <message>
         <source>Subject Match</source>
-        <translation type="unfinished"/>
+        <translation>Kohde täsmää</translation>
     </message>
     <message>
         <source>Remote Cert Type</source>
-        <translation type="unfinished"/>
+        <translation>Ulkoisen varmenteen tyyppi</translation>
     </message>
     <message>
         <source>Client</source>
