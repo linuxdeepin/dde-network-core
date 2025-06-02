@@ -697,73 +697,73 @@
     </message>
     <message>
         <source>Prefix</source>
-        <translation type="unfinished"/>
+        <translation>Etuliite</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"/>
+        <translation>Yhdyskäytävä</translation>
     </message>
 </context>
 <context>
     <name>SectionPPP</name>
     <message>
         <source>PPP</source>
-        <translation type="unfinished"/>
+        <translation>PPP</translation>
     </message>
     <message>
         <source>Use MPPE</source>
-        <translation type="unfinished"/>
+        <translation>Käytä MPPE</translation>
     </message>
     <message>
         <source>128-bit MPPE</source>
-        <translation type="unfinished"/>
+        <translation>128-bit MPPE</translation>
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation type="unfinished"/>
+        <translation>Tilanneellinen MPPE</translation>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Hylkää EAP-todennus</translation>
     </message>
     <message>
         <source>Refuse PAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Hylkää PAP-todennus</translation>
     </message>
     <message>
         <source>Refuse CHAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Hylkää CHAP-todennus</translation>
     </message>
     <message>
         <source>Refuse MSCHAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Hylkää MSCHAP-todennus</translation>
     </message>
     <message>
         <source>Refuse MSCHAPv2 Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Hylkää MSCHAPv2-todennus</translation>
     </message>
     <message>
         <source>No BSD Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>Ei BSD-pakkausta</translation>
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>Ei tyhjää tiedon pakkausta</translation>
     </message>
     <message>
         <source>No TCP Header Compression</source>
-        <translation type="unfinished"/>
+        <translation>Ei TCP-otsakkeiden pakkausta</translation>
     </message>
     <message>
         <source>Send PPP Echo Packets</source>
-        <translation type="unfinished"/>
+        <translation>Lähetä PPP echo-paketteja</translation>
     </message>
 </context>
 <context>
     <name>SectionPPPOE</name>
     <message>
         <source>PPPoE</source>
-        <translation type="unfinished"/>
+        <translation>PPPoE</translation>
     </message>
     <message>
         <source>Username</source>
@@ -775,7 +775,7 @@
     </message>
     <message>
         <source>Service</source>
-        <translation type="unfinished"/>
+        <translation>Palvelu</translation>
     </message>
     <message>
         <source>Password</source>
@@ -790,35 +790,35 @@
     </message>
     <message>
         <source>TLS</source>
-        <translation type="unfinished"/>
+        <translation>TLS</translation>
     </message>
     <message>
         <source>MD5</source>
-        <translation type="unfinished"/>
+        <translation>MD5</translation>
     </message>
     <message>
         <source>FAST</source>
-        <translation type="unfinished"/>
+        <translation>FAST</translation>
     </message>
     <message>
         <source>Tunneled TLS</source>
-        <translation type="unfinished"/>
+        <translation>Tunneloitu TLS</translation>
     </message>
     <message>
         <source>Protected EAP</source>
-        <translation type="unfinished"/>
+        <translation>Suojattu EAP</translation>
     </message>
     <message>
         <source>LEAP</source>
-        <translation type="unfinished"/>
+        <translation>LEAP</translation>
     </message>
     <message>
         <source>GTC</source>
-        <translation type="unfinished"/>
+        <translation>GTC</translation>
     </message>
     <message>
         <source>MSCHAPV2</source>
-        <translation type="unfinished"/>
+        <translation>MSCHAPV2</translation>
     </message>
     <message>
         <source>PAP</source>
