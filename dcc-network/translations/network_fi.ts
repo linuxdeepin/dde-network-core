@@ -298,7 +298,7 @@
     </message>
     <message>
         <source>Proxy Type</source>
-        <translation type="unfinished"/>
+        <translation>Välityspalvelimen tyyppi</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -1381,7 +1381,7 @@
     </message>
     <message>
         <source>Disable Dead Peer Detection</source>
-        <translation type="unfinished"/>
+        <translation>Poista käytöstä poistuneiden tunnistus</translation>
     </message>
     <message>
         <source>VPN Security</source>
@@ -1497,11 +1497,11 @@
     </message>
     <message>
         <source>VPN Proxy</source>
-        <translation type="unfinished"/>
+        <translation>VPN välityspalvelin</translation>
     </message>
     <message>
         <source>Proxy Type</source>
-        <translation type="unfinished"/>
+        <translation>Välityspalvelimen tyyppi</translation>
     </message>
     <message>
         <source>HTTP</source>
@@ -1537,22 +1537,22 @@
     </message>
     <message>
         <source>Client</source>
-        <translation type="unfinished"/>
+        <translation>Ohjelma</translation>
     </message>
     <message>
         <source>Server</source>
-        <translation type="unfinished"/>
+        <translation>Palvelin</translation>
     </message>
     <message>
         <source>Key File</source>
-        <translation type="unfinished"/>
+        <translation>Avaintiedosto</translation>
     </message>
 </context>
 <context>
     <name>SystemProxyConfigItem</name>
     <message>
         <source>Optional</source>
-        <translation type="unfinished"/>
+        <translation>Valinnainen</translation>
     </message>
     <message>
         <source>Port</source>
@@ -1717,7 +1717,7 @@
     <name>network</name>
     <message>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Verkko</translation>
     </message>
 </context>
 </TS>
