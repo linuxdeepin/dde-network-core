@@ -486,15 +486,15 @@
     </message>
     <message>
         <source>My Networks</source>
-        <translation type="unfinished"/>
+        <translation>Minun verkko</translation>
     </message>
     <message>
         <source>Other Networks</source>
-        <translation type="unfinished"/>
+        <translation>Muut verkot</translation>
     </message>
     <message>
         <source>Disable Airplane Mode first if you want to connect to a wireless network</source>
-        <translation type="unfinished"/>
+        <translation>Poista lentotila ensin käytöstä, jos haluat yhteyden langattomaan verkkoon</translation>
     </message>
     <message>
         <source>Disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
