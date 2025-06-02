@@ -934,15 +934,15 @@
     </message>
     <message>
         <source>PAC file</source>
-        <translation type="unfinished"/>
+        <translation>PAC-tiedosto</translation>
     </message>
     <message>
         <source>CA Cert</source>
-        <translation type="unfinished"/>
+        <translation>CA-sertifikaatti</translation>
     </message>
     <message>
         <source>User Cert</source>
-        <translation type="unfinished"/>
+        <translation>Käyttäjä-sertifikaatti</translation>
     </message>
     <message>
         <source>PEAP Version</source>
@@ -962,18 +962,18 @@
     </message>
     <message>
         <source>Inner Auth</source>
-        <translation type="unfinished"/>
+        <translation>Sisäinen todennus</translation>
     </message>
 </context>
 <context>
     <name>SectionVPN</name>
     <message>
         <source>VPN</source>
-        <translation type="unfinished"/>
+        <translation>VPN</translation>
     </message>
     <message>
         <source>All files (*)</source>
-        <translation type="unfinished"/>
+        <translation>Kaikki tiedostot (*)</translation>
     </message>
     <message>
         <source>Required</source>
@@ -981,31 +981,31 @@
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished"/>
+        <translation>Virheellinen yhdyskäytävä</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"/>
+        <translation>Yhdyskäytävä</translation>
     </message>
     <message>
         <source>CA Cert</source>
-        <translation type="unfinished"/>
+        <translation>CA-sertifikaatti</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation type="unfinished"/>
+        <translation>Välityspalvelin</translation>
     </message>
     <message>
         <source>Allow Cisco Secure Desktop Trojan</source>
-        <translation type="unfinished"/>
+        <translation>Salli Cisco Secure Desktop Trojan</translation>
     </message>
     <message>
         <source>CSD Script</source>
-        <translation type="unfinished"/>
+        <translation>CSD Script</translation>
     </message>
     <message>
         <source>Auth Type</source>
-        <translation type="unfinished"/>
+        <translation>Tunnistautumistapa</translation>
     </message>
     <message>
         <source>Private Key</source>
@@ -1013,23 +1013,23 @@
     </message>
     <message>
         <source>SSH Agent</source>
-        <translation type="unfinished"/>
+        <translation>SSH-sovellus</translation>
     </message>
     <message>
         <source>Smart Card</source>
-        <translation type="unfinished"/>
+        <translation>Älykortti</translation>
     </message>
     <message>
         <source>EAP</source>
-        <translation type="unfinished"/>
+        <translation>EAP</translation>
     </message>
     <message>
         <source>Pre-Shared Key</source>
-        <translation type="unfinished"/>
+        <translation>Jaettu avain</translation>
     </message>
     <message>
         <source>User Cert</source>
-        <translation type="unfinished"/>
+        <translation>Käyttäjä-sertifikaatti</translation>
     </message>
     <message>
         <source>Username</source>
