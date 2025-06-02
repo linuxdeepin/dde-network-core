@@ -822,15 +822,15 @@
     </message>
     <message>
         <source>PAP</source>
-        <translation type="unfinished"/>
+        <translation>PAP</translation>
     </message>
     <message>
         <source>MSCHAP</source>
-        <translation type="unfinished"/>
+        <translation>MSCHAP</translation>
     </message>
     <message>
         <source>CHAP</source>
-        <translation type="unfinished"/>
+        <translation>CHAP</translation>
     </message>
     <message>
         <source>None</source>
@@ -838,27 +838,27 @@
     </message>
     <message>
         <source>WEP</source>
-        <translation type="unfinished"/>
+        <translation>WEP</translation>
     </message>
     <message>
         <source>WPA/WPA2 Personal</source>
-        <translation type="unfinished"/>
+        <translation>WPA/WPA2 Personal</translation>
     </message>
     <message>
         <source>WPA/WPA2 Enterprise</source>
-        <translation type="unfinished"/>
+        <translation>WPA/WPA2 Enterprise</translation>
     </message>
     <message>
         <source>WPA3 Personal</source>
-        <translation type="unfinished"/>
+        <translation>WPA3 Personal</translation>
     </message>
     <message>
         <source>EAP Auth</source>
-        <translation type="unfinished"/>
+        <translation>EAP Auth</translation>
     </message>
     <message>
         <source>Identity</source>
-        <translation type="unfinished"/>
+        <translation>Identiteetti</translation>
     </message>
     <message>
         <source>Required</source>
@@ -866,7 +866,7 @@
     </message>
     <message>
         <source>Pwd Options</source>
-        <translation type="unfinished"/>
+        <translation>Salasanavalinnat</translation>
     </message>
     <message>
         <source>Save password for this user</source>
@@ -882,7 +882,7 @@
     </message>
     <message>
         <source>Key</source>
-        <translation type="unfinished"/>
+        <translation>Avain</translation>
     </message>
     <message>
         <source>Private Pwd</source>
@@ -894,27 +894,27 @@
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Todennus</translation>
     </message>
     <message>
         <source>Shared key</source>
-        <translation type="unfinished"/>
+        <translation>Jaettu avain</translation>
     </message>
     <message>
         <source>Open system</source>
-        <translation type="unfinished"/>
+        <translation>Avoin järjestelmä</translation>
     </message>
     <message>
         <source>Private Key</source>
-        <translation type="unfinished"/>
+        <translation>Salausavain</translation>
     </message>
     <message>
         <source>Anonymous ID</source>
-        <translation type="unfinished"/>
+        <translation>Anonyymi tunnus</translation>
     </message>
     <message>
         <source>Provisioning</source>
-        <translation type="unfinished"/>
+        <translation>Valmistelu</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -922,15 +922,15 @@
     </message>
     <message>
         <source>Anonymous</source>
-        <translation type="unfinished"/>
+        <translation>Anonyymi</translation>
     </message>
     <message>
         <source>Authenticated</source>
-        <translation type="unfinished"/>
+        <translation>Todennettu</translation>
     </message>
     <message>
         <source>Both</source>
-        <translation type="unfinished"/>
+        <translation>Molemmat</translation>
     </message>
     <message>
         <source>PAC file</source>
@@ -1009,7 +1009,7 @@
     </message>
     <message>
         <source>Private Key</source>
-        <translation type="unfinished"/>
+        <translation>Salausavain</translation>
     </message>
     <message>
         <source>SSH Agent</source>
