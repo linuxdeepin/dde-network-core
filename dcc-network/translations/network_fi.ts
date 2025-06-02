@@ -1085,11 +1085,11 @@
     </message>
     <message>
         <source>0</source>
-        <translation type="unfinished"/>
+        <translation>0</translation>
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished"/>
+        <translation>1</translation>
     </message>
     <message>
         <source>Remote IP</source>
@@ -1113,11 +1113,11 @@
     </message>
     <message>
         <source>Use IP Compression</source>
-        <translation type="unfinished"/>
+        <translation>Käytä IP-pakkausta</translation>
     </message>
     <message>
         <source>Enable Custom Cipher Proposals</source>
-        <translation type="unfinished"/>
+        <translation>Mukautetut salalauseet käyttöön</translation>
     </message>
     <message>
         <source>IKE</source>
@@ -1149,7 +1149,7 @@
     </message>
     <message>
         <source>Use MPPE</source>
-        <translation type="unfinished"/>
+        <translation>Käytä MPPE</translation>
     </message>
     <message>
         <source>Security</source>
@@ -1221,7 +1221,7 @@
     </message>
     <message>
         <source>Enable IPsec</source>
-        <translation type="unfinished"/>
+        <translation>IPsec käyttöön</translation>
     </message>
     <message>
         <source>Group ID</source>
@@ -1229,11 +1229,11 @@
     </message>
     <message>
         <source>Phase1 Algorithms</source>
-        <translation type="unfinished"/>
+        <translation>Phase1 algoritmit</translation>
     </message>
     <message>
         <source>Phase2 Algorithms</source>
-        <translation type="unfinished"/>
+        <translation>Phase2 algoritmit</translation>
     </message>
     <message>
         <source>VPN Advanced</source>
