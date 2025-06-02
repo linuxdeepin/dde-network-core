@@ -256,18 +256,18 @@
     </message>
     <message>
         <source>If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.</source>
-        <translation type="unfinished"/>
+        <translation>Jos haluat käyttää tukiasemana, poista ensin lentotila käytöstä ja ota sitten langaton verkko käyttöön.</translation>
     </message>
     <message>
         <source>If you want to use the personal hotspot, disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first and then enable the wireless network adapter.</source>
-        <translation type="unfinished"/>
+        <translation>Jos haluat käyttää tukiasemana, poista ensin &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Lentotila käytöstä&lt;/a&gt; ja ota sitten langaton verkko käyttöön.</translation>
     </message>
 </context>
 <context>
     <name>PageSettings</name>
     <message>
         <source> Network Properties</source>
-        <translation type="unfinished"/>
+        <translation>Verkon ominaisuudet</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -290,11 +290,11 @@
     <name>PageSystemProxy</name>
     <message>
         <source>System Proxy</source>
-        <translation type="unfinished"/>
+        <translation>Välityspalvelin</translation>
     </message>
     <message>
         <source>Set up proxy servers</source>
-        <translation type="unfinished"/>
+        <translation>Määritä välityspalvelimia</translation>
     </message>
     <message>
         <source>Proxy Type</source>
@@ -392,7 +392,7 @@
     <name>PageVPNSettings</name>
     <message>
         <source> Network Properties</source>
-        <translation type="unfinished"/>
+        <translation>Verkon ominaisuudet</translation>
     </message>
     <message>
         <source>VPN Type</source>
