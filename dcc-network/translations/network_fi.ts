@@ -1037,7 +1037,7 @@
     </message>
     <message>
         <source>Use FSID for Key Passphrase</source>
-        <translation type="unfinished"/>
+        <translation>Käytä FSID:tä avaimen salasanana</translation>
     </message>
     <message>
         <source>Certificates (TLS)</source>
@@ -1109,7 +1109,7 @@
     </message>
     <message>
         <source>Enforce UDP Encapsulation</source>
-        <translation type="unfinished"/>
+        <translation>Pakota UDP-kapselointi</translation>
     </message>
     <message>
         <source>Use IP Compression</source>
@@ -1161,23 +1161,23 @@
     </message>
     <message>
         <source>40-bit (less secure)</source>
-        <translation type="unfinished"/>
+        <translation>40-bit (vähemmän suojattu)</translation>
     </message>
     <message>
         <source>128-bit (most secure)</source>
-        <translation type="unfinished"/>
+        <translation>128-bit (turvallisin)</translation>
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation type="unfinished"/>
+        <translation>Tilanneellinen MPPE</translation>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Hylkää EAP-todennus</translation>
     </message>
     <message>
         <source>Refuse PAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Hylkää PAP-todennus</translation>
     </message>
     <message>
         <source>Refuse CHAP Authentication</source>
