@@ -498,15 +498,15 @@
     </message>
     <message>
         <source>Disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation type="unfinished"/>
+        <translation>Poista &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;lentotila&lt;/a&gt; ensin käytöstä, jos haluat yhteyden langattomaan verkkoon</translation>
     </message>
     <message>
         <source>Disable hotspot first if you want to connect to a wireless network</source>
-        <translation type="unfinished"/>
+        <translation>Poista tukiasema ensin käytöstä, jos haluat yhteyden langattomaan verkkoon</translation>
     </message>
     <message>
         <source>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Disable hotspot&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation type="unfinished"/>
+        <translation>Poista &lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;tukiasema&lt;/a&gt; ensin käytöstä, jos haluat yhteyden langattomaan verkkoon</translation>
     </message>
 </context>
 <context>
@@ -532,7 +532,7 @@
     <name>SectionDevice</name>
     <message>
         <source>Not Bind</source>
-        <translation type="unfinished"/>
+        <translation>Ei sido</translation>
     </message>
     <message>
         <source>WLAN</source>
@@ -544,15 +544,15 @@
     </message>
     <message>
         <source>Device MAC Addr</source>
-        <translation type="unfinished"/>
+        <translation>Laitteen MAC-osoite</translation>
     </message>
     <message>
         <source>Cloned MAC Addr</source>
-        <translation type="unfinished"/>
+        <translation>Kloonattu MAC-osoite</translation>
     </message>
     <message>
         <source>Customize MTU</source>
-        <translation type="unfinished"/>
+        <translation>Muokkaa MTU</translation>
     </message>
     <message>
         <source>MTU</source>
@@ -630,7 +630,7 @@
     </message>
     <message>
         <source>Only applied in corresponding resources</source>
-        <translation type="unfinished"/>
+        <translation>Sovelletaan vastaaviin resursseihin</translation>
     </message>
     <message>
         <source>IP Address</source>
