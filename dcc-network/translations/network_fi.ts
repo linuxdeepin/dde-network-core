@@ -1237,7 +1237,7 @@
     </message>
     <message>
         <source>VPN Advanced</source>
-        <translation type="unfinished"/>
+        <translation>VPN lisäasetukset</translation>
     </message>
     <message>
         <source>Customize Gateway Port</source>
@@ -1285,11 +1285,11 @@
     </message>
     <message>
         <source>Restrict Tunnel TCP MSS</source>
-        <translation type="unfinished"/>
+        <translation>Rajoita tunnelin TCP MSS</translation>
     </message>
     <message>
         <source>Randomize Remote Hosts</source>
-        <translation type="unfinished"/>
+        <translation>Satunnaista ulkoiset isännät</translation>
     </message>
     <message>
         <source>Domain</source>
@@ -1305,7 +1305,7 @@
     </message>
     <message>
         <source>Netscreen</source>
-        <translation type="unfinished"/>
+        <translation>Verkkonäyttö</translation>
     </message>
     <message>
         <source>Version</source>
@@ -1329,7 +1329,7 @@
     </message>
     <message>
         <source>NAT Traversal Mode</source>
-        <translation type="unfinished"/>
+        <translation>NAT-liikenne</translation>
     </message>
     <message>
         <source>NAT-T When Available (default)</source>
@@ -1337,7 +1337,7 @@
     </message>
     <message>
         <source>NAT-T Always</source>
-        <translation type="unfinished"/>
+        <translation>Aina NAT-T</translation>
     </message>
     <message>
         <source>Cisco UDP</source>
@@ -1349,11 +1349,11 @@
     </message>
     <message>
         <source>IKE DH Group</source>
-        <translation type="unfinished"/>
+        <translation>IKE DH Group</translation>
     </message>
     <message>
         <source>DH Group 1</source>
-        <translation type="unfinished"/>
+        <translation>DH Group 1</translation>
     </message>
     <message>
         <source>DH Group 2 (default)</source>
@@ -1361,7 +1361,7 @@
     </message>
     <message>
         <source>DH Group 5</source>
-        <translation type="unfinished"/>
+        <translation>DH Group 5</translation>
     </message>
     <message>
         <source>Forward Secrecy</source>
@@ -1373,7 +1373,7 @@
     </message>
     <message>
         <source>DH Group 2</source>
-        <translation type="unfinished"/>
+        <translation>DH Group 2</translation>
     </message>
     <message>
         <source>Local Port</source>
