@@ -22,8 +22,9 @@ HotspotPlugin::HotspotPlugin(QObject *parent)
     : QObject(parent)
 {
   QTranslator *trs = new QTranslator(this);
-  trs->load(QString("/usr/share/dock-hotspot-plugin/translations/dock-hotspot-plugin_%1.qm").arg(QLocale::system().name()));
-  QCoreApplication::installTranslator(trs);
+  if (trs->load(QLocale(), "dock-hotspot-plugin", "_", "/usr/share/dock-hotspot-plugin/translations")) {
+    QCoreApplication::installTranslator(trs);
+  }
 }
 
 void HotspotPlugin::init(PluginProxyInterface *proxyInter) {

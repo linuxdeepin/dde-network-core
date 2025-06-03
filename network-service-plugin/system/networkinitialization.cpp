@@ -377,10 +377,12 @@ bool NetworkInitialization::installUserTranslator(const QString &json)
         localTmp = locale;
         static QTranslator translator;
         QCoreApplication::removeTranslator(&translator);
-        const QString qmFile = QString("%1/network-service-plugin_%2.qm").arg(QM_FILES_DIR).arg(locale);
-        translator.load(qmFile);
-        QCoreApplication::installTranslator(&translator);
-        qCDebug(DSM) << "install translation file" << qmFile;
+        if (translator.load(QLocale(locale), "network-service-plugin", "_", QM_FILES_DIR)) {
+            QCoreApplication::installTranslator(&translator);
+            qCInfo(DSM) << "Loaded translation file for network-service-plugin:" << translator.filePath();
+        } else {
+            qCWarning(DSM) << "Failed to load translation file for network-service-plugin with locale:" << locale;
+        }
     }
 
     return true;
