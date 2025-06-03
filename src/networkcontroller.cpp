@@ -148,8 +148,14 @@ void NetworkController::installTranslator(const QString &locale)
     } else {
         m_translator = new QTranslator;
     }
-    m_translator->load(QString("/usr/share/dde-network-core/translations/dde-network-core_%1").arg(localeName));
-    QCoreApplication::installTranslator(m_translator);
+    if (m_translator->load(QLocale(localeName), "dde-network-core", "_", "/usr/share/dde-network-core/translations")) {
+        QCoreApplication::installTranslator(m_translator);
+        qInfo() << "Loaded translation file for dde-network-core:" << m_translator->filePath();
+    } else {
+        qWarning() << "Failed to load translation file for dde-network-core";
+        m_translator->deleteLater();
+        m_translator = nullptr;
+    }
 }
 
 void NetworkController::updateSync(const bool sync)
