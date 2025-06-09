@@ -1177,11 +1177,11 @@
     </message>
     <message>
         <source>Refuse PAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Recusar autenticação PAP</translation>
     </message>
     <message>
         <source>Refuse CHAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Recusar autenticação CHAP</translation>
     </message>
     <message>
         <source>Refuse MSCHAP Authentication</source>
@@ -1217,7 +1217,7 @@
     </message>
     <message>
         <source>VPN IPsec</source>
-        <translation type="unfinished"/>
+        <translation>VPN IPsec</translation>
     </message>
     <message>
         <source>Enable IPsec</source>
@@ -1273,15 +1273,15 @@
     </message>
     <message>
         <source>MTU</source>
-        <translation type="unfinished"/>
+        <translation>MTU</translation>
     </message>
     <message>
         <source>Customize UDP Fragment Size</source>
-        <translation type="unfinished"/>
+        <translation>Personalizar tamanho do fragmento UDP</translation>
     </message>
     <message>
         <source>UDP Fragment Size</source>
-        <translation type="unfinished"/>
+        <translation>Tamanho do fragmento UDP</translation>
     </message>
     <message>
         <source>Restrict Tunnel TCP MSS</source>
