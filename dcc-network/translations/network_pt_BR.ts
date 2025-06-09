@@ -874,39 +874,39 @@
     </message>
     <message>
         <source>Save password for all users</source>
-        <translation type="unfinished"/>
+        <translation>Salvar senha para todos os usuários</translation>
     </message>
     <message>
         <source>Ask me always</source>
-        <translation type="unfinished"/>
+        <translation>Sempre perguntar</translation>
     </message>
     <message>
         <source>Key</source>
-        <translation type="unfinished"/>
+        <translation>Senha</translation>
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation type="unfinished"/>
+        <translation>Senha privada</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Senha</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Autenticação</translation>
     </message>
     <message>
         <source>Shared key</source>
-        <translation type="unfinished"/>
+        <translation>Chave compartilhada</translation>
     </message>
     <message>
         <source>Open system</source>
-        <translation type="unfinished"/>
+        <translation>Sistema aberto</translation>
     </message>
     <message>
         <source>Private Key</source>
-        <translation type="unfinished"/>
+        <translation>Chave privada</translation>
     </message>
     <message>
         <source>Anonymous ID</source>
