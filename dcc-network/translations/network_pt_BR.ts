@@ -910,82 +910,82 @@
     </message>
     <message>
         <source>Anonymous ID</source>
-        <translation type="unfinished"/>
+        <translation>ID anônimo</translation>
     </message>
     <message>
         <source>Provisioning</source>
-        <translation type="unfinished"/>
+        <translation>Provisionando</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"/>
+        <translation>Desativado</translation>
     </message>
     <message>
         <source>Anonymous</source>
-        <translation type="unfinished"/>
+        <translation>Anônimo</translation>
     </message>
     <message>
         <source>Authenticated</source>
-        <translation type="unfinished"/>
+        <translation>Autenticado</translation>
     </message>
     <message>
         <source>Both</source>
-        <translation type="unfinished"/>
+        <translation>Ambos</translation>
     </message>
     <message>
         <source>PAC file</source>
-        <translation type="unfinished"/>
+        <translation>Arquivo PAC</translation>
     </message>
     <message>
         <source>CA Cert</source>
-        <translation type="unfinished"/>
+        <translation>Certificado CA</translation>
     </message>
     <message>
         <source>User Cert</source>
-        <translation type="unfinished"/>
+        <translation>Certificado de Usuário</translation>
     </message>
     <message>
         <source>PEAP Version</source>
-        <translation type="unfinished"/>
+        <translation>Versão PEAP</translation>
     </message>
     <message>
         <source>Automatic</source>
-        <translation type="unfinished"/>
+        <translation>Automático</translation>
     </message>
     <message>
         <source>Version 0</source>
-        <translation type="unfinished"/>
+        <translation>Versão 0</translation>
     </message>
     <message>
         <source>Version 1</source>
-        <translation type="unfinished"/>
+        <translation>Versão 1</translation>
     </message>
     <message>
         <source>Inner Auth</source>
-        <translation type="unfinished"/>
+        <translation>Autenticação Interna</translation>
     </message>
 </context>
 <context>
     <name>SectionVPN</name>
     <message>
         <source>VPN</source>
-        <translation type="unfinished"/>
+        <translation>VPN</translation>
     </message>
     <message>
         <source>All files (*)</source>
-        <translation type="unfinished"/>
+        <translation>Todos os arquivos (*)</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"/>
+        <translation>Obrigatório</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished"/>
+        <translation>Gateway inválido</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"/>
+        <translation>Gateway</translation>
     </message>
     <message>
         <source>CA Cert</source>
@@ -1529,50 +1529,50 @@
     </message>
     <message>
         <source>Subject Match</source>
-        <translation type="unfinished"/>
+        <translation>Assunto Relacionado</translation>
     </message>
     <message>
         <source>Remote Cert Type</source>
-        <translation type="unfinished"/>
+        <translation>Tipo de Certificado Remoto</translation>
     </message>
     <message>
         <source>Client</source>
-        <translation type="unfinished"/>
+        <translation>Cliente</translation>
     </message>
     <message>
         <source>Server</source>
-        <translation type="unfinished"/>
+        <translation>Servidor</translation>
     </message>
     <message>
         <source>Key File</source>
-        <translation type="unfinished"/>
+        <translation>Arquivo chave</translation>
     </message>
 </context>
 <context>
     <name>SystemProxyConfigItem</name>
     <message>
         <source>Optional</source>
-        <translation type="unfinished"/>
+        <translation>Opcional</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished"/>
+        <translation>Porta</translation>
     </message>
     <message>
         <source>Authentication is required</source>
-        <translation type="unfinished"/>
+        <translation>É necessária autenticação</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Nome de usuário</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"/>
+        <translation>Obrigatório</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Senha</translation>
     </message>
 </context>
 <context>
@@ -1717,7 +1717,7 @@
     <name>network</name>
     <message>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Rede</translation>
     </message>
 </context>
 </TS>
