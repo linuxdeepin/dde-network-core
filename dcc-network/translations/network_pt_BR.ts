@@ -1149,31 +1149,31 @@
     </message>
     <message>
         <source>Use MPPE</source>
-        <translation type="unfinished"/>
+        <translation>Usar MPPE</translation>
     </message>
     <message>
         <source>Security</source>
-        <translation type="unfinished"/>
+        <translation>Segurança</translation>
     </message>
     <message>
         <source>All Available (default)</source>
-        <translation type="unfinished"/>
+        <translation>Todas disponíveis (padrão)</translation>
     </message>
     <message>
         <source>40-bit (less secure)</source>
-        <translation type="unfinished"/>
+        <translation>40-bit (menos seguro)</translation>
     </message>
     <message>
         <source>128-bit (most secure)</source>
-        <translation type="unfinished"/>
+        <translation>128-bit (mais seguro)</translation>
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation type="unfinished"/>
+        <translation>Status MPPE</translation>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Recusar autenticação EAP</translation>
     </message>
     <message>
         <source>Refuse PAP Authentication</source>
@@ -1293,11 +1293,11 @@
     </message>
     <message>
         <source>Domain</source>
-        <translation type="unfinished"/>
+        <translation>Domínio</translation>
     </message>
     <message>
         <source>Vendor</source>
-        <translation type="unfinished"/>
+        <translation>Fornecedor</translation>
     </message>
     <message>
         <source>Cisco (default)</source>
