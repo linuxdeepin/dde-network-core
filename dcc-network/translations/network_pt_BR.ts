@@ -1285,11 +1285,11 @@
     </message>
     <message>
         <source>Restrict Tunnel TCP MSS</source>
-        <translation type="unfinished"/>
+        <translation>Restringir o Túnel TCP MSS</translation>
     </message>
     <message>
         <source>Randomize Remote Hosts</source>
-        <translation type="unfinished"/>
+        <translation>Randomizar hosts remotos</translation>
     </message>
     <message>
         <source>Domain</source>
@@ -1301,7 +1301,7 @@
     </message>
     <message>
         <source>Cisco (default)</source>
-        <translation type="unfinished"/>
+        <translation>Cisco (padrão)</translation>
     </message>
     <message>
         <source>Netscreen</source>
