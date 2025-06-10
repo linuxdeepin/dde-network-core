@@ -786,7 +786,7 @@
     <name>SectionSecret</name>
     <message>
         <source>Security</source>
-        <translation type="unfinished"/>
+        <translation>Seguridad</translation>
     </message>
     <message>
         <source>TLS</source>
@@ -834,7 +834,7 @@
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Ninguno</translation>
     </message>
     <message>
         <source>WEP</source>
@@ -866,7 +866,7 @@
     </message>
     <message>
         <source>Pwd Options</source>
-        <translation type="unfinished"/>
+        <translation>Opciones de Pwd</translation>
     </message>
     <message>
         <source>Save password for this user</source>
@@ -1057,7 +1057,7 @@
     </message>
     <message>
         <source>Pwd Options</source>
-        <translation type="unfinished"/>
+        <translation>Opciones de Pwd</translation>
     </message>
     <message>
         <source>Saved</source>
