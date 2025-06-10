@@ -73,7 +73,15 @@ DccObject {
         sectionGeneric.setConfig(config.connection)
         sectionPPPOE.setConfig(config["pppoe"])
         sectionIPv4.setConfig(config.ipv4)
-        sectionDNS.setConfig((config.hasOwnProperty("ipv4") && config.ipv4.hasOwnProperty("dns")) ? config.ipv4.dns : null)
+        // 合并IPv4和IPv6的DNS配置
+        let combinedDns = []
+        if (config.hasOwnProperty("ipv4") && config.ipv4.hasOwnProperty("dns") && config.ipv4.dns.length > 0) {
+            combinedDns = combinedDns.concat(config.ipv4.dns)
+        }
+        if (config.hasOwnProperty("ipv6") && config.ipv6.hasOwnProperty("dns") && config.ipv6.dns.length > 0) {
+            combinedDns = combinedDns.concat(config.ipv6.dns)
+        }
+        sectionDNS.setConfig(combinedDns.length > 0 ? combinedDns : null)
         sectionDevice.setConfig(config["802-3-ethernet"])
         sectionPPP.setConfig(config["ppp"])
         modified = config.connection.uuid === "{00000000-0000-0000-0000-000000000000}"
@@ -192,7 +200,32 @@ DccObject {
                     if (nConfig["ipv4"] === undefined) {
                         nConfig["ipv4"] = {}
                     }
-                    nConfig["ipv4"]["dns"] = sectionDNS.getConfig()
+                    
+                    // 获取DNS配置并分离IPv4和IPv6
+                    let dnsConfig = sectionDNS.getConfig()
+                    let ipv4Dns = []
+                    let ipv6Dns = []
+                    
+                    for (let dns of dnsConfig) {
+                        if (typeof dns === 'number') {
+                            // IPv4 DNS（数字格式）
+                            ipv4Dns.push(dns)
+                        } else if (typeof dns === 'string') {
+                            // IPv6 DNS（字符串格式）
+                            ipv6Dns.push(dns)
+                        }
+                    }
+                    
+                    // 保存IPv4 DNS
+                    nConfig["ipv4"]["dns"] = ipv4Dns
+                    
+                    // 如果有IPv6 DNS，也要保存
+                    if (ipv6Dns.length > 0) {
+                        if (!nConfig["ipv6"]) {
+                            nConfig["ipv6"] = {}
+                        }
+                        nConfig["ipv6"]["dns"] = ipv6Dns
+                    }
                     let devConfig = sectionDevice.getConfig()
                     if (devConfig.interfaceName.length !== 0) {
                         nConfig["pppoe"]["parent"] = devConfig.interfaceName

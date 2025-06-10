@@ -76,7 +76,15 @@ DccObject {
         sectionSecret.setConfig802_1x(config["802-1x"])
         sectionIPv4.setConfig(config.ipv4)
         sectionIPv6.setConfig(config.ipv6)
-        sectionDNS.setConfig((config.hasOwnProperty("ipv4") && config.ipv4.hasOwnProperty("dns")) ? config.ipv4.dns : null)
+        // 合并IPv4和IPv6的DNS配置
+        let combinedDns = []
+        if (config.hasOwnProperty("ipv4") && config.ipv4.hasOwnProperty("dns") && config.ipv4.dns.length > 0) {
+            combinedDns = combinedDns.concat(config.ipv4.dns)
+        }
+        if (config.hasOwnProperty("ipv6") && config.ipv6.hasOwnProperty("dns") && config.ipv6.dns.length > 0) {
+            combinedDns = combinedDns.concat(config.ipv6.dns)
+        }
+        sectionDNS.setConfig(combinedDns.length > 0 ? combinedDns : null)
         sectionDevice.type = type
         sectionDevice.setConfig(config[config.connection.type])
         modified = config.connection.uuid === "{00000000-0000-0000-0000-000000000000}" && sectionGeneric.settingsID.length !== 0
@@ -197,7 +205,28 @@ DccObject {
                     if (nConfig["ipv4"] === undefined) {
                         nConfig["ipv4"] = {}
                     }
-                    nConfig["ipv4"]["dns"] = sectionDNS.getConfig()
+                    if (nConfig["ipv6"] === undefined) {
+                        nConfig["ipv6"] = {}
+                    }
+                    
+                    // 获取DNS配置并分离IPv4和IPv6
+                    let dnsConfig = sectionDNS.getConfig()
+                    let ipv4Dns = []
+                    let ipv6Dns = []
+                    
+                    for (let dns of dnsConfig) {
+                        if (typeof dns === 'number') {
+                            // IPv4 DNS（数字格式）
+                            ipv4Dns.push(dns)
+                        } else if (typeof dns === 'string') {
+                            // IPv6 DNS（字符串格式）
+                            ipv6Dns.push(dns)
+                        }
+                    }
+                    
+                    // 分别保存到IPv4和IPv6配置中
+                    nConfig["ipv4"]["dns"] = ipv4Dns
+                    nConfig["ipv6"]["dns"] = ipv6Dns
                     let devConfig = sectionDevice.getConfig()
                     if (devConfig.interfaceName.length === 0) {
                         delete nConfig["connection"]["interface-name"]

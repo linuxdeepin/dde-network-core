@@ -19,14 +19,37 @@ const maskRegExp = /(254|252|248|240|224|192|128|0)\.0\.0\.0|255\.(254|252|248|2
 // MAC正则表达式
 const macRegExp = /([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})/
 
+// 验证IP地址是否为IPv4
+function isIpv4Address(ip) {
+    const result = ipRegExp.test(ip)
+    console.log("[IPv4-Validation] Validating IPv4:", ip, "Result:", result)
+    return result
+}
+
+// 验证IP地址是否为IPv6
+function isIpv6Address(ip) {
+    const result = ipv6RegExp.test(ip)
+    console.log("[IPv6-Validation] Validating IPv6:", ip, "Result:", result)
+    return result
+}
+
+// 验证IP地址（同时支持IPv4和IPv6）
+function isValidIpAddress(ip) {
+    const ipv4Result = isIpv4Address(ip)
+    const ipv6Result = isIpv6Address(ip)
+    const finalResult = ipv4Result || ipv6Result
+    console.log("[IP-Validation] Validating IP:", ip, "IPv4:", ipv4Result, "IPv6:", ipv6Result, "Final:", finalResult)
+    return finalResult
+}
+
 function toVpnTypeEnum(vpnKey) {
-    let key = vpnKey.substring(31)
+    const key = vpnKey.substring(31)
     console.log("toVpnTypeEnum", vpnKey, key)
     return VpnTypeEnum.hasOwnProperty(key) ? VpnTypeEnum[key] : 0x01
 }
 
 function toVpnKey(vpnType) {
-    for (let key in VpnTypeEnum) {
+    for (const key in VpnTypeEnum) {
         if (VpnTypeEnum[key] === vpnType) {
             return "org.freedesktop.NetworkManager." + key
         }
@@ -39,8 +62,8 @@ function removeTrailingNull(str) {
 }
 
 function numToIp(num) {
-    let ips = [0, 0, 0, 0]
-    for (var i = 0; i < 4; i++) {
+    const ips = [0, 0, 0, 0]
+    for (let i = 0; i < 4; i++) {
         ips[i] = (num >> (i * 8)) & 255
     }
     return ips.join('.')
@@ -48,14 +71,15 @@ function numToIp(num) {
 
 function ipToNum(ip) {
     console.log("ipToNum----", ip, typeof ip)
-    let ips = ip.split('.')
+    const ips = ip.split('.')
     let cidr = 0
     let ipNum = 0
     if (ips.length !== 4) {
         return 0
     }
-    for (let ipStr of ips) {
-        let num = parseInt(ipStr, 10)
+    for (let i = 0; i < ips.length; i++) {
+        const ipStr = ips[i]
+        const num = parseInt(ipStr, 10)
         ipNum |= ((num & 255) << cidr)
         cidr += 8
     }
@@ -67,10 +91,10 @@ function prefixToIp(subnetMask) {
         throw new Error("Subnet mask must be between 0 and 32")
     }
 
-    let maskArray = [255, 255, 255, 255]
+    const maskArray = [255, 255, 255, 255]
 
-    for (var i = 0; i < 4; i++) {
-        let byteBits = i * 8 + 8 - subnetMask
+    for (let i = 0; i < 4; i++) {
+        const byteBits = i * 8 + 8 - subnetMask
         if (byteBits > 0) {
             maskArray[i] = (255 << byteBits) & 255
         }
@@ -80,12 +104,13 @@ function prefixToIp(subnetMask) {
 }
 
 function ipToPrefix(decimalSubnet) {
-    let octets = decimalSubnet.split('.')
+    const octets = decimalSubnet.split('.')
     let cidr = 0
 
-    for (let octet of octets) {
-        let num = parseInt(octet, 10)
-        for (var i = 0; i < 8; i++) {
+    for (let j = 0; j < octets.length; j++) {
+        const octet = octets[j]
+        const num = parseInt(octet, 10)
+        for (let i = 0; i < 8; i++) {
             if ((num & (1 << (7 - i))) !== 0) {
                 cidr++
             } else {
@@ -99,22 +124,26 @@ function ipToPrefix(decimalSubnet) {
 }
 
 function macToStr(mac) {
-    return Array.prototype.map.call(new Uint8Array(mac), x => ('00' + x.toString(16)).toUpperCase().slice(-2)).join(':')
+    return Array.prototype.map.call(new Uint8Array(mac), function(x) { 
+        return ('00' + x.toString(16)).toUpperCase().slice(-2)
+    }).join(':')
 }
+
 function strToMac(str) {
     if (str.length === 0)
         return new Uint8Array()
-    let arr = str.split(":")
-    let hexArr = arr.join("")
-    return new Uint8Array(hexArr.match(/[\da-f]{2}/gi).map(bb => {
-                                                               return parseInt(bb, 16)
-                                                           })).buffer
+    const arr = str.split(":")
+    const hexArr = arr.join("")
+    return new Uint8Array(hexArr.match(/[\da-f]{2}/gi).map(function(bb) {
+        return parseInt(bb, 16)
+    })).buffer
 }
+
 // 转为ByteArray并以\0结尾
 function strToByteArray(data) {
     if (typeof data === 'string') {
-        var arr = []
-        for (var i = 0; i < data.length; ++i) {
+        const arr = []
+        for (let i = 0; i < data.length; ++i) {
             let charcode = data.charCodeAt(i)
             if (charcode < 0x80) {
                 arr.push(charcode)
@@ -125,7 +154,7 @@ function strToByteArray(data) {
             } else {
                 // Handle surrogate pairs (U+10000 to U+10FFFF)
                 i++
-                charcode = 0x10000 + (((charcode & 0x3ff) << 10) | (str.charCodeAt(i) & 0x3ff))
+                charcode = 0x10000 + (((charcode & 0x3ff) << 10) | (data.charCodeAt(i) & 0x3ff))
                 arr.push(0xf0 | (charcode >> 18), 0x80 | ((charcode >> 12) & 0x3f), 0x80 | ((charcode >> 6) & 0x3f), 0x80 | (charcode & 0x3f))
             }
         }
