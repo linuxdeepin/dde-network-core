@@ -1065,16 +1065,42 @@ void NetManagerThreadPrivate::doGetConnectInfo(const QString &id, NetType::NetIt
 
                         Ipv6Setting::Ptr ipv6 = connectionSettings->setting(Setting::Ipv6).dynamicCast<Ipv6Setting>();
                         connection->path();
-                        if (ipv6->method() == Ipv6Setting::Manual) {
-                            // ipv6 gateway未获取，自己获取下
-                            auto msg = QDBusMessage::createMethodCall("org.freedesktop.NetworkManager", connection->path(), "org.freedesktop.NetworkManager.Settings.Connection", "GetSettings");
-                            QDBusPendingReply<NMVariantMapMap> settingsMap = QDBusConnection::systemBus().call(msg, QDBus::Block, 100);
-                            if (!settingsMap.isError() && settingsMap.value().contains("ipv6") && settingsMap.value().value("ipv6").contains("gateway")) {
-                                QString gateway = settingsMap.value().value("ipv6").value("gateway").toString();
-                                QVariantMap ipv6Map = retParam["ipv6"].value<QVariantMap>();
+                        // 手动获取IPv6配置（包括gateway和DNS）
+                        auto msg = QDBusMessage::createMethodCall("org.freedesktop.NetworkManager", connection->path(), "org.freedesktop.NetworkManager.Settings.Connection", "GetSettings");
+                        QDBusPendingReply<NMVariantMapMap> dbusSettingsMap = QDBusConnection::systemBus().call(msg, QDBus::Block, 100);
+                        if (!dbusSettingsMap.isError() && dbusSettingsMap.value().contains("ipv6")) {
+                            QVariantMap ipv6Data = dbusSettingsMap.value().value("ipv6");
+                            QVariantMap ipv6Map = retParam["ipv6"].value<QVariantMap>();
+                            
+                            // 处理IPv6 gateway
+                            if (ipv6->method() == Ipv6Setting::Manual && ipv6Data.contains("gateway")) {
+                                QString gateway = ipv6Data.value("gateway").toString();
                                 ipv6Map.insert("gateway", gateway);
-                                retParam["ipv6"] = ipv6Map;
                             }
+                            
+                            // 处理IPv6 DNS - 首先从NetworkManager设置中直接读取
+                            const QList<QHostAddress> &ipv6DnsFromSettings = ipv6->dns();
+                            if (!ipv6DnsFromSettings.isEmpty()) {
+                                QStringList dnsStringList;
+                                for (const QHostAddress &dns : ipv6DnsFromSettings) {
+                                    dnsStringList.append(dns.toString());
+                                }
+                                ipv6Map.insert("dns", dnsStringList);
+                            } else if (ipv6Data.contains("dns")) {
+                                QVariantList dnsConfig = ipv6Data.value("dns").toList();
+                                QStringList ipv6DnsList;
+                                for (const QVariant &dns : dnsConfig) {
+                                    QString dnsStr = dns.toString();
+                                    if (!dnsStr.isEmpty()) {
+                                        ipv6DnsList.append(dnsStr);
+                                    }
+                                }
+                                if (!ipv6DnsList.isEmpty()) {
+                                    ipv6Map.insert("dns", ipv6DnsList);
+                                }
+                            }
+                            
+                            retParam["ipv6"] = ipv6Map;
                         }
 
                         Q_EMIT request(NetManager::ConnectInfo, id, retParam);
@@ -1150,16 +1176,42 @@ void NetManagerThreadPrivate::doGetConnectInfo(const QString &id, NetType::NetIt
             retParam[settingsMap["connection"]["type"].toString()] = typeMap;
 
             Ipv6Setting::Ptr ipv6 = settings->setting(Setting::Ipv6).dynamicCast<Ipv6Setting>();
-            if (ipv6->method() == Ipv6Setting::Manual) {
-                // ipv6 gateway未获取，自己获取下
-                QDBusMessage msg = QDBusMessage::createMethodCall("org.freedesktop.NetworkManager", con->path(), "org.freedesktop.NetworkManager.Settings.Connection", "GetSettings");
-                QDBusPendingReply<NMVariantMapMap> settingsMap = QDBusConnection::systemBus().call(msg, QDBus::Block, 100);
-                if (!settingsMap.isError() && settingsMap.value().contains("ipv6") && settingsMap.value().value("ipv6").contains("gateway")) {
-                    QString gateway = settingsMap.value().value("ipv6").value("gateway").toString();
-                    QVariantMap ipv6Map = retParam["ipv6"].value<QVariantMap>();
+            // 手动获取IPv6配置（包括gateway和DNS）
+            QDBusMessage msg = QDBusMessage::createMethodCall("org.freedesktop.NetworkManager", con->path(), "org.freedesktop.NetworkManager.Settings.Connection", "GetSettings");
+            QDBusPendingReply<NMVariantMapMap> dbusSettingsReply = QDBusConnection::systemBus().call(msg, QDBus::Block, 100);
+            if (!dbusSettingsReply.isError() && dbusSettingsReply.value().contains("ipv6")) {
+                QVariantMap ipv6Data = dbusSettingsReply.value().value("ipv6");
+                QVariantMap ipv6Map = retParam["ipv6"].value<QVariantMap>();
+                
+                // 处理IPv6 gateway
+                if (ipv6->method() == Ipv6Setting::Manual && ipv6Data.contains("gateway")) {
+                    QString gateway = ipv6Data.value("gateway").toString();
                     ipv6Map.insert("gateway", gateway);
-                    retParam["ipv6"] = ipv6Map;
                 }
+                
+                // 处理IPv6 DNS - 首先从NetworkManager设置中直接读取
+                const QList<QHostAddress> &ipv6DnsFromSettings = ipv6->dns();
+                if (!ipv6DnsFromSettings.isEmpty()) {
+                    QStringList dnsStringList;
+                    for (const QHostAddress &dns : ipv6DnsFromSettings) {
+                        dnsStringList.append(dns.toString());
+                    }
+                    ipv6Map.insert("dns", dnsStringList);
+                } else if (ipv6Data.contains("dns")) {
+                    QVariantList dnsConfig = ipv6Data.value("dns").toList();
+                    QStringList ipv6DnsList;
+                    for (const QVariant &dns : dnsConfig) {
+                        QString dnsStr = dns.toString();
+                        if (!dnsStr.isEmpty()) {
+                            ipv6DnsList.append(dnsStr);
+                        }
+                    }
+                    if (!ipv6DnsList.isEmpty()) {
+                        ipv6Map.insert("dns", ipv6DnsList);
+                    }
+                }
+                
+                retParam["ipv6"] = ipv6Map;
             }
 
             Q_EMIT request(NetManager::ConnectInfo, id, retParam);
@@ -1434,6 +1486,38 @@ void NetManagerThreadPrivate::doSetConnectInfo(const QString &id, NetType::NetIt
         PppoeSetting::Ptr const pSetting = settings->setting(Setting::SettingType::Pppoe).staticCast<PppoeSetting>();
         pSetting->setParent(map["pppoe"]["parent"].toString());
         pSetting->setInitialized(true);
+    }
+    
+    // 手动处理IPv6 DNS设置 - 确保正确初始化
+    if (map.contains("ipv6")) {
+        QVariant ipv6Variant = map["ipv6"];
+        if (ipv6Variant.type() == QVariant::Map) {
+            QVariantMap ipv6Map = ipv6Variant.toMap();
+            if (ipv6Map.contains("dns")) {
+                QVariant dnsVariant = ipv6Map["dns"];
+                if (dnsVariant.type() == QVariant::StringList) {
+                    QStringList ipv6DnsStrings = dnsVariant.toStringList();
+                    if (!ipv6DnsStrings.isEmpty()) {
+                        NetworkManager::Ipv6Setting::Ptr ipv6Setting = settings->setting(Setting::SettingType::Ipv6).staticCast<NetworkManager::Ipv6Setting>();
+                        
+                        // 转换字符串列表为QHostAddress列表
+                        QList<QHostAddress> ipv6DnsAddresses;
+                        for (const QString &dnsStr : ipv6DnsStrings) {
+                            QHostAddress addr(dnsStr);
+                            if (addr.protocol() == QAbstractSocket::IPv6Protocol) {
+                                ipv6DnsAddresses.append(addr);
+                            }
+                        }
+                        
+                        if (!ipv6DnsAddresses.isEmpty()) {
+                            ipv6Setting->setDns(ipv6DnsAddresses);
+                            ipv6Setting->setIgnoreAutoDns(true);
+                            ipv6Setting->setInitialized(true);  // 关键！确保设置被初始化
+                        }
+                    }
+                }
+            }
+        }
     }
     NetworkManager::Connection::Ptr connection;
     if (settings->uuid() == "{00000000-0000-0000-0000-000000000000}") {
