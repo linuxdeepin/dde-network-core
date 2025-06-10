@@ -10,7 +10,7 @@
     <name>dde::network::NetAirplaneModeTipsItem</name>
     <message>
         <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation>Desactive primero el &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;modo avión&lt;/a&gt; si desea conectarse a una red inalámbrica</translation>
+        <translation>Si desea conectarse a una red inalámbrica, primero desactive el &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;modo avión&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
