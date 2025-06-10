@@ -720,7 +720,7 @@
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation type="unfinished"/>
+        <translation>MPPE con estado</translation>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
@@ -767,19 +767,19 @@
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Nombre de usuario</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"/>
+        <translation>Requerido</translation>
     </message>
     <message>
         <source>Service</source>
-        <translation type="unfinished"/>
+        <translation>Servicio</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Contraseña</translation>
     </message>
 </context>
 <context>
@@ -1169,7 +1169,7 @@
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation type="unfinished"/>
+        <translation>MPPE con estado</translation>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
