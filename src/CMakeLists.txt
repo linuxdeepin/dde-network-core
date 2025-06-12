@@ -3,7 +3,12 @@ cmake_minimum_required(VERSION 3.7)
 set(VERSION "3.0.0" CACHE STRING "define project version")
 project(dde-network-core6)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_THREAD_LIBS_INIT "-lpthread")
+set(CMAKE_HAVE_THREADS_LIBRARY 1)
+set(CMAKE_USE_PTHREADS_INIT 1)
+set(CMAKE_PREFER_PTHREAD_FLAG ON)
+
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -11,9 +16,6 @@ set(CMAKE_AUTORCC ON)
 include(GNUInstallDirs)
 
 file(GLOB_RECURSE SOURCEFILES "*.h" "*.cpp")
-
-
-
 
 add_library(${PROJECT_NAME} SHARED ${SOURCEFILES})
 
