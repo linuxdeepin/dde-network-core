@@ -1,3 +1,14 @@
+dde-network-core (2.0.59) unstable; urgency=medium
+
+  * feat(network): add full IPv6 DNS support and fix persistence issues
+  * i18n: Translate network_en_US.ts in sq (#352)
+  * fix: translation not loaded if language code not fully matched
+  * i18n: Updates for project Deepin Desktop Environment (#350)
+  * i18n: Updates for project Deepin Desktop Environment (#348)
+  * fix: source string for dcc-network resource is empty
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Thu, 12 Jun 2025 16:20:40 +0800
+
 dde-network-core (2.0.58) unstable; urgency=medium
 
   * i18n: Translate
