@@ -1209,31 +1209,31 @@
     </message>
     <message>
         <source>No Address/Control Compression</source>
-        <translation type="unfinished"/>
+        <translation>Adres/Denetim Sıkıştırması Yapma</translation>
     </message>
     <message>
         <source>Send PPP Echo Packets</source>
-        <translation type="unfinished"/>
+        <translation>PPP Echo Paketleri Gönder</translation>
     </message>
     <message>
         <source>VPN IPsec</source>
-        <translation type="unfinished"/>
+        <translation>VPN IPsec</translation>
     </message>
     <message>
         <source>Enable IPsec</source>
-        <translation type="unfinished"/>
+        <translation>IPsec Kullanılsın</translation>
     </message>
     <message>
         <source>Group ID</source>
-        <translation type="unfinished"/>
+        <translation>Grup Kimliği</translation>
     </message>
     <message>
         <source>Phase1 Algorithms</source>
-        <translation type="unfinished"/>
+        <translation>1. Aşama Algoritmaları</translation>
     </message>
     <message>
         <source>Phase2 Algorithms</source>
-        <translation type="unfinished"/>
+        <translation>2. Aşama Algoritmaları</translation>
     </message>
     <message>
         <source>VPN Advanced</source>
@@ -1241,107 +1241,107 @@
     </message>
     <message>
         <source>Customize Gateway Port</source>
-        <translation type="unfinished"/>
+        <translation>Ağ Geçidi Port Özelleştir</translation>
     </message>
     <message>
         <source>Gateway Port</source>
-        <translation type="unfinished"/>
+        <translation>Ağ Geçidi Port</translation>
     </message>
     <message>
         <source>Customize Renegotiation Interval</source>
-        <translation type="unfinished"/>
+        <translation>Yeniden Görüşme Sıklığını Özelleştir</translation>
     </message>
     <message>
         <source>Renegotiation Interval</source>
-        <translation type="unfinished"/>
+        <translation>Yeniden Görüşme Sıklığı</translation>
     </message>
     <message>
         <source>Use LZO Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>LZO Veri Sıkıştırması Kullan</translation>
     </message>
     <message>
         <source>Use TCP Connection</source>
-        <translation type="unfinished"/>
+        <translation>TCP Bağlantısı Kullan</translation>
     </message>
     <message>
         <source>Use TAP Device</source>
-        <translation type="unfinished"/>
+        <translation>TAP Aygıtı Kullan</translation>
     </message>
     <message>
         <source>Customize Tunnel MTU</source>
-        <translation type="unfinished"/>
+        <translation>Tünel MTU Değerini Özelleştir</translation>
     </message>
     <message>
         <source>MTU</source>
-        <translation type="unfinished"/>
+        <translation>MTU</translation>
     </message>
     <message>
         <source>Customize UDP Fragment Size</source>
-        <translation type="unfinished"/>
+        <translation>UDP Parça Boyutunu Özelleştir</translation>
     </message>
     <message>
         <source>UDP Fragment Size</source>
-        <translation type="unfinished"/>
+        <translation>UDP Parça Boyutu</translation>
     </message>
     <message>
         <source>Restrict Tunnel TCP MSS</source>
-        <translation type="unfinished"/>
+        <translation>Tünel TCP MSS&apos;yi Kısıtla</translation>
     </message>
     <message>
         <source>Randomize Remote Hosts</source>
-        <translation type="unfinished"/>
+        <translation>Uzak Ana Bilgisayarları Rastgele Ayarla</translation>
     </message>
     <message>
         <source>Domain</source>
-        <translation type="unfinished"/>
+        <translation>Etki Alanı</translation>
     </message>
     <message>
         <source>Vendor</source>
-        <translation type="unfinished"/>
+        <translation>Yayınlayan</translation>
     </message>
     <message>
         <source>Cisco (default)</source>
-        <translation type="unfinished"/>
+        <translation>Cisco (varsayılan)</translation>
     </message>
     <message>
         <source>Netscreen</source>
-        <translation type="unfinished"/>
+        <translation>Netscreen</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>Versiyon</translation>
     </message>
     <message>
         <source>Encryption</source>
-        <translation type="unfinished"/>
+        <translation>Şifreleme</translation>
     </message>
     <message>
         <source>Secure (default)</source>
-        <translation type="unfinished"/>
+        <translation>Güvenli (varsayılan)</translation>
     </message>
     <message>
         <source>Weak</source>
-        <translation type="unfinished"/>
+        <translation>Zayıf</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Yok</translation>
     </message>
     <message>
         <source>NAT Traversal Mode</source>
-        <translation type="unfinished"/>
+        <translation>NAT Geçiş Kipi</translation>
     </message>
     <message>
         <source>NAT-T When Available (default)</source>
-        <translation type="unfinished"/>
+        <translation>Kullanılabildiğinde NAT-T (varsayılan)</translation>
     </message>
     <message>
         <source>NAT-T Always</source>
-        <translation type="unfinished"/>
+        <translation>Her Zaman NAT-T</translation>
     </message>
     <message>
         <source>Cisco UDP</source>
-        <translation type="unfinished"/>
+        <translation>Cisco UDP</translation>
     </message>
     <message>
         <source>Disabled</source>
