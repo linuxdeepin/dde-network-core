@@ -14,7 +14,7 @@
     <name>dde::network::NetAirplaneModeTipsItem</name>
     <message>
         <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation type="unfinished"/>
+        <translation>Kablosuz bir ağa bağlanmak istiyorsanız öncelikle &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Uçak Modunu&lt;/a&gt; devre dışı bırakın</translation>
     </message>
 </context>
 <context>
@@ -76,15 +76,15 @@
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; bağlantısı kurulamıyor, lütfen yönlendiricinizi veya ağ kablonuzu kontrol edin.</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; bağlantısı kurulamıyor, lütfen kablosuz yönlendiriciye daha yakın olun</translation>
     </message>
     <message>
         <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
-        <translation type="unfinished"/>
+        <translation>Bağlantı başarısız oldu, &quot;%1&quot;e bağlanılamadı, yanlış parola</translation>
     </message>
     <message>
         <source>Password is required to connect &quot;%1&quot;</source>
@@ -96,7 +96,7 @@
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot;e bağlanmak için lütfen oturum açtıktan sonra kimlik doğrulama bilgilerinizi ayarlayın</translation>
     </message>
 </context>
 <context>
