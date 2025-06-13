@@ -52,15 +52,15 @@
     </message>
     <message>
         <source>VPN StrongSwan %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN StrongSwan %1</translation>
     </message>
     <message>
         <source>VPN OpenConnect %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN OpenConnect %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
-        <translation type="unfinished"/>
+        <translation>PPPoE Bğlantısı %1</translation>
     </message>
     <message>
         <source>Connecting &quot;%1&quot;</source>
@@ -176,11 +176,11 @@
     </message>
     <message>
         <source>Disable system proxy</source>
-        <translation type="unfinished"/>
+        <translation>Sistem proxy&apos;sini devre dışı bırak</translation>
     </message>
     <message>
         <source>Enable system proxy</source>
-        <translation type="unfinished"/>
+        <translation>Sistem proxy&apos;sini etkinleştir</translation>
     </message>
     <message>
         <source>Network settings</source>
@@ -188,15 +188,15 @@
     </message>
     <message>
         <source>Multiple services started</source>
-        <translation type="unfinished"/>
+        <translation>Birden fazla hizmet başlatıldı</translation>
     </message>
     <message>
         <source>Connected to: %1</source>
-        <translation type="unfinished"/>
+        <translation>Bağlandı: %1</translation>
     </message>
     <message>
         <source>System proxy enabled</source>
-        <translation type="unfinished"/>
+        <translation>Sistem proxy&apos;si etkinleştirildi</translation>
     </message>
     <message>
         <source>Connected</source>
@@ -262,7 +262,7 @@
     <name>dde::network::NetVPNTipsItem</name>
     <message>
         <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
-        <translation type="unfinished"/>
+        <translation>VPN yapılandırması bağlı değil veya bağlanamadı. Lütfen inceleme için &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;kontrol merkezine gidin.&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
