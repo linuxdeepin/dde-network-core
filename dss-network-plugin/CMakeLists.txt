@@ -13,6 +13,11 @@ set(NET_USE_NOTIFICATION ON)
 
 file(GLOB_RECURSE SRCS "networkmodule.h" "networkmodule.cpp"  "../net-view/*.h" "../net-view/*.cpp")
 
+set(CMAKE_THREAD_LIBS_INIT "-lpthread")
+set(CMAKE_HAVE_THREADS_LIBRARY 1)
+set(CMAKE_USE_PTHREADS_INIT 1)
+set(CMAKE_PREFER_PTHREAD_FLAG ON)
+
 find_package(Qt6 COMPONENTS Core Widgets DBus Network LinguistTools REQUIRED)
 find_package(PkgConfig REQUIRED)
 # find_package(Qt5Svg REQUIRED)

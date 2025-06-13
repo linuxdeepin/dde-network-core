@@ -20,6 +20,12 @@ else()
 endif()
 set(QT_NS 6)
 set(DTK_NS Dtk6)
+
+set(CMAKE_THREAD_LIBS_INIT "-lpthread")
+set(CMAKE_HAVE_THREADS_LIBRARY 1)
+set(CMAKE_USE_PTHREADS_INIT 1)
+set(CMAKE_PREFER_PTHREAD_FLAG ON)
+
 find_package(Qt${QT_NS} COMPONENTS Core Widgets DBus Network LinguistTools REQUIRED)
 find_package(KF${QT_NS}NetworkManagerQt REQUIRED)
 find_package(${DTK_NS} COMPONENTS Core REQUIRED)
