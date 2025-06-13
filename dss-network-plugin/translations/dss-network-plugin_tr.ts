@@ -28,23 +28,23 @@
     <name>dde::network::NetManagerThreadPrivate</name>
     <message>
         <source>Wired Connection %1</source>
-        <translation type="unfinished"/>
+        <translation>Kablolu Bağlantı %1</translation>
     </message>
     <message>
         <source>VPN L2TP %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN L2TP %1</translation>
     </message>
     <message>
         <source>VPN PPTP %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN PPTP %1</translation>
     </message>
     <message>
         <source>VPN VPNC %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN VPNC %1</translation>
     </message>
     <message>
         <source>VPN OpenVPN %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN OpenVPN %1</translation>
     </message>
     <message>
         <source>VPN StrongSwan %1</source>
