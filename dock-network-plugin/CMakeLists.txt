@@ -28,6 +28,11 @@ file(GLOB_RECURSE SRCS
     "widget/commoniconbutton.cpp"
 )
 
+set(CMAKE_THREAD_LIBS_INIT "-lpthread")
+set(CMAKE_HAVE_THREADS_LIBRARY 1)
+set(CMAKE_USE_PTHREADS_INIT 1)
+set(CMAKE_PREFER_PTHREAD_FLAG ON)
+
 find_package(${QT_NS} COMPONENTS Core Widgets DBus Network LinguistTools REQUIRED)
 find_package(PkgConfig REQUIRED)
 find_package(${DTK_NS} REQUIRED COMPONENTS Widget)
