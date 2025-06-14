@@ -3,7 +3,7 @@
     <name>dde::hotspotplugin::HotspotPlugin</name>
     <message>
         <source>hotspot</source>
-        <translation>Compartir conexión</translation>
+        <translation>Zona wifi</translation>
     </message>
     <message>
         <source>Hotspot is unsupported</source>
@@ -26,7 +26,7 @@
     <name>dde::hotspotplugin::QuickPanel</name>
     <message>
         <source>HotSpot</source>
-        <translation>Compartir conexión</translation>
+        <translation>Zona wifi</translation>
     </message>
 </context>
 </TS>
