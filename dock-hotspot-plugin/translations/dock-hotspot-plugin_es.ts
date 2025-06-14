@@ -7,7 +7,7 @@
     </message>
     <message>
         <source>Hotspot is unsupported</source>
-        <translation>Conexión compartida no soportada</translation>
+        <translation>Zona wifi no soportada</translation>
     </message>
     <message>
         <source>Personal Hotspot On</source>
