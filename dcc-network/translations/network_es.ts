@@ -25,7 +25,7 @@
     </message>
     <message>
         <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
-        <translation>Activar el modo avión apagara la red inalámbrica, la conexión compartida y Bluetooth</translation>
+        <translation>Activar el modo avión apagara la red inalámbrica, la zona wifi y Bluetooth</translation>
     </message>
 </context>
 <context>
@@ -204,7 +204,7 @@
     </message>
     <message>
         <source>Personal Hotspot</source>
-        <translation>Compartir conexión</translation>
+        <translation>Zona wifi</translation>
     </message>
     <message>
         <source>Share the network</source>
