@@ -11,11 +11,11 @@
     </message>
     <message>
         <source>Personal Hotspot On</source>
-        <translation>Conexión compartida activada</translation>
+        <translation>Zona wifi activada</translation>
     </message>
     <message>
         <source>Personal Hotspot Off</source>
-        <translation>Conexión compartida desactivada</translation>
+        <translation>Zona wifi desactivada</translation>
     </message>
     <message>
         <source>Wireless Device is Unavailable</source>
