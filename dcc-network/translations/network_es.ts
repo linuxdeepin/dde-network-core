@@ -204,7 +204,7 @@
     </message>
     <message>
         <source>Personal Hotspot</source>
-        <translation>Compartir conexión personal</translation>
+        <translation>Compartir conexión</translation>
     </message>
     <message>
         <source>Share the network</source>
