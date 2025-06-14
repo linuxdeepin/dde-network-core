@@ -498,7 +498,7 @@
     </message>
     <message>
         <source>Disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation type="unfinished"/>
+        <translation>Kablosuz bir ağa bağlanmak istiyorsanız öncelikle &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Uçak Modunu&lt;/a&gt; devre dışı bırakın</translation>
     </message>
     <message>
         <source>Disable hotspot first if you want to connect to a wireless network</source>
