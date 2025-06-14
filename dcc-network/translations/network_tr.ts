@@ -502,7 +502,7 @@
     </message>
     <message>
         <source>Disable hotspot first if you want to connect to a wireless network</source>
-        <translation type="unfinished"/>
+        <translation>Kablosuz bir ağa bağlanmak için erişim noktasını devre dışı bırakın</translation>
     </message>
     <message>
         <source>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Disable hotspot&lt;/a&gt; first if you want to connect to a wireless network</source>
@@ -544,15 +544,15 @@
     </message>
     <message>
         <source>Device MAC Addr</source>
-        <translation type="unfinished"/>
+        <translation>Aygıtın MAC Adresi</translation>
     </message>
     <message>
         <source>Cloned MAC Addr</source>
-        <translation type="unfinished"/>
+        <translation>Kopyalanmış MAC Adresi</translation>
     </message>
     <message>
         <source>Customize MTU</source>
-        <translation type="unfinished"/>
+        <translation>MTU Değerini Özelleştir</translation>
     </message>
     <message>
         <source>MTU</source>
@@ -622,23 +622,23 @@
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"/>
+        <translation>Otomatik</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation type="unfinished"/>
+        <translation>Yöntem</translation>
     </message>
     <message>
         <source>Only applied in corresponding resources</source>
-        <translation type="unfinished"/>
+        <translation>Sadece ilgili kaynaklarda uygulanır</translation>
     </message>
     <message>
         <source>IP Address</source>
-        <translation type="unfinished"/>
+        <translation>IP Adresi</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
-        <translation type="unfinished"/>
+        <translation>Geçersiz IP adresi</translation>
     </message>
     <message>
         <source>Netmask</source>
@@ -646,14 +646,14 @@
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"/>
+        <translation>Ağ Geçidi</translation>
     </message>
 </context>
 <context>
     <name>SectionIPv6</name>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"/>
+        <translation>Devre Dışı</translation>
     </message>
     <message>
         <source>Manual</source>
@@ -712,51 +712,51 @@
     </message>
     <message>
         <source>Use MPPE</source>
-        <translation type="unfinished"/>
+        <translation>MPPE Kullan</translation>
     </message>
     <message>
         <source>128-bit MPPE</source>
-        <translation type="unfinished"/>
+        <translation>128-bit MPPE</translation>
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation type="unfinished"/>
+        <translation>Durumsal MPPE</translation>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>EAP Kimlik Doğrulamasını Reddet</translation>
     </message>
     <message>
         <source>Refuse PAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>PAP Kimlik Doğrulamasını Reddet</translation>
     </message>
     <message>
         <source>Refuse CHAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>CHAP Kimlik Doğrulamasını Reddet</translation>
     </message>
     <message>
         <source>Refuse MSCHAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>MSCHAP Kimlik Doğrulamasını Reddet</translation>
     </message>
     <message>
         <source>Refuse MSCHAPv2 Authentication</source>
-        <translation type="unfinished"/>
+        <translation>MSCHAPv2 Kimlik Doğrulamasını Reddet</translation>
     </message>
     <message>
         <source>No BSD Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>BSD Veri Sıkıştırması Yapma</translation>
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>Veri Küçültme Sıkıştırması Yapma</translation>
     </message>
     <message>
         <source>No TCP Header Compression</source>
-        <translation type="unfinished"/>
+        <translation>TCP Üst Bilgi Sıkıştırması Yapma</translation>
     </message>
     <message>
         <source>Send PPP Echo Packets</source>
-        <translation type="unfinished"/>
+        <translation>PPP Echo Paketleri Gönder</translation>
     </message>
 </context>
 <context>
@@ -798,55 +798,55 @@
     </message>
     <message>
         <source>FAST</source>
-        <translation type="unfinished"/>
+        <translation>FAST</translation>
     </message>
     <message>
         <source>Tunneled TLS</source>
-        <translation type="unfinished"/>
+        <translation>Tünellenmiş TLS</translation>
     </message>
     <message>
         <source>Protected EAP</source>
-        <translation type="unfinished"/>
+        <translation>Korumalı EAP</translation>
     </message>
     <message>
         <source>LEAP</source>
-        <translation type="unfinished"/>
+        <translation>LEAP</translation>
     </message>
     <message>
         <source>GTC</source>
-        <translation type="unfinished"/>
+        <translation>GTC</translation>
     </message>
     <message>
         <source>MSCHAPV2</source>
-        <translation type="unfinished"/>
+        <translation>MSCHAPV2</translation>
     </message>
     <message>
         <source>PAP</source>
-        <translation type="unfinished"/>
+        <translation>PAP</translation>
     </message>
     <message>
         <source>MSCHAP</source>
-        <translation type="unfinished"/>
+        <translation>MSCHAP</translation>
     </message>
     <message>
         <source>CHAP</source>
-        <translation type="unfinished"/>
+        <translation>CHAP</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Yok</translation>
     </message>
     <message>
         <source>WEP</source>
-        <translation type="unfinished"/>
+        <translation>WEP</translation>
     </message>
     <message>
         <source>WPA/WPA2 Personal</source>
-        <translation type="unfinished"/>
+        <translation>WPA/WPA2 Kişisel</translation>
     </message>
     <message>
         <source>WPA/WPA2 Enterprise</source>
-        <translation type="unfinished"/>
+        <translation>WPA/WPA2 Kurumsal</translation>
     </message>
     <message>
         <source>WPA3 Personal</source>
@@ -1533,46 +1533,46 @@
     </message>
     <message>
         <source>Remote Cert Type</source>
-        <translation type="unfinished"/>
+        <translation>Uzak Sertifika Türü</translation>
     </message>
     <message>
         <source>Client</source>
-        <translation type="unfinished"/>
+        <translation>İstemci</translation>
     </message>
     <message>
         <source>Server</source>
-        <translation type="unfinished"/>
+        <translation>Sunucu</translation>
     </message>
     <message>
         <source>Key File</source>
-        <translation type="unfinished"/>
+        <translation>Anahtar Dosyası</translation>
     </message>
 </context>
 <context>
     <name>SystemProxyConfigItem</name>
     <message>
         <source>Optional</source>
-        <translation type="unfinished"/>
+        <translation>İsteğe bağlı</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished"/>
+        <translation>Port</translation>
     </message>
     <message>
         <source>Authentication is required</source>
-        <translation type="unfinished"/>
+        <translation>Kimlik doğrulama gerekli</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı adı</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"/>
+        <translation>Gerekli</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Parola</translation>
     </message>
 </context>
 <context>
@@ -1717,7 +1717,7 @@
     <name>network</name>
     <message>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Ağ</translation>
     </message>
 </context>
 </TS>
