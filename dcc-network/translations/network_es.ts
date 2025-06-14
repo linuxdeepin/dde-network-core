@@ -256,11 +256,11 @@
     </message>
     <message>
         <source>If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.</source>
-        <translation>Si desea utilizar la red compartida personal, primero desactive el modo avión y luego habilite el adaptador de red inalámbrica.</translation>
+        <translation>Si desea utilizar la zona wifi, primero desactive el modo avión y luego active el adaptador de red inalámbrica.</translation>
     </message>
     <message>
         <source>If you want to use the personal hotspot, disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first and then enable the wireless network adapter.</source>
-        <translation>Si desea utilizar la red compartida personal, primero desactive el &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;modo avión&lt;/a&gt; y luego habilite el adaptador de red inalámbrica.</translation>
+        <translation>Si desea utilizar la zona wifi, primero desactive el &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;modo avión&lt;/a&gt; y luego active el adaptador de red inalámbrica.</translation>
     </message>
 </context>
 <context>
