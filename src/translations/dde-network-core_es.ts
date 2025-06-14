@@ -46,7 +46,7 @@
     <name>dde::network::NetworkDetailInterRealize</name>
     <message>
         <source>Hotspot</source>
-        <translation>Compartir conexión</translation>
+        <translation>Zona wifi</translation>
     </message>
     <message>
         <source>SSID</source>
@@ -113,7 +113,7 @@
     </message>
     <message>
         <source>Hotspot</source>
-        <translation>Compartir conexión</translation>
+        <translation>Zona wifi</translation>
     </message>
     <message>
         <source>SSID</source>
