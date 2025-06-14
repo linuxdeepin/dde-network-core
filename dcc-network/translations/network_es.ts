@@ -212,11 +212,11 @@
     </message>
     <message>
         <source>My Hotspot</source>
-        <translation>Mi red compartida</translation>
+        <translation>Mi zona wifi</translation>
     </message>
     <message>
         <source>Edit My Hotspot</source>
-        <translation>Editar mi red compartida</translation>
+        <translation>Editar mi zona wifi</translation>
     </message>
     <message>
         <source>Name (SSID)</source>
@@ -252,7 +252,7 @@
     </message>
     <message>
         <source>Hotspot Sharing Device</source>
-        <translation>Dispositivo para compartir red</translation>
+        <translation>Dispositivo para zona wifi</translation>
     </message>
     <message>
         <source>If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.</source>
