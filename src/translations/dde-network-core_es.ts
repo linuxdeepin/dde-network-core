@@ -176,7 +176,7 @@
     <name>dde::network::NetworkDeviceRealize</name>
     <message>
         <source>Device disabled</source>
-        <translation>Dispositivo deshabilitado</translation>
+        <translation>Dispositivo desactivado</translation>
     </message>
     <message>
         <source>Not connected</source>
