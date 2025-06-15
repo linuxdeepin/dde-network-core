@@ -618,7 +618,7 @@
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished"/>
+        <translation>Manual</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -626,42 +626,42 @@
     </message>
     <message>
         <source>Method</source>
-        <translation type="unfinished"/>
+        <translation>Método</translation>
     </message>
     <message>
         <source>Only applied in corresponding resources</source>
-        <translation type="unfinished"/>
+        <translation>Solo aplicable a los recursos correspondientes</translation>
     </message>
     <message>
         <source>IP Address</source>
-        <translation type="unfinished"/>
+        <translation>Dirección IP</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
-        <translation type="unfinished"/>
+        <translation>Dirección IP inválida</translation>
     </message>
     <message>
         <source>Netmask</source>
-        <translation type="unfinished"/>
+        <translation>Máscara de red</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"/>
+        <translation>Puerta de enlace</translation>
     </message>
 </context>
 <context>
     <name>SectionIPv6</name>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"/>
+        <translation>Desactivado</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished"/>
+        <translation>Manual</translation>
     </message>
     <message>
         <source>Ignore</source>
-        <translation type="unfinished"/>
+        <translation>Ignorar</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -677,11 +677,11 @@
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"/>
+        <translation>Editar</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation type="unfinished"/>
+        <translation>Método</translation>
     </message>
     <message>
         <source>Only applied in corresponding resources</source>
@@ -724,39 +724,39 @@
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Negar autenticación EAP</translation>
     </message>
     <message>
         <source>Refuse PAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Negar autenticación PAP</translation>
     </message>
     <message>
         <source>Refuse CHAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Negar autenticación CHAP</translation>
     </message>
     <message>
         <source>Refuse MSCHAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Negar autenticación MSCHAP</translation>
     </message>
     <message>
         <source>Refuse MSCHAPv2 Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Negar autenticación MSCHAPv2</translation>
     </message>
     <message>
         <source>No BSD Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>Sin compresión de datos BSD</translation>
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>Sin compresión de datos por deflación</translation>
     </message>
     <message>
         <source>No TCP Header Compression</source>
-        <translation type="unfinished"/>
+        <translation>Sin compresión en cabecera TCP</translation>
     </message>
     <message>
         <source>Send PPP Echo Packets</source>
-        <translation type="unfinished"/>
+        <translation>Enviar paquetes eco PPP</translation>
     </message>
 </context>
 <context>
@@ -858,11 +858,11 @@
     </message>
     <message>
         <source>Identity</source>
-        <translation type="unfinished"/>
+        <translation>Identidad</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"/>
+        <translation>Requerido</translation>
     </message>
     <message>
         <source>Pwd Options</source>
@@ -870,19 +870,19 @@
     </message>
     <message>
         <source>Save password for this user</source>
-        <translation type="unfinished"/>
+        <translation>Guardar la contraseña para este usuario</translation>
     </message>
     <message>
         <source>Save password for all users</source>
-        <translation type="unfinished"/>
+        <translation>Guardar la contraseña para todos los usuarios</translation>
     </message>
     <message>
         <source>Ask me always</source>
-        <translation type="unfinished"/>
+        <translation>Pregúntarme siempre</translation>
     </message>
     <message>
         <source>Key</source>
-        <translation type="unfinished"/>
+        <translation>Clave</translation>
     </message>
     <message>
         <source>Private Pwd</source>
