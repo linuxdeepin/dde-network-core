@@ -1249,87 +1249,87 @@
     </message>
     <message>
         <source>Customize Renegotiation Interval</source>
-        <translation type="unfinished"/>
+        <translation>Personalizar intervalo de renegociación</translation>
     </message>
     <message>
         <source>Renegotiation Interval</source>
-        <translation type="unfinished"/>
+        <translation>Intervalo de renegociación</translation>
     </message>
     <message>
         <source>Use LZO Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>Utilizar compresión LZO</translation>
     </message>
     <message>
         <source>Use TCP Connection</source>
-        <translation type="unfinished"/>
+        <translation>Usar conexión TCP</translation>
     </message>
     <message>
         <source>Use TAP Device</source>
-        <translation type="unfinished"/>
+        <translation>Usar dispositivo TAP</translation>
     </message>
     <message>
         <source>Customize Tunnel MTU</source>
-        <translation type="unfinished"/>
+        <translation>Personalizar túnel MTU</translation>
     </message>
     <message>
         <source>MTU</source>
-        <translation type="unfinished"/>
+        <translation>MTU</translation>
     </message>
     <message>
         <source>Customize UDP Fragment Size</source>
-        <translation type="unfinished"/>
+        <translation>Personalizar tamaño del fragmento UDP</translation>
     </message>
     <message>
         <source>UDP Fragment Size</source>
-        <translation type="unfinished"/>
+        <translation>Tamaño del fragmento UDP</translation>
     </message>
     <message>
         <source>Restrict Tunnel TCP MSS</source>
-        <translation type="unfinished"/>
+        <translation>Restringir el túnel TCP MSS</translation>
     </message>
     <message>
         <source>Randomize Remote Hosts</source>
-        <translation type="unfinished"/>
+        <translation>Aleatorizar hosts remotos</translation>
     </message>
     <message>
         <source>Domain</source>
-        <translation type="unfinished"/>
+        <translation>Dominio</translation>
     </message>
     <message>
         <source>Vendor</source>
-        <translation type="unfinished"/>
+        <translation>Proveedor</translation>
     </message>
     <message>
         <source>Cisco (default)</source>
-        <translation type="unfinished"/>
+        <translation>Cisco (por defecto)</translation>
     </message>
     <message>
         <source>Netscreen</source>
-        <translation type="unfinished"/>
+        <translation>Netscreen</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>Versión</translation>
     </message>
     <message>
         <source>Encryption</source>
-        <translation type="unfinished"/>
+        <translation>Cifrado</translation>
     </message>
     <message>
         <source>Secure (default)</source>
-        <translation type="unfinished"/>
+        <translation>Seguro (por defecto)</translation>
     </message>
     <message>
         <source>Weak</source>
-        <translation type="unfinished"/>
+        <translation>Débil</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Ninguno</translation>
     </message>
     <message>
         <source>NAT Traversal Mode</source>
-        <translation type="unfinished"/>
+        <translation>Modo de recorrido NAT</translation>
     </message>
     <message>
         <source>NAT-T When Available (default)</source>
