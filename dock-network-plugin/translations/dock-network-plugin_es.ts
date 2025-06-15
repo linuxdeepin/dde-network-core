@@ -196,7 +196,7 @@
     </message>
     <message>
         <source>System proxy enabled</source>
-        <translation>Proxy del sistema habilitado</translation>
+        <translation>Proxy del sistema activado</translation>
     </message>
     <message>
         <source>Connected</source>
