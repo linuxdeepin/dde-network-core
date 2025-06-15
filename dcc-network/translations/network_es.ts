@@ -1,1697 +1,1723 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="es">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
         <source>All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Todos los archivos (*)</translation>
     </message>
 </context>
 <context>
     <name>NetPasswordEdit</name>
     <message>
         <source>Required</source>
-        <translation type="unfinished"></translation>
+        <translation>Requerido</translation>
     </message>
 </context>
 <context>
     <name>PageAirplane</name>
     <message>
         <source>Airplane mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo avión</translation>
     </message>
     <message>
         <source>Stop wireless communication</source>
-        <translation type="unfinished"></translation>
+        <translation>Detener comunicación inalámbrica</translation>
+    </message>
+    <message>
+        <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
+        <translation>Activar el modo avión apagara la red inalámbrica, la zona wifi y Bluetooth</translation>
     </message>
 </context>
 <context>
     <name>PageAppProxy</name>
     <message>
         <source>Application Proxy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>http</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>socks4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>socks5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>IP Address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Required</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Invalid IP address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Invalid port</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Optional</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Check &quot;Use a proxy&quot; in application context menu in Launcher after configured</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy de aplicación</translation>
     </message>
     <message>
         <source>Set up proxy servers</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurar servidores proxy</translation>
+    </message>
+    <message>
+        <source>Proxy Type</source>
+        <translation>Tipo de proxy</translation>
+    </message>
+    <message>
+        <source>http</source>
+        <translation>http</translation>
+    </message>
+    <message>
+        <source>socks4</source>
+        <translation>socks4</translation>
+    </message>
+    <message>
+        <source>socks5</source>
+        <translation>socks5</translation>
+    </message>
+    <message>
+        <source>IP Address</source>
+        <translation>Dirección IP</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Requerido</translation>
+    </message>
+    <message>
+        <source>Invalid IP address</source>
+        <translation>Dirección IP inválida</translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation>Puerto</translation>
+    </message>
+    <message>
+        <source>Invalid port</source>
+        <translation>Puerto inválido</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Nombre de usuario</translation>
+    </message>
+    <message>
+        <source>Optional</source>
+        <translation>Opcional</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Contraseña</translation>
+    </message>
+    <message>
+        <source>Check &quot;Use a proxy&quot; in application context menu in Launcher after configured</source>
+        <translation>Una vez configurado, active la opción &quot;Usar un proxy&quot; haciendo clic derecho sobre las aplicaciones en el lanzador.</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Cancelar</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>Guardar</translation>
     </message>
 </context>
 <context>
     <name>PageDSL</name>
     <message>
         <source>DSL</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add PPPoE connection</source>
-        <translation type="unfinished"></translation>
+        <translation>DSL</translation>
     </message>
     <message>
         <source>Set up a dial-up network connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurar conexión de red telefónica</translation>
+    </message>
+    <message>
+        <source>Disconnect</source>
+        <translation>Desconectar</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <translation>Conectar</translation>
+    </message>
+    <message>
+        <source>Add PPPoE connection</source>
+        <translation>Añadir conexión PPPoE</translation>
     </message>
 </context>
 <context>
     <name>PageDSLSettings</name>
     <message>
-        <source>Are you sure you want to delete this configuration?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <source> Network Properties</source>
+        <translation>Propiedades de red</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Borrar</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete this configuration?</source>
+        <translation>¿Está seguro que desea borrar la configuración?</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar</translation>
     </message>
 </context>
 <context>
     <name>PageDetails</name>
     <message>
         <source>Network Details</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Network Detection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Details has been copied</source>
-        <translation type="unfinished"></translation>
+        <translation>Detalles de red</translation>
     </message>
     <message>
         <source>View all network configurations</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver todas las configuraciones de red</translation>
+    </message>
+    <message>
+        <source>Details has been copied</source>
+        <translation>Se han copiado los detalles</translation>
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation>Copiar</translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation>Seleccionar todo</translation>
+    </message>
+    <message>
+        <source>Network Detection</source>
+        <translation>Detección de red</translation>
     </message>
 </context>
 <context>
     <name>PageHotspot</name>
     <message>
         <source>WPA/WPA2 Personal</source>
-        <translation type="unfinished"></translation>
+        <translation>WPA/WPA2 Personal</translation>
     </message>
     <message>
         <source>WPA3 Personal</source>
-        <translation type="unfinished"></translation>
+        <translation>WPA3 Personal</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Ninguno</translation>
     </message>
     <message>
         <source>2.4 GHz</source>
-        <translation type="unfinished"></translation>
+        <translation>2.4 GHz</translation>
     </message>
     <message>
         <source>5 GHz</source>
-        <translation type="unfinished"></translation>
+        <translation>5 GHz</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>Automático</translation>
     </message>
     <message>
         <source>Not Bind</source>
-        <translation type="unfinished"></translation>
+        <translation>Sin enlazar</translation>
     </message>
     <message>
         <source>Personal Hotspot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>My Hotspot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Edit My Hotspot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Required</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Security</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Shared Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hotspot Sharing Device</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>If you want to use the personal hotspot, disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first and then enable the wireless network adapter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zona wifi</translation>
     </message>
     <message>
         <source>Share the network</source>
-        <translation type="unfinished"></translation>
+        <translation>Compartir red</translation>
+    </message>
+    <message>
+        <source>My Hotspot</source>
+        <translation>Mi zona wifi</translation>
+    </message>
+    <message>
+        <source>Edit My Hotspot</source>
+        <translation>Editar mi zona wifi</translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation>Nombre (SSID)</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Requerido</translation>
+    </message>
+    <message>
+        <source>Security</source>
+        <translation>Seguridad</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Contraseña</translation>
+    </message>
+    <message>
+        <source>Band</source>
+        <translation>Banda</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Cancelar</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>Guardar</translation>
+    </message>
+    <message>
+        <source>Shared Settings</source>
+        <translation>Ajustes compartidos</translation>
+    </message>
+    <message>
+        <source>Hotspot Sharing Device</source>
+        <translation>Dispositivo para zona wifi</translation>
+    </message>
+    <message>
+        <source>If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.</source>
+        <translation>Si desea utilizar la zona wifi, primero desactive el modo avión y luego active el adaptador de red inalámbrica.</translation>
+    </message>
+    <message>
+        <source>If you want to use the personal hotspot, disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first and then enable the wireless network adapter.</source>
+        <translation>Si desea utilizar la zona wifi, primero desactive el &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;modo avión&lt;/a&gt; y luego active el adaptador de red inalámbrica.</translation>
     </message>
 </context>
 <context>
     <name>PageSettings</name>
     <message>
-        <source>Are you sure you want to delete this configuration?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <source> Network Properties</source>
+        <translation>Propiedades de red</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Borrar</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete this configuration?</source>
+        <translation>¿Está seguro que desea borrar la configuración?</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar</translation>
     </message>
 </context>
 <context>
     <name>PageSystemProxy</name>
     <message>
         <source>System Proxy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>HTTP Proxy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>HTTPS Proxy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>FTP Proxy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SOCKS Proxy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ignore the proxy configurations for the above hosts and domains</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy del sistema</translation>
     </message>
     <message>
         <source>Set up proxy servers</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurar servidores proxy</translation>
+    </message>
+    <message>
+        <source>Proxy Type</source>
+        <translation>Tipo de proxy</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Automático</translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation>Manual</translation>
+    </message>
+    <message>
+        <source>Configuration URL</source>
+        <translation>URL de configuración</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"></translation>
+        <translation>Requerido</translation>
+    </message>
+    <message>
+        <source>HTTP Proxy</source>
+        <translation>Proxy HTTP</translation>
+    </message>
+    <message>
+        <source>HTTPS Proxy</source>
+        <translation>Proxy HTTPS</translation>
+    </message>
+    <message>
+        <source>FTP Proxy</source>
+        <translation>Proxy FTP</translation>
+    </message>
+    <message>
+        <source>SOCKS Proxy</source>
+        <translation>Proxy SOCKS</translation>
+    </message>
+    <message>
+        <source>Ignore the proxy configurations for the above hosts and domains</source>
+        <translation>Ignorar las configuraciones de proxy para los hosts y dominios anteriores</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Cancelar</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>Guardar</translation>
     </message>
 </context>
 <context>
     <name>PageVPN</name>
     <message>
         <source>VPN</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add VPN</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>*.conf</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Import Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>File error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN</translation>
     </message>
     <message>
         <source>Connect, add, import</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectar, añadir, importat</translation>
+    </message>
+    <message>
+        <source>Disconnect</source>
+        <translation>Desconectar</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <translation>Conectar</translation>
+    </message>
+    <message>
+        <source>Add VPN</source>
+        <translation>Añadir VPN</translation>
+    </message>
+    <message>
+        <source>Import VPN</source>
+        <translation>Importar VPN</translation>
+    </message>
+    <message>
+        <source>*.conf</source>
+        <translation>*.conf</translation>
+    </message>
+    <message>
+        <source>Import Error</source>
+        <translation>Error al importar</translation>
+    </message>
+    <message>
+        <source>File error</source>
+        <translation>Error en el archivo</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>Aceptar</translation>
     </message>
 </context>
 <context>
     <name>PageVPNSettings</name>
     <message>
+        <source> Network Properties</source>
+        <translation>Propiedades de red</translation>
+    </message>
+    <message>
         <source>VPN Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo de VPN</translation>
     </message>
     <message>
         <source>L2TP</source>
-        <translation type="unfinished"></translation>
+        <translation>L2TP</translation>
     </message>
     <message>
         <source>PPTP</source>
-        <translation type="unfinished"></translation>
+        <translation>PPTP</translation>
     </message>
     <message>
         <source>OpenVPN</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenVPN</translation>
     </message>
     <message>
         <source>OpenConnect</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenConnect</translation>
     </message>
     <message>
         <source>StrongSwan</source>
-        <translation type="unfinished"></translation>
+        <translation>StrongSwan</translation>
     </message>
     <message>
         <source>VPNC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete this configuration?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>VPNC</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Borrar</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete this configuration?</source>
+        <translation>¿Está seguro que desea borrar la configuración?</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar</translation>
     </message>
     <message>
         <source>*.conf</source>
-        <translation type="unfinished"></translation>
+        <translation>*.conf</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar</translation>
     </message>
 </context>
 <context>
     <name>PageWiredDevice</name>
     <message>
-        <source>Disconnect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add Network Connection</source>
-        <translation type="unfinished"></translation>
+        <source>Connect, edit network settings</source>
+        <translation>Conectar, editar ajustes de red</translation>
     </message>
     <message>
         <source>Plug in the network cable first</source>
-        <translation type="unfinished"></translation>
+        <translation>Conecte en el cable de red primero</translation>
     </message>
     <message>
-        <source>Connect, edit network settings</source>
-        <translation type="unfinished"></translation>
+        <source>Disconnect</source>
+        <translation>Desconectar</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <translation>Conectar</translation>
+    </message>
+    <message>
+        <source>Add Network Connection</source>
+        <translation>Añadir conexión de red</translation>
     </message>
 </context>
 <context>
     <name>PageWirelessDevice</name>
     <message>
+        <source>Connect, edit network settings</source>
+        <translation>Conectar, editar ajustes de red</translation>
+    </message>
+    <message>
         <source>Disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation>Desconectar</translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectar</translation>
     </message>
     <message>
-        <source>My&#xa0;Networks</source>
-        <translation type="unfinished"></translation>
+        <source>My Networks</source>
+        <translation>Mis redes</translation>
     </message>
     <message>
         <source>Other Networks</source>
-        <translation type="unfinished"></translation>
+        <translation>Otras redes</translation>
     </message>
     <message>
         <source>Disable Airplane Mode first if you want to connect to a wireless network</source>
-        <translation type="unfinished"></translation>
+        <translation>Si desea conectarse a una red inalámbrica, primero desactive el modo avión </translation>
     </message>
     <message>
         <source>Disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation type="unfinished"></translation>
+        <translation>Si desea conectarse a una red inalámbrica, primero desactive el &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;modo avión&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Disable hotspot first if you want to connect to a wireless network</source>
-        <translation type="unfinished"></translation>
+        <translation>Desactive la zona wifi si desea conectarse a una red inalámbrica</translation>
     </message>
     <message>
         <source>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Disable hotspot&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Connect, edit network settings</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Desactive la zona wifi&lt;/a&gt; si desea conectarse a una red inalámbrica</translation>
     </message>
 </context>
 <context>
     <name>SectionDNS</name>
     <message>
         <source>DNS</source>
-        <translation type="unfinished"></translation>
+        <translation>DNS</translation>
     </message>
     <message>
         <source>Done</source>
-        <translation type="unfinished"></translation>
+        <translation>Finalizar</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
-        <translation type="unfinished"></translation>
+        <translation>Dirección IP inválida</translation>
     </message>
 </context>
 <context>
     <name>SectionDevice</name>
     <message>
         <source>Not Bind</source>
-        <translation type="unfinished"></translation>
+        <translation>Sin enlazar</translation>
     </message>
     <message>
         <source>WLAN</source>
-        <translation type="unfinished"></translation>
+        <translation>WLAN</translation>
     </message>
     <message>
         <source>Ethernet</source>
-        <translation type="unfinished"></translation>
+        <translation>Ethernet</translation>
     </message>
     <message>
         <source>Device MAC Addr</source>
-        <translation type="unfinished"></translation>
+        <translation>Dirección MAC del dispositivo</translation>
     </message>
     <message>
         <source>Cloned MAC Addr</source>
-        <translation type="unfinished"></translation>
+        <translation>Dirección MAC clonada</translation>
     </message>
     <message>
         <source>Customize MTU</source>
-        <translation type="unfinished"></translation>
+        <translation>Personalizar el MTU</translation>
     </message>
     <message>
         <source>MTU</source>
-        <translation type="unfinished"></translation>
+        <translation>MTU</translation>
     </message>
     <message>
         <source>Band</source>
-        <translation type="unfinished"></translation>
+        <translation>Banda</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>Automático</translation>
     </message>
     <message>
         <source>2.4 GHz</source>
-        <translation type="unfinished"></translation>
+        <translation>2.4 GHz</translation>
     </message>
     <message>
         <source>5 GHz</source>
-        <translation type="unfinished"></translation>
+        <translation>5 GHz</translation>
     </message>
 </context>
 <context>
     <name>SectionGeneric</name>
     <message>
         <source>General</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Auto Connect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Required</source>
-        <translation type="unfinished"></translation>
+        <translation>General</translation>
     </message>
     <message>
         <source>Name (SSID)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre (SSID)</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nombre</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>Requerido</translation>
+    </message>
+    <message>
+        <source>Auto Connect</source>
+        <translation>Conectar automáticamente</translation>
     </message>
 </context>
 <context>
     <name>SectionIPv4</name>
     <message>
         <source>IPv4</source>
-        <translation type="unfinished"></translation>
+        <translation>IPv4</translation>
     </message>
     <message>
         <source>Done</source>
-        <translation type="unfinished"></translation>
+        <translation>Finalizar</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Desactivado</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Manual</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>Automático</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation type="unfinished"></translation>
+        <translation>Método</translation>
     </message>
     <message>
         <source>Only applied in corresponding resources</source>
-        <translation type="unfinished"></translation>
+        <translation>Solo aplicable a los recursos correspondientes</translation>
     </message>
     <message>
         <source>IP Address</source>
-        <translation type="unfinished"></translation>
+        <translation>Dirección IP</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
-        <translation type="unfinished"></translation>
+        <translation>Dirección IP inválida</translation>
     </message>
     <message>
         <source>Netmask</source>
-        <translation type="unfinished"></translation>
+        <translation>Máscara de red</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"></translation>
+        <translation>Puerta de enlace</translation>
     </message>
 </context>
 <context>
     <name>SectionIPv6</name>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Desactivado</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Manual</translation>
     </message>
     <message>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorar</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>Automático</translation>
     </message>
     <message>
         <source>IPv6</source>
-        <translation type="unfinished"></translation>
+        <translation>IPv6</translation>
     </message>
     <message>
         <source>Done</source>
-        <translation type="unfinished"></translation>
+        <translation>Finalizar</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation type="unfinished"></translation>
+        <translation>Método</translation>
     </message>
     <message>
         <source>Only applied in corresponding resources</source>
-        <translation type="unfinished"></translation>
+        <translation>Solo aplicable a los recursos correspondientes</translation>
     </message>
     <message>
         <source>IP Address</source>
-        <translation type="unfinished"></translation>
+        <translation>Dirección IP</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
-        <translation type="unfinished"></translation>
+        <translation>Dirección IP inválida</translation>
     </message>
     <message>
         <source>Prefix</source>
-        <translation type="unfinished"></translation>
+        <translation>Prefijo</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"></translation>
+        <translation>Puerta de enlace</translation>
     </message>
 </context>
 <context>
     <name>SectionPPP</name>
     <message>
         <source>PPP</source>
-        <translation type="unfinished"></translation>
+        <translation>PPP</translation>
     </message>
     <message>
         <source>Use MPPE</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar MPPE</translation>
     </message>
     <message>
         <source>128-bit MPPE</source>
-        <translation type="unfinished"></translation>
+        <translation>128-bit MPPE</translation>
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation type="unfinished"></translation>
+        <translation>MPPE con estado</translation>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Negar autenticación EAP</translation>
     </message>
     <message>
         <source>Refuse PAP Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Negar autenticación PAP</translation>
     </message>
     <message>
         <source>Refuse CHAP Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Negar autenticación CHAP</translation>
     </message>
     <message>
         <source>Refuse MSCHAP Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Negar autenticación MSCHAP</translation>
     </message>
     <message>
         <source>Refuse MSCHAPv2 Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Negar autenticación MSCHAPv2</translation>
     </message>
     <message>
         <source>No BSD Data Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Sin compresión de datos BSD</translation>
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Sin compresión de datos por deflación</translation>
     </message>
     <message>
         <source>No TCP Header Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Sin compresión en cabecera TCP</translation>
     </message>
     <message>
         <source>Send PPP Echo Packets</source>
-        <translation type="unfinished"></translation>
+        <translation>Enviar paquetes eco PPP</translation>
     </message>
 </context>
 <context>
     <name>SectionPPPOE</name>
     <message>
         <source>PPPoE</source>
-        <translation type="unfinished"></translation>
+        <translation>PPPoE</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de usuario</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"></translation>
+        <translation>Requerido</translation>
     </message>
     <message>
         <source>Service</source>
-        <translation type="unfinished"></translation>
+        <translation>Servicio</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Contraseña</translation>
     </message>
 </context>
 <context>
     <name>SectionSecret</name>
     <message>
         <source>Security</source>
-        <translation type="unfinished"></translation>
+        <translation>Seguridad</translation>
     </message>
     <message>
         <source>TLS</source>
-        <translation type="unfinished"></translation>
+        <translation>TLS</translation>
     </message>
     <message>
         <source>MD5</source>
-        <translation type="unfinished"></translation>
+        <translation>MD5</translation>
     </message>
     <message>
         <source>FAST</source>
-        <translation type="unfinished"></translation>
+        <translation>FAST</translation>
     </message>
     <message>
         <source>Tunneled TLS</source>
-        <translation type="unfinished"></translation>
+        <translation>TLS en túnel</translation>
     </message>
     <message>
         <source>Protected EAP</source>
-        <translation type="unfinished"></translation>
+        <translation>EAP protegido</translation>
     </message>
     <message>
         <source>LEAP</source>
-        <translation type="unfinished"></translation>
+        <translation>LEAP</translation>
     </message>
     <message>
         <source>GTC</source>
-        <translation type="unfinished"></translation>
+        <translation>GTC</translation>
     </message>
     <message>
         <source>MSCHAPV2</source>
-        <translation type="unfinished"></translation>
+        <translation>MSCHAPV2</translation>
     </message>
     <message>
         <source>PAP</source>
-        <translation type="unfinished"></translation>
+        <translation>PAP</translation>
     </message>
     <message>
         <source>MSCHAP</source>
-        <translation type="unfinished"></translation>
+        <translation>MSCHAP</translation>
     </message>
     <message>
         <source>CHAP</source>
-        <translation type="unfinished"></translation>
+        <translation>CHAP</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Ninguno</translation>
     </message>
     <message>
         <source>WEP</source>
-        <translation type="unfinished"></translation>
+        <translation>WEP</translation>
     </message>
     <message>
         <source>WPA/WPA2 Personal</source>
-        <translation type="unfinished"></translation>
+        <translation>WPA/WPA2 Personal</translation>
     </message>
     <message>
         <source>WPA/WPA2 Enterprise</source>
-        <translation type="unfinished"></translation>
+        <translation>WPA/WPA2 Enterprise</translation>
     </message>
     <message>
         <source>WPA3 Personal</source>
-        <translation type="unfinished"></translation>
+        <translation>WPA3 Personal</translation>
     </message>
     <message>
         <source>EAP Auth</source>
-        <translation type="unfinished"></translation>
+        <translation>EAP Auth</translation>
     </message>
     <message>
         <source>Identity</source>
-        <translation type="unfinished"></translation>
+        <translation>Identidad</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"></translation>
+        <translation>Requerido</translation>
     </message>
     <message>
         <source>Pwd Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opciones de contraseña</translation>
     </message>
     <message>
         <source>Save password for this user</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar la contraseña para este usuario</translation>
     </message>
     <message>
         <source>Save password for all users</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar la contraseña para todos los usuarios</translation>
     </message>
     <message>
         <source>Ask me always</source>
-        <translation type="unfinished"></translation>
+        <translation>Pregúntarme siempre</translation>
     </message>
     <message>
         <source>Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Clave</translation>
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation type="unfinished"></translation>
+        <translation>Contraseña privada</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Contraseña</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Autenticación</translation>
     </message>
     <message>
         <source>Shared key</source>
-        <translation type="unfinished"></translation>
+        <translation>Clave compartida</translation>
     </message>
     <message>
         <source>Open system</source>
-        <translation type="unfinished"></translation>
+        <translation>Sistema abierto</translation>
     </message>
     <message>
         <source>Private Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Clave privada</translation>
     </message>
     <message>
         <source>Anonymous ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID anónimo</translation>
     </message>
     <message>
         <source>Provisioning</source>
-        <translation type="unfinished"></translation>
+        <translation>Provisionamiento</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Desactivado</translation>
     </message>
     <message>
         <source>Anonymous</source>
-        <translation type="unfinished"></translation>
+        <translation>Anónimo</translation>
     </message>
     <message>
         <source>Authenticated</source>
-        <translation type="unfinished"></translation>
+        <translation>Autenticado</translation>
     </message>
     <message>
         <source>Both</source>
-        <translation type="unfinished"></translation>
+        <translation>Ambos</translation>
     </message>
     <message>
         <source>PAC file</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo PAC</translation>
     </message>
     <message>
         <source>CA Cert</source>
-        <translation type="unfinished"></translation>
+        <translation>Certificado CA</translation>
     </message>
     <message>
         <source>User Cert</source>
-        <translation type="unfinished"></translation>
+        <translation>Certificado de usuario</translation>
     </message>
     <message>
         <source>PEAP Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Versión PEAP</translation>
     </message>
     <message>
         <source>Automatic</source>
-        <translation type="unfinished"></translation>
+        <translation>Automático </translation>
     </message>
     <message>
         <source>Version 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Versión 0</translation>
     </message>
     <message>
         <source>Version 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Versión 1</translation>
     </message>
     <message>
         <source>Inner Auth</source>
-        <translation type="unfinished"></translation>
+        <translation>Autenticación interna</translation>
     </message>
 </context>
 <context>
     <name>SectionVPN</name>
     <message>
         <source>VPN</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN</translation>
     </message>
     <message>
         <source>All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Todos los archivos (*)</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"></translation>
+        <translation>Requerido</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished"></translation>
+        <translation>Puerta de enlace inválida</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"></translation>
+        <translation>Puerta de enlace</translation>
     </message>
     <message>
         <source>CA Cert</source>
-        <translation type="unfinished"></translation>
+        <translation>Certificado CA</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy</translation>
     </message>
     <message>
         <source>Allow Cisco Secure Desktop Trojan</source>
-        <translation type="unfinished"></translation>
+        <translation>Permitir el troyano Cisco Secure Desktop</translation>
     </message>
     <message>
         <source>CSD Script</source>
-        <translation type="unfinished"></translation>
+        <translation>Script CSD</translation>
     </message>
     <message>
         <source>Auth Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo de autenticación</translation>
     </message>
     <message>
         <source>Private Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Clave privada</translation>
     </message>
     <message>
         <source>SSH Agent</source>
-        <translation type="unfinished"></translation>
+        <translation>Agente SSH</translation>
     </message>
     <message>
         <source>Smart Card</source>
-        <translation type="unfinished"></translation>
+        <translation>Tarjeta inteligente</translation>
     </message>
     <message>
         <source>EAP</source>
-        <translation type="unfinished"></translation>
+        <translation>EAP</translation>
     </message>
     <message>
         <source>Pre-Shared Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Clave precompartida</translation>
     </message>
     <message>
         <source>User Cert</source>
-        <translation type="unfinished"></translation>
+        <translation>Certificado de usuario</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de usuario</translation>
     </message>
     <message>
         <source>Use FSID for Key Passphrase</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar FSID para la frase de clave</translation>
     </message>
     <message>
         <source>Certificates (TLS)</source>
-        <translation type="unfinished"></translation>
+        <translation>Certificados (TLS)</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Contraseña</translation>
     </message>
     <message>
         <source>Certificates with Password (TLS)</source>
-        <translation type="unfinished"></translation>
+        <translation>Certificados con contraseña (TLS)</translation>
     </message>
     <message>
         <source>Static Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Clave estática</translation>
     </message>
     <message>
         <source>Pwd Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opciones de contraseña</translation>
     </message>
     <message>
         <source>Saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardado</translation>
     </message>
     <message>
         <source>Ask</source>
-        <translation type="unfinished"></translation>
+        <translation>Preguntar</translation>
     </message>
     <message>
         <source>Not Required</source>
-        <translation type="unfinished"></translation>
+        <translation>No requerido</translation>
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation type="unfinished"></translation>
+        <translation>Contraseña privada</translation>
     </message>
     <message>
         <source>Customize Key Direction</source>
-        <translation type="unfinished"></translation>
+        <translation>Personalizar dirección de clave</translation>
     </message>
     <message>
         <source>Key Direction</source>
-        <translation type="unfinished"></translation>
+        <translation>Dirección de clave</translation>
     </message>
     <message>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation>0</translation>
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation>1</translation>
     </message>
     <message>
         <source>Remote IP</source>
-        <translation type="unfinished"></translation>
+        <translation>IP remota</translation>
     </message>
     <message>
         <source>Local IP</source>
-        <translation type="unfinished"></translation>
+        <translation>IP local</translation>
     </message>
     <message>
         <source>NT Domain</source>
-        <translation type="unfinished"></translation>
+        <translation>Dominio NT</translation>
     </message>
     <message>
         <source>Request an Inner IP Address</source>
-        <translation type="unfinished"></translation>
+        <translation>Solicitar una dirección IP interna</translation>
     </message>
     <message>
         <source>Enforce UDP Encapsulation</source>
-        <translation type="unfinished"></translation>
+        <translation>Forzar encapsulación UDP</translation>
     </message>
     <message>
         <source>Use IP Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar compresión IP</translation>
     </message>
     <message>
         <source>Enable Custom Cipher Proposals</source>
-        <translation type="unfinished"></translation>
+        <translation>Activar propuestas de cifrado personalizadas </translation>
     </message>
     <message>
         <source>IKE</source>
-        <translation type="unfinished"></translation>
+        <translation>IKE</translation>
     </message>
     <message>
         <source>ESP</source>
-        <translation type="unfinished"></translation>
+        <translation>ESP</translation>
     </message>
     <message>
         <source>Group Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre del grupo</translation>
     </message>
     <message>
         <source>Group Pwd</source>
-        <translation type="unfinished"></translation>
+        <translation>Contraseña de grupo</translation>
     </message>
     <message>
         <source>Use Hybrid Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar autenticación híbrida</translation>
     </message>
     <message>
         <source>CA File</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo CA</translation>
     </message>
     <message>
         <source>VPN PPP</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN PPP</translation>
     </message>
     <message>
         <source>Use MPPE</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar MPPE</translation>
     </message>
     <message>
         <source>Security</source>
-        <translation type="unfinished"></translation>
+        <translation>Seguridad</translation>
     </message>
     <message>
         <source>All Available (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>Todos disponibles (por defecto)</translation>
     </message>
     <message>
         <source>40-bit (less secure)</source>
-        <translation type="unfinished"></translation>
+        <translation>40-bit (menos seguro)</translation>
     </message>
     <message>
         <source>128-bit (most secure)</source>
-        <translation type="unfinished"></translation>
+        <translation>128-bit (más seguro)</translation>
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation type="unfinished"></translation>
+        <translation>MPPE con estado</translation>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Negar autenticación EAP</translation>
     </message>
     <message>
         <source>Refuse PAP Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Negar autenticación PAP</translation>
     </message>
     <message>
         <source>Refuse CHAP Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Negar autenticación CHAP</translation>
     </message>
     <message>
         <source>Refuse MSCHAP Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Negar autenticación MSCHAP</translation>
     </message>
     <message>
         <source>Refuse MSCHAPv2 Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Negar autenticación MSCHAPv2</translation>
     </message>
     <message>
         <source>No BSD Data Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Sin compresión de datos BSD</translation>
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Sin compresión de datos por deflación</translation>
     </message>
     <message>
         <source>No TCP Header Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Sin compresión en cabecera TCP</translation>
     </message>
     <message>
         <source>No Protocol Field Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Sin compresión en el campo de protocolo</translation>
     </message>
     <message>
         <source>No Address/Control Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Sin compresión de dirección y control</translation>
     </message>
     <message>
         <source>Send PPP Echo Packets</source>
-        <translation type="unfinished"></translation>
+        <translation>Enviar paquetes eco PPP</translation>
     </message>
     <message>
         <source>VPN IPsec</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN IPsec</translation>
     </message>
     <message>
         <source>Enable IPsec</source>
-        <translation type="unfinished"></translation>
+        <translation>Activar IPsec</translation>
     </message>
     <message>
         <source>Group ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID de grupo</translation>
     </message>
     <message>
         <source>Phase1 Algorithms</source>
-        <translation type="unfinished"></translation>
+        <translation>Algoritmos de Fase1</translation>
     </message>
     <message>
         <source>Phase2 Algorithms</source>
-        <translation type="unfinished"></translation>
+        <translation>Algoritmos de Fase2</translation>
     </message>
     <message>
         <source>VPN Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN Avanzado</translation>
     </message>
     <message>
         <source>Customize Gateway Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Personalizar puerto de la puerta de enlace</translation>
     </message>
     <message>
         <source>Gateway Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Puerto de puerta de enlace</translation>
     </message>
     <message>
         <source>Customize Renegotiation Interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Personalizar intervalo de renegociación</translation>
     </message>
     <message>
         <source>Renegotiation Interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervalo de renegociación</translation>
     </message>
     <message>
         <source>Use LZO Data Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilizar compresión LZO</translation>
     </message>
     <message>
         <source>Use TCP Connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar conexión TCP</translation>
     </message>
     <message>
         <source>Use TAP Device</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar dispositivo TAP</translation>
     </message>
     <message>
         <source>Customize Tunnel MTU</source>
-        <translation type="unfinished"></translation>
+        <translation>Personalizar túnel MTU</translation>
     </message>
     <message>
         <source>MTU</source>
-        <translation type="unfinished"></translation>
+        <translation>MTU</translation>
     </message>
     <message>
         <source>Customize UDP Fragment Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Personalizar tamaño del fragmento UDP</translation>
     </message>
     <message>
         <source>UDP Fragment Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamaño del fragmento UDP</translation>
     </message>
     <message>
         <source>Restrict Tunnel TCP MSS</source>
-        <translation type="unfinished"></translation>
+        <translation>Restringir el túnel TCP MSS</translation>
     </message>
     <message>
         <source>Randomize Remote Hosts</source>
-        <translation type="unfinished"></translation>
+        <translation>Aleatorizar hosts remotos</translation>
     </message>
     <message>
         <source>Domain</source>
-        <translation type="unfinished"></translation>
+        <translation>Dominio</translation>
     </message>
     <message>
         <source>Vendor</source>
-        <translation type="unfinished"></translation>
+        <translation>Proveedor</translation>
     </message>
     <message>
         <source>Cisco (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cisco (por defecto)</translation>
     </message>
     <message>
         <source>Netscreen</source>
-        <translation type="unfinished"></translation>
+        <translation>Netscreen</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Versión</translation>
     </message>
     <message>
         <source>Encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Cifrado</translation>
     </message>
     <message>
         <source>Secure (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>Seguro (por defecto)</translation>
     </message>
     <message>
         <source>Weak</source>
-        <translation type="unfinished"></translation>
+        <translation>Débil</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Ninguno</translation>
     </message>
     <message>
         <source>NAT Traversal Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo de recorrido NAT</translation>
     </message>
     <message>
         <source>NAT-T When Available (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>NAT-T si está disponible (por defecto)</translation>
     </message>
     <message>
         <source>NAT-T Always</source>
-        <translation type="unfinished"></translation>
+        <translation>NAT-T siempre</translation>
     </message>
     <message>
         <source>Cisco UDP</source>
-        <translation type="unfinished"></translation>
+        <translation>Cisco UDP</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Desactivado</translation>
     </message>
     <message>
         <source>IKE DH Group</source>
-        <translation type="unfinished"></translation>
+        <translation>Grupo IKE DH</translation>
     </message>
     <message>
         <source>DH Group 1</source>
-        <translation type="unfinished"></translation>
+        <translation>DH Grupo 1</translation>
     </message>
     <message>
         <source>DH Group 2 (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>DH Grupo 2 (por defecto)</translation>
     </message>
     <message>
         <source>DH Group 5</source>
-        <translation type="unfinished"></translation>
+        <translation>DH Grupo 5</translation>
     </message>
     <message>
         <source>Forward Secrecy</source>
-        <translation type="unfinished"></translation>
+        <translation>Reenvío secreto</translation>
     </message>
     <message>
         <source>Server (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>Servidor (por defecto)</translation>
     </message>
     <message>
         <source>DH Group 2</source>
-        <translation type="unfinished"></translation>
+        <translation>DH Grupo 2</translation>
     </message>
     <message>
         <source>Local Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Puerto local</translation>
     </message>
     <message>
         <source>Disable Dead Peer Detection</source>
-        <translation type="unfinished"></translation>
+        <translation>Desactivar detección de pares muertos</translation>
     </message>
     <message>
         <source>VPN Security</source>
-        <translation type="unfinished"></translation>
+        <translation>Seguridad VPN</translation>
     </message>
     <message>
         <source>Cipher</source>
-        <translation type="unfinished"></translation>
+        <translation>Cifrado</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Por defecto</translation>
     </message>
     <message>
         <source>DES-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>DES-CBC</translation>
     </message>
     <message>
         <source>RC2-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>RC2-CBC</translation>
     </message>
     <message>
         <source>DES-EDE-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>DES-EDE-CBC</translation>
     </message>
     <message>
         <source>DES-EDE3-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>DES-EDE3-CBC</translation>
     </message>
     <message>
         <source>DESX-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>DESX-CBC</translation>
     </message>
     <message>
         <source>BF-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>BF-CBC</translation>
     </message>
     <message>
         <source>RC2-40-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>RC2-40-CBC</translation>
     </message>
     <message>
         <source>CAST5-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>CAST5-CBC</translation>
     </message>
     <message>
         <source>RC2-64-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>RC2-64-CBC</translation>
     </message>
     <message>
         <source>AES-128-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>AES-128-CBC</translation>
     </message>
     <message>
         <source>AES-192-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>AES-192-CBC</translation>
     </message>
     <message>
         <source>AES-256-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>AES-256-CBC</translation>
     </message>
     <message>
         <source>CAMELLIA-128-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>CAMELLIA-128-CBC</translation>
     </message>
     <message>
         <source>CAMELLIA-192-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>CAMELLIA-192-CBC</translation>
     </message>
     <message>
         <source>CAMELLIA-256-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>CAMELLIA-256-CBC</translation>
     </message>
     <message>
         <source>SEED-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>SEED-CBC</translation>
     </message>
     <message>
         <source>HMAC Auth</source>
-        <translation type="unfinished"></translation>
+        <translation>HMAC Auth</translation>
     </message>
     <message>
         <source>RSA MD-4</source>
-        <translation type="unfinished"></translation>
+        <translation>RSA MD-4</translation>
     </message>
     <message>
         <source>MD-5</source>
-        <translation type="unfinished"></translation>
+        <translation>MD-5</translation>
     </message>
     <message>
         <source>SHA-1</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA-1</translation>
     </message>
     <message>
         <source>SHA-224</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA-224</translation>
     </message>
     <message>
         <source>SHA-256</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA-256</translation>
     </message>
     <message>
         <source>SHA-384</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA-384</translation>
     </message>
     <message>
         <source>SHA-512</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA-512</translation>
     </message>
     <message>
         <source>RIPEMD-160</source>
-        <translation type="unfinished"></translation>
+        <translation>RIPEMD-160</translation>
     </message>
     <message>
         <source>VPN Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN Proxy</translation>
     </message>
     <message>
         <source>Proxy Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo de proxy</translation>
     </message>
     <message>
         <source>HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP</translation>
     </message>
     <message>
         <source>SOCKS</source>
-        <translation type="unfinished"></translation>
+        <translation>SOCKS</translation>
     </message>
     <message>
         <source>Server IP</source>
-        <translation type="unfinished"></translation>
+        <translation>IP del servidor</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Puerto</translation>
     </message>
     <message>
         <source>Retry Indefinitely When Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Si falla reintentar indefinidamente </translation>
     </message>
     <message>
         <source>VPN TLS Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Autenticación TLS VPN</translation>
     </message>
     <message>
         <source>Subject Match</source>
-        <translation type="unfinished"></translation>
+        <translation>Coincidir nombres</translation>
     </message>
     <message>
         <source>Remote Cert Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo de certificado remoto</translation>
     </message>
     <message>
         <source>Client</source>
-        <translation type="unfinished"></translation>
+        <translation>Cliente</translation>
     </message>
     <message>
         <source>Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Servidor</translation>
     </message>
     <message>
         <source>Key File</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de clave</translation>
     </message>
 </context>
 <context>
     <name>SystemProxyConfigItem</name>
     <message>
         <source>Optional</source>
-        <translation type="unfinished"></translation>
+        <translation>Opcional</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Puerto</translation>
     </message>
     <message>
         <source>Authentication is required</source>
-        <translation type="unfinished"></translation>
+        <translation>Autenticación requerida</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de usuario</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"></translation>
+        <translation>Requerido</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Contraseña</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetAirplaneModeTipsItem</name>
+    <message>
+        <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
+        <translation>Si desea conectarse a una red inalámbrica, primero desactive el &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;modo avión&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetManagerPrivate</name>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>Conflicto de IP</translation>
     </message>
     <message>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Red</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetManagerThreadPrivate</name>
     <message>
         <source>Wired Connection %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Conexión cableada %1</translation>
     </message>
     <message>
         <source>VPN L2TP %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN L2TP %1</translation>
     </message>
     <message>
         <source>VPN PPTP %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN PPTP %1</translation>
     </message>
     <message>
         <source>VPN VPNC %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN VPNC %1</translation>
     </message>
     <message>
         <source>VPN OpenVPN %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN OpenVPN %1</translation>
     </message>
     <message>
         <source>VPN StrongSwan %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN StrongSwan %1</translation>
     </message>
     <message>
         <source>VPN OpenConnect %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN OpenConnect %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Conexión PPPoE %1</translation>
     </message>
     <message>
         <source>Connecting &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectando %1</translation>
     </message>
     <message>
         <source>&quot;%1&quot; connected</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;%1&quot; conectado</translation>
     </message>
     <message>
         <source>&quot;%1&quot; disconnected</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;%1&quot; desconectado</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se puede conectar &quot;%1&quot;, por favor, compruebe el router o el cable de red.</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
-        <translation type="unfinished"></translation>
+        <translation>No se puede conectar &quot;%1&quot;, por favor manténgase cerca del enrutador inalámbrico</translation>
     </message>
     <message>
         <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
-        <translation type="unfinished"></translation>
+        <translation>Fallo de conexión, no se puede conectar &quot;%1&quot;, contraseña incorrecta</translation>
     </message>
     <message>
         <source>Password is required to connect &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Se requiere una contraseña para conectarse &quot;%1&quot;</translation>
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"></translation>
+        <translation>No se puede encontrar la red WLAN 802.11 &quot;%1&quot; </translation>
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
-        <translation type="unfinished"></translation>
+        <translation>Para conectar &quot;%1&quot;, configure su información de autenticación después de iniciar sesión</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetSystemProxyControlItem</name>
+    <message>
+        <source>System Proxy</source>
+        <translation>Proxy del sistema</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetVPNTipsItem</name>
     <message>
         <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
-        <translation type="unfinished"></translation>
+        <translation>La configuración de VPN no está conectada o falló al conectar. Por favor&lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;acceda a el centro de control&lt;/a&gt; para inspeccion.</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWiredControlItem</name>
     <message>
         <source>Wired Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Red cableada</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessControlItem</name>
     <message>
         <source>Wireless Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Red inalámbrica</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessHiddenItem</name>
     <message>
         <source>Connect to hidden network</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectarse a una red oculta</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessMineItem</name>
+    <message>
+        <source>My Networks</source>
+        <translation>Mis redes</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessOtherItem</name>
+    <message>
+        <source>Other Networks</source>
+        <translation>Otras redes</translation>
     </message>
 </context>
 <context>
     <name>network</name>
     <message>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Red</translation>
     </message>
 </context>
 </TS>

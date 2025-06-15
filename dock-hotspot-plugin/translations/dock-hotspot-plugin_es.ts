@@ -3,19 +3,19 @@
     <name>dde::hotspotplugin::HotspotPlugin</name>
     <message>
         <source>hotspot</source>
-        <translation>Compartir conexión</translation>
+        <translation>Zona wifi</translation>
     </message>
     <message>
         <source>Hotspot is unsupported</source>
-        <translation>Conexión compartida no soportada</translation>
+        <translation>Zona wifi no soportada</translation>
     </message>
     <message>
         <source>Personal Hotspot On</source>
-        <translation>Conexión compartida activada</translation>
+        <translation>Zona wifi activada</translation>
     </message>
     <message>
         <source>Personal Hotspot Off</source>
-        <translation>Conexión compartida desactivada</translation>
+        <translation>Zona wifi desactivada</translation>
     </message>
     <message>
         <source>Wireless Device is Unavailable</source>
@@ -26,7 +26,7 @@
     <name>dde::hotspotplugin::QuickPanel</name>
     <message>
         <source>HotSpot</source>
-        <translation>Compartir conexión</translation>
+        <translation>Zona wifi</translation>
     </message>
 </context>
 </TS>

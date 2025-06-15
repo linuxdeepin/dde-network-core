@@ -1,46 +1,46 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pt_BR">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="tr">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
         <source>All files (*)</source>
-        <translation>Todos os arquivos (*)</translation>
+        <translation>Tüm dosyalar  (*)</translation>
     </message>
 </context>
 <context>
     <name>NetPasswordEdit</name>
     <message>
         <source>Required</source>
-        <translation>Obrigatório</translation>
+        <translation>Gerekli</translation>
     </message>
 </context>
 <context>
     <name>PageAirplane</name>
     <message>
         <source>Airplane mode</source>
-        <translation>Modo avião</translation>
+        <translation>Uçak Modu</translation>
     </message>
     <message>
         <source>Stop wireless communication</source>
-        <translation>Interromper comunicação sem fio</translation>
+        <translation>Kablosuz iletişimi durdur</translation>
     </message>
     <message>
         <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
-        <translation>Habilitar modo avião e desligar rede sem fio, hotspot pessoal e Bluetooth</translation>
+        <translation>Uçak kipinin etkinleştirilmesi kablosuz ağı, kişisel hotspot ve bluetooth&apos;u kapatır</translation>
     </message>
 </context>
 <context>
     <name>PageAppProxy</name>
     <message>
         <source>Application Proxy</source>
-        <translation>Proxy de Aplicação</translation>
+        <translation>Uygulama Vekil Sunucusu</translation>
     </message>
     <message>
         <source>Set up proxy servers</source>
-        <translation>Configurar servidores proxy</translation>
+        <translation>Proxy sunucularını ayarlayın</translation>
     </message>
     <message>
         <source>Proxy Type</source>
-        <translation>Tipo de proxy</translation>
+        <translation>Vekil Sunucu Türü</translation>
     </message>
     <message>
         <source>http</source>
@@ -56,47 +56,47 @@
     </message>
     <message>
         <source>IP Address</source>
-        <translation>Endereço IP</translation>
+        <translation>IP Adresi</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation>Obrigatório</translation>
+        <translation>Gerekli</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
-        <translation>Endereço IP Inválido</translation>
+        <translation>Geçersiz IP adresi</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation>Porta</translation>
+        <translation>Port</translation>
     </message>
     <message>
         <source>Invalid port</source>
-        <translation>Porta Inválida</translation>
+        <translation>Geçersiz port</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Nome de Usuário</translation>
+        <translation>Kullanıcı adı</translation>
     </message>
     <message>
         <source>Optional</source>
-        <translation>Opcional</translation>
+        <translation>İsteğe bağlı</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Senha</translation>
+        <translation>Parola</translation>
     </message>
     <message>
         <source>Check &quot;Use a proxy&quot; in application context menu in Launcher after configured</source>
-        <translation>Marque &quot;Usar um proxy&quot; no menu de contexto do aplicativo no Launcher após a configuração</translation>
+        <translation>Yapılandırıldıktan sonra Başlatıcı&apos;daki uygulama bağlamı menüsünde &quot;Vekil Sunucu Kullan&quot; seçeneğini işaretleyin.</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Cancelar</translation>
+        <translation>İptal et</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Salvar</translation>
+        <translation>Kaydet</translation>
     </message>
 </context>
 <context>
@@ -107,84 +107,84 @@
     </message>
     <message>
         <source>Set up a dial-up network connection</source>
-        <translation>Configurar conexão de rede discada</translation>
+        <translation>Çevirmeli ağ bağlantısı kurun</translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation>Desconectar</translation>
+        <translation>Bağlantıyı kes</translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation>Conectar</translation>
+        <translation>Bağlan</translation>
     </message>
     <message>
         <source>Add PPPoE connection</source>
-        <translation>Adicionar Conexão PPPoE</translation>
+        <translation>PPPoE bağlantısı ekle</translation>
     </message>
 </context>
 <context>
     <name>PageDSLSettings</name>
     <message>
         <source> Network Properties</source>
-        <translation>Propriedades de Rede</translation>
+        <translation>Ağ Özellikleri</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Deletar</translation>
+        <translation>Sil</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this configuration?</source>
-        <translation>Você tem certeza que quer apagar essa configuração?</translation>
+        <translation>Bu yapılandırmayı silmek istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Cancelar</translation>
+        <translation>İptal et</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Salvar</translation>
+        <translation>Kaydet</translation>
     </message>
 </context>
 <context>
     <name>PageDetails</name>
     <message>
         <source>Network Details</source>
-        <translation>Detalhes de Rede</translation>
+        <translation>Ağ Ayrıntıları</translation>
     </message>
     <message>
         <source>View all network configurations</source>
-        <translation>Visualizar todas as configurações de rede</translation>
+        <translation>Tüm ağ yapılandırmalarını görüntüle</translation>
     </message>
     <message>
         <source>Details has been copied</source>
-        <translation>Os detalhes foram copiados</translation>
+        <translation>Ayrıntılar kopyalandı</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Copiar</translation>
+        <translation>Kopyala</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation>Selecionar Tudo</translation>
+        <translation>Tümünü Seç</translation>
     </message>
     <message>
         <source>Network Detection</source>
-        <translation>Detectar Rede</translation>
+        <translation>Ağ Algılama</translation>
     </message>
 </context>
 <context>
     <name>PageHotspot</name>
     <message>
         <source>WPA/WPA2 Personal</source>
-        <translation>WPA/WPA2 Personal</translation>
+        <translation>WPA/WPA2 Kişisel</translation>
     </message>
     <message>
         <source>WPA3 Personal</source>
-        <translation>WPA3 Personal</translation>
+        <translation>WPA3 Kişisel</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Nenhum</translation>
+        <translation>Yok</translation>
     </message>
     <message>
         <source>2.4 GHz</source>
@@ -196,153 +196,153 @@
     </message>
     <message>
         <source>Auto</source>
-        <translation>Automático</translation>
+        <translation>Otomatik</translation>
     </message>
     <message>
         <source>Not Bind</source>
-        <translation>Não vinculado</translation>
+        <translation>Bağlı Değil</translation>
     </message>
     <message>
         <source>Personal Hotspot</source>
-        <translation>Hotspot pessoal</translation>
+        <translation>Kişisel Bağlantı Noktası</translation>
     </message>
     <message>
         <source>Share the network</source>
-        <translation>Compartilhar a Rede</translation>
+        <translation>Ağı paylaşın</translation>
     </message>
     <message>
         <source>My Hotspot</source>
-        <translation>Meu Hotspot</translation>
+        <translation>Erişim Noktam</translation>
     </message>
     <message>
         <source>Edit My Hotspot</source>
-        <translation>Editar Meu Hotspot</translation>
+        <translation>Erişim Noktamı Düzenle</translation>
     </message>
     <message>
         <source>Name (SSID)</source>
-        <translation>Nome (SSID)</translation>
+        <translation>İsim (SSID)</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation>Obrigatório</translation>
+        <translation>Gerekli</translation>
     </message>
     <message>
         <source>Security</source>
-        <translation>Segurança</translation>
+        <translation>Güvenlik</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Senha</translation>
+        <translation>Parola</translation>
     </message>
     <message>
         <source>Band</source>
-        <translation>Banda</translation>
+        <translation>Bant</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Cancelar</translation>
+        <translation>İptal et</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Salvar</translation>
+        <translation>Kaydet</translation>
     </message>
     <message>
         <source>Shared Settings</source>
-        <translation>Configuração Compartilhada</translation>
+        <translation>Paylaşılan Ayarlar</translation>
     </message>
     <message>
         <source>Hotspot Sharing Device</source>
-        <translation>Dispositivo de compartilhamento de ponto de acesso</translation>
+        <translation>Erişim Noktası Paylaşım Cihazı</translation>
     </message>
     <message>
         <source>If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.</source>
-        <translation>Se você quiser usar o ponto de acesso pessoal, desative o Modo Avião primeiro e depois ative o adaptador de rede sem fio.</translation>
+        <translation>Kişisel erişim noktasını kullanmak istiyorsanız, öncelikle Uçak Modu&apos;nu devre dışı bırakın ve ardından kablosuz ağ bağdaştırıcısını etkinleştirin.</translation>
     </message>
     <message>
         <source>If you want to use the personal hotspot, disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first and then enable the wireless network adapter.</source>
-        <translation>Se você quiser usar o hotspot pessoal, desative&lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt; o modo avião&lt;/a&gt;primeiro e depois habilite o adaptador de rede sem fio.</translation>
+        <translation>Kişisel erişim noktasını kullanmak istiyorsanız, öncelikle &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Uçak Modunu&lt;/a&gt; devre dışı bırakın ve ardından kablosuz ağ bağdaştırıcısını etkinleştirin.</translation>
     </message>
 </context>
 <context>
     <name>PageSettings</name>
     <message>
         <source> Network Properties</source>
-        <translation>Propriedades da Rede</translation>
+        <translation>Ağ Özellikleri</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Deletar</translation>
+        <translation>Sil</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this configuration?</source>
-        <translation>Tem certeza de que deseja excluir esta configuração?</translation>
+        <translation>Bu yapılandırmayı silmek istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Cancelar</translation>
+        <translation>İptal et</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Salvar</translation>
+        <translation>Kaydet</translation>
     </message>
 </context>
 <context>
     <name>PageSystemProxy</name>
     <message>
         <source>System Proxy</source>
-        <translation>Proxy do sistema</translation>
+        <translation>Sistem Vekil Sunucusu</translation>
     </message>
     <message>
         <source>Set up proxy servers</source>
-        <translation>Configurar servidores proxy</translation>
+        <translation>Proxy sunucularını ayarlayın</translation>
     </message>
     <message>
         <source>Proxy Type</source>
-        <translation>Tipo de proxy</translation>
+        <translation>Vekil Sunucu Türü</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation>Automático</translation>
+        <translation>Otomatik</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation>Manual</translation>
+        <translation>Manuel</translation>
     </message>
     <message>
         <source>Configuration URL</source>
-        <translation>URL de Configuração</translation>
+        <translation>Yapılandırma Adresi</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation>Obrigatório</translation>
+        <translation>Gerekli</translation>
     </message>
     <message>
         <source>HTTP Proxy</source>
-        <translation>Proxy HTTP</translation>
+        <translation>HTTP Vekil Sunucusu</translation>
     </message>
     <message>
         <source>HTTPS Proxy</source>
-        <translation>Proxy HTTPS</translation>
+        <translation>HTTPS Vekil Sunucusu</translation>
     </message>
     <message>
         <source>FTP Proxy</source>
-        <translation>Proxy FTP</translation>
+        <translation>FTP Vekil Sunucusu</translation>
     </message>
     <message>
         <source>SOCKS Proxy</source>
-        <translation>Proxy SOCKS</translation>
+        <translation>SOCKS Vekil Sunucusu</translation>
     </message>
     <message>
         <source>Ignore the proxy configurations for the above hosts and domains</source>
-        <translation>Ignore as configurações de proxy para os hosts e domínios acima</translation>
+        <translation>Yukarıdaki bilgisayar ve etki alanları için vekil sunucu yapılandırmaları yoksay</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Cancelar</translation>
+        <translation>İptal et</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Salvar</translation>
+        <translation>Kaydet</translation>
     </message>
 </context>
 <context>
@@ -353,23 +353,23 @@
     </message>
     <message>
         <source>Connect, add, import</source>
-        <translation>Conectar, adicionar, importar</translation>
+        <translation>Bağlan, ekle, içe aktar</translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation>Desconectar</translation>
+        <translation>Bağlantıyı kes</translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation>Conectar</translation>
+        <translation>Bağlan</translation>
     </message>
     <message>
         <source>Add VPN</source>
-        <translation>Adicionar VPN</translation>
+        <translation>VPN ekle</translation>
     </message>
     <message>
         <source>Import VPN</source>
-        <translation>Importar VPN</translation>
+        <translation>VPN&apos;i içe aktar</translation>
     </message>
     <message>
         <source>*.conf</source>
@@ -377,26 +377,26 @@
     </message>
     <message>
         <source>Import Error</source>
-        <translation>Erro ao importar</translation>
+        <translation>İçe Aktarma Hatası</translation>
     </message>
     <message>
         <source>File error</source>
-        <translation>Erro de arquivo</translation>
+        <translation>Dosya hatası</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>TAMAM</translation>
     </message>
 </context>
 <context>
     <name>PageVPNSettings</name>
     <message>
         <source> Network Properties</source>
-        <translation>Propriedades de Rede</translation>
+        <translation>Ağ Özellikleri</translation>
     </message>
     <message>
         <source>VPN Type</source>
-        <translation>Tipo de VPN</translation>
+        <translation>VPN Türü</translation>
     </message>
     <message>
         <source>L2TP</source>
@@ -424,19 +424,19 @@
     </message>
     <message>
         <source>Delete</source>
-        <translation>Excluir</translation>
+        <translation>Sil</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this configuration?</source>
-        <translation>Tem certeza de que deseja excluir esta configuração?</translation>
+        <translation>Bu yapılandırmayı silmek istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Cancelar</translation>
+        <translation>İptal et</translation>
     </message>
     <message>
         <source>Export</source>
-        <translation>Exportar</translation>
+        <translation>Dışarı aktar</translation>
     </message>
     <message>
         <source>*.conf</source>
@@ -444,69 +444,69 @@
     </message>
     <message>
         <source>Save</source>
-        <translation>Salvar</translation>
+        <translation>Kaydet</translation>
     </message>
 </context>
 <context>
     <name>PageWiredDevice</name>
     <message>
         <source>Connect, edit network settings</source>
-        <translation>Conectar, editar configurações de rede</translation>
+        <translation>Bağlan, ağ ayarlarını düzenle</translation>
     </message>
     <message>
         <source>Plug in the network cable first</source>
-        <translation>Conecte o cabo de rede primeiro</translation>
+        <translation>Önce ağ kablosunu takın</translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation>Desconectar</translation>
+        <translation>Bağlantıyı kes</translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation>Conectar</translation>
+        <translation>Bağlan</translation>
     </message>
     <message>
         <source>Add Network Connection</source>
-        <translation>Adicionar conexão de rede</translation>
+        <translation>Ağ Bağlantısı Ekle</translation>
     </message>
 </context>
 <context>
     <name>PageWirelessDevice</name>
     <message>
         <source>Connect, edit network settings</source>
-        <translation>Conectar, editar configurações de rede</translation>
+        <translation>Bağlan, ağ ayarlarını düzenle</translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation>Desconectar</translation>
+        <translation>Bağlantıyı kes</translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation>Conectar</translation>
+        <translation>Bağlan</translation>
     </message>
     <message>
         <source>My Networks</source>
-        <translation>Minhas redes</translation>
+        <translation>Ağlarım</translation>
     </message>
     <message>
         <source>Other Networks</source>
-        <translation>Outras redes</translation>
+        <translation>Diğer Ağlar</translation>
     </message>
     <message>
         <source>Disable Airplane Mode first if you want to connect to a wireless network</source>
-        <translation>Desative o Modo Avião primeiro se quiser se conectar a uma rede sem fio</translation>
+        <translation>Kablosuz bir ağa bağlanmak istiyorsanız öncelikle Uçak Modunu devre dışı bırakın</translation>
     </message>
     <message>
         <source>Disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation>Desative&lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt; o Modo Avião&lt;/a&gt; primeiro se quiser se conectar a uma rede sem fio</translation>
+        <translation>Kablosuz bir ağa bağlanmak istiyorsanız öncelikle &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Uçak Modunu&lt;/a&gt; devre dışı bırakın</translation>
     </message>
     <message>
         <source>Disable hotspot first if you want to connect to a wireless network</source>
-        <translation>Desative o hotspot primeiro se quiser se conectar a uma rede sem fio</translation>
+        <translation>Kablosuz bir ağa bağlanmak için erişim noktasını devre dışı bırakın</translation>
     </message>
     <message>
         <source>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Disable hotspot&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Desative o hotspot&lt;/a&gt; primeiro se quiser se conectar a uma rede sem fio</translation>
+        <translation>Kablosuz bir ağa bağlanmak istiyorsanız önce &lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Erişim noktasını&lt;/a&gt; devre dışı bırakın</translation>
     </message>
 </context>
 <context>
@@ -517,22 +517,22 @@
     </message>
     <message>
         <source>Done</source>
-        <translation>Feito</translation>
+        <translation>Tamamla</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Editar</translation>
+        <translation>Düzenle</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
-        <translation>Endereço IP inválido</translation>
+        <translation>Geçersiz IP adresi</translation>
     </message>
 </context>
 <context>
     <name>SectionDevice</name>
     <message>
         <source>Not Bind</source>
-        <translation>Não vinculado</translation>
+        <translation>Bağlı Değil</translation>
     </message>
     <message>
         <source>WLAN</source>
@@ -544,15 +544,15 @@
     </message>
     <message>
         <source>Device MAC Addr</source>
-        <translation>Endereço MAC do dispositivo</translation>
+        <translation>Aygıtın MAC Adresi</translation>
     </message>
     <message>
         <source>Cloned MAC Addr</source>
-        <translation>Endereço MAC clonado</translation>
+        <translation>Kopyalanmış MAC Adresi</translation>
     </message>
     <message>
         <source>Customize MTU</source>
-        <translation>Personalizar uma MTU</translation>
+        <translation>MTU Değerini Özelleştir</translation>
     </message>
     <message>
         <source>MTU</source>
@@ -560,11 +560,11 @@
     </message>
     <message>
         <source>Band</source>
-        <translation>Banda</translation>
+        <translation>Bant</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation>Automático</translation>
+        <translation>Otomatik</translation>
     </message>
     <message>
         <source>2.4 GHz</source>
@@ -579,23 +579,23 @@
     <name>SectionGeneric</name>
     <message>
         <source>General</source>
-        <translation>Geral</translation>
+        <translation>Genel</translation>
     </message>
     <message>
         <source>Name (SSID)</source>
-        <translation>Nome (SSID)</translation>
+        <translation>İsim (SSID)</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Nome</translation>
+        <translation>İsim</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation>Obrigatório</translation>
+        <translation>Gerekli</translation>
     </message>
     <message>
         <source>Auto Connect</source>
-        <translation>Conexão automática</translation>
+        <translation>Otomatik Bağlan</translation>
     </message>
 </context>
 <context>
@@ -606,66 +606,66 @@
     </message>
     <message>
         <source>Done</source>
-        <translation>Feito</translation>
+        <translation>Tamamla</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Editar</translation>
+        <translation>Düzenle</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Desabilitado</translation>
+        <translation>Devre Dışı</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation>Manual</translation>
+        <translation>Manuel</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation>Automático</translation>
+        <translation>Otomatik</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation>Método</translation>
+        <translation>Yöntem</translation>
     </message>
     <message>
         <source>Only applied in corresponding resources</source>
-        <translation>Aplicado somente em recursos correspondentes</translation>
+        <translation>Sadece ilgili kaynaklarda uygulanır</translation>
     </message>
     <message>
         <source>IP Address</source>
-        <translation>Endereço IP</translation>
+        <translation>IP Adresi</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
-        <translation>Endereço IP inválido</translation>
+        <translation>Geçersiz IP adresi</translation>
     </message>
     <message>
         <source>Netmask</source>
-        <translation>Máscara de rede</translation>
+        <translation>Ağ Maskesi</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation>Gateway</translation>
+        <translation>Ağ Geçidi</translation>
     </message>
 </context>
 <context>
     <name>SectionIPv6</name>
     <message>
         <source>Disabled</source>
-        <translation>Desativado</translation>
+        <translation>Devre Dışı</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation>Manual</translation>
+        <translation>Manuel</translation>
     </message>
     <message>
         <source>Ignore</source>
-        <translation>Ignorar</translation>
+        <translation>Yoksay</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation>Automático</translation>
+        <translation>Otomatik</translation>
     </message>
     <message>
         <source>IPv6</source>
@@ -673,35 +673,35 @@
     </message>
     <message>
         <source>Done</source>
-        <translation>Feito</translation>
+        <translation>Tamamlandı</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Editar</translation>
+        <translation>Düzenle</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation>Método</translation>
+        <translation>Yöntem</translation>
     </message>
     <message>
         <source>Only applied in corresponding resources</source>
-        <translation>Aplicado somente em recursos correspondentes</translation>
+        <translation>Sadece ilgili kaynaklarda uygulanır</translation>
     </message>
     <message>
         <source>IP Address</source>
-        <translation>Endereço IP</translation>
+        <translation>IP Adresi</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
-        <translation>Endereço IP inválido</translation>
+        <translation>Geçersiz IP adresi</translation>
     </message>
     <message>
         <source>Prefix</source>
-        <translation>Prefixo</translation>
+        <translation>Ön Ek</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation>Gateway</translation>
+        <translation>Ağ Geçidi</translation>
     </message>
 </context>
 <context>
@@ -712,51 +712,51 @@
     </message>
     <message>
         <source>Use MPPE</source>
-        <translation>Usar MPPE</translation>
+        <translation>MPPE Kullan</translation>
     </message>
     <message>
         <source>128-bit MPPE</source>
-        <translation>MPPE 128-bit</translation>
+        <translation>128-bit MPPE</translation>
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation>Status MPPE</translation>
+        <translation>Durumsal MPPE</translation>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
-        <translation>Recusar autenticação EAP</translation>
+        <translation>EAP Kimlik Doğrulamasını Reddet</translation>
     </message>
     <message>
         <source>Refuse PAP Authentication</source>
-        <translation>Recusar autenticação PAP</translation>
+        <translation>PAP Kimlik Doğrulamasını Reddet</translation>
     </message>
     <message>
         <source>Refuse CHAP Authentication</source>
-        <translation>Recusar autenticação CHAP</translation>
+        <translation>CHAP Kimlik Doğrulamasını Reddet</translation>
     </message>
     <message>
         <source>Refuse MSCHAP Authentication</source>
-        <translation>Recusar autenticação MSCHAP</translation>
+        <translation>MSCHAP Kimlik Doğrulamasını Reddet</translation>
     </message>
     <message>
         <source>Refuse MSCHAPv2 Authentication</source>
-        <translation>Recusar autenticação MSCHAPv2</translation>
+        <translation>MSCHAPv2 Kimlik Doğrulamasını Reddet</translation>
     </message>
     <message>
         <source>No BSD Data Compression</source>
-        <translation>Sem compressão de dados BSD</translation>
+        <translation>BSD Veri Sıkıştırması Yapma</translation>
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation>Sem compressão de dados deflate</translation>
+        <translation>Veri Küçültme Sıkıştırması Yapma</translation>
     </message>
     <message>
         <source>No TCP Header Compression</source>
-        <translation>Sem compressão de cabeçalho TCP</translation>
+        <translation>TCP Üst Bilgi Sıkıştırması Yapma</translation>
     </message>
     <message>
         <source>Send PPP Echo Packets</source>
-        <translation>Enviar pacotes PPP Echo</translation>
+        <translation>PPP Echo Paketleri Gönder</translation>
     </message>
 </context>
 <context>
@@ -767,26 +767,26 @@
     </message>
     <message>
         <source>Username</source>
-        <translation>Nome de usuário</translation>
+        <translation>Kullanıcı adı</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation>Obrigatório</translation>
+        <translation>Gerekli</translation>
     </message>
     <message>
         <source>Service</source>
-        <translation>Serviço</translation>
+        <translation>Servis</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Senha</translation>
+        <translation>Parola</translation>
     </message>
 </context>
 <context>
     <name>SectionSecret</name>
     <message>
         <source>Security</source>
-        <translation>Segurança</translation>
+        <translation>Güvenlik</translation>
     </message>
     <message>
         <source>TLS</source>
@@ -798,15 +798,15 @@
     </message>
     <message>
         <source>FAST</source>
-        <translation>RÁPIDA</translation>
+        <translation>FAST</translation>
     </message>
     <message>
         <source>Tunneled TLS</source>
-        <translation>TLS em túnel</translation>
+        <translation>Tünellenmiş TLS</translation>
     </message>
     <message>
         <source>Protected EAP</source>
-        <translation>EAP protegido</translation>
+        <translation>Korumalı EAP</translation>
     </message>
     <message>
         <source>LEAP</source>
@@ -834,7 +834,7 @@
     </message>
     <message>
         <source>None</source>
-        <translation>Nenhum</translation>
+        <translation>Yok</translation>
     </message>
     <message>
         <source>WEP</source>
@@ -842,127 +842,127 @@
     </message>
     <message>
         <source>WPA/WPA2 Personal</source>
-        <translation>WPA/WPA2 Pessoal</translation>
+        <translation>WPA/WPA2 Kişisel</translation>
     </message>
     <message>
         <source>WPA/WPA2 Enterprise</source>
-        <translation>WPA/WPA2 Empresarial</translation>
+        <translation>WPA/WPA2 Kurumsal</translation>
     </message>
     <message>
         <source>WPA3 Personal</source>
-        <translation>WPA3 Pessoal</translation>
+        <translation>WPA3 Kişisel</translation>
     </message>
     <message>
         <source>EAP Auth</source>
-        <translation>Autenticação EAP</translation>
+        <translation>EAP Kimlik Doğrulaması</translation>
     </message>
     <message>
         <source>Identity</source>
-        <translation>Identidade</translation>
+        <translation>Kimlik</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation>Obrigatório</translation>
+        <translation>Gerekli</translation>
     </message>
     <message>
         <source>Pwd Options</source>
-        <translation>Opções de senha</translation>
+        <translation>Parola Ayarları</translation>
     </message>
     <message>
         <source>Save password for this user</source>
-        <translation>Salvar senha para este usuário</translation>
+        <translation>Bu kullanıcı için parolayı kaydet</translation>
     </message>
     <message>
         <source>Save password for all users</source>
-        <translation>Salvar senha para todos os usuários</translation>
+        <translation>Tüm kullanıcılar için parolayı kaydet</translation>
     </message>
     <message>
         <source>Ask me always</source>
-        <translation>Sempre perguntar</translation>
+        <translation>Her zaman sor</translation>
     </message>
     <message>
         <source>Key</source>
-        <translation>Senha</translation>
+        <translation>Anahtar</translation>
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation>Senha privada</translation>
+        <translation>Özel Parola</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Senha</translation>
+        <translation>Parola</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation>Autenticação</translation>
+        <translation>Doğrulama</translation>
     </message>
     <message>
         <source>Shared key</source>
-        <translation>Chave compartilhada</translation>
+        <translation>Paylaşılan anahtar</translation>
     </message>
     <message>
         <source>Open system</source>
-        <translation>Sistema aberto</translation>
+        <translation>Açık sistem</translation>
     </message>
     <message>
         <source>Private Key</source>
-        <translation>Chave privada</translation>
+        <translation>Özel Anahtar</translation>
     </message>
     <message>
         <source>Anonymous ID</source>
-        <translation>ID anônimo</translation>
+        <translation>Anonim Kimlik</translation>
     </message>
     <message>
         <source>Provisioning</source>
-        <translation>Provisionando</translation>
+        <translation>Sağlama</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Desativado</translation>
+        <translation>Devre Dışı</translation>
     </message>
     <message>
         <source>Anonymous</source>
-        <translation>Anônimo</translation>
+        <translation>Anonim</translation>
     </message>
     <message>
         <source>Authenticated</source>
-        <translation>Autenticado</translation>
+        <translation>Kimlik Doğrulandı</translation>
     </message>
     <message>
         <source>Both</source>
-        <translation>Ambos</translation>
+        <translation>İkisi de</translation>
     </message>
     <message>
         <source>PAC file</source>
-        <translation>Arquivo PAC</translation>
+        <translation>PAC dosyası</translation>
     </message>
     <message>
         <source>CA Cert</source>
-        <translation>Certificado CA</translation>
+        <translation>CA Sertifikası</translation>
     </message>
     <message>
         <source>User Cert</source>
-        <translation>Certificado de Usuário</translation>
+        <translation>Kullanıcı Sertifikası</translation>
     </message>
     <message>
         <source>PEAP Version</source>
-        <translation>Versão PEAP</translation>
+        <translation>PEAP Sürümü</translation>
     </message>
     <message>
         <source>Automatic</source>
-        <translation>Automático</translation>
+        <translation>Otomatik</translation>
     </message>
     <message>
         <source>Version 0</source>
-        <translation>Versão 0</translation>
+        <translation>Sürüm 0</translation>
     </message>
     <message>
         <source>Version 1</source>
-        <translation>Versão 1</translation>
+        <translation>Sürüm 1</translation>
     </message>
     <message>
         <source>Inner Auth</source>
-        <translation>Autenticação Interna</translation>
+        <translation>İç Kimlik Doğrulaması</translation>
     </message>
 </context>
 <context>
@@ -973,51 +973,51 @@
     </message>
     <message>
         <source>All files (*)</source>
-        <translation>Todos os arquivos (*)</translation>
+        <translation>Tüm dosyalar  (*)</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation>Obrigatório</translation>
+        <translation>Gerekli</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation>Gateway inválido</translation>
+        <translation>Geçersiz ağ geçidi</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation>Gateway</translation>
+        <translation>Ağ Geçidi</translation>
     </message>
     <message>
         <source>CA Cert</source>
-        <translation>Certificado CA</translation>
+        <translation>CA Sertifikası</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation>Proxy</translation>
+        <translation>Vekil Sunucu</translation>
     </message>
     <message>
         <source>Allow Cisco Secure Desktop Trojan</source>
-        <translation>Permitir Trojan Cisco Secure Desktop</translation>
+        <translation>Cisco Güvenli Masaüstü Trojanına İzin Ver</translation>
     </message>
     <message>
         <source>CSD Script</source>
-        <translation>Script CSD</translation>
+        <translation>CSD Betiği</translation>
     </message>
     <message>
         <source>Auth Type</source>
-        <translation>Tipo de autenticação</translation>
+        <translation>Kimlik Doğrulama Türü</translation>
     </message>
     <message>
         <source>Private Key</source>
-        <translation>Chave privada</translation>
+        <translation>Özel Anahtar</translation>
     </message>
     <message>
         <source>SSH Agent</source>
-        <translation>Agente SSH</translation>
+        <translation>SSH İstemci</translation>
     </message>
     <message>
         <source>Smart Card</source>
-        <translation>Cartão inteligente</translation>
+        <translation>Akıllı Kart</translation>
     </message>
     <message>
         <source>EAP</source>
@@ -1025,63 +1025,63 @@
     </message>
     <message>
         <source>Pre-Shared Key</source>
-        <translation>Chave pré-compartilhada</translation>
+        <translation>Ön Paylaşımlı Anahtar</translation>
     </message>
     <message>
         <source>User Cert</source>
-        <translation>Certificado de Usuário</translation>
+        <translation>Kullanıcı Sertifikası</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Nome de usuário</translation>
+        <translation>Kullanıcı adı</translation>
     </message>
     <message>
         <source>Use FSID for Key Passphrase</source>
-        <translation>Use FSID para frase-senha de chave</translation>
+        <translation>Anahtar Parolası için FSID kullan</translation>
     </message>
     <message>
         <source>Certificates (TLS)</source>
-        <translation>Certificados (TLS)</translation>
+        <translation>Sertifikalar (TLS)</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Senha</translation>
+        <translation>Parola</translation>
     </message>
     <message>
         <source>Certificates with Password (TLS)</source>
-        <translation>Certificados com Senha (TLS)</translation>
+        <translation>Parolalı Sertifikalar (TLS)</translation>
     </message>
     <message>
         <source>Static Key</source>
-        <translation>Chave estática</translation>
+        <translation>Statik Anahtar</translation>
     </message>
     <message>
         <source>Pwd Options</source>
-        <translation>Opções de senha</translation>
+        <translation>Parola Ayarları</translation>
     </message>
     <message>
         <source>Saved</source>
-        <translation>Salvo</translation>
+        <translation>Kaydedildi</translation>
     </message>
     <message>
         <source>Ask</source>
-        <translation>Perguntar</translation>
+        <translation>Sor</translation>
     </message>
     <message>
         <source>Not Required</source>
-        <translation>Não necessário</translation>
+        <translation>Zorunlu Değil</translation>
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation>Senha privada</translation>
+        <translation>Özel Parola</translation>
     </message>
     <message>
         <source>Customize Key Direction</source>
-        <translation>Direção da chave personalizada</translation>
+        <translation>Anahtar Yönünü Özelleştir</translation>
     </message>
     <message>
         <source>Key Direction</source>
-        <translation>Direção da Chave</translation>
+        <translation>Anahtar Yönü</translation>
     </message>
     <message>
         <source>0</source>
@@ -1093,31 +1093,31 @@
     </message>
     <message>
         <source>Remote IP</source>
-        <translation>IP Remoto</translation>
+        <translation>Uzak IP</translation>
     </message>
     <message>
         <source>Local IP</source>
-        <translation>IP Local</translation>
+        <translation>Yerel IP</translation>
     </message>
     <message>
         <source>NT Domain</source>
-        <translation>Domínio NT</translation>
+        <translation>NT Etki Alanı</translation>
     </message>
     <message>
         <source>Request an Inner IP Address</source>
-        <translation>Solicitar um endereço de IP interno</translation>
+        <translation>İç IP Adresi İste</translation>
     </message>
     <message>
         <source>Enforce UDP Encapsulation</source>
-        <translation>Reforçar o Encapsulamento UDP</translation>
+        <translation>UDP Enkapsülasyonu Kullan</translation>
     </message>
     <message>
         <source>Use IP Compression</source>
-        <translation>Usar compactação IP</translation>
+        <translation>IP Sıkıştırmasını Kullan</translation>
     </message>
     <message>
         <source>Enable Custom Cipher Proposals</source>
-        <translation>Habilitar propostas de cifra personalizadas</translation>
+        <translation>Özel Şifreleme Tekliflerini Etkinleştir</translation>
     </message>
     <message>
         <source>IKE</source>
@@ -1129,19 +1129,19 @@
     </message>
     <message>
         <source>Group Name</source>
-        <translation>Nome do grupo</translation>
+        <translation>Grup Adı</translation>
     </message>
     <message>
         <source>Group Pwd</source>
-        <translation>Senha do grupo</translation>
+        <translation>Grup Parolası</translation>
     </message>
     <message>
         <source>Use Hybrid Authentication</source>
-        <translation>Usar autenticação híbrida</translation>
+        <translation>Karma Kimlik Doğrulaması Kullan</translation>
     </message>
     <message>
         <source>CA File</source>
-        <translation>Arquivo CA</translation>
+        <translation>CA Dosyası</translation>
     </message>
     <message>
         <source>VPN PPP</source>
@@ -1149,71 +1149,71 @@
     </message>
     <message>
         <source>Use MPPE</source>
-        <translation>Usar MPPE</translation>
+        <translation>MPPE Kullan</translation>
     </message>
     <message>
         <source>Security</source>
-        <translation>Segurança</translation>
+        <translation>Güvenlik</translation>
     </message>
     <message>
         <source>All Available (default)</source>
-        <translation>Todas disponíveis (padrão)</translation>
+        <translation>Tüm Kullanılabilenler (varsayılan)</translation>
     </message>
     <message>
         <source>40-bit (less secure)</source>
-        <translation>40-bit (menos seguro)</translation>
+        <translation>40 bit (daha az güvenli)</translation>
     </message>
     <message>
         <source>128-bit (most secure)</source>
-        <translation>128-bit (mais seguro)</translation>
+        <translation>128 bit (en güvenli)</translation>
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation>Status MPPE</translation>
+        <translation>Durumsal MPPE</translation>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
-        <translation>Recusar autenticação EAP</translation>
+        <translation>EAP Kimlik Doğrulamasını Reddet</translation>
     </message>
     <message>
         <source>Refuse PAP Authentication</source>
-        <translation>Recusar autenticação PAP</translation>
+        <translation>PAP Kimlik Doğrulamasını Reddet</translation>
     </message>
     <message>
         <source>Refuse CHAP Authentication</source>
-        <translation>Recusar autenticação CHAP</translation>
+        <translation>CHAP Kimlik Doğrulamasını Reddet</translation>
     </message>
     <message>
         <source>Refuse MSCHAP Authentication</source>
-        <translation>Recusar autenticação MSCHAP</translation>
+        <translation>MSCHAP Kimlik Doğrulamasını Reddet</translation>
     </message>
     <message>
         <source>Refuse MSCHAPv2 Authentication</source>
-        <translation>Recusar autenticação MSCHAPv2</translation>
+        <translation>MSCHAPv2 Kimlik Doğrulamasını Reddet</translation>
     </message>
     <message>
         <source>No BSD Data Compression</source>
-        <translation>Sem compressão de dados BSD</translation>
+        <translation>BSD Veri Sıkıştırması Yapma</translation>
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation>Sem compressão de dados deflate</translation>
+        <translation>Veri Küçültme Sıkıştırması Yapma</translation>
     </message>
     <message>
         <source>No TCP Header Compression</source>
-        <translation>Sem compressão de cabeçalho TCP</translation>
+        <translation>TCP Üst Bilgi Sıkıştırması Yapma</translation>
     </message>
     <message>
         <source>No Protocol Field Compression</source>
-        <translation>Sem compressão de campo de protocolo</translation>
+        <translation>İletişim Kuralı Alanı Sıkıştırması Yapma</translation>
     </message>
     <message>
         <source>No Address/Control Compression</source>
-        <translation>Sem compressão de endereço/controle</translation>
+        <translation>Adres/Denetim Sıkıştırması Yapma</translation>
     </message>
     <message>
         <source>Send PPP Echo Packets</source>
-        <translation>Enviar pacotes PPP Echo</translation>
+        <translation>PPP Echo Paketleri Gönder</translation>
     </message>
     <message>
         <source>VPN IPsec</source>
@@ -1221,55 +1221,55 @@
     </message>
     <message>
         <source>Enable IPsec</source>
-        <translation>Habilitar IPsec</translation>
+        <translation>IPsec Kullanılsın</translation>
     </message>
     <message>
         <source>Group ID</source>
-        <translation>ID do grupo</translation>
+        <translation>Grup Kimliği</translation>
     </message>
     <message>
         <source>Phase1 Algorithms</source>
-        <translation>Algoritmos da Fase 1</translation>
+        <translation>1. Aşama Algoritmaları</translation>
     </message>
     <message>
         <source>Phase2 Algorithms</source>
-        <translation>Algoritmos da Fase 2</translation>
+        <translation>2. Aşama Algoritmaları</translation>
     </message>
     <message>
         <source>VPN Advanced</source>
-        <translation>VPN avançada</translation>
+        <translation>VPN Gelişmiş</translation>
     </message>
     <message>
         <source>Customize Gateway Port</source>
-        <translation>Personalizar a Porta do Gateway</translation>
+        <translation>Ağ Geçidi Port Özelleştir</translation>
     </message>
     <message>
         <source>Gateway Port</source>
-        <translation>Porta do Gateway</translation>
+        <translation>Ağ Geçidi Port</translation>
     </message>
     <message>
         <source>Customize Renegotiation Interval</source>
-        <translation>Personalizar intervalo de renegociação</translation>
+        <translation>Yeniden Görüşme Sıklığını Özelleştir</translation>
     </message>
     <message>
         <source>Renegotiation Interval</source>
-        <translation>Intervalo de Renegociação</translation>
+        <translation>Yeniden Görüşme Sıklığı</translation>
     </message>
     <message>
         <source>Use LZO Data Compression</source>
-        <translation>Usar compressão de dados LZO</translation>
+        <translation>LZO Veri Sıkıştırması Kullan</translation>
     </message>
     <message>
         <source>Use TCP Connection</source>
-        <translation>Usar conexão TCP</translation>
+        <translation>TCP Bağlantısı Kullan</translation>
     </message>
     <message>
         <source>Use TAP Device</source>
-        <translation>Usar dispositivo TAP</translation>
+        <translation>TAP Aygıtı Kullan</translation>
     </message>
     <message>
         <source>Customize Tunnel MTU</source>
-        <translation>Personalizar MTU do túnel</translation>
+        <translation>Tünel MTU Değerini Özelleştir</translation>
     </message>
     <message>
         <source>MTU</source>
@@ -1277,67 +1277,67 @@
     </message>
     <message>
         <source>Customize UDP Fragment Size</source>
-        <translation>Personalizar tamanho do fragmento UDP</translation>
+        <translation>UDP Parça Boyutunu Özelleştir</translation>
     </message>
     <message>
         <source>UDP Fragment Size</source>
-        <translation>Tamanho do fragmento UDP</translation>
+        <translation>UDP Parça Boyutu</translation>
     </message>
     <message>
         <source>Restrict Tunnel TCP MSS</source>
-        <translation>Restringir o Túnel TCP MSS</translation>
+        <translation>Tünel TCP MSS&apos;yi Kısıtla</translation>
     </message>
     <message>
         <source>Randomize Remote Hosts</source>
-        <translation>Randomizar hosts remotos</translation>
+        <translation>Uzak Ana Bilgisayarları Rastgele Ayarla</translation>
     </message>
     <message>
         <source>Domain</source>
-        <translation>Domínio</translation>
+        <translation>Etki Alanı</translation>
     </message>
     <message>
         <source>Vendor</source>
-        <translation>Fornecedor</translation>
+        <translation>Yayınlayan</translation>
     </message>
     <message>
         <source>Cisco (default)</source>
-        <translation>Cisco (padrão)</translation>
+        <translation>Cisco (varsayılan)</translation>
     </message>
     <message>
         <source>Netscreen</source>
-        <translation>Tela de rede</translation>
+        <translation>Netscreen</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation>Versão</translation>
+        <translation>Versiyon</translation>
     </message>
     <message>
         <source>Encryption</source>
-        <translation>Criptografia</translation>
+        <translation>Şifreleme</translation>
     </message>
     <message>
         <source>Secure (default)</source>
-        <translation>Seguro (padrão)</translation>
+        <translation>Güvenli (varsayılan)</translation>
     </message>
     <message>
         <source>Weak</source>
-        <translation>Fraca</translation>
+        <translation>Zayıf</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Nenhum</translation>
+        <translation>Yok</translation>
     </message>
     <message>
         <source>NAT Traversal Mode</source>
-        <translation>Modo de Travessia NAT</translation>
+        <translation>NAT Geçiş Kipi</translation>
     </message>
     <message>
         <source>NAT-T When Available (default)</source>
-        <translation>NAT-T quando disponível (padrão)</translation>
+        <translation>Kullanılabildiğinde NAT-T (varsayılan)</translation>
     </message>
     <message>
         <source>NAT-T Always</source>
-        <translation>NAT-T sempre</translation>
+        <translation>Her Zaman NAT-T</translation>
     </message>
     <message>
         <source>Cisco UDP</source>
@@ -1345,55 +1345,55 @@
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Desativado</translation>
+        <translation>Devre Dışı</translation>
     </message>
     <message>
         <source>IKE DH Group</source>
-        <translation>Grupo IKE DH</translation>
+        <translation>IKE DH Grubu</translation>
     </message>
     <message>
         <source>DH Group 1</source>
-        <translation>Grupo DH 1</translation>
+        <translation>1. DH Grubu</translation>
     </message>
     <message>
         <source>DH Group 2 (default)</source>
-        <translation>Grupo DH 2 (padrão)</translation>
+        <translation>2. DH Grubu (varsayılan)</translation>
     </message>
     <message>
         <source>DH Group 5</source>
-        <translation>Grupo DH 5</translation>
+        <translation>5. DH Grubu</translation>
     </message>
     <message>
         <source>Forward Secrecy</source>
-        <translation>Encaminhamento sigiloso</translation>
+        <translation>İletme Gizliliği</translation>
     </message>
     <message>
         <source>Server (default)</source>
-        <translation>Servidor (padrão)</translation>
+        <translation>Sunucu (varsayılan)</translation>
     </message>
     <message>
         <source>DH Group 2</source>
-        <translation>Grupo DH 2</translation>
+        <translation>2. DH Grubu</translation>
     </message>
     <message>
         <source>Local Port</source>
-        <translation>Porta Local</translation>
+        <translation>Yerel Port</translation>
     </message>
     <message>
         <source>Disable Dead Peer Detection</source>
-        <translation>Desativar detecção de pares mortos</translation>
+        <translation>Kayıp Eş Algılamayı Devre Dışı Bırak</translation>
     </message>
     <message>
         <source>VPN Security</source>
-        <translation>Segurança VPN</translation>
+        <translation>VPN Güvenliği</translation>
     </message>
     <message>
         <source>Cipher</source>
-        <translation>Cifra</translation>
+        <translation>Şifre</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation>Padrão</translation>
+        <translation>Varsayılan</translation>
     </message>
     <message>
         <source>DES-CBC</source>
@@ -1461,7 +1461,7 @@
     </message>
     <message>
         <source>HMAC Auth</source>
-        <translation>Autenticação HMAC</translation>
+        <translation>HMAC Kimlik Doğrulama</translation>
     </message>
     <message>
         <source>RSA MD-4</source>
@@ -1497,11 +1497,11 @@
     </message>
     <message>
         <source>VPN Proxy</source>
-        <translation>Proxy VPN</translation>
+        <translation>VPN Vekil Sunucu</translation>
     </message>
     <message>
         <source>Proxy Type</source>
-        <translation>Tipo de proxy</translation>
+        <translation>Vekil Sunucu Türü</translation>
     </message>
     <message>
         <source>HTTP</source>
@@ -1513,91 +1513,91 @@
     </message>
     <message>
         <source>Server IP</source>
-        <translation>IP do servidor</translation>
+        <translation>Sunucu IP</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation>Porta</translation>
+        <translation>Port</translation>
     </message>
     <message>
         <source>Retry Indefinitely When Failed</source>
-        <translation>Tentar novamente indefinidamente quando falhar</translation>
+        <translation>Başarısız Olduğunda Sürekli Dene</translation>
     </message>
     <message>
         <source>VPN TLS Authentication</source>
-        <translation>Autenticação VPN TLS</translation>
+        <translation>VPN TLS Kimlik Doğrulaması</translation>
     </message>
     <message>
         <source>Subject Match</source>
-        <translation>Assunto Relacionado</translation>
+        <translation>Konu Eşleşmesi</translation>
     </message>
     <message>
         <source>Remote Cert Type</source>
-        <translation>Tipo de Certificado Remoto</translation>
+        <translation>Uzak Sertifika Türü</translation>
     </message>
     <message>
         <source>Client</source>
-        <translation>Cliente</translation>
+        <translation>İstemci</translation>
     </message>
     <message>
         <source>Server</source>
-        <translation>Servidor</translation>
+        <translation>Sunucu</translation>
     </message>
     <message>
         <source>Key File</source>
-        <translation>Arquivo chave</translation>
+        <translation>Anahtar Dosyası</translation>
     </message>
 </context>
 <context>
     <name>SystemProxyConfigItem</name>
     <message>
         <source>Optional</source>
-        <translation>Opcional</translation>
+        <translation>İsteğe bağlı</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation>Porta</translation>
+        <translation>Port</translation>
     </message>
     <message>
         <source>Authentication is required</source>
-        <translation>É necessária autenticação</translation>
+        <translation>Kimlik doğrulama gerekli</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Nome de usuário</translation>
+        <translation>Kullanıcı adı</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation>Obrigatório</translation>
+        <translation>Gerekli</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Senha</translation>
+        <translation>Parola</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetAirplaneModeTipsItem</name>
     <message>
         <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation>Primeiro, desative o &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Modo Avião&lt;/a&gt; para conectar-se a uma rede Wi-Fi</translation>
+        <translation>Kablosuz bir ağa bağlanmak istiyorsanız öncelikle &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Uçak Modunu&lt;/a&gt; devre dışı bırakın</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetManagerPrivate</name>
     <message>
         <source>IP conflict</source>
-        <translation>Conflito de IP</translation>
+        <translation>IP çakışması</translation>
     </message>
     <message>
         <source>Network</source>
-        <translation>Rede</translation>
+        <translation>Ağ</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetManagerThreadPrivate</name>
     <message>
         <source>Wired Connection %1</source>
-        <translation>Conexão cabeada %1</translation>
+        <translation>Kablolu Bağlantı %1</translation>
     </message>
     <message>
         <source>VPN L2TP %1</source>
@@ -1625,99 +1625,99 @@
     </message>
     <message>
         <source>PPPoE Connection %1</source>
-        <translation>Conexão PPPoE %1</translation>
+        <translation>PPPoE Bğlantısı %1</translation>
     </message>
     <message>
         <source>Connecting &quot;%1&quot;</source>
-        <translation>Conectando &quot;%1&quot;</translation>
+        <translation>Bağlanıyor &quot;%1&quot;</translation>
     </message>
     <message>
         <source>&quot;%1&quot; connected</source>
-        <translation>“%1” conectado</translation>
+        <translation>&quot;%1&quot; bağlandı</translation>
     </message>
     <message>
         <source>&quot;%1&quot; disconnected</source>
-        <translation>&quot;%1&quot; desconectado</translation>
+        <translation>&quot;%1&quot; bağlantısı kesildi</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
-        <translation>Impossível conectar-se a %1, verifique os dispositivos de rede.</translation>
+        <translation>&quot;%1&quot; bağlantısı kurulamıyor, lütfen yönlendiricinizi veya ağ kablonuzu kontrol edin.</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
-        <translation>Impossível conectar-se a %1, aproxime-se do roteador Wi-Fi</translation>
+        <translation>&quot;%1&quot; bağlantısı kurulamıyor, lütfen kablosuz yönlendiriciye daha yakın olun</translation>
     </message>
     <message>
         <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
-        <translation>A conexão falhou, impossível conectar-se a &quot;%1&quot; pois a senha está incorreta</translation>
+        <translation>Bağlantı başarısız oldu, &quot;%1&quot;e bağlanılamadı, yanlış parola</translation>
     </message>
     <message>
         <source>Password is required to connect &quot;%1&quot;</source>
-        <translation>A senha é necessária para conectar-se a “%1”</translation>
+        <translation>&quot;%1&quot; &apos;e bağlanmak için parola gerekli</translation>
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation>Impossível encontrar a rede Wi-Fi &quot;%1&quot;</translation>
+        <translation>&quot;%1&quot;  802.11 WLAN ağı bulunamadı</translation>
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
-        <translation>Para conectar-se a “%1”, configure suas informações de autenticação após fazer login</translation>
+        <translation>&quot;%1&quot;e bağlanmak için lütfen oturum açtıktan sonra kimlik doğrulama bilgilerinizi ayarlayın</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetSystemProxyControlItem</name>
     <message>
         <source>System Proxy</source>
-        <translation>Proxy do sistema</translation>
+        <translation>Sistem Vekil Sunucusu</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetVPNTipsItem</name>
     <message>
         <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
-        <translation>A configuração de VPN não está conectada ou falhou ao conectar-se. Acesse a &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;Central de Controle&lt;/a&gt; para verificar.</translation>
+        <translation>VPN yapılandırması bağlı değil veya bağlanamadı. Lütfen inceleme için &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;kontrol merkezine gidin.&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWiredControlItem</name>
     <message>
         <source>Wired Network</source>
-        <translation>Rede cabeada</translation>
+        <translation>Kablolu Ağ</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessControlItem</name>
     <message>
         <source>Wireless Network</source>
-        <translation>Rede Wi-Fi</translation>
+        <translation>Kablosuz Ağ</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessHiddenItem</name>
     <message>
         <source>Connect to hidden network</source>
-        <translation>Conectar-se a rede oculta</translation>
+        <translation>Gizli ağa bağlan</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessMineItem</name>
     <message>
         <source>My Networks</source>
-        <translation>Minhas redes</translation>
+        <translation>Ağlarım</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessOtherItem</name>
     <message>
         <source>Other Networks</source>
-        <translation>Outras redes</translation>
+        <translation>Diğer Ağlar</translation>
     </message>
 </context>
 <context>
     <name>network</name>
     <message>
         <source>Network</source>
-        <translation>Rede</translation>
+        <translation>Ağ</translation>
     </message>
 </context>
 </TS>
