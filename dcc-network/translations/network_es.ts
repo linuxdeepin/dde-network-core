@@ -1081,7 +1081,7 @@
     </message>
     <message>
         <source>Key Direction</source>
-        <translation>Key direction</translation>
+        <translation>Dirección de clave</translation>
     </message>
     <message>
         <source>0</source>
@@ -1105,7 +1105,7 @@
     </message>
     <message>
         <source>Request an Inner IP Address</source>
-        <translation type="unfinished"/>
+        <translation>Solicitar una dirección IP interna</translation>
     </message>
     <message>
         <source>Enforce UDP Encapsulation</source>
