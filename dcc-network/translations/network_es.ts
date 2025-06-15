@@ -1045,15 +1045,15 @@
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Contraseña</translation>
     </message>
     <message>
         <source>Certificates with Password (TLS)</source>
-        <translation type="unfinished"/>
+        <translation>Certificados con contraseña (TLS)</translation>
     </message>
     <message>
         <source>Static Key</source>
-        <translation type="unfinished"/>
+        <translation>Clave estática</translation>
     </message>
     <message>
         <source>Pwd Options</source>
@@ -1061,27 +1061,27 @@
     </message>
     <message>
         <source>Saved</source>
-        <translation type="unfinished"/>
+        <translation>Guardado</translation>
     </message>
     <message>
         <source>Ask</source>
-        <translation type="unfinished"/>
+        <translation>Preguntar</translation>
     </message>
     <message>
         <source>Not Required</source>
-        <translation type="unfinished"/>
+        <translation>No requerido</translation>
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation type="unfinished"/>
+        <translation>Contraseña privada</translation>
     </message>
     <message>
         <source>Customize Key Direction</source>
-        <translation type="unfinished"/>
+        <translation>Personalizar key direction</translation>
     </message>
     <message>
         <source>Key Direction</source>
-        <translation type="unfinished"/>
+        <translation>Key direction</translation>
     </message>
     <message>
         <source>0</source>
