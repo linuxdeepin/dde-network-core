@@ -140,7 +140,7 @@
     <name>dde::network::NetStatus</name>
     <message>
         <source>Disable wired connection</source>
-        <translation>Deshabilitar conexión cableada</translation>
+        <translation>Desactivar conexión cableada</translation>
     </message>
     <message>
         <source>Enable wired connection</source>
@@ -164,19 +164,19 @@
     </message>
     <message>
         <source>Disable VPN</source>
-        <translation>Deshabilitar VPN</translation>
+        <translation>Desactivar VPN</translation>
     </message>
     <message>
         <source>Enable VPN</source>
-        <translation>Habilitar VPN</translation>
+        <translation>Activar VPN</translation>
     </message>
     <message>
         <source>Disable system proxy</source>
-        <translation>Deshabilitar el proxy del sistema</translation>
+        <translation>Desactivar el proxy del sistema</translation>
     </message>
     <message>
         <source>Enable system proxy</source>
-        <translation>Habilitar el proxy del sistema</translation>
+        <translation>Activar el proxy del sistema</translation>
     </message>
     <message>
         <source>Network settings</source>
