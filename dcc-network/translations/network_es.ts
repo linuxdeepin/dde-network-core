@@ -1077,7 +1077,7 @@
     </message>
     <message>
         <source>Customize Key Direction</source>
-        <translation>Personalizar key direction</translation>
+        <translation>Personalizar dirección de clave</translation>
     </message>
     <message>
         <source>Key Direction</source>
@@ -1109,63 +1109,63 @@
     </message>
     <message>
         <source>Enforce UDP Encapsulation</source>
-        <translation type="unfinished"/>
+        <translation>Forzar encapsulación UDP</translation>
     </message>
     <message>
         <source>Use IP Compression</source>
-        <translation type="unfinished"/>
+        <translation>Usar compresión IP</translation>
     </message>
     <message>
         <source>Enable Custom Cipher Proposals</source>
-        <translation type="unfinished"/>
+        <translation>Activar propuestas de cifrado personalizadas </translation>
     </message>
     <message>
         <source>IKE</source>
-        <translation type="unfinished"/>
+        <translation>IKE</translation>
     </message>
     <message>
         <source>ESP</source>
-        <translation type="unfinished"/>
+        <translation>ESP</translation>
     </message>
     <message>
         <source>Group Name</source>
-        <translation type="unfinished"/>
+        <translation>Nombre del grupo</translation>
     </message>
     <message>
         <source>Group Pwd</source>
-        <translation type="unfinished"/>
+        <translation>Contraseña de grupo</translation>
     </message>
     <message>
         <source>Use Hybrid Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Usar autenticación híbrida</translation>
     </message>
     <message>
         <source>CA File</source>
-        <translation type="unfinished"/>
+        <translation>Archivo CA</translation>
     </message>
     <message>
         <source>VPN PPP</source>
-        <translation type="unfinished"/>
+        <translation>VPN PPP</translation>
     </message>
     <message>
         <source>Use MPPE</source>
-        <translation type="unfinished"/>
+        <translation>Usar MPPE</translation>
     </message>
     <message>
         <source>Security</source>
-        <translation type="unfinished"/>
+        <translation>Seguridad</translation>
     </message>
     <message>
         <source>All Available (default)</source>
-        <translation type="unfinished"/>
+        <translation>Todos disponibles (por defecto)</translation>
     </message>
     <message>
         <source>40-bit (less secure)</source>
-        <translation type="unfinished"/>
+        <translation>40-bit (menos seguro)</translation>
     </message>
     <message>
         <source>128-bit (most secure)</source>
-        <translation type="unfinished"/>
+        <translation>128-bit (más seguro)</translation>
     </message>
     <message>
         <source>Stateful MPPE</source>
@@ -1173,35 +1173,35 @@
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Negar autenticación EAP</translation>
     </message>
     <message>
         <source>Refuse PAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Negar autenticación PAP</translation>
     </message>
     <message>
         <source>Refuse CHAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Negar autenticación CHAP</translation>
     </message>
     <message>
         <source>Refuse MSCHAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Negar autenticación MSCHAP</translation>
     </message>
     <message>
         <source>Refuse MSCHAPv2 Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Negar autenticación MSCHAPv2</translation>
     </message>
     <message>
         <source>No BSD Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>Sin compresión de datos BSD</translation>
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>Sin compresión de datos por deflación</translation>
     </message>
     <message>
         <source>No TCP Header Compression</source>
-        <translation type="unfinished"/>
+        <translation>Sin compresión en cabecera TCP</translation>
     </message>
     <message>
         <source>No Protocol Field Compression</source>
