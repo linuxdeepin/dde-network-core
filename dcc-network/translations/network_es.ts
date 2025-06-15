@@ -595,7 +595,7 @@
     </message>
     <message>
         <source>Auto Connect</source>
-        <translation type="unfinished"/>
+        <translation>Conectar automáticamente</translation>
     </message>
 </context>
 <context>
@@ -610,7 +610,7 @@
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"/>
+        <translation>Editar</translation>
     </message>
     <message>
         <source>Disabled</source>
