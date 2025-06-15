@@ -989,59 +989,59 @@
     </message>
     <message>
         <source>CA Cert</source>
-        <translation type="unfinished"/>
+        <translation>Certificado CA</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation type="unfinished"/>
+        <translation>Proxy</translation>
     </message>
     <message>
         <source>Allow Cisco Secure Desktop Trojan</source>
-        <translation type="unfinished"/>
+        <translation>Permitir el troyano Cisco Secure Desktop</translation>
     </message>
     <message>
         <source>CSD Script</source>
-        <translation type="unfinished"/>
+        <translation>Script CSD</translation>
     </message>
     <message>
         <source>Auth Type</source>
-        <translation type="unfinished"/>
+        <translation>Tipo de autenticación</translation>
     </message>
     <message>
         <source>Private Key</source>
-        <translation type="unfinished"/>
+        <translation>Clave privada</translation>
     </message>
     <message>
         <source>SSH Agent</source>
-        <translation type="unfinished"/>
+        <translation>Agente SSH</translation>
     </message>
     <message>
         <source>Smart Card</source>
-        <translation type="unfinished"/>
+        <translation>Tarjeta inteligente</translation>
     </message>
     <message>
         <source>EAP</source>
-        <translation type="unfinished"/>
+        <translation>EAP</translation>
     </message>
     <message>
         <source>Pre-Shared Key</source>
-        <translation type="unfinished"/>
+        <translation>Clave precompartida</translation>
     </message>
     <message>
         <source>User Cert</source>
-        <translation type="unfinished"/>
+        <translation>Certificado de usuario</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Nombre de usuario</translation>
     </message>
     <message>
         <source>Use FSID for Key Passphrase</source>
-        <translation type="unfinished"/>
+        <translation>Usar FSID para la frase de clave</translation>
     </message>
     <message>
         <source>Certificates (TLS)</source>
-        <translation type="unfinished"/>
+        <translation>Certificados (TLS)</translation>
     </message>
     <message>
         <source>Password</source>
