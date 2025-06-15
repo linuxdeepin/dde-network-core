@@ -521,18 +521,18 @@
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"/>
+        <translation>Editar</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
-        <translation type="unfinished"/>
+        <translation>Dirección IP inválida</translation>
     </message>
 </context>
 <context>
     <name>SectionDevice</name>
     <message>
         <source>Not Bind</source>
-        <translation type="unfinished"/>
+        <translation>Sin enlazar</translation>
     </message>
     <message>
         <source>WLAN</source>
@@ -544,15 +544,15 @@
     </message>
     <message>
         <source>Device MAC Addr</source>
-        <translation type="unfinished"/>
+        <translation>Dirección MAC del dispositivo</translation>
     </message>
     <message>
         <source>Cloned MAC Addr</source>
-        <translation type="unfinished"/>
+        <translation>Dirección MAC clonada</translation>
     </message>
     <message>
         <source>Customize MTU</source>
-        <translation type="unfinished"/>
+        <translation>Personalizar el MTU</translation>
     </message>
     <message>
         <source>MTU</source>
@@ -560,7 +560,7 @@
     </message>
     <message>
         <source>Band</source>
-        <translation type="unfinished"/>
+        <translation>Banda</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -579,19 +579,19 @@
     <name>SectionGeneric</name>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>General</translation>
     </message>
     <message>
         <source>Name (SSID)</source>
-        <translation type="unfinished"/>
+        <translation>Nombre (SSID)</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Nombre</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"/>
+        <translation>Requerido</translation>
     </message>
     <message>
         <source>Auto Connect</source>
