@@ -1205,47 +1205,47 @@
     </message>
     <message>
         <source>No Protocol Field Compression</source>
-        <translation type="unfinished"/>
+        <translation>Sin compresión en el campo de protocolo</translation>
     </message>
     <message>
         <source>No Address/Control Compression</source>
-        <translation type="unfinished"/>
+        <translation>Sin compresión de dirección y control</translation>
     </message>
     <message>
         <source>Send PPP Echo Packets</source>
-        <translation type="unfinished"/>
+        <translation>Enviar paquetes eco PPP</translation>
     </message>
     <message>
         <source>VPN IPsec</source>
-        <translation type="unfinished"/>
+        <translation>VPN IPsec</translation>
     </message>
     <message>
         <source>Enable IPsec</source>
-        <translation type="unfinished"/>
+        <translation>Activar IPsec</translation>
     </message>
     <message>
         <source>Group ID</source>
-        <translation type="unfinished"/>
+        <translation>ID de grupo</translation>
     </message>
     <message>
         <source>Phase1 Algorithms</source>
-        <translation type="unfinished"/>
+        <translation>Algoritmos de Fase1</translation>
     </message>
     <message>
         <source>Phase2 Algorithms</source>
-        <translation type="unfinished"/>
+        <translation>Algoritmos de Fase2</translation>
     </message>
     <message>
         <source>VPN Advanced</source>
-        <translation type="unfinished"/>
+        <translation>VPN Avanzado</translation>
     </message>
     <message>
         <source>Customize Gateway Port</source>
-        <translation type="unfinished"/>
+        <translation>Personalizar puerto de la puerta de enlace</translation>
     </message>
     <message>
         <source>Gateway Port</source>
-        <translation type="unfinished"/>
+        <translation>Puerto de puerta de enlace</translation>
     </message>
     <message>
         <source>Customize Renegotiation Interval</source>
