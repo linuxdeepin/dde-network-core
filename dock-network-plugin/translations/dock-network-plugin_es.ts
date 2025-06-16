@@ -14,7 +14,7 @@
     <name>dde::network::NetAirplaneModeTipsItem</name>
     <message>
         <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation>Desactive primero el &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;modo avión&lt;/a&gt; si desea conectarse a una red inalámbrica</translation>
+        <translation>Si desea conectarse a una red inalámbrica, primero desactive el &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;modo avión&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -144,7 +144,7 @@
     <name>dde::network::NetStatus</name>
     <message>
         <source>Disable wired connection</source>
-        <translation>Deshabilitar conexión cableada</translation>
+        <translation>Desactivar conexión cableada</translation>
     </message>
     <message>
         <source>Enable wired connection</source>
@@ -168,19 +168,19 @@
     </message>
     <message>
         <source>Disable VPN</source>
-        <translation>Deshabilitar VPN</translation>
+        <translation>Desactivar VPN</translation>
     </message>
     <message>
         <source>Enable VPN</source>
-        <translation>Habilitar VPN</translation>
+        <translation>Activar VPN</translation>
     </message>
     <message>
         <source>Disable system proxy</source>
-        <translation>Deshabilitar el proxy del sistema</translation>
+        <translation>Desactivar el proxy del sistema</translation>
     </message>
     <message>
         <source>Enable system proxy</source>
-        <translation>Habilitar el proxy del sistema</translation>
+        <translation>Activar el proxy del sistema</translation>
     </message>
     <message>
         <source>Network settings</source>
@@ -196,7 +196,7 @@
     </message>
     <message>
         <source>System proxy enabled</source>
-        <translation>Proxy del sistema habilitado</translation>
+        <translation>Proxy del sistema activado</translation>
     </message>
     <message>
         <source>Connected</source>
