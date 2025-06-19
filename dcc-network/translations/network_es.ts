@@ -32,7 +32,7 @@
     <name>PageAppProxy</name>
     <message>
         <source>Application Proxy</source>
-        <translation>Proxy de aplicación</translation>
+        <translation>Aplicación Proxy</translation>
     </message>
     <message>
         <source>Set up proxy servers</source>
