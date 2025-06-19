@@ -1,1697 +1,1723 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_TW">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
         <source>All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>所有檔案 (*)</translation>
     </message>
 </context>
 <context>
     <name>NetPasswordEdit</name>
     <message>
         <source>Required</source>
-        <translation type="unfinished"></translation>
+        <translation>必填</translation>
     </message>
 </context>
 <context>
     <name>PageAirplane</name>
     <message>
         <source>Airplane mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
-        <translation type="unfinished"></translation>
+        <translation>飛航模式</translation>
     </message>
     <message>
         <source>Stop wireless communication</source>
-        <translation type="unfinished"></translation>
+        <translation>打開飛航模式將關閉無線網路、個人熱點和藍牙功能</translation>
+    </message>
+    <message>
+        <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
+        <translation>停止無線通訊</translation>
     </message>
 </context>
 <context>
     <name>PageAppProxy</name>
     <message>
         <source>Application Proxy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>http</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>socks4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>socks5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>IP Address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Required</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Invalid IP address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Invalid port</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Optional</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Check &quot;Use a proxy&quot; in application context menu in Launcher after configured</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>應用代理</translation>
     </message>
     <message>
         <source>Set up proxy servers</source>
-        <translation type="unfinished"></translation>
+        <translation>保 存</translation>
+    </message>
+    <message>
+        <source>Proxy Type</source>
+        <translation>設定代理伺服器</translation>
+    </message>
+    <message>
+        <source>http</source>
+        <translation>代理型別</translation>
+    </message>
+    <message>
+        <source>socks4</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>socks5</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>IP Address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>IP 地址</translation>
+    </message>
+    <message>
+        <source>Invalid IP address</source>
+        <translation>必填</translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation>無效的IP位址</translation>
+    </message>
+    <message>
+        <source>Invalid port</source>
+        <translation>埠</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>無效的埠</translation>
+    </message>
+    <message>
+        <source>Optional</source>
+        <translation>使用者名稱</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>選填</translation>
+    </message>
+    <message>
+        <source>Check &quot;Use a proxy&quot; in application context menu in Launcher after configured</source>
+        <translation>密碼</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>配置好代理後，可在啟動器的應用右鍵菜單檢視「使用代理」選項，勾選後即可使用代理</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>取 消</translation>
     </message>
 </context>
 <context>
     <name>PageDSL</name>
     <message>
         <source>DSL</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add PPPoE connection</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Set up a dial-up network connection</source>
-        <translation type="unfinished"></translation>
+        <translation>新增PPPoE連線</translation>
+    </message>
+    <message>
+        <source>Disconnect</source>
+        <translation>設定撥號網路連線</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <translation>斷開</translation>
+    </message>
+    <message>
+        <source>Add PPPoE connection</source>
+        <translation>連線</translation>
     </message>
 </context>
 <context>
     <name>PageDSLSettings</name>
     <message>
-        <source>Are you sure you want to delete this configuration?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <source> Network Properties</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>您確定要刪除當前配置嗎？</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete this configuration?</source>
+        <translation>網路屬性</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>刪除</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>取 消</translation>
     </message>
 </context>
 <context>
     <name>PageDetails</name>
     <message>
         <source>Network Details</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Network Detection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Details has been copied</source>
-        <translation type="unfinished"></translation>
+        <translation>網路詳情</translation>
     </message>
     <message>
         <source>View all network configurations</source>
-        <translation type="unfinished"></translation>
+        <translation>網路檢測</translation>
+    </message>
+    <message>
+        <source>Details has been copied</source>
+        <translation>全選</translation>
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation>檢視所有網路配置</translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation>資訊已複製</translation>
+    </message>
+    <message>
+        <source>Network Detection</source>
+        <translation>複製</translation>
     </message>
 </context>
 <context>
     <name>PageHotspot</name>
     <message>
         <source>WPA/WPA2 Personal</source>
-        <translation type="unfinished"></translation>
+        <translation>WPA/WPA2個人版</translation>
     </message>
     <message>
         <source>WPA3 Personal</source>
-        <translation type="unfinished"></translation>
+        <translation>WPA3個人版</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>無</translation>
     </message>
     <message>
         <source>2.4 GHz</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>5 GHz</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>自動</translation>
     </message>
     <message>
         <source>Not Bind</source>
-        <translation type="unfinished"></translation>
+        <translation>不指定裝置</translation>
     </message>
     <message>
         <source>Personal Hotspot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>My Hotspot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Edit My Hotspot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Name (SSID)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Required</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Security</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Shared Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hotspot Sharing Device</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>If you want to use the personal hotspot, disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first and then enable the wireless network adapter.</source>
-        <translation type="unfinished"></translation>
+        <translation>個人熱點</translation>
     </message>
     <message>
         <source>Share the network</source>
-        <translation type="unfinished"></translation>
+        <translation>若要使用個人熱點功能，請先退出&lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;飛航模式&lt;/a&gt;，再啟用無線網絡卡。</translation>
+    </message>
+    <message>
+        <source>My Hotspot</source>
+        <translation>共享網路</translation>
+    </message>
+    <message>
+        <source>Edit My Hotspot</source>
+        <translation>我的熱點</translation>
+    </message>
+    <message>
+        <source>Name (SSID)</source>
+        <translation>編輯我的熱點</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>名稱（SSID）</translation>
+    </message>
+    <message>
+        <source>Security</source>
+        <translation>必填</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>安全</translation>
+    </message>
+    <message>
+        <source>Band</source>
+        <translation>密碼</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>頻段</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>取 消</translation>
+    </message>
+    <message>
+        <source>Shared Settings</source>
+        <translation>保 存</translation>
+    </message>
+    <message>
+        <source>Hotspot Sharing Device</source>
+        <translation>共享設定</translation>
+    </message>
+    <message>
+        <source>If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.</source>
+        <translation>共享熱點的網絡卡裝置</translation>
+    </message>
+    <message>
+        <source>If you want to use the personal hotspot, disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first and then enable the wireless network adapter.</source>
+        <translation>若要使用個人熱點功能，請先退出飛航模式，再啟用無線網絡卡。</translation>
     </message>
 </context>
 <context>
     <name>PageSettings</name>
     <message>
-        <source>Are you sure you want to delete this configuration?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <source> Network Properties</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>您確定要刪除當前配置嗎？</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete this configuration?</source>
+        <translation>網路屬性</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>刪除</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>取 消</translation>
     </message>
 </context>
 <context>
     <name>PageSystemProxy</name>
     <message>
         <source>System Proxy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Proxy Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Configuration URL</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>HTTP Proxy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>HTTPS Proxy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>FTP Proxy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SOCKS Proxy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ignore the proxy configurations for the above hosts and domains</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>系統代理</translation>
     </message>
     <message>
         <source>Set up proxy servers</source>
-        <translation type="unfinished"></translation>
+        <translation>取 消</translation>
+    </message>
+    <message>
+        <source>Proxy Type</source>
+        <translation>設定代理伺服器</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>代理型別</translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation>自動</translation>
+    </message>
+    <message>
+        <source>Configuration URL</source>
+        <translation>手動</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"></translation>
+        <translation>保 存</translation>
+    </message>
+    <message>
+        <source>HTTP Proxy</source>
+        <translation>配置URL</translation>
+    </message>
+    <message>
+        <source>HTTPS Proxy</source>
+        <translation>必填</translation>
+    </message>
+    <message>
+        <source>FTP Proxy</source>
+        <translation>HTTP代理</translation>
+    </message>
+    <message>
+        <source>SOCKS Proxy</source>
+        <translation>HTTPS代理</translation>
+    </message>
+    <message>
+        <source>Ignore the proxy configurations for the above hosts and domains</source>
+        <translation>FTP代理</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>SOCKS代理</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>忽略以上主機和域的代理配置</translation>
     </message>
 </context>
 <context>
     <name>PageVPN</name>
     <message>
         <source>VPN</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add VPN</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Import VPN</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>*.conf</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Import Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>File error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connect, add, import</source>
-        <translation type="unfinished"></translation>
+        <translation>確定</translation>
+    </message>
+    <message>
+        <source>Disconnect</source>
+        <translation>連線、新增、匯入</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <translation>斷開</translation>
+    </message>
+    <message>
+        <source>Add VPN</source>
+        <translation>連線</translation>
+    </message>
+    <message>
+        <source>Import VPN</source>
+        <translation>新增VPN</translation>
+    </message>
+    <message>
+        <source>*.conf</source>
+        <translation>匯入VPN</translation>
+    </message>
+    <message>
+        <source>Import Error</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File error</source>
+        <translation>匯入錯誤</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>匯入檔案錯誤</translation>
     </message>
 </context>
 <context>
     <name>PageVPNSettings</name>
     <message>
+        <source> Network Properties</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>VPN Type</source>
-        <translation type="unfinished"></translation>
+        <translation>網路屬性</translation>
     </message>
     <message>
         <source>L2TP</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN型別</translation>
     </message>
     <message>
         <source>PPTP</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>OpenVPN</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>OpenConnect</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>StrongSwan</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>VPNC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete this configuration?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>您確定要刪除當前配置嗎？</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete this configuration?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>刪除</translation>
     </message>
     <message>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>取 消</translation>
     </message>
     <message>
         <source>*.conf</source>
-        <translation type="unfinished"></translation>
+        <translation>導 出</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>PageWiredDevice</name>
     <message>
-        <source>Disconnect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Connect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add Network Connection</source>
-        <translation type="unfinished"></translation>
+        <source>Connect, edit network settings</source>
+        <translation>新增網路設定</translation>
     </message>
     <message>
         <source>Plug in the network cable first</source>
-        <translation type="unfinished"></translation>
+        <translation>連線</translation>
     </message>
     <message>
-        <source>Connect, edit network settings</source>
-        <translation type="unfinished"></translation>
+        <source>Disconnect</source>
+        <translation>連線、編輯網路設定</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <translation>請您先插入網線！</translation>
+    </message>
+    <message>
+        <source>Add Network Connection</source>
+        <translation>斷開</translation>
     </message>
 </context>
 <context>
     <name>PageWirelessDevice</name>
     <message>
+        <source>Connect, edit network settings</source>
+        <translation>若要連線並使用無線網路功能，請先&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;關閉熱點分享&lt;/a&gt;</translation>
+    </message>
+    <message>
         <source>Disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation>連線、編輯網路設定</translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>斷開</translation>
     </message>
     <message>
-        <source>My&#xa0;Networks</source>
-        <translation type="unfinished"></translation>
+        <source>My Networks</source>
+        <translation>連線</translation>
     </message>
     <message>
         <source>Other Networks</source>
-        <translation type="unfinished"></translation>
+        <translation>我的網路</translation>
     </message>
     <message>
         <source>Disable Airplane Mode first if you want to connect to a wireless network</source>
-        <translation type="unfinished"></translation>
+        <translation>其他網路</translation>
     </message>
     <message>
         <source>Disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation type="unfinished"></translation>
+        <translation>若要使用無線網路功能，請先關閉飛航模式</translation>
     </message>
     <message>
         <source>Disable hotspot first if you want to connect to a wireless network</source>
-        <translation type="unfinished"></translation>
+        <translation>若要使用無線網路功能，請先關閉&lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;飛航模式&lt;/a&gt;</translation>
     </message>
     <message>
         <source>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Disable hotspot&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Connect, edit network settings</source>
-        <translation type="unfinished"></translation>
+        <translation>若要連線並使用無線網路功能，請先關閉熱點分享</translation>
     </message>
 </context>
 <context>
     <name>SectionDNS</name>
     <message>
         <source>DNS</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Done</source>
-        <translation type="unfinished"></translation>
+        <translation>完成</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>編輯</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
-        <translation type="unfinished"></translation>
+        <translation>無效的IP位址</translation>
     </message>
 </context>
 <context>
     <name>SectionDevice</name>
     <message>
         <source>Not Bind</source>
-        <translation type="unfinished"></translation>
+        <translation>不指定裝置</translation>
     </message>
     <message>
         <source>WLAN</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ethernet</source>
-        <translation type="unfinished"></translation>
+        <translation>乙太網</translation>
     </message>
     <message>
         <source>Device MAC Addr</source>
-        <translation type="unfinished"></translation>
+        <translation>裝置MAC地址</translation>
     </message>
     <message>
         <source>Cloned MAC Addr</source>
-        <translation type="unfinished"></translation>
+        <translation>克隆MAC地址</translation>
     </message>
     <message>
         <source>Customize MTU</source>
-        <translation type="unfinished"></translation>
+        <translation>自定義MTU</translation>
     </message>
     <message>
         <source>MTU</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Band</source>
-        <translation type="unfinished"></translation>
+        <translation>頻段</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>自動</translation>
     </message>
     <message>
         <source>2.4 GHz</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>5 GHz</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>SectionGeneric</name>
     <message>
         <source>General</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Auto Connect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Required</source>
-        <translation type="unfinished"></translation>
+        <translation>通用</translation>
     </message>
     <message>
         <source>Name (SSID)</source>
-        <translation type="unfinished"></translation>
+        <translation>自動連線</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>名稱（SSID）</translation>
+    </message>
+    <message>
+        <source>Required</source>
+        <translation>必填</translation>
+    </message>
+    <message>
+        <source>Auto Connect</source>
+        <translation>名稱</translation>
     </message>
 </context>
 <context>
     <name>SectionIPv4</name>
     <message>
         <source>IPv4</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Done</source>
-        <translation type="unfinished"></translation>
+        <translation>完成</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>編輯</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>停用</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>手動</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>自動</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation type="unfinished"></translation>
+        <translation>方法</translation>
     </message>
     <message>
         <source>Only applied in corresponding resources</source>
-        <translation type="unfinished"></translation>
+        <translation>僅用於相對應的網路上的資源</translation>
     </message>
     <message>
         <source>IP Address</source>
-        <translation type="unfinished"></translation>
+        <translation>IP 地址</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
-        <translation type="unfinished"></translation>
+        <translation>無效的IP位址</translation>
     </message>
     <message>
         <source>Netmask</source>
-        <translation type="unfinished"></translation>
+        <translation>子網掩碼</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"></translation>
+        <translation>閘道器</translation>
     </message>
 </context>
 <context>
     <name>SectionIPv6</name>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>停用</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>手動</translation>
     </message>
     <message>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>忽略</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>自動</translation>
     </message>
     <message>
         <source>IPv6</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Done</source>
-        <translation type="unfinished"></translation>
+        <translation>完成</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>編輯</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation type="unfinished"></translation>
+        <translation>方法</translation>
     </message>
     <message>
         <source>Only applied in corresponding resources</source>
-        <translation type="unfinished"></translation>
+        <translation>僅用於相對應的網路上的資源</translation>
     </message>
     <message>
         <source>IP Address</source>
-        <translation type="unfinished"></translation>
+        <translation>IP 地址</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
-        <translation type="unfinished"></translation>
+        <translation>無效的IP位址</translation>
     </message>
     <message>
         <source>Prefix</source>
-        <translation type="unfinished"></translation>
+        <translation>字首</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"></translation>
+        <translation>閘道器</translation>
     </message>
 </context>
 <context>
     <name>SectionPPP</name>
     <message>
         <source>PPP</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use MPPE</source>
-        <translation type="unfinished"></translation>
+        <translation>使用MPPE點到點加密</translation>
     </message>
     <message>
         <source>128-bit MPPE</source>
-        <translation type="unfinished"></translation>
+        <translation>使用128位MPPE</translation>
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation type="unfinished"></translation>
+        <translation>使用帶狀態的MPPE</translation>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>拒絕EAP認證</translation>
     </message>
     <message>
         <source>Refuse PAP Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>拒絕PAP認證</translation>
     </message>
     <message>
         <source>Refuse CHAP Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>拒絕CHAP認證</translation>
     </message>
     <message>
         <source>Refuse MSCHAP Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>拒絕MSCHAP認證</translation>
     </message>
     <message>
         <source>Refuse MSCHAPv2 Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>拒絕MSCHAPv2認證</translation>
     </message>
     <message>
         <source>No BSD Data Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>無BSD資料壓縮</translation>
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>無Deflate資料壓縮</translation>
     </message>
     <message>
         <source>No TCP Header Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>無TCP頭壓縮</translation>
     </message>
     <message>
         <source>Send PPP Echo Packets</source>
-        <translation type="unfinished"></translation>
+        <translation>傳送PPP迴響包</translation>
     </message>
 </context>
 <context>
     <name>SectionPPPOE</name>
     <message>
         <source>PPPoE</source>
-        <translation type="unfinished"></translation>
+        <translation>撥號</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>使用者名稱</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"></translation>
+        <translation>必填</translation>
     </message>
     <message>
         <source>Service</source>
-        <translation type="unfinished"></translation>
+        <translation>服務</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>密碼</translation>
     </message>
 </context>
 <context>
     <name>SectionSecret</name>
     <message>
         <source>Security</source>
-        <translation type="unfinished"></translation>
+        <translation>安全</translation>
     </message>
     <message>
         <source>TLS</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>MD5</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>FAST</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Tunneled TLS</source>
-        <translation type="unfinished"></translation>
+        <translation>隧道TLS</translation>
     </message>
     <message>
         <source>Protected EAP</source>
-        <translation type="unfinished"></translation>
+        <translation>受保護的EAP</translation>
     </message>
     <message>
         <source>LEAP</source>
-        <translation type="unfinished"></translation>
+        <translation>LEAP</translation>
     </message>
     <message>
         <source>GTC</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>MSCHAPV2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>PAP</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>MSCHAP</source>
-        <translation type="unfinished"></translation>
+        <translation>MSCHAP</translation>
     </message>
     <message>
         <source>CHAP</source>
-        <translation type="unfinished"></translation>
+        <translation>CHAP</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>無</translation>
     </message>
     <message>
         <source>WEP</source>
-        <translation type="unfinished"></translation>
+        <translation>WEP</translation>
     </message>
     <message>
         <source>WPA/WPA2 Personal</source>
-        <translation type="unfinished"></translation>
+        <translation>WPA/WPA2個人版</translation>
     </message>
     <message>
         <source>WPA/WPA2 Enterprise</source>
-        <translation type="unfinished"></translation>
+        <translation>WPA/WPA2企業版</translation>
     </message>
     <message>
         <source>WPA3 Personal</source>
-        <translation type="unfinished"></translation>
+        <translation>WPA3個人版</translation>
     </message>
     <message>
         <source>EAP Auth</source>
-        <translation type="unfinished"></translation>
+        <translation>EAP認證</translation>
     </message>
     <message>
         <source>Identity</source>
-        <translation type="unfinished"></translation>
+        <translation>身份</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"></translation>
+        <translation>必填</translation>
     </message>
     <message>
         <source>Pwd Options</source>
-        <translation type="unfinished"></translation>
+        <translation>密碼選項</translation>
     </message>
     <message>
         <source>Save password for this user</source>
-        <translation type="unfinished"></translation>
+        <translation>僅為該使用者儲存密碼</translation>
     </message>
     <message>
         <source>Save password for all users</source>
-        <translation type="unfinished"></translation>
+        <translation>儲存所有使用者密碼</translation>
     </message>
     <message>
         <source>Ask me always</source>
-        <translation type="unfinished"></translation>
+        <translation>總是詢問</translation>
     </message>
     <message>
         <source>Key</source>
-        <translation type="unfinished"></translation>
+        <translation>金鑰</translation>
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation type="unfinished"></translation>
+        <translation>私鑰密碼</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>密碼</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>安全認證型別</translation>
     </message>
     <message>
         <source>Shared key</source>
-        <translation type="unfinished"></translation>
+        <translation>共享金鑰</translation>
     </message>
     <message>
         <source>Open system</source>
-        <translation type="unfinished"></translation>
+        <translation>開放式系統</translation>
     </message>
     <message>
         <source>Private Key</source>
-        <translation type="unfinished"></translation>
+        <translation>私鑰</translation>
     </message>
     <message>
         <source>Anonymous ID</source>
-        <translation type="unfinished"></translation>
+        <translation>匿名身份</translation>
     </message>
     <message>
         <source>Provisioning</source>
-        <translation type="unfinished"></translation>
+        <translation>自動PAC配置</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>已停用</translation>
     </message>
     <message>
         <source>Anonymous</source>
-        <translation type="unfinished"></translation>
+        <translation>匿名</translation>
     </message>
     <message>
         <source>Authenticated</source>
-        <translation type="unfinished"></translation>
+        <translation>已認證</translation>
     </message>
     <message>
         <source>Both</source>
-        <translation type="unfinished"></translation>
+        <translation>兼有</translation>
     </message>
     <message>
         <source>PAC file</source>
-        <translation type="unfinished"></translation>
+        <translation>PAC檔案</translation>
     </message>
     <message>
         <source>CA Cert</source>
-        <translation type="unfinished"></translation>
+        <translation>CA證書</translation>
     </message>
     <message>
         <source>User Cert</source>
-        <translation type="unfinished"></translation>
+        <translation>使用者證書</translation>
     </message>
     <message>
         <source>PEAP Version</source>
-        <translation type="unfinished"></translation>
+        <translation>PEAP版本</translation>
     </message>
     <message>
         <source>Automatic</source>
-        <translation type="unfinished"></translation>
+        <translation>自動</translation>
     </message>
     <message>
         <source>Version 0</source>
-        <translation type="unfinished"></translation>
+        <translation>版本0</translation>
     </message>
     <message>
         <source>Version 1</source>
-        <translation type="unfinished"></translation>
+        <translation>版本1</translation>
     </message>
     <message>
         <source>Inner Auth</source>
-        <translation type="unfinished"></translation>
+        <translation>內部認證</translation>
     </message>
 </context>
 <context>
     <name>SectionVPN</name>
     <message>
         <source>VPN</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>所有檔案 (*)</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"></translation>
+        <translation>必填</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished"></translation>
+        <translation>無效的閘道器地址</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"></translation>
+        <translation>閘道器</translation>
     </message>
     <message>
         <source>CA Cert</source>
-        <translation type="unfinished"></translation>
+        <translation>CA證書</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>代理</translation>
     </message>
     <message>
         <source>Allow Cisco Secure Desktop Trojan</source>
-        <translation type="unfinished"></translation>
+        <translation>允許思科安全桌面木馬</translation>
     </message>
     <message>
         <source>CSD Script</source>
-        <translation type="unfinished"></translation>
+        <translation>CSD 指令碼</translation>
     </message>
     <message>
         <source>Auth Type</source>
-        <translation type="unfinished"></translation>
+        <translation>認證型別</translation>
     </message>
     <message>
         <source>Private Key</source>
-        <translation type="unfinished"></translation>
+        <translation>私鑰</translation>
     </message>
     <message>
         <source>SSH Agent</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH代理</translation>
     </message>
     <message>
         <source>Smart Card</source>
-        <translation type="unfinished"></translation>
+        <translation>智慧卡</translation>
     </message>
     <message>
         <source>EAP</source>
-        <translation type="unfinished"></translation>
+        <translation>EAP</translation>
     </message>
     <message>
         <source>Pre-Shared Key</source>
-        <translation type="unfinished"></translation>
+        <translation>預共享金鑰</translation>
     </message>
     <message>
         <source>User Cert</source>
-        <translation type="unfinished"></translation>
+        <translation>使用者證書</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>使用者名稱</translation>
     </message>
     <message>
         <source>Use FSID for Key Passphrase</source>
-        <translation type="unfinished"></translation>
+        <translation>為金鑰口令句使用FSID</translation>
     </message>
     <message>
         <source>Certificates (TLS)</source>
-        <translation type="unfinished"></translation>
+        <translation>證書（TLS）</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>密碼</translation>
     </message>
     <message>
         <source>Certificates with Password (TLS)</source>
-        <translation type="unfinished"></translation>
+        <translation>證書和密碼（TLS）</translation>
     </message>
     <message>
         <source>Static Key</source>
-        <translation type="unfinished"></translation>
+        <translation>靜態金鑰</translation>
     </message>
     <message>
         <source>Pwd Options</source>
-        <translation type="unfinished"></translation>
+        <translation>密碼選項</translation>
     </message>
     <message>
         <source>Saved</source>
-        <translation type="unfinished"></translation>
+        <translation>已儲存的</translation>
     </message>
     <message>
         <source>Ask</source>
-        <translation type="unfinished"></translation>
+        <translation>總是詢問</translation>
     </message>
     <message>
         <source>Not Required</source>
-        <translation type="unfinished"></translation>
+        <translation>不要求</translation>
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation type="unfinished"></translation>
+        <translation>私鑰密碼</translation>
     </message>
     <message>
         <source>Customize Key Direction</source>
-        <translation type="unfinished"></translation>
+        <translation>自定義金鑰方向</translation>
     </message>
     <message>
         <source>Key Direction</source>
-        <translation type="unfinished"></translation>
+        <translation>金鑰方向</translation>
     </message>
     <message>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation>0</translation>
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation>1</translation>
     </message>
     <message>
         <source>Remote IP</source>
-        <translation type="unfinished"></translation>
+        <translation>遠端IP</translation>
     </message>
     <message>
         <source>Local IP</source>
-        <translation type="unfinished"></translation>
+        <translation>本地IP</translation>
     </message>
     <message>
         <source>NT Domain</source>
-        <translation type="unfinished"></translation>
+        <translation>NT域</translation>
     </message>
     <message>
         <source>Request an Inner IP Address</source>
-        <translation type="unfinished"></translation>
+        <translation>請求內部IP位址</translation>
     </message>
     <message>
         <source>Enforce UDP Encapsulation</source>
-        <translation type="unfinished"></translation>
+        <translation>強制使用UDP封裝</translation>
     </message>
     <message>
         <source>Use IP Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>使用IP壓縮</translation>
     </message>
     <message>
         <source>Enable Custom Cipher Proposals</source>
-        <translation type="unfinished"></translation>
+        <translation>啟用自定義加密方案</translation>
     </message>
     <message>
         <source>IKE</source>
-        <translation type="unfinished"></translation>
+        <translation>IKE</translation>
     </message>
     <message>
         <source>ESP</source>
-        <translation type="unfinished"></translation>
+        <translation>ESP</translation>
     </message>
     <message>
         <source>Group Name</source>
-        <translation type="unfinished"></translation>
+        <translation>組名</translation>
     </message>
     <message>
         <source>Group Pwd</source>
-        <translation type="unfinished"></translation>
+        <translation>組密碼</translation>
     </message>
     <message>
         <source>Use Hybrid Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>使用混合認證</translation>
     </message>
     <message>
         <source>CA File</source>
-        <translation type="unfinished"></translation>
+        <translation>CA檔案</translation>
     </message>
     <message>
         <source>VPN PPP</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN PPP</translation>
     </message>
     <message>
         <source>Use MPPE</source>
-        <translation type="unfinished"></translation>
+        <translation>使用MPPE點到點加密</translation>
     </message>
     <message>
         <source>Security</source>
-        <translation type="unfinished"></translation>
+        <translation>安全</translation>
     </message>
     <message>
         <source>All Available (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>都可用（預設）</translation>
     </message>
     <message>
         <source>40-bit (less secure)</source>
-        <translation type="unfinished"></translation>
+        <translation>40位（較安全）</translation>
     </message>
     <message>
         <source>128-bit (most secure)</source>
-        <translation type="unfinished"></translation>
+        <translation>128位（最安全）</translation>
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation type="unfinished"></translation>
+        <translation>使用帶狀態的MPPE</translation>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>拒絕EAP認證</translation>
     </message>
     <message>
         <source>Refuse PAP Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>拒絕PAP認證</translation>
     </message>
     <message>
         <source>Refuse CHAP Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>拒絕CHAP認證</translation>
     </message>
     <message>
         <source>Refuse MSCHAP Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>拒絕MSCHAP認證</translation>
     </message>
     <message>
         <source>Refuse MSCHAPv2 Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>拒絕MSCHAPv2認證</translation>
     </message>
     <message>
         <source>No BSD Data Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>無BSD資料壓縮</translation>
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>無Deflate資料壓縮</translation>
     </message>
     <message>
         <source>No TCP Header Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>無TCP頭壓縮</translation>
     </message>
     <message>
         <source>No Protocol Field Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>無協議欄位壓縮</translation>
     </message>
     <message>
         <source>No Address/Control Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>無地址/控制壓縮</translation>
     </message>
     <message>
         <source>Send PPP Echo Packets</source>
-        <translation type="unfinished"></translation>
+        <translation>傳送PPP迴響包</translation>
     </message>
     <message>
         <source>VPN IPsec</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN IPsec</translation>
     </message>
     <message>
         <source>Enable IPsec</source>
-        <translation type="unfinished"></translation>
+        <translation>啟用IPsec</translation>
     </message>
     <message>
         <source>Group ID</source>
-        <translation type="unfinished"></translation>
+        <translation>組ID</translation>
     </message>
     <message>
         <source>Phase1 Algorithms</source>
-        <translation type="unfinished"></translation>
+        <translation>金鑰交換協議</translation>
     </message>
     <message>
         <source>Phase2 Algorithms</source>
-        <translation type="unfinished"></translation>
+        <translation>安全封裝協議</translation>
     </message>
     <message>
         <source>VPN Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN高級選項</translation>
     </message>
     <message>
         <source>Customize Gateway Port</source>
-        <translation type="unfinished"></translation>
+        <translation>自定義閘道器埠</translation>
     </message>
     <message>
         <source>Gateway Port</source>
-        <translation type="unfinished"></translation>
+        <translation>閘道器埠</translation>
     </message>
     <message>
         <source>Customize Renegotiation Interval</source>
-        <translation type="unfinished"></translation>
+        <translation>自定義重新協商間隔</translation>
     </message>
     <message>
         <source>Renegotiation Interval</source>
-        <translation type="unfinished"></translation>
+        <translation>重新協商間隔</translation>
     </message>
     <message>
         <source>Use LZO Data Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>使用LZO壓縮</translation>
     </message>
     <message>
         <source>Use TCP Connection</source>
-        <translation type="unfinished"></translation>
+        <translation>使用TCP連線</translation>
     </message>
     <message>
         <source>Use TAP Device</source>
-        <translation type="unfinished"></translation>
+        <translation>使用TAP裝置</translation>
     </message>
     <message>
         <source>Customize Tunnel MTU</source>
-        <translation type="unfinished"></translation>
+        <translation>自定義最大傳輸單元(MTU)</translation>
     </message>
     <message>
         <source>MTU</source>
-        <translation type="unfinished"></translation>
+        <translation>MTU</translation>
     </message>
     <message>
         <source>Customize UDP Fragment Size</source>
-        <translation type="unfinished"></translation>
+        <translation>自定義UDP資料包段長度</translation>
     </message>
     <message>
         <source>UDP Fragment Size</source>
-        <translation type="unfinished"></translation>
+        <translation>UDP資料包段長度</translation>
     </message>
     <message>
         <source>Restrict Tunnel TCP MSS</source>
-        <translation type="unfinished"></translation>
+        <translation>限制隧道TCP最大段長度(MSS)</translation>
     </message>
     <message>
         <source>Randomize Remote Hosts</source>
-        <translation type="unfinished"></translation>
+        <translation>隨機遠端主機</translation>
     </message>
     <message>
         <source>Domain</source>
-        <translation type="unfinished"></translation>
+        <translation>域</translation>
     </message>
     <message>
         <source>Vendor</source>
-        <translation type="unfinished"></translation>
+        <translation>供應商</translation>
     </message>
     <message>
         <source>Cisco (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>思科（預設）</translation>
     </message>
     <message>
         <source>Netscreen</source>
-        <translation type="unfinished"></translation>
+        <translation>網屏</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>版本</translation>
     </message>
     <message>
         <source>Encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>加密</translation>
     </message>
     <message>
         <source>Secure (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>安全（預設）</translation>
     </message>
     <message>
         <source>Weak</source>
-        <translation type="unfinished"></translation>
+        <translation>弱</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>無</translation>
     </message>
     <message>
         <source>NAT Traversal Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>NAT遍歷</translation>
     </message>
     <message>
         <source>NAT-T When Available (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>NAT-T若可用（預設）</translation>
     </message>
     <message>
         <source>NAT-T Always</source>
-        <translation type="unfinished"></translation>
+        <translation>總是NAT-T</translation>
     </message>
     <message>
         <source>Cisco UDP</source>
-        <translation type="unfinished"></translation>
+        <translation>思科UDP</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>已停用</translation>
     </message>
     <message>
         <source>IKE DH Group</source>
-        <translation type="unfinished"></translation>
+        <translation>IKE DH 組</translation>
     </message>
     <message>
         <source>DH Group 1</source>
-        <translation type="unfinished"></translation>
+        <translation>DH Group 1</translation>
     </message>
     <message>
         <source>DH Group 2 (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>DH Group 2（預設）</translation>
     </message>
     <message>
         <source>DH Group 5</source>
-        <translation type="unfinished"></translation>
+        <translation>DH Group 5</translation>
     </message>
     <message>
         <source>Forward Secrecy</source>
-        <translation type="unfinished"></translation>
+        <translation>前向保密</translation>
     </message>
     <message>
         <source>Server (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>伺服器（預設）</translation>
     </message>
     <message>
         <source>DH Group 2</source>
-        <translation type="unfinished"></translation>
+        <translation>DH Group 2</translation>
     </message>
     <message>
         <source>Local Port</source>
-        <translation type="unfinished"></translation>
+        <translation>本地埠</translation>
     </message>
     <message>
         <source>Disable Dead Peer Detection</source>
-        <translation type="unfinished"></translation>
+        <translation>停用死端檢測</translation>
     </message>
     <message>
         <source>VPN Security</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN安全</translation>
     </message>
     <message>
         <source>Cipher</source>
-        <translation type="unfinished"></translation>
+        <translation>加密</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>預設</translation>
     </message>
     <message>
         <source>DES-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>DES-CBC</translation>
     </message>
     <message>
         <source>RC2-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>RC2-CBC</translation>
     </message>
     <message>
         <source>DES-EDE-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>DES-EDE-CBC</translation>
     </message>
     <message>
         <source>DES-EDE3-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>DES-EDE3-CBC</translation>
     </message>
     <message>
         <source>DESX-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>DESX-CBC</translation>
     </message>
     <message>
         <source>BF-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>BF-CBC</translation>
     </message>
     <message>
         <source>RC2-40-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>RC2-40-CBC</translation>
     </message>
     <message>
         <source>CAST5-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>CAST5-CBC</translation>
     </message>
     <message>
         <source>RC2-64-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>RC2-64-CBC</translation>
     </message>
     <message>
         <source>AES-128-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>AES-128-CBC</translation>
     </message>
     <message>
         <source>AES-192-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>AES-192-CBC</translation>
     </message>
     <message>
         <source>AES-256-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>AES-256-CBC</translation>
     </message>
     <message>
         <source>CAMELLIA-128-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>CAMELLIA-128-CBC</translation>
     </message>
     <message>
         <source>CAMELLIA-192-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>CAMELLIA-192-CBC</translation>
     </message>
     <message>
         <source>CAMELLIA-256-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>CAMELLIA-256-CBC</translation>
     </message>
     <message>
         <source>SEED-CBC</source>
-        <translation type="unfinished"></translation>
+        <translation>SEED-CBC</translation>
     </message>
     <message>
         <source>HMAC Auth</source>
-        <translation type="unfinished"></translation>
+        <translation>HMAC Auth</translation>
     </message>
     <message>
         <source>RSA MD-4</source>
-        <translation type="unfinished"></translation>
+        <translation>RSA MD-4</translation>
     </message>
     <message>
         <source>MD-5</source>
-        <translation type="unfinished"></translation>
+        <translation>MD-5</translation>
     </message>
     <message>
         <source>SHA-1</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA-1</translation>
     </message>
     <message>
         <source>SHA-224</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA-224</translation>
     </message>
     <message>
         <source>SHA-256</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA-256</translation>
     </message>
     <message>
         <source>SHA-384</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA-384</translation>
     </message>
     <message>
         <source>SHA-512</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA-512</translation>
     </message>
     <message>
         <source>RIPEMD-160</source>
-        <translation type="unfinished"></translation>
+        <translation>RIPEMD-160</translation>
     </message>
     <message>
         <source>VPN Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN代理</translation>
     </message>
     <message>
         <source>Proxy Type</source>
-        <translation type="unfinished"></translation>
+        <translation>代理型別</translation>
     </message>
     <message>
         <source>HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP</translation>
     </message>
     <message>
         <source>SOCKS</source>
-        <translation type="unfinished"></translation>
+        <translation>SOCKS</translation>
     </message>
     <message>
         <source>Server IP</source>
-        <translation type="unfinished"></translation>
+        <translation>伺服器地址</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished"></translation>
+        <translation>埠</translation>
     </message>
     <message>
         <source>Retry Indefinitely When Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>失敗時重試</translation>
     </message>
     <message>
         <source>VPN TLS Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN TLS 認證</translation>
     </message>
     <message>
         <source>Subject Match</source>
-        <translation type="unfinished"></translation>
+        <translation>主題匹配</translation>
     </message>
     <message>
         <source>Remote Cert Type</source>
-        <translation type="unfinished"></translation>
+        <translation>遠端證書型別</translation>
     </message>
     <message>
         <source>Client</source>
-        <translation type="unfinished"></translation>
+        <translation>客戶端</translation>
     </message>
     <message>
         <source>Server</source>
-        <translation type="unfinished"></translation>
+        <translation>伺服器</translation>
     </message>
     <message>
         <source>Key File</source>
-        <translation type="unfinished"></translation>
+        <translation>金鑰檔案</translation>
     </message>
 </context>
 <context>
     <name>SystemProxyConfigItem</name>
     <message>
         <source>Optional</source>
-        <translation type="unfinished"></translation>
+        <translation>選填</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished"></translation>
+        <translation>埠</translation>
     </message>
     <message>
         <source>Authentication is required</source>
-        <translation type="unfinished"></translation>
+        <translation>需要認證</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>使用者名稱</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"></translation>
+        <translation>必填</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>密碼</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetAirplaneModeTipsItem</name>
+    <message>
+        <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
+        <translation>若要使用無線網路功能，請先關閉 &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;飛航模式&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetManagerPrivate</name>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>IP衝突</translation>
     </message>
     <message>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>網路</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetManagerThreadPrivate</name>
     <message>
         <source>Wired Connection %1</source>
-        <translation type="unfinished"></translation>
+        <translation>有線連線 %1</translation>
     </message>
     <message>
         <source>VPN L2TP %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN L2TP %1</translation>
     </message>
     <message>
         <source>VPN PPTP %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN PPTP %1</translation>
     </message>
     <message>
         <source>VPN VPNC %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN VPNC %1</translation>
     </message>
     <message>
         <source>VPN OpenVPN %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN OpenVPN %1</translation>
     </message>
     <message>
         <source>VPN StrongSwan %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN StrongSwan %1</translation>
     </message>
     <message>
         <source>VPN OpenConnect %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN OpenConnect %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
-        <translation type="unfinished"></translation>
+        <translation>PPPoE連線 %1</translation>
     </message>
     <message>
         <source>Connecting &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>正在連線「%1」</translation>
     </message>
     <message>
         <source>&quot;%1&quot; connected</source>
-        <translation type="unfinished"></translation>
+        <translation>「%1」已連線</translation>
     </message>
     <message>
         <source>&quot;%1&quot; disconnected</source>
-        <translation type="unfinished"></translation>
+        <translation>「%1」已斷開連線</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
-        <translation type="unfinished"></translation>
+        <translation>無法連線「%1」，請檢查您的路由器或網線。</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
-        <translation type="unfinished"></translation>
+        <translation>無法連線「%1」，請靠近無線路由器</translation>
     </message>
     <message>
         <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
-        <translation type="unfinished"></translation>
+        <translation>連線失敗，無法連線「%1」，密碼錯誤</translation>
     </message>
     <message>
         <source>Password is required to connect &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>連線「%1」需要密碼</translation>
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"></translation>
+        <translation>找不到無線網路「%1」</translation>
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
-        <translation type="unfinished"></translation>
+        <translation>要連線「%1」，請在登入後設置您的身份驗證資訊</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetSystemProxyControlItem</name>
+    <message>
+        <source>System Proxy</source>
+        <translation>系統代理</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetVPNTipsItem</name>
     <message>
         <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN配置未連線或連線失敗。請&lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;前往控制中心&lt;/a&gt;進行檢查。</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWiredControlItem</name>
     <message>
         <source>Wired Network</source>
-        <translation type="unfinished"></translation>
+        <translation>有線網路</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessControlItem</name>
     <message>
         <source>Wireless Network</source>
-        <translation type="unfinished"></translation>
+        <translation>無線網路</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessHiddenItem</name>
     <message>
         <source>Connect to hidden network</source>
-        <translation type="unfinished"></translation>
+        <translation>連線到隱藏網路</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessMineItem</name>
+    <message>
+        <source>My Networks</source>
+        <translation>我的網路</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessOtherItem</name>
+    <message>
+        <source>Other Networks</source>
+        <translation>其他網路</translation>
     </message>
 </context>
 <context>
     <name>network</name>
     <message>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>網路</translation>
     </message>
 </context>
 </TS>
