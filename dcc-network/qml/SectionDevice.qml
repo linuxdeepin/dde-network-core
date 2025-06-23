@@ -180,6 +180,7 @@ DccTitleObject {
             visible: hasMTU
             pageType: DccObject.Editor
             page: D.SpinBox {
+                editable: true
                 value: root.config.hasOwnProperty("mtu") ? root.config.mtu : 0
                 onValueChanged: {
                     if (hasMTU && (!root.config.hasOwnProperty("mtu") || root.config.mtu !== value)) {

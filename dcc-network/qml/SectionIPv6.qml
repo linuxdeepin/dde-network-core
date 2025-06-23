@@ -321,6 +321,7 @@ DccObject {
                     displayName: qsTr("Prefix")
                     pageType: DccObject.Editor
                     page: D.SpinBox {
+                        editable: true
                         value: root.addressData.length > index ? root.addressData[index].prefix : 64
                         from: 0
                         to: 128

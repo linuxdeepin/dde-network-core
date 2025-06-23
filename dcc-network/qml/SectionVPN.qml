@@ -1458,6 +1458,7 @@ DccTitleObject {
             visible: root.dataMap.hasOwnProperty("port")
             pageType: DccObject.Editor
             page: D.SpinBox {
+                editable: true
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 1194
                 from: 0
                 to: 65535
@@ -1496,6 +1497,7 @@ DccTitleObject {
             visible: root.dataMap.hasOwnProperty("reneg-seconds")
             pageType: DccObject.Editor
             page: D.SpinBox {
+                editable: true
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 0
                 from: 0
                 to: 65535
@@ -1569,6 +1571,7 @@ DccTitleObject {
             visible: root.dataMap.hasOwnProperty("tunnel-mtu")
             pageType: DccObject.Editor
             page: D.SpinBox {
+                editable: true
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 1500
                 from: 0
                 to: 65535
@@ -1607,6 +1610,7 @@ DccTitleObject {
             visible: root.dataMap.hasOwnProperty("fragment-size")
             pageType: DccObject.Editor
             page: D.SpinBox {
+                editable: true
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 1300
                 from: 0
                 to: 65535
@@ -1819,6 +1823,7 @@ DccTitleObject {
             weight: 80
             pageType: DccObject.Editor
             page: D.SpinBox {
+                editable: true
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 0
                 from: 0
                 to: 65535
@@ -2048,6 +2053,7 @@ DccTitleObject {
             visible: root.dataMap["proxy-type"] !== "none"
             pageType: DccObject.Editor
             page: D.SpinBox {
+                editable: true
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 0
                 from: 0
                 to: 65535
