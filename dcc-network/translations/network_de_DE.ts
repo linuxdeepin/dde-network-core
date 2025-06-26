@@ -153,7 +153,7 @@
     </message>
     <message>
         <source>View all network configurations</source>
-        <translation>Alle Netzwerk-onfigurationen zeigen</translation>
+        <translation>Alle Netzwerk-Konfigurationen zeigen</translation>
     </message>
     <message>
         <source>Details has been copied</source>
