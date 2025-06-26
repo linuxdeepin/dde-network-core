@@ -20,7 +20,8 @@ DccObject {
     property bool isEdit: false
     property string method: "auto"
 
-    property string errorKey: ""
+    property string errorKey: "" 
+    property string errorMsg: ""
     signal editClicked
 
     function setConfig(c) {
@@ -53,20 +54,35 @@ DccObject {
     }
     function checkInput() {
         errorKey = ""
+        errorMsg = ""
         if (method === "manual") {
             for (let k in addressData) {
                 if (!NetUtils.ipRegExp.test(addressData[k][0])) {
                     errorKey = k + "address"
+                    errorMsg = qsTr("Invalid IP address")
                     return false
                 }
                 if (!NetUtils.maskRegExp.test(addressData[k][1])) {
                     errorKey = k + "prefix"
+                    errorMsg = qsTr("Invalid netmask")
                     return false
                 }
                 if (addressData[k][2].length !== 0 && !NetUtils.ipRegExp.test(addressData[k][2])) {
                     errorKey = k + "gateway"
+                    errorMsg = qsTr("Invalid gateway")
                     return false
                 }
+            }
+            let ipSet = new Set()
+            for (let k in addressData) {
+                if (!addressData[k] || !addressData[k][0]) continue;
+                let ip = addressData[k][0]
+                if (ipSet.has(ip)) {
+                    errorKey = k + "address"
+                    errorMsg = qsTr("Duplicate IP address")
+                    return false
+                }
+                ipSet.add(ip)
             }
         }
         return true
@@ -288,7 +304,7 @@ DccObject {
                         }
                         showAlert: errorKey === index + dccObj.name
                         alertDuration: 2000
-                        alertText: qsTr("Invalid IP address")
+                        alertText: errorKey === index + dccObj.name ? root.errorMsg : ""
                         onShowAlertChanged: {
                             if (showAlert) {
                                 DccApp.showPage(dccObj)
