@@ -942,174 +942,174 @@
     </message>
     <message>
         <source>User Cert</source>
-        <translation type="unfinished"/>
+        <translation>Certification utilisateur</translation>
     </message>
     <message>
         <source>PEAP Version</source>
-        <translation type="unfinished"/>
+        <translation>Version PEAP</translation>
     </message>
     <message>
         <source>Automatic</source>
-        <translation type="unfinished"/>
+        <translation>Automatique</translation>
     </message>
     <message>
         <source>Version 0</source>
-        <translation type="unfinished"/>
+        <translation>Version 0</translation>
     </message>
     <message>
         <source>Version 1</source>
-        <translation type="unfinished"/>
+        <translation>Version 1</translation>
     </message>
     <message>
         <source>Inner Auth</source>
-        <translation type="unfinished"/>
+        <translation>Authenticité interne</translation>
     </message>
 </context>
 <context>
     <name>SectionVPN</name>
     <message>
         <source>VPN</source>
-        <translation type="unfinished"/>
+        <translation>VPN</translation>
     </message>
     <message>
         <source>All files (*)</source>
-        <translation type="unfinished"/>
+        <translation>Tous les fichiers (*)</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"/>
+        <translation>Requis</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished"/>
+        <translation>Passerelle invalide</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"/>
+        <translation>Passerelle</translation>
     </message>
     <message>
         <source>CA Cert</source>
-        <translation type="unfinished"/>
+        <translation>Autorité de certification</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation type="unfinished"/>
+        <translation>Proxy</translation>
     </message>
     <message>
         <source>Allow Cisco Secure Desktop Trojan</source>
-        <translation type="unfinished"/>
+        <translation>Autoriser le cheval de Troie Cisco Secure Desktop</translation>
     </message>
     <message>
         <source>CSD Script</source>
-        <translation type="unfinished"/>
+        <translation>Script CSD</translation>
     </message>
     <message>
         <source>Auth Type</source>
-        <translation type="unfinished"/>
+        <translation>Type d&apos;authentification</translation>
     </message>
     <message>
         <source>Private Key</source>
-        <translation type="unfinished"/>
+        <translation>Clé privée</translation>
     </message>
     <message>
         <source>SSH Agent</source>
-        <translation type="unfinished"/>
+        <translation>Agent SSH</translation>
     </message>
     <message>
         <source>Smart Card</source>
-        <translation type="unfinished"/>
+        <translation>Carte à puce</translation>
     </message>
     <message>
         <source>EAP</source>
-        <translation type="unfinished"/>
+        <translation>EAP</translation>
     </message>
     <message>
         <source>Pre-Shared Key</source>
-        <translation type="unfinished"/>
+        <translation>Clé pré-partagée</translation>
     </message>
     <message>
         <source>User Cert</source>
-        <translation type="unfinished"/>
+        <translation>Certification utilisateur</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Nom d&apos;utilisateur</translation>
     </message>
     <message>
         <source>Use FSID for Key Passphrase</source>
-        <translation type="unfinished"/>
+        <translation>Utiliser FSID comme phrase secrète principale</translation>
     </message>
     <message>
         <source>Certificates (TLS)</source>
-        <translation type="unfinished"/>
+        <translation>Certificats (TLS)</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Mot de passe</translation>
     </message>
     <message>
         <source>Certificates with Password (TLS)</source>
-        <translation type="unfinished"/>
+        <translation>Certificats avec mot de passe (TLS)</translation>
     </message>
     <message>
         <source>Static Key</source>
-        <translation type="unfinished"/>
+        <translation>Clé statique</translation>
     </message>
     <message>
         <source>Pwd Options</source>
-        <translation type="unfinished"/>
+        <translation>Options du mot de passe</translation>
     </message>
     <message>
         <source>Saved</source>
-        <translation type="unfinished"/>
+        <translation>Sauvegardé</translation>
     </message>
     <message>
         <source>Ask</source>
-        <translation type="unfinished"/>
+        <translation>Demander</translation>
     </message>
     <message>
         <source>Not Required</source>
-        <translation type="unfinished"/>
+        <translation>Non requis</translation>
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation type="unfinished"/>
+        <translation>Mot de passe privé</translation>
     </message>
     <message>
         <source>Customize Key Direction</source>
-        <translation type="unfinished"/>
+        <translation>Personnaliser la clé de direction</translation>
     </message>
     <message>
         <source>Key Direction</source>
-        <translation type="unfinished"/>
+        <translation>Clé de direction</translation>
     </message>
     <message>
         <source>0</source>
-        <translation type="unfinished"/>
+        <translation>0</translation>
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished"/>
+        <translation>1</translation>
     </message>
     <message>
         <source>Remote IP</source>
-        <translation type="unfinished"/>
+        <translation>IP distante</translation>
     </message>
     <message>
         <source>Local IP</source>
-        <translation type="unfinished"/>
+        <translation>IP locale</translation>
     </message>
     <message>
         <source>NT Domain</source>
-        <translation type="unfinished"/>
+        <translation>Domaine NT</translation>
     </message>
     <message>
         <source>Request an Inner IP Address</source>
-        <translation type="unfinished"/>
+        <translation>Demander une adresse IP interne</translation>
     </message>
     <message>
         <source>Enforce UDP Encapsulation</source>
-        <translation type="unfinished"/>
+        <translation>Appliquer l&apos;encapsulation UDP</translation>
     </message>
     <message>
         <source>Use IP Compression</source>
