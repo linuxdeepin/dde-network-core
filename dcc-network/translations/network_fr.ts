@@ -1281,312 +1281,312 @@
     </message>
     <message>
         <source>UDP Fragment Size</source>
-        <translation type="unfinished"/>
+        <translation>Taille des fragments UDP</translation>
     </message>
     <message>
         <source>Restrict Tunnel TCP MSS</source>
-        <translation type="unfinished"/>
+        <translation>Restriction du tunnel TCP MSS</translation>
     </message>
     <message>
         <source>Randomize Remote Hosts</source>
-        <translation type="unfinished"/>
+        <translation>Randomiser les hôtes distants</translation>
     </message>
     <message>
         <source>Domain</source>
-        <translation type="unfinished"/>
+        <translation>Domaine</translation>
     </message>
     <message>
         <source>Vendor</source>
-        <translation type="unfinished"/>
+        <translation>Vendeur</translation>
     </message>
     <message>
         <source>Cisco (default)</source>
-        <translation type="unfinished"/>
+        <translation>Cisco (par défaut)</translation>
     </message>
     <message>
         <source>Netscreen</source>
-        <translation type="unfinished"/>
+        <translation>Netscreen</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>Version</translation>
     </message>
     <message>
         <source>Encryption</source>
-        <translation type="unfinished"/>
+        <translation>Chiffrement</translation>
     </message>
     <message>
         <source>Secure (default)</source>
-        <translation type="unfinished"/>
+        <translation>Sécurisé (par défaut)</translation>
     </message>
     <message>
         <source>Weak</source>
-        <translation type="unfinished"/>
+        <translation>Faible</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Aucun</translation>
     </message>
     <message>
         <source>NAT Traversal Mode</source>
-        <translation type="unfinished"/>
+        <translation>Mode de traversée NAT</translation>
     </message>
     <message>
         <source>NAT-T When Available (default)</source>
-        <translation type="unfinished"/>
+        <translation>NAT-T lorsque disponible (par défaut)</translation>
     </message>
     <message>
         <source>NAT-T Always</source>
-        <translation type="unfinished"/>
+        <translation>NAT-T Toujours</translation>
     </message>
     <message>
         <source>Cisco UDP</source>
-        <translation type="unfinished"/>
+        <translation>Cisco UDP</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"/>
+        <translation>Désactivé</translation>
     </message>
     <message>
         <source>IKE DH Group</source>
-        <translation type="unfinished"/>
+        <translation>Groupe IKE DH</translation>
     </message>
     <message>
         <source>DH Group 1</source>
-        <translation type="unfinished"/>
+        <translation>Groupe DH 1</translation>
     </message>
     <message>
         <source>DH Group 2 (default)</source>
-        <translation type="unfinished"/>
+        <translation>Groupe DH 2 (par défaut)</translation>
     </message>
     <message>
         <source>DH Group 5</source>
-        <translation type="unfinished"/>
+        <translation>Groupe DH 5</translation>
     </message>
     <message>
         <source>Forward Secrecy</source>
-        <translation type="unfinished"/>
+        <translation>Confidentialité persistante</translation>
     </message>
     <message>
         <source>Server (default)</source>
-        <translation type="unfinished"/>
+        <translation>Serveur (par défaut)</translation>
     </message>
     <message>
         <source>DH Group 2</source>
-        <translation type="unfinished"/>
+        <translation>Groupe DH 2</translation>
     </message>
     <message>
         <source>Local Port</source>
-        <translation type="unfinished"/>
+        <translation>Port local</translation>
     </message>
     <message>
         <source>Disable Dead Peer Detection</source>
-        <translation type="unfinished"/>
+        <translation>Désactiver la détection des pairs inactifs</translation>
     </message>
     <message>
         <source>VPN Security</source>
-        <translation type="unfinished"/>
+        <translation>Sécurité VPN</translation>
     </message>
     <message>
         <source>Cipher</source>
-        <translation type="unfinished"/>
+        <translation>Chiffrer</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Défaut</translation>
     </message>
     <message>
         <source>DES-CBC</source>
-        <translation type="unfinished"/>
+        <translation>DES-CBC</translation>
     </message>
     <message>
         <source>RC2-CBC</source>
-        <translation type="unfinished"/>
+        <translation>RC2-CBC</translation>
     </message>
     <message>
         <source>DES-EDE-CBC</source>
-        <translation type="unfinished"/>
+        <translation>DES-EDE-CBC</translation>
     </message>
     <message>
         <source>DES-EDE3-CBC</source>
-        <translation type="unfinished"/>
+        <translation>DES-EDE3-CBC</translation>
     </message>
     <message>
         <source>DESX-CBC</source>
-        <translation type="unfinished"/>
+        <translation>DESX-CBC</translation>
     </message>
     <message>
         <source>BF-CBC</source>
-        <translation type="unfinished"/>
+        <translation>BF-CBC</translation>
     </message>
     <message>
         <source>RC2-40-CBC</source>
-        <translation type="unfinished"/>
+        <translation>RC2-40-CBC</translation>
     </message>
     <message>
         <source>CAST5-CBC</source>
-        <translation type="unfinished"/>
+        <translation>CAST5-CBC</translation>
     </message>
     <message>
         <source>RC2-64-CBC</source>
-        <translation type="unfinished"/>
+        <translation>RC2-64-CBC</translation>
     </message>
     <message>
         <source>AES-128-CBC</source>
-        <translation type="unfinished"/>
+        <translation>AES-128-CBC</translation>
     </message>
     <message>
         <source>AES-192-CBC</source>
-        <translation type="unfinished"/>
+        <translation>AES-192-CBC</translation>
     </message>
     <message>
         <source>AES-256-CBC</source>
-        <translation type="unfinished"/>
+        <translation>AES-256-CBC</translation>
     </message>
     <message>
         <source>CAMELLIA-128-CBC</source>
-        <translation type="unfinished"/>
+        <translation>CAMELLIA-128-CBC</translation>
     </message>
     <message>
         <source>CAMELLIA-192-CBC</source>
-        <translation type="unfinished"/>
+        <translation>CAMELLIA-192-CBC</translation>
     </message>
     <message>
         <source>CAMELLIA-256-CBC</source>
-        <translation type="unfinished"/>
+        <translation>CAMELLIA-256-CBC</translation>
     </message>
     <message>
         <source>SEED-CBC</source>
-        <translation type="unfinished"/>
+        <translation>SEED-CBC</translation>
     </message>
     <message>
         <source>HMAC Auth</source>
-        <translation type="unfinished"/>
+        <translation>Authentification HMAC</translation>
     </message>
     <message>
         <source>RSA MD-4</source>
-        <translation type="unfinished"/>
+        <translation>RSA MD-4</translation>
     </message>
     <message>
         <source>MD-5</source>
-        <translation type="unfinished"/>
+        <translation>MD-5</translation>
     </message>
     <message>
         <source>SHA-1</source>
-        <translation type="unfinished"/>
+        <translation>SHA-1</translation>
     </message>
     <message>
         <source>SHA-224</source>
-        <translation type="unfinished"/>
+        <translation>SHA-224</translation>
     </message>
     <message>
         <source>SHA-256</source>
-        <translation type="unfinished"/>
+        <translation>SHA-256</translation>
     </message>
     <message>
         <source>SHA-384</source>
-        <translation type="unfinished"/>
+        <translation>SHA-384</translation>
     </message>
     <message>
         <source>SHA-512</source>
-        <translation type="unfinished"/>
+        <translation>SHA-512</translation>
     </message>
     <message>
         <source>RIPEMD-160</source>
-        <translation type="unfinished"/>
+        <translation>RIPEMD-160</translation>
     </message>
     <message>
         <source>VPN Proxy</source>
-        <translation type="unfinished"/>
+        <translation>Proxy VPN</translation>
     </message>
     <message>
         <source>Proxy Type</source>
-        <translation type="unfinished"/>
+        <translation>Type de proxy</translation>
     </message>
     <message>
         <source>HTTP</source>
-        <translation type="unfinished"/>
+        <translation>HTTP</translation>
     </message>
     <message>
         <source>SOCKS</source>
-        <translation type="unfinished"/>
+        <translation>SOCKS</translation>
     </message>
     <message>
         <source>Server IP</source>
-        <translation type="unfinished"/>
+        <translation>IP du serveur</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished"/>
+        <translation>Port</translation>
     </message>
     <message>
         <source>Retry Indefinitely When Failed</source>
-        <translation type="unfinished"/>
+        <translation>Réessayer indéfiniment en cas d&apos;échec</translation>
     </message>
     <message>
         <source>VPN TLS Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Authentification VPN TLS</translation>
     </message>
     <message>
         <source>Subject Match</source>
-        <translation type="unfinished"/>
+        <translation>Correspondance des sujets</translation>
     </message>
     <message>
         <source>Remote Cert Type</source>
-        <translation type="unfinished"/>
+        <translation>Type de certificat distant</translation>
     </message>
     <message>
         <source>Client</source>
-        <translation type="unfinished"/>
+        <translation>Client</translation>
     </message>
     <message>
         <source>Server</source>
-        <translation type="unfinished"/>
+        <translation>Serveur</translation>
     </message>
     <message>
         <source>Key File</source>
-        <translation type="unfinished"/>
+        <translation>Fichier clé</translation>
     </message>
 </context>
 <context>
     <name>SystemProxyConfigItem</name>
     <message>
         <source>Optional</source>
-        <translation type="unfinished"/>
+        <translation>Facultatif</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished"/>
+        <translation>Port</translation>
     </message>
     <message>
         <source>Authentication is required</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;authentification est requise.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Nom d&apos;utilisateur</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"/>
+        <translation>Requis</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Mot de passe</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetAirplaneModeTipsItem</name>
     <message>
         <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation type="unfinished"/>
+        <translation>Désactivez d&apos;abord le &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Mode avion&lt;/a&gt; si vous souhaitez vous connecter à un réseau sans fil.</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetManagerPrivate</name>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"/>
+        <translation>Conflit d&apos;adresses IP</translation>
     </message>
     <message>
         <source>Network</source>
@@ -1597,127 +1597,127 @@
     <name>dde::network::NetManagerThreadPrivate</name>
     <message>
         <source>Wired Connection %1</source>
-        <translation type="unfinished"/>
+        <translation>Connexion filaire %1</translation>
     </message>
     <message>
         <source>VPN L2TP %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN L2TP %1</translation>
     </message>
     <message>
         <source>VPN PPTP %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN PPTP %1</translation>
     </message>
     <message>
         <source>VPN VPNC %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN VPNC %1</translation>
     </message>
     <message>
         <source>VPN OpenVPN %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN OpenVPN %1</translation>
     </message>
     <message>
         <source>VPN StrongSwan %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN StrongSwan %1</translation>
     </message>
     <message>
         <source>VPN OpenConnect %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN OpenConnect %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
-        <translation type="unfinished"/>
+        <translation>Connexion PPPoE %1</translation>
     </message>
     <message>
         <source>Connecting &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Connexion à &quot;%1&quot;</translation>
     </message>
     <message>
         <source>&quot;%1&quot; connected</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; connecté</translation>
     </message>
     <message>
         <source>&quot;%1&quot; disconnected</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; déconnecté</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
-        <translation type="unfinished"/>
+        <translation>Impossible de se connecter à &quot;%1&quot;, veuillez vérifier votre routeur ou votre câble réseau.</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
-        <translation type="unfinished"/>
+        <translation>Impossible de se connecter à &quot;%1&quot;, veuillez vous rapprocher du routeur sans fil.</translation>
     </message>
     <message>
         <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
-        <translation type="unfinished"/>
+        <translation>Échec de la connexion, impossible de se connecter à &quot;%1&quot;, mot de passe incorrect.</translation>
     </message>
     <message>
         <source>Password is required to connect &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Un mot de passe est nécessaire pour se connecter à &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"/>
+        <translation>Le réseau WIFI 802.11 &quot;%1&quot; est introuvable.</translation>
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
-        <translation type="unfinished"/>
+        <translation>Pour vous connecter à &quot;%1&quot;, veuillez configurer vos informations d&apos;authentification après vous être connecté.</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetSystemProxyControlItem</name>
     <message>
         <source>System Proxy</source>
-        <translation type="unfinished"/>
+        <translation>Proxy système</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetVPNTipsItem</name>
     <message>
         <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
-        <translation type="unfinished"/>
+        <translation>La configuration VPN n&apos;est pas connectée ou n&apos;a pas pu se connecter. Veuillez vous &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;rendre au centre de contrôle&lt;/a&gt; pour vérification.</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWiredControlItem</name>
     <message>
         <source>Wired Network</source>
-        <translation type="unfinished"/>
+        <translation>Réseau filaire</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessControlItem</name>
     <message>
         <source>Wireless Network</source>
-        <translation type="unfinished"/>
+        <translation>Réseau sans fil</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessHiddenItem</name>
     <message>
         <source>Connect to hidden network</source>
-        <translation type="unfinished"/>
+        <translation>Se connecter à un réseau masqué</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessMineItem</name>
     <message>
         <source>My Networks</source>
-        <translation type="unfinished"/>
+        <translation>Mes réseaux</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessOtherItem</name>
     <message>
         <source>Other Networks</source>
-        <translation type="unfinished"/>
+        <translation>Autres réseaux</translation>
     </message>
 </context>
 <context>
     <name>network</name>
     <message>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Réseau</translation>
     </message>
 </context>
 </TS>
