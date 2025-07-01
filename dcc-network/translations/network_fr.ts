@@ -1113,171 +1113,171 @@
     </message>
     <message>
         <source>Use IP Compression</source>
-        <translation type="unfinished"/>
+        <translation>Utiliser la compression IP</translation>
     </message>
     <message>
         <source>Enable Custom Cipher Proposals</source>
-        <translation type="unfinished"/>
+        <translation>Activer les propositions de chiffrement personnalisées</translation>
     </message>
     <message>
         <source>IKE</source>
-        <translation type="unfinished"/>
+        <translation>IKE</translation>
     </message>
     <message>
         <source>ESP</source>
-        <translation type="unfinished"/>
+        <translation>ESP</translation>
     </message>
     <message>
         <source>Group Name</source>
-        <translation type="unfinished"/>
+        <translation>Nom du groupe</translation>
     </message>
     <message>
         <source>Group Pwd</source>
-        <translation type="unfinished"/>
+        <translation>Mot de passe du groupe</translation>
     </message>
     <message>
         <source>Use Hybrid Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Utiliser l&apos;authentification hybride</translation>
     </message>
     <message>
         <source>CA File</source>
-        <translation type="unfinished"/>
+        <translation>Fichier CA</translation>
     </message>
     <message>
         <source>VPN PPP</source>
-        <translation type="unfinished"/>
+        <translation>VPN PPP</translation>
     </message>
     <message>
         <source>Use MPPE</source>
-        <translation type="unfinished"/>
+        <translation>Utiliser MPPE</translation>
     </message>
     <message>
         <source>Security</source>
-        <translation type="unfinished"/>
+        <translation>Sécurité</translation>
     </message>
     <message>
         <source>All Available (default)</source>
-        <translation type="unfinished"/>
+        <translation>Tous disponibles (par défaut)</translation>
     </message>
     <message>
         <source>40-bit (less secure)</source>
-        <translation type="unfinished"/>
+        <translation>40 bits (moins sécurisé)</translation>
     </message>
     <message>
         <source>128-bit (most secure)</source>
-        <translation type="unfinished"/>
+        <translation>128 bits (plus sécurisé)</translation>
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation type="unfinished"/>
+        <translation>MPPE étatique</translation>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Refuser l&apos;authentification EAP</translation>
     </message>
     <message>
         <source>Refuse PAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Refuser l&apos;authentification PAP</translation>
     </message>
     <message>
         <source>Refuse CHAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Refuser l&apos;authentification CHAP</translation>
     </message>
     <message>
         <source>Refuse MSCHAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Refuser l&apos;authentification MSCHAP</translation>
     </message>
     <message>
         <source>Refuse MSCHAPv2 Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Refuser l&apos;authentification MSCHAPv2</translation>
     </message>
     <message>
         <source>No BSD Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>Pas de compression des données BSD</translation>
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>Pas de compression de données Deflate</translation>
     </message>
     <message>
         <source>No TCP Header Compression</source>
-        <translation type="unfinished"/>
+        <translation>Pas de compression d&apos;en-tête TCP</translation>
     </message>
     <message>
         <source>No Protocol Field Compression</source>
-        <translation type="unfinished"/>
+        <translation>Pas de compression du champ de protocole</translation>
     </message>
     <message>
         <source>No Address/Control Compression</source>
-        <translation type="unfinished"/>
+        <translation>Pas de compression d&apos;adresse/contrôle</translation>
     </message>
     <message>
         <source>Send PPP Echo Packets</source>
-        <translation type="unfinished"/>
+        <translation>Envoyer des paquets d&apos;écho PPP</translation>
     </message>
     <message>
         <source>VPN IPsec</source>
-        <translation type="unfinished"/>
+        <translation>VPN IPsec</translation>
     </message>
     <message>
         <source>Enable IPsec</source>
-        <translation type="unfinished"/>
+        <translation>Activer IPsec</translation>
     </message>
     <message>
         <source>Group ID</source>
-        <translation type="unfinished"/>
+        <translation>Identifiant du groupe</translation>
     </message>
     <message>
         <source>Phase1 Algorithms</source>
-        <translation type="unfinished"/>
+        <translation>Algorithmes de phase 1</translation>
     </message>
     <message>
         <source>Phase2 Algorithms</source>
-        <translation type="unfinished"/>
+        <translation>Algorithmes de phase 2</translation>
     </message>
     <message>
         <source>VPN Advanced</source>
-        <translation type="unfinished"/>
+        <translation>VPN avancé</translation>
     </message>
     <message>
         <source>Customize Gateway Port</source>
-        <translation type="unfinished"/>
+        <translation>Personnaliser le port de passerelle</translation>
     </message>
     <message>
         <source>Gateway Port</source>
-        <translation type="unfinished"/>
+        <translation>Port de passerelle</translation>
     </message>
     <message>
         <source>Customize Renegotiation Interval</source>
-        <translation type="unfinished"/>
+        <translation>Personnaliser l&apos;intervalle de renégociation</translation>
     </message>
     <message>
         <source>Renegotiation Interval</source>
-        <translation type="unfinished"/>
+        <translation>Intervalle de renégociation</translation>
     </message>
     <message>
         <source>Use LZO Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>Utiliser la compression de données LZO</translation>
     </message>
     <message>
         <source>Use TCP Connection</source>
-        <translation type="unfinished"/>
+        <translation>Utiliser une connexion TCP</translation>
     </message>
     <message>
         <source>Use TAP Device</source>
-        <translation type="unfinished"/>
+        <translation>Utiliser un périphérique TAP</translation>
     </message>
     <message>
         <source>Customize Tunnel MTU</source>
-        <translation type="unfinished"/>
+        <translation>Personnaliser le tunnel MTU</translation>
     </message>
     <message>
         <source>MTU</source>
-        <translation type="unfinished"/>
+        <translation>MTU</translation>
     </message>
     <message>
         <source>Customize UDP Fragment Size</source>
-        <translation type="unfinished"/>
+        <translation>Personnaliser la taille des fragments UDP</translation>
     </message>
     <message>
         <source>UDP Fragment Size</source>
