@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="zh_TW">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_TW">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -50,15 +48,15 @@
     </message>
     <message>
         <source>socks4</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>socks5</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>IP Address</source>
-        <translation>IP 地址</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Required</source>
@@ -105,7 +103,7 @@
     <name>PageDSL</name>
     <message>
         <source>DSL</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Set up a dial-up network connection</source>
@@ -127,6 +125,10 @@
 <context>
     <name>PageDSLSettings</name>
     <message>
+        <source> Network Properties</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Delete</source>
         <translation>您確定要刪除當前配置嗎？</translation>
     </message>
@@ -141,10 +143,6 @@
     <message>
         <source>Save</source>
         <translation>取 消</translation>
-    </message>
-    <message>
-        <source> Network Properties</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -190,11 +188,11 @@
     </message>
     <message>
         <source>2.4 GHz</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>5 GHz</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Auto</source>
@@ -268,6 +266,10 @@
 <context>
     <name>PageSettings</name>
     <message>
+        <source> Network Properties</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Delete</source>
         <translation>您確定要刪除當前配置嗎？</translation>
     </message>
@@ -282,10 +284,6 @@
     <message>
         <source>Save</source>
         <translation>取 消</translation>
-    </message>
-    <message>
-        <source> Network Properties</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -351,7 +349,7 @@
     <name>PageVPN</name>
     <message>
         <source>VPN</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connect, add, import</source>
@@ -379,7 +377,7 @@
     </message>
     <message>
         <source>Import Error</source>
-        <translation>匯入錯誤</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>File error</source>
@@ -393,6 +391,10 @@
 <context>
     <name>PageVPNSettings</name>
     <message>
+        <source> Network Properties</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>VPN Type</source>
         <translation>網路屬性</translation>
     </message>
@@ -402,23 +404,23 @@
     </message>
     <message>
         <source>PPTP</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>OpenVPN</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>OpenConnect</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>StrongSwan</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>VPNC</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Delete</source>
@@ -426,7 +428,7 @@
     </message>
     <message>
         <source>Are you sure you want to delete this configuration?</source>
-        <translation>您確定要刪除當前配置嗎？</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Cancel</source>
@@ -442,11 +444,7 @@
     </message>
     <message>
         <source>Save</source>
-        <translation>保 存</translation>
-    </message>
-    <message>
-        <source> Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -487,7 +485,7 @@
         <translation>斷開</translation>
     </message>
     <message>
-        <source>My&#xa0;Networks</source>
+        <source>My Networks</source>
         <translation>連線</translation>
     </message>
     <message>
@@ -515,7 +513,7 @@
     <name>SectionDNS</name>
     <message>
         <source>DNS</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Done</source>
@@ -538,7 +536,7 @@
     </message>
     <message>
         <source>WLAN</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ethernet</source>
@@ -558,7 +556,7 @@
     </message>
     <message>
         <source>MTU</source>
-        <translation type="unfinished">MTU</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Band</source>
@@ -570,11 +568,11 @@
     </message>
     <message>
         <source>2.4 GHz</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>5 GHz</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -604,7 +602,7 @@
     <name>SectionIPv4</name>
     <message>
         <source>IPv4</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Done</source>
@@ -652,15 +650,15 @@
     </message>
     <message>
         <source>Invalid netmask</source>
-        <translation>無效的子網掩碼</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation>無效的閘道器地址</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Duplicate IP address</source>
-        <translation>重複的IP位址</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -683,7 +681,7 @@
     </message>
     <message>
         <source>IPv6</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Done</source>
@@ -719,22 +717,22 @@
     </message>
     <message>
         <source>Invalid netmask</source>
-        <translation>無效的子網掩碼</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Duplicate IP address</source>
-        <translation>無效的閘道器地址</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation>重複的IP位址</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>SectionPPP</name>
     <message>
         <source>PPP</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use MPPE</source>
@@ -816,15 +814,15 @@
     </message>
     <message>
         <source>TLS</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>MD5</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>FAST</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Tunneled TLS</source>
@@ -840,15 +838,15 @@
     </message>
     <message>
         <source>GTC</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>MSCHAPV2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>PAP</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>MSCHAP</source>
@@ -995,7 +993,7 @@
     <name>SectionVPN</name>
     <message>
         <source>VPN</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>All files (*)</source>
