@@ -1,3 +1,12 @@
+dde-network-core (2.0.61) unstable; urgency=medium
+
+  * fix: fix safe build with debian/rules.
+  * fix: SpinBox supports keyboard input
+  * fix: Duplicate IP addresses do not prompt error messages
+  * i18n: Updates for project Deepin Desktop Environment (#362)
+
+ -- WuJiangYu <wujiangyu@uniontech.com>  Thu, 03 Jul 2025 16:33:19 +0800
+
 dde-network-core (2.0.60) unstable; urgency=medium
 
   * chore: remove reginal variants for es language
