@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="es">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="es">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -487,8 +485,8 @@
         <translation>Conectar</translation>
     </message>
     <message>
-        <source>My&#xa0;Networks</source>
-        <translation>Mis&#xa0;redes</translation>
+        <source>My Networks</source>
+        <translation>Mis redes</translation>
     </message>
     <message>
         <source>Other Networks</source>
@@ -652,15 +650,15 @@
     </message>
     <message>
         <source>Invalid netmask</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished">Puerta de enlace inválida</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Duplicate IP address</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -719,15 +717,15 @@
     </message>
     <message>
         <source>Invalid netmask</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Duplicate IP address</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished">Puerta de enlace inválida</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1683,7 +1681,7 @@
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation>No se puede encontrar la red WLAN 802.11 &quot;%1&quot;&#xa0;</translation>
+        <translation>No se puede encontrar la red WLAN 802.11 &quot;%1&quot; </translation>
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
