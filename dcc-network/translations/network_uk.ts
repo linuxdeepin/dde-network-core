@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="uk">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="uk">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -487,7 +485,7 @@
         <translation>З&apos;єднатися</translation>
     </message>
     <message>
-        <source>My&#xa0;Networks</source>
+        <source>My Networks</source>
         <translation>Ваші мережі</translation>
     </message>
     <message>
@@ -652,15 +650,15 @@
     </message>
     <message>
         <source>Invalid netmask</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished">Некоректний шлюз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Duplicate IP address</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -719,15 +717,15 @@
     </message>
     <message>
         <source>Invalid netmask</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Duplicate IP address</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished">Некоректний шлюз</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
