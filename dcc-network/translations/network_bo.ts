@@ -650,6 +650,18 @@
         <source>Gateway</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Invalid netmask</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid gateway</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duplicate IP address</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SectionIPv6</name>
@@ -703,6 +715,18 @@
     </message>
     <message>
         <source>Gateway</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid netmask</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duplicate IP address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid gateway</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1578,6 +1602,13 @@
     </message>
 </context>
 <context>
+    <name>dde::network::NetAirplaneModeTipsItem</name>
+    <message>
+        <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>dde::network::NetManagerPrivate</name>
     <message>
         <source>IP conflict</source>
@@ -1660,6 +1691,13 @@
     </message>
 </context>
 <context>
+    <name>dde::network::NetSystemProxyControlItem</name>
+    <message>
+        <source>System Proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>dde::network::NetVPNTipsItem</name>
     <message>
         <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
@@ -1684,6 +1722,20 @@
     <name>dde::network::NetWirelessHiddenItem</name>
     <message>
         <source>Connect to hidden network</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessMineItem</name>
+    <message>
+        <source>My Networks</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessOtherItem</name>
+    <message>
+        <source>Other Networks</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

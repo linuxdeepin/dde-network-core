@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ja">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ja">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -485,8 +487,8 @@
         <translation>接続</translation>
     </message>
     <message>
-        <source>My Networks</source>
-        <translation>マイ ネットワーク</translation>
+        <source>My&#xa0;Networks</source>
+        <translation>マイ&#xa0;ネットワーク</translation>
     </message>
     <message>
         <source>Other Networks</source>
@@ -648,6 +650,18 @@
         <source>Gateway</source>
         <translation>ゲートウェイ</translation>
     </message>
+    <message>
+        <source>Invalid netmask</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid gateway</source>
+        <translation type="unfinished">無効なゲートウェイです</translation>
+    </message>
+    <message>
+        <source>Duplicate IP address</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SectionIPv6</name>
@@ -702,6 +716,18 @@
     <message>
         <source>Gateway</source>
         <translation>ゲートウェイ</translation>
+    </message>
+    <message>
+        <source>Invalid netmask</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duplicate IP address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid gateway</source>
+        <translation type="unfinished">無効なゲートウェイです</translation>
     </message>
 </context>
 <context>

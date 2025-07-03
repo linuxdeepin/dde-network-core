@@ -650,6 +650,18 @@
         <source>Gateway</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Invalid netmask</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid gateway</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duplicate IP address</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SectionIPv6</name>
@@ -703,6 +715,18 @@
     </message>
     <message>
         <source>Gateway</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid netmask</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duplicate IP address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid gateway</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

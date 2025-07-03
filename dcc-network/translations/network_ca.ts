@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ca">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ca">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -485,7 +487,7 @@
         <translation>Connecta</translation>
     </message>
     <message>
-        <source>My Networks</source>
+        <source>My&#xa0;Networks</source>
         <translation>Les meves xarxes</translation>
     </message>
     <message>
@@ -648,6 +650,18 @@
         <source>Gateway</source>
         <translation>Passarel·la</translation>
     </message>
+    <message>
+        <source>Invalid netmask</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid gateway</source>
+        <translation type="unfinished">Passarel·la no vàlida</translation>
+    </message>
+    <message>
+        <source>Duplicate IP address</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SectionIPv6</name>
@@ -702,6 +716,18 @@
     <message>
         <source>Gateway</source>
         <translation>Passarel·la</translation>
+    </message>
+    <message>
+        <source>Invalid netmask</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duplicate IP address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid gateway</source>
+        <translation type="unfinished">Passarel·la no vàlida</translation>
     </message>
 </context>
 <context>
