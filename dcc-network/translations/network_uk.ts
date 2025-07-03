@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="uk">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="uk">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -485,7 +487,7 @@
         <translation>З&apos;єднатися</translation>
     </message>
     <message>
-        <source>My Networks</source>
+        <source>My&#xa0;Networks</source>
         <translation>Ваші мережі</translation>
     </message>
     <message>
@@ -648,6 +650,18 @@
         <source>Gateway</source>
         <translation>Шлюз</translation>
     </message>
+    <message>
+        <source>Invalid netmask</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid gateway</source>
+        <translation type="unfinished">Некоректний шлюз</translation>
+    </message>
+    <message>
+        <source>Duplicate IP address</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SectionIPv6</name>
@@ -702,6 +716,18 @@
     <message>
         <source>Gateway</source>
         <translation>Шлюз</translation>
+    </message>
+    <message>
+        <source>Invalid netmask</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duplicate IP address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid gateway</source>
+        <translation type="unfinished">Некоректний шлюз</translation>
     </message>
 </context>
 <context>
