@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ca">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ca">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -487,7 +485,7 @@
         <translation>Connecta</translation>
     </message>
     <message>
-        <source>My&#xa0;Networks</source>
+        <source>My Networks</source>
         <translation>Les meves xarxes</translation>
     </message>
     <message>
@@ -652,15 +650,15 @@
     </message>
     <message>
         <source>Invalid netmask</source>
-        <translation type="unfinished"></translation>
+        <translation>Màscara de xarxa no vàlida</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished">Passarel·la no vàlida</translation>
+        <translation>Passarel·la no vàlida</translation>
     </message>
     <message>
         <source>Duplicate IP address</source>
-        <translation type="unfinished"></translation>
+        <translation>Adreça IP duplicada</translation>
     </message>
 </context>
 <context>
@@ -719,15 +717,15 @@
     </message>
     <message>
         <source>Invalid netmask</source>
-        <translation type="unfinished"></translation>
+        <translation>Màscara de xarxa no vàlida</translation>
     </message>
     <message>
         <source>Duplicate IP address</source>
-        <translation type="unfinished"></translation>
+        <translation>Adreça IP duplicada</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished">Passarel·la no vàlida</translation>
+        <translation>Passarel·la no vàlida</translation>
     </message>
 </context>
 <context>
