@@ -23,11 +23,11 @@
     </message>
     <message>
         <source>Stop wireless communication</source>
-        <translation>打開飛行模式將關閉無線網絡、個人熱點和藍牙功能</translation>
+        <translation>停止無線通信</translation>
     </message>
     <message>
         <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
-        <translation>停止無線通信</translation>
+        <translation>打開飛行模式將關閉無線網絡、個人熱點和藍牙功能</translation>
     </message>
 </context>
 <context>
@@ -38,15 +38,15 @@
     </message>
     <message>
         <source>Set up proxy servers</source>
-        <translation>保 存</translation>
-    </message>
-    <message>
-        <source>Proxy Type</source>
         <translation>設置代理伺服器</translation>
     </message>
     <message>
-        <source>http</source>
+        <source>Proxy Type</source>
         <translation>代理類型</translation>
+    </message>
+    <message>
+        <source>http</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>socks4</source>
@@ -62,43 +62,43 @@
     </message>
     <message>
         <source>Required</source>
-        <translation>IP 地址</translation>
-    </message>
-    <message>
-        <source>Invalid IP address</source>
         <translation>必填</translation>
     </message>
     <message>
-        <source>Port</source>
+        <source>Invalid IP address</source>
         <translation>無效的IP位址</translation>
     </message>
     <message>
-        <source>Invalid port</source>
+        <source>Port</source>
         <translation>端口</translation>
     </message>
     <message>
-        <source>Username</source>
+        <source>Invalid port</source>
         <translation>無效的端口</translation>
     </message>
     <message>
-        <source>Optional</source>
+        <source>Username</source>
         <translation>用户名</translation>
     </message>
     <message>
-        <source>Password</source>
+        <source>Optional</source>
         <translation>選填</translation>
     </message>
     <message>
-        <source>Check &quot;Use a proxy&quot; in application context menu in Launcher after configured</source>
+        <source>Password</source>
         <translation>密碼</translation>
     </message>
     <message>
-        <source>Cancel</source>
+        <source>Check &quot;Use a proxy&quot; in application context menu in Launcher after configured</source>
         <translation>配置好代理後，可在啓動器的應用右鍵菜單查看「使用代理」選項，勾選後即可使用代理</translation>
     </message>
     <message>
-        <source>Save</source>
+        <source>Cancel</source>
         <translation>取 消</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>保 存</translation>
     </message>
 </context>
 <context>
@@ -109,42 +109,42 @@
     </message>
     <message>
         <source>Set up a dial-up network connection</source>
-        <translation>添加PPPoE連接</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
         <translation>設置撥號網絡連接</translation>
     </message>
     <message>
-        <source>Connect</source>
+        <source>Disconnect</source>
         <translation>斷開</translation>
     </message>
     <message>
-        <source>Add PPPoE connection</source>
+        <source>Connect</source>
         <translation>連接</translation>
+    </message>
+    <message>
+        <source>Add PPPoE connection</source>
+        <translation>添加PPPoE連接</translation>
     </message>
 </context>
 <context>
     <name>PageDSLSettings</name>
     <message>
-        <source>Delete</source>
-        <translation>您確定要刪除當前配置嗎？</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete this configuration?</source>
+        <source> Network Properties</source>
         <translation>網絡屬性</translation>
     </message>
     <message>
-        <source>Cancel</source>
+        <source>Delete</source>
         <translation>刪除</translation>
     </message>
     <message>
-        <source>Save</source>
+        <source>Are you sure you want to delete this configuration?</source>
+        <translation>您確定要刪除當前配置嗎？</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
         <translation>取 消</translation>
     </message>
     <message>
-        <source> Network Properties</source>
-        <translation type="unfinished"></translation>
+        <source>Save</source>
+        <translation>保 存</translation>
     </message>
 </context>
 <context>
@@ -155,23 +155,23 @@
     </message>
     <message>
         <source>View all network configurations</source>
-        <translation>網絡檢測</translation>
-    </message>
-    <message>
-        <source>Details has been copied</source>
-        <translation>全選</translation>
-    </message>
-    <message>
-        <source>Copy</source>
         <translation>查看所有網絡配置</translation>
     </message>
     <message>
-        <source>Select All</source>
+        <source>Details has been copied</source>
         <translation>信息已複製</translation>
     </message>
     <message>
-        <source>Network Detection</source>
+        <source>Copy</source>
         <translation>複製</translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation>全選</translation>
+    </message>
+    <message>
+        <source>Network Detection</source>
+        <translation>網絡檢測</translation>
     </message>
 </context>
 <context>
@@ -210,82 +210,82 @@
     </message>
     <message>
         <source>Share the network</source>
-        <translation>若要使用個人熱點功能，請先退出&lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;飛行模式&lt;/a&gt;，再啓用無線網卡。</translation>
-    </message>
-    <message>
-        <source>My Hotspot</source>
         <translation>共享網絡</translation>
     </message>
     <message>
-        <source>Edit My Hotspot</source>
+        <source>My Hotspot</source>
         <translation>我的熱點</translation>
     </message>
     <message>
-        <source>Name (SSID)</source>
+        <source>Edit My Hotspot</source>
         <translation>編輯我的熱點</translation>
     </message>
     <message>
-        <source>Required</source>
+        <source>Name (SSID)</source>
         <translation>名稱（SSID）</translation>
     </message>
     <message>
-        <source>Security</source>
+        <source>Required</source>
         <translation>必填</translation>
     </message>
     <message>
-        <source>Password</source>
+        <source>Security</source>
         <translation>安全</translation>
     </message>
     <message>
-        <source>Band</source>
+        <source>Password</source>
         <translation>密碼</translation>
     </message>
     <message>
-        <source>Cancel</source>
+        <source>Band</source>
         <translation>頻段</translation>
     </message>
     <message>
-        <source>Save</source>
+        <source>Cancel</source>
         <translation>取 消</translation>
     </message>
     <message>
-        <source>Shared Settings</source>
+        <source>Save</source>
         <translation>保 存</translation>
     </message>
     <message>
-        <source>Hotspot Sharing Device</source>
+        <source>Shared Settings</source>
         <translation>共享設置</translation>
     </message>
     <message>
-        <source>If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.</source>
+        <source>Hotspot Sharing Device</source>
         <translation>共享熱點的網卡設備</translation>
     </message>
     <message>
-        <source>If you want to use the personal hotspot, disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first and then enable the wireless network adapter.</source>
+        <source>If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.</source>
         <translation>若要使用個人熱點功能，請先退出飛行模式，再啓用無線網卡。</translation>
+    </message>
+    <message>
+        <source>If you want to use the personal hotspot, disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first and then enable the wireless network adapter.</source>
+        <translation>若要使用個人熱點功能，請先退出&lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;飛行模式&lt;/a&gt;，再啓用無線網卡。</translation>
     </message>
 </context>
 <context>
     <name>PageSettings</name>
     <message>
-        <source>Delete</source>
-        <translation>您確定要刪除當前配置嗎？</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete this configuration?</source>
+        <source> Network Properties</source>
         <translation>網絡屬性</translation>
     </message>
     <message>
-        <source>Cancel</source>
+        <source>Delete</source>
         <translation>刪除</translation>
     </message>
     <message>
-        <source>Save</source>
+        <source>Are you sure you want to delete this configuration?</source>
+        <translation>您確定要刪除當前配置嗎？</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
         <translation>取 消</translation>
     </message>
     <message>
-        <source> Network Properties</source>
-        <translation type="unfinished"></translation>
+        <source>Save</source>
+        <translation>保 存</translation>
     </message>
 </context>
 <context>
@@ -296,55 +296,55 @@
     </message>
     <message>
         <source>Set up proxy servers</source>
-        <translation>取 消</translation>
-    </message>
-    <message>
-        <source>Proxy Type</source>
         <translation>設置代理伺服器</translation>
     </message>
     <message>
-        <source>Auto</source>
+        <source>Proxy Type</source>
         <translation>代理類型</translation>
     </message>
     <message>
-        <source>Manual</source>
+        <source>Auto</source>
         <translation>自動</translation>
     </message>
     <message>
-        <source>Configuration URL</source>
+        <source>Manual</source>
         <translation>手動</translation>
     </message>
     <message>
-        <source>Required</source>
-        <translation>保 存</translation>
-    </message>
-    <message>
-        <source>HTTP Proxy</source>
+        <source>Configuration URL</source>
         <translation>配置URL</translation>
     </message>
     <message>
-        <source>HTTPS Proxy</source>
+        <source>Required</source>
         <translation>必填</translation>
     </message>
     <message>
-        <source>FTP Proxy</source>
+        <source>HTTP Proxy</source>
         <translation>HTTP代理</translation>
     </message>
     <message>
-        <source>SOCKS Proxy</source>
+        <source>HTTPS Proxy</source>
         <translation>HTTPS代理</translation>
     </message>
     <message>
-        <source>Ignore the proxy configurations for the above hosts and domains</source>
+        <source>FTP Proxy</source>
         <translation>FTP代理</translation>
     </message>
     <message>
-        <source>Cancel</source>
+        <source>SOCKS Proxy</source>
         <translation>SOCKS代理</translation>
     </message>
     <message>
-        <source>Save</source>
+        <source>Ignore the proxy configurations for the above hosts and domains</source>
         <translation>忽略以上主機和域的代理配置</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取 消</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>保 存</translation>
     </message>
 </context>
 <context>
@@ -355,27 +355,27 @@
     </message>
     <message>
         <source>Connect, add, import</source>
-        <translation>確定</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
         <translation>連接、添加、導入</translation>
     </message>
     <message>
-        <source>Connect</source>
+        <source>Disconnect</source>
         <translation>斷開</translation>
     </message>
     <message>
-        <source>Add VPN</source>
+        <source>Connect</source>
         <translation>連接</translation>
     </message>
     <message>
-        <source>Import VPN</source>
+        <source>Add VPN</source>
         <translation>添加VPN</translation>
     </message>
     <message>
-        <source>*.conf</source>
+        <source>Import VPN</source>
         <translation>導入VPN</translation>
+    </message>
+    <message>
+        <source>*.conf</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Import Error</source>
@@ -383,22 +383,26 @@
     </message>
     <message>
         <source>File error</source>
-        <translation>導入錯誤</translation>
+        <translation>導入文件錯誤</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation>導入文件錯誤</translation>
+        <translation>確定</translation>
     </message>
 </context>
 <context>
     <name>PageVPNSettings</name>
     <message>
-        <source>VPN Type</source>
+        <source> Network Properties</source>
         <translation>網絡屬性</translation>
     </message>
     <message>
-        <source>L2TP</source>
+        <source>VPN Type</source>
         <translation>VPN類型</translation>
+    </message>
+    <message>
+        <source>L2TP</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>PPTP</source>
@@ -422,7 +426,7 @@
     </message>
     <message>
         <source>Delete</source>
-        <translation>您確定要刪除當前配置嗎？</translation>
+        <translation>刪除</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this configuration?</source>
@@ -430,85 +434,81 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation>刪除</translation>
-    </message>
-    <message>
-        <source>Export</source>
         <translation>取 消</translation>
     </message>
     <message>
-        <source>*.conf</source>
+        <source>Export</source>
         <translation>導 出</translation>
+    </message>
+    <message>
+        <source>*.conf</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Save</source>
         <translation>保 存</translation>
-    </message>
-    <message>
-        <source> Network Properties</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PageWiredDevice</name>
     <message>
         <source>Connect, edit network settings</source>
-        <translation>添加網絡設置</translation>
-    </message>
-    <message>
-        <source>Plug in the network cable first</source>
-        <translation>連接</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
         <translation>連接、編輯網絡設置</translation>
     </message>
     <message>
-        <source>Connect</source>
+        <source>Plug in the network cable first</source>
         <translation>請您先插入網線！</translation>
     </message>
     <message>
-        <source>Add Network Connection</source>
+        <source>Disconnect</source>
         <translation>斷開</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <translation>連接</translation>
+    </message>
+    <message>
+        <source>Add Network Connection</source>
+        <translation>添加網絡設置</translation>
     </message>
 </context>
 <context>
     <name>PageWirelessDevice</name>
     <message>
         <source>Connect, edit network settings</source>
-        <translation>若要連接並使用無線網絡功能，請先&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;關閉熱點分享&lt;/a&gt;</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
         <translation>連接、編輯網絡設置</translation>
     </message>
     <message>
-        <source>Connect</source>
+        <source>Disconnect</source>
         <translation>斷開</translation>
     </message>
     <message>
-        <source>My&#xa0;Networks</source>
+        <source>Connect</source>
         <translation>連接</translation>
     </message>
     <message>
-        <source>Other Networks</source>
+        <source>My&#xa0;Networks</source>
         <translation>我的網絡</translation>
     </message>
     <message>
-        <source>Disable Airplane Mode first if you want to connect to a wireless network</source>
+        <source>Other Networks</source>
         <translation>其他網絡</translation>
     </message>
     <message>
-        <source>Disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
+        <source>Disable Airplane Mode first if you want to connect to a wireless network</source>
         <translation>若要使用無線網絡功能，請先關閉飛行模式</translation>
     </message>
     <message>
-        <source>Disable hotspot first if you want to connect to a wireless network</source>
+        <source>Disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
         <translation>若要使用無線網絡功能，請先關閉&lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;飛行模式&lt;/a&gt;</translation>
     </message>
     <message>
-        <source>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Disable hotspot&lt;/a&gt; first if you want to connect to a wireless network</source>
+        <source>Disable hotspot first if you want to connect to a wireless network</source>
         <translation>若要連接並使用無線網絡功能，請先關閉熱點分享</translation>
+    </message>
+    <message>
+        <source>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Disable hotspot&lt;/a&gt; first if you want to connect to a wireless network</source>
+        <translation>若要連接並使用無線網絡功能，請先&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;關閉熱點分享&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -585,11 +585,11 @@
     </message>
     <message>
         <source>Name (SSID)</source>
-        <translation>自動連接</translation>
+        <translation>名稱（SSID）</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>名稱（SSID）</translation>
+        <translation>名稱</translation>
     </message>
     <message>
         <source>Required</source>
@@ -597,7 +597,7 @@
     </message>
     <message>
         <source>Auto Connect</source>
-        <translation>名稱</translation>
+        <translation>自動連接</translation>
     </message>
 </context>
 <context>
@@ -723,11 +723,11 @@
     </message>
     <message>
         <source>Duplicate IP address</source>
-        <translation>無效的網關地址</translation>
+        <translation>重複的IP位址</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation>重複的IP位址</translation>
+        <translation>無效的網關地址</translation>
     </message>
 </context>
 <context>

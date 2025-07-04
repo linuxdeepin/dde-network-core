@@ -722,12 +722,12 @@
         <translation>无效的子网掩码</translation>
     </message>
     <message>
-        <source>Invalid gateway</source>
-        <translation>无效的网关地址</translation>
-    </message>
-    <message>
         <source>Duplicate IP address</source>
         <translation>重复的IP地址</translation>
+    </message>
+    <message>
+        <source>Invalid gateway</source>
+        <translation>无效的网关地址</translation>
     </message>
 </context>
 <context>
