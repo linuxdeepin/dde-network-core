@@ -129,9 +129,7 @@ void DSLController_NM::connectionAppeared(const NetworkManager::WiredDevice::Ptr
     });
 
     if (itConnection != connections.end()) {
-        DSLItem *dslItem = addPppoeConnection(wiredDevice, *itConnection);
-        if (dslItem)
-            Q_EMIT itemAdded({dslItem});
+        addPppoeConnection(wiredDevice, *itConnection);
     }
 }
 
@@ -175,7 +173,6 @@ DSLItem *DSLController_NM::addPppoeConnection(NetworkManager::WiredDevice::Ptr d
     DSLItem *item = new DSLItem();
     item->setConnection(itemJson(connection));
     item->updateTimeStamp(connection->settings()->timestamp());
-    m_dslItems << item;
 
     // 当连接的名称发送变化的时候，需要更新界面的显示
     connect(connection.data(), &NetworkManager::Connection::updated, item, [ this, item, itemJson, connection ] {
@@ -184,11 +181,12 @@ DSLItem *DSLController_NM::addPppoeConnection(NetworkManager::WiredDevice::Ptr d
         Q_EMIT itemChanged({ item });
     });
 
+    m_dslItems << item;
     // 按照ID进行排序
     std::sort(m_dslItems.begin(), m_dslItems.end(), [](DSLItem *item1, DSLItem *item2) {
         return item1->connection()->id() < item2->connection()->id();
     });
-
+    Q_EMIT itemAdded({item});
     return item;
 }
 

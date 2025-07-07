@@ -538,8 +538,7 @@ void NetManagerThreadPrivate::doInit()
         connect(ConfigSetting::instance(), &ConfigSetting::enableAirplaneModeChanged, this, &NetManagerThreadPrivate::getAirplaneModeEnabled);
         QDBusConnection::systemBus().connect("org.deepin.dde.Bluetooth1", "/org/deepin/dde/Bluetooth1", "org.deepin.dde.Bluetooth1", "AdapterAdded", this, SLOT(getAirplaneModeEnabled()));
         QDBusConnection::systemBus().connect("org.deepin.dde.Bluetooth1", "/org/deepin/dde/Bluetooth1", "org.deepin.dde.Bluetooth1", "AdapterRemoved", this, SLOT(getAirplaneModeEnabled()));
-        QDBusConnection::systemBus()
-                .connect("org.deepin.dde.AirplaneMode1", "/org/deepin/dde/AirplaneMode1", "org.freedesktop.DBus.Properties", "PropertiesChanged", this, SLOT(onAirplaneModeEnabledPropertiesChanged(QString, QVariantMap, QStringList)));
+        QDBusConnection::systemBus().connect("org.deepin.dde.AirplaneMode1", "/org/deepin/dde/AirplaneMode1", "org.freedesktop.DBus.Properties", "PropertiesChanged", this, SLOT(onAirplaneModeEnabledPropertiesChanged(QString, QVariantMap, QStringList)));
     }
     // DSL
     if (m_flags.testFlags(NetType::NetManagerFlag::Net_DSL)) {
@@ -1071,13 +1070,13 @@ void NetManagerThreadPrivate::doGetConnectInfo(const QString &id, NetType::NetIt
                         if (!dbusSettingsMap.isError() && dbusSettingsMap.value().contains("ipv6")) {
                             QVariantMap ipv6Data = dbusSettingsMap.value().value("ipv6");
                             QVariantMap ipv6Map = retParam["ipv6"].value<QVariantMap>();
-                            
+
                             // 处理IPv6 gateway
                             if (ipv6->method() == Ipv6Setting::Manual && ipv6Data.contains("gateway")) {
                                 QString gateway = ipv6Data.value("gateway").toString();
                                 ipv6Map.insert("gateway", gateway);
                             }
-                            
+
                             // 处理IPv6 DNS - 首先从NetworkManager设置中直接读取
                             const QList<QHostAddress> &ipv6DnsFromSettings = ipv6->dns();
                             if (!ipv6DnsFromSettings.isEmpty()) {
@@ -1099,7 +1098,7 @@ void NetManagerThreadPrivate::doGetConnectInfo(const QString &id, NetType::NetIt
                                     ipv6Map.insert("dns", ipv6DnsList);
                                 }
                             }
-                            
+
                             retParam["ipv6"] = ipv6Map;
                         }
 
@@ -1182,13 +1181,13 @@ void NetManagerThreadPrivate::doGetConnectInfo(const QString &id, NetType::NetIt
             if (!dbusSettingsReply.isError() && dbusSettingsReply.value().contains("ipv6")) {
                 QVariantMap ipv6Data = dbusSettingsReply.value().value("ipv6");
                 QVariantMap ipv6Map = retParam["ipv6"].value<QVariantMap>();
-                
+
                 // 处理IPv6 gateway
                 if (ipv6->method() == Ipv6Setting::Manual && ipv6Data.contains("gateway")) {
                     QString gateway = ipv6Data.value("gateway").toString();
                     ipv6Map.insert("gateway", gateway);
                 }
-                
+
                 // 处理IPv6 DNS - 首先从NetworkManager设置中直接读取
                 const QList<QHostAddress> &ipv6DnsFromSettings = ipv6->dns();
                 if (!ipv6DnsFromSettings.isEmpty()) {
@@ -1210,7 +1209,7 @@ void NetManagerThreadPrivate::doGetConnectInfo(const QString &id, NetType::NetIt
                         ipv6Map.insert("dns", ipv6DnsList);
                     }
                 }
-                
+
                 retParam["ipv6"] = ipv6Map;
             }
 
@@ -1487,7 +1486,7 @@ void NetManagerThreadPrivate::doSetConnectInfo(const QString &id, NetType::NetIt
         pSetting->setParent(map["pppoe"]["parent"].toString());
         pSetting->setInitialized(true);
     }
-    
+
     // 手动处理IPv6 DNS设置 - 确保正确初始化
     if (map.contains("ipv6")) {
         QVariant ipv6Variant = map["ipv6"];
@@ -1499,7 +1498,7 @@ void NetManagerThreadPrivate::doSetConnectInfo(const QString &id, NetType::NetIt
                     QStringList ipv6DnsStrings = dnsVariant.toStringList();
                     if (!ipv6DnsStrings.isEmpty()) {
                         NetworkManager::Ipv6Setting::Ptr ipv6Setting = settings->setting(Setting::SettingType::Ipv6).staticCast<NetworkManager::Ipv6Setting>();
-                        
+
                         // 转换字符串列表为QHostAddress列表
                         QList<QHostAddress> ipv6DnsAddresses;
                         for (const QString &dnsStr : ipv6DnsStrings) {
@@ -1508,11 +1507,11 @@ void NetManagerThreadPrivate::doSetConnectInfo(const QString &id, NetType::NetIt
                                 ipv6DnsAddresses.append(addr);
                             }
                         }
-                        
+
                         if (!ipv6DnsAddresses.isEmpty()) {
                             ipv6Setting->setDns(ipv6DnsAddresses);
                             ipv6Setting->setIgnoreAutoDns(true);
-                            ipv6Setting->setInitialized(true);  // 关键！确保设置被初始化
+                            ipv6Setting->setInitialized(true); // 关键！确保设置被初始化
                         }
                     }
                 }
@@ -2374,11 +2373,7 @@ void NetManagerThreadPrivate::onDSLAdded(const QList<DSLItem *> &dsls)
 void NetManagerThreadPrivate::onDSLRemoved(const QList<DSLItem *> &dsls)
 {
     for (auto &&item : dsls) {
-        NetConnectionItemPrivate *connItem = NetItemNew(ConnectionItem, item->connection()->path());
-        connItem->updatename(item->connection()->id());
-        connItem->updatestatus(toNetConnectionStatus(item->status()));
-        connItem->item()->moveToThread(m_parentThread);
-        Q_EMIT itemAdded("NetDSLControlItem", connItem);
+        Q_EMIT itemRemoved(item->connection()->path());
     }
 }
 
