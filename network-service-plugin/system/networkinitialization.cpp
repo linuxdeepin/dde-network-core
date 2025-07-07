@@ -20,9 +20,11 @@
 #include <QDBusMessage>
 #include <QDBusServiceWatcher>
 #include <QEventLoop>
+#include <QFile>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonParseError>
+#include <QMap>
 #include <QMutex>
 #include <QTimer>
 #include <QTranslator>
@@ -110,10 +112,12 @@ void NetworkInitialization::initConnection()
         // 调用checkAccountStatus检查当前用户状态并安装当前用户的语言
         qCDebug(DSM) << "check connection status";
         checkAccountStatus();
-        if (!m_initilized)
+        if (!m_initilized) {
             qCWarning(DSM) << "can not found current user, used default lauguage to create connection";
-        // 不管语言有没有安装上，直接添加新连接，如果语言没有安装上，这个时候肯定不会有当前用户的语言了，此时安装就安装默认的英文
-        // 如果语言安装上了，此时就使用已经安装的语言来新建连接
+            // 不管语言有没有安装上，直接添加新连接，如果语言没有安装上，这个时候肯定不会有当前用户的语言了，此时安装就安装默认的
+            // 如果语言安装上了，此时就使用已经安装的语言来新建连接
+            installSystemTranslator();
+        }
         addFirstConnection();
     });
 }
@@ -371,6 +375,11 @@ bool NetworkInitialization::installUserTranslator(const QString &json)
         return false;
     }
 
+    return installTranslator(locale);
+}
+
+bool NetworkInitialization::installTranslator(const QString &locale)
+{
     static QString localTmp;
 
     if (localTmp != locale) {
@@ -386,6 +395,33 @@ bool NetworkInitialization::installUserTranslator(const QString &json)
     }
 
     return true;
+}
+
+bool NetworkInitialization::installSystemTranslator()
+{
+    QFile file("/etc/locale.conf");
+    if (file.open(QFile::ReadOnly)) {
+        QMap<QString, QString> localeMap;
+        QString data = file.readAll();
+        QStringList lines = data.split('\n');
+        for (auto &&line : lines) {
+            QStringList pair = line.split('=');
+            if (pair.size() == 2) {
+                localeMap.insert(pair.at(0).trimmed(), pair.at(1).trimmed());
+            }
+        }
+        QString locale;
+        if (localeMap.contains("LANGUAGE")) {
+            locale = localeMap.value("LANGUAGE").split('.').first();
+        } else if (localeMap.contains("LANG")) {
+            locale = localeMap.value("LANG").split('.').first();
+        } else {
+            return false;
+        }
+        qCInfo(DSM) << "Install system language:" << locale;
+        return installTranslator(locale);
+    }
+    return false;
 }
 
 void NetworkInitialization::hideWirelessDevice(const QSharedPointer<NetworkManager::Device> &device, bool disableNetwork)
