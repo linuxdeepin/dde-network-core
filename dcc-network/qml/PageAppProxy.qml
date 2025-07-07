@@ -14,8 +14,8 @@ import org.deepin.dcc.network 1.0
 DccObject {
     id: root
     property var item: null
-    property bool proxyEnable: item.isEnabled
-    property var config: item.config
+    property bool proxyEnable: item && item.isEnabled
+    property var config: item ? item.config : {}
     property bool urlAlert: false
     property bool portAlert: false
 
