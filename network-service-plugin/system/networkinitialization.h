@@ -37,6 +37,8 @@ private:
     bool hasConnection(const QSharedPointer<NetworkManager::WiredDevice> &device, QList<QSharedPointer<NetworkManager::Connection>> &unSaveDevices);
     QString connectionMatchName() const;
     bool installUserTranslator(const QString &json);
+    bool installTranslator(const QString &locale);
+    bool installSystemTranslator();
     void hideWirelessDevice(const QSharedPointer<NetworkManager::Device> &device, bool disableNetwork);
     void initDeviceConnection(const QSharedPointer<NetworkManager::WiredDevice> &device);
     void checkAccountStatus();
