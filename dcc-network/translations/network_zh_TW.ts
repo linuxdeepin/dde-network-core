@@ -44,15 +44,15 @@
     </message>
     <message>
         <source>http</source>
-        <translation>代理型別</translation>
+        <translation>http</translation>
     </message>
     <message>
         <source>socks4</source>
-        <translation type="unfinished"/>
+        <translation>socks4</translation>
     </message>
     <message>
         <source>socks5</source>
-        <translation type="unfinished"/>
+        <translation>socks5</translation>
     </message>
     <message>
         <source>IP Address</source>
@@ -103,7 +103,7 @@
     <name>PageDSL</name>
     <message>
         <source>DSL</source>
-        <translation type="unfinished"/>
+        <translation>DSL</translation>
     </message>
     <message>
         <source>Set up a dial-up network connection</source>
@@ -188,11 +188,11 @@
     </message>
     <message>
         <source>2.4 GHz</source>
-        <translation type="unfinished"/>
+        <translation>2.4 GHz</translation>
     </message>
     <message>
         <source>5 GHz</source>
-        <translation type="unfinished"/>
+        <translation>5 GHz</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -349,7 +349,7 @@
     <name>PageVPN</name>
     <message>
         <source>VPN</source>
-        <translation type="unfinished"/>
+        <translation>VPN</translation>
     </message>
     <message>
         <source>Connect, add, import</source>
@@ -373,7 +373,7 @@
     </message>
     <message>
         <source>*.conf</source>
-        <translation>匯入VPN</translation>
+        <translation>*.conf</translation>
     </message>
     <message>
         <source>Import Error</source>
@@ -400,27 +400,27 @@
     </message>
     <message>
         <source>L2TP</source>
-        <translation>VPN型別</translation>
+        <translation>L2TP</translation>
     </message>
     <message>
         <source>PPTP</source>
-        <translation type="unfinished"/>
+        <translation>PPTP</translation>
     </message>
     <message>
         <source>OpenVPN</source>
-        <translation type="unfinished"/>
+        <translation>OpenVPN</translation>
     </message>
     <message>
         <source>OpenConnect</source>
-        <translation type="unfinished"/>
+        <translation>OpenConnect</translation>
     </message>
     <message>
         <source>StrongSwan</source>
-        <translation type="unfinished"/>
+        <translation>StrongSwan</translation>
     </message>
     <message>
         <source>VPNC</source>
-        <translation type="unfinished"/>
+        <translation>VPNC</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -440,7 +440,7 @@
     </message>
     <message>
         <source>*.conf</source>
-        <translation>導 出</translation>
+        <translation>*.conf</translation>
     </message>
     <message>
         <source>Save</source>
@@ -513,7 +513,7 @@
     <name>SectionDNS</name>
     <message>
         <source>DNS</source>
-        <translation type="unfinished"/>
+        <translation>DNS</translation>
     </message>
     <message>
         <source>Done</source>
@@ -536,7 +536,7 @@
     </message>
     <message>
         <source>WLAN</source>
-        <translation type="unfinished"/>
+        <translation>WLAN</translation>
     </message>
     <message>
         <source>Ethernet</source>
@@ -556,7 +556,7 @@
     </message>
     <message>
         <source>MTU</source>
-        <translation type="unfinished"/>
+        <translation>MTU</translation>
     </message>
     <message>
         <source>Band</source>
@@ -568,11 +568,11 @@
     </message>
     <message>
         <source>2.4 GHz</source>
-        <translation type="unfinished"/>
+        <translation>2.4 GHz</translation>
     </message>
     <message>
         <source>5 GHz</source>
-        <translation type="unfinished"/>
+        <translation>5 GHz</translation>
     </message>
 </context>
 <context>
@@ -602,7 +602,7 @@
     <name>SectionIPv4</name>
     <message>
         <source>IPv4</source>
-        <translation type="unfinished"/>
+        <translation>IPv4</translation>
     </message>
     <message>
         <source>Done</source>
@@ -681,7 +681,7 @@
     </message>
     <message>
         <source>IPv6</source>
-        <translation type="unfinished"/>
+        <translation>IPv6</translation>
     </message>
     <message>
         <source>Done</source>
@@ -732,7 +732,7 @@
     <name>SectionPPP</name>
     <message>
         <source>PPP</source>
-        <translation type="unfinished"/>
+        <translation>PPP</translation>
     </message>
     <message>
         <source>Use MPPE</source>
@@ -814,15 +814,15 @@
     </message>
     <message>
         <source>TLS</source>
-        <translation type="unfinished"/>
+        <translation>TLS</translation>
     </message>
     <message>
         <source>MD5</source>
-        <translation type="unfinished"/>
+        <translation>MD5</translation>
     </message>
     <message>
         <source>FAST</source>
-        <translation type="unfinished"/>
+        <translation>FAST</translation>
     </message>
     <message>
         <source>Tunneled TLS</source>
@@ -838,15 +838,15 @@
     </message>
     <message>
         <source>GTC</source>
-        <translation type="unfinished"/>
+        <translation>GTC</translation>
     </message>
     <message>
         <source>MSCHAPV2</source>
-        <translation type="unfinished"/>
+        <translation>MSCHAPV2</translation>
     </message>
     <message>
         <source>PAP</source>
-        <translation type="unfinished"/>
+        <translation>PAP</translation>
     </message>
     <message>
         <source>MSCHAP</source>
@@ -993,7 +993,7 @@
     <name>SectionVPN</name>
     <message>
         <source>VPN</source>
-        <translation type="unfinished"/>
+        <translation>VPN</translation>
     </message>
     <message>
         <source>All files (*)</source>
