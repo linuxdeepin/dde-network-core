@@ -40,7 +40,7 @@ NetworkModule::NetworkModule(QObject *parent)
     , m_replacesId(0)
     , m_contentWidget(new QWidget)
 {
-    m_isLockModel = !QCoreApplication::applicationName().contains("greeter");
+    m_isLockModel = QCoreApplication::applicationName().contains("lock", Qt::CaseInsensitive);
 
     m_contentWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
     QVBoxLayout *mainLayout = new QVBoxLayout(m_contentWidget);
