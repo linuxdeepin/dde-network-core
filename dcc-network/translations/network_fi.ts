@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="fi">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fi">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -487,8 +485,8 @@
         <translation>Yhdistä</translation>
     </message>
     <message>
-        <source>My&#xa0;Networks</source>
-        <translation>Minun&#xa0;verkko</translation>
+        <source>My Networks</source>
+        <translation>Minun verkko</translation>
     </message>
     <message>
         <source>Other Networks</source>
@@ -652,15 +650,15 @@
     </message>
     <message>
         <source>Invalid netmask</source>
-        <translation type="unfinished"></translation>
+        <translation>Virheellinen verkkomaski</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished">Virheellinen yhdyskäytävä</translation>
+        <translation>Virheellinen yhdyskäytävä</translation>
     </message>
     <message>
         <source>Duplicate IP address</source>
-        <translation type="unfinished"></translation>
+        <translation>Päällekkäinen IP-osoite</translation>
     </message>
 </context>
 <context>
@@ -719,15 +717,15 @@
     </message>
     <message>
         <source>Invalid netmask</source>
-        <translation type="unfinished"></translation>
+        <translation>Virheellinen verkkomaski</translation>
     </message>
     <message>
         <source>Duplicate IP address</source>
-        <translation type="unfinished"></translation>
+        <translation>Päällekkäinen IP-osoite</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished">Virheellinen yhdyskäytävä</translation>
+        <translation>Virheellinen yhdyskäytävä</translation>
     </message>
 </context>
 <context>

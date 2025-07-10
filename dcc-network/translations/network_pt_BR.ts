@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="pt_BR">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pt_BR">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -487,7 +485,7 @@
         <translation>Conectar</translation>
     </message>
     <message>
-        <source>My&#xa0;Networks</source>
+        <source>My Networks</source>
         <translation>Minhas redes</translation>
     </message>
     <message>
@@ -652,15 +650,15 @@
     </message>
     <message>
         <source>Invalid netmask</source>
-        <translation type="unfinished"></translation>
+        <translation>Máscara de sub-rede inválida</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished">Gateway inválido</translation>
+        <translation>Gateway inválido</translation>
     </message>
     <message>
         <source>Duplicate IP address</source>
-        <translation type="unfinished"></translation>
+        <translation>Endereço IP duplicado</translation>
     </message>
 </context>
 <context>
@@ -719,15 +717,15 @@
     </message>
     <message>
         <source>Invalid netmask</source>
-        <translation type="unfinished"></translation>
+        <translation>Máscara de sub-rede inválida</translation>
     </message>
     <message>
         <source>Duplicate IP address</source>
-        <translation type="unfinished"></translation>
+        <translation>Endereço IP duplicado</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished">Gateway inválido</translation>
+        <translation>Gateway inválido</translation>
     </message>
 </context>
 <context>
