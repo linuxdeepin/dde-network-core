@@ -1553,7 +1553,7 @@
     </message>
     <message>
         <source>Subject Match</source>
-        <translation type="unfinished"/>
+        <translation>Weryfikacja tożsamości</translation>
     </message>
     <message>
         <source>Remote Cert Type</source>
