@@ -630,7 +630,7 @@
     </message>
     <message>
         <source>Only applied in corresponding resources</source>
-        <translation type="unfinished"/>
+        <translation>Zastosuj tylko w wybranych zasobach</translation>
     </message>
     <message>
         <source>IP Address</source>
@@ -697,7 +697,7 @@
     </message>
     <message>
         <source>Only applied in corresponding resources</source>
-        <translation type="unfinished"/>
+        <translation>Zastosuj tylko w wybranych zasobach</translation>
     </message>
     <message>
         <source>IP Address</source>
