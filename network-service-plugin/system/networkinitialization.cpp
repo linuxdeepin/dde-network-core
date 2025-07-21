@@ -397,27 +397,40 @@ bool NetworkInitialization::installTranslator(const QString &locale)
     return true;
 }
 
+static QString getLocaleValue(const QString &filePath, const QStringList &keys, const QString &splitKey = "=", const QString &keywords = QString())
+{
+    QFile file(filePath);
+    if (!file.open(QFile::ReadOnly | QFile::Text)) {
+        qWarning() << "Failed to open locale file:" << filePath << "-" << file.errorString();
+        return QString();
+    }
+
+    QMap<QString, QString> localeMap;
+    QTextStream in(&file);
+    while (!in.atEnd()) {
+        QString line = in.readLine();
+        if (!keywords.isEmpty() && !line.contains(keywords)) {
+            continue;
+        }
+        QStringList pair = line.split(splitKey);
+        if (pair.size() == 2) {
+            localeMap.insert(pair.at(0).trimmed(), pair.at(1).trimmed());
+        }
+    }
+    for (const auto &key : keys) {
+        if (localeMap.contains(key))
+            return localeMap.value(key).split('.').first();
+    }
+    return QString();
+}
+
 bool NetworkInitialization::installSystemTranslator()
 {
-    QFile file("/etc/locale.conf");
-    if (file.open(QFile::ReadOnly)) {
-        QMap<QString, QString> localeMap;
-        QString data = file.readAll();
-        QStringList lines = data.split('\n');
-        for (auto &&line : lines) {
-            QStringList pair = line.split('=');
-            if (pair.size() == 2) {
-                localeMap.insert(pair.at(0).trimmed(), pair.at(1).trimmed());
-            }
-        }
-        QString locale;
-        if (localeMap.contains("LANGUAGE")) {
-            locale = localeMap.value("LANGUAGE").split('.').first();
-        } else if (localeMap.contains("LANG")) {
-            locale = localeMap.value("LANG").split('.').first();
-        } else {
-            return false;
-        }
+    QString locale = getLocaleValue("/etc/locale.conf", { "LANGUAGE", "LANG" }, "=", "LANG");
+    if (locale.isEmpty()) {
+        locale = getLocaleValue("/etc/deepin-installer/deepin-installer.conf", { "DI_LOCALE", "LIVE_LOCALES" }, "=", "LOCALE");
+    }
+    if (!locale.isEmpty()) {
         qCInfo(DSM) << "Install system language:" << locale;
         return installTranslator(locale);
     }
