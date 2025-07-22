@@ -91,10 +91,12 @@ DccTitleObject {
     }
     name: "devTitle"
     displayName: (type === NetType.WirelessItem || type === NetType.WirelessHiddenItem) ? qsTr("WLAN") : qsTr("Ethernet")
+    canSearch: false
     DccObject {
         name: "devGroup"
         parentName: root.parentName
         weight: root.weight + 20
+        canSearch: false
         pageType: DccObject.Item
         page: DccGroupView {}
         DccObject {
@@ -102,6 +104,7 @@ DccTitleObject {
             parentName: root.parentName + "/devGroup"
             weight: 20
             displayName: qsTr("Device MAC Addr")
+            canSearch: false
             pageType: DccObject.Editor
             page: D.ComboBox {
                 flat: true
@@ -129,6 +132,7 @@ DccTitleObject {
             parentName: root.parentName + "/devGroup"
             weight: 30
             displayName: qsTr("Cloned MAC Addr")
+            canSearch: false
             visible: type === NetType.WiredItem
             pageType: DccObject.Editor
             page: D.LineEdit {
@@ -163,6 +167,7 @@ DccTitleObject {
             parentName: root.parentName + "/devGroup"
             weight: 40
             displayName: qsTr("Customize MTU")
+            canSearch: false
             pageType: DccObject.Editor
             page: D.Switch {
                 checked: hasMTU
@@ -177,6 +182,7 @@ DccTitleObject {
             parentName: root.parentName + "/devGroup"
             weight: 50
             displayName: qsTr("MTU")
+            canSearch: false
             visible: hasMTU
             pageType: DccObject.Editor
             page: D.SpinBox {
@@ -196,6 +202,7 @@ DccTitleObject {
         name: "band"
         parentName: root.parentName + "/genericGroup"
         displayName: qsTr("Band")
+        canSearch: false
         weight: 30
         visible: type === NetType.WirelessItem
         pageType: DccObject.Editor

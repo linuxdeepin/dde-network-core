@@ -58,6 +58,7 @@ DccObject {
             name: "airplaneTips"
             parentName: root.name + "/menu"
             displayName: qsTr("Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth")
+            canSearch: false
             weight: 20
             pageType: DccObject.Item
             page: D.Label {

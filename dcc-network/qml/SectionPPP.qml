@@ -35,6 +35,7 @@ DccTitleObject {
     }
     name: "pppTitle"
     displayName: qsTr("PPP")
+    canSearch: false
     Component {
         id: switchItem
         D.Switch {
@@ -49,12 +50,14 @@ DccTitleObject {
         name: "pppGroup"
         parentName: root.parentName
         weight: root.weight + 20
+        canSearch: false
         pageType: DccObject.Item
         page: DccGroupView {}
         DccObject {
             name: "useMPPE"
             parentName: root.parentName + "/pppGroup"
             displayName: qsTr("Use MPPE")
+            canSearch: false
             weight: 10
             pageType: DccObject.Editor
             page: D.Switch {
@@ -69,6 +72,7 @@ DccTitleObject {
             name: "require-mppe-128"
             parentName: root.parentName + "/pppGroup"
             displayName: qsTr("128-bit MPPE")
+            canSearch: false
             weight: 20
             visible: mppe
             pageType: DccObject.Editor
@@ -78,6 +82,7 @@ DccTitleObject {
             name: "mppe-stateful"
             parentName: root.parentName + "/pppGroup"
             displayName: qsTr("Stateful MPPE")
+            canSearch: false
             weight: 30
             visible: mppe
             pageType: DccObject.Editor
@@ -87,6 +92,7 @@ DccTitleObject {
             name: "refuse-eap"
             parentName: root.parentName + "/pppGroup"
             displayName: qsTr("Refuse EAP Authentication")
+            canSearch: false
             weight: 40
             pageType: DccObject.Editor
             page: switchItem
@@ -95,6 +101,7 @@ DccTitleObject {
             name: "refuse-pap"
             parentName: root.parentName + "/pppGroup"
             displayName: qsTr("Refuse PAP Authentication")
+            canSearch: false
             weight: 50
             pageType: DccObject.Editor
             page: switchItem
@@ -103,6 +110,7 @@ DccTitleObject {
             name: "refuse-chap"
             parentName: root.parentName + "/pppGroup"
             displayName: qsTr("Refuse CHAP Authentication")
+            canSearch: false
             weight: 60
             pageType: DccObject.Editor
             page: switchItem
@@ -111,6 +119,7 @@ DccTitleObject {
             name: "refuse-mschap"
             parentName: root.parentName + "/pppGroup"
             displayName: qsTr("Refuse MSCHAP Authentication")
+            canSearch: false
             weight: 70
             pageType: DccObject.Editor
             page: switchItem
@@ -119,6 +128,7 @@ DccTitleObject {
             name: "refuse-mschapv2"
             parentName: root.parentName + "/pppGroup"
             displayName: qsTr("Refuse MSCHAPv2 Authentication")
+            canSearch: false
             weight: 80
             pageType: DccObject.Editor
             page: switchItem
@@ -127,6 +137,7 @@ DccTitleObject {
             name: "nobsdcomp"
             parentName: root.parentName + "/pppGroup"
             displayName: qsTr("No BSD Data Compression")
+            canSearch: false
             weight: 90
             pageType: DccObject.Editor
             page: switchItem
@@ -135,6 +146,7 @@ DccTitleObject {
             name: "nodeflate"
             parentName: root.parentName + "/pppGroup"
             displayName: qsTr("No Deflate Data Compression")
+            canSearch: false
             weight: 100
             pageType: DccObject.Editor
             page: switchItem
@@ -143,6 +155,7 @@ DccTitleObject {
             name: "no-vj-comp"
             parentName: root.parentName + "/pppGroup"
             displayName: qsTr("No TCP Header Compression")
+            canSearch: false
             weight: 110
             pageType: DccObject.Editor
             page: switchItem
@@ -167,6 +180,7 @@ DccTitleObject {
             name: "lcpEchoInterval"
             parentName: root.parentName + "/pppGroup"
             displayName: qsTr("Send PPP Echo Packets")
+            canSearch: false
             weight: 140
             pageType: DccObject.Editor
             page: D.Switch {

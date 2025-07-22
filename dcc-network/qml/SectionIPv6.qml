@@ -130,6 +130,7 @@ DccObject {
 
     name: "ipv6Title"
     displayName: qsTr("IPv6")
+    canSearch: false
     pageType: DccObject.Item
     visible: root.visible
     page: RowLayout {
@@ -162,6 +163,7 @@ DccObject {
         backgroundType: DccObject.Normal
         visible: root.visible
         displayName: qsTr("Method")
+        canSearch: false
         pageType: DccObject.Editor
         page: ComboBox {
             flat: true
@@ -193,6 +195,7 @@ DccObject {
         weight: root.weight + 90
         visible: root.visible && type === NetType.VPNControlItem
         displayName: qsTr("Only applied in corresponding resources")
+        canSearch: false
         pageType: DccObject.Item
         page: D.CheckBox {
             text: dccObj.displayName
@@ -212,6 +215,7 @@ DccObject {
             name: "ipv6_" + index
             visible: root.visible
             displayName: "IP-" + index
+            canSearch: false
             parentName: root.parentName
             pageType: DccObject.Item
             page: DccGroupView {
@@ -222,6 +226,7 @@ DccObject {
                 parentName: ipv6Item.parentName + "/" + ipv6Item.name
                 weight: 10
                 displayName: "IP-" + index
+                canSearch: false
                 pageType: DccObject.Item
                 page: RowLayout {
                     Label {
@@ -278,6 +283,7 @@ DccObject {
                 id: ipGroup
                 name: "ipGroup"
                 parentName: ipv6Item.parentName + "/" + ipv6Item.name
+                canSearch: false
                 weight: 20
                 pageType: DccObject.Item
                 page: DccGroupView {}
@@ -286,6 +292,7 @@ DccObject {
                     parentName: ipGroup.parentName + "/" + ipGroup.name
                     weight: 10
                     displayName: qsTr("IP Address")
+                    canSearch: false
                     pageType: DccObject.Editor
                     page: D.LineEdit {
                         text: root.addressData.length > index ? root.addressData[index].address : ""
@@ -319,6 +326,7 @@ DccObject {
                     parentName: ipGroup.parentName + "/" + ipGroup.name
                     weight: 20
                     displayName: qsTr("Prefix")
+                    canSearch: false
                     pageType: DccObject.Editor
                     page: D.SpinBox {
                         editable: true
@@ -352,6 +360,7 @@ DccObject {
                     parentName: ipGroup.parentName + "/" + ipGroup.name
                     weight: 30
                     displayName: qsTr("Gateway")
+                    canSearch: false
                     pageType: DccObject.Editor
                     page: D.LineEdit {
                         enabled: index === 0
