@@ -109,6 +109,7 @@ DccObject {
 
     name: "dnsTitle"
     displayName: qsTr("DNS")
+    canSearch: false
     pageType: DccObject.Item
     page: RowLayout {
         Label {
@@ -137,6 +138,7 @@ DccObject {
         name: "dnsGroup"
         parentName: root.parentName
         weight: root.weight + 20
+        canSearch: false
         pageType: DccObject.Item
         page: DccGroupView {}
     }
@@ -149,6 +151,7 @@ DccObject {
             name: "dns" + index
             displayName: qsTr("DNS") + index
             parentName: root.parentName + "/dnsGroup"
+            canSearch: false
             pageType: DccObject.Editor
             page: RowLayout {
                 D.LineEdit {

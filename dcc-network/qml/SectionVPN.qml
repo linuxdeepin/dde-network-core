@@ -336,6 +336,7 @@ DccTitleObject {
 
     name: "VPNTitle"
     displayName: qsTr("VPN")
+    canSearch: false
     Component {
         id: fileDialog
         FileDialog {
@@ -510,6 +511,7 @@ DccTitleObject {
         name: "vpnGroup"
         parentName: root.parentName
         weight: root.weight + 20
+        canSearch: false
         pageType: DccObject.Item
         page: DccGroupView {}
         // l2tp/pptp
@@ -517,6 +519,7 @@ DccTitleObject {
             name: "gateway"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Gateway")
+            canSearch: false
             weight: 10
             visible: root.vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"] | NetUtils.VpnTypeEnum["openconnect"])
             pageType: DccObject.Editor
@@ -526,6 +529,7 @@ DccTitleObject {
             name: "cacert"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("CA Cert")
+            canSearch: false
             weight: 20
             visible: root.vpnType & (NetUtils.VpnTypeEnum["openconnect"])
             pageType: DccObject.Editor
@@ -535,6 +539,7 @@ DccTitleObject {
             name: "proxy"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Proxy")
+            canSearch: false
             weight: 30
             visible: root.vpnType & (NetUtils.VpnTypeEnum["openconnect"])
             pageType: DccObject.Editor
@@ -544,6 +549,7 @@ DccTitleObject {
             name: "enable_csd_trojan"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Allow Cisco Secure Desktop Trojan")
+            canSearch: false
             weight: 40
             visible: root.vpnType & (NetUtils.VpnTypeEnum["openconnect"])
             pageType: DccObject.Editor
@@ -553,6 +559,7 @@ DccTitleObject {
             name: "csd_wrapper"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("CSD Script")
+            canSearch: false
             weight: 50
             visible: root.vpnType & (NetUtils.VpnTypeEnum["openconnect"])
             pageType: DccObject.Editor
@@ -562,6 +569,7 @@ DccTitleObject {
             name: "address"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Gateway")
+            canSearch: false
             weight: 60
             visible: root.vpnType & (NetUtils.VpnTypeEnum["strongswan"])
             pageType: DccObject.Editor
@@ -571,6 +579,7 @@ DccTitleObject {
             name: "certificate"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("CA Cert")
+            canSearch: false
             weight: 70
             visible: root.vpnType & (NetUtils.VpnTypeEnum["strongswan"])
             pageType: DccObject.Editor
@@ -580,6 +589,7 @@ DccTitleObject {
             name: "method"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Auth Type")
+            canSearch: false
             weight: 80
             visible: root.vpnType & (NetUtils.VpnTypeEnum["strongswan"])
             pageType: DccObject.Editor
@@ -616,6 +626,7 @@ DccTitleObject {
             name: "usercert"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("User Cert")
+            canSearch: false
             weight: 90
             visible: (root.vpnType & (NetUtils.VpnTypeEnum["openconnect"])) || ((root.vpnType & NetUtils.VpnTypeEnum["strongswan"]) && (root.dataMap["method"] === "key" || root.dataMap["method"] === "agent"))
             pageType: DccObject.Editor
@@ -656,6 +667,7 @@ DccTitleObject {
             name: "userkey"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Private Key")
+            canSearch: false
             weight: 100
             visible: (root.vpnType & (NetUtils.VpnTypeEnum["openconnect"])) || ((root.vpnType & NetUtils.VpnTypeEnum["strongswan"]) && (root.dataMap["method"] === "key"))
             pageType: DccObject.Editor
@@ -696,6 +708,7 @@ DccTitleObject {
             name: "user"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Username")
+            canSearch: false
             weight: 110
             visible: (root.vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])) || ((root.vpnType & NetUtils.VpnTypeEnum["strongswan"]) && (root.dataMap["method"] === "eap" || root.dataMap["method"] === "psk"))
             pageType: DccObject.Editor
@@ -705,6 +718,7 @@ DccTitleObject {
             name: "pem_passphrase_fsid"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Use FSID for Key Passphrase")
+            canSearch: false
             weight: 120
             visible: root.vpnType & (NetUtils.VpnTypeEnum["openconnect"])
             pageType: DccObject.Editor
@@ -714,6 +728,7 @@ DccTitleObject {
             name: "remote"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Gateway")
+            canSearch: false
             weight: 130
             visible: root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])
             pageType: DccObject.Editor
@@ -723,6 +738,7 @@ DccTitleObject {
             name: "connection-type"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Auth Type")
+            canSearch: false
             weight: 140
             visible: root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])
             pageType: DccObject.Editor
@@ -755,6 +771,7 @@ DccTitleObject {
             name: "ca"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("CA Cert")
+            canSearch: false
             weight: 150
             visible: root.vpnType & (NetUtils.VpnTypeEnum["openvpn"]) && (root.dataMap["connection-type"] === "tls" || root.dataMap["connection-type"] === "password" || root.dataMap["connection-type"] === "password-tls")
             pageType: DccObject.Editor
@@ -764,6 +781,7 @@ DccTitleObject {
             name: "username"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Username")
+            canSearch: false
             weight: 160
             visible: (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "password" || root.dataMap["connection-type"] === "password-tls")
             pageType: DccObject.Editor
@@ -773,6 +791,7 @@ DccTitleObject {
             name: "password-flags"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Pwd Options")
+            canSearch: false
             weight: 170
             visible: (root.vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])) || (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "password" || root.dataMap["connection-type"] === "password-tls")
             pageType: DccObject.Editor
@@ -810,6 +829,7 @@ DccTitleObject {
             name: "password"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Password")
+            canSearch: false
             weight: 180
             visible: ((root.vpnType & NetUtils.VpnTypeEnum["strongswan"]) && (root.dataMap["method"] === "eap" || root.dataMap["method"] === "psk")) || (root.dataMap["password-flags"] === "0" && ((root.vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])) || (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "password" || root.dataMap["connection-type"] === "password-tls")))
             pageType: DccObject.Editor
@@ -823,6 +843,7 @@ DccTitleObject {
             name: "cert"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("User Cert")
+            canSearch: false
             weight: 190
             visible: (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "password-tls" || root.dataMap["connection-type"] === "tls")
             pageType: DccObject.Editor
@@ -832,6 +853,7 @@ DccTitleObject {
             name: "key"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Private Key")
+            canSearch: false
             weight: 200
             visible: (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "password-tls" || root.dataMap["connection-type"] === "tls")
             pageType: DccObject.Editor
@@ -841,6 +863,7 @@ DccTitleObject {
             name: "cert-pass-flags"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Pwd Options")
+            canSearch: false
             weight: 210
             visible: (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "password-tls" || root.dataMap["connection-type"] === "tls")
             pageType: DccObject.Editor
@@ -870,6 +893,7 @@ DccTitleObject {
             name: "cert-pass"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Private Pwd")
+            canSearch: false
             weight: 220
             visible: root.dataMap["cert-pass-flags"] === "0" && (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "password-tls" || root.dataMap["connection-type"] === "tls")
             pageType: DccObject.Editor
@@ -883,6 +907,7 @@ DccTitleObject {
             name: "static-key"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Static Key")
+            canSearch: false
             weight: 230
             visible: (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "static-key")
             pageType: DccObject.Editor
@@ -892,6 +917,7 @@ DccTitleObject {
             name: "has_static-key-direction"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Customize Key Direction")
+            canSearch: false
             weight: 240
             visible: (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "static-key")
             pageType: DccObject.Editor
@@ -911,6 +937,7 @@ DccTitleObject {
             name: "static-key-direction"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Key Direction")
+            canSearch: false
             weight: 250
             visible: root.dataMap.hasOwnProperty(this.name) && (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "static-key")
             pageType: DccObject.Editor
@@ -941,6 +968,7 @@ DccTitleObject {
             name: "remote-ip"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Remote IP")
+            canSearch: false
             weight: 260
             visible: (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "static-key")
             pageType: DccObject.Editor
@@ -950,6 +978,7 @@ DccTitleObject {
             name: "local-ip"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Local IP")
+            canSearch: false
             weight: 270
             visible: (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "static-key")
             pageType: DccObject.Editor
@@ -959,6 +988,7 @@ DccTitleObject {
             name: "domain"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("NT Domain")
+            canSearch: false
             weight: 280
             visible: root.vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])
             pageType: DccObject.Editor
@@ -968,6 +998,7 @@ DccTitleObject {
             name: "virtual"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Request an Inner IP Address")
+            canSearch: false
             weight: 290
             visible: root.vpnType & (NetUtils.VpnTypeEnum["strongswan"])
             pageType: DccObject.Editor
@@ -977,6 +1008,7 @@ DccTitleObject {
             name: "encap"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Enforce UDP Encapsulation")
+            canSearch: false
             weight: 300
             visible: root.vpnType & (NetUtils.VpnTypeEnum["strongswan"])
             pageType: DccObject.Editor
@@ -986,6 +1018,7 @@ DccTitleObject {
             name: "ipcomp"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Use IP Compression")
+            canSearch: false
             weight: 310
             visible: root.vpnType & (NetUtils.VpnTypeEnum["strongswan"])
             pageType: DccObject.Editor
@@ -995,6 +1028,7 @@ DccTitleObject {
             name: "proposal"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Enable Custom Cipher Proposals")
+            canSearch: false
             weight: 320
             visible: root.vpnType & (NetUtils.VpnTypeEnum["strongswan"])
             pageType: DccObject.Editor
@@ -1010,6 +1044,7 @@ DccTitleObject {
             name: "ike"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("IKE")
+            canSearch: false
             weight: 330
             visible: (root.vpnType & (NetUtils.VpnTypeEnum["strongswan"])) && root.dataMap["proposal"] === "yes"
             pageType: DccObject.Editor
@@ -1019,6 +1054,7 @@ DccTitleObject {
             name: "esp"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("ESP")
+            canSearch: false
             weight: 340
             visible: (root.vpnType & (NetUtils.VpnTypeEnum["strongswan"])) && root.dataMap["proposal"] === "yes"
             pageType: DccObject.Editor
@@ -1029,6 +1065,7 @@ DccTitleObject {
             name: "IPSec gateway"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Gateway")
+            canSearch: false
             weight: 350
             visible: root.vpnType & (NetUtils.VpnTypeEnum["vpnc"])
             pageType: DccObject.Editor
@@ -1038,6 +1075,7 @@ DccTitleObject {
             name: "Xauth username"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Username")
+            canSearch: false
             weight: 360
             visible: root.vpnType & (NetUtils.VpnTypeEnum["vpnc"])
             pageType: DccObject.Editor
@@ -1047,6 +1085,7 @@ DccTitleObject {
             name: "Xauth password-flags"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Pwd Options")
+            canSearch: false
             weight: 370
             visible: root.vpnType & (NetUtils.VpnTypeEnum["vpnc"])
             pageType: DccObject.Editor
@@ -1077,6 +1116,7 @@ DccTitleObject {
             name: "Xauth password"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Password")
+            canSearch: false
             weight: 380
             visible: root.dataMap["Xauth password-flags"] === "0" && (root.vpnType & (NetUtils.VpnTypeEnum["vpnc"]))
             pageType: DccObject.Editor
@@ -1090,6 +1130,7 @@ DccTitleObject {
             name: "IPSec ID"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Group Name")
+            canSearch: false
             weight: 390
             visible: root.vpnType & (NetUtils.VpnTypeEnum["vpnc"])
             pageType: DccObject.Editor
@@ -1099,6 +1140,7 @@ DccTitleObject {
             name: "IPSec secret-flags"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Pwd Options")
+            canSearch: false
             weight: 400
             visible: root.vpnType & (NetUtils.VpnTypeEnum["vpnc"])
             pageType: DccObject.Editor
@@ -1129,6 +1171,7 @@ DccTitleObject {
             name: "IPSec secret"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Group Pwd")
+            canSearch: false
             weight: 410
             visible: root.dataMap["IPSec secret-flags"] === "0" && (root.vpnType & (NetUtils.VpnTypeEnum["vpnc"]))
             pageType: DccObject.Editor
@@ -1142,6 +1185,7 @@ DccTitleObject {
             name: "IKE Authmode"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("Use Hybrid Authentication")
+            canSearch: false
             weight: 420
             visible: root.vpnType & (NetUtils.VpnTypeEnum["vpnc"])
             pageType: DccObject.Editor
@@ -1162,6 +1206,7 @@ DccTitleObject {
             name: "CA-File"
             parentName: root.parentName + "/vpnGroup"
             displayName: qsTr("CA File")
+            canSearch: false
             weight: 430
             visible: (root.vpnType & (NetUtils.VpnTypeEnum["vpnc"])) && root.dataMap["IKE Authmode"] === "hybrid"
             pageType: DccObject.Editor
@@ -1174,6 +1219,7 @@ DccTitleObject {
         name: "vpnPPPTitle"
         parentName: root.parentName
         displayName: qsTr("VPN PPP")
+        canSearch: false
         weight: root.weight + 100
         visible: root.vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])
     }
@@ -1181,6 +1227,7 @@ DccTitleObject {
         name: "vpnPPPMPPEGroup"
         parentName: root.parentName
         weight: root.weight + 110
+        canSearch: false
         visible: root.vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])
         pageType: DccObject.Item
         page: DccGroupView {}
@@ -1188,6 +1235,7 @@ DccTitleObject {
             name: "require-mppe"
             parentName: root.parentName + "/vpnPPPMPPEGroup"
             displayName: qsTr("Use MPPE")
+            canSearch: false
             weight: 10
             pageType: DccObject.Editor
             page: D.Switch {
@@ -1202,6 +1250,7 @@ DccTitleObject {
             name: "security"
             parentName: root.parentName + "/vpnPPPMPPEGroup"
             displayName: qsTr("Security")
+            canSearch: false
             weight: 20
             visible: mppe
             pageType: DccObject.Editor
@@ -1231,6 +1280,7 @@ DccTitleObject {
             name: "mppe-stateful"
             parentName: root.parentName + "/vpnPPPMPPEGroup"
             displayName: qsTr("Stateful MPPE")
+            canSearch: false
             weight: 30
             visible: mppe
             pageType: DccObject.Editor
@@ -1240,6 +1290,7 @@ DccTitleObject {
     DccObject {
         name: "vpnPPPGroup"
         parentName: root.parentName
+        canSearch: false
         weight: root.weight + 120
         visible: root.vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])
         pageType: DccObject.Item
@@ -1248,6 +1299,7 @@ DccTitleObject {
             name: "refuse-eap"
             parentName: root.parentName + "/vpnPPPGroup"
             displayName: qsTr("Refuse EAP Authentication")
+            canSearch: false
             weight: 40
             pageType: DccObject.Editor
             page: switchItem
@@ -1256,6 +1308,7 @@ DccTitleObject {
             name: "refuse-pap"
             parentName: root.parentName + "/vpnPPPGroup"
             displayName: qsTr("Refuse PAP Authentication")
+            canSearch: false
             weight: 50
             pageType: DccObject.Editor
             page: switchItem
@@ -1264,6 +1317,7 @@ DccTitleObject {
             name: "refuse-chap"
             parentName: root.parentName + "/vpnPPPGroup"
             displayName: qsTr("Refuse CHAP Authentication")
+            canSearch: false
             weight: 60
             pageType: DccObject.Editor
             page: switchItem
@@ -1272,6 +1326,7 @@ DccTitleObject {
             name: "refuse-mschap"
             parentName: root.parentName + "/vpnPPPGroup"
             displayName: qsTr("Refuse MSCHAP Authentication")
+            canSearch: false
             weight: 70
             pageType: DccObject.Editor
             page: switchItem
@@ -1280,6 +1335,7 @@ DccTitleObject {
             name: "refuse-mschapv2"
             parentName: root.parentName + "/vpnPPPGroup"
             displayName: qsTr("Refuse MSCHAPv2 Authentication")
+            canSearch: false
             weight: 80
             pageType: DccObject.Editor
             page: switchItem
@@ -1288,6 +1344,7 @@ DccTitleObject {
             name: "nobsdcomp"
             parentName: root.parentName + "/vpnPPPGroup"
             displayName: qsTr("No BSD Data Compression")
+            canSearch: false
             weight: 90
             pageType: DccObject.Editor
             page: switchItem
@@ -1296,6 +1353,7 @@ DccTitleObject {
             name: "nodeflate"
             parentName: root.parentName + "/vpnPPPGroup"
             displayName: qsTr("No Deflate Data Compression")
+            canSearch: false
             weight: 100
             pageType: DccObject.Editor
             page: switchItem
@@ -1304,6 +1362,7 @@ DccTitleObject {
             name: "no-vj-comp"
             parentName: root.parentName + "/vpnPPPGroup"
             displayName: qsTr("No TCP Header Compression")
+            canSearch: false
             weight: 110
             pageType: DccObject.Editor
             page: switchItem
@@ -1312,6 +1371,7 @@ DccTitleObject {
             name: "nopcomp"
             parentName: root.parentName + "/vpnPPPGroup"
             displayName: qsTr("No Protocol Field Compression")
+            canSearch: false
             weight: 120
             visible: root.vpnType & (NetUtils.VpnTypeEnum["l2tp"])
             pageType: DccObject.Editor
@@ -1321,6 +1381,7 @@ DccTitleObject {
             name: "noaccomp"
             parentName: root.parentName + "/vpnPPPGroup"
             displayName: qsTr("No Address/Control Compression")
+            canSearch: false
             weight: 130
             visible: root.vpnType & (NetUtils.VpnTypeEnum["l2tp"])
             pageType: DccObject.Editor
@@ -1330,6 +1391,7 @@ DccTitleObject {
             name: "lcpEchoInterval"
             parentName: root.parentName + "/vpnPPPGroup"
             displayName: qsTr("Send PPP Echo Packets")
+            canSearch: false
             weight: 140
             pageType: DccObject.Editor
             page: D.Switch {
@@ -1352,12 +1414,14 @@ DccTitleObject {
         name: "vpnIPsecTitle"
         parentName: root.parentName
         displayName: qsTr("VPN IPsec")
+        canSearch: false
         weight: root.weight + 200
         visible: root.vpnType & (NetUtils.VpnTypeEnum["l2tp"])
     }
     DccObject {
         name: "vpnIPsecGroup"
         parentName: root.parentName
+        canSearch: false
         weight: root.weight + 210
         visible: root.vpnType & (NetUtils.VpnTypeEnum["l2tp"])
         pageType: DccObject.Item
@@ -1366,6 +1430,7 @@ DccTitleObject {
             name: "ipsec-enabled"
             parentName: root.parentName + "/vpnIPsecGroup"
             displayName: qsTr("Enable IPsec")
+            canSearch: false
             weight: 10
             pageType: DccObject.Editor
             page: switchItem
@@ -1374,6 +1439,7 @@ DccTitleObject {
             name: "ipsec-group-name"
             parentName: root.parentName + "/vpnIPsecGroup"
             displayName: qsTr("Group Name")
+            canSearch: false
             weight: 20
             visible: root.dataMap["ipsec-enabled"] === "yes"
             pageType: DccObject.Editor
@@ -1383,6 +1449,7 @@ DccTitleObject {
             name: "ipsec-gateway-id"
             parentName: root.parentName + "/vpnIPsecGroup"
             displayName: qsTr("Group ID")
+            canSearch: false
             weight: 30
             visible: root.dataMap["ipsec-enabled"] === "yes"
             pageType: DccObject.Editor
@@ -1392,6 +1459,7 @@ DccTitleObject {
             name: "ipsec-psk"
             parentName: root.parentName + "/vpnIPsecGroup"
             displayName: qsTr("Pre-Shared Key")
+            canSearch: false
             weight: 40
             visible: root.dataMap["ipsec-enabled"] === "yes"
             pageType: DccObject.Editor
@@ -1401,6 +1469,7 @@ DccTitleObject {
             name: "ipsec-ike"
             parentName: root.parentName + "/vpnIPsecGroup"
             displayName: qsTr("Phase1 Algorithms")
+            canSearch: false
             weight: 50
             visible: root.dataMap["ipsec-enabled"] === "yes"
             pageType: DccObject.Editor
@@ -1410,6 +1479,7 @@ DccTitleObject {
             name: "ipsec-esp"
             parentName: root.parentName + "/vpnIPsecGroup"
             displayName: qsTr("Phase2 Algorithms")
+            canSearch: false
             weight: 60
             visible: root.dataMap["ipsec-enabled"] === "yes"
             pageType: DccObject.Editor
@@ -1421,6 +1491,7 @@ DccTitleObject {
         name: "vpnAdvancedTitle"
         parentName: root.parentName
         displayName: qsTr("VPN Advanced")
+        canSearch: false
         weight: root.weight + 300
         visible: root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])
     }
@@ -1428,6 +1499,7 @@ DccTitleObject {
         name: "vpnAdvancedGroup"
         parentName: root.parentName
         weight: root.weight + 310
+        canSearch: false
         visible: root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])
         pageType: DccObject.Item
         page: DccGroupView {}
@@ -1435,6 +1507,7 @@ DccTitleObject {
             name: "has_port"
             parentName: root.parentName + "/vpnAdvancedGroup"
             displayName: qsTr("Customize Gateway Port")
+            canSearch: false
             weight: 10
             pageType: DccObject.Editor
             page: D.Switch {
@@ -1454,6 +1527,7 @@ DccTitleObject {
             name: "port"
             parentName: root.parentName + "/vpnAdvancedGroup"
             displayName: qsTr("Gateway Port")
+            canSearch: false
             weight: 20
             visible: root.dataMap.hasOwnProperty("port")
             pageType: DccObject.Editor
@@ -1474,6 +1548,7 @@ DccTitleObject {
             name: "has_reneg-seconds"
             parentName: root.parentName + "/vpnAdvancedGroup"
             displayName: qsTr("Customize Renegotiation Interval")
+            canSearch: false
             weight: 30
             pageType: DccObject.Editor
             page: D.Switch {
@@ -1493,6 +1568,7 @@ DccTitleObject {
             name: "reneg-seconds"
             parentName: root.parentName + "/vpnAdvancedGroup"
             displayName: qsTr("Renegotiation Interval")
+            canSearch: false
             weight: 40
             visible: root.dataMap.hasOwnProperty("reneg-seconds")
             pageType: DccObject.Editor
@@ -1513,6 +1589,7 @@ DccTitleObject {
             name: "comp-lzo"
             parentName: root.parentName + "/vpnAdvancedGroup"
             displayName: qsTr("Use LZO Data Compression")
+            canSearch: false
             weight: 50
             pageType: DccObject.Editor
             page: D.Switch {
@@ -1532,6 +1609,7 @@ DccTitleObject {
             name: "proto-tcp"
             parentName: root.parentName + "/vpnAdvancedGroup"
             displayName: qsTr("Use TCP Connection")
+            canSearch: false
             weight: 60
             pageType: DccObject.Editor
             page: switchItem
@@ -1540,6 +1618,7 @@ DccTitleObject {
             name: "dev-type"
             parentName: root.parentName + "/vpnAdvancedGroup"
             displayName: qsTr("Use TAP Device")
+            canSearch: false
             weight: 70
             pageType: DccObject.Editor
             page: switchItem
@@ -1548,6 +1627,7 @@ DccTitleObject {
             name: "has_tunnel-mtu"
             parentName: root.parentName + "/vpnAdvancedGroup"
             displayName: qsTr("Customize Tunnel MTU")
+            canSearch: false
             weight: 80
             pageType: DccObject.Editor
             page: D.Switch {
@@ -1567,6 +1647,7 @@ DccTitleObject {
             name: "tunnel-mtu"
             parentName: root.parentName + "/vpnAdvancedGroup"
             displayName: qsTr("MTU")
+            canSearch: false
             weight: 90
             visible: root.dataMap.hasOwnProperty("tunnel-mtu")
             pageType: DccObject.Editor
@@ -1587,6 +1668,7 @@ DccTitleObject {
             name: "has_fragment-size"
             parentName: root.parentName + "/vpnAdvancedGroup"
             displayName: qsTr("Customize UDP Fragment Size")
+            canSearch: false
             weight: 100
             pageType: DccObject.Editor
             page: D.Switch {
@@ -1606,6 +1688,7 @@ DccTitleObject {
             name: "fragment-size"
             parentName: root.parentName + "/vpnAdvancedGroup"
             displayName: qsTr("UDP Fragment Size")
+            canSearch: false
             weight: 110
             visible: root.dataMap.hasOwnProperty("fragment-size")
             pageType: DccObject.Editor
@@ -1626,6 +1709,7 @@ DccTitleObject {
             name: "mssfix"
             parentName: root.parentName + "/vpnAdvancedGroup"
             displayName: qsTr("Restrict Tunnel TCP MSS")
+            canSearch: false
             weight: 120
             pageType: DccObject.Editor
             page: switchItem
@@ -1634,6 +1718,7 @@ DccTitleObject {
             name: "remote-random"
             parentName: root.parentName + "/vpnAdvancedGroup"
             displayName: qsTr("Randomize Remote Hosts")
+            canSearch: false
             weight: 130
             pageType: DccObject.Editor
             page: switchItem
@@ -1644,12 +1729,14 @@ DccTitleObject {
         name: "vpncAdvancedTitle"
         parentName: root.parentName
         displayName: qsTr("VPN Advanced")
+        canSearch: false
         weight: root.weight + 350
         visible: root.vpnType & (NetUtils.VpnTypeEnum["vpnc"])
     }
     DccObject {
         name: "vpncAdvancedGroup"
         parentName: root.parentName
+        canSearch: false
         weight: root.weight + 360
         visible: root.vpnType & (NetUtils.VpnTypeEnum["vpnc"])
         pageType: DccObject.Item
@@ -1658,6 +1745,7 @@ DccTitleObject {
             name: "Domain"
             parentName: root.parentName + "/vpncAdvancedGroup"
             displayName: qsTr("Domain")
+            canSearch: false
             weight: 10
             pageType: DccObject.Editor
             page: lineEdit
@@ -1666,6 +1754,7 @@ DccTitleObject {
             name: "Vendor"
             parentName: root.parentName + "/vpncAdvancedGroup"
             displayName: qsTr("Vendor")
+            canSearch: false
             weight: 20
             pageType: DccObject.Editor
             page: D.ComboBox {
@@ -1691,6 +1780,7 @@ DccTitleObject {
             name: "Application Version"
             parentName: root.parentName + "/vpncAdvancedGroup"
             displayName: qsTr("Version")
+            canSearch: false
             weight: 30
             pageType: DccObject.Editor
             page: lineEdit
@@ -1699,6 +1789,7 @@ DccTitleObject {
             name: "encryption"
             parentName: root.parentName + "/vpncAdvancedGroup"
             displayName: qsTr("Encryption")
+            canSearch: false
             weight: 40
             pageType: DccObject.Editor
             page: D.ComboBox {
@@ -1727,6 +1818,7 @@ DccTitleObject {
             name: "NAT Traversal Mode"
             parentName: root.parentName + "/vpncAdvancedGroup"
             displayName: qsTr("NAT Traversal Mode")
+            canSearch: false
             weight: 50
             pageType: DccObject.Editor
             page: D.ComboBox {
@@ -1758,6 +1850,7 @@ DccTitleObject {
             name: "IKE DH Group"
             parentName: root.parentName + "/vpncAdvancedGroup"
             displayName: qsTr("IKE DH Group")
+            canSearch: false
             weight: 60
             pageType: DccObject.Editor
             page: D.ComboBox {
@@ -1786,6 +1879,7 @@ DccTitleObject {
             name: "Perfect Forward Secrecy"
             parentName: root.parentName + "/vpncAdvancedGroup"
             displayName: qsTr("Forward Secrecy")
+            canSearch: false
             weight: 70
             pageType: DccObject.Editor
             page: D.ComboBox {
@@ -1820,6 +1914,7 @@ DccTitleObject {
             name: "Local Port"
             parentName: root.parentName + "/vpncAdvancedGroup"
             displayName: qsTr("Local Port")
+            canSearch: false
             weight: 80
             pageType: DccObject.Editor
             page: D.SpinBox {
@@ -1839,6 +1934,7 @@ DccTitleObject {
             name: "DPD idle timeout (our side)"
             parentName: root.parentName + "/vpncAdvancedGroup"
             displayName: qsTr("Disable Dead Peer Detection")
+            canSearch: false
             weight: 90
             pageType: DccObject.Editor
             page: D.Switch {
@@ -1859,12 +1955,14 @@ DccTitleObject {
         name: "vpnSecurityTitle"
         parentName: root.parentName
         displayName: qsTr("VPN Security")
+        canSearch: false
         weight: root.weight + 400
         visible: root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])
     }
     DccObject {
         name: "vpnSecurityGroup"
         parentName: root.parentName
+        canSearch: false
         weight: root.weight + 410
         visible: root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])
         pageType: DccObject.Item
@@ -1873,6 +1971,7 @@ DccTitleObject {
             name: "cipher"
             parentName: root.parentName + "/vpnSecurityGroup"
             displayName: qsTr("Cipher")
+            canSearch: false
             weight: 10
             pageType: DccObject.Editor
             page: D.ComboBox {
@@ -1946,6 +2045,7 @@ DccTitleObject {
             name: "auth"
             parentName: root.parentName + "/vpnSecurityGroup"
             displayName: qsTr("HMAC Auth")
+            canSearch: false
             weight: 20
             pageType: DccObject.Editor
             page: D.ComboBox {
@@ -1997,6 +2097,7 @@ DccTitleObject {
         name: "vpnProxyTitle"
         parentName: root.parentName
         displayName: qsTr("VPN Proxy")
+        canSearch: false
         weight: root.weight + 500
         visible: root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])
     }
@@ -2004,6 +2105,7 @@ DccTitleObject {
         name: "vpnProxyGroup"
         parentName: root.parentName
         weight: root.weight + 510
+        canSearch: false
         visible: root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])
         pageType: DccObject.Item
         page: DccGroupView {}
@@ -2011,6 +2113,7 @@ DccTitleObject {
             name: "proxy-type"
             parentName: root.parentName + "/vpnProxyGroup"
             displayName: qsTr("Proxy Type")
+            canSearch: false
             weight: 10
             pageType: DccObject.Editor
             page: D.ComboBox {
@@ -2040,6 +2143,7 @@ DccTitleObject {
             name: "proxy-server"
             parentName: root.parentName + "/vpnProxyGroup"
             displayName: qsTr("Server IP")
+            canSearch: false
             weight: 20
             visible: root.dataMap["proxy-type"] !== "none"
             pageType: DccObject.Editor
@@ -2049,6 +2153,7 @@ DccTitleObject {
             name: "proxy-port"
             parentName: root.parentName + "/vpnProxyGroup"
             displayName: qsTr("Port")
+            canSearch: false
             weight: 30
             visible: root.dataMap["proxy-type"] !== "none"
             pageType: DccObject.Editor
@@ -2072,6 +2177,7 @@ DccTitleObject {
             name: "proxy-retry"
             parentName: root.parentName + "/vpnProxyGroup"
             displayName: qsTr("Retry Indefinitely When Failed")
+            canSearch: false
             weight: 40
             visible: root.dataMap["proxy-type"] !== "none"
             pageType: DccObject.Editor
@@ -2081,6 +2187,7 @@ DccTitleObject {
             name: "http-proxy-username"
             parentName: root.parentName + "/vpnProxyGroup"
             displayName: qsTr("Username")
+            canSearch: false
             weight: 50
             visible: root.dataMap["proxy-type"] === "http"
             pageType: DccObject.Editor
@@ -2090,6 +2197,7 @@ DccTitleObject {
             name: "http-proxy-password"
             parentName: root.parentName + "/vpnProxyGroup"
             displayName: qsTr("Password")
+            canSearch: false
             weight: 60
             visible: root.dataMap["proxy-type"] === "http"
             pageType: DccObject.Editor
@@ -2105,12 +2213,14 @@ DccTitleObject {
         name: "vpnTLSAuthenticationTitle"
         parentName: root.parentName
         displayName: qsTr("VPN TLS Authentication")
+        canSearch: false
         weight: 2000
         visible: (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] !== "static-key")
     }
     DccObject {
         name: "vpnTLSAuthenticationGroup"
         parentName: root.parentName
+        canSearch: false
         weight: 2010
         visible: (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] !== "static-key")
         pageType: DccObject.Item
@@ -2119,6 +2229,7 @@ DccTitleObject {
             name: "tls-remote"
             parentName: root.parentName + "/vpnTLSAuthenticationGroup"
             displayName: qsTr("Subject Match")
+            canSearch: false
             weight: 10
             pageType: DccObject.Editor
             page: lineEdit
@@ -2127,6 +2238,7 @@ DccTitleObject {
             name: "remote-cert-tls"
             parentName: root.parentName + "/vpnTLSAuthenticationGroup"
             displayName: qsTr("Remote Cert Type")
+            canSearch: false
             weight: 20
             pageType: DccObject.Editor
             page: D.ComboBox {
@@ -2159,6 +2271,7 @@ DccTitleObject {
             name: "ta"
             parentName: root.parentName + "/vpnTLSAuthenticationGroup"
             displayName: qsTr("Key File")
+            canSearch: false
             weight: 30
             pageType: DccObject.Editor
             page: fileLineEdit
@@ -2167,6 +2280,7 @@ DccTitleObject {
             name: "has_ta-dir"
             parentName: root.parentName + "/vpnTLSAuthenticationGroup"
             displayName: qsTr("Customize Key Direction")
+            canSearch: false
             weight: 40
             pageType: DccObject.Editor
             page: D.Switch {
@@ -2186,6 +2300,7 @@ DccTitleObject {
             name: "ta-dir"
             parentName: root.parentName + "/vpnTLSAuthenticationGroup"
             displayName: qsTr("Key Direction")
+            canSearch: false
             weight: 50
             visible: root.dataMap.hasOwnProperty(this.name)
             pageType: DccObject.Editor

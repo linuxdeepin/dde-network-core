@@ -36,6 +36,7 @@ DccTitleObject {
 
     name: "pppoeTitle"
     displayName: qsTr("PPPoE")
+    canSearch: false
     DccObject {
         name: "pppoeGroup"
         parentName: root.parentName
@@ -46,6 +47,7 @@ DccTitleObject {
             name: "username"
             parentName: root.parentName + "/pppoeGroup"
             displayName: qsTr("Username")
+            canSearch: false
             weight: 10
             pageType: DccObject.Editor
             page: D.LineEdit {
@@ -74,6 +76,7 @@ DccTitleObject {
             name: "service"
             parentName: root.parentName + "/pppoeGroup"
             displayName: qsTr("Service")
+            canSearch: false
             weight: 20
             pageType: DccObject.Editor
             page: D.LineEdit {
@@ -90,6 +93,7 @@ DccTitleObject {
             name: "password"
             parentName: root.parentName + "/pppoeGroup"
             displayName: qsTr("Password")
+            canSearch: false
             weight: 30
             pageType: DccObject.Editor
             page: NetPasswordEdit {

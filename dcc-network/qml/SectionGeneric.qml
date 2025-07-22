@@ -37,16 +37,19 @@ DccTitleObject {
     }
     name: "genericTitle"
     displayName: qsTr("General")
+    canSearch: false
     DccObject {
         name: "genericGroup"
         parentName: root.parentName
         weight: root.weight + 20
+        canSearch: false
         pageType: DccObject.Item
         page: DccGroupView {}
         DccObject {
             name: "name"
             parentName: root.parentName + "/genericGroup"
             displayName: root.config.type === "802-11-wireless" ? qsTr("Name (SSID)") : qsTr("Name")
+            canSearch: false
             weight: 10
             enabled: root.config.type !== "802-11-wireless" || !root.config.hasOwnProperty("id") || root.config.id.length === 0
             pageType: DccObject.Editor
@@ -76,6 +79,7 @@ DccTitleObject {
             name: "autoConnect"
             parentName: root.parentName + "/genericGroup"
             displayName: qsTr("Auto Connect")
+            canSearch: false
             weight: 20
             pageType: DccObject.Editor
             page: D.Switch {

@@ -111,6 +111,7 @@ DccObject {
 
     name: "ipv4Title"
     displayName: qsTr("IPv4")
+    canSearch: false
     pageType: DccObject.Item
     page: RowLayout {
         Label {
@@ -167,6 +168,7 @@ DccObject {
         weight: root.weight + 20
         backgroundType: DccObject.Normal
         displayName: qsTr("Method")
+        canSearch: false
         pageType: DccObject.Editor
         page: ComboBox {
             flat: true
@@ -198,6 +200,7 @@ DccObject {
         weight: root.weight + 90
         visible: type === NetType.VPNControlItem
         displayName: qsTr("Only applied in corresponding resources")
+        canSearch: false
         pageType: DccObject.Item
         page: D.CheckBox {
             text: dccObj.displayName
@@ -217,6 +220,7 @@ DccObject {
             name: "ipv4_" + index
             displayName: "IP-" + index
             parentName: root.parentName
+            canSearch: false
             pageType: DccObject.Item
             page: DccGroupView {
                 isGroup: false
@@ -226,6 +230,7 @@ DccObject {
                 parentName: ipv4Item.parentName + "/" + ipv4Item.name
                 weight: 10
                 displayName: "IP-" + index
+                canSearch: false
                 pageType: DccObject.Item
                 page: RowLayout {
                     Label {
@@ -279,6 +284,7 @@ DccObject {
                 id: ipGroup
                 name: "ipGroup"
                 parentName: ipv4Item.parentName + "/" + ipv4Item.name
+                canSearch: false
                 weight: 20
                 pageType: DccObject.Item
                 page: DccGroupView {}
@@ -287,6 +293,7 @@ DccObject {
                     parentName: ipGroup.parentName + "/" + ipGroup.name
                     weight: 10
                     displayName: qsTr("IP Address")
+                    canSearch: false
                     pageType: DccObject.Editor
                     page: D.LineEdit {
                         text: addressData.length > index ? addressData[index][0] : "0.0.0.0"
@@ -318,6 +325,7 @@ DccObject {
                     parentName: ipGroup.parentName + "/" + ipGroup.name
                     weight: 20
                     displayName: qsTr("Netmask")
+                    canSearch: false
                     pageType: DccObject.Editor
                     page: D.LineEdit {
                         text: addressData.length > index ? addressData[index][1] : "255.255.255.0"
@@ -348,6 +356,7 @@ DccObject {
                     parentName: ipGroup.parentName + "/" + ipGroup.name
                     weight: 30
                     displayName: qsTr("Gateway")
+                    canSearch: false
                     pageType: DccObject.Editor
                     page: D.LineEdit {
                         enabled: index === 0

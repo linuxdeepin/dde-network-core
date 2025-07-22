@@ -229,7 +229,7 @@ DccTitleObject {
 
     name: "secretTitle"
     displayName: qsTr("Security")
-
+    canSearch: false
     ListModel {
         id: eapModelWired
         ListElement {
@@ -325,12 +325,14 @@ DccTitleObject {
         name: "secretGroup"
         parentName: root.parentName
         weight: root.weight + 20
+        canSearch: false
         pageType: DccObject.Item
         page: DccGroupView {}
         DccObject {
             name: "securityType"
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("Security")
+            canSearch: false
             weight: 10
             visible: root.type === NetType.WirelessItem || root.type === NetType.WirelessHiddenItem
             pageType: DccObject.Editor
@@ -368,6 +370,7 @@ DccTitleObject {
             name: "security"
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("Security")
+            canSearch: false
             weight: 20
             visible: root.type === NetType.WiredItem
             pageType: DccObject.Editor
@@ -385,6 +388,7 @@ DccTitleObject {
             name: "eapAuth"
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("EAP Auth")
+            canSearch: false
             weight: 30
             visible: root.keyMgmt === "wpa-eap"
             pageType: DccObject.Editor
@@ -407,6 +411,7 @@ DccTitleObject {
             name: "identity"
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("Identity")
+            canSearch: false
             weight: 40
             visible: root.keyMgmt === "wpa-eap"
             pageType: DccObject.Editor
@@ -436,6 +441,7 @@ DccTitleObject {
             name: "pwdOptions"
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("Pwd Options")
+            canSearch: false
             weight: 50
             visible: root.keyMgmt !== ""
             pageType: DccObject.Editor
@@ -467,6 +473,7 @@ DccTitleObject {
             name: "password"
             parentName: root.parentName + "/secretGroup"
             displayName: root.keyMgmt === "none" ? qsTr("Key") : (root.eapType === "tls" ? qsTr("Private Pwd") : qsTr("Password"))
+            canSearch: false
             weight: 60
             visible: root.keyMgmt !== "" && root.pwdFlays !== 2
             pageType: DccObject.Editor
@@ -480,6 +487,7 @@ DccTitleObject {
             name: "Authentication"
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("Authentication")
+            canSearch: false
             weight: 70
             visible: root.keyMgmt === "none"
             pageType: DccObject.Editor
@@ -508,6 +516,7 @@ DccTitleObject {
             name: "private-key"
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("Private Key")
+            canSearch: false
             weight: 80
             visible: root.keyMgmt === "wpa-eap" && root.eapType === "tls"
             pageType: DccObject.Editor
@@ -522,6 +531,7 @@ DccTitleObject {
             name: "anonymousID"
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("Anonymous ID")
+            canSearch: false
             weight: 90
             visible: root.keyMgmt === "wpa-eap" && (root.eapType === "fast" || root.eapType === "ttls" || root.eapType === "peap")
             pageType: DccObject.Editor
@@ -539,6 +549,7 @@ DccTitleObject {
             name: "provisioning"
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("Provisioning")
+            canSearch: false
             weight: 100
             visible: root.keyMgmt === "wpa-eap" && root.eapType === "fast"
             pageType: DccObject.Editor
@@ -576,6 +587,7 @@ DccTitleObject {
             name: "pac-file"
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("PAC file")
+            canSearch: false
             visible: root.keyMgmt === "wpa-eap" && root.eapType === "fast"
             weight: 110
             pageType: DccObject.Editor
@@ -589,6 +601,7 @@ DccTitleObject {
             name: "ca-cert"
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("CA Cert")
+            canSearch: false
             weight: 120
             visible: root.keyMgmt === "wpa-eap" && (root.eapType === "tls" || root.eapType === "ttls" || root.eapType === "peap")
             pageType: DccObject.Editor
@@ -602,6 +615,7 @@ DccTitleObject {
             name: "client-cert"
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("User Cert")
+            canSearch: false
             weight: 130
             visible: root.keyMgmt === "wpa-eap" && root.eapType === "tls"
             pageType: DccObject.Editor
@@ -616,6 +630,7 @@ DccTitleObject {
             name: "peapVersion"
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("PEAP Version")
+            canSearch: false
             weight: 140
             visible: root.keyMgmt === "wpa-eap" && root.eapType === "peap"
             pageType: DccObject.Editor
@@ -650,6 +665,7 @@ DccTitleObject {
             name: "innerAuth"
             parentName: root.parentName + "/secretGroup"
             displayName: qsTr("Inner Auth")
+            canSearch: false
             weight: 150
             visible: root.keyMgmt === "wpa-eap" && (root.eapType === "fast" || root.eapType === "ttls" || root.eapType === "peap")
             pageType: DccObject.Editor
