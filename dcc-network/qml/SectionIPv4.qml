@@ -20,7 +20,7 @@ DccObject {
     property bool isEdit: false
     property string method: "auto"
 
-    property string errorKey: "" 
+    property string errorKey: ""
     property string errorMsg: ""
     signal editClicked
 
@@ -48,6 +48,9 @@ DccObject {
                 tmpIpData.push([ip, prefix, gateway])
             }
             sConfig["addresses"] = tmpIpData
+        } else {
+            delete sConfig["addresses"]
+            delete sConfig["address-data"]
         }
 
         return sConfig
@@ -75,7 +78,9 @@ DccObject {
             }
             let ipSet = new Set()
             for (let k in addressData) {
-                if (!addressData[k] || !addressData[k][0]) continue;
+                if (!addressData[k] || !addressData[k][0]) {
+                    continue
+                }
                 let ip = addressData[k][0]
                 if (ipSet.has(ip)) {
                     errorKey = k + "address"
