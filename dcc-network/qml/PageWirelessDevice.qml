@@ -66,7 +66,9 @@ DccObject {
                             cascadeSelected: true
                             Layout.fillWidth: true
                             leftPadding: 10
-                            rightPadding: 10
+                            rightPadding: 0   // 移除右边距，让箭头区域能扩展到边缘
+                            topPadding: 0     // 恢复适量上边距
+                            bottomPadding: 0  // 恢复适量下边距
                             spacing: 10
                             icon {
                                 name: "network-wireless" + (item.flags ? "-6" : "") + c_levelString[item.strengthLevel] + (item.secure ? "-secure" : "") + "-symbolic"
@@ -93,16 +95,87 @@ DccObject {
                                         dccData.exec(model.item.status === NetType.CS_Connected ? NetManager.Disconnect : NetManager.ConnectOrInfo, model.item.id, {})
                                     }
                                 }
-                                D.IconLabel {
-                                    icon {
-                                        name: "arrow_ordinary_right"
-                                        palette: D.DTK.makeIconPalette(palette)
+                                
+                                // 箭头悬浮效果 - 右侧圆角（包含分割线）
+                                Item {
+                                    width: 30  // 20px悬浮区域 + 10px扩展到边缘
+                                    height: 40 // 填满ItemDelegate高度
+                                    
+                                    Canvas {
+                                        id: hoverCanvas
+                                        anchors.fill: parent
+                                        property color bgColor: "transparent"
+                                        
+                                        onPaint: {
+                                            var ctx = getContext("2d")
+                                            ctx.clearRect(0, 0, width, height)
+                                            
+                                            if (bgColor.a > 0) {
+                                                ctx.fillStyle = bgColor
+                                                ctx.beginPath()
+                                                
+                                                // 绘制右侧圆角的矩形
+                                                ctx.moveTo(0, 0)                           // 左上角
+                                                ctx.lineTo(width - 6, 0)                  // 右上角前
+                                                ctx.arcTo(width, 0, width, 6, 6)          // 右上圆角
+                                                ctx.lineTo(width, height - 6)             // 右下角前
+                                                ctx.arcTo(width, height, width - 6, height, 6) // 右下圆角
+                                                ctx.lineTo(0, height)                     // 左下角
+                                                ctx.lineTo(0, 0)                          // 回到左上角
+                                                
+                                                ctx.fill()
+                                            }
+                                        }
+                                        
+                                        onBgColorChanged: requestPaint()
                                     }
+                                    
+                                    // 分割线 - 一直显示
+                                    Rectangle {
+                                        width: 1
+                                        height: 20
+                                        anchors.left: parent.left
+                                        anchors.leftMargin: 0   // 在悬浮区域最左边
+                                        anchors.verticalCenter: parent.verticalCenter
+                                        color: palette.windowText
+                                        opacity: 0.05
+                                    }
+                                    
+                                    D.IconLabel {
+                                        anchors.centerIn: parent
+                                        icon {
+                                            name: "arrow_ordinary_right"
+                                            palette: D.DTK.makeIconPalette(palette)
+                                        }
+                                    }
+                                    
                                     MouseArea {
                                         anchors.fill: parent
+                                        hoverEnabled: true
                                         acceptedButtons: Qt.LeftButton
+                                        
                                         onClicked: {
                                             dccData.exec(NetManager.ConnectInfo, model.item.id, {})
+                                        }
+                                        
+                                        onEntered: {
+                                            hoverCanvas.bgColor = Qt.rgba(palette.windowText.r, palette.windowText.g, palette.windowText.b, 0.1)
+                                        }
+                                        
+                                        onExited: {
+                                            hoverCanvas.bgColor = "transparent"
+                                        }
+                                        
+                                        onPressed: {
+                                            hoverCanvas.bgColor = Qt.rgba(palette.windowText.r, palette.windowText.g, palette.windowText.b, 0.2)
+                                        }
+                                        
+                                        onReleased: {
+                                            if (containsMouse) {
+                                                hoverCanvas.bgColor = Qt.rgba(palette.windowText.r, palette.windowText.g, palette.windowText.b, 0.1)
+                                            } else {
+                                                hoverCanvas.bgColor = "transparent"
+                                            }
                                         }
                                     }
                                 }
