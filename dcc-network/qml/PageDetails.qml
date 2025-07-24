@@ -164,6 +164,7 @@ DccObject {
             parentName: root.name + "/footer"
             weight: 40
             pageType: DccObject.Item
+            visible: dccData.netCheckAvailable()
             page: NetButton {
                 text: qsTr("Network Detection")
                 Layout.alignment: Qt.AlignRight
