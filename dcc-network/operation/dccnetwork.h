@@ -31,6 +31,7 @@ public:
 public Q_SLOTS:
     void exec(NetManager::CmdType cmd, const QString &id, const QVariantMap &param = QVariantMap()); // 执行操作
     void setClipboard(const QString &text);
+    bool netCheckAvailable(); // 检查网络检测功能是否可用
 
     QVariantMap toMap(QMap<QString, QString> map);
     QMap<QString, QString> toStringMap(QVariantMap map);

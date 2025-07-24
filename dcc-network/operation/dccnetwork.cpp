@@ -165,6 +165,15 @@ void DccNetwork::setClipboard(const QString &text)
     QGuiApplication::clipboard()->setText(text);
 }
 
+bool DccNetwork::netCheckAvailable()
+{
+    if (!m_manager) {
+        return false;
+    }
+    
+    return m_manager->netCheckAvailable();
+}
+
 QVariantMap DccNetwork::toMap(QMap<QString, QString> map)
 {
     QVariantMap retMap;
