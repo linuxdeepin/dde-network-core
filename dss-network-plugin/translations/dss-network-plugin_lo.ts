@@ -3,7 +3,7 @@
     <name>Bubble</name>
     <message>
         <source>1 new message</source>
-        <translation type="unfinished"/>
+        <translation>1 ຂໍ້ຄວາມໃໝ່</translation>
     </message>
 </context>
 <context>
@@ -28,7 +28,7 @@
     <name>dde::network::NetManagerThreadPrivate</name>
     <message>
         <source>Wired Connection %1</source>
-        <translation>ການເຊື່ອມຕໍ່ລວງຈາກ %1</translation>
+        <translation>ການເຊື່ອມຕໍ່ລວງ %1</translation>
     </message>
     <message>
         <source>VPN L2TP %1</source>
@@ -92,7 +92,7 @@
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
-        <translation>ເພື່ອເຊື່ອມຕໍ່ &quot;%1&quot;, ກະລຸນາຕັ້ງຄ່າການພິສູດຕົວຕົນຫລັງຈາກການເຂົ້າລະບົບ</translation>
+        <translation>ເພື່ອເຊື່ອມຕໍ່ &quot;%1&quot;, ກະລຸນາຕັ້ງຄ່າຂໍ້ມູນການພິສູດຕົວຕົນຫລັງຈາກເຂົ້າລະບົບ</translation>
     </message>
 </context>
 <context>
@@ -107,11 +107,11 @@
     </message>
     <message>
         <source>key</source>
-        <translation>ຄ່າ</translation>
+        <translation>ຄີຢ໌</translation>
     </message>
     <message>
         <source>Proxy Password</source>
-        <translation>ລະຫັດຜ່ານຕົວການຕົວຢ່າງ</translation>
+        <translation>ລະຫັດຜ່ານພຣັອກຊີ</translation>
     </message>
     <message>
         <source>Group Password</source>
@@ -140,31 +140,31 @@
     <name>dde::network::NetStatus</name>
     <message>
         <source>Disable wired connection</source>
-        <translation>ຍົກເລີກການເຊື່ອມຕໍ່ລວງຈາກ</translation>
+        <translation>ປິດການເຊື່ອມຕໍ່ສາຍໄຟຟ້າ</translation>
     </message>
     <message>
         <source>Enable wired connection</source>
-        <translation>ເປີດໃຊ້ການເຊື່ອມຕໍ່ລວງຈາກ</translation>
+        <translation>ເປີດໃຊ້ການເຊື່ອມຕໍ່ສາຍໄຟຟ້າ</translation>
     </message>
     <message>
         <source>Disable wireless connection</source>
-        <translation>ຍົກເລີກການເຊື່ອມຕໍ່ລາງ</translation>
+        <translation>ປິດການເຊື່ອມຕໍ່ໄຮ້ສາຍ</translation>
     </message>
     <message>
         <source>Enable wireless connection</source>
-        <translation>ເປີດໃຊ້ການເຊື່ອມຕໍ່ລາງ</translation>
+        <translation>ເປີດໃຊ້ການເຊື່ອມຕໍ່ໄຮ້ສາຍ</translation>
     </message>
     <message>
         <source>Disable network</source>
-        <translation>ຍົກເລີກການເຊື່ອມຕໍ່</translation>
+        <translation>ປິດເຄືອຂ່າຍ</translation>
     </message>
     <message>
         <source>Enable network</source>
-        <translation>ເປີດໃຊ້ການເຊື່ອມຕໍ່</translation>
+        <translation>ເປີດໃຊ້ເຄືອຂ່າຍ</translation>
     </message>
     <message>
         <source>Disable VPN</source>
-        <translation>ຍົກເລີກ VPN</translation>
+        <translation>ປິດ VPN</translation>
     </message>
     <message>
         <source>Enable VPN</source>
@@ -188,11 +188,11 @@
     </message>
     <message>
         <source>Connected to: %1</source>
-        <translation>ເຊື່ອມຕໍ່ແລ້ວໄປທີ່: %1</translation>
+        <translation>ເຊື່ອມຕໍ່ກັບ: %1</translation>
     </message>
     <message>
         <source>System proxy enabled</source>
-        <translation>ຕົວການຕົວຢ່າງຂອງລະບົບເປີດໃຊ້ແລ້ວ</translation>
+        <translation>ເປີດໃຊ້ພຣັອກຊີລະບົບ</translation>
     </message>
     <message>
         <source>Connected</source>
@@ -200,11 +200,11 @@
     </message>
     <message>
         <source>Network off</source>
-        <translation>ສະຖານະການເຊື່ອມຕໍ່ລົດ</translation>
+        <translation>ປິດເຄືອຂ່າຍ</translation>
     </message>
     <message>
         <source>Network cable unplugged</source>
-        <translation>ລາງສະຖານະການເຊື່ອມຕໍ່ລົດ</translation>
+        <translation>ສາຍເຄືອຂ່າຍຖອດອອກ</translation>
     </message>
     <message>
         <source>Not connected</source>
@@ -216,23 +216,23 @@
     </message>
     <message>
         <source>Connected but no Internet access</source>
-        <translation>ເຊື່ອມຕໍ່ແລ້ວແຕ່ບໍ່ມີການເຂົ້າເຖິງອິນເຕີເນັດ</translation>
+        <translation>ເຊື່ອມຕໍ່ແລ້ວແຕ່ບໍ່ສາມາດເຂົ້າຫາອິນເຕີເນັດໄດ້</translation>
     </message>
     <message>
         <source>Connection failed</source>
-        <translation>ການເຊື່ອມຕໍ່ລົດລົດ</translation>
+        <translation>ການເຊື່ອມຕໍ່ລົ້ມເຫລວ</translation>
     </message>
     <message>
         <source>IP conflict</source>
-        <translation>ຄວາມຂໍ້ຂໍ້ງກັນຂອງ IP</translation>
+        <translation>ຄວາມຂັດແຍ້ງ IP</translation>
     </message>
     <message>
         <source>Wireless Network</source>
-        <translation>ສະຖານະການເຊື່ອມຕໍ່ລາງ</translation>
+        <translation>ເຄືອຂ່າຍໄຮ້ສາຍ</translation>
     </message>
     <message>
         <source>Connected %1</source>
-        <translation>ເຊື່ອມຕໍ່ແລ້ວໄປທີ່ %1</translation>
+        <translation>ເຊື່ອມຕໍ່ແລ້ວ %1</translation>
     </message>
     <message>
         <source>Off</source>
@@ -240,60 +240,60 @@
     </message>
     <message>
         <source>Wired Network</source>
-        <translation>ສະຖານະການເຊື່ອມຕໍ່ລາງ</translation>
+        <translation>ເຄືອຂ່າຍສາຍ</translation>
     </message>
     <message>
         <source>Network</source>
-        <translation>ສະຖານະການເຊື່ອມຕໍ່</translation>
+        <translation>ເຄືອຂ່າຍ</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetSystemProxyControlItem</name>
     <message>
         <source>System Proxy</source>
-        <translation>ຕົວການຕົວຢ່າງຂອງລະບົບ</translation>
+        <translation>ພຣັອກຊີລະບົບ</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetVPNTipsItem</name>
     <message>
         <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
-        <translation>ການຕັ້ງຄ່າ VPN ບໍ່ເຊື່ອມຕໍ່ແລ້ວຫລືການເຊື່ອມຕໍ່ລົດ. ກະລຸນາ &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;ໄປທີ່ຨູດຄວບຄຸມການຕັ້ງຄ່າ&lt;/a&gt; ສຳລັບການຕົວຢ່າງ</translation>
+        <translation>ການຕັ້ງຄ່າ VPN ບໍ່ເຊື່ອມຕໍ່ຫຼືລົ້ມເຫລວໃນການເຊື່ອມຕໍ່. ກະລຸນາ &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;ໄປທີ່ສູນຄວບຄຸມ&lt;/a&gt; ເພື່ອກວດສອບ.</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWiredControlItem</name>
     <message>
         <source>Wired Network</source>
-        <translation>ສະຖານະການເຊື່ອມຕໍ່ລາງ</translation>
+        <translation>ເຄືອຂ່າຍສາຍ</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessControlItem</name>
     <message>
         <source>Wireless Network</source>
-        <translation>ສະຖານະການເຊື່ອມຕໍ່ລາງ</translation>
+        <translation>ເຄືອຂ່າຍໄຮ້ສາຍ</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessHiddenItem</name>
     <message>
         <source>Connect to hidden network</source>
-        <translation>ເຊື່ອມຕໍ່ໄປທີ່ສະຖານະການເຊື່ອມຕໍ່ລາງ</translation>
+        <translation>ເຊື່ອມຕໍ່ກັບເຄືອຂ່າຍທີ່ເຊື່ອງໄວ້</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessMineItem</name>
     <message>
         <source>My Networks</source>
-        <translation>ສະຖານະການເຊື່ອມຕໍ່ຂອງຂ້ອຍ</translation>
+        <translation>ເຄືອຂ່າຍຂອງຂ້ອຍ</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessOtherItem</name>
     <message>
         <source>Other Networks</source>
-        <translation>ສະຖານະການເຊື່ອມຕໍ່ອື່ນ</translation>
+        <translation>ເຄືອຂ່າຍອື່ນໆ</translation>
     </message>
 </context>
 </TS>
