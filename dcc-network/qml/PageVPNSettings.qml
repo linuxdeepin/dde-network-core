@@ -73,22 +73,22 @@ DccObject {
                 valueRole: "value"
                 currentIndex: indexOfValue(vpnType)
                 model: [{
-                        "text": qsTr("L2TP"),
+                        "text": "L2TP",
                         "value": NetUtils.VpnTypeEnum["l2tp"]
                     }, {
-                        "text": qsTr("PPTP"),
+                        "text": "PPTP",
                         "value": NetUtils.VpnTypeEnum["pptp"]
                     }, {
-                        "text": qsTr("OpenVPN"),
+                        "text": "OpenVPN",
                         "value": NetUtils.VpnTypeEnum["openvpn"]
                     }, {
-                        "text": qsTr("OpenConnect"),
+                        "text": "OpenConnect",
                         "value": NetUtils.VpnTypeEnum["openconnect"]
                     }, {
-                        "text": qsTr("StrongSwan"),
+                        "text": "StrongSwan",
                         "value": NetUtils.VpnTypeEnum["strongswan"]
                     }, {
-                        "text": qsTr("VPNC"),
+                        "text": "VPNC",
                         "value": NetUtils.VpnTypeEnum["vpnc"]
                     }]
                 onActivated: {
