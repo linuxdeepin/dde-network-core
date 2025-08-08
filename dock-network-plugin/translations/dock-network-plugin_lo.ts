@@ -32,7 +32,7 @@
     <name>dde::network::NetManagerThreadPrivate</name>
     <message>
         <source>Wired Connection %1</source>
-        <translation>ການເຊື່ອມຕໍ່ລວງຈາກ %1</translation>
+        <translation>ການເຊື່ອມຕໍ່ລວງ %1</translation>
     </message>
     <message>
         <source>VPN L2TP %1</source>
@@ -144,11 +144,11 @@
     <name>dde::network::NetStatus</name>
     <message>
         <source>Disable wired connection</source>
-        <translation>ຍົກເລີກການເຊື່ອມຕໍ່ລວງຈາກ</translation>
+        <translation>ຍົກເລີກການເຊື່ອມຕໍ່ລວງ</translation>
     </message>
     <message>
         <source>Enable wired connection</source>
-        <translation>ເປີດໃຊ້ການເຊື່ອມຕໍ່ລວງຈາກ</translation>
+        <translation>ເປີດໃຊ້ການເຊື່ອມຕໍ່ລວງ</translation>
     </message>
     <message>
         <source>Disable wireless connection</source>
