@@ -91,12 +91,12 @@ void ConnectionVpnEditPage::initSettingsWidgetByType(ConnectionVpnEditPage::VpnT
         typeGrp->getLayout()->setContentsMargins(8, 0, 8, 0);
         typeGrp->appendItem(cbvpntype);
         QComboBox *comboBox = cbvpntype->comboBox();
-        comboBox->addItem(tr("L2TP"), VpnType::L2TP);
-        comboBox->addItem(tr("PPTP"), VpnType::PPTP);
-        comboBox->addItem(tr("OpenVPN"), VpnType::OPENVPN);
-        comboBox->addItem(tr("OpenConnect"), VpnType::OPENCONNECT);
-        comboBox->addItem(tr("StrongSwan"), VpnType::STRONGSWAN);
-        comboBox->addItem(tr("VPNC"), VpnType::VPNC);
+        comboBox->addItem("L2TP", VpnType::L2TP);
+        comboBox->addItem("PPTP", VpnType::PPTP);
+        comboBox->addItem("OpenVPN", VpnType::OPENVPN);
+        comboBox->addItem("OpenConnect", VpnType::OPENCONNECT);
+        comboBox->addItem("StrongSwan", VpnType::STRONGSWAN);
+        comboBox->addItem("VPNC", VpnType::VPNC);
 
         comboBox->setCurrentIndex(0);
 

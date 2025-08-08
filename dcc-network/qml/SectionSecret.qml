@@ -233,15 +233,15 @@ DccTitleObject {
     ListModel {
         id: eapModelWired
         ListElement {
-            text: qsTr("TLS")
+            text: "TLS"
             value: "tls"
         }
         ListElement {
-            text: qsTr("MD5")
+            text: "MD5"
             value: "md5"
         }
         ListElement {
-            text: qsTr("FAST")
+            text: "FAST"
             value: "fast"
         }
         ListElement {
@@ -256,15 +256,15 @@ DccTitleObject {
     ListModel {
         id: eapModelWireless
         ListElement {
-            text: qsTr("TLS")
+            text: "TLS"
             value: "tls"
         }
         ListElement {
-            text: qsTr("LEAP")
+            text: "LEAP"
             value: "leap"
         }
         ListElement {
-            text: qsTr("FAST")
+            text: "FAST"
             value: "fast"
         }
         ListElement {
@@ -279,45 +279,45 @@ DccTitleObject {
     ListModel {
         id: fastAuthModel
         ListElement {
-            text: qsTr("GTC")
+            text: "GTC"
             value: "gtc"
         }
         ListElement {
-            text: qsTr("MSCHAPV2")
+            text: "MSCHAPV2"
             value: "mschapv2"
         }
     }
     ListModel {
         id: ttlsAuthModel
         ListElement {
-            text: qsTr("PAP")
+            text: "PAP"
             value: "pap"
         }
         ListElement {
-            text: qsTr("MSCHAP")
+            text: "MSCHAP"
             value: "mschap"
         }
         ListElement {
-            text: qsTr("MSCHAPV2")
+            text: "MSCHAPV2"
             value: "mschapv2"
         }
         ListElement {
-            text: qsTr("CHAP")
+            text: "CHAP"
             value: "chap"
         }
     }
     ListModel {
         id: peapAuthModel
         ListElement {
-            text: qsTr("GTC")
+            text: "GTC"
             value: "gtc"
         }
         ListElement {
-            text: qsTr("MD5")
+            text: "MD5"
             value: "md5"
         }
         ListElement {
-            text: qsTr("MSCHAPV2")
+            text: "MSCHAPV2"
             value: "mschapv2"
         }
     }

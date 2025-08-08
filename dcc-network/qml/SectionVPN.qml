@@ -1986,52 +1986,52 @@ DccTitleObject {
                         "text": qsTr("None"),
                         "value": "none"
                     }, {
-                        "text": qsTr("DES-CBC"),
+                        "text": "DES-CBC",
                         "value": "DES-CBC"
                     }, {
-                        "text": qsTr("RC2-CBC"),
+                        "text": "RC2-CBC",
                         "value": "RC2-CBC"
                     }, {
-                        "text": qsTr("DES-EDE-CBC"),
+                        "text": "DES-EDE-CBC",
                         "value": "DES-EDE-CBC"
                     }, {
-                        "text": qsTr("DES-EDE3-CBC"),
+                        "text": "DES-EDE3-CBC",
                         "value": "DES-EDE3-CBC"
                     }, {
-                        "text": qsTr("DESX-CBC"),
+                        "text": "DESX-CBC",
                         "value": "DESX-CBC"
                     }, {
-                        "text": qsTr("BF-CBC"),
+                        "text": "BF-CBC",
                         "value": "BF-CBC"
                     }, {
-                        "text": qsTr("RC2-40-CBC"),
+                        "text": "RC2-40-CBC",
                         "value": "RC2-40-CBC"
                     }, {
-                        "text": qsTr("CAST5-CBC"),
+                        "text": "CAST5-CBC",
                         "value": "CAST5-CBC"
                     }, {
-                        "text": qsTr("RC2-64-CBC"),
+                        "text": "RC2-64-CBC",
                         "value": "RC2-64-CBC"
                     }, {
-                        "text": qsTr("AES-128-CBC"),
+                        "text": "AES-128-CBC",
                         "value": "AES-128-CBC"
                     }, {
-                        "text": qsTr("AES-192-CBC"),
+                        "text": "AES-192-CBC",
                         "value": "AES-192-CBC"
                     }, {
-                        "text": qsTr("AES-256-CBC"),
+                        "text": "AES-256-CBC",
                         "value": "AES-256-CBC"
                     }, {
-                        "text": qsTr("CAMELLIA-128-CBC"),
+                        "text": "CAMELLIA-128-CBC",
                         "value": "CAMELLIA-128-CBC"
                     }, {
-                        "text": qsTr("CAMELLIA-192-CBC"),
+                        "text": "CAMELLIA-192-CBC",
                         "value": "CAMELLIA-192-CBC"
                     }, {
-                        "text": qsTr("CAMELLIA-256-CBC"),
+                        "text": "CAMELLIA-256-CBC",
                         "value": "CAMELLIA-256-CBC"
                     }, {
-                        "text": qsTr("SEED-CBC"),
+                        "text": "SEED-CBC",
                         "value": "SEED-CBC"
                     }]
                 onActivated: {
@@ -2125,10 +2125,10 @@ DccTitleObject {
                         "text": qsTr("Not Required"),
                         "value": "none"
                     }, {
-                        "text": qsTr("HTTP"),
+                        "text": "HTTP",
                         "value": "http"
                     }, {
-                        "text": qsTr("SOCKS"),
+                        "text": "SOCKS",
                         "value": "socks"
                     }]
                 onActivated: {
