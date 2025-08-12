@@ -1,3 +1,11 @@
+dde-network-core (2.0.65) unstable; urgency=medium
+
+  * i18n: Updates for project Deepin Desktop Environment (#389)
+  * fix: Delete manually set IP address in IPv4 automatic mode
+  * chore: add wifi7 dci icon
+
+ -- wujiangyu <wujiangyu@uniontech.com>  Tue, 12 Aug 2025 10:39:43 +0800
+
 dde-network-core (2.0.64) unstable; urgency=medium
 
   * Release 2.0.64
