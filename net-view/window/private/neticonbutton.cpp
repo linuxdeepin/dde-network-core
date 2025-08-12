@@ -6,6 +6,9 @@
 #include <QMouseEvent>
 #include <QPainter>
 #include <QTimer>
+#include <QPaintDevice>
+#include <QPalette>
+#include <DGuiApplicationHelper>
 
 namespace dde {
 namespace network {
@@ -107,20 +110,20 @@ void NetIconButton::paintEvent(QPaintEvent *e)
         painter.translate(-(r.width() / 2), -(r.height() / 2));
     }
     const qreal scale = devicePixelRatio();
-    QSize pixmapSize = r.size() * scale;
-    QPixmap pm;
+    auto pa = palette();
+    if (Dtk::Gui::DGuiApplicationHelper::instance()->themeType() == Dtk::Gui::DGuiApplicationHelper::LightType) {
+        pa.setColor(QPalette::WindowText, Qt::black);
+    } else if (Dtk::Gui::DGuiApplicationHelper::instance()->themeType() == Dtk::Gui::DGuiApplicationHelper::DarkType) { 
+        pa.setColor(QPalette::WindowText, Qt::white);
+    }
+    // 设置dci图标单独调色板 参考dtk源码
+    // https://github.com/linuxdeepin/dtkgui/blob/9d3d659afedfa5813421e2430e26cd683246ab35/src/util/private/dciiconengine.cpp#L36C1-L37C1
+    setProperty("palette", pa);
     if (m_hover && !m_hoverIcon.isNull()) {
-        pm = m_hoverIcon.pixmap(pixmapSize);
+        m_hoverIcon.paint(&painter, r, Qt::AlignCenter);
     } else {
-        pm = m_icon.pixmap(pixmapSize);
+      m_icon.paint(&painter, r, Qt::AlignCenter);
     }
-    if (m_textType) {
-        QPainter pa(&pm);
-        pa.setCompositionMode(QPainter::CompositionMode_SourceIn);
-        pa.fillRect(pm.rect(), painter.pen().brush());
-    }
-    pm.setDevicePixelRatio(scale);
-    painter.drawPixmap(r, pm);
 }
 
 void NetIconButton::mousePressEvent(QMouseEvent *event)
