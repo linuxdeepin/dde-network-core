@@ -1,3 +1,10 @@
+dde-network-core (2.0.66) unstable; urgency=medium
+
+  * fix: improve icon rendering with theme support
+  * chore: remove some translation markers for proper nouns
+
+ -- wujiangyu <wujiangyu@uniontech.com>  Thu, 14 Aug 2025 17:38:46 +0800
+
 dde-network-core (2.0.65) unstable; urgency=medium
 
   * i18n: Updates for project Deepin Desktop Environment (#389)
