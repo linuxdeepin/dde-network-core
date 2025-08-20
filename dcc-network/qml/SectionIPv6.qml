@@ -256,6 +256,7 @@ DccObject {
                                                           "prefix": 64
                                                       })
                                 root.addressDataChanged()
+                                root.editClicked()
                             }
                         }
                     }
@@ -274,6 +275,7 @@ DccObject {
                             onClicked: {
                                 root.addressData.splice(index, 1)
                                 root.addressDataChanged()
+                                root.editClicked()
                             }
                         }
                     }
