@@ -122,8 +122,8 @@ DccObject {
         Label {
             text: dccObj.displayName
             font: DccUtils.copyFont(D.DTK.fontManager.t4, {
-                                        "bold": true
-                                    })
+                "bold": true
+            })
         }
         Item {
             Layout.fillWidth: true
@@ -241,8 +241,8 @@ DccObject {
                     Label {
                         text: dccObj.displayName
                         font: DccUtils.copyFont(D.DTK.fontManager.t6, {
-                                                    "bold": true
-                                                })
+                            "bold": true
+                        })
                     }
                     Item {
                         Layout.fillWidth: true
@@ -262,6 +262,7 @@ DccObject {
                             onClicked: {
                                 root.addressData.push(["0.0.0.0", "255.255.255.0", ""])
                                 root.addressDataChanged()
+                                root.editClicked()
                             }
                         }
                     }
@@ -280,6 +281,7 @@ DccObject {
                             onClicked: {
                                 root.addressData.splice(index, 1)
                                 root.addressDataChanged()
+                                root.editClicked()
                             }
                         }
                     }
@@ -394,8 +396,8 @@ DccObject {
     onAddressDataChanged: {
         while (addressData.length > ipItems.length) {
             let ipItem = ipComponent.createObject(root, {
-                                                      "index": ipItems.length
-                                                  })
+                "index": ipItems.length
+            })
             DccApp.addObject(ipItem)
             ipItems.push(ipItem)
         }
