@@ -7,11 +7,13 @@
 
 #include "netsecretagentinterface.h"
 
+#include <QLocalSocket>
 #include <QObject>
 
 class QWidget;
 class QLocalServer;
 class QLocalSocket;
+class QTimer;
 
 namespace dde {
 namespace network {
@@ -29,26 +31,26 @@ public:
 Q_SIGNALS:
     void requestShow();
 
-public:
-    void setServerName(const QString &name);
-
 private Q_SLOTS:
-    void newConnectionHandler();
+    void ConnectToServer();
+    void onStateChanged(QLocalSocket::LocalSocketState socketState);
+
     void readyReadHandler();
-    void disconnectedHandler();
     void sendSecretsResult(const QString &key, const QVariantMap &password, bool input);
 
 public:
     void requestSecrets(QLocalSocket *socket, const QByteArray &data);
 
 private:
+    QString m_callId;
     QString m_connectDev;
     QString m_connectSsid;
     QStringList m_secrets;
     QByteArray m_lastData;
 
-    QLocalServer *m_server;
-    QList<QLocalSocket *> m_clients;
+    QLocalSocket *m_client;
+
+    QTimer *m_reconnectTimer;
     QString m_serverName;
 };
 

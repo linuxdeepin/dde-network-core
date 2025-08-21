@@ -16,6 +16,7 @@ Build-Depends: debhelper-compat (= 12),
                qt6-tools-dev,
                libdtk6core-dev,
                libdtk6widget-dev,
+               libgsettings-qt6-dev,
                libkf6networkmanagerqt-dev
 Rules-Requires-Root: no
 Standards-Version: 4.5.0

@@ -4,3 +4,5 @@
 /usr/share/dbus-1/system.d/org.deepin.service.SystemNetwork.conf
 /usr/lib/*/deepin-service-manager/libnetwork-service.so
 /usr/share/deepin-service-manager/network-service/translations
+/usr/lib/deepin-daemon/dde-network-secret-dialog
+/etc/NetworkManager

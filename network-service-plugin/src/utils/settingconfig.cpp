@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
 #include "settingconfig.h"
+
 #include <DConfig>
 
 static Dtk::Core::DConfig *dConfig = nullptr;
@@ -48,6 +49,11 @@ bool SettingConfig::enableAccountNetwork() const
     return m_enableAccountNetwork;
 }
 
+bool SettingConfig::disableFailureNotify() const
+{
+    return m_disableFailureNotify;
+}
+
 void SettingConfig::onValueChanged(const QString &key)
 {
     if (key == "reconnectIfIpConflicted") {
@@ -64,6 +70,9 @@ void SettingConfig::onValueChanged(const QString &key)
     } else if (key == QString("checkPortal")) {
         m_checkPortal = dConfig->value("checkPortal").toBool();
         emit checkPortalChanged(m_checkPortal);
+    } else if (key == QString("disableFailureNotify")) {
+        m_disableFailureNotify = dConfig->value("disableFailureNotify").toBool();
+        emit disableFailureNotifyChanged(m_disableFailureNotify);
     }
 }
 
@@ -75,6 +84,7 @@ SettingConfig::SettingConfig(QObject *parent)
     , m_checkPortal(false)
     , m_disabledNetwork(false)
     , m_enableAccountNetwork(false)
+    , m_disableFailureNotify(false)
 {
     if (!dConfig)
         dConfig = Dtk::Core::DConfig::create("org.deepin.dde.network", "org.deepin.dde.network");
@@ -103,5 +113,7 @@ SettingConfig::SettingConfig(QObject *parent)
 
         if (keys.contains("enableAccountNetwork"))
             m_enableAccountNetwork = dConfig->value("enableAccountNetwork").toBool();
+
+        m_disableFailureNotify = dConfig->value("disableFailureNotify", false).toBool();
     }
 }

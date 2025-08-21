@@ -20,8 +20,8 @@
 
 #include <DLog>
 
-const static QString networkService = "org.deepin.dde.Network1";
-const static QString networkPath = "/org/deepin/dde/Network1";
+// const static QString networkService = "org.deepin.dde.Network1";
+// const static QString networkPath = "/org/deepin/dde/Network1";
 static QString localeName;
 Q_LOGGING_CATEGORY(DNC, "org.deepin.dde.dcc.network");
 using namespace dde::network;
@@ -45,11 +45,13 @@ NetworkController::NetworkController()
     Dtk::Core::loggerInstance()->logToGlobalInstance(DNC().categoryName(), true);
     retranslate(QLocale().name());
 
-    if (ConfigSetting::instance()->serviceFromNetworkManager())
+    if (ConfigSetting::instance()->serviceFromNetworkManager()) {
         m_processer = new NetworkManagerProcesser(m_sync, this);
-    else
+    } else {
+        // 不应该走该分支
+        qCWarning(DNC())<<"error: use Network Inter !!!";
         m_processer = new NetworkInterProcesser(m_sync, this);
-
+    }
     connect(m_processer, &NetworkProcesser::deviceAdded, this, &NetworkController::onDeviceAdded);
     connect(m_processer, &NetworkProcesser::deviceRemoved, this, &NetworkController::deviceRemoved);
     connect(m_processer, &NetworkProcesser::connectionChanged, this, &NetworkController::connectionChanged);
@@ -63,9 +65,9 @@ void NetworkController::initNetworkStatus()
 {
     QDBusServiceWatcher *serviceWatcher = new QDBusServiceWatcher(this);
     serviceWatcher->setConnection(QDBusConnection::systemBus());
-    serviceWatcher->addWatchedService("org.deepin.service.SystemNetwork");
+    serviceWatcher->addWatchedService("org.deepin.dde.Network1");
     connect(serviceWatcher, &QDBusServiceWatcher::serviceRegistered, this, [ this ](const QString &service) {
-        if (service != "org.deepin.service.SystemNetwork")
+        if (service != "org.deepin.dde.Network1")
             return;
 
         // 启动后过3秒再获取连接状态，因为在刚启动的时候，获取的状态不是正确的
@@ -75,7 +77,7 @@ void NetworkController::initNetworkStatus()
 
     if (m_checkIpConflicted) {
         // 如果当前需要处理IP冲突，则直接获取信号连接方式即可
-        QDBusConnection::systemBus().connect("org.deepin.service.SystemNetwork", "/org/deepin/service/SystemNetwork",
+        QDBusConnection::systemBus().connect("org.deepin.dde.Network1", "/org/deepin/service/SystemNetwork",
                                     "org.deepin.service.SystemNetwork", "IpConflictChanged", m_processer, SLOT(onIpConflictChanged(const QString &, const QString &, bool)));
         checkIpConflicted(m_processer->devices());
     }
@@ -86,7 +88,7 @@ void NetworkController::checkIpConflicted(const QList<NetworkDeviceBase *> &devi
     if (!m_checkIpConflicted)
         return ;
 
-    static QDBusInterface dbusInter("org.deepin.service.SystemNetwork", "/org/deepin/service/SystemNetwork",
+    static QDBusInterface dbusInter("org.deepin.dde.Network1", "/org/deepin/service/SystemNetwork",
                              "org.deepin.service.SystemNetwork", QDBusConnection::systemBus());
     // 如果需要处理IP冲突，依次检测每个设备的IP是否冲突
     for (NetworkDeviceBase *device : devices) {

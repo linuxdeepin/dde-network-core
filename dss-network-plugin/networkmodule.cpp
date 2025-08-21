@@ -22,7 +22,7 @@
 
 #define NETWORK_KEY "network-item-key"
 
-static QString networkService = "org.deepin.service.SystemNetwork";
+static QString networkService = "org.deepin.dde.Network1";
 static QString networkPath = "/org/deepin/service/SystemNetwork";
 static QString networkInterface = "org.deepin.service.SystemNetwork";
 

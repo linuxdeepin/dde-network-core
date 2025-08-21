@@ -15,14 +15,16 @@ class ServiceFactory : public QObject
     Q_OBJECT
 
 public:
-    explicit ServiceFactory(bool isSystem, QObject *parent = nullptr);
-    QObject *serviceObject() const;
+    explicit ServiceFactory(bool isSystem, QDBusConnection *dbusConnection, QObject *parent = nullptr);
+    QObject *serviceObject();
 
 private:
     QObject *createServiceObject(bool isSystem);
 
 private:
     QObject *m_serviceObject;
+    QDBusConnection *m_dbusConnection;
+    bool m_isSystem;
 };
 
 #endif // SERVICE_H

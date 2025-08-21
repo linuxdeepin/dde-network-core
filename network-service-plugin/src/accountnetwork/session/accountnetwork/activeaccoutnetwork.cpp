@@ -28,7 +28,7 @@
 
 using namespace accountnetwork::sessionservice;
 
-#define SYSTEMNETWORKSERVICE "org.deepin.service.SystemNetwork"
+#define SYSTEMNETWORKSERVICE "org.deepin.dde.Network1"
 #define SYSTEMNETWORKPATH "/org/deepin/service/SystemNetwork"
 #define SYSTEMNETWORKINTERFACE "org.deepin.service.AccountSystemNetwork"
 

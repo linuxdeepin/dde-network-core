@@ -79,8 +79,9 @@ private:
     AccessPoints *m_accessPoint;
 };
 
-#define SYS_NETWORK_INTER "org.deepin.dde.Network1"
+#define SYS_NETWORK_SERVICE "org.deepin.dde.Network1"
 #define SYS_NETWORK_PATH "/org/deepin/dde/Network1"
+#define SYS_NETWORK_INTER "org.deepin.dde.Network1"
 
 DeviceManagerRealize::DeviceManagerRealize(NetworkManager::Device::Ptr device, QObject *parent)
     : NetworkDeviceRealize(parent)
@@ -158,7 +159,7 @@ void DeviceManagerRealize::initConnection()
     connect(m_device.data(), &NetworkManager::Device::ipV4AddressChanged, this, &DeviceManagerRealize::ipV4Changed);
     connect(m_device.data(), &NetworkManager::Device::dhcp4ConfigChanged, this, &DeviceManagerRealize::ipV4Changed);
     connect(m_ipv4Config.data(), &IpManager::ipChanged, this, &DeviceManagerRealize::ipV4Changed);
-    QDBusConnection::systemBus().connect(SYS_NETWORK_INTER, SYS_NETWORK_PATH, SYS_NETWORK_INTER, "DeviceEnabled", this, SLOT(onDeviceEnabledChanged(QDBusObjectPath, bool)));
+    QDBusConnection::systemBus().connect(SYS_NETWORK_SERVICE, SYS_NETWORK_PATH, SYS_NETWORK_INTER, "DeviceEnabled", this, SLOT(onDeviceEnabledChanged(QDBusObjectPath, bool)));
     connect(NetworkManager::settingsNotifier(), &NetworkManager::SettingsNotifier::connectionRemoved, this, &DeviceManagerRealize::removeConnection);
     connect(NetworkManager::settingsNotifier(), &NetworkManager::SettingsNotifier::connectionAdded, this, &DeviceManagerRealize::onConnectionAdded);
 }
@@ -186,7 +187,7 @@ void DeviceManagerRealize::initUsbInfo()
 
 void DeviceManagerRealize::initEnabeld()
 {
-    QDBusInterface dbusInter(SYS_NETWORK_INTER, SYS_NETWORK_PATH, SYS_NETWORK_INTER, QDBusConnection::systemBus());
+    QDBusInterface dbusInter(SYS_NETWORK_SERVICE, SYS_NETWORK_PATH, SYS_NETWORK_INTER, QDBusConnection::systemBus());
     QDBusPendingCall reply = dbusInter.asyncCall("IsDeviceEnabled", m_device->uni());
     reply.waitForFinished();
     QDBusPendingReply<bool> replyResult = reply.reply();
@@ -294,7 +295,7 @@ void DeviceManagerRealize::setEnabled(bool enabled)
         return;
 
     qCDebug(DNC) << QString("set Device %1, enabled: %2").arg(m_device->uni()).arg(enabled ? "true" : "false");
-    QDBusInterface dbusInter(SYS_NETWORK_INTER, SYS_NETWORK_PATH, SYS_NETWORK_INTER, QDBusConnection::systemBus());
+    QDBusInterface dbusInter(SYS_NETWORK_SERVICE, SYS_NETWORK_PATH, SYS_NETWORK_INTER, QDBusConnection::systemBus());
     QDBusReply<QDBusObjectPath> reply = dbusInter.call("EnableDevice", m_device->uni(), enabled);
     deviceEnabledAction(reply, enabled);
 }
@@ -428,7 +429,7 @@ bool WiredDeviceManagerRealize::connectNetwork(WiredConnection *connection)
     // 拔掉网线后，通过后端接口连接，弹通知
     if (deviceStatus() == DeviceStatus::Unavailable) {
         NetworkInter inter(networkService, networkPath, QDBusConnection::sessionBus(), this);
-        inter.ActivateConnection(connection->connection()->uuid(), QDBusObjectPath(path()));
+        inter.ActivateConnection(connection->connection()->uuid(), QDBusObjectPath(path())); // TODO: 后端接口，有逻辑处理
         return false;
     }
     QVariantMap options;
