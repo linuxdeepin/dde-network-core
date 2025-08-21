@@ -2894,7 +2894,9 @@ void NetManagerThreadPrivate::addDevice(NetDeviceItemPrivate *deviceItem, Networ
 
 void NetManagerThreadPrivate::requestPassword(const QString &dev, const QString &id, const QVariantMap &param)
 {
-    Q_EMIT requestInputPassword(dev, id, param);
+    if (m_enabled) {
+        Q_EMIT requestInputPassword(dev, id, param);
+    }
 }
 
 QString NetManagerThreadPrivate::connectionSuffixNum(const QString &matchConnName, const QString &name, NetworkManager::Connection *exception)

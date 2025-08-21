@@ -5,14 +5,14 @@
 #ifndef CONSTRANTS_H
 #define CONSTRANTS_H
 
+#include <QDBusConnection>
 #include <QLoggingCategory>
 
 #include <unistd.h>
 
 static const QLoggingCategory &DSM()
 {
-    static const QLoggingCategory category((geteuid() == 0 ? "org.deepin.deepin-service-manager.system.network"
-                                                           : "org.deepin.deepin-service-manager.session.network"));
+    static const QLoggingCategory category((geteuid() == 0 ? "org.deepin.deepin-service-manager.system.network" : "org.deepin.deepin-service-manager.session.network"));
     return category;
 }
 
@@ -26,8 +26,8 @@ enum class Connectivity {
     Limited,                 // 主机已连接到网络，似乎无法访问完整的Internet，但尚未检测到捕获的门户
     Full                     // 主机已连接到网络，并且似乎能够访问完整的Internet。
 };
-
-}
-}
+void dbusDebug(const QString &service, const QString &funName, const QDBusConnection &dbusConnection = QDBusConnection::sessionBus());
+} // namespace service
+} // namespace network
 
 #endif // SERVICE_H

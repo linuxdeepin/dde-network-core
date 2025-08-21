@@ -74,7 +74,7 @@ public:
         m_netView->setMaxHeight(h);
         if (m_netView->height() > h)
             m_netView->setFixedHeight(h);
-        setFixedSize(m_netView->width(), qMax(m_minHeight, m_netView->height() + 20 + m_mainLayout->contentsMargins().top() + (m_netCheckBtn->isVisible() ? (m_netSetBtn->height() + m_netCheckBtn->height() + 10) : m_netSetBtn->height())));
+        setFixedSize(m_netView->width(), qMax(m_minHeight, m_netView->height() + 20 + m_mainLayout->contentsMargins().top() + (m_netCheckBtn->isVisibleTo(this) ? (m_netSetBtn->height() + m_netCheckBtn->height() + 10) : m_netSetBtn->height())));
     }
     void setNetCheckBtnVisible(bool visible) {
         m_netCheckBtn->setVisible(visible);

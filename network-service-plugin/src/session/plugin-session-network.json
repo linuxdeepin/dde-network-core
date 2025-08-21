@@ -1,5 +1,5 @@
 {
-  "name": "org.deepin.service.SystemNetwork",
+  "name": "org.deepin.dde.Network1",
   "libPath": "libnetwork-service.so",
   "group": "core",
   "policyStartType": "Resident",
@@ -7,7 +7,10 @@
   "startDelay": 0,
   "policy": [
     {
-      "path": "/org/deepin/service/SystemNetwork"
+      "path": "/org/deepin/service/SessionNetwork"
+    },
+    {
+      "path": "org.deepin.dde.Network1"
     }
   ]
 }

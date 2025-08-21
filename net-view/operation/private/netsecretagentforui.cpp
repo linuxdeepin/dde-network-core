@@ -11,7 +11,6 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QLocalServer>
 #include <QLocalSocket>
 #include <QTimer>
 
@@ -27,9 +26,17 @@ static QMap<QString, void (NetSecretAgentForUI::*)(QLocalSocket *, const QByteAr
 NetSecretAgentForUI::NetSecretAgentForUI(PasswordCallbackFunc fun, const QString &serverKey, QObject *parent)
     : QObject(parent)
     , NetSecretAgentInterface(fun)
-    , m_server(nullptr)
+    , m_client(new QLocalSocket(this))
+    , m_reconnectTimer(new QTimer(this))
 {
-    setServerName("dde-network-dialog" + QString::number(getuid()) + serverKey);
+    m_serverName = "org.deepin.dde.NetworkSecretAgent" + QString::number(getuid());
+    m_reconnectTimer->setInterval(1000);
+    m_reconnectTimer->setSingleShot(true);
+    connect(m_reconnectTimer, &QTimer::timeout, this, &NetSecretAgentForUI::ConnectToServer);
+
+    connect(m_client, &QLocalSocket::stateChanged, this, &NetSecretAgentForUI::onStateChanged);
+    connect(m_client, &QLocalSocket::readyRead, this, &NetSecretAgentForUI::readyReadHandler);
+    ConnectToServer();
 }
 
 bool NetSecretAgentForUI::hasTask()
@@ -44,62 +51,47 @@ void NetSecretAgentForUI::inputPassword(const QString &key, const QVariantMap &p
 
 NetSecretAgentForUI::~NetSecretAgentForUI() = default;
 
-void NetSecretAgentForUI::setServerName(const QString &name)
+void NetSecretAgentForUI::ConnectToServer()
 {
-    if (m_server)
-        return;
-
-    m_serverName = name;
-    m_server = new QLocalServer(this);
-    connect(m_server, &QLocalServer::newConnection, this, &NetSecretAgentForUI::newConnectionHandler);
-    m_server->setSocketOptions(QLocalServer::WorldAccessOption);
-
-    qDebug() << "start server name" << m_serverName;
-    if (!m_server->listen(m_serverName)) {
-        qWarning() << "start listen server failure" << m_server->errorString();
-    }
+    m_client->connectToServer(m_serverName);
 }
 
-void NetSecretAgentForUI::newConnectionHandler()
+void NetSecretAgentForUI::onStateChanged(QLocalSocket::LocalSocketState socketState)
 {
-    QLocalSocket *socket = m_server->nextPendingConnection();
-    connect(socket, &QLocalSocket::readyRead, this, &NetSecretAgentForUI::readyReadHandler);
-    connect(socket, &QLocalSocket::disconnected, this, &NetSecretAgentForUI::disconnectedHandler);
-    QTimer::singleShot(GET_SECRETS_TIMEOUT, socket, &QLocalSocket::disconnectFromServer);
-    m_clients.append(socket);
-}
-
-void NetSecretAgentForUI::disconnectedHandler()
-{
-    auto *socket = dynamic_cast<QLocalSocket *>(sender());
-    if (socket) {
-        if (!m_connectSsid.isEmpty())
-            cancelRequestPassword(m_connectDev, m_connectSsid);
-        m_clients.removeAll(socket);
-        socket->deleteLater();
-        m_connectSsid.clear();
+    switch (socketState) {
+    case QLocalSocket::UnconnectedState:
+    case QLocalSocket::ClosingState:
+        if (!m_reconnectTimer->isActive()) {
+            m_reconnectTimer->start();
+        }
+        break;
+    default:
+        break;
     }
 }
 
 void NetSecretAgentForUI::sendSecretsResult(const QString &key, const QVariantMap &password, bool input)
 {
     Q_UNUSED(key)
+    if (m_callId.isEmpty()) {
+        return;
+    }
     m_connectSsid.clear();
     QByteArray data;
+    QJsonObject json;
+    json.insert("callId", m_callId);
     if (input) {
         QStringList secrets;
         for (auto &&secret : m_secrets) {
             secrets << password.value(secret).toString();
         }
-        QJsonObject json;
         json.insert("secrets", QJsonArray::fromStringList(secrets));
-        QJsonDocument doc;
-        doc.setObject(json);
-        data = doc.toJson(QJsonDocument::Compact);
     }
-    for (auto &m_client : m_clients) {
-        m_client->write("\nsecretsResult:" + data + "\n");
-    }
+    QJsonDocument doc;
+    doc.setObject(json);
+    data = doc.toJson(QJsonDocument::Compact);
+    m_client->write("\nsecretsResult:" + data + "\n");
+    m_callId.clear();
 }
 
 void NetSecretAgentForUI::readyReadHandler()
@@ -146,6 +138,7 @@ void NetSecretAgentForUI::requestSecrets(QLocalSocket *socket, const QByteArray 
         for (auto p = jsonProps.constBegin(); p != jsonProps.constEnd(); ++p) {
             prop.insert(p.key(), p.value().toString());
         }
+        m_callId = obj.value("callId").toString();
         m_connectDev = dev;
         m_connectSsid = obj.value("connId").toString();
         m_secrets = secrets;

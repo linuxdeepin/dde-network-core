@@ -13,13 +13,12 @@ static ServiceFactory *serviceFactory = nullptr;
 
 extern "C" int DSMRegister(const char *name, void *data)
 {
-    serviceFactory = new ServiceFactory(QString(name).endsWith("SystemNetwork"));
-    QDBusConnection::RegisterOptions opts = QDBusConnection::ExportAllSlots
-            | QDBusConnection::ExportAllSignals | QDBusConnection::ExportAllProperties;
-
+    bool isSystem = geteuid() == 0;
+    auto connection = reinterpret_cast<QDBusConnection *>(data);
+    serviceFactory = new ServiceFactory(isSystem, connection);
+    QDBusConnection::RegisterOptions opts = QDBusConnection::ExportAllSlots | QDBusConnection::ExportAllSignals | QDBusConnection::ExportAllProperties;
     QString path = name;
     path = QString("/%1").arg(path.replace(".", "/"));
-    auto connection = reinterpret_cast<QDBusConnection *>(data);
     connection->registerObject(path, serviceFactory->serviceObject(), opts);
     return 0;
 }
