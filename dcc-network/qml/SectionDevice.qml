@@ -181,13 +181,16 @@ DccTitleObject {
             name: "mtu"
             parentName: root.parentName + "/devGroup"
             weight: 50
-            displayName: qsTr("MTU")
+            displayName: qsTr("MTU (1280-9000)")
             canSearch: false
             visible: hasMTU
             pageType: DccObject.Editor
             page: D.SpinBox {
                 editable: true
-                value: root.config.hasOwnProperty("mtu") ? root.config.mtu : 0
+                from: 1280
+                to: 9000
+                value: root.config.hasOwnProperty("mtu") ? root.config.mtu : 1500
+                
                 onValueChanged: {
                     if (hasMTU && (!root.config.hasOwnProperty("mtu") || root.config.mtu !== value)) {
                         root.config.mtu = value

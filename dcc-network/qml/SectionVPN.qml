@@ -1646,7 +1646,7 @@ DccTitleObject {
         DccObject {
             name: "tunnel-mtu"
             parentName: root.parentName + "/vpnAdvancedGroup"
-            displayName: qsTr("MTU")
+            displayName: qsTr("MTU (1280-9000)")
             canSearch: false
             weight: 90
             visible: root.dataMap.hasOwnProperty("tunnel-mtu")
@@ -1654,8 +1654,8 @@ DccTitleObject {
             page: D.SpinBox {
                 editable: true
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 1500
-                from: 0
-                to: 65535
+                from: 1280
+                to: 9000
                 onValueChanged: {
                     if (root.dataMap[dccObj.name] !== value) {
                         root.dataMap[dccObj.name] = value
