@@ -6,9 +6,6 @@
 #include <QMouseEvent>
 #include <QPainter>
 #include <QTimer>
-#include <QPaintDevice>
-#include <QPalette>
-#include <DGuiApplicationHelper>
 
 namespace dde {
 namespace network {
@@ -111,11 +108,7 @@ void NetIconButton::paintEvent(QPaintEvent *e)
     }
     const qreal scale = devicePixelRatio();
     auto pa = palette();
-    if (Dtk::Gui::DGuiApplicationHelper::instance()->themeType() == Dtk::Gui::DGuiApplicationHelper::LightType) {
-        pa.setColor(QPalette::WindowText, Qt::black);
-    } else if (Dtk::Gui::DGuiApplicationHelper::instance()->themeType() == Dtk::Gui::DGuiApplicationHelper::DarkType) { 
-        pa.setColor(QPalette::WindowText, Qt::white);
-    }
+    pa.setColor(QPalette::WindowText, painter.pen().color());
     // 设置dci图标单独调色板 参考dtk源码
     // https://github.com/linuxdeepin/dtkgui/blob/9d3d659afedfa5813421e2430e26cd683246ab35/src/util/private/dciiconengine.cpp#L36C1-L37C1
     setProperty("palette", pa);
