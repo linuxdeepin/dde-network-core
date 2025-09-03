@@ -42,8 +42,22 @@ DccObject {
     function getConfig() {
         let sConfig = root.config
         sConfig["method"] = method
-        sConfig["address-data"] = addressData
-        sConfig["gateway"] = gateway
+        if (method === "manual") {
+            sConfig["address-data"] = addressData
+            sConfig["gateway"] = gateway
+        } else {
+            delete sConfig["address-data"]
+            delete sConfig["gateway"]
+            delete sConfig["addresses"]
+            
+            // 禁用和忽略模式下不应该有任何IPv6配置字段
+            if (method === "disabled" || method === "ignore") {
+                delete sConfig["dns"]
+                delete sConfig["dns-search"]
+                delete sConfig["ignore-auto-dns"]
+                delete sConfig["ignore-auto-routes"]
+            }
+        }
         return sConfig
     }
     function checkInput() {
