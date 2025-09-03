@@ -51,6 +51,15 @@ DccObject {
         } else {
             delete sConfig["addresses"]
             delete sConfig["address-data"]
+            delete sConfig["gateway"]  // 非手动模式下不应保留手动设置的网关
+            
+            // 禁用模式下不应该有任何IPv4配置字段
+            if (method === "disabled") {
+                delete sConfig["dns"]
+                delete sConfig["dns-search"]
+                delete sConfig["ignore-auto-dns"]
+                delete sConfig["ignore-auto-routes"]
+            }
         }
 
         return sConfig

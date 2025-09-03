@@ -1578,7 +1578,9 @@ void NetManagerThreadPrivate::doSetConnectInfo(const QString &id, NetType::NetIt
     } else {
         // 更新
         connection = findConnectionByUuid(settings->uuid());
-        QDBusPendingReply<> reply = connection->isUnsaved() ? connection->updateUnsaved(settings->toMap()) : connection->update(settings->toMap());
+        NMVariantMapMap finalSettings = settings->toMap();
+
+        QDBusPendingReply<> reply = connection->isUnsaved() ? connection->updateUnsaved(finalSettings) : connection->update(finalSettings);
         reply.waitForFinished();
         if (reply.isError()) {
             qCWarning(DNC) << "Error occurred while updating the connection, error: " << reply.error();

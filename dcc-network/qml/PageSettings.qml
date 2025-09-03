@@ -224,9 +224,15 @@ DccObject {
                         }
                     }
                     
-                    // 分别保存到IPv4和IPv6配置中
-                    nConfig["ipv4"]["dns"] = ipv4Dns
-                    nConfig["ipv6"]["dns"] = ipv6Dns
+                    // 分别保存到IPv4和IPv6配置中，但要考虑各自的方法
+                    // 只有当IPv4不是disabled时才分配DNS
+                    if (nConfig["ipv4"]["method"] !== "disabled") {
+                        nConfig["ipv4"]["dns"] = ipv4Dns
+                    }
+                    // 只有当IPv6不是disabled和ignore时才分配DNS
+                    if (nConfig["ipv6"]["method"] !== "disabled" && nConfig["ipv6"]["method"] !== "ignore") {
+                        nConfig["ipv6"]["dns"] = ipv6Dns
+                    }
                     let devConfig = sectionDevice.getConfig()
                     if (devConfig.interfaceName.length === 0) {
                         delete nConfig["connection"]["interface-name"]
