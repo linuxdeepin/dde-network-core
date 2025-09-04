@@ -1,3 +1,12 @@
+dde-network-core (2.0.68) unstable; urgency=medium
+
+  * i18n: Updates for project Deepin Desktop Environment (#399)
+  * fix: prevent DNS assignment in disabled network modes
+  * fix: 网络图标展示为黑色
+  * fix: update MTU configuration with valid range
+
+ -- YeShanShan <yeshanshan@uniontech.com>  Thu, 04 Sep 2025 20:19:34 +0800
+
 dde-network-core (2.0.67) unstable; urgency=medium
 
   * fix: allow empty IP list in manual mode and emit edit signals
