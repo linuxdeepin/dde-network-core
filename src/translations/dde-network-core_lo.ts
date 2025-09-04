@@ -3,239 +3,239 @@
     <name>QObject</name>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>ບໍ່ມີ</translation>
     </message>
     <message>
         <source>WEP 40/128-bit Key</source>
-        <translation type="unfinished"/>
+        <translation>ຄີຢ່າງ WEP 40/128-bit</translation>
     </message>
     <message>
         <source>WPA/WPA2 Personal</source>
-        <translation type="unfinished"/>
+        <translation>WPA/WPA2 ສ່ວນຕົວ</translation>
     </message>
     <message>
         <source>WPA3 Personal</source>
-        <translation type="unfinished"/>
+        <translation>WPA3 ສ່ວນຕົວ</translation>
     </message>
     <message>
         <source>TLS</source>
-        <translation type="unfinished"/>
+        <translation>TLS</translation>
     </message>
     <message>
         <source>MD5</source>
-        <translation type="unfinished"/>
+        <translation>MD5</translation>
     </message>
     <message>
         <source>LEAP</source>
-        <translation type="unfinished"/>
+        <translation>LEAP</translation>
     </message>
     <message>
         <source>FAST</source>
-        <translation type="unfinished"/>
+        <translation>FAST</translation>
     </message>
     <message>
         <source>Tunneled TLS</source>
-        <translation type="unfinished"/>
+        <translation>Tunneled TLS</translation>
     </message>
     <message>
         <source>Protected EAP</source>
-        <translation type="unfinished"/>
+        <translation>Protected EAP</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetworkDetailInterRealize</name>
     <message>
         <source>Hotspot</source>
-        <translation type="unfinished"/>
+        <translation>ຮັອດສະບອດ</translation>
     </message>
     <message>
         <source>SSID</source>
-        <translation type="unfinished"/>
+        <translation>SSID</translation>
     </message>
     <message>
         <source>Protocol</source>
-        <translation type="unfinished"/>
+        <translation>ໂປຣໂຕຄໍ</translation>
     </message>
     <message>
         <source>Security Type</source>
-        <translation type="unfinished"/>
+        <translation>ປະເພດຄວາມປອດໄພ</translation>
     </message>
     <message>
         <source>Channel</source>
-        <translation type="unfinished"/>
+        <translation>ຊ່ອງ</translation>
     </message>
     <message>
         <source>Band</source>
-        <translation type="unfinished"/>
+        <translation>ບານ</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished"/>
+        <translation>ອິນເຕີເຟດ</translation>
     </message>
     <message>
         <source>MAC</source>
-        <translation type="unfinished"/>
+        <translation>MAC</translation>
     </message>
     <message>
         <source>IPv4</source>
-        <translation type="unfinished"/>
+        <translation>IPv4</translation>
     </message>
     <message>
         <source>Netmask</source>
-        <translation type="unfinished"/>
+        <translation>ເນັດມາສ</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"/>
+        <translation>ເກດເວ</translation>
     </message>
     <message>
         <source>Primary DNS</source>
-        <translation type="unfinished"/>
+        <translation>DNS ຫຼັກ</translation>
     </message>
     <message>
         <source>IPv6</source>
-        <translation type="unfinished"/>
+        <translation>IPv6</translation>
     </message>
     <message>
         <source>Prefix</source>
-        <translation type="unfinished"/>
+        <translation>ຄຳນຳໜ້າ</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished"/>
+        <translation>ຄວາມໄວ</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetworkDetailNMRealize</name>
     <message>
         <source>automatic</source>
-        <translation type="unfinished"/>
+        <translation>ອັດຕະໂນມັດ</translation>
     </message>
     <message>
         <source>Hotspot</source>
-        <translation type="unfinished"/>
+        <translation>ຮັອດສະບອດ</translation>
     </message>
     <message>
         <source>SSID</source>
-        <translation type="unfinished"/>
+        <translation>SSID</translation>
     </message>
     <message>
         <source>Protocol</source>
-        <translation type="unfinished"/>
+        <translation>ໂປຣໂຕຄອນ</translation>
     </message>
     <message>
         <source>Security Type</source>
-        <translation type="unfinished"/>
+        <translation>ປະເພດຄວາມປອດໄພ</translation>
     </message>
     <message>
         <source>Channel</source>
-        <translation type="unfinished"/>
+        <translation>ຊ່ອງ</translation>
     </message>
     <message>
         <source>Band</source>
-        <translation type="unfinished"/>
+        <translation>ຄວາມຖີ່</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished"/>
+        <translation>ອິນເຕີເຟດ</translation>
     </message>
     <message>
         <source>MAC</source>
-        <translation type="unfinished"/>
+        <translation>MAC</translation>
     </message>
     <message>
         <source>IPv4</source>
-        <translation type="unfinished"/>
+        <translation>IPv4</translation>
     </message>
     <message>
         <source>Netmask</source>
-        <translation type="unfinished"/>
+        <translation>ເນັດມາສ</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"/>
+        <translation>ເກດເວ</translation>
     </message>
     <message>
         <source>Primary DNS</source>
-        <translation type="unfinished"/>
+        <translation>DNS ຫຼັກ</translation>
     </message>
     <message>
         <source>IPv6</source>
-        <translation type="unfinished"/>
+        <translation>IPv6</translation>
     </message>
     <message>
         <source>Prefix</source>
-        <translation type="unfinished"/>
+        <translation>ຄຳນຳໜ້າ</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished"/>
+        <translation>ຄວາມໄວ</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetworkDeviceRealize</name>
     <message>
         <source>Device disabled</source>
-        <translation type="unfinished"/>
+        <translation>ອຸປະກອນຖືກປິດໃຊ້ງານ</translation>
     </message>
     <message>
         <source>Not connected</source>
-        <translation type="unfinished"/>
+        <translation>ບໍ່ໄດ້ເຊື່ອມຕໍ່</translation>
     </message>
     <message>
         <source>Network cable unplugged</source>
-        <translation type="unfinished"/>
+        <translation>ສາຍເຄບິນເຄືອຂ່າຍຖືກຖອນອອກ</translation>
     </message>
     <message>
         <source>Connecting</source>
-        <translation type="unfinished"/>
+        <translation>ກຳລັງເຊື່ອມຕໍ່</translation>
     </message>
     <message>
         <source>Authenticating</source>
-        <translation type="unfinished"/>
+        <translation>ກຳລັງຢືນຍັນຕົນ</translation>
     </message>
     <message>
         <source>Obtaining IP address</source>
-        <translation type="unfinished"/>
+        <translation>ກຳລັງຣັບທີ່ອຍຸ IP</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"/>
+        <translation>ເຊື່ອມຕໍ່ແລ້ວ</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>ຂາດການເຊື່ອມຕໍ່ແລ້ວ</translation>
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"/>
+        <translation>ທີ່ອຍຸ IP ຂັດແຍ້ງ</translation>
     </message>
     <message>
         <source>Failed</source>
-        <translation type="unfinished"/>
+        <translation>ລ້ມເຫຼວ</translation>
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation type="unfinished"/>
+        <translation>ກຳລັງຮັບທີ່ຢູ່</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetworkProcesser</name>
     <message>
         <source>Wired Network</source>
-        <translation type="unfinished"/>
+        <translation>ເຄືອຂ່າຍສາຍ</translation>
     </message>
     <message>
         <source>Wired Network %1</source>
-        <translation type="unfinished"/>
+        <translation>ເຄືອຂ່າຍສາຍ %1</translation>
     </message>
     <message>
         <source>Wireless Network</source>
-        <translation type="unfinished"/>
+        <translation>ເຄືອຂ່າຍໄວ້ຟາຍ</translation>
     </message>
     <message>
         <source>Wireless Network %1</source>
-        <translation type="unfinished"/>
+        <translation>ເຄືອຂ່າຍໄວ້ຟາຍ %1</translation>
     </message>
 </context>
 </TS>
