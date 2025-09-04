@@ -1742,7 +1742,7 @@
     <name>network</name>
     <message>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>ເຄືອຂ່າຍ</translation>
     </message>
 </context>
 </TS>
