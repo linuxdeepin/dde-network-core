@@ -19,7 +19,7 @@
     </message>
     <message>
         <source>Wireless Device is Unavailable</source>
-        <translation>Беспроводные Устройства Недоступны</translation>
+        <translation>Беспроводные устройства недоступны</translation>
     </message>
 </context>
 <context>
