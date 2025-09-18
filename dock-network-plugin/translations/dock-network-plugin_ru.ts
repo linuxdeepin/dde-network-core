@@ -107,7 +107,7 @@
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation type="unfinished"/>
+        <translation>Личный пароль</translation>
     </message>
     <message>
         <source>key</source>
@@ -119,7 +119,7 @@
     </message>
     <message>
         <source>Group Password</source>
-        <translation type="unfinished"/>
+        <translation>Пароль группы</translation>
     </message>
     <message>
         <source>Username</source>
@@ -137,7 +137,7 @@
     <message>
         <source>Connect</source>
         <comment>button</comment>
-        <translation type="unfinished"/>
+        <translation>Подключить</translation>
     </message>
 </context>
 <context>
@@ -192,7 +192,7 @@
     </message>
     <message>
         <source>Connected to: %1</source>
-        <translation type="unfinished"/>
+        <translation>Подключено к: &quot;%1&quot;</translation>
     </message>
     <message>
         <source>System proxy enabled</source>
@@ -236,7 +236,7 @@
     </message>
     <message>
         <source>Connected %1</source>
-        <translation type="unfinished"/>
+        <translation>Подключено %1</translation>
     </message>
     <message>
         <source>Off</source>
