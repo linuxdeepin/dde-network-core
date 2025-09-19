@@ -10,7 +10,7 @@
     <name>dde::network::NetAirplaneModeTipsItem</name>
     <message>
         <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation>Если вы хотите подключиться к беспроводной сети, сначала отключите &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Режим самолёта&lt;/a&gt;</translation>
+        <translation>Если вы хотите подключиться к беспроводной сети, сначала отключите &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Режим полета&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -28,71 +28,71 @@
     <name>dde::network::NetManagerThreadPrivate</name>
     <message>
         <source>Wired Connection %1</source>
-        <translation type="unfinished"/>
+        <translation>Проводное соединение %1</translation>
     </message>
     <message>
         <source>VPN L2TP %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN L2TP %1</translation>
     </message>
     <message>
         <source>VPN PPTP %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN PPTP %1</translation>
     </message>
     <message>
         <source>VPN VPNC %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN VPNC %1</translation>
     </message>
     <message>
         <source>VPN OpenVPN %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN OpenVPN %1</translation>
     </message>
     <message>
         <source>VPN StrongSwan %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN StrongSwan %1</translation>
     </message>
     <message>
         <source>VPN OpenConnect %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN OpenConnect %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
-        <translation type="unfinished"/>
+        <translation>PPPoE соединение %1</translation>
     </message>
     <message>
         <source>Connecting &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Соединение с &quot;%1&quot;</translation>
     </message>
     <message>
         <source>&quot;%1&quot; connected</source>
-        <translation>%1 соединено</translation>
+        <translation>&quot;%1&quot; подключено</translation>
     </message>
     <message>
         <source>&quot;%1&quot; disconnected</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; отключено</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
-        <translation type="unfinished"/>
+        <translation>Невозможно подключиться к &quot;%1&quot;, проверьте маршрутизатор или сетевой кабель.</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
-        <translation type="unfinished"/>
+        <translation>Невозможно подключиться к &quot;%1&quot;, пожалуйста, держитесь ближе к беспроводному маршрутизатору</translation>
     </message>
     <message>
         <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
-        <translation type="unfinished"/>
+        <translation>Сбой подключения, не удается подключиться &quot;%1&quot;, неверный пароль</translation>
     </message>
     <message>
         <source>Password is required to connect &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Для соединения с &quot;%1&quot; требуется пароль</translation>
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось найти сеть WLAN 802.11 &quot;%1&quot;</translation>
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
-        <translation type="unfinished"/>
+        <translation>Чтобы подключиться к &quot;%1&quot;, пожалуйста, настройте данные для аутентификации</translation>
     </message>
 </context>
 <context>
@@ -103,7 +103,7 @@
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation type="unfinished"/>
+        <translation>Личный пароль</translation>
     </message>
     <message>
         <source>key</source>
@@ -115,7 +115,7 @@
     </message>
     <message>
         <source>Group Password</source>
-        <translation type="unfinished"/>
+        <translation>Пароль группы</translation>
     </message>
     <message>
         <source>Username</source>
@@ -133,7 +133,7 @@
     <message>
         <source>Connect</source>
         <comment>button</comment>
-        <translation type="unfinished"/>
+        <translation>Подключить</translation>
     </message>
 </context>
 <context>
@@ -188,7 +188,7 @@
     </message>
     <message>
         <source>Connected to: %1</source>
-        <translation type="unfinished"/>
+        <translation>Подключено к: &quot;%1&quot;</translation>
     </message>
     <message>
         <source>System proxy enabled</source>
@@ -232,7 +232,7 @@
     </message>
     <message>
         <source>Connected %1</source>
-        <translation type="unfinished"/>
+        <translation>Подключено %1</translation>
     </message>
     <message>
         <source>Off</source>
