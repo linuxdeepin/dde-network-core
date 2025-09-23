@@ -14,7 +14,7 @@
     <name>dde::network::NetAirplaneModeTipsItem</name>
     <message>
         <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation>Если вы хотите подключиться к беспроводной сети, сначала отключите &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Режим самолёта&lt;/a&gt;</translation>
+        <translation>Если вы хотите подключиться к беспроводной сети, сначала отключите &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Режим полета&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
