@@ -28,7 +28,6 @@ NetView::NetView(NetManager *manager)
     : QTreeView(nullptr)
     , m_manager(manager)
     , m_closeOnClear(true)
-    , m_shouldUpdateExpand(true)
     , m_maxHeight(400)
 {
 #ifdef QT_SCROLL_WHEEL_ANI
@@ -113,7 +112,6 @@ void NetView::clear()
 
     m_manager->exec(NetManager::UserCancelRequest, "");
     scrollTo(model()->index(0, 0));
-    m_shouldUpdateExpand = true;
 }
 
 void NetView::rowsInserted(const QModelIndex &parent, int start, int end)
@@ -142,11 +140,15 @@ void NetView::rowsInserted(const QModelIndex &parent, int start, int end)
     case NetType::WirelessOtherItem: {
         NetWirelessOtherItem *otherItem = NetItem::toItem<NetWirelessOtherItem>(item);
         if (otherItem) {
+            // 添加的节点后更新一下展开状态
+            m_manager->exec(NetManager::ToggleExpand, "");
             updateItemExpand(otherItem);
             connect(otherItem, &NetWirelessOtherItem::expandedChanged, this, &NetView::onExpandStatusChanged, Qt::UniqueConnection);
         }
     } break;
     case NetType::WirelessMineItem:
+        // 添加的节点后更新一下展开状态
+        m_manager->exec(NetManager::ToggleExpand, "");
         updateItemExpand(item);
         break;
     case NetType::VPNControlItem: {
@@ -409,11 +411,6 @@ void NetView::showEvent(QShowEvent *event)
 {
     QTreeView::showEvent(event);
     m_manager->setAutoScanEnabled(true);
-    // 首次打开，需要刷新展开状态
-    if (m_shouldUpdateExpand)
-        m_manager->exec(NetManager::ToggleExpand, "");
-    m_shouldUpdateExpand = false;
-    updateGeometries();
 }
 
 void NetView::hideEvent(QHideEvent *event)
@@ -425,7 +422,6 @@ void NetView::hideEvent(QHideEvent *event)
         // 而网络面板大概在200毫秒之后显示，500毫秒为为了准备足够长的时间（防止不同性能的机器时间可能不同）
         QTimer::singleShot(500, this, &NetView::clear);
     }
-    m_shouldUpdateExpand = false;
     m_manager->exec(NetManager::ToggleExpand, "");
     Q_EMIT updateSize();
     m_manager->setAutoScanEnabled(false);
