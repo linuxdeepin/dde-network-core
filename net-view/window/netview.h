@@ -73,7 +73,6 @@ private:
     NetModel *m_model;
     NetDelegate *m_delegate;
     bool m_closeOnClear;
-    bool m_shouldUpdateExpand;
     int m_maxHeight;
 };
 
