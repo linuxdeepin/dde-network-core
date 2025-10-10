@@ -19,7 +19,9 @@
 #include "systemcontainer.h"
 #include "systemservice.h"
 
+#include <QCoreApplication>
 #include <QDBusConnection>
+#include <QTranslator>
 
 ServiceFactory::ServiceFactory(bool isSystem, QDBusConnection *dbusConnection, QObject *parent)
     : QObject(parent)
@@ -27,6 +29,10 @@ ServiceFactory::ServiceFactory(bool isSystem, QDBusConnection *dbusConnection, Q
     , m_serviceObject(nullptr)
     , m_dbusConnection(dbusConnection)
 {
+    QTranslator *translator = new QTranslator(this);
+    if (translator->load(QLocale::system(), "network-service-plugin", "_", "/usr/share/deepin-service-manager/network-service/translations")) {
+        QCoreApplication::installTranslator(translator);
+    }
 }
 
 QObject *ServiceFactory::serviceObject()
