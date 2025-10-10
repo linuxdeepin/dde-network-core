@@ -11,7 +11,7 @@
     </message>
     <message>
         <source>WPA/WPA2 Personal</source>
-        <translation>Персональный WPA/WPA2</translation>
+        <translation>WPA/WPA2 Personal</translation>
     </message>
     <message>
         <source>WPA3 Personal</source>
