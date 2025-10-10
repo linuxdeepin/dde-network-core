@@ -436,35 +436,35 @@
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info</source>
-        <translation type="unfinished"/>
+        <translation>Që të lidhet me “%1”, ju lutemi, ujdisni të dhënat tuaja për mirëfilltësim</translation>
     </message>
     <message>
         <source>Password is required to connect &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Për t’u lidhur me “%1”, lypset fjalëkalim</translation>
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"/>
+        <translation>Rrjeti 802.11 WLAN “%1” s’u gjet dot</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>E shkëputur</translation>
     </message>
     <message>
         <source>Airplane mode enabled.</source>
-        <translation type="unfinished"/>
+        <translation>U aktivizua mënyra aeroplan.</translation>
     </message>
     <message>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Rrjet</translation>
     </message>
     <message>
         <source>The hardware switch of WLAN Card is off, please switch on as necessary.</source>
-        <translation type="unfinished"/>
+        <translation>Çelësi hardware i kartës WLAN është i mbyllur, ju lutemi, hapeni, kur nevojitet.</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"/>
+        <translation>E lidhur</translation>
     </message>
 </context>
 <context>
