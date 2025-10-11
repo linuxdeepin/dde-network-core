@@ -296,47 +296,47 @@
     </message>
     <message>
         <source>A secondary connection of the base connection failed</source>
-        <translation type="unfinished"/>
+        <translation>Wystąpił błąd drugorzędnego połączenia połączenia bazowego</translation>
     </message>
     <message>
         <source>DCB or FCoE setup failed</source>
-        <translation type="unfinished"/>
+        <translation>Wystąpił błąd konfiguracji DCB lub FCoE</translation>
     </message>
     <message>
         <source>Network teaming control failed</source>
-        <translation type="unfinished"/>
+        <translation>Błąd kontroli sieci zespołowej</translation>
     </message>
     <message>
         <source>Modem failed to run or not available</source>
-        <translation type="unfinished"/>
+        <translation>Nie udało się uruchomić modemu lub jest niedostępny</translation>
     </message>
     <message>
         <source>Modem now ready and available</source>
-        <translation type="unfinished"/>
+        <translation>Modem jest gotowy i dostępny</translation>
     </message>
     <message>
         <source>SIM PIN is incorrect</source>
-        <translation type="unfinished"/>
+        <translation>Błędny PIN karty SIM</translation>
     </message>
     <message>
         <source>New connection activation is enqueuing</source>
-        <translation type="unfinished"/>
+        <translation>Aktywacja nowego połączenia dodana do kolejki</translation>
     </message>
     <message>
         <source>Parent device changed</source>
-        <translation type="unfinished"/>
+        <translation>Zmieniono urządzenie nadrzędne</translation>
     </message>
     <message>
         <source>Management status of parent device changed</source>
-        <translation type="unfinished"/>
+        <translation>Zmieniono stan zarządzania urządzenia nadrzędnego</translation>
     </message>
     <message>
         <source>Network cable is unplugged</source>
-        <translation type="unfinished"/>
+        <translation>Kabel sieciowy jest odłączony</translation>
     </message>
     <message>
         <source>Please make sure SIM card has been inserted with mobile network signal</source>
-        <translation type="unfinished"/>
+        <translation>Upewnij się, że włożono kartę SIM z dostępem do sieci komórkowej</translation>
     </message>
     <message>
         <source>Please make sure a correct plan was selected without arrearage of SIM card</source>
