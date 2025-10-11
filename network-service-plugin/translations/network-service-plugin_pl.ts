@@ -460,11 +460,11 @@
     </message>
     <message>
         <source>The hardware switch of WLAN Card is off, please switch on as necessary.</source>
-        <translation type="unfinished"/>
+        <translation>Przełącznik sprzętowy karty WLAN jest wyłączony, prosimy koniecznie go włączyć.</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"/>
+        <translation>Połączono</translation>
     </message>
 </context>
 <context>
