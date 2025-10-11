@@ -340,123 +340,123 @@
     </message>
     <message>
         <source>Please make sure a correct plan was selected without arrearage of SIM card</source>
-        <translation type="unfinished"/>
+        <translation>Upewnij się, że wybrano poprawny plan bez przekładania karty SIM</translation>
     </message>
     <message>
         <source>Failed to activate VPN connection, reason unknown</source>
-        <translation type="unfinished"/>
+        <translation>Nie można aktywować połączenia VPN, przyczyna nieznana</translation>
     </message>
     <message>
         <source>Failed to activate VPN connection</source>
-        <translation type="unfinished"/>
+        <translation>Nie można aktywować połączenia VPN</translation>
     </message>
     <message>
         <source>The VPN connection state changed due to being disconnected by users</source>
-        <translation type="unfinished"/>
+        <translation>Stan połączenia VPN został zmieniony z powodu rozłączenia przez użytkowników</translation>
     </message>
     <message>
         <source>The VPN connection state changed due to being disconnected from devices</source>
-        <translation type="unfinished"/>
+        <translation>Stan połączenia VPN został zmieniony z powodu odłączenia od urządzeń</translation>
     </message>
     <message>
         <source>VPN service stopped</source>
-        <translation type="unfinished"/>
+        <translation>Zatrzymano usługę VPN</translation>
     </message>
     <message>
         <source>The IP config of VPN connection was invalid</source>
-        <translation type="unfinished"/>
+        <translation>Konfiguracja IP połączenia VPN jest nieprawidłowa</translation>
     </message>
     <message>
         <source>The connection attempt to VPN service timed out</source>
-        <translation type="unfinished"/>
+        <translation>Upłynął czas oczekiwania próby połączenia usługi VPN</translation>
     </message>
     <message>
         <source>The VPN service start timed out</source>
-        <translation type="unfinished"/>
+        <translation>Upłynął czas oczekiwania uruchamiania usługi VPN</translation>
     </message>
     <message>
         <source>The VPN service failed to start</source>
-        <translation type="unfinished"/>
+        <translation>Wystąpił błąd uruchamiania usługi VPN</translation>
     </message>
     <message>
         <source>The VPN connection password was not provided</source>
-        <translation type="unfinished"/>
+        <translation>Hasło połączenia VPN nie zostało podane</translation>
     </message>
     <message>
         <source>Authentication to VPN server failed</source>
-        <translation type="unfinished"/>
+        <translation>Uwierzytelnienie serwera VPN nie powiodło się</translation>
     </message>
     <message>
         <source>The connection was deleted from settings</source>
-        <translation type="unfinished"/>
+        <translation>Połączenie zostało usunięte z ustawień</translation>
     </message>
     <message>
         <source>Enabling hotspot</source>
-        <translation type="unfinished"/>
+        <translation>Włączanie Hotspota</translation>
     </message>
     <message>
         <source>Connecting &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Łączenie z &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Hotspot enabled</source>
-        <translation type="unfinished"/>
+        <translation>Hotspot włączony</translation>
     </message>
     <message>
         <source>&quot;%1&quot; connected</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; połączono</translation>
     </message>
     <message>
         <source>Hotspot disabled</source>
-        <translation type="unfinished"/>
+        <translation>Hotspot wyłączony</translation>
     </message>
     <message>
         <source>&quot;%1&quot; disconnected</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; rozłączono</translation>
     </message>
     <message>
         <source>Unable to share hotspot, please check dnsmasq settings</source>
-        <translation type="unfinished"/>
+        <translation>Nie można udostępnić Hotspotu, sprawdź ustawienia dnsmasq</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
-        <translation type="unfinished"/>
+        <translation>Nie można połączyć się z &quot;%1&quot;, przybliż się do routera bezprzewodowego</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
-        <translation type="unfinished"/>
+        <translation>Nie można połączyć się z &quot;%1&quot;, sprawdź router lub kabel sieciowy.</translation>
     </message>
     <message>
         <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
-        <translation type="unfinished"/>
+        <translation>Połączenie nieudane, nie można połączyć się z &quot;%1&quot;, błędne hasło</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Nie można połączyć się z %1</translation>
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info</source>
-        <translation type="unfinished"/>
+        <translation>Aby połączyć się z &quot;%1&quot;, skonfiguruj informacje uwierzytelniające</translation>
     </message>
     <message>
         <source>Password is required to connect &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Wymagane jest hasło, aby połączyć się z &quot;%1&quot;</translation>
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"/>
+        <translation>Nie można znaleźć sieci WLAN 802.11 &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>Rozłączono</translation>
     </message>
     <message>
         <source>Airplane mode enabled.</source>
-        <translation type="unfinished"/>
+        <translation>Włączono Tryb samolotowy.</translation>
     </message>
     <message>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Sieć</translation>
     </message>
     <message>
         <source>The hardware switch of WLAN Card is off, please switch on as necessary.</source>
