@@ -133,10 +133,10 @@ void NetworkThread::onDeviceAdded(const QString &uni)
     }
     NetworkManager::Device::Ptr dev = NetworkManager::findNetworkInterface(uni);
     if (dev) {
-        m_devices.insert(uni, dev->interfaceName());
+        auto interface = dev->interfaceName();
+        m_devices.insert(uni, interface);
         connect(dev.get(), &Device::stateChanged, this, &NetworkThread::onDevicestateChanged);
         connect(dev.get(), &Device::interfaceNameChanged, this, &NetworkThread::onInterfaceNameChanged);
-        auto interface = dev->interfaceName();
         QString err;
         doEnableDevice(interface, m_networkConfig->deviceEnabled(interface), err);
     }
@@ -182,7 +182,7 @@ void NetworkThread::onInterfaceNameChanged()
         qCWarning(DSM()) << "sender is not Device";
         return;
     }
-    QString uni = dev->udi();
+    QString uni = dev->uni();
     if (!m_devices.contains(uni)) {
         qCWarning(DSM()) << "device not exist, devPath:" << uni;
         return;
