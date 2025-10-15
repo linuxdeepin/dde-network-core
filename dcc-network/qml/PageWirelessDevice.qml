@@ -11,12 +11,21 @@ import org.deepin.dtk 1.0 as D
 import org.deepin.dcc 1.0
 import org.deepin.dcc.network 1.0
 
+import "NetUtils.js" as NetUtils
+
 DccObject {
     id: root
     property var item: null
     property var airplaneItem: null
     readonly property var c_levelString: ["-signal-no", "-signal-low", "-signal-medium", "-signal-high", "-signal-full"]
 
+    component DevCheck: D.Switch {
+        checked: root.item.isEnabled
+        enabled: root.item.enabledable
+        onClicked: {
+            dccData.exec(root.item.isEnabled ? NetManager.DisabledDevice : NetManager.EnabledDevice, root.item.id, {})
+        }
+    }
     name: "wireless" + item.pathIndex
     parentName: "network"
     displayName: item.name
@@ -25,19 +34,30 @@ DccObject {
     icon: "dcc_wifi"
     weight: 2010 + item.pathIndex
     pageType: DccObject.MenuEditor
-    page: devCheck
-
-    Component {
-        id: devCheck
-        RowLayout {
-            D.Switch {
-                checked: root.item.isEnabled
-                enabled: root.item.enabledable
-                onClicked: {
-                    dccData.exec(root.item.isEnabled ? NetManager.DisabledDevice : NetManager.EnabledDevice, root.item.id, {})
+    page: RowLayout {
+        DccLabel {
+            text: {
+                switch (item.status) {
+                case NetType.DS_Connected:
+                case NetType.DS_ConnectNoInternet:
+                    var childrenItem = [item]
+                    while (childrenItem.length > 0) {
+                        var childItem = childrenItem.pop()
+                        if (childItem.itemType === NetType.WirelessItem && childItem.status === NetType.CS_Connected) {
+                            return childItem.name
+                        }
+                        for (let i in childItem.children) {
+                            childrenItem.push(childItem.children[i])
+                        }
+                    }
+                    break
+                default:
+                    break
                 }
+                return NetUtils.getStatusName(item.status)
             }
         }
+        DevCheck {}
     }
 
     Component {
@@ -66,9 +86,9 @@ DccObject {
                             cascadeSelected: true
                             Layout.fillWidth: true
                             leftPadding: 10
-                            rightPadding: 0   // 移除右边距，让箭头区域能扩展到边缘
-                            topPadding: 0     // 恢复适量上边距
-                            bottomPadding: 0  // 恢复适量下边距
+                            rightPadding: 0 // 移除右边距，让箭头区域能扩展到边缘
+                            topPadding: 0 // 恢复适量上边距
+                            bottomPadding: 0 // 恢复适量下边距
                             spacing: 10
                             icon {
                                 name: "network-wireless" + (item.flags ? "-6" : "") + c_levelString[item.strengthLevel] + (item.secure ? "-secure" : "") + "-symbolic"
@@ -95,52 +115,52 @@ DccObject {
                                         dccData.exec(model.item.status === NetType.CS_Connected ? NetManager.Disconnect : NetManager.ConnectOrInfo, model.item.id, {})
                                     }
                                 }
-                                
+
                                 // 箭头悬浮效果 - 右侧圆角（包含分割线）
                                 Item {
-                                    width: 30  // 20px悬浮区域 + 10px扩展到边缘
+                                    width: 30 // 20px悬浮区域 + 10px扩展到边缘
                                     height: 40 // 填满ItemDelegate高度
-                                    
+
                                     Canvas {
                                         id: hoverCanvas
                                         anchors.fill: parent
                                         property color bgColor: "transparent"
-                                        
+
                                         onPaint: {
                                             var ctx = getContext("2d")
                                             ctx.clearRect(0, 0, width, height)
-                                            
+
                                             if (bgColor.a > 0) {
                                                 ctx.fillStyle = bgColor
                                                 ctx.beginPath()
-                                                
+
                                                 // 绘制右侧圆角的矩形
-                                                ctx.moveTo(0, 0)                           // 左上角
-                                                ctx.lineTo(width - 6, 0)                  // 右上角前
-                                                ctx.arcTo(width, 0, width, 6, 6)          // 右上圆角
-                                                ctx.lineTo(width, height - 6)             // 右下角前
+                                                ctx.moveTo(0, 0) // 左上角
+                                                ctx.lineTo(width - 6, 0) // 右上角前
+                                                ctx.arcTo(width, 0, width, 6, 6) // 右上圆角
+                                                ctx.lineTo(width, height - 6) // 右下角前
                                                 ctx.arcTo(width, height, width - 6, height, 6) // 右下圆角
-                                                ctx.lineTo(0, height)                     // 左下角
-                                                ctx.lineTo(0, 0)                          // 回到左上角
-                                                
+                                                ctx.lineTo(0, height) // 左下角
+                                                ctx.lineTo(0, 0) // 回到左上角
+
                                                 ctx.fill()
                                             }
                                         }
-                                        
+
                                         onBgColorChanged: requestPaint()
                                     }
-                                    
+
                                     // 分割线 - 一直显示
                                     Rectangle {
                                         width: 1
                                         height: 20
                                         anchors.left: parent.left
-                                        anchors.leftMargin: 0   // 在悬浮区域最左边
+                                        anchors.leftMargin: 0 // 在悬浮区域最左边
                                         anchors.verticalCenter: parent.verticalCenter
                                         color: palette.windowText
                                         opacity: 0.05
                                     }
-                                    
+
                                     D.IconLabel {
                                         anchors.centerIn: parent
                                         icon {
@@ -148,28 +168,28 @@ DccObject {
                                             palette: D.DTK.makeIconPalette(palette)
                                         }
                                     }
-                                    
+
                                     MouseArea {
                                         anchors.fill: parent
                                         hoverEnabled: true
                                         acceptedButtons: Qt.LeftButton
-                                        
+
                                         onClicked: {
                                             dccData.exec(NetManager.ConnectInfo, model.item.id, {})
                                         }
-                                        
+
                                         onEntered: {
                                             hoverCanvas.bgColor = Qt.rgba(palette.windowText.r, palette.windowText.g, palette.windowText.b, 0.1)
                                         }
-                                        
+
                                         onExited: {
                                             hoverCanvas.bgColor = "transparent"
                                         }
-                                        
+
                                         onPressed: {
                                             hoverCanvas.bgColor = Qt.rgba(palette.windowText.r, palette.windowText.g, palette.windowText.b, 0.2)
                                         }
-                                        
+
                                         onReleased: {
                                             if (containsMouse) {
                                                 hoverCanvas.bgColor = Qt.rgba(palette.windowText.r, palette.windowText.g, palette.windowText.b, 0.1)
@@ -228,7 +248,7 @@ DccObject {
             weight: 10
             backgroundType: DccObject.Normal
             pageType: DccObject.Editor
-            page: devCheck
+            page: DevCheck {}
         }
         DccObject {
             name: "mineTitle"

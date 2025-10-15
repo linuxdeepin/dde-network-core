@@ -1,7 +1,5 @@
 // SPDX-FileCopyrightText: 2024 - 2027 UnionTech Software Technology Co., Ltd.
 // SPDX-License-Identifier: GPL-3.0-or-later
-.pragma library
-
 const VpnTypeEnum = Object.freeze({
                                       "l2tp": 0x01,
                                       "pptp": 0x02,
@@ -63,7 +61,7 @@ function removeTrailingNull(str) {
 
 function numToIp(num) {
     const ips = [0, 0, 0, 0]
-    for (let i = 0; i < 4; i++) {
+    for (var i = 0; i < 4; i++) {
         ips[i] = (num >> (i * 8)) & 255
     }
     return ips.join('.')
@@ -77,7 +75,7 @@ function ipToNum(ip) {
     if (ips.length !== 4) {
         return 0
     }
-    for (let i = 0; i < ips.length; i++) {
+    for (var i = 0; i < ips.length; i++) {
         const ipStr = ips[i]
         const num = parseInt(ipStr, 10)
         ipNum |= ((num & 255) << cidr)
@@ -93,7 +91,7 @@ function prefixToIp(subnetMask) {
 
     const maskArray = [255, 255, 255, 255]
 
-    for (let i = 0; i < 4; i++) {
+    for (var i = 0; i < 4; i++) {
         const byteBits = i * 8 + 8 - subnetMask
         if (byteBits > 0) {
             maskArray[i] = (255 << byteBits) & 255
@@ -107,10 +105,10 @@ function ipToPrefix(decimalSubnet) {
     const octets = decimalSubnet.split('.')
     let cidr = 0
 
-    for (let j = 0; j < octets.length; j++) {
+    for (var j = 0; j < octets.length; j++) {
         const octet = octets[j]
         const num = parseInt(octet, 10)
-        for (let i = 0; i < 8; i++) {
+        for (var i = 0; i < 8; i++) {
             if ((num & (1 << (7 - i))) !== 0) {
                 cidr++
             } else {
@@ -124,7 +122,7 @@ function ipToPrefix(decimalSubnet) {
 }
 
 function macToStr(mac) {
-    return Array.prototype.map.call(new Uint8Array(mac), function(x) { 
+    return Array.prototype.map.call(new Uint8Array(mac), function (x) {
         return ('00' + x.toString(16)).toUpperCase().slice(-2)
     }).join(':')
 }
@@ -134,7 +132,7 @@ function strToMac(str) {
         return new Uint8Array()
     const arr = str.split(":")
     const hexArr = arr.join("")
-    return new Uint8Array(hexArr.match(/[\da-f]{2}/gi).map(function(bb) {
+    return new Uint8Array(hexArr.match(/[\da-f]{2}/gi).map(function (bb) {
         return parseInt(bb, 16)
     })).buffer
 }
@@ -143,7 +141,7 @@ function strToMac(str) {
 function strToByteArray(data) {
     if (typeof data === 'string') {
         const arr = []
-        for (let i = 0; i < data.length; ++i) {
+        for (var i = 0; i < data.length; ++i) {
             let charcode = data.charCodeAt(i)
             if (charcode < 0x80) {
                 arr.push(charcode)
@@ -174,4 +172,31 @@ function strToByteArray(data) {
         }
     }
     return undefined
+}
+
+function getStatusName(status) {
+    switch (status) {
+    case NetType.DS_Disabled:
+        return qsTr("Off")
+    case NetType.DS_ObtainIpFailed:
+    case NetType.DS_ConnectFailed:
+        return qsTr("Failed")
+    case NetType.DS_Connected:
+    case NetType.DS_ConnectNoInternet:
+        return qsTr("Connected")
+    case NetType.DS_IpConflicted:
+        return qsTr("IP conflict")
+    case NetType.DS_Connecting:
+        return qsTr("Connecting")
+    case NetType.DS_ObtainingIP:
+        return qsTr("Obtaining address")
+    case NetType.DS_Authenticating:
+        return qsTr("Authenticating")
+    case NetType.DS_Unknown:
+    case NetType.DS_Enabled:
+    case NetType.DS_NoCable:
+    case NetType.DS_Disconnected:
+    default:
+        return qsTr("Disconnected")
+    }
 }

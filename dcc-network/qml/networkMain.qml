@@ -111,7 +111,17 @@ DccObject {
             property var showPage: root.showPage
         }
     }
-
+    DccTitleObject {
+        name: "connectionSettings"
+        parentName: "network"
+        displayName: qsTr("Connection settings")
+        weight: 5
+        onParentItemChanged: {
+            if (parentItem) {
+                parentItem.topPadding = 10
+            }
+        }
+    }
     PageVPN {
         id: vpnPage
         property var showPage: root.showPage
@@ -119,19 +129,23 @@ DccObject {
         parentName: "network"
         weight: 3010
     }
-    PageSystemProxy {
-        id: systemProxyPage
+    PageDSL {
+        id: dslPage
         property var showPage: root.showPage
-        name: "systemProxy"
+        name: "dsl"
         parentName: "network"
         weight: 3020
     }
-    PageAppProxy {
-        id: appProxyPage
-        property var showPage: root.showPage
-        name: "applicationProxy"
+    DccTitleObject {
+        name: "relatedSettings"
         parentName: "network"
-        weight: 3030
+        displayName: qsTr("Related Settings")
+        weight: 3025
+        onParentItemChanged: {
+            if (parentItem) {
+                parentItem.topPadding = 10
+            }
+        }
     }
     PageHotspot {
         id: hotspotPage
@@ -139,19 +153,26 @@ DccObject {
         name: "personalHotspot"
         parentName: "network"
         isAirplane: dccData.root.isEnabled
-        weight: 3040
+        weight: 3030
     }
     PageAirplane {
         name: "airplaneMode"
         property var showPage: root.showPage
         parentName: "network"
-        weight: 3050
+        weight: 3040
         item: dccData.root
     }
-    PageDSL {
-        id: dslPage
+    PageSystemProxy {
+        id: systemProxyPage
         property var showPage: root.showPage
-        name: "dsl"
+        name: "systemProxy"
+        parentName: "network"
+        weight: 3050
+    }
+    PageAppProxy {
+        id: appProxyPage
+        property var showPage: root.showPage
+        name: "applicationProxy"
         parentName: "network"
         weight: 3060
     }
