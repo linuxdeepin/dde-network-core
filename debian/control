@@ -25,7 +25,7 @@ Vcs-Browser: https://gerrit.uniontech.com/admin/repos/dde-network-core
 
 Package: libdde-network-core
 Architecture: any
-Depends: ${misc:Depends},${shlibs:Depends},deepin-service-plugin-network
+Depends: ${misc:Depends},${shlibs:Depends},deepin-service-plugin-network,dnsmasq-base
 Description: the library of network
  libdde-network-core module
 
