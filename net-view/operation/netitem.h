@@ -23,8 +23,8 @@ class NetItemPrivate;
 class NetItem : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString id READ id)
-    Q_PROPERTY(NetType::NetItemType itemType READ itemType)
+    Q_PROPERTY(QString id READ id FINAL)
+    Q_PROPERTY(NetType::NetItemType itemType READ itemType CONSTANT)
     Q_PROPERTY(QString name READ name NOTIFY nameChanged)
     Q_PROPERTY(QVector<NetItem *> children READ getChildren NOTIFY childrenChanged DESIGNABLE false)
 
