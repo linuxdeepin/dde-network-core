@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="zh_HK">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_HK">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -19,31 +17,31 @@
     <name>NetUtils</name>
     <message>
         <source>Off</source>
-        <translation>已關閉</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connected</source>
-        <translation>已連接</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>IP conflict</source>
-        <translation>IP位址衝突</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connecting</source>
-        <translation>正在連接</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation>獲取地址中</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authenticating</source>
-        <translation>認證中</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation>已斷開</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -175,7 +173,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation>%1網絡屬性</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -316,7 +314,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation>%1網絡屬性</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -453,7 +451,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation>%1網絡屬性</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -515,7 +513,7 @@
     </message>
     <message>
         <source>My Networks</source>
-        <translation>我的網絡</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -581,7 +579,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1470,7 +1468,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1649,11 +1647,11 @@
     <name>networkMain</name>
     <message>
         <source>Connection settings</source>
-        <translation>連接設置</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Related Settings</source>
-        <translation>相關設置</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>
