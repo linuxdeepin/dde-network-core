@@ -21,7 +21,7 @@
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"/>
+        <translation>I lidhur</translation>
     </message>
     <message>
         <source>IP conflict</source>
@@ -138,7 +138,7 @@
     </message>
     <message>
         <source>Set up a dial-up network connection</source>
-        <translation type="unfinished"/>
+        <translation>Ujdisni një lidhje rrjeti “dial-up”</translation>
     </message>
     <message>
         <source>Disconnect</source>
@@ -283,7 +283,7 @@
     </message>
     <message>
         <source>Hotspot Sharing Device</source>
-        <translation type="unfinished"/>
+        <translation>Pajisje Që Jep Hotspot</translation>
     </message>
     <message>
         <source>If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.</source>
@@ -1340,7 +1340,7 @@
     </message>
     <message>
         <source>IKE DH Group</source>
-        <translation type="unfinished"/>
+        <translation>Grup IKE DH</translation>
     </message>
     <message>
         <source>DH Group 1</source>
@@ -1392,110 +1392,110 @@
     </message>
     <message>
         <source>RSA MD-4</source>
-        <translation type="unfinished"/>
+        <translation>RSA MD-4</translation>
     </message>
     <message>
         <source>MD-5</source>
-        <translation type="unfinished"/>
+        <translation>MD-5</translation>
     </message>
     <message>
         <source>SHA-1</source>
-        <translation type="unfinished"/>
+        <translation>SHA-1</translation>
     </message>
     <message>
         <source>SHA-224</source>
-        <translation type="unfinished"/>
+        <translation>SHA-224</translation>
     </message>
     <message>
         <source>SHA-256</source>
-        <translation type="unfinished"/>
+        <translation>SHA-256</translation>
     </message>
     <message>
         <source>SHA-384</source>
-        <translation type="unfinished"/>
+        <translation>SHA-384</translation>
     </message>
     <message>
         <source>SHA-512</source>
-        <translation type="unfinished"/>
+        <translation>SHA-512</translation>
     </message>
     <message>
         <source>RIPEMD-160</source>
-        <translation type="unfinished"/>
+        <translation>RIPEMD-160</translation>
     </message>
     <message>
         <source>VPN Proxy</source>
-        <translation type="unfinished"/>
+        <translation>Ndërmjetës VPN</translation>
     </message>
     <message>
         <source>Proxy Type</source>
-        <translation type="unfinished"/>
+        <translation>Lloj Ndërmjetësi</translation>
     </message>
     <message>
         <source>Server IP</source>
-        <translation type="unfinished"/>
+        <translation>IP Shërbyesi</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished"/>
+        <translation>Portë</translation>
     </message>
     <message>
         <source>Retry Indefinitely When Failed</source>
-        <translation type="unfinished"/>
+        <translation>Riprovo Pambarimisht, Kur Dështohet</translation>
     </message>
     <message>
         <source>VPN TLS Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Mirëfilltësim TLS VPN-je</translation>
     </message>
     <message>
         <source>Subject Match</source>
-        <translation type="unfinished"/>
+        <translation>Përputhje Subjekti</translation>
     </message>
     <message>
         <source>Remote Cert Type</source>
-        <translation type="unfinished"/>
+        <translation>Lloj Dëshmie të Largët</translation>
     </message>
     <message>
         <source>Client</source>
-        <translation type="unfinished"/>
+        <translation>Klient</translation>
     </message>
     <message>
         <source>Server</source>
-        <translation type="unfinished"/>
+        <translation>Shërbyes</translation>
     </message>
     <message>
         <source>Key File</source>
-        <translation type="unfinished"/>
+        <translation>Kartelë Kyçi</translation>
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"/>
+        <translation>MTU (1280-9000)</translation>
     </message>
 </context>
 <context>
     <name>SystemProxyConfigItem</name>
     <message>
         <source>Optional</source>
-        <translation type="unfinished"/>
+        <translation>Opsionale</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished"/>
+        <translation>Portë</translation>
     </message>
     <message>
         <source>Authentication is required</source>
-        <translation type="unfinished"/>
+        <translation>Lypset mirëfilltësim</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Emër përdoruesi</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"/>
+        <translation>I domosdoshëm</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Fjalëkalim</translation>
     </message>
 </context>
 <context>
@@ -1640,18 +1640,18 @@
     <name>network</name>
     <message>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Rrjet</translation>
     </message>
 </context>
 <context>
     <name>networkMain</name>
     <message>
         <source>Connection settings</source>
-        <translation type="unfinished"/>
+        <translation>Rregullime lidhjeje</translation>
     </message>
     <message>
         <source>Related Settings</source>
-        <translation type="unfinished"/>
+        <translation>Rregullime të Lidhura</translation>
     </message>
 </context>
 </TS>
