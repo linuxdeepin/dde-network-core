@@ -16,6 +16,37 @@
     </message>
 </context>
 <context>
+    <name>NetUtils</name>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished">Përplasje IP-sh</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Obtaining address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authenticating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disconnected</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PageAirplane</name>
     <message>
         <source>Airplane mode</source>
@@ -127,10 +158,6 @@
 <context>
     <name>PageDSLSettings</name>
     <message>
-        <source> Network Properties</source>
-        <translation>Veti Rrjeti</translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation>Fshije</translation>
     </message>
@@ -145,6 +172,10 @@
     <message>
         <source>Save</source>
         <translation>Ruaje</translation>
+    </message>
+    <message>
+        <source>%1 Network Properties</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -268,10 +299,6 @@
 <context>
     <name>PageSettings</name>
     <message>
-        <source> Network Properties</source>
-        <translation>Veti Rrjeti</translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation>Fshije</translation>
     </message>
@@ -286,6 +313,10 @@
     <message>
         <source>Save</source>
         <translation>Ruaje</translation>
+    </message>
+    <message>
+        <source>%1 Network Properties</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -393,36 +424,8 @@
 <context>
     <name>PageVPNSettings</name>
     <message>
-        <source> Network Properties</source>
-        <translation>Veti Rrjeti</translation>
-    </message>
-    <message>
         <source>VPN Type</source>
         <translation>Lloj VPN-je</translation>
-    </message>
-    <message>
-        <source>L2TP</source>
-        <translation>L2TP</translation>
-    </message>
-    <message>
-        <source>PPTP</source>
-        <translation>PPTP</translation>
-    </message>
-    <message>
-        <source>OpenVPN</source>
-        <translation>OpenVPN</translation>
-    </message>
-    <message>
-        <source>OpenConnect</source>
-        <translation>OpenConnect</translation>
-    </message>
-    <message>
-        <source>StrongSwan</source>
-        <translation>StrongSwan</translation>
-    </message>
-    <message>
-        <source>VPNC</source>
-        <translation>VPNC</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -447,6 +450,10 @@
     <message>
         <source>Save</source>
         <translation>Ruaje</translation>
+    </message>
+    <message>
+        <source>%1 Network Properties</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -487,10 +494,6 @@
         <translation>Lidhu</translation>
     </message>
     <message>
-        <source>My&#xa0;Networks</source>
-        <translation>Rrjetet&#xa0;e Mi</translation>
-    </message>
-    <message>
         <source>Other Networks</source>
         <translation>Rrjete të Tjerë</translation>
     </message>
@@ -509,6 +512,10 @@
     <message>
         <source>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Disable hotspot&lt;/a&gt; first if you want to connect to a wireless network</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>My Networks</source>
+        <translation type="unfinished">Rrjetet e Mi</translation>
     </message>
 </context>
 <context>
@@ -557,10 +564,6 @@
         <translation>Përshtatni MTU</translation>
     </message>
     <message>
-        <source>MTU</source>
-        <translation>MTU</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Bandë</translation>
     </message>
@@ -575,6 +578,10 @@
     <message>
         <source>5 GHz</source>
         <translation>5 GHz</translation>
+    </message>
+    <message>
+        <source>MTU (1280-9000)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -815,48 +822,12 @@
         <translation>Siguri</translation>
     </message>
     <message>
-        <source>TLS</source>
-        <translation>TLS</translation>
-    </message>
-    <message>
-        <source>MD5</source>
-        <translation>MD5</translation>
-    </message>
-    <message>
-        <source>FAST</source>
-        <translation>FAST</translation>
-    </message>
-    <message>
         <source>Tunneled TLS</source>
         <translation>TLS përmes tuneli</translation>
     </message>
     <message>
         <source>Protected EAP</source>
         <translation>EAP i mbrojtur</translation>
-    </message>
-    <message>
-        <source>LEAP</source>
-        <translation>LEAP</translation>
-    </message>
-    <message>
-        <source>GTC</source>
-        <translation>GTC</translation>
-    </message>
-    <message>
-        <source>MSCHAPV2</source>
-        <translation>MSCHAPV2</translation>
-    </message>
-    <message>
-        <source>PAP</source>
-        <translation>PAP</translation>
-    </message>
-    <message>
-        <source>MSCHAP</source>
-        <translation>MSCHAP</translation>
-    </message>
-    <message>
-        <source>CHAP</source>
-        <translation>CHAP</translation>
     </message>
     <message>
         <source>None</source>
@@ -1298,10 +1269,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>MTU</source>
-        <translation type="unfinished">MTU</translation>
-    </message>
-    <message>
         <source>Customize UDP Fragment Size</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1422,70 +1389,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>DES-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>RC2-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>DES-EDE-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>DES-EDE3-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>DESX-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BF-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>RC2-40-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>CAST5-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>RC2-64-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>AES-128-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>AES-192-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>AES-256-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>CAMELLIA-128-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>CAMELLIA-192-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>CAMELLIA-256-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SEED-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>HMAC Auth</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1530,14 +1433,6 @@
         <translation type="unfinished">Lloj Ndërmjetësi</translation>
     </message>
     <message>
-        <source>HTTP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SOCKS</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Server IP</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1571,6 +1466,10 @@
     </message>
     <message>
         <source>Key File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MTU (1280-9000)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1744,6 +1643,17 @@
     <message>
         <source>Network</source>
         <translation type="unfinished">Rrjet</translation>
+    </message>
+</context>
+<context>
+    <name>networkMain</name>
+    <message>
+        <source>Connection settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Related Settings</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

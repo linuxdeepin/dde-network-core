@@ -16,6 +16,37 @@
     </message>
 </context>
 <context>
+    <name>NetUtils</name>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished">IP-Konflikt</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Obtaining address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authenticating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disconnected</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PageAirplane</name>
     <message>
         <source>Airplane mode</source>
@@ -127,10 +158,6 @@
 <context>
     <name>PageDSLSettings</name>
     <message>
-        <source> Network Properties</source>
-        <translation>Netzwerk-Eigenschaften</translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
@@ -145,6 +172,10 @@
     <message>
         <source>Save</source>
         <translation>Speichern</translation>
+    </message>
+    <message>
+        <source>%1 Network Properties</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -268,10 +299,6 @@
 <context>
     <name>PageSettings</name>
     <message>
-        <source> Network Properties</source>
-        <translation>Netzwerk-Eigenschaften</translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
@@ -286,6 +313,10 @@
     <message>
         <source>Save</source>
         <translation>Speichern</translation>
+    </message>
+    <message>
+        <source>%1 Network Properties</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -393,36 +424,8 @@
 <context>
     <name>PageVPNSettings</name>
     <message>
-        <source> Network Properties</source>
-        <translation>Netzwerk-Eigenschaften</translation>
-    </message>
-    <message>
         <source>VPN Type</source>
         <translation>VPN-Typ</translation>
-    </message>
-    <message>
-        <source>L2TP</source>
-        <translation>L2TP</translation>
-    </message>
-    <message>
-        <source>PPTP</source>
-        <translation>PPTP</translation>
-    </message>
-    <message>
-        <source>OpenVPN</source>
-        <translation>OpenVPN</translation>
-    </message>
-    <message>
-        <source>OpenConnect</source>
-        <translation>OpenConnect</translation>
-    </message>
-    <message>
-        <source>StrongSwan</source>
-        <translation>StrongSwan</translation>
-    </message>
-    <message>
-        <source>VPNC</source>
-        <translation>VPNC</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -447,6 +450,10 @@
     <message>
         <source>Save</source>
         <translation>Speichern</translation>
+    </message>
+    <message>
+        <source>%1 Network Properties</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -487,10 +494,6 @@
         <translation>Verbinden</translation>
     </message>
     <message>
-        <source>My&#xa0;Networks</source>
-        <translation>Meine&#xa0;Netzwerke</translation>
-    </message>
-    <message>
         <source>Other Networks</source>
         <translation>Andere Netzwerke</translation>
     </message>
@@ -509,6 +512,10 @@
     <message>
         <source>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Disable hotspot&lt;/a&gt; first if you want to connect to a wireless network</source>
         <translation>Zuerst &lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Hotspot abschalten&lt;/a&gt;, wenn Sie sich mit einem Drahtlosnetzwerk verbinden wollen.</translation>
+    </message>
+    <message>
+        <source>My Networks</source>
+        <translation type="unfinished">Meine Netzwerke</translation>
     </message>
 </context>
 <context>
@@ -557,10 +564,6 @@
         <translation>MTU selbst einstellen</translation>
     </message>
     <message>
-        <source>MTU</source>
-        <translation>MTU</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>Band</translation>
     </message>
@@ -575,6 +578,10 @@
     <message>
         <source>5 GHz</source>
         <translation>5 GHz</translation>
+    </message>
+    <message>
+        <source>MTU (1280-9000)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -815,48 +822,12 @@
         <translation>Sicherheit</translation>
     </message>
     <message>
-        <source>TLS</source>
-        <translation>TLS</translation>
-    </message>
-    <message>
-        <source>MD5</source>
-        <translation>MD5</translation>
-    </message>
-    <message>
-        <source>FAST</source>
-        <translation>FAST</translation>
-    </message>
-    <message>
         <source>Tunneled TLS</source>
         <translation>getunneltes TLS</translation>
     </message>
     <message>
         <source>Protected EAP</source>
         <translation>geschütztes EAP</translation>
-    </message>
-    <message>
-        <source>LEAP</source>
-        <translation>LEAP</translation>
-    </message>
-    <message>
-        <source>GTC</source>
-        <translation>GTC</translation>
-    </message>
-    <message>
-        <source>MSCHAPV2</source>
-        <translation>MSCHAPV2</translation>
-    </message>
-    <message>
-        <source>PAP</source>
-        <translation>PAP</translation>
-    </message>
-    <message>
-        <source>MSCHAP</source>
-        <translation>MSCHAP</translation>
-    </message>
-    <message>
-        <source>CHAP</source>
-        <translation>CHAP</translation>
     </message>
     <message>
         <source>None</source>
@@ -1298,10 +1269,6 @@
         <translation>Tunnel MTU festlegen</translation>
     </message>
     <message>
-        <source>MTU</source>
-        <translation>MTU</translation>
-    </message>
-    <message>
         <source>Customize UDP Fragment Size</source>
         <translation>UDP-Fragment-Größe bestimmen</translation>
     </message>
@@ -1422,70 +1389,6 @@
         <translation>Voreingestellt</translation>
     </message>
     <message>
-        <source>DES-CBC</source>
-        <translation>DES-CBC</translation>
-    </message>
-    <message>
-        <source>RC2-CBC</source>
-        <translation>RC2-CBC</translation>
-    </message>
-    <message>
-        <source>DES-EDE-CBC</source>
-        <translation>DES-EDE-CBC</translation>
-    </message>
-    <message>
-        <source>DES-EDE3-CBC</source>
-        <translation>DES-EDE3-CBC</translation>
-    </message>
-    <message>
-        <source>DESX-CBC</source>
-        <translation>DESX-CBC</translation>
-    </message>
-    <message>
-        <source>BF-CBC</source>
-        <translation>BF-CBC</translation>
-    </message>
-    <message>
-        <source>RC2-40-CBC</source>
-        <translation>RC2-40-CBC</translation>
-    </message>
-    <message>
-        <source>CAST5-CBC</source>
-        <translation>CAST5-CBC</translation>
-    </message>
-    <message>
-        <source>RC2-64-CBC</source>
-        <translation>RC2-64-CBC</translation>
-    </message>
-    <message>
-        <source>AES-128-CBC</source>
-        <translation>AES-128-CBC</translation>
-    </message>
-    <message>
-        <source>AES-192-CBC</source>
-        <translation>AES-192-CBC</translation>
-    </message>
-    <message>
-        <source>AES-256-CBC</source>
-        <translation>AES-256-CBC</translation>
-    </message>
-    <message>
-        <source>CAMELLIA-128-CBC</source>
-        <translation>CAMELLIA-128-CBC</translation>
-    </message>
-    <message>
-        <source>CAMELLIA-192-CBC</source>
-        <translation>CAMELLIA-192-CBC</translation>
-    </message>
-    <message>
-        <source>CAMELLIA-256-CBC</source>
-        <translation>CAMELLIA-256-CBC</translation>
-    </message>
-    <message>
-        <source>SEED-CBC</source>
-        <translation>SEED-CBC</translation>
-    </message>
-    <message>
         <source>HMAC Auth</source>
         <translation>HMAC Auth</translation>
     </message>
@@ -1530,14 +1433,6 @@
         <translation>Proxy-Typ</translation>
     </message>
     <message>
-        <source>HTTP</source>
-        <translation>HTTP</translation>
-    </message>
-    <message>
-        <source>SOCKS</source>
-        <translation>SOCKS</translation>
-    </message>
-    <message>
         <source>Server IP</source>
         <translation>Server-IP</translation>
     </message>
@@ -1572,6 +1467,10 @@
     <message>
         <source>Key File</source>
         <translation>Schlüssel-Datei</translation>
+    </message>
+    <message>
+        <source>MTU (1280-9000)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1744,6 +1643,17 @@
     <message>
         <source>Network</source>
         <translation>Netzwerk</translation>
+    </message>
+</context>
+<context>
+    <name>networkMain</name>
+    <message>
+        <source>Connection settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Related Settings</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

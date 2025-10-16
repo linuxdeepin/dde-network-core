@@ -178,9 +178,6 @@ function getStatusName(status) {
     switch (status) {
     case NetType.DS_Disabled:
         return qsTr("Off")
-    case NetType.DS_ObtainIpFailed:
-    case NetType.DS_ConnectFailed:
-        return qsTr("Failed")
     case NetType.DS_Connected:
     case NetType.DS_ConnectNoInternet:
         return qsTr("Connected")
@@ -192,6 +189,8 @@ function getStatusName(status) {
         return qsTr("Obtaining address")
     case NetType.DS_Authenticating:
         return qsTr("Authenticating")
+    case NetType.DS_ObtainIpFailed:
+    case NetType.DS_ConnectFailed:
     case NetType.DS_Unknown:
     case NetType.DS_Enabled:
     case NetType.DS_NoCable:

@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ja">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ja">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -11,6 +13,37 @@
     <message>
         <source>Required</source>
         <translation>必須</translation>
+    </message>
+</context>
+<context>
+    <name>NetUtils</name>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished">IP競合</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Obtaining address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authenticating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disconnected</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -125,10 +158,6 @@
 <context>
     <name>PageDSLSettings</name>
     <message>
-        <source> Network Properties</source>
-        <translation>ネットワークのプロパティ</translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
@@ -143,6 +172,10 @@
     <message>
         <source>Save</source>
         <translation>保存</translation>
+    </message>
+    <message>
+        <source>%1 Network Properties</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -266,10 +299,6 @@
 <context>
     <name>PageSettings</name>
     <message>
-        <source> Network Properties</source>
-        <translation>ネットワークのプロパティ</translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
@@ -284,6 +313,10 @@
     <message>
         <source>Save</source>
         <translation>保存</translation>
+    </message>
+    <message>
+        <source>%1 Network Properties</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -391,36 +424,8 @@
 <context>
     <name>PageVPNSettings</name>
     <message>
-        <source> Network Properties</source>
-        <translation>ネットワークのプロパティ</translation>
-    </message>
-    <message>
         <source>VPN Type</source>
         <translation>VPN の種類</translation>
-    </message>
-    <message>
-        <source>L2TP</source>
-        <translation>L2TP</translation>
-    </message>
-    <message>
-        <source>PPTP</source>
-        <translation>PPTP</translation>
-    </message>
-    <message>
-        <source>OpenVPN</source>
-        <translation>OpenVPN</translation>
-    </message>
-    <message>
-        <source>OpenConnect</source>
-        <translation>OpenConnect</translation>
-    </message>
-    <message>
-        <source>StrongSwan</source>
-        <translation>StrongSwan</translation>
-    </message>
-    <message>
-        <source>VPNC</source>
-        <translation>VPNC</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -445,6 +450,10 @@
     <message>
         <source>Save</source>
         <translation>保存</translation>
+    </message>
+    <message>
+        <source>%1 Network Properties</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -485,10 +494,6 @@
         <translation>接続</translation>
     </message>
     <message>
-        <source>My Networks</source>
-        <translation>マイ ネットワーク</translation>
-    </message>
-    <message>
         <source>Other Networks</source>
         <translation>その他のネットワーク</translation>
     </message>
@@ -507,6 +512,10 @@
     <message>
         <source>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Disable hotspot&lt;/a&gt; first if you want to connect to a wireless network</source>
         <translation>ワイヤレスネットワークに接続するには、&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;ホットスポット&lt;/a&gt;を無効化してください。</translation>
+    </message>
+    <message>
+        <source>My Networks</source>
+        <translation type="unfinished">マイ ネットワーク</translation>
     </message>
 </context>
 <context>
@@ -555,10 +564,6 @@
         <translation>MTU をカスタマイズ</translation>
     </message>
     <message>
-        <source>MTU</source>
-        <translation>MTU</translation>
-    </message>
-    <message>
         <source>Band</source>
         <translation>バンド</translation>
     </message>
@@ -573,6 +578,10 @@
     <message>
         <source>5 GHz</source>
         <translation>5 GHz</translation>
+    </message>
+    <message>
+        <source>MTU (1280-9000)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -813,48 +822,12 @@
         <translation>セキュリティ</translation>
     </message>
     <message>
-        <source>TLS</source>
-        <translation>TLS</translation>
-    </message>
-    <message>
-        <source>MD5</source>
-        <translation>MD5</translation>
-    </message>
-    <message>
-        <source>FAST</source>
-        <translation>FAST</translation>
-    </message>
-    <message>
         <source>Tunneled TLS</source>
         <translation>トンネル TLS</translation>
     </message>
     <message>
         <source>Protected EAP</source>
         <translation>保護された EAP</translation>
-    </message>
-    <message>
-        <source>LEAP</source>
-        <translation>LEAP</translation>
-    </message>
-    <message>
-        <source>GTC</source>
-        <translation>GTC</translation>
-    </message>
-    <message>
-        <source>MSCHAPV2</source>
-        <translation>MSCHAPV2</translation>
-    </message>
-    <message>
-        <source>PAP</source>
-        <translation>PAP</translation>
-    </message>
-    <message>
-        <source>MSCHAP</source>
-        <translation>MSCHAP</translation>
-    </message>
-    <message>
-        <source>CHAP</source>
-        <translation>CHAP</translation>
     </message>
     <message>
         <source>None</source>
@@ -1296,10 +1269,6 @@
         <translation>トンネル MTU のカスタマイズ</translation>
     </message>
     <message>
-        <source>MTU</source>
-        <translation>MTU</translation>
-    </message>
-    <message>
         <source>Customize UDP Fragment Size</source>
         <translation>UDP フラグメントサイズのカスタマイズ</translation>
     </message>
@@ -1420,70 +1389,6 @@
         <translation>デフォルト</translation>
     </message>
     <message>
-        <source>DES-CBC</source>
-        <translation>DES-CBC</translation>
-    </message>
-    <message>
-        <source>RC2-CBC</source>
-        <translation>RC2-CBC</translation>
-    </message>
-    <message>
-        <source>DES-EDE-CBC</source>
-        <translation>DES-EDE-CBC</translation>
-    </message>
-    <message>
-        <source>DES-EDE3-CBC</source>
-        <translation>DES-EDE3-CBC</translation>
-    </message>
-    <message>
-        <source>DESX-CBC</source>
-        <translation>DESX-CBC</translation>
-    </message>
-    <message>
-        <source>BF-CBC</source>
-        <translation>BF-CBC</translation>
-    </message>
-    <message>
-        <source>RC2-40-CBC</source>
-        <translation>RC2-40-CBC</translation>
-    </message>
-    <message>
-        <source>CAST5-CBC</source>
-        <translation>CAST5-CBC</translation>
-    </message>
-    <message>
-        <source>RC2-64-CBC</source>
-        <translation>RC2-64-CBC</translation>
-    </message>
-    <message>
-        <source>AES-128-CBC</source>
-        <translation>AES-128-CBC</translation>
-    </message>
-    <message>
-        <source>AES-192-CBC</source>
-        <translation>AES-192-CBC</translation>
-    </message>
-    <message>
-        <source>AES-256-CBC</source>
-        <translation>AES-256-CBC</translation>
-    </message>
-    <message>
-        <source>CAMELLIA-128-CBC</source>
-        <translation>CAMELLIA-128-CBC</translation>
-    </message>
-    <message>
-        <source>CAMELLIA-192-CBC</source>
-        <translation>CAMELLIA-192-CBC</translation>
-    </message>
-    <message>
-        <source>CAMELLIA-256-CBC</source>
-        <translation>CAMELLIA-256-CBC</translation>
-    </message>
-    <message>
-        <source>SEED-CBC</source>
-        <translation>SEED-CBC</translation>
-    </message>
-    <message>
         <source>HMAC Auth</source>
         <translation>HMAC 認証</translation>
     </message>
@@ -1528,14 +1433,6 @@
         <translation>プロキシタイプ</translation>
     </message>
     <message>
-        <source>HTTP</source>
-        <translation>HTTP</translation>
-    </message>
-    <message>
-        <source>SOCKS</source>
-        <translation>SOCKS</translation>
-    </message>
-    <message>
         <source>Server IP</source>
         <translation>サーバー IP</translation>
     </message>
@@ -1570,6 +1467,10 @@
     <message>
         <source>Key File</source>
         <translation>キーファイル</translation>
+    </message>
+    <message>
+        <source>MTU (1280-9000)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1742,6 +1643,17 @@
     <message>
         <source>Network</source>
         <translation>ネットワーク</translation>
+    </message>
+</context>
+<context>
+    <name>networkMain</name>
+    <message>
+        <source>Connection settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Related Settings</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
