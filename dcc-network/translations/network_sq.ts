@@ -25,23 +25,23 @@
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"/>
+        <translation>Përplasje IP-sh</translation>
     </message>
     <message>
         <source>Connecting</source>
-        <translation type="unfinished"/>
+        <translation>Po bëhet lidhja</translation>
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation type="unfinished"/>
+        <translation>Po merret adresë</translation>
     </message>
     <message>
         <source>Authenticating</source>
-        <translation type="unfinished"/>
+        <translation>Po bëhet mirëfilltësim</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>E shkëputur</translation>
     </message>
 </context>
 <context>
@@ -173,7 +173,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"/>
+        <translation>Veti Rrjeti %1</translation>
     </message>
 </context>
 <context>
@@ -287,11 +287,11 @@
     </message>
     <message>
         <source>If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.</source>
-        <translation type="unfinished"/>
+        <translation>Nëse doni të përdorni hotspot-in personal, së pari, çaktivizoni Mënyrën Aeroplan dhe mandej aktivizoni përshtatësin e rrjetit pa fill.</translation>
     </message>
     <message>
         <source>If you want to use the personal hotspot, disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first and then enable the wireless network adapter.</source>
-        <translation type="unfinished"/>
+        <translation>Nëse doni të përdorni hotspot-in personal, së pari, çaktivizoni Mënyrën Aeroplan dhe mandej aktivizoni përshtatësin e rrjetit pa fill.</translation>
     </message>
 </context>
 <context>
@@ -314,7 +314,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"/>
+        <translation>Veti Rrjeti %1</translation>
     </message>
 </context>
 <context>
@@ -451,7 +451,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"/>
+        <translation>Veti Rrjeti %1</translation>
     </message>
 </context>
 <context>
@@ -497,23 +497,23 @@
     </message>
     <message>
         <source>Disable Airplane Mode first if you want to connect to a wireless network</source>
-        <translation type="unfinished"/>
+        <translation>Nëse doni të lidheni me një rrjet pa fill, së pari, çaktivizoni Mënyrën Aeroplan</translation>
     </message>
     <message>
         <source>Disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation type="unfinished"/>
+        <translation>Nëse doni të lidheni me një rrjet pa fill, së pari çaktivizoni &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Mënyrën Aeroplan&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Disable hotspot first if you want to connect to a wireless network</source>
-        <translation type="unfinished"/>
+        <translation>Së pari çaktivizoni hotspot-in, nëse doni të lidheni me një rrjet pa fill</translation>
     </message>
     <message>
         <source>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Disable hotspot&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation type="unfinished"/>
+        <translation>Nëse doni të lidheni me një rrjet pa fill, së pari &lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Çaktivizoni hotspot-in&lt;/a&gt;</translation>
     </message>
     <message>
         <source>My Networks</source>
-        <translation type="unfinished"/>
+        <translation>Rrjetet e Mi</translation>
     </message>
 </context>
 <context>
@@ -579,7 +579,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"/>
+        <translation>MTU (1280-9000)</translation>
     </message>
 </context>
 <context>
@@ -657,15 +657,15 @@
     </message>
     <message>
         <source>Invalid netmask</source>
-        <translation type="unfinished"/>
+        <translation>NetMask-ë e pavlefshme</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished"/>
+        <translation>Kanal i pavlefshëm</translation>
     </message>
     <message>
         <source>Duplicate IP address</source>
-        <translation type="unfinished"/>
+        <translation>Adresë IP e përsëdytur</translation>
     </message>
 </context>
 <context>
@@ -724,15 +724,15 @@
     </message>
     <message>
         <source>Invalid netmask</source>
-        <translation type="unfinished"/>
+        <translation>NetMask-ë e pavlefshme</translation>
     </message>
     <message>
         <source>Duplicate IP address</source>
-        <translation type="unfinished"/>
+        <translation>Adresë IP e përsëdytur</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished"/>
+        <translation>Kanal i pavlefshëm</translation>
     </message>
 </context>
 <context>
@@ -783,11 +783,11 @@
     </message>
     <message>
         <source>No TCP Header Compression</source>
-        <translation type="unfinished"/>
+        <translation>Pa Ngjeshje Kryesh TCP</translation>
     </message>
     <message>
         <source>Send PPP Echo Packets</source>
-        <translation type="unfinished"/>
+        <translation>Dërgo Pakete Echo PPP</translation>
     </message>
 </context>
 <context>
@@ -992,7 +992,7 @@
     </message>
     <message>
         <source>Allow Cisco Secure Desktop Trojan</source>
-        <translation type="unfinished"/>
+        <translation>Lejo Cisco Secure Desktop Trojan</translation>
     </message>
     <message>
         <source>CSD Script</source>
