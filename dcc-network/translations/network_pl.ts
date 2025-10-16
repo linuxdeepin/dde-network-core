@@ -1681,7 +1681,7 @@
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation>Nie można znaleźć sieci WLAN &quot;%1&quot; 802.11</translation>
+        <translation>Nie można znaleźć sieci WLAN 802.11 &quot;%1&quot;</translation>
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
