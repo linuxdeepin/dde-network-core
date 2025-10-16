@@ -1,3 +1,16 @@
+dde-network-core (2.0.70) unstable; urgency=medium
+
+  * fix: Add CancelGetsSecrets processing
+  * fix: add comprehensive wireless network icons
+  * fix: Update translation
+  * [dde-network-core] Updates for project Deepin Desktop Environment
+    (#405)
+  * fix: Add switch button
+  * fix: depends on dnsmasq-base
+  * fix: Modify disable network error issues
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 16 Oct 2025 20:55:18 +0800
+
 dde-network-core (2.0.69) unstable; urgency=medium
 
   * feat: Update translation
