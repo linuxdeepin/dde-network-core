@@ -34,6 +34,7 @@ public:
         , saveSecretsWithoutReply(false)
         , createTime(QDateTime::currentDateTime().toMSecsSinceEpoch())
         , status(Begin)
+        , process(nullptr)
     {
     }
 
@@ -62,6 +63,7 @@ public:
     NMVariantMapMap result; // 返回结果
     QByteArray inputCache;  // 输入缓存
     QByteArray outputCache; // 输出缓存
+    QProcess *process;      // 密码输入框进程
 };
 
 // 注册网络密码代理
