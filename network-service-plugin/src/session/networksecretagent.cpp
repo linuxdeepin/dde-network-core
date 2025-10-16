@@ -133,7 +133,7 @@ void NetworkSecretAgent::DeleteSecrets(const NMVariantMapMap &connection, const 
 }
 
 void NetworkSecretAgent::CancelGetSecrets(const QDBusObjectPath &connectionPath, const QString &settingName)
-{ // TODO: 告诉密码输入框取消
+{
     QString callId = connectionPath.path() % settingName;
     setDelayedReply(true);
     for (int i = 0; i < m_calls.size(); ++i) {
@@ -141,7 +141,11 @@ void NetworkSecretAgent::CancelGetSecrets(const QDBusObjectPath &connectionPath,
         if (request.type == SecretsRequest::GetSecrets && callId == request.callId) {
             qCDebug(DSM()) << "Process finished (agent canceled):" << request.ssid;
             sendError(SecretAgent::AgentCanceled, QStringLiteral("Agent canceled the password dialog"), request.message);
+            QProcess *process = request.process;
             m_calls.removeAt(i);
+            if (process) {
+                process->kill();
+            }
             break;
         }
     }
@@ -219,6 +223,7 @@ void NetworkSecretAgent::askPasswords(SecretsRequest &request, const QStringList
         qCInfo(DSM()) << "run auth dialog:" << NMSecretDialogBin;
         QProcess *process = new QProcess(this);
         process->setProperty("callId", request.callId);
+        request.process = process;
         connect(process, &QProcess::finished, this, &NetworkSecretAgent::authDialogFinished);
         connect(process, &QProcess::readyReadStandardOutput, this, &NetworkSecretAgent::authDialogReadOutput);
         connect(process, &QProcess::readyReadStandardError, this, &NetworkSecretAgent::authDialogReadError);
@@ -343,6 +348,10 @@ void NetworkSecretAgent::vpnDialogReadAllOutput(bool isEnd)
     if (!request) {
         return;
     }
+    if (isEnd) {
+        request->process = nullptr;
+        process->deleteLater();
+    }
     QByteArray data = process->readAll();
     request->outputCache += data;
     QList<QByteArray> dataAll = request->outputCache.split('\n');
@@ -427,15 +436,14 @@ void NetworkSecretAgent::authDialogReadAllOutput(bool isEnd)
     QString callId = process->property("callId").toString();
     QByteArray data = process->readAll();
     doSecretsResult(callId, data, isEnd);
+    if (isEnd) {
+        process->deleteLater();
+    }
 }
 
 void NetworkSecretAgent::doSecretsResult(QString callId, const QByteArray &data, bool isEnd)
 {
     QJsonDocument doc = QJsonDocument::fromJson(data);
-    if (!doc.isObject()) {
-        qCWarning(DSM()) << "JSON parsing error:" << data;
-        return;
-    }
     QJsonObject rootObj = doc.object();
     if (callId.isEmpty()) {
         callId = rootObj.value("callId").toString();
@@ -449,10 +457,15 @@ void NetworkSecretAgent::doSecretsResult(QString callId, const QByteArray &data,
     if (!request) {
         return;
     }
+    if (isEnd) {
+        request->process = nullptr;
+    }
     if (!rootObj.contains("secrets")) { // 没有"secrets"时为用户取消
-        sendError(Error::UserCanceled, "user canceled", request->message);
-        request->status = SecretsRequest::End;
-        m_calls.removeAll(*request);
+        if (isEnd) {
+            sendError(Error::UserCanceled, "user canceled", request->message);
+            request->status = SecretsRequest::End;
+            m_calls.removeAll(*request);
+        }
         return;
     }
     QJsonArray secrets = rootObj.value("secrets").toArray();
@@ -697,6 +710,7 @@ bool NetworkSecretAgent::processGetSecrets(SecretsRequest &request)
             // 属性放前面问询
             props.append(askItems);
             askItems = props;
+            request.status = SecretsRequest::WaitDialog;
             askPasswords(request, askItems, requestNew, secretFlag, propMap);
             return false;
         }
@@ -964,6 +978,7 @@ bool NetworkSecretAgent::createPendingKey(SecretsRequest &request)
     qCInfo(DSM()) << "run vpn auth dialog:" << vpnAuthDilogBin << args;
     QProcess *process = new QProcess(this);
     process->setProperty("callId", request.callId);
+    request.process = process;
     connect(process, &QProcess::finished, this, &NetworkSecretAgent::vpnDialogFinished);
     connect(process, &QProcess::readyReadStandardOutput, this, &NetworkSecretAgent::vpnDialogReadOutput);
     connect(process, &QProcess::readyReadStandardError, this, &NetworkSecretAgent::vpnDialogReadError);
