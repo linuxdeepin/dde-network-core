@@ -57,7 +57,7 @@ DccObject {
             name: "mainTitle"
             parentName: root.parentUrl + "/body"
             weight: 10
-            displayName: sectionGeneric.settingsID + qsTr(" Network Properties")
+            displayName: qsTr("%1 Network Properties").arg(sectionGeneric.settingsID)
         }
         DccObject {
             name: "vpnType"

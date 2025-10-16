@@ -253,7 +253,7 @@ DccObject {
         DccObject {
             name: "mineTitle"
             parentName: root.name + "/page"
-            displayName: qsTr("My Networks")
+            displayName: qsTr("My Networks")
             visible: mineNetwork.visible
             weight: 30
             pageType: DccObject.Item
