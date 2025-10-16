@@ -153,9 +153,35 @@
         <file>built-in-icons/network-wireless-signal-none-symbolic.dci</file>
         <file>built-in-icons/network-wireless-signal-no-symbolic.dci</file>
         <file>built-in-icons/network-wireless-warning-symbolic.dci</file>
-        <file>built-in-icons/network-wirelss-6-no-route-secure-symbolic.dci</file>
-        <file>built-in-icons/network-wirelss-6-no-route-symbolic.dci</file>
-        <file>built-in-icons/network-wirelss-no-route-secure-symbolic.dci</file>
-        <file>built-in-icons/network-wirelss-no-route-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-7-high-secure-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-7-high-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-7-low-secure-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-7-low-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-7-medium-secure-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-7-medium-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-7-no-secure-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-7-no-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-7-offline-secure-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-7-offline-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-7-signal-full-secure-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-7-signal-full-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-7-signal-high-secure-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-7-signal-high-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-7-signal-low-secure-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-7-signal-low-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-7-signal-medium-secure-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-7-signal-medium-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-7-signal-none-secure-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-7-signal-none-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-7-signal-no-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-7-warning-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-disconnect.dci</file>
+        <file>built-in-icons/network-wireless-6-no-route-secure-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-6-no-route-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-7-no-route-secure-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-7-no-route-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-no-route-secure-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-no-route-symbolic.dci</file>
+        <file>built-in-icons/network-wireless-offline-signal-full-symbolic.dci</file>
     </qresource>
 </RCC>
