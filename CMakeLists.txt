@@ -9,6 +9,7 @@ project(dde-network-core
 )
 
 option(ENABLE_DEEPIN_NMQT "enable nmqt patch on deepin" OFF)
+option(BUILD_TESTS "Build unit tests" OFF)
 
 set(DDE-Network-Core_INCLUDE_DIRS  "${CMAKE_SOURCE_DIR}/src-old")
 set(DDE-Network-Core_LIBRARIES  dde-network-core)
@@ -49,7 +50,7 @@ add_subdirectory("src")
 # add_subdirectory("src-old")
 # add_subdirectory("dcc-network-plugin")
 add_subdirectory("dcc-network")
-if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+if (BUILD_TESTS)
     add_subdirectory("tests")
 endif()
 # add_subdirectory("example")
