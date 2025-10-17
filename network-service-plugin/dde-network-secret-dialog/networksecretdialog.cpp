@@ -82,9 +82,9 @@ void NetworkSecretDialog::initUI()
     auto envType = qEnvironmentVariable("XDG_SESSION_TYPE");
     bool bWayland = envType.contains("wayland");
     if (bWayland) {
-        setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint | Qt::Dialog);
+        setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint | Qt::Tool);
     } else {
-        setWindowFlags(Qt::WindowStaysOnTopHint | Qt::Dialog);
+        setWindowFlags(Qt::WindowStaysOnTopHint | Qt::Tool);
     }
 
     setOnButtonClickedClose(false);

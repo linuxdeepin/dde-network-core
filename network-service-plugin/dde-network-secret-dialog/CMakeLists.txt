@@ -30,6 +30,7 @@ set(Dnetwork_Secret_Dialog_Libraries
 add_executable(${Dnetwork_Secret_Dialog_Name}
     ${Dnetwork_Secret_Dialog_SRCS}
     main.cpp
+    qrc/dde-network-secret-dialog.qrc
 )
 
 target_include_directories(${Dnetwork_Secret_Dialog_Name} PUBLIC
