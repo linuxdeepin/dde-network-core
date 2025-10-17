@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="zh_CN">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_CN">
 <context>
     <name>NetworkSecretDialog</name>
     <message>
@@ -51,16 +49,16 @@
 <context>
     <name>network::sessionservice::NetworkProxy</name>
     <message>
+        <source>Network</source>
+        <translation>网络</translation>
+    </message>
+    <message>
         <source>System proxy has been cancelled.</source>
         <translation>系统代理已取消。</translation>
     </message>
     <message>
         <source>System proxy is set successfully.</source>
         <translation>系统代理设置成功。</translation>
-    </message>
-    <message>
-        <source>Network</source>
-        <translation>网络</translation>
     </message>
 </context>
 <context>
