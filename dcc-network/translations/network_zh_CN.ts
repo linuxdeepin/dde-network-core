@@ -17,31 +17,31 @@
     <name>NetUtils</name>
     <message>
         <source>Off</source>
-        <translation type="unfinished"/>
+        <translation>已关闭</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"/>
+        <translation>已连接</translation>
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"/>
+        <translation>IP地址冲突</translation>
     </message>
     <message>
         <source>Connecting</source>
-        <translation type="unfinished"/>
+        <translation>正在连接</translation>
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation type="unfinished"/>
+        <translation>获取地址中</translation>
     </message>
     <message>
         <source>Authenticating</source>
-        <translation type="unfinished"/>
+        <translation>认证中</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>已断开</translation>
     </message>
 </context>
 <context>
@@ -173,7 +173,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"/>
+        <translation>%1网络属性</translation>
     </message>
 </context>
 <context>
@@ -314,7 +314,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"/>
+        <translation>%1网络属性</translation>
     </message>
 </context>
 <context>
@@ -451,7 +451,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"/>
+        <translation>%1网络属性</translation>
     </message>
 </context>
 <context>
@@ -513,7 +513,7 @@
     </message>
     <message>
         <source>My Networks</source>
-        <translation type="unfinished"/>
+        <translation>我的网络</translation>
     </message>
 </context>
 <context>
@@ -1647,11 +1647,11 @@
     <name>networkMain</name>
     <message>
         <source>Connection settings</source>
-        <translation type="unfinished"/>
+        <translation>连接设置</translation>
     </message>
     <message>
         <source>Related Settings</source>
-        <translation type="unfinished"/>
+        <translation>相关设置</translation>
     </message>
 </context>
 </TS>
