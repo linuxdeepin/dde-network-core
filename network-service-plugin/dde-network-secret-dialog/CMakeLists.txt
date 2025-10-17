@@ -7,12 +7,13 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(Dnetwork_Secret_Dialog_Name dde-network-secret-dialog)
-
 file(GLOB_RECURSE Dnetwork_Secret_Dialog_SRCS
-    "*.h"
-    "*.cpp"
+    "src/*.h"
+    "src/*.cpp"
 )
+
+list(REMOVE_ITEM Dnetwork_Secret_Dialog_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp")
+
 set(QT_VERSION_MAJOR 6)
 set(DTK_VERSION_MAJOR 6)
 find_package(Dtk${DTK_VERSION_MAJOR} REQUIRED COMPONENTS Widget)
@@ -26,21 +27,7 @@ set(Dnetwork_Secret_Dialog_Libraries
     Qt${QT_VERSION_MAJOR}::Widgets
 )
 
-
-add_executable(${Dnetwork_Secret_Dialog_Name}
-    ${Dnetwork_Secret_Dialog_SRCS}
-    main.cpp
-    qrc/dde-network-secret-dialog.qrc
-)
-
-target_include_directories(${Dnetwork_Secret_Dialog_Name} PUBLIC
-    ${Dnetwork_Secret_Dialog_Includes}
-)
-
-target_link_libraries(${Dnetwork_Secret_Dialog_Name} PRIVATE
-    ${Dnetwork_Secret_Dialog_Libraries}
-)
-
-## bin
-set(DAEMON_LIB_PATH "lib/deepin-daemon" CACHE STRING "daemon lib path")
-install(TARGETS ${Dnetwork_Secret_Dialog_Name} DESTINATION ${DAEMON_LIB_PATH})
+add_subdirectory("src")
+if (BUILD_TESTS)
+    add_subdirectory(tests)
+endif()
