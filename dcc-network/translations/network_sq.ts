@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="sq">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="sq">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -19,31 +17,31 @@
     <name>NetUtils</name>
     <message>
         <source>Off</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"></translation>
+        <translation>I lidhur</translation>
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished">Përplasje IP-sh</translation>
+        <translation>Përplasje IP-sh</translation>
     </message>
     <message>
         <source>Connecting</source>
-        <translation type="unfinished"></translation>
+        <translation>Po bëhet lidhja</translation>
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation type="unfinished"></translation>
+        <translation>Po merret adresë</translation>
     </message>
     <message>
         <source>Authenticating</source>
-        <translation type="unfinished"></translation>
+        <translation>Po bëhet mirëfilltësim</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"></translation>
+        <translation>E shkëputur</translation>
     </message>
 </context>
 <context>
@@ -140,7 +138,7 @@
     </message>
     <message>
         <source>Set up a dial-up network connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Ujdisni një lidhje rrjeti “dial-up”</translation>
     </message>
     <message>
         <source>Disconnect</source>
@@ -175,7 +173,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Veti Rrjeti %1</translation>
     </message>
 </context>
 <context>
@@ -233,7 +231,7 @@
     </message>
     <message>
         <source>Not Bind</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Personal Hotspot</source>
@@ -281,19 +279,19 @@
     </message>
     <message>
         <source>Shared Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hotspot Sharing Device</source>
-        <translation type="unfinished"></translation>
+        <translation>Pajisje Që Jep Hotspot</translation>
     </message>
     <message>
         <source>If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nëse doni të përdorni hotspot-in personal, së pari, çaktivizoni Mënyrën Aeroplan dhe mandej aktivizoni përshtatësin e rrjetit pa fill.</translation>
     </message>
     <message>
         <source>If you want to use the personal hotspot, disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first and then enable the wireless network adapter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nëse doni të përdorni hotspot-in personal, së pari, çaktivizoni Mënyrën Aeroplan dhe mandej aktivizoni përshtatësin e rrjetit pa fill.</translation>
     </message>
 </context>
 <context>
@@ -316,7 +314,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Veti Rrjeti %1</translation>
     </message>
 </context>
 <context>
@@ -453,7 +451,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Veti Rrjeti %1</translation>
     </message>
 </context>
 <context>
@@ -499,23 +497,23 @@
     </message>
     <message>
         <source>Disable Airplane Mode first if you want to connect to a wireless network</source>
-        <translation type="unfinished"></translation>
+        <translation>Nëse doni të lidheni me një rrjet pa fill, së pari, çaktivizoni Mënyrën Aeroplan</translation>
     </message>
     <message>
         <source>Disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation type="unfinished"></translation>
+        <translation>Nëse doni të lidheni me një rrjet pa fill, së pari çaktivizoni &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Mënyrën Aeroplan&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Disable hotspot first if you want to connect to a wireless network</source>
-        <translation type="unfinished"></translation>
+        <translation>Së pari çaktivizoni hotspot-in, nëse doni të lidheni me një rrjet pa fill</translation>
     </message>
     <message>
         <source>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Disable hotspot&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation type="unfinished"></translation>
+        <translation>Nëse doni të lidheni me një rrjet pa fill, së pari &lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Çaktivizoni hotspot-in&lt;/a&gt;</translation>
     </message>
     <message>
         <source>My Networks</source>
-        <translation type="unfinished">Rrjetet e Mi</translation>
+        <translation>Rrjetet e Mi</translation>
     </message>
 </context>
 <context>
@@ -541,7 +539,7 @@
     <name>SectionDevice</name>
     <message>
         <source>Not Bind</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>WLAN</source>
@@ -581,7 +579,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"></translation>
+        <translation>MTU (1280-9000)</translation>
     </message>
 </context>
 <context>
@@ -659,15 +657,15 @@
     </message>
     <message>
         <source>Invalid netmask</source>
-        <translation type="unfinished"></translation>
+        <translation>NetMask-ë e pavlefshme</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished">Kanal i pavlefshëm</translation>
+        <translation>Kanal i pavlefshëm</translation>
     </message>
     <message>
         <source>Duplicate IP address</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresë IP e përsëdytur</translation>
     </message>
 </context>
 <context>
@@ -726,15 +724,15 @@
     </message>
     <message>
         <source>Invalid netmask</source>
-        <translation type="unfinished"></translation>
+        <translation>NetMask-ë e pavlefshme</translation>
     </message>
     <message>
         <source>Duplicate IP address</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresë IP e përsëdytur</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished">Kanal i pavlefshëm</translation>
+        <translation>Kanal i pavlefshëm</translation>
     </message>
 </context>
 <context>
@@ -753,7 +751,7 @@
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
@@ -781,15 +779,15 @@
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>No TCP Header Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Pa Ngjeshje Kryesh TCP</translation>
     </message>
     <message>
         <source>Send PPP Echo Packets</source>
-        <translation type="unfinished"></translation>
+        <translation>Dërgo Pakete Echo PPP</translation>
     </message>
 </context>
 <context>
@@ -911,7 +909,7 @@
     </message>
     <message>
         <source>Provisioning</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disabled</source>
@@ -994,127 +992,127 @@
     </message>
     <message>
         <source>Allow Cisco Secure Desktop Trojan</source>
-        <translation type="unfinished"></translation>
+        <translation>Lejo Cisco Secure Desktop Trojan</translation>
     </message>
     <message>
         <source>CSD Script</source>
-        <translation type="unfinished"></translation>
+        <translation>Programth CDS</translation>
     </message>
     <message>
         <source>Auth Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Lloj Mirëfilltësimi</translation>
     </message>
     <message>
         <source>Private Key</source>
-        <translation type="unfinished">Kyç Privat</translation>
+        <translation>Kyç Privat</translation>
     </message>
     <message>
         <source>SSH Agent</source>
-        <translation type="unfinished"></translation>
+        <translation>Agjent SSH</translation>
     </message>
     <message>
         <source>Smart Card</source>
-        <translation type="unfinished"></translation>
+        <translation>Kartë e Mençur</translation>
     </message>
     <message>
         <source>EAP</source>
-        <translation type="unfinished"></translation>
+        <translation>EAP</translation>
     </message>
     <message>
         <source>Pre-Shared Key</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>User Cert</source>
-        <translation type="unfinished">Dëshmi Përdoruesi</translation>
+        <translation>Dëshmi Përdoruesi</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished">Emër përdoruesi</translation>
+        <translation>Emër përdoruesi</translation>
     </message>
     <message>
         <source>Use FSID for Key Passphrase</source>
-        <translation type="unfinished"></translation>
+        <translation>Për Frazëkalim Kyçi përdor FSID</translation>
     </message>
     <message>
         <source>Certificates (TLS)</source>
-        <translation type="unfinished"></translation>
+        <translation>Dëshmi (TLS)</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished">Fjalëkalim</translation>
+        <translation>Fjalëkalim</translation>
     </message>
     <message>
         <source>Certificates with Password (TLS)</source>
-        <translation type="unfinished"></translation>
+        <translation>Dëshmi me Fjalëkalim (TLS)</translation>
     </message>
     <message>
         <source>Static Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Kyç Statik</translation>
     </message>
     <message>
         <source>Pwd Options</source>
-        <translation type="unfinished">Mundësi Fjalëkalimi</translation>
+        <translation>Mundësi Fjalëkalimi</translation>
     </message>
     <message>
         <source>Saved</source>
-        <translation type="unfinished"></translation>
+        <translation>U ruajt</translation>
     </message>
     <message>
         <source>Ask</source>
-        <translation type="unfinished"></translation>
+        <translation>Pyet</translation>
     </message>
     <message>
         <source>Not Required</source>
-        <translation type="unfinished"></translation>
+        <translation>Jo e Domosdoshme</translation>
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation type="unfinished">Fjalëkalim Privat</translation>
+        <translation>Fjalëkalim Privat</translation>
     </message>
     <message>
         <source>Customize Key Direction</source>
-        <translation type="unfinished"></translation>
+        <translation>Përshtatni Kah Kyçi</translation>
     </message>
     <message>
         <source>Key Direction</source>
-        <translation type="unfinished"></translation>
+        <translation>Kah Kyçi</translation>
     </message>
     <message>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation>0</translation>
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation>1</translation>
     </message>
     <message>
         <source>Remote IP</source>
-        <translation type="unfinished"></translation>
+        <translation>IP e Largët</translation>
     </message>
     <message>
         <source>Local IP</source>
-        <translation type="unfinished"></translation>
+        <translation>IP Vendore</translation>
     </message>
     <message>
         <source>NT Domain</source>
-        <translation type="unfinished"></translation>
+        <translation>Përkatësi NT</translation>
     </message>
     <message>
         <source>Request an Inner IP Address</source>
-        <translation type="unfinished"></translation>
+        <translation>Kërko doemos një Adresë IP të Brendshme</translation>
     </message>
     <message>
         <source>Enforce UDP Encapsulation</source>
-        <translation type="unfinished"></translation>
+        <translation>Detyro Kapsulizim UDP</translation>
     </message>
     <message>
         <source>Use IP Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Përdor Ngjeshje IP</translation>
     </message>
     <message>
         <source>Enable Custom Cipher Proposals</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivizo Propozime të Përshtatura Shifre</translation>
     </message>
     <message>
         <source>IKE</source>
@@ -1154,350 +1152,350 @@
     </message>
     <message>
         <source>All Available (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>Krejt të Gatshmet (parazgjedhje)</translation>
     </message>
     <message>
         <source>40-bit (less secure)</source>
-        <translation type="unfinished"></translation>
+        <translation>40-bit (më pak i siguruar)</translation>
     </message>
     <message>
         <source>128-bit (most secure)</source>
-        <translation type="unfinished"></translation>
+        <translation>128-bit (më i siguruari)</translation>
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
-        <translation type="unfinished">Mos prano Mirëfilltësim EAP</translation>
+        <translation>Hidh tej Mirëfilltësim EAP</translation>
     </message>
     <message>
         <source>Refuse PAP Authentication</source>
-        <translation type="unfinished">Mos prano Mirëfilltësim PAP</translation>
+        <translation>Hidh tej Mirëfilltësim PAP</translation>
     </message>
     <message>
         <source>Refuse CHAP Authentication</source>
-        <translation type="unfinished">Mos prano Mirëfilltësim CHAP</translation>
+        <translation>Hidh tej Mirëfilltësim CHAP</translation>
     </message>
     <message>
         <source>Refuse MSCHAP Authentication</source>
-        <translation type="unfinished">Mos prano Mirëfilltësim MSCHAP</translation>
+        <translation>Hidh tej Mirëfilltësim MSCHAP</translation>
     </message>
     <message>
         <source>Refuse MSCHAPv2 Authentication</source>
-        <translation type="unfinished">Mos prano Mirëfilltësim MSCHAPv2</translation>
+        <translation>Hidh tej Mirëfilltësim MCHAPv2</translation>
     </message>
     <message>
         <source>No BSD Data Compression</source>
-        <translation type="unfinished">Pa Ngjeshje BSD të Dhënash</translation>
+        <translation>Pa Ngjeshje BSD të Dhënash</translation>
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>No TCP Header Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Pa Ngjeshje Kryesh TCP</translation>
     </message>
     <message>
         <source>No Protocol Field Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Pa Ngjeshje Fushe Protokolli</translation>
     </message>
     <message>
         <source>No Address/Control Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Pa Ngjeshje Adrese/Kontrolli</translation>
     </message>
     <message>
         <source>Send PPP Echo Packets</source>
-        <translation type="unfinished"></translation>
+        <translation>Dërgo Pakete Echo PPP</translation>
     </message>
     <message>
         <source>VPN IPsec</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN IPsec</translation>
     </message>
     <message>
         <source>Enable IPsec</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivizo IPsec</translation>
     </message>
     <message>
         <source>Group ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID Grupi</translation>
     </message>
     <message>
         <source>Phase1 Algorithms</source>
-        <translation type="unfinished"></translation>
+        <translation>Algoritme Phase1</translation>
     </message>
     <message>
         <source>Phase2 Algorithms</source>
-        <translation type="unfinished"></translation>
+        <translation>Algoritme Phase2</translation>
     </message>
     <message>
         <source>VPN Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>VPN e Thelluar</translation>
     </message>
     <message>
         <source>Customize Gateway Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Përshtatni Portë Kanali</translation>
     </message>
     <message>
         <source>Gateway Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Portë Kanali</translation>
     </message>
     <message>
         <source>Customize Renegotiation Interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Përshtatni Interval Rinegocimi</translation>
     </message>
     <message>
         <source>Renegotiation Interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Interval Rinegocimi</translation>
     </message>
     <message>
         <source>Use LZO Data Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Përdor Ngjeshje LZO të Dhënash</translation>
     </message>
     <message>
         <source>Use TCP Connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Përdor Lidhje TCP</translation>
     </message>
     <message>
         <source>Use TAP Device</source>
-        <translation type="unfinished"></translation>
+        <translation>Përdor Pajisje TAP</translation>
     </message>
     <message>
         <source>Customize Tunnel MTU</source>
-        <translation type="unfinished"></translation>
+        <translation>Përshtatni MTU Tuneli</translation>
     </message>
     <message>
         <source>Customize UDP Fragment Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Përshtatni Madhësi Fragmentesh UDP</translation>
     </message>
     <message>
         <source>UDP Fragment Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Madhësi Fragmentesh UDP</translation>
     </message>
     <message>
         <source>Restrict Tunnel TCP MSS</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Randomize Remote Hosts</source>
-        <translation type="unfinished"></translation>
+        <translation>Strehë të Largëta Kuturu</translation>
     </message>
     <message>
         <source>Domain</source>
-        <translation type="unfinished"></translation>
+        <translation>Përkatësi</translation>
     </message>
     <message>
         <source>Vendor</source>
-        <translation type="unfinished"></translation>
+        <translation>Tregtues</translation>
     </message>
     <message>
         <source>Cisco (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cisco (parazgjedhje)</translation>
     </message>
     <message>
         <source>Netscreen</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Version</translation>
     </message>
     <message>
         <source>Encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Fshehtëzim</translation>
     </message>
     <message>
         <source>Secure (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>I siguruar (parazgjedhje)</translation>
     </message>
     <message>
         <source>Weak</source>
-        <translation type="unfinished"></translation>
+        <translation>I dobët</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished">Asnjë</translation>
+        <translation>Asnjë</translation>
     </message>
     <message>
         <source>NAT Traversal Mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>NAT-T When Available (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>NAT-T, Kur Mundet (parazgjedhje)</translation>
     </message>
     <message>
         <source>NAT-T Always</source>
-        <translation type="unfinished"></translation>
+        <translation>Përherë NAT-T</translation>
     </message>
     <message>
         <source>Cisco UDP</source>
-        <translation type="unfinished"></translation>
+        <translation>Cisco UDP</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished">E çaktivizuar</translation>
+        <translation>Çaktivizuar</translation>
     </message>
     <message>
         <source>IKE DH Group</source>
-        <translation type="unfinished"></translation>
+        <translation>Grup IKE DH</translation>
     </message>
     <message>
         <source>DH Group 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Grup DH 1</translation>
     </message>
     <message>
         <source>DH Group 2 (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>Grup DH 2 (parazgjedhje)</translation>
     </message>
     <message>
         <source>DH Group 5</source>
-        <translation type="unfinished"></translation>
+        <translation>Grup DH 5</translation>
     </message>
     <message>
         <source>Forward Secrecy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Server (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>Shërbyes (parazgjedhje)</translation>
     </message>
     <message>
         <source>DH Group 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Grup DH 2</translation>
     </message>
     <message>
         <source>Local Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Portë Vendore</translation>
     </message>
     <message>
         <source>Disable Dead Peer Detection</source>
-        <translation type="unfinished"></translation>
+        <translation>Çaktivizo Pikasje Ortaku të Vdekur</translation>
     </message>
     <message>
         <source>VPN Security</source>
-        <translation type="unfinished"></translation>
+        <translation>Siguri VPN-je</translation>
     </message>
     <message>
         <source>Cipher</source>
-        <translation type="unfinished"></translation>
+        <translation>Shifër</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Parazgjedhje</translation>
     </message>
     <message>
         <source>HMAC Auth</source>
-        <translation type="unfinished"></translation>
+        <translation>Mirëfilltësim HMAC</translation>
     </message>
     <message>
         <source>RSA MD-4</source>
-        <translation type="unfinished"></translation>
+        <translation>RSA MD-4</translation>
     </message>
     <message>
         <source>MD-5</source>
-        <translation type="unfinished"></translation>
+        <translation>MD-5</translation>
     </message>
     <message>
         <source>SHA-1</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA-1</translation>
     </message>
     <message>
         <source>SHA-224</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA-224</translation>
     </message>
     <message>
         <source>SHA-256</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA-256</translation>
     </message>
     <message>
         <source>SHA-384</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA-384</translation>
     </message>
     <message>
         <source>SHA-512</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA-512</translation>
     </message>
     <message>
         <source>RIPEMD-160</source>
-        <translation type="unfinished"></translation>
+        <translation>RIPEMD-160</translation>
     </message>
     <message>
         <source>VPN Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Ndërmjetës VPN</translation>
     </message>
     <message>
         <source>Proxy Type</source>
-        <translation type="unfinished">Lloj Ndërmjetësi</translation>
+        <translation>Lloj Ndërmjetësi</translation>
     </message>
     <message>
         <source>Server IP</source>
-        <translation type="unfinished"></translation>
+        <translation>IP Shërbyesi</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished">Portë</translation>
+        <translation>Portë</translation>
     </message>
     <message>
         <source>Retry Indefinitely When Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Riprovo Pambarimisht, Kur Dështohet</translation>
     </message>
     <message>
         <source>VPN TLS Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Mirëfilltësim TLS VPN-je</translation>
     </message>
     <message>
         <source>Subject Match</source>
-        <translation type="unfinished"></translation>
+        <translation>Përputhje Subjekti</translation>
     </message>
     <message>
         <source>Remote Cert Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Lloj Dëshmie të Largët</translation>
     </message>
     <message>
         <source>Client</source>
-        <translation type="unfinished"></translation>
+        <translation>Klient</translation>
     </message>
     <message>
         <source>Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Shërbyes</translation>
     </message>
     <message>
         <source>Key File</source>
-        <translation type="unfinished"></translation>
+        <translation>Kartelë Kyçi</translation>
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"></translation>
+        <translation>MTU (1280-9000)</translation>
     </message>
 </context>
 <context>
     <name>SystemProxyConfigItem</name>
     <message>
         <source>Optional</source>
-        <translation type="unfinished">Opsionale</translation>
+        <translation>Opsionale</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished">Portë</translation>
+        <translation>Portë</translation>
     </message>
     <message>
         <source>Authentication is required</source>
-        <translation type="unfinished"></translation>
+        <translation>Lypset mirëfilltësim</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished">Emër përdoruesi</translation>
+        <translation>Emër përdoruesi</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished">E domosdoshme</translation>
+        <translation>I domosdoshëm</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished">Fjalëkalim</translation>
+        <translation>Fjalëkalim</translation>
     </message>
 </context>
 <context>
@@ -1642,18 +1640,18 @@
     <name>network</name>
     <message>
         <source>Network</source>
-        <translation type="unfinished">Rrjet</translation>
+        <translation>Rrjet</translation>
     </message>
 </context>
 <context>
     <name>networkMain</name>
     <message>
         <source>Connection settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Rregullime lidhjeje</translation>
     </message>
     <message>
         <source>Related Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Rregullime të Lidhura</translation>
     </message>
 </context>
 </TS>

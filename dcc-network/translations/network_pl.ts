@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="pl">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pl">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -19,31 +17,31 @@
     <name>NetUtils</name>
     <message>
         <source>Off</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyłączony</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"></translation>
+        <translation>Połączono</translation>
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished">Konflikt IP</translation>
+        <translation>Konflikt IP</translation>
     </message>
     <message>
         <source>Connecting</source>
-        <translation type="unfinished"></translation>
+        <translation>Łączenie</translation>
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation type="unfinished"></translation>
+        <translation>Uzyskiwanie adresu</translation>
     </message>
     <message>
         <source>Authenticating</source>
-        <translation type="unfinished"></translation>
+        <translation>Uwierzytelnianie</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozłączono</translation>
     </message>
 </context>
 <context>
@@ -175,7 +173,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Ustawienia sieci</translation>
     </message>
 </context>
 <context>
@@ -316,7 +314,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Ustawienia sieci</translation>
     </message>
 </context>
 <context>
@@ -453,7 +451,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Ustawienia sieci</translation>
     </message>
 </context>
 <context>
@@ -515,7 +513,7 @@
     </message>
     <message>
         <source>My Networks</source>
-        <translation type="unfinished">Moje sieci</translation>
+        <translation>Moje sieci</translation>
     </message>
 </context>
 <context>
@@ -581,7 +579,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"></translation>
+        <translation>MTU (1280-9000)</translation>
     </message>
 </context>
 <context>
@@ -1470,7 +1468,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"></translation>
+        <translation>MTU (1280-9000)</translation>
     </message>
 </context>
 <context>
@@ -1649,11 +1647,11 @@
     <name>networkMain</name>
     <message>
         <source>Connection settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia sieci</translation>
     </message>
     <message>
         <source>Related Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Powiązane ustawienia</translation>
     </message>
 </context>
 </TS>
