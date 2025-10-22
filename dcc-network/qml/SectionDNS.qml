@@ -47,7 +47,7 @@ DccObject {
         console.log("[DNS-GetConfig] Starting DNS config processing, raw config:", root.config)
         let ipv4Data = []
         let ipv6Data = []
-        
+
         for (var ip of root.config) {
             if (ip !== "") {
                 console.log("[DNS-GetConfig] Processing IP:", ip)
@@ -72,7 +72,7 @@ DccObject {
                 console.log("[DNS-GetConfig] Empty IP skipped")
             }
         }
-        
+
         // 返回混合数据，后端会根据类型分别处理
         let saveData = []
         for (let ipv4 of ipv4Data) {
@@ -81,7 +81,7 @@ DccObject {
         for (let ipv6 of ipv6Data) {
             saveData.push(ipv6)
         }
-        
+
         console.log("[DNS-GetConfig] Final save data:", saveData, "IPv4:", ipv4Data, "IPv6:", ipv6Data)
         return saveData
     }
@@ -149,7 +149,7 @@ DccObject {
             property int index: 0
             weight: root.weight + 30 + index
             name: "dns" + index
-            displayName: qsTr("DNS") + index
+            displayName: qsTr("DNS") + (index + 1)
             parentName: root.parentName + "/dnsGroup"
             canSearch: false
             pageType: DccObject.Editor
