@@ -191,6 +191,11 @@ DccTitleObject {
                 to: 9000
                 value: root.config.hasOwnProperty("mtu") ? root.config.mtu : 1500
                 
+                // 自定义文本格式化，禁用千位分隔符
+                textFromValue: function(value, locale) {
+                    return value.toString()
+                }
+                
                 onValueChanged: {
                     if (hasMTU && (!root.config.hasOwnProperty("mtu") || root.config.mtu !== value)) {
                         root.config.mtu = value
