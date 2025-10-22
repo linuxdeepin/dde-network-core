@@ -1536,6 +1536,9 @@ DccTitleObject {
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 1194
                 from: 0
                 to: 65535
+                textFromValue: function(value) {
+                    return value.toString()
+                }
                 onValueChanged: {
                     if (root.dataMap[dccObj.name] !== value) {
                         root.dataMap[dccObj.name] = value
@@ -1577,6 +1580,9 @@ DccTitleObject {
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 0
                 from: 0
                 to: 65535
+                textFromValue: function(value) {
+                    return value.toString()
+                }
                 onValueChanged: {
                     if (root.dataMap[dccObj.name] !== value) {
                         root.dataMap[dccObj.name] = value
@@ -1656,6 +1662,9 @@ DccTitleObject {
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 1500
                 from: 1280
                 to: 9000
+                textFromValue: function(value) {
+                    return value.toString()
+                }
                 onValueChanged: {
                     if (root.dataMap[dccObj.name] !== value) {
                         root.dataMap[dccObj.name] = value
@@ -1697,6 +1706,9 @@ DccTitleObject {
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 1300
                 from: 0
                 to: 65535
+                textFromValue: function(value) {
+                    return value.toString()
+                }
                 onValueChanged: {
                     if (root.dataMap[dccObj.name] !== value) {
                         root.dataMap[dccObj.name] = value
@@ -1922,6 +1934,9 @@ DccTitleObject {
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 0
                 from: 0
                 to: 65535
+                textFromValue: function(value) {
+                    return value.toString()
+                }
                 onValueChanged: {
                     if (root.dataMap[dccObj.name] !== value) {
                         root.dataMap[dccObj.name] = value
@@ -2162,6 +2177,9 @@ DccTitleObject {
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 0
                 from: 0
                 to: 65535
+                textFromValue: function(value) {
+                    return value.toString()
+                }
                 onValueChanged: {
                     if (root.dataMap[dccObj.name] !== value) {
                         root.dataMap[dccObj.name] = value
