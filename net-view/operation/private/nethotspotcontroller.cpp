@@ -18,6 +18,7 @@ NetHotspotController::NetHotspotController(QObject *parent)
     : QObject(parent)
     , m_isEnabled(false)
     , m_enabledable(true)
+    , m_deviceEnabled(true)
     , m_updatedTimer(new QTimer(this))
 {
     m_updatedTimer->setSingleShot(true);
@@ -45,6 +46,11 @@ bool NetHotspotController::enabledable() const
     return m_enabledable;
 }
 
+bool NetHotspotController::deviceEnabled()
+{
+    return m_deviceEnabled;
+}
+
 const QVariantMap &NetHotspotController::config() const
 {
     return m_config;
@@ -55,6 +61,11 @@ const QStringList &NetHotspotController::optionalDevice() const
     return m_optionalDevice;
 }
 
+const QStringList &NetHotspotController::optionalDevicePath() const
+{
+    return m_optionalDevicePath;
+}
+
 const QStringList &NetHotspotController::shareDevice() const
 {
     return m_shareDevice;
@@ -63,15 +74,38 @@ const QStringList &NetHotspotController::shareDevice() const
 void NetHotspotController::updateEnabled()
 {
     bool enabled = false;
+    bool deviceEnabled = false;
+    QStringList optionalDevice;
+    QStringList optionalDevicePath;
     for (auto dev : m_hotspotController->devices()) {
         enabled |= dev->hotspotEnabled();
-        if (enabled) {
-            break;
+        deviceEnabled |= dev->isEnabled();
+        if (dev->isEnabled()) {
+            QString mac = dev->realHwAdr();
+            if (mac.isEmpty()) {
+                mac = dev->usingHwAdr();
+            }
+            mac = mac + " (" + dev->interface() + ")";
+            optionalDevice.append(mac);
         }
+        optionalDevicePath.append(dev->path());
     }
     if (enabled != m_isEnabled) {
         m_isEnabled = enabled;
         Q_EMIT enabledChanged(m_isEnabled);
+    }
+    if (deviceEnabled != m_deviceEnabled) {
+        m_deviceEnabled = deviceEnabled;
+        Q_EMIT deviceEnabledChanged(m_deviceEnabled);
+    }
+
+    if (optionalDevice != m_optionalDevice) {
+        m_optionalDevice = optionalDevice;
+        Q_EMIT optionalDeviceChanged(m_optionalDevice);
+    }
+    if (optionalDevicePath != m_optionalDevicePath) {
+        m_optionalDevicePath = optionalDevicePath;
+        Q_EMIT optionalDevicePathChanged(m_optionalDevicePath);
     }
 }
 
@@ -88,21 +122,11 @@ void NetHotspotController::updateData()
 {
     QStringList optionalDevice;
     for (auto dev : m_hotspotController->devices()) {
-        QString mac = dev->realHwAdr();
-        if (mac.isEmpty()) {
-            mac = dev->usingHwAdr();
-        }
-        mac = mac + " (" + dev->interface() + ")";
-        optionalDevice.append(mac);
-        connect(dev, &WirelessDevice::hotspotEnableChanged, this, &NetHotspotController::updateEnabled, Qt::UniqueConnection);
+        connect(dev, &WirelessDevice::hotspotEnableChanged, this, &NetHotspotController::updateEnabled, Qt::SingleShotConnection);
+        connect(dev, &WirelessDevice::enableChanged, this, &NetHotspotController::updateEnabled, Qt::SingleShotConnection);
     }
     updateEnabled();
     updateEnabledable();
-
-    if (optionalDevice != m_optionalDevice) {
-        m_optionalDevice = optionalDevice;
-        Q_EMIT optionalDeviceChanged(m_optionalDevice);
-    }
 }
 
 void NetHotspotController::updateConfig()
