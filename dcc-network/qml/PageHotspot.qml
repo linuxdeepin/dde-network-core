@@ -96,7 +96,7 @@ DccObject {
                 id: switchControl
                 anchors.fill: parent
                 checked: item.isEnabled
-                enabled: item.enabledable && !isAirplane
+                enabled: item.enabledable && !isAirplane && item.deviceEnabled
                 onClicked: {
                     if (checked) {
                         if (config["connection"]["uuid"] === "{00000000-0000-0000-0000-000000000000}") {
@@ -136,11 +136,45 @@ DccObject {
             pageType: DccObject.Editor
             page: devCheck
         }
+
+        DccObject {
+            name: "airplaneTips"
+            parentName: root.name + "/menu"
+            visible: isAirplane
+            displayName: qsTr("If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.")
+            weight: 20
+            pageType: DccObject.Item
+            page: D.Label {
+                textFormat: Text.RichText
+                text: qsTr("If you want to use the personal hotspot, disable <a style='text-decoration: none;' href='network/airplaneMode'>Airplane Mode</a> first and then enable the wireless network adapter.")
+                wrapMode: Text.WordWrap
+                onLinkActivated: link => DccApp.showPage(link)
+            }
+        }
+        DccObject {
+            name: "devEnabledTips"
+            parentName: root.name + "/menu"
+            visible: !item.deviceEnabled && !isAirplane
+            displayName: qsTr("Enable <a style='text-decoration: none;' href='network'>Wireless Network Adapter</a> first if you want to use the personal hotspot.")
+            weight: 30
+            pageType: DccObject.Item
+            page: D.Label {
+                textFormat: Text.RichText
+                text: dccObj.displayName
+                wrapMode: Text.WordWrap
+                onLinkActivated: function (link) {
+                    if (item.optionalDevicePath.length > 0) {
+                        DccApp.showPage("network/wireless" + item.optionalDevicePath[0].slice(40))
+                    }
+                }
+            }
+        }
         DccTitleObject {
             name: "hotspotTitle"
             parentName: root.name + "/menu"
-            weight: 20
+            weight: 40
             visible: !isAirplane
+            enabled: item.deviceEnabled
             displayName: qsTr("My Hotspot")
             pageType: DccObject.Item
             page: RowLayout {
@@ -350,8 +384,9 @@ DccObject {
             id: hotspotConfig
             name: "hotspotConfig"
             parentName: root.name + "/menu"
-            weight: 30
+            weight: 50
             visible: !isAirplane
+            enabled: item.deviceEnabled
             pageType: DccObject.Item
             page: DccGroupView {}
             DccObject {
@@ -424,7 +459,8 @@ DccObject {
             name: "shareTitle"
             parentName: root.name + "/menu"
             visible: !isAirplane
-            weight: 40
+            enabled: item.deviceEnabled
+            weight: 60
             displayName: qsTr("Shared Settings")
         }
         DccObject {
@@ -432,7 +468,8 @@ DccObject {
             name: "shareConfig"
             parentName: root.name + "/menu"
             visible: !isAirplane
-            weight: 50
+            enabled: item.deviceEnabled
+            weight: 70
             pageType: DccObject.Item
             page: DccGroupView {}
             // TODO: 后端无接口
@@ -495,20 +532,6 @@ DccObject {
                         }
                     }
                 }
-            }
-        }
-        DccObject {
-            name: "airplaneTips"
-            parentName: root.name + "/menu"
-            visible: isAirplane
-            displayName: qsTr("If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.")
-            weight: 70
-            pageType: DccObject.Item
-            page: D.Label {
-                textFormat: Text.RichText
-                text: qsTr("If you want to use the personal hotspot, disable <a style='text-decoration: none;' href='network/airplaneMode'>Airplane Mode</a> first and then enable the wireless network adapter.")
-                wrapMode: Text.WordWrap
-                onLinkActivated: link => DccApp.showPage(link)
             }
         }
     }

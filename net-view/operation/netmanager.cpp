@@ -694,10 +694,20 @@ void NetManagerPrivate::onDataChanged(int dataType, const QString &id, const QVa
         if (item)
             item->updateoptionalDevice(value.value<QStringList>());
     } break;
+    case NetManagerThreadPrivate::HotspotOptionalDevicePathChanged: {
+        NetHotspotControlItemPrivate *item = NetItemPrivate::toItem<NetHotspotControlItemPrivate>(findItem(id));
+        if (item)
+            item->updateoptionalDevicePath(value.value<QStringList>());
+    } break;
     case NetManagerThreadPrivate::HotspotShareDeviceChanged: {
         NetHotspotControlItemPrivate *item = NetItemPrivate::toItem<NetHotspotControlItemPrivate>(findItem(id));
         if (item)
             item->updateshareDevice(value.value<QStringList>());
+    } break;
+    case NetManagerThreadPrivate::DeviceEnabledChanged: {
+        NetHotspotControlItemPrivate *item = NetItemPrivate::toItem<NetHotspotControlItemPrivate>(findItem(id));
+        if (item)
+            item->updatedeviceEnabled(value.toBool());
     } break;
     default:
         break;

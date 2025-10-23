@@ -313,9 +313,13 @@ public:
     const QVariantMap &config() const;
     const QStringList &shareDevice() const;
     const QStringList &optionalDevice() const;
+    const QStringList &optionalDevicePath() const;
+    bool deviceEnabled() const;
     void updateconfig(const QVariantMap &config);
     void updateshareDevice(const QStringList &shareDevice);
     void updateoptionalDevice(const QStringList &optionalDevice);
+    void updateoptionalDevicePath(const QStringList &optionalDevicePath);
+    void updatedeviceEnabled(bool deviceEnabled);
 
 protected:
     using NetControlItemPrivate::NetControlItemPrivate;
@@ -324,6 +328,8 @@ private:
     QVariantMap m_config;
     QStringList m_shareDevice;
     QStringList m_optionalDevice;
+    QStringList m_optionalDevicePath;
+    bool m_deviceEnabled;
 };
 
 // Airplane

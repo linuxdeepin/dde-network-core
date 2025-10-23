@@ -314,9 +314,13 @@ GETFUN(NetType::NetItemType, NetHotspotControlItem, itemType, NetType::NetItemTy
 GETFUN(const QVariantMap &, NetHotspotControlItem, config, m_config)
 GETFUN(const QStringList &, NetHotspotControlItem, shareDevice, m_shareDevice)
 GETFUN(const QStringList &, NetHotspotControlItem, optionalDevice, m_optionalDevice)
+GETFUN(const QStringList &, NetHotspotControlItem, optionalDevicePath, m_optionalDevicePath)
+GETFUN(bool, NetHotspotControlItem, deviceEnabled, m_deviceEnabled)
 UPDATEFUN(NetHotspotControlItem, const QVariantMap &, config)
 UPDATEFUN(NetHotspotControlItem, const QStringList &, shareDevice)
 UPDATEFUN(NetHotspotControlItem, const QStringList &, optionalDevice)
+UPDATEFUN(NetHotspotControlItem, const QStringList &, optionalDevicePath)
+UPDATEFUN(NetHotspotControlItem, bool, deviceEnabled)
 // Airplane
 GETFUN(NetType::NetItemType, NetAirplaneControlItem, itemType, NetType::NetItemType::AirplaneControlItem)
 // DetailsItem

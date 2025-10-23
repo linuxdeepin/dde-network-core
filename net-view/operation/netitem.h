@@ -346,18 +346,24 @@ protected:
 class NetHotspotControlItem : public NetControlItem
 {
     Q_OBJECT
+    Q_PROPERTY(bool deviceEnabled READ deviceEnabled NOTIFY deviceEnabledChanged)
     Q_PROPERTY(QVariantMap config READ config NOTIFY configChanged)
     Q_PROPERTY(QStringList optionalDevice READ optionalDevice NOTIFY optionalDeviceChanged)
+    Q_PROPERTY(QStringList optionalDevicePath READ optionalDevicePath NOTIFY optionalDevicePathChanged)
     Q_PROPERTY(QStringList shareDevice READ shareDevice NOTIFY shareDeviceChanged)
 public:
     const QVariantMap &config() const;
     const QStringList &optionalDevice() const;
+    const QStringList &optionalDevicePath() const;
     const QStringList &shareDevice() const;
+    bool deviceEnabled() const;
 
 Q_SIGNALS:
     void configChanged(const QVariantMap &config);
     void optionalDeviceChanged(const QStringList &optionalDevice);
+    void optionalDevicePathChanged(const QStringList &optionalDevicePath);
     void shareDeviceChanged(const QStringList &shareDevice);
+    void deviceEnabledChanged(bool deviceEnabled);
 
 protected:
     using NetControlItem::NetControlItem;

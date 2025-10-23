@@ -161,7 +161,9 @@ GETFUN(const QVariantMap &, NetAppProxyControlItem, config)
 // Hotspot
 GETFUN(const QVariantMap &, NetHotspotControlItem, config)
 GETFUN(const QStringList &, NetHotspotControlItem, optionalDevice)
+GETFUN(const QStringList &, NetHotspotControlItem, optionalDevicePath)
 GETFUN(const QStringList &, NetHotspotControlItem, shareDevice)
+GETFUN(bool, NetHotspotControlItem, deviceEnabled)
 
 // 飞行模式提示项
 // DetailsItem

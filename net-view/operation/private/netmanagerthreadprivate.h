@@ -87,7 +87,9 @@ public:
         AppProxyChanged,
         HotspotConfigChanged,
         HotspotOptionalDeviceChanged,
+        HotspotOptionalDevicePathChanged,
         HotspotShareDeviceChanged,
+        DeviceEnabledChanged,
     };
 
 Q_SIGNALS:
@@ -117,14 +119,7 @@ public Q_SLOTS:
     void gotoSecurityTools(const QString &page);
     void userCancelRequest(const QString &id);
     void retranslate(const QString &locale); // 更新翻译
-    void sendNotify(const QString &appIcon,
-                    const QString &body,
-                    const QString &summary = QString(),
-                    const QString &inAppName = "dde-control-center",
-                    int replacesId = -1,
-                    const QStringList &actions = {},
-                    const QVariantMap &hints = {},
-                    int expireTimeout = 5000);
+    void sendNotify(const QString &appIcon, const QString &body, const QString &summary = QString(), const QString &inAppName = "dde-control-center", int replacesId = -1, const QStringList &actions = {}, const QVariantMap &hints = {}, int expireTimeout = 5000);
     void onNetCheckPropertiesChanged(QString, QVariantMap properties, QStringList);
     void onAirplaneModeEnabledPropertiesChanged(const QString &, const QVariantMap &properties, const QStringList &);
     void onAirplaneModePropertiesChanged(const QVariantMap &properties);
@@ -219,8 +214,10 @@ protected Q_SLOTS:
     // 热点
     void updateHotspotEnabledChanged(const bool enabled);
     void onHotspotEnabledableChanged(const bool enabledable);
+    void onHotspotDeviceEnabledChanged(const bool deviceEnabled);
     void onHotspotConfigChanged(const QVariantMap &config);
     void onHotspotOptionalDeviceChanged(const QStringList &optionalDevice);
+    void onHotspotOptionalDevicePathChanged(const QStringList &optionalDevicePath);
     void onHotspotShareDeviceChanged(const QStringList &shareDevice);
     // 飞行模式
     void getAirplaneModeEnabled();

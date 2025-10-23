@@ -522,14 +522,18 @@ void NetManagerThreadPrivate::doInit()
         hotspotcontrolitem->updateenabledable(netHotspotController->enabledable());
         hotspotcontrolitem->updateenabled(netHotspotController->isEnabled());
         hotspotcontrolitem->updateoptionalDevice(netHotspotController->optionalDevice());
+        hotspotcontrolitem->updateoptionalDevicePath(netHotspotController->optionalDevicePath());
         hotspotcontrolitem->updateshareDevice(netHotspotController->shareDevice());
+        hotspotcontrolitem->updatedeviceEnabled(netHotspotController->deviceEnabled());
         hotspotcontrolitem->item()->moveToThread(m_parentThread);
         Q_EMIT itemAdded("Root", hotspotcontrolitem);
         connect(netHotspotController, &NetHotspotController::enabledChanged, this, &NetManagerThreadPrivate::updateHotspotEnabledChanged);
         connect(netHotspotController, &NetHotspotController::enabledableChanged, this, &NetManagerThreadPrivate::onHotspotEnabledableChanged);
         connect(netHotspotController, &NetHotspotController::configChanged, this, &NetManagerThreadPrivate::onHotspotConfigChanged);
         connect(netHotspotController, &NetHotspotController::optionalDeviceChanged, this, &NetManagerThreadPrivate::onHotspotOptionalDeviceChanged);
+        connect(netHotspotController, &NetHotspotController::optionalDevicePathChanged, this, &NetManagerThreadPrivate::onHotspotOptionalDevicePathChanged);
         connect(netHotspotController, &NetHotspotController::shareDeviceChanged, this, &NetManagerThreadPrivate::onHotspotShareDeviceChanged);
+        connect(netHotspotController, &NetHotspotController::deviceEnabledChanged, this, &NetManagerThreadPrivate::onHotspotDeviceEnabledChanged);
     }
     // Airplane
     if (m_flags.testFlags(NetType::NetManagerFlag::Net_Airplane)) {
@@ -2346,6 +2350,11 @@ void NetManagerThreadPrivate::onHotspotEnabledableChanged(const bool enabledable
     Q_EMIT dataChanged(DataChanged::DeviceAvailableChanged, "NetHotspotControlItem", enabledable);
 }
 
+void NetManagerThreadPrivate::onHotspotDeviceEnabledChanged(const bool deviceEnabled)
+{
+    Q_EMIT dataChanged(DataChanged::DeviceEnabledChanged, "NetHotspotControlItem", deviceEnabled);
+}
+
 void NetManagerThreadPrivate::onHotspotConfigChanged(const QVariantMap &config)
 {
     Q_EMIT dataChanged(DataChanged::HotspotConfigChanged, "NetHotspotControlItem", config);
@@ -2354,6 +2363,11 @@ void NetManagerThreadPrivate::onHotspotConfigChanged(const QVariantMap &config)
 void NetManagerThreadPrivate::onHotspotOptionalDeviceChanged(const QStringList &optionalDevice)
 {
     Q_EMIT dataChanged(DataChanged::HotspotOptionalDeviceChanged, "NetHotspotControlItem", optionalDevice);
+}
+
+void NetManagerThreadPrivate::onHotspotOptionalDevicePathChanged(const QStringList &optionalDevicePath)
+{
+    Q_EMIT dataChanged(DataChanged::HotspotOptionalDevicePathChanged, "NetHotspotControlItem", optionalDevicePath);
 }
 
 void NetManagerThreadPrivate::onHotspotShareDeviceChanged(const QStringList &shareDevice)
