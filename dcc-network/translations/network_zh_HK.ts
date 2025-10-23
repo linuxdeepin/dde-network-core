@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_HK">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh_HK">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -293,6 +295,10 @@
         <source>If you want to use the personal hotspot, disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first and then enable the wireless network adapter.</source>
         <translation>若要使用個人熱點功能，請先退出&lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;飛行模式&lt;/a&gt;，再啓用無線網卡。</translation>
     </message>
+    <message>
+        <source>Enable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;Wireless Network Adapter&lt;/a&gt; first if you want to use the personal hotspot.</source>
+        <translation>若要使用個人熱點功能，請先啓用&lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;無線網卡&lt;/a&gt;</translation>
+    </message>
 </context>
 <context>
     <name>PageSettings</name>
@@ -579,7 +585,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1468,7 +1474,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

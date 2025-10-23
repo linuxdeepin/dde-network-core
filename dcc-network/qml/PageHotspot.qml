@@ -155,7 +155,7 @@ DccObject {
             name: "devEnabledTips"
             parentName: root.name + "/menu"
             visible: !item.deviceEnabled && !isAirplane
-            displayName: qsTr("Enable <a style='text-decoration: none;' href='network'>Wireless Network Adapter</a> first if you want to use the personal hotspot.")
+            displayName: qsTr("Enable <a style='text-decoration: none;' href='network'>Wireless Network Adapter</a> first if you want to use the personal hotspot.")
             weight: 30
             pageType: DccObject.Item
             page: D.Label {
