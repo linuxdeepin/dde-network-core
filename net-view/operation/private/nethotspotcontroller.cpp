@@ -122,8 +122,8 @@ void NetHotspotController::updateData()
 {
     QStringList optionalDevice;
     for (auto dev : m_hotspotController->devices()) {
-        connect(dev, &WirelessDevice::hotspotEnableChanged, this, &NetHotspotController::updateEnabled, Qt::SingleShotConnection);
-        connect(dev, &WirelessDevice::enableChanged, this, &NetHotspotController::updateEnabled, Qt::SingleShotConnection);
+        connect(dev, &WirelessDevice::hotspotEnableChanged, this, &NetHotspotController::updateEnabled, Qt::UniqueConnection);
+        connect(dev, &WirelessDevice::enableChanged, this, &NetHotspotController::updateEnabled, Qt::UniqueConnection);
     }
     updateEnabled();
     updateEnabledable();
