@@ -295,7 +295,7 @@
     </message>
     <message>
         <source>Enable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;Wireless Network Adapter&lt;/a&gt; first if you want to use the personal hotspot.</source>
-        <translation type="unfinished"/>
+        <translation>Activeu primer &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;l&apos;adaptador de xarxa sense fil&lt;/a&gt; si voleu usar el punt d&apos;accés personal.</translation>
     </message>
 </context>
 <context>
