@@ -295,7 +295,7 @@
     </message>
     <message>
         <source>Enable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;Wireless Network Adapter&lt;/a&gt; first if you want to use the personal hotspot.</source>
-        <translation type="unfinished"/>
+        <translation>若要使用個人熱點功能，請先啓用&lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;無線網卡&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
