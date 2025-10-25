@@ -1651,11 +1651,11 @@
     <name>networkMain</name>
     <message>
         <source>Connection settings</source>
-        <translation type="unfinished"/>
+        <translation>Yhteysasetukset</translation>
     </message>
     <message>
         <source>Related Settings</source>
-        <translation type="unfinished"/>
+        <translation>Lisäasetukset</translation>
     </message>
 </context>
 </TS>
