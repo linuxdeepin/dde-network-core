@@ -284,31 +284,31 @@
     </message>
     <message>
         <source>RFC 2684 Ethernet bridging error to ADSL</source>
-        <translation type="unfinished"/>
+        <translation>ADSL RFC2684 Ethernet-siltausvirhe</translation>
     </message>
     <message>
         <source>ModemManager did not run or quitted unexpectedly</source>
-        <translation type="unfinished"/>
+        <translation>Modemin-hallinta ei käynnistynyt tai yhteys katkesi yllättäen</translation>
     </message>
     <message>
         <source>The 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"/>
+        <translation>802.11 WLAN-verkkoa ei löytynyt</translation>
     </message>
     <message>
         <source>A secondary connection of the base connection failed</source>
-        <translation type="unfinished"/>
+        <translation>Perusyhteyden toissijainen yhteys epäonnistui</translation>
     </message>
     <message>
         <source>DCB or FCoE setup failed</source>
-        <translation type="unfinished"/>
+        <translation>Asennus DCB tai FCoE epäonnistui</translation>
     </message>
     <message>
         <source>Network teaming control failed</source>
-        <translation type="unfinished"/>
+        <translation>Verkkoryhmittelyn hallinta epäonnistui</translation>
     </message>
     <message>
         <source>Modem failed to run or not available</source>
-        <translation type="unfinished"/>
+        <translation>Modeemi ei käynnisty tai ei ole käytettävissä</translation>
     </message>
     <message>
         <source>Modem now ready and available</source>
