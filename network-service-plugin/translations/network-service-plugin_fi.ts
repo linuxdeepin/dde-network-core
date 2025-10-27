@@ -336,35 +336,35 @@
     </message>
     <message>
         <source>Please make sure SIM card has been inserted with mobile network signal</source>
-        <translation type="unfinished"/>
+        <translation>Varmista, että SIM-kortti on asetettu ja verkossa on signaali</translation>
     </message>
     <message>
         <source>Please make sure a correct plan was selected without arrearage of SIM card</source>
-        <translation type="unfinished"/>
+        <translation>Varmista, että olet valinnut oikean liittymän ilman SIM-kortin maksurästejä</translation>
     </message>
     <message>
         <source>Failed to activate VPN connection, reason unknown</source>
-        <translation type="unfinished"/>
+        <translation>VPN epäonnistui, syy tuntematon</translation>
     </message>
     <message>
         <source>Failed to activate VPN connection</source>
-        <translation type="unfinished"/>
+        <translation>VPN epäonnistui</translation>
     </message>
     <message>
         <source>The VPN connection state changed due to being disconnected by users</source>
-        <translation type="unfinished"/>
+        <translation>VPN-tila muuttui käyttäjän toimesta</translation>
     </message>
     <message>
         <source>The VPN connection state changed due to being disconnected from devices</source>
-        <translation type="unfinished"/>
+        <translation>VPN-tila muuttui, koska yhteys laitteisiin katkesi</translation>
     </message>
     <message>
         <source>VPN service stopped</source>
-        <translation type="unfinished"/>
+        <translation>VPN-palvelu pysähtyi</translation>
     </message>
     <message>
         <source>The IP config of VPN connection was invalid</source>
-        <translation type="unfinished"/>
+        <translation>VPN IP-määritys oli virheellinen</translation>
     </message>
     <message>
         <source>The connection attempt to VPN service timed out</source>
