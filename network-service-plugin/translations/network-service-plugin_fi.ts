@@ -428,23 +428,23 @@
     </message>
     <message>
         <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
-        <translation type="unfinished"/>
+        <translation>Yhteys epäonnistui, väärä salasana &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Yhteysvirhe &quot;%1&quot;</translation>
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info</source>
-        <translation type="unfinished"/>
+        <translation>Yhdistääksesi &quot;%1&quot;, aseta kirjautumistiedot</translation>
     </message>
     <message>
         <source>Password is required to connect &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Salasana vaaditaan yhteydelle &quot;%1&quot;</translation>
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"/>
+        <translation>802.11 WLAN-verkkoa &quot;%1&quot; ei löytynyt</translation>
     </message>
     <message>
         <source>Disconnected</source>
