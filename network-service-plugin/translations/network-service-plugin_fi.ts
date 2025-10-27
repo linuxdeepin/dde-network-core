@@ -260,27 +260,27 @@
     </message>
     <message>
         <source>GSM Modem&apos;s SIM Card was not inserted</source>
-        <translation type="unfinished"/>
+        <translation>GSM-modeemissa ei ole SIM-korttia</translation>
     </message>
     <message>
         <source>GSM Modem&apos;s SIM PIN required</source>
-        <translation type="unfinished"/>
+        <translation>SIM-kortin PIN vaaditaan GSM-modeemissa</translation>
     </message>
     <message>
         <source>GSM Modem&apos;s SIM PUK required</source>
-        <translation type="unfinished"/>
+        <translation>SIM-kortin PUK vaaditaan GSM-modeemissa</translation>
     </message>
     <message>
         <source>SIM card error in GSM Modem</source>
-        <translation type="unfinished"/>
+        <translation>GSM-modeemin SIM-korttivirhe</translation>
     </message>
     <message>
         <source>InfiniBand device does not support connected mode</source>
-        <translation type="unfinished"/>
+        <translation>InfiniBand ei tue yhteystilaa</translation>
     </message>
     <message>
         <source>A dependency of the connection failed</source>
-        <translation type="unfinished"/>
+        <translation>Yhteyden riippuvuus epäonnistui</translation>
     </message>
     <message>
         <source>RFC 2684 Ethernet bridging error to ADSL</source>
