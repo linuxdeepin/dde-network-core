@@ -404,27 +404,27 @@
     </message>
     <message>
         <source>&quot;%1&quot; connected</source>
-        <translation type="unfinished"/>
+        <translation>Yhteys &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Hotspot disabled</source>
-        <translation type="unfinished"/>
+        <translation>Tukiasema suljettu</translation>
     </message>
     <message>
         <source>&quot;%1&quot; disconnected</source>
-        <translation type="unfinished"/>
+        <translation>Katkaistu &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Unable to share hotspot, please check dnsmasq settings</source>
-        <translation type="unfinished"/>
+        <translation>Tukiaseman jakaminen epäonnistui, tarkista dnsmasq asetukset</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
-        <translation type="unfinished"/>
+        <translation>Yhteys kohteeseen &quot;%1&quot; ei onnistu, siirry lähemmäksi langatonta reititintä</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
-        <translation type="unfinished"/>
+        <translation>Yhteys kohteeseen &quot;%1&quot; ei onnistu. Tarkista reitittimen kaapelit.</translation>
     </message>
     <message>
         <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
