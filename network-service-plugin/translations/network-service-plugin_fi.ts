@@ -368,39 +368,39 @@
     </message>
     <message>
         <source>The connection attempt to VPN service timed out</source>
-        <translation type="unfinished"/>
+        <translation>VPN muodostamisyritys aikakatkaistiin</translation>
     </message>
     <message>
         <source>The VPN service start timed out</source>
-        <translation type="unfinished"/>
+        <translation>VPN-palvelun käynnistäminen aikakatkaistiin</translation>
     </message>
     <message>
         <source>The VPN service failed to start</source>
-        <translation type="unfinished"/>
+        <translation>VPN-palvelun käynnistäminen epäonnistui</translation>
     </message>
     <message>
         <source>The VPN connection password was not provided</source>
-        <translation type="unfinished"/>
+        <translation>VPN-salasanaa ei annettu</translation>
     </message>
     <message>
         <source>Authentication to VPN server failed</source>
-        <translation type="unfinished"/>
+        <translation>Tunnistautuminen VPN-palvelimeen epäonnistui</translation>
     </message>
     <message>
         <source>The connection was deleted from settings</source>
-        <translation type="unfinished"/>
+        <translation>Yhteys poistettiin asetuksista</translation>
     </message>
     <message>
         <source>Enabling hotspot</source>
-        <translation type="unfinished"/>
+        <translation>Tukiaseman käyttöönotto</translation>
     </message>
     <message>
         <source>Connecting &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Yhdistetään &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Hotspot enabled</source>
-        <translation type="unfinished"/>
+        <translation>Tukiasema käytössä</translation>
     </message>
     <message>
         <source>&quot;%1&quot; connected</source>
