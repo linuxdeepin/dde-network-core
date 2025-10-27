@@ -312,27 +312,27 @@
     </message>
     <message>
         <source>Modem now ready and available</source>
-        <translation type="unfinished"/>
+        <translation>Modeemi on valmis ja käytettävissä</translation>
     </message>
     <message>
         <source>SIM PIN is incorrect</source>
-        <translation type="unfinished"/>
+        <translation>SIM-kortin PIN on väärin</translation>
     </message>
     <message>
         <source>New connection activation is enqueuing</source>
-        <translation type="unfinished"/>
+        <translation>Yhteyden aktivointi on jonossa</translation>
     </message>
     <message>
         <source>Parent device changed</source>
-        <translation type="unfinished"/>
+        <translation>Emolaite vaihdettu</translation>
     </message>
     <message>
         <source>Management status of parent device changed</source>
-        <translation type="unfinished"/>
+        <translation>Emolaitteen hallintatila muuttui</translation>
     </message>
     <message>
         <source>Network cable is unplugged</source>
-        <translation type="unfinished"/>
+        <translation>Ei verkkokaapelia</translation>
     </message>
     <message>
         <source>Please make sure SIM card has been inserted with mobile network signal</source>
