@@ -191,11 +191,15 @@ DccTitleObject {
                 to: 9000
                 value: root.config.hasOwnProperty("mtu") ? root.config.mtu : 1500
                 
-                // 自定义文本格式化，禁用千位分隔符
-                textFromValue: function(value, locale) {
-                    return value.toString()
-                }
+                // 强制使用C locale（不包含数字分组）
+                locale: Qt.locale("C")
                 
+                onDisplayTextChanged: {
+                    if (hasMTU && ((root.config.mtu !== value) || displayText.replace(/,/g, "") !== value.toString())) {
+                        console.warn("MTU value changed: config.mtu=", root.config.mtu, "value=", value, "displayText=", displayText)
+                        root.editClicked()
+                    }
+                }
                 onValueChanged: {
                     if (hasMTU && (!root.config.hasOwnProperty("mtu") || root.config.mtu !== value)) {
                         root.config.mtu = value
