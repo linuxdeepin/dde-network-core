@@ -58,15 +58,24 @@ NetworkStateHandler::NetworkStateHandler(QObject *parent)
     , m_notifyEnabled(true)
     , m_dbusService(new QDBusServiceWatcher("org.freedesktop.NetworkManager", QDBusConnection::systemBus(), QDBusServiceWatcher::WatchForOwnerChange, this))
     , m_replacesId(0)
+    , m_wifiOSDEnable(true)
+    , m_wifiEnabled(true)
+    , m_delayShowWifiOSD(new QTimer(this))
+    , m_resetWifiOSDEnableTimer(new QTimer(this))
 {
     connect(m_dbusService, &QDBusServiceWatcher::serviceRegistered, this, &NetworkStateHandler::init);
+    connect(m_delayShowWifiOSD, &QTimer::timeout, this, &NetworkStateHandler::delayShowWifiOSD);
+    connect(m_resetWifiOSDEnableTimer, &QTimer::timeout, this, &NetworkStateHandler::resetWifiOSDEnable);
+    connect(SettingConfig::instance(), &SettingConfig::resetWifiOSDEnableTimeoutChanged, this, &NetworkStateHandler::updateOSDTimer);
     QDBusConnection::systemBus().connect("org.deepin.dde.Network1", "/org/deepin/dde/Network1", "org.deepin.dde.Network1", "DeviceEnabled", this, SLOT(onDeviceEnabled(QDBusObjectPath, bool)));
     QDBusConnection::systemBus().connect("org.freedesktop.NetworkManager", "", "org.freedesktop.NetworkManager.VPN.Connection", "VpnStateChanged", this, SLOT(onVpnStateChanged(QDBusMessage)));
+    QDBusConnection::systemBus().connect("org.deepin.dde.AirplaneMode1", "/org/deepin/dde/AirplaneMode1", "org.freedesktop.DBus.Properties", "PropertiesChanged", this, SLOT(onAirplaneModePropertiesChanged(QString, QVariantMap, QStringList)));
     // 迁移dde-daemon/session/power1/sleep_inhibit.go ConnectHandleForSleep处理
     QDBusConnection::systemBus().connect("org.deepin.dde.Daemon1", "/org/deepin/dde/Daemon1", "org.deepin.dde.Daemon1", "HandleForSleep", this, SLOT(onHandleForSleep(bool)));
     QDBusMessage message = QDBusMessage::createMethodCall("org.freedesktop.DBus", "/org/freedesktop/DBus", "org.freedesktop.DBus", "GetNameOwner");
     message << "org.freedesktop.NetworkManager";
     QDBusConnection::systemBus().callWithCallback(message, this, SLOT(init()));
+    updateOSDTimer(SettingConfig::instance()->resetWifiOSDEnableTimeout());
 }
 
 void NetworkStateHandler::init()
@@ -659,6 +668,87 @@ void NetworkStateHandler::onHandleForSleep(bool sleep)
             }
         }
     }
+}
+
+void NetworkStateHandler::onAirplaneModeWifiEnabledChanged(bool enabled)
+{
+    // 停止上次的定时器
+    if (m_delayShowWifiOSD->isActive()) {
+        m_delayShowWifiOSD->stop();
+    }
+
+    // 如果刚刚显示了飞行模式的OSD则直接退出不显示WIFI的OSD
+    if (!m_wifiOSDEnable) {
+        return;
+    }
+    // 等待150毫秒接收airplane.Enabled改变信号
+    m_wifiEnabled = enabled;
+    m_delayShowWifiOSD->start();
+}
+
+void NetworkStateHandler::onAirplaneModeEnabledChanged(bool enabled)
+{
+    // 显示飞行模式OSD时不显示WIFI连接OSD,200毫秒后恢复显示WIFI的OSD
+    m_wifiOSDEnable = false;
+    if (m_delayShowWifiOSD->isActive()) {
+        m_delayShowWifiOSD->stop();
+    }
+    m_resetWifiOSDEnableTimer->stop();
+    m_resetWifiOSDEnableTimer->start();
+    // if enabled is true, airplane is on
+    if (enabled) {
+        showOSD("AirplaneModeOn");
+    } else { // if enabled is false, airplane is off
+        showOSD("AirplaneModeOff");
+    }
+}
+
+void NetworkStateHandler::onAirplaneModePropertiesChanged(const QString &, const QVariantMap &properties, const QStringList &)
+{
+    if (properties.contains("Enabled")) {
+        onAirplaneModeEnabledChanged(properties.value("Enabled").value<bool>());
+    } else if (properties.contains("WifiEnabled")) {
+        onAirplaneModeWifiEnabledChanged(properties.value("WifiEnabled").value<bool>());
+    }
+}
+
+void NetworkStateHandler::showOSD(const QString &signal)
+{
+    qCDebug(DSM()) << "show OSD" << signal;
+    QDBusMessage msg = QDBusMessage::createMethodCall("org.deepin.dde.Osd1", "/org/deepin/dde/shell/osd", "org.deepin.dde.shell.osd", "ShowOSD");
+    msg << signal;
+    QDBusConnection::sessionBus().asyncCall(msg);
+}
+
+void NetworkStateHandler::resetWifiOSDEnable()
+{
+    qCDebug(DSM()) << "reset wifi OSD enable";
+    m_wifiOSDEnable = true;
+}
+
+void NetworkStateHandler::delayShowWifiOSD()
+{
+    // 禁用WIFI网络OSD时退出
+    if (!m_wifiOSDEnable) {
+        return;
+    }
+
+    // if enabled is true, wifi rfkill block is true
+    // so wlan is off
+    if (m_wifiEnabled) {
+        showOSD("WLANOff");
+    } else { // if enabled is false, wifi is off
+        showOSD("WLANOn");
+    }
+}
+
+void NetworkStateHandler::updateOSDTimer(int interval)
+{
+    if (interval < 60) {  // 确保interval不会导致负数
+        interval = 60;
+    }
+    m_delayShowWifiOSD->setInterval(interval - 50);
+    m_resetWifiOSDEnableTimer->setInterval(interval);
 }
 
 static QString getMobileConnectedNotifyIcon(ModemDevice::Capabilities mobileNetworkType)

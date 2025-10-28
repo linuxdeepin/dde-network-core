@@ -54,6 +54,11 @@ bool SettingConfig::disableFailureNotify() const
     return m_disableFailureNotify;
 }
 
+int SettingConfig::resetWifiOSDEnableTimeout() const
+{
+    return m_resetWifiOSDEnableTimeout;
+}
+
 void SettingConfig::onValueChanged(const QString &key)
 {
     if (key == "reconnectIfIpConflicted") {
@@ -73,6 +78,9 @@ void SettingConfig::onValueChanged(const QString &key)
     } else if (key == QString("disableFailureNotify")) {
         m_disableFailureNotify = dConfig->value("disableFailureNotify").toBool();
         emit disableFailureNotifyChanged(m_disableFailureNotify);
+    } else if (key == QString("resetWifiOSDEnableTimeout")) {
+        m_resetWifiOSDEnableTimeout = dConfig->value("resetWifiOSDEnableTimeout").toInt();
+        emit resetWifiOSDEnableTimeoutChanged(m_resetWifiOSDEnableTimeout);
     }
 }
 
@@ -85,6 +93,7 @@ SettingConfig::SettingConfig(QObject *parent)
     , m_disabledNetwork(false)
     , m_enableAccountNetwork(false)
     , m_disableFailureNotify(false)
+    , m_resetWifiOSDEnableTimeout(300)
 {
     if (!dConfig)
         dConfig = Dtk::Core::DConfig::create("org.deepin.dde.network", "org.deepin.dde.network");
@@ -113,6 +122,9 @@ SettingConfig::SettingConfig(QObject *parent)
 
         if (keys.contains("enableAccountNetwork"))
             m_enableAccountNetwork = dConfig->value("enableAccountNetwork").toBool();
+
+        if (keys.contains("resetWifiOSDEnableTimeout"))
+            m_resetWifiOSDEnableTimeout = dConfig->value("resetWifiOSDEnableTimeout").toInt();
 
         m_disableFailureNotify = dConfig->value("disableFailureNotify", false).toBool();
     }
