@@ -318,8 +318,8 @@ void NetworkSecretAgent::vpnDialogStarted()
     if (!request) {
         return;
     }
-    NMStringMap vpnData = request->connection.value("vpn").value("data").value<NMStringMap>();
-    NMStringMap vpnSecretData = request->connection.value("vpn").value("secrets").value<NMStringMap>();
+    NMStringMap vpnData = qdbus_cast<NMStringMap>(request->connection.value("vpn").value("data").value<QDBusArgument>());
+    NMStringMap vpnSecretData = qdbus_cast<NMStringMap>(request->connection.value("vpn").value("secrets").value<QDBusArgument>());
     // send vpn connection data to the authentication dialog binary
     for (auto it = vpnData.begin(); it != vpnData.end(); ++it) {
         QString data = "DATA_KEY=" + it.key() + "\n" + "DATA_VAL=" + it.value() + "\n\n";
@@ -617,8 +617,8 @@ bool NetworkSecretAgent::processGetSecrets(SecretsRequest &request)
             createPendingKey(request);
             return false;
         } else {
-            vpnSecretsData = request.connection.value("vpn").value("secrets").value<NMStringMap>();
-            NMStringMap vpnDataMap = request.connection.value("vpn").value("data").value<NMStringMap>();
+            vpnSecretsData = qdbus_cast<NMStringMap>(request.connection.value("vpn").value("secrets").value<QDBusArgument>());
+            NMStringMap vpnDataMap = qdbus_cast<NMStringMap>(request.connection.value("vpn").value("data").value<QDBusArgument>());
             QStringList askItems;
             for (auto &&secretKey : VpnSecretKeys) {
                 bool ok = false;
@@ -636,10 +636,6 @@ bool NetworkSecretAgent::processGetSecrets(SecretsRequest &request)
             }
         }
         QMap<QString, QString> resultSaved = m_secretService->getAll(connUUID, request.settingName);
-        if (resultSaved.isEmpty()) {
-            dbusConnection().send(request.message.createReply(QVariant::fromValue(NMVariantMapMap())));
-            return true;
-        }
         qCDebug(DSM()) << "getAll resultSaved:" << resultSaved;
         for (auto it = resultSaved.begin(); it != resultSaved.end(); ++it) {
             if (vpnSecretsData.contains(it.key())) {
@@ -648,7 +644,6 @@ bool NetworkSecretAgent::processGetSecrets(SecretsRequest &request)
                 qCDebug(DSM()) << "not override key" << it.key();
             }
         }
-        sendError(Error::InvalidConnection, "not found connection uuid", request.message);
         setting.insert("secrets", QVariant::fromValue(vpnSecretsData));
     } else if (SecretSettingKeys.contains(request.settingName)) {
 
@@ -825,7 +820,7 @@ bool NetworkSecretAgent::processSaveSecrets(SecretsRequest &request) const
             }
         }
     }
-    NMStringMap vpnData = request.connection.value("vpn").value("data").value<NMStringMap>();
+    NMStringMap vpnData = qdbus_cast<NMStringMap>(request.connection.value("vpn").value("data").value<QDBusArgument>());
     if (!vpnData.isEmpty()) {
         for (auto &&secretKey : VpnSecretKeys) {
             bool ok = false;
