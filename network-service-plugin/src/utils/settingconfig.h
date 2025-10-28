@@ -21,6 +21,7 @@ public:
     bool disableNetwork() const;            // 是否禁用无线网络和蓝牙
     bool enableAccountNetwork() const;      // 是否开启用户私有网络(工银瑞信定制)
     bool disableFailureNotify() const;      // 当网络连接失败后,true:不弹出消息,false:弹出消息
+    int resetWifiOSDEnableTimeout() const;  // 重新显示网络连接OSD超时
 
 signals:
     void enableConnectivityChanged(bool);
@@ -28,6 +29,7 @@ signals:
     void checkUrlsChanged(QStringList);
     void checkPortalChanged(bool);
     void disableFailureNotifyChanged(bool);
+    void resetWifiOSDEnableTimeoutChanged(int);
 
 private slots:
     void onValueChanged(const QString &key);
@@ -44,6 +46,7 @@ private:
     bool m_disabledNetwork;
     bool m_enableAccountNetwork;
     bool m_disableFailureNotify;
+    int m_resetWifiOSDEnableTimeout;
 };
 
 #endif // SERVICE_H

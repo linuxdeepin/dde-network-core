@@ -9,6 +9,7 @@
 #include <QDBusMessage>
 #include <QDBusServiceWatcher>
 #include <QObject>
+#include <QTimer>
 
 namespace network {
 namespace sessionservice {
@@ -101,6 +102,13 @@ public Q_SLOTS:
     void notify(const QString &icon, const QString &summary, const QString &body);
     void onNotify(uint replacesId);
     void onHandleForSleep(bool sleep);
+    void onAirplaneModeWifiEnabledChanged(bool enabled);
+    void onAirplaneModeEnabledChanged(bool enabled);
+    void onAirplaneModePropertiesChanged(const QString &, const QVariantMap &properties, const QStringList &);
+    void showOSD(const QString &signal);
+    void resetWifiOSDEnable();
+    void delayShowWifiOSD();
+    void updateOSDTimer(int interval);
 
 protected:
     bool isVirtualDeviceIfc(NetworkManager::Device::Ptr dev);
@@ -130,6 +138,10 @@ private:
     QMap<QString, DeviceStateInfo> m_devices;
     QMap<QString, ActiveConnectionInfo> m_activeConnections;
     uint m_replacesId;
+    bool m_wifiOSDEnable;
+    bool m_wifiEnabled;
+    QTimer *m_delayShowWifiOSD;
+    QTimer *m_resetWifiOSDEnableTimer;
 };
 } // namespace sessionservice
 } // namespace network

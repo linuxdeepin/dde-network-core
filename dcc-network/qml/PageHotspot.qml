@@ -180,8 +180,8 @@ DccObject {
             page: RowLayout {
                 Label {
                     font: DccUtils.copyFont(D.DTK.fontManager.t5, {
-                                                "bold": true
-                                            })
+                                       "weight": 700
+                                   })
                     text: dccObj.displayName
                     Layout.alignment: Qt.AlignLeft
                 }
