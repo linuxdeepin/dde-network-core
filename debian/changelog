@@ -1,3 +1,11 @@
+dde-network-core (2.0.72) unstable; urgency=medium
+
+  * fix: Add network OSD processing
+  * fix: Error in obtaining VPN password modification
+  * fix: fix MTU input formatting and change detection
+
+ -- Robertkill <lvpeilong@uniontech.com>  Thu, 30 Oct 2025 19:51:50 +0800
+
 dde-network-core (2.0.71) unstable; urgency=medium
 
   * fix: Modify DNS name
