@@ -19,6 +19,7 @@ NetHotspotController::NetHotspotController(QObject *parent)
     , m_isEnabled(false)
     , m_enabledable(true)
     , m_deviceEnabled(true)
+    , m_userActive(true)
     , m_updatedTimer(new QTimer(this))
 {
     m_updatedTimer->setSingleShot(true);
@@ -34,6 +35,9 @@ NetHotspotController::NetHotspotController(QObject *parent)
     connect(m_hotspotController, &HotspotController::itemAdded, this, &NetHotspotController::updateConfig);
     connect(m_hotspotController, &HotspotController::itemRemoved, this, &NetHotspotController::updateConfig);
     connect(m_hotspotController, &HotspotController::itemChanged, this, &NetHotspotController::updateConfig, Qt::QueuedConnection);
+    QDBusMessage msg = QDBusMessage::createMethodCall("org.freedesktop.login1", "/org/freedesktop/login1/user/self", "org.freedesktop.DBus.Properties", "Get");
+    msg << "org.freedesktop.login1.User" << "Display";
+    QDBusConnection::systemBus().callWithCallback(msg, this, SLOT(updateDisplay(QDBusVariant)));
 }
 
 bool NetHotspotController::isEnabled() const
@@ -131,7 +135,8 @@ void NetHotspotController::updateData()
 
 void NetHotspotController::updateConfig()
 {
-    if (m_updatedTimer->isActive()) {
+    // 用户不为Active状态时，获取密码需要认证
+    if (!m_userActive || m_updatedTimer->isActive()) {
         return;
     }
     QList<HotspotItem *> items;
@@ -187,5 +192,39 @@ void NetHotspotController::updateConfig()
     m_config = config;
     Q_EMIT configChanged(m_config);
 }
+
+void NetHotspotController::onLoginSessionPropertiesChanged(const QString &, const QVariantMap &properties, const QStringList &)
+{
+    if (properties.contains("Active")) {
+        m_userActive = properties.value("Active").toBool();
+        updateConfig();
+    }
+}
+
+void NetHotspotController::updateDisplay(const QDBusVariant &display)
+{
+    const QDBusArgument arg = display.variant().value<QDBusArgument>();
+    QString id;
+    QDBusObjectPath path;
+    arg.beginStructure();
+    arg >> id;
+    arg >> path;
+    arg.endStructure();
+    if (path.path().isEmpty()) {
+        return;
+    }
+    QDBusMessage msg = QDBusMessage::createMethodCall("org.freedesktop.login1", path.path(), "org.freedesktop.DBus.Properties", "Get");
+    msg << "org.freedesktop.login1.Session" << "Remote";
+    QDBusPendingReply<QDBusVariant> remoteReply = QDBusConnection::systemBus().asyncCall(msg);
+    QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(remoteReply, this);
+    connect(watcher, &QDBusPendingCallWatcher::finished, this, [path, this](QDBusPendingCallWatcher *self) {
+        QDBusPendingReply<QDBusVariant> reply = *self;
+        if (!reply.isError() && !reply.value().variant().toBool()) {
+            QDBusConnection::systemBus().connect("org.freedesktop.login1", path.path(), "org.freedesktop.DBus.Properties", "PropertiesChanged", this, SLOT(onLoginSessionPropertiesChanged(QString, QVariantMap, QStringList)));
+        }
+        self->deleteLater();
+    });
+}
+
 } // namespace network
 } // namespace dde
