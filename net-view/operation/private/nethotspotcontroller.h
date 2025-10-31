@@ -4,6 +4,7 @@
 #ifndef NETHOTSPOTCONTROLLER_H
 #define NETHOTSPOTCONTROLLER_H
 
+#include <QDBusVariant>
 #include <QObject>
 #include <QVariant>
 
@@ -43,12 +44,15 @@ private Q_SLOTS:
     void updateEnabledable();
     void updateData();
     void updateConfig();
+    void onLoginSessionPropertiesChanged(const QString &, const QVariantMap &properties, const QStringList &);
+    void updateDisplay(const QDBusVariant &display);
 
 private:
     HotspotController *m_hotspotController;
     bool m_isEnabled;
     bool m_enabledable;
     bool m_deviceEnabled;
+    bool m_userActive;
     QVariantMap m_config;
     QStringList m_shareDevice;
     QStringList m_optionalDevice;

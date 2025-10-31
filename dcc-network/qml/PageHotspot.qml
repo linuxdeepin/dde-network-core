@@ -357,14 +357,14 @@ DccObject {
                                         editDlg.config["802-11-wireless-security"]["proto"] = ['wpa', 'rsn']
                                         editDlg.config["802-11-wireless-security"]["group"] = ['ccmp']
                                         editDlg.config["802-11-wireless-security"]["pairwise"] = ['ccmp']
-                                        editDlg.config["802-11-wireless-security"]["psk-flags"] = 1
+                                        editDlg.config["802-11-wireless-security"]["psk-flags"] = 0
                                         editDlg.config["802-11-wireless-security"]["key-mgmt"] = keyMgmt
                                         break
                                     case "sae":
                                         editDlg.config["802-11-wireless-security"]["proto"] = ['rsn']
                                         editDlg.config["802-11-wireless-security"]["group"] = ['ccmp']
                                         editDlg.config["802-11-wireless-security"]["pairwise"] = ['ccmp']
-                                        editDlg.config["802-11-wireless-security"]["psk-flags"] = 1
+                                        editDlg.config["802-11-wireless-security"]["psk-flags"] = 0
                                         editDlg.config["802-11-wireless-security"]["key-mgmt"] = keyMgmt
                                         break
                                     default:
