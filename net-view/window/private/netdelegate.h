@@ -8,6 +8,7 @@
 
 #include <DWidget>
 
+#include <QLabel>
 #include <QStyledItemDelegate>
 
 class QSortFilterProxyModel;
@@ -181,6 +182,13 @@ class NetTipsWidget : public NetWidget
 public:
     NetTipsWidget(NetTipsItem *item, QWidget *parent = nullptr);
     ~NetTipsWidget() Q_DECL_OVERRIDE;
+
+protected:
+    bool event(QEvent *event) override;
+    void updateHeight();
+
+private:
+    QLabel *m_label;
 };
 
 class NetAirplaneModeTipsWidget : public NetTipsWidget

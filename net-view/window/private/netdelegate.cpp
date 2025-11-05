@@ -20,10 +20,10 @@
 #include <QMouseEvent>
 #include <QPainter>
 #include <QSortFilterProxyModel>
+#include <QTextDocument>
+#include <QTextLine>
 #include <QTimer>
 #include <QToolButton>
-#include <QTextLine>
-#include <QTextDocument>
 
 DWIDGET_USE_NAMESPACE
 
@@ -680,36 +680,46 @@ NetWirelessHiddenWidget::~NetWirelessHiddenWidget() { }
 NetTipsWidget::NetTipsWidget(NetTipsItem *item, QWidget *parent)
     : NetWidget(item, parent)
 {
-    QLabel *label  = new QLabel(item->name(), this);
-    DFontSizeManager::instance()->bind(label, DFontSizeManager::T8);
-    label->setWordWrap(true);
-    label->setAlignment(Qt::AlignLeft);
-    connect(label, &QLabel::linkActivated, this, [this, item] {
+    m_label = new QLabel(item->name(), this);
+    DFontSizeManager::instance()->bind(m_label, DFontSizeManager::T8);
+    m_label->setWordWrap(true);
+    m_label->setAlignment(Qt::AlignLeft | Qt::AlignTop);
+    connect(m_label, &QLabel::linkActivated, this, [this, item] {
         sendRequest(NetManager::GoToControlCenter, item->linkActivatedText());
     });
 
-    auto updateHeight = [item, label] {
-        const QString &name = item->name();
-        QTextDocument textDocument;
-        textDocument.setHtml(name);
-        const QString &plainText = textDocument.toPlainText();
-        QTextLayout layout(plainText, label->font());
-        QTextOption option;
-        option.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
-        option.setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-        layout.setTextOption(option);
-        QFontMetrics fm(label->font());
-        int line = drawText(nullptr, QRectF(QPointF(0, 0), QSizeF(294, INT_MAX)), fm.boundingRect(plainText).height(), &layout, Qt::ElideNone);
-        label->setFixedHeight(line * fm.boundingRect(plainText).height());
-        label->setText(item->tipsLinkEnabled() ? name : plainText);
-    };
-    connect(item, &NetTipsItem::nameChanged, this, updateHeight);
-    connect(qApp, &QGuiApplication::fontChanged, this, updateHeight);
+    connect(item, &NetTipsItem::nameChanged, this, &NetTipsWidget::updateHeight);
     updateHeight();
-    setCentralWidget(label);
+    setCentralWidget(m_label);
 }
 
 NetTipsWidget::~NetTipsWidget() { }
+
+bool NetTipsWidget::event(QEvent *event)
+{
+    if (event->type() == QEvent::FontChange) {
+        updateHeight();
+    }
+    return NetWidget::event(event);
+}
+
+void NetTipsWidget::updateHeight()
+{
+    NetTipsItem *item = static_cast<NetTipsItem *>(this->item());
+    const QString &name = item->name();
+    QTextDocument textDocument;
+    textDocument.setHtml(name);
+    const QString &plainText = textDocument.toPlainText();
+    QTextLayout layout(plainText, m_label->font());
+    QTextOption option;
+    option.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
+    option.setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    layout.setTextOption(option);
+    QFontMetrics fm(m_label->font());
+    int line = drawText(nullptr, QRectF(QPointF(0, 0), QSizeF(294, INT_MAX)), fm.boundingRect(plainText).height(), &layout, Qt::ElideNone);
+    m_label->setFixedHeight(line * fm.boundingRect(plainText).height());
+    m_label->setText(item->tipsLinkEnabled() ? name : plainText);
+}
 
 NetAirplaneModeTipsWidget::NetAirplaneModeTipsWidget(NetAirplaneModeTipsItem *item, QWidget *parent)
     : NetTipsWidget(item, parent)
