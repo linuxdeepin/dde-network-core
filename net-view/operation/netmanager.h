@@ -85,6 +85,9 @@ public:
     static int StrengthLevel(int strength);
     static QString StrengthLevelString(int level);
 
+    Q_INVOKABLE QString wpaEapAuthen() const;     // 企业网EAP认证方式
+    Q_INVOKABLE QString wpaEapAuthmethod() const; // 企业网内部认证方式
+
 public Q_SLOTS:
     void gotoControlCenter();
     void gotoCheckNet();

@@ -100,13 +100,13 @@ DccTitleObject {
         case "":
             // 无密码
             root.config802_1x = {}
-            root.eapType = "tls"
+            root.eapType = dccData.manager.wpaEapAuthen()
             pwdStr = ""
             root.pwdFlays = 0
             break
         default:
             root.config802_1x = {}
-            root.eapType = "tls"
+            root.eapType = dccData.manager.wpaEapAuthen()
             break
         }
     }
@@ -680,9 +680,19 @@ DccTitleObject {
                 }
                 model: root.eapType === "peap" ? peapAuthModel : (root.eapType === "fast" ? fastAuthModel : ttlsAuthModel)
                 Component.onCompleted: {
-                    currentIndex = (root.config802_1x && root.config802_1x.hasOwnProperty("phase2-auth")) ? indexOfValue(root.config802_1x["phase2-auth"]) : 0
+                    updateIndex()
                     if (!root.config802_1x.hasOwnProperty("phase2-auth")) {
                         root.config802_1x["phase2-auth"] = currentValue
+                    }
+                }
+                function updateIndex() {
+                    var cindex = (root.config802_1x && root.config802_1x.hasOwnProperty("phase2-auth")) ? indexOfValue(root.config802_1x["phase2-auth"]) : indexOfValue(dccData.manager.wpaEapAuthmethod().toLowerCase())
+                    currentIndex = cindex < 0 ? 0 : cindex
+                }
+                Connections {
+                    target: root
+                    function onEapTypeChanged() {
+                        updateIndex()
                     }
                 }
             }
