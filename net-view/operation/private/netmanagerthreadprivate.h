@@ -63,6 +63,9 @@ public:
 
     void init(NetType::NetManagerFlags flags);
 
+    QString wpaEapAuthen() const;     // 企业网EAP认证方式
+    QString wpaEapAuthmethod() const; // 企业网内部认证方式
+
     enum DataChanged {
         NameChanged,
         EnabledChanged,

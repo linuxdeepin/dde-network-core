@@ -229,6 +229,16 @@ void NetManagerThreadPrivate::init(NetType::NetManagerFlags flags)
     QMetaObject::invokeMethod(this, &NetManagerThreadPrivate::doInit, Qt::QueuedConnection);
 }
 
+QString NetManagerThreadPrivate::wpaEapAuthen() const
+{
+    return ConfigSetting::instance()->wpaEapAuthen();
+}
+
+QString NetManagerThreadPrivate::wpaEapAuthmethod() const
+{
+    return ConfigSetting::instance()->wpaEapAuthmethod().toLower();
+}
+
 void NetManagerThreadPrivate::setDeviceEnabled(const QString &id, bool enabled)
 {
     if (m_isInitialized)

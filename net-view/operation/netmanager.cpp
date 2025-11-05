@@ -164,6 +164,18 @@ QString NetManager::StrengthLevelString(int level)
     return c_levelString.at(level);
 }
 
+QString NetManager::wpaEapAuthen() const
+{
+    Q_D(const NetManager);
+    return d->wpaEapAuthen();
+}
+
+QString NetManager::wpaEapAuthmethod() const
+{
+    Q_D(const NetManager);
+    return d->wpaEapAuthmethod();
+}
+
 bool NetManager::netCheckAvailable()
 {
     Q_D(NetManager);
@@ -269,6 +281,16 @@ void NetManagerPrivate::init(NetType::NetManagerFlags flags)
 bool NetManagerPrivate::netCheckAvailable()
 {
     return m_managerThread->NetCheckAvailable();
+}
+
+QString NetManagerPrivate::wpaEapAuthen() const
+{
+    return m_managerThread->wpaEapAuthen();
+}
+
+QString NetManagerPrivate::wpaEapAuthmethod() const
+{
+    return m_managerThread->wpaEapAuthmethod();
 }
 
 void NetManagerPrivate::exec(NetManager::CmdType cmd, const QString &id, const QVariantMap &param)

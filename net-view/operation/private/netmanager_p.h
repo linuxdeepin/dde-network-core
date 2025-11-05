@@ -41,6 +41,8 @@ public:
     void setServerKey(const QString &serverKey);
     void init(NetType::NetManagerFlags flags);
     bool netCheckAvailable();
+    QString wpaEapAuthen() const;     // 企业网EAP认证方式
+    QString wpaEapAuthmethod() const; // 企业网内部认证方式
 
 Q_SIGNALS:
     void request(NetManager::CmdType cmd, const QString &id, const QVariantMap &param);
