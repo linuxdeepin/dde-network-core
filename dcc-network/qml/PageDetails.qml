@@ -40,12 +40,14 @@ DccObject {
                 weight: 10
                 pageType: DccObject.Item
                 page: RowLayout {
-                    Label {
+                    DccLabel {
                         Layout.alignment: Qt.AlignLeft
+                        Layout.fillWidth: true
                         font: DccUtils.copyFont(D.DTK.fontManager.t4, {
                                                     "bold": true
                                                 })
                         text: dccObj.displayName
+                        elide: Text.ElideMiddle
                     }
                     D.IconLabel {
                         property bool clipboard: false
