@@ -1,3 +1,15 @@
+dde-network-core (2.0.73) unstable; urgency=medium
+
+  * fix: Modifying text beyond the scope of the control
+  * fix: Enterprise network processes connections based on configuration
+  * fix: Security options are given default values based on
+    configuration items
+  * fix: The control resizes based on its content
+  * i18n: Updates for project Deepin Desktop Environment (#421)
+  * fix: Obtain password only during user activity
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Thu, 06 Nov 2025 16:25:21 +0800
+
 dde-network-core (2.0.72) unstable; urgency=medium
 
   * fix: Add network OSD processing
