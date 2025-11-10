@@ -17,31 +17,31 @@
     <name>NetUtils</name>
     <message>
         <source>Off</source>
-        <translation type="unfinished"/>
+        <translation>Aus</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"/>
+        <translation>Verbunden</translation>
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"/>
+        <translation>IP-Konflikt</translation>
     </message>
     <message>
         <source>Connecting</source>
-        <translation type="unfinished"/>
+        <translation>Verbinden</translation>
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation type="unfinished"/>
+        <translation>Adresse beziehen</translation>
     </message>
     <message>
         <source>Authenticating</source>
-        <translation type="unfinished"/>
+        <translation>Authentifizieren</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>Getrennt</translation>
     </message>
 </context>
 <context>
