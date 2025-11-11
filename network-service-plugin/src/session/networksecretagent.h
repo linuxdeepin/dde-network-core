@@ -112,6 +112,7 @@ private Q_SLOTS:
     void doSecretsResult(QString callId, const QByteArray &data, bool isEnd);
 
 private:
+    QString nextId();
     void processNext();
     /**
      * @brief processGetSecrets requests
@@ -137,6 +138,7 @@ private:
     QString getVpnAuthDialogBin(const NMVariantMapMap &connection);
 
 private:
+    uint m_callNextId;
     QList<SecretsRequest> m_calls;
     QLocalServer *m_server;
     QList<QLocalSocket *> m_clients;
