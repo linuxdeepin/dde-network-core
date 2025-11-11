@@ -61,6 +61,7 @@ struct SettingItem
 
 NetworkSecretAgent::NetworkSecretAgent(QObject *parent)
     : NetworkManager::SecretAgent(QStringLiteral("com.deepin.system.network.SecretAgent"), parent)
+    , m_callNextId(0)
     , m_secretService(new SecretService(this))
 {
     m_server = new QLocalServer(this);
@@ -76,19 +77,9 @@ NetworkSecretAgent::NetworkSecretAgent(QObject *parent)
 NMVariantMapMap NetworkSecretAgent::GetSecrets(const NMVariantMapMap &connection, const QDBusObjectPath &connectionPath, const QString &settingName, const QStringList &hints, uint flags)
 {
     qCDebug(DSM()) << "Get secrets, path: " << connectionPath.path() << ", setting name: " << settingName << ", hints: " << hints << ", flags: " << flags;
-
-    const QString callId = connectionPath.path() % settingName;
-    for (const SecretsRequest &request : m_calls) {
-        if (request == callId) {
-            qCWarning(DSM()) << "Get secrets was called again! This should not happen, cancelling first call, connection path: " << connectionPath.path() << ", setting name: " << settingName;
-            CancelGetSecrets(connectionPath, settingName);
-            break;
-        }
-    }
-
     setDelayedReply(true);
     SecretsRequest request(SecretsRequest::GetSecrets);
-    request.callId = callId;
+    request.callId = nextId();
     request.connection = connection;
     request.connectionPath = connectionPath;
     request.flags = static_cast<NetworkManager::SecretAgent::GetSecretsFlags>(flags);
@@ -134,11 +125,10 @@ void NetworkSecretAgent::DeleteSecrets(const NMVariantMapMap &connection, const 
 
 void NetworkSecretAgent::CancelGetSecrets(const QDBusObjectPath &connectionPath, const QString &settingName)
 {
-    QString callId = connectionPath.path() % settingName;
     setDelayedReply(true);
     for (int i = 0; i < m_calls.size(); ++i) {
         SecretsRequest request = m_calls.at(i);
-        if (request.type == SecretsRequest::GetSecrets && callId == request.callId) {
+        if (request.type == SecretsRequest::GetSecrets && request.settingName == settingName && request.connectionPath == connectionPath) {
             qCDebug(DSM()) << "Process finished (agent canceled):" << request.ssid;
             sendError(SecretAgent::AgentCanceled, QStringLiteral("Agent canceled the password dialog"), request.message);
             QProcess *process = request.process;
@@ -547,36 +537,37 @@ void NetworkSecretAgent::doSecretsResult(QString callId, const QByteArray &data,
     m_calls.removeAll(*request);
 }
 
+QString NetworkSecretAgent::nextId()
+{
+    return QString::number(0xFFFFFFFF & m_callNextId++, 16);
+}
+
 void NetworkSecretAgent::processNext()
 {
     for (auto it = m_calls.begin(); it != m_calls.end();) {
         SecretsRequest &request = *it;
-        if (request.status != SecretsRequest::Begin) {
-            continue;
+        bool deleteAfter = false;
+        if (request.status == SecretsRequest::Begin) {
+            switch (request.type) {
+            case SecretsRequest::GetSecrets:
+                deleteAfter = processGetSecrets(request);
+                break;
+            case SecretsRequest::SaveSecrets:
+                deleteAfter = processSaveSecrets(request);
+                break;
+            case SecretsRequest::DeleteSecrets:
+                deleteAfter = processDeleteSecrets(request);
+                break;
+            default:
+                break;
+            }
         }
-        switch (request.type) {
-        case SecretsRequest::GetSecrets:
-            if (processGetSecrets(request)) {
-                it = m_calls.erase(it);
-                continue;
-            }
-            break;
-        case SecretsRequest::SaveSecrets:
-            if (processSaveSecrets(request)) {
-                it = m_calls.erase(it);
-                continue;
-            }
-            break;
-        case SecretsRequest::DeleteSecrets:
-            if (processDeleteSecrets(request)) {
-                it = m_calls.erase(it);
-                continue;
-            }
-            break;
-        default:
-            break;
+        if (deleteAfter) {
+            qCDebug(DSM()) << "Request processed and removed:" << request.callId << request.connectionPath;
+            it = m_calls.erase(it);
+        } else {
+            ++it;
         }
-        ++it;
     }
 }
 
