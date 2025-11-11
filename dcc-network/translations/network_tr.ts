@@ -17,31 +17,31 @@
     <name>NetUtils</name>
     <message>
         <source>Off</source>
-        <translation type="unfinished"/>
+        <translation>Kapalı</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"/>
+        <translation>Bağlı</translation>
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"/>
+        <translation>IP çakışması</translation>
     </message>
     <message>
         <source>Connecting</source>
-        <translation type="unfinished"/>
+        <translation>Bağlanıyor</translation>
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation type="unfinished"/>
+        <translation>Adres alma</translation>
     </message>
     <message>
         <source>Authenticating</source>
-        <translation type="unfinished"/>
+        <translation>Kimlik doğrulama</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>Bağlantı kesildi</translation>
     </message>
 </context>
 <context>
