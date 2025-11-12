@@ -53,9 +53,6 @@ public:
 
     inline bool AirplaneModeEnabled() { return m_airplaneModeEnabled; }
 
-    void setMonitorNetworkNotify(bool monitor);
-    void setUseSecretAgent(bool enabled);
-
     void setEnabled(bool enabled);
     void setAutoScanInterval(int ms);
     void setAutoScanEnabled(bool enabled);
@@ -269,8 +266,6 @@ private:
     NetType::NetManagerFlags m_flags;
 
     // bool m_loadForNM;
-    bool m_monitorNetworkNotify;
-    bool m_useSecretAgent;
     bool m_isInitialized;
     bool m_enabled;
     int m_autoScanInterval;

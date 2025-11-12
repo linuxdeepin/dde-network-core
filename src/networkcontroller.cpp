@@ -42,7 +42,7 @@ NetworkController::NetworkController()
     , m_hotspotController(Q_NULLPTR)
     , m_connectivityHandler(new ConnectivityHandler(this))
 {
-    Dtk::Core::loggerInstance()->logToGlobalInstance(DNC().categoryName(), true);
+    Dtk::Core::loggerInstance()->setDefaultCategory(DNC().categoryName());
     retranslate(QLocale().name());
 
     if (ConfigSetting::instance()->serviceFromNetworkManager()) {

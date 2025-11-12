@@ -237,16 +237,6 @@ NetManagerPrivate::~NetManagerPrivate()
     m_dataMap.clear();
 }
 
-void NetManagerPrivate::setMonitorNetworkNotify(bool monitor)
-{
-    m_managerThread->setMonitorNetworkNotify(monitor);
-}
-
-void NetManagerPrivate::setUseSecretAgent(bool enabled)
-{
-    m_managerThread->setUseSecretAgent(enabled);
-}
-
 void NetManagerPrivate::setAutoScanInterval(int ms)
 {
     m_managerThread->setAutoScanInterval(ms);

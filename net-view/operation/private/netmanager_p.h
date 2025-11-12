@@ -33,8 +33,6 @@ public:
     explicit NetManagerPrivate(NetManager *manager);
     ~NetManagerPrivate() override;
 
-    void setMonitorNetworkNotify(bool monitor);
-    void setUseSecretAgent(bool enabled);
     void setAutoScanInterval(int ms);
     void setAutoScanEnabled(bool enabled);
     void setEnabled(bool enabled);
