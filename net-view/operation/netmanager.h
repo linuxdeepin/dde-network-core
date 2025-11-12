@@ -29,12 +29,6 @@ public:
     void setServerKey(const QString &serverKey);
     Q_INVOKABLE static bool CheckPasswordValid(const QString &key, const QString &password);
 
-    // // void setServiceLoadForNM(bool isNM);        // 使用NM
-    // // void setMonitorNetworkNotify(bool monitor); // 发网络通知
-    // // void setUseSecretAgent(bool enabled);       // 实现密码代理
-    // // 以上设置需在init之前设置，不支持动态修改
-    // void init();
-
     enum ConnectionType { Unknown = 0, Adsl, Bluetooth, Bond, Bridge, Cdma, Gsm, Infiniband, OLPCMesh, Pppoe, Vlan, Vpn, Wimax, Wired, Wireless, Team, Generic, Tun, IpTunnel };
 
     void setAutoScanInterval(int ms);      // 设置自动扫描无线网间隔，0为不扫描

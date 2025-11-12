@@ -87,8 +87,6 @@ NetManagerThreadPrivate::NetManagerThreadPrivate()
     : QObject()
     , m_thread(new QThread(this))
     , m_parentThread(QThread::currentThread())
-    , m_monitorNetworkNotify(false)
-    , m_useSecretAgent(true)
     , m_isInitialized(false)
     , m_enabled(true)
     , m_autoScanInterval(0)
@@ -178,20 +176,6 @@ AccessPoints *NetManagerThreadPrivate::fromApID(const QString &id)
         }
     }
     return ap;
-}
-
-void NetManagerThreadPrivate::setMonitorNetworkNotify(bool monitor)
-{
-    if (m_isInitialized)
-        return;
-    m_monitorNetworkNotify = monitor;
-}
-
-void NetManagerThreadPrivate::setUseSecretAgent(bool enabled)
-{
-    if (m_isInitialized)
-        return;
-    m_useSecretAgent = enabled;
 }
 
 void NetManagerThreadPrivate::setEnabled(bool enabled)
@@ -380,7 +364,6 @@ void NetManagerThreadPrivate::doInit()
 {
     if (m_isInitialized)
         return;
-    m_isInitialized = true;
 
     qRegisterMetaType<NetworkManager::Device::State>("NetworkManager::Device::State");
     qRegisterMetaType<NetworkManager::Device::StateChangeReason>("NetworkManager::Device::StateChangeReason");
@@ -509,12 +492,10 @@ void NetManagerThreadPrivate::doInit()
         connect(networkController->proxyController(), &ProxyController::appPortChanged, this, &NetManagerThreadPrivate::onAppProxyChanged);
     }
 
-    m_isInitialized = true;
     m_netCheckAvailable = false;
     getNetCheckAvailableFromDBus();
 
     QDBusConnection::systemBus().connect("com.deepin.defender.netcheck", "/com/deepin/defender/netcheck", "org.freedesktop.DBus.Properties", "PropertiesChanged", this, SLOT(onNetCheckPropertiesChanged(QString, QVariantMap, QStringList)));
-
     QDBusConnection::systemBus().connect("org.freedesktop.login1", "/org/freedesktop/login1", "org.freedesktop.login1.Manager", "PrepareForSleep", this, SLOT(onPrepareForSleep(bool)));
 
     // 优先网络
@@ -580,11 +561,12 @@ void NetManagerThreadPrivate::doInit()
         // connect(networkController, &NetworkController::connectivityChanged, this, &NetManagerThreadPrivate::updateDetails, Qt::QueuedConnection);
         connect(networkController, &NetworkController::activeConnectionChange, this, &NetManagerThreadPrivate::updateDetails, Qt::QueuedConnection);
     }
+    m_isInitialized = true;
     // 初始化的关键参数,保留格式
     qCInfo(DNC) << "Interface Version :" << INTERFACE_VERSION;
     qCInfo(DNC) << "Manager Flags     :" << m_flags;
     qCInfo(DNC) << "Service From NM   :" << m_flags.testFlag(NetType::NetManagerFlag::Net_ServiceNM) << "Config:" << ConfigSetting::instance()->serviceFromNetworkManager();
-    qCInfo(DNC) << "Use Secret Agent  :" << m_useSecretAgent;
+    qCInfo(DNC) << "Use Secret Agent  :" << m_flags.testFlag(NetType::NetManagerFlag::Net_UseSecretAgent);
     qCInfo(DNC) << "Secret Agent      :" << (dynamic_cast<QObject *>(m_secretAgent));
     qCInfo(DNC) << "Auto Scan Interval:" << m_autoScanInterval;
 }
@@ -2485,7 +2467,7 @@ void NetManagerThreadPrivate::doAutoScan()
 
 void NetManagerThreadPrivate::addDeviceNotify(const QString &path)
 {
-    if (!m_monitorNetworkNotify) {
+    if (!m_flags.testFlags(NetType::NetManagerFlag::Net_MonitorNotify)) {
         return;
     }
     Device::Ptr dev = NetworkManager::findNetworkInterface(path);
@@ -2497,7 +2479,7 @@ void NetManagerThreadPrivate::addDeviceNotify(const QString &path)
 void NetManagerThreadPrivate::onNotifyDeviceStatusChanged(NetworkManager::Device::State newState, NetworkManager::Device::State oldState, NetworkManager::Device::StateChangeReason reason)
 {
     qCInfo(DNC) << "On notify device status changed, new state: " << newState << ", old state: " << oldState << ", reason: " << reason;
-    if (!m_monitorNetworkNotify) {
+    if (!m_flags.testFlags(NetType::NetManagerFlag::Net_MonitorNotify)) {
         return;
     }
     auto *device = dynamic_cast<NetworkManager::Device *>(sender());

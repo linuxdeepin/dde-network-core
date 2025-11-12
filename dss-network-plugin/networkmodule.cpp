@@ -50,8 +50,6 @@ NetworkModule::NetworkModule(QObject *parent)
     m_manager = new NetManager(flags, this);
     if (m_isLockModel) {
         m_manager->setServerKey("lock");
-        // m_manager->setServiceLoadForNM(false);
-        // m_manager->setMonitorNetworkNotify(false);
         QDBusConnection::sessionBus().connect("com.deepin.dde.lockFront", "/com/deepin/dde/lockFront", "com.deepin.dde.lockFront", "Visible", this, SLOT(updateLockScreenStatus(bool)));
         connect(m_manager,
                 &NetManager::networkNotify,
