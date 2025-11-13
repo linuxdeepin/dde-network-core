@@ -1,3 +1,10 @@
+dde-network-core (2.0.74) unstable; urgency=medium
+
+  * fix: resolve WiFi connection notification issue on login screen
+  * fix: fix concurrent password request handling issue
+
+ -- xionglinlin <xionglinlin@uniontech.com>  Thu, 13 Nov 2025 19:55:40 +0800
+
 dde-network-core (2.0.73) unstable; urgency=medium
 
   * fix: Modifying text beyond the scope of the control
