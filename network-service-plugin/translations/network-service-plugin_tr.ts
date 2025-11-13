@@ -264,67 +264,67 @@
     </message>
     <message>
         <source>GSM Modem&apos;s SIM PIN required</source>
-        <translation type="unfinished"/>
+        <translation>GSM Modemin SIM kart PIN kodu gerekli</translation>
     </message>
     <message>
         <source>GSM Modem&apos;s SIM PUK required</source>
-        <translation type="unfinished"/>
+        <translation>GSM Modemin SIM kart PUK kodu gerekli</translation>
     </message>
     <message>
         <source>SIM card error in GSM Modem</source>
-        <translation type="unfinished"/>
+        <translation>GSM Modemde SIM kart sorunu</translation>
     </message>
     <message>
         <source>InfiniBand device does not support connected mode</source>
-        <translation type="unfinished"/>
+        <translation>InfiniBand cihazı bağlantı modunu desteklemiyor</translation>
     </message>
     <message>
         <source>A dependency of the connection failed</source>
-        <translation type="unfinished"/>
+        <translation>Bağlantı için bir gereksinim karşılanamadı</translation>
     </message>
     <message>
         <source>RFC 2684 Ethernet bridging error to ADSL</source>
-        <translation type="unfinished"/>
+        <translation>ADSL için RFC 2684 Ethernet köprüleme hatası</translation>
     </message>
     <message>
         <source>ModemManager did not run or quitted unexpectedly</source>
-        <translation type="unfinished"/>
+        <translation>Modem Yöneticisi çalışmıyor veya beklenmedik bi şekilde kapandı</translation>
     </message>
     <message>
         <source>The 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"/>
+        <translation>802.11 WLAN ağı bulunamadı</translation>
     </message>
     <message>
         <source>A secondary connection of the base connection failed</source>
-        <translation type="unfinished"/>
+        <translation>Ana bağlantıya ikincil bir bağlantı başarısız oldu</translation>
     </message>
     <message>
         <source>DCB or FCoE setup failed</source>
-        <translation type="unfinished"/>
+        <translation>DCB ya da FCoE kurulumu başarısız</translation>
     </message>
     <message>
         <source>Network teaming control failed</source>
-        <translation type="unfinished"/>
+        <translation>Ağ takımlaşma kontrolü başarısız</translation>
     </message>
     <message>
         <source>Modem failed to run or not available</source>
-        <translation type="unfinished"/>
+        <translation>Modem çalışmıyor veya erişilebilir değil</translation>
     </message>
     <message>
         <source>Modem now ready and available</source>
-        <translation type="unfinished"/>
+        <translation>Modem hazır ve kullanılabilir</translation>
     </message>
     <message>
         <source>SIM PIN is incorrect</source>
-        <translation type="unfinished"/>
+        <translation>SIM PIN yanlış</translation>
     </message>
     <message>
         <source>New connection activation is enqueuing</source>
-        <translation type="unfinished"/>
+        <translation>Yeni bağlantı aktivasyonu sıraya alınıyor</translation>
     </message>
     <message>
         <source>Parent device changed</source>
-        <translation type="unfinished"/>
+        <translation>Üst cihaz değiştirildi</translation>
     </message>
     <message>
         <source>Management status of parent device changed</source>
