@@ -456,15 +456,15 @@
     </message>
     <message>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Ağ</translation>
     </message>
     <message>
         <source>The hardware switch of WLAN Card is off, please switch on as necessary.</source>
-        <translation type="unfinished"/>
+        <translation>Kablosuz ağ aygıtının donanım anahtarı kapalı, lütfen açın.</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"/>
+        <translation>Bağlı</translation>
     </message>
 </context>
 <context>
