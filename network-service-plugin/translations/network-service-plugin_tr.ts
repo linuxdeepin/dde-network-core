@@ -328,131 +328,131 @@
     </message>
     <message>
         <source>Management status of parent device changed</source>
-        <translation type="unfinished"/>
+        <translation>Üst aygıtın yönetim durumu değiştirildi</translation>
     </message>
     <message>
         <source>Network cable is unplugged</source>
-        <translation type="unfinished"/>
+        <translation>Ağ kablosu takılı değil</translation>
     </message>
     <message>
         <source>Please make sure SIM card has been inserted with mobile network signal</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen SIM kartın takılmış ve mobil ağ sinyalinin var olduğundan emin olun</translation>
     </message>
     <message>
         <source>Please make sure a correct plan was selected without arrearage of SIM card</source>
-        <translation type="unfinished"/>
+        <translation>SIM kartın borçlu duruma düşmemesi için doğru planın seçildiğinden emin olun</translation>
     </message>
     <message>
         <source>Failed to activate VPN connection, reason unknown</source>
-        <translation type="unfinished"/>
+        <translation>VPN bağlantısı bilinmeyen bir nedenle etkinleştirilemedi</translation>
     </message>
     <message>
         <source>Failed to activate VPN connection</source>
-        <translation type="unfinished"/>
+        <translation>VPN bağlantısı etkinleştirilemedi</translation>
     </message>
     <message>
         <source>The VPN connection state changed due to being disconnected by users</source>
-        <translation type="unfinished"/>
+        <translation>VPN bağlantısının durumu kullanıcıların bağlantıyı kesmesi nedeniyle değiştirildi</translation>
     </message>
     <message>
         <source>The VPN connection state changed due to being disconnected from devices</source>
-        <translation type="unfinished"/>
+        <translation>VPN bağlantısının durumu aygıtların bağlantıyı kesmesi nedeniyle değiştirildi</translation>
     </message>
     <message>
         <source>VPN service stopped</source>
-        <translation type="unfinished"/>
+        <translation>VPN hizmeti durdu.</translation>
     </message>
     <message>
         <source>The IP config of VPN connection was invalid</source>
-        <translation type="unfinished"/>
+        <translation>VPN bağlantısının IP yapılandırması geçersiz</translation>
     </message>
     <message>
         <source>The connection attempt to VPN service timed out</source>
-        <translation type="unfinished"/>
+        <translation>VPN hizmetine bağlantı girişimi zaman aşımına uğradı</translation>
     </message>
     <message>
         <source>The VPN service start timed out</source>
-        <translation type="unfinished"/>
+        <translation>VPN hizmetinin başlatılması zaman aşımına uğradı</translation>
     </message>
     <message>
         <source>The VPN service failed to start</source>
-        <translation type="unfinished"/>
+        <translation>VPN hizmeti başlatılamadı</translation>
     </message>
     <message>
         <source>The VPN connection password was not provided</source>
-        <translation type="unfinished"/>
+        <translation>VPN bağlantısının parolası yazılmamış</translation>
     </message>
     <message>
         <source>Authentication to VPN server failed</source>
-        <translation type="unfinished"/>
+        <translation>VPN sunucusunda kimlik doğrulanamadı</translation>
     </message>
     <message>
         <source>The connection was deleted from settings</source>
-        <translation type="unfinished"/>
+        <translation>Bağlantı ayarlardan silindi</translation>
     </message>
     <message>
         <source>Enabling hotspot</source>
-        <translation type="unfinished"/>
+        <translation>Erişim noktasını etkinleşir</translation>
     </message>
     <message>
         <source>Connecting &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Bağlanıyor &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Hotspot enabled</source>
-        <translation type="unfinished"/>
+        <translation>Erişim noktası etkin</translation>
     </message>
     <message>
         <source>&quot;%1&quot; connected</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; bağlandı</translation>
     </message>
     <message>
         <source>Hotspot disabled</source>
-        <translation type="unfinished"/>
+        <translation>Erişim noktası devre dışı</translation>
     </message>
     <message>
         <source>&quot;%1&quot; disconnected</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; bağlantısı kesildi</translation>
     </message>
     <message>
         <source>Unable to share hotspot, please check dnsmasq settings</source>
-        <translation type="unfinished"/>
+        <translation>Erişim noktası paylaşılamadı, lütfen dnsmasq ayarlarını denetleyin</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; bağlantısı kurulamıyor, lütfen kablosuz yönlendiriciye daha yakın olun</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; bağlantısı kurulamıyor, lütfen yönlendiricinizi veya ağ kablonuzu kontrol edin.</translation>
     </message>
     <message>
         <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
-        <translation type="unfinished"/>
+        <translation>Bağlantı başarısız oldu, &quot;%1&quot;e bağlanılamadı, yanlış parola</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; bağlantısı kurulamıyor</translation>
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot;e bağlanmak için lütfen kimlik doğrulama bilgilerinizi ayarlayın</translation>
     </message>
     <message>
         <source>Password is required to connect &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; &apos;e bağlanmak için parola gerekli</translation>
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot;  802.11 WLAN ağı bulunamadı</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>Bağlantı kesildi</translation>
     </message>
     <message>
         <source>Airplane mode enabled.</source>
-        <translation type="unfinished"/>
+        <translation>Uçak modu etkinleştirildi.</translation>
     </message>
     <message>
         <source>Network</source>
