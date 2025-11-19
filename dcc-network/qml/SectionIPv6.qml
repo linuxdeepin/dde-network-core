@@ -19,7 +19,7 @@ DccObject {
     property var addressData: []
     property bool isEdit: false
     property string method: "auto"
-    property string gateway: ""
+    property var gateway: []
 
     property string errorKey: ""
     property string errorMsg: ""
@@ -31,12 +31,13 @@ DccObject {
             root.config = {}
             method = "auto"
             addressData = []
-            gateway = ""
+            gateway = []
         } else {
             root.config = c
             method = root.config.method
             addressData = (root.config && root.config.hasOwnProperty("address-data")) ? root.config["address-data"] : []
-            gateway = (root.config && root.config.hasOwnProperty("gateway")) ? root.config["gateway"] : ""
+            gateway = []
+            gateway[0] = (root.config && root.config.hasOwnProperty("gateway")) ? root.config["gateway"] : ""
         }
     }
     function getConfig() {
@@ -44,12 +45,17 @@ DccObject {
         sConfig["method"] = method
         if (method === "manual") {
             sConfig["address-data"] = addressData
-            sConfig["gateway"] = gateway
+            for (let k in gateway) {
+                if (gateway[k].length !== 0) {
+                    sConfig["gateway"] = gateway[k]
+                    break
+                }
+            }
         } else {
             delete sConfig["address-data"]
             delete sConfig["gateway"]
             delete sConfig["addresses"]
-            
+
             // 禁用和忽略模式下不应该有任何IPv6配置字段
             if (method === "disabled" || method === "ignore") {
                 delete sConfig["dns"]
@@ -64,6 +70,7 @@ DccObject {
         errorKey = ""
         errorMsg = ""
         if (method === "manual") {
+            let gatewayCount = 0
             let ipSet = new Set()
             for (let k in addressData) {
                 if (!NetUtils.ipv6RegExp.test(addressData[k].address)) {
@@ -83,7 +90,15 @@ DccObject {
                     return false
                 }
                 // 检查网关
-                if (k === "0" && gateway.length !== 0 && !NetUtils.ipv6RegExp.test(gateway)) {
+                if (gateway[k].length !== 0) {
+                    gatewayCount++
+                    if (gatewayCount >= 2) {
+                        errorKey = k + "gateway"
+                        errorMsg = qsTr("Only one gateway is allowed")
+                        return false
+                    }
+                }
+                if (gateway[k].length !== 0 && !NetUtils.ipv6RegExp.test(gateway[k])) {
                     errorKey = k + "gateway"
                     errorMsg = qsTr("Invalid gateway")
                     return false
@@ -380,7 +395,7 @@ DccObject {
                     pageType: DccObject.Editor
                     page: D.LineEdit {
                         enabled: index === 0
-                        text: index === 0 ? gateway : ""
+                        text: index === 0 ? gateway[index] : ""
                         validator: RegularExpressionValidator {
                             regularExpression: NetUtils.ipv6RegExp
                         }
@@ -388,8 +403,8 @@ DccObject {
                             if (showAlert) {
                                 errorKey = ""
                             }
-                            if (gateway !== text) {
-                                gateway = text
+                            if (gateway[index] !== text) {
+                                gateway[index] = text
                                 root.editClicked()
                             }
                         }

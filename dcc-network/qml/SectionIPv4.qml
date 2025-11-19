@@ -51,8 +51,8 @@ DccObject {
         } else {
             delete sConfig["addresses"]
             delete sConfig["address-data"]
-            delete sConfig["gateway"]  // 非手动模式下不应保留手动设置的网关
-            
+            delete sConfig["gateway"] // 非手动模式下不应保留手动设置的网关
+
             // 禁用模式下不应该有任何IPv4配置字段
             if (method === "disabled") {
                 delete sConfig["dns"]
@@ -68,6 +68,7 @@ DccObject {
         errorKey = ""
         errorMsg = ""
         if (method === "manual") {
+            let gatewayCount = 0
             for (let k in addressData) {
                 if (!NetUtils.ipRegExp.test(addressData[k][0])) {
                     errorKey = k + "address"
@@ -78,6 +79,14 @@ DccObject {
                     errorKey = k + "prefix"
                     errorMsg = qsTr("Invalid netmask")
                     return false
+                }
+                if (addressData[k][2].length !== 0) {
+                    gatewayCount++
+                    if (gatewayCount >= 2) {
+                        errorKey = k + "gateway"
+                        errorMsg = qsTr("Only one gateway is allowed")
+                        return false
+                    }
                 }
                 if (addressData[k][2].length !== 0 && !NetUtils.ipRegExp.test(addressData[k][2])) {
                     errorKey = k + "gateway"
@@ -131,8 +140,8 @@ DccObject {
         Label {
             text: dccObj.displayName
             font: DccUtils.copyFont(D.DTK.fontManager.t4, {
-                "bold": true
-            })
+                                        "bold": true
+                                    })
         }
         Item {
             Layout.fillWidth: true
@@ -250,8 +259,8 @@ DccObject {
                     Label {
                         text: dccObj.displayName
                         font: DccUtils.copyFont(D.DTK.fontManager.t6, {
-                            "bold": true
-                        })
+                                                    "bold": true
+                                                })
                     }
                     Item {
                         Layout.fillWidth: true
@@ -391,6 +400,7 @@ DccObject {
                         }
                         showAlert: errorKey === index + dccObj.name
                         alertDuration: 2000
+                        alertText: errorKey === index + dccObj.name ? root.errorMsg : ""
                         onShowAlertChanged: {
                             if (showAlert) {
                                 DccApp.showPage(dccObj)
@@ -405,8 +415,8 @@ DccObject {
     onAddressDataChanged: {
         while (addressData.length > ipItems.length) {
             let ipItem = ipComponent.createObject(root, {
-                "index": ipItems.length
-            })
+                                                      "index": ipItems.length
+                                                  })
             DccApp.addObject(ipItem)
             ipItems.push(ipItem)
         }
