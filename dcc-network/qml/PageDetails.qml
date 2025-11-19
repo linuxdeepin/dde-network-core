@@ -21,10 +21,12 @@ DccObject {
     description: qsTr("View all network configurations")
     icon: "dcc_netinfo"
     page: DccSettingsView {}
-    Component {
-        id: detailsInfo
-        DccObject {
-            property var infoItem: null
+    DccRepeater {
+        model: NetItemModel {
+            root: item
+        }
+        delegate: DccObject {
+            property var infoItem: model.item
 
             name: infoItem.name
             parentName: root.name + "/body"
@@ -93,7 +95,6 @@ DccObject {
                     Repeater {
                         id: repeater
                         model: infoItem.details
-
                         delegate: ItemDelegate {
                             implicitHeight: 36
                             text: modelData[0]
@@ -174,41 +175,6 @@ DccObject {
                     dccData.exec(NetManager.GoToSecurityTools, "net-check", {})
                 }
             }
-        }
-    }
-
-    function updateDetailsItems() {
-        if (item) {
-            const delDetailsItems = detailsItems.concat()
-            for (let i in item.children) {
-                let child = item.children[i]
-                let index = delDetailsItems.findIndex(tmpItem => tmpItem.infoItem === child)
-                if (index >= 0) {
-                    delDetailsItems.splice(index, 1)
-                } else {
-                    let details = detailsInfo.createObject(root, {
-                                                               "infoItem": child
-                                                           })
-                    DccApp.addObject(details)
-                    detailsItems.push(details)
-                }
-            }
-            for (const delItem of delDetailsItems) {
-                DccApp.removeObject(delItem)
-                let index = detailsItems.findIndex(item => delItem === item)
-                if (index >= 0) {
-                    detailsItems.splice(index, 1)
-                }
-                delItem.destroy()
-            }
-        }
-    }
-
-    onItemChanged: updateDetailsItems()
-    Connections {
-        target: item
-        function onChildrenChanged() {
-            updateDetailsItems()
         }
     }
 }
