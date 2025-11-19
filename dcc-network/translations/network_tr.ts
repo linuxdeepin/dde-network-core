@@ -17,31 +17,31 @@
     <name>NetUtils</name>
     <message>
         <source>Off</source>
-        <translation type="unfinished"/>
+        <translation>Kapalı</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"/>
+        <translation>Bağlı</translation>
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"/>
+        <translation>IP çakışması</translation>
     </message>
     <message>
         <source>Connecting</source>
-        <translation type="unfinished"/>
+        <translation>Bağlanıyor</translation>
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation type="unfinished"/>
+        <translation>Adres alma</translation>
     </message>
     <message>
         <source>Authenticating</source>
-        <translation type="unfinished"/>
+        <translation>Kimlik doğrulama</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>Bağlantı kesildi</translation>
     </message>
 </context>
 <context>
@@ -173,7 +173,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"/>
+        <translation>%1 Ağ Özellikleri</translation>
     </message>
 </context>
 <context>
@@ -295,7 +295,7 @@
     </message>
     <message>
         <source>Enable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;Wireless Network Adapter&lt;/a&gt; first if you want to use the personal hotspot.</source>
-        <translation type="unfinished"/>
+        <translation>Kişisel erişim noktasını kullanmak istiyorsanız öncelikle &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;Kablosuz Ağ Bağdaştırıcısını&lt;/a&gt; etkinleştirin.</translation>
     </message>
 </context>
 <context>
@@ -318,7 +318,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"/>
+        <translation>%1 Ağ Özellikleri</translation>
     </message>
 </context>
 <context>
@@ -455,7 +455,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"/>
+        <translation>%1 Ağ Özellikleri</translation>
     </message>
 </context>
 <context>
@@ -517,7 +517,7 @@
     </message>
     <message>
         <source>My Networks</source>
-        <translation type="unfinished"/>
+        <translation>Ağlarım</translation>
     </message>
 </context>
 <context>
@@ -583,7 +583,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"/>
+        <translation>MTU (1280-9000)</translation>
     </message>
 </context>
 <context>
@@ -661,15 +661,15 @@
     </message>
     <message>
         <source>Invalid netmask</source>
-        <translation type="unfinished"/>
+        <translation>Geçersiz ağ maskesi</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished"/>
+        <translation>Geçersiz ağ geçidi</translation>
     </message>
     <message>
         <source>Duplicate IP address</source>
-        <translation type="unfinished"/>
+        <translation>Yinelenen IP adresi</translation>
     </message>
 </context>
 <context>
@@ -728,15 +728,15 @@
     </message>
     <message>
         <source>Invalid netmask</source>
-        <translation type="unfinished"/>
+        <translation>Geçersiz ağ maskesi</translation>
     </message>
     <message>
         <source>Duplicate IP address</source>
-        <translation type="unfinished"/>
+        <translation>Yinelenen IP adresi</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished"/>
+        <translation>Geçersiz ağ geçidi</translation>
     </message>
 </context>
 <context>
@@ -1472,7 +1472,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"/>
+        <translation>MTU (1280-9000)</translation>
     </message>
 </context>
 <context>
@@ -1651,11 +1651,11 @@
     <name>networkMain</name>
     <message>
         <source>Connection settings</source>
-        <translation type="unfinished"/>
+        <translation>Bağlantı ayarları</translation>
     </message>
     <message>
         <source>Related Settings</source>
-        <translation type="unfinished"/>
+        <translation>İlgili Ayarlar</translation>
     </message>
 </context>
 </TS>
