@@ -4,9 +4,10 @@ import org.deepin.dcc 1.0
 
 DccObject {
     property string cmd
+    property var showPageFun
     function showPage() {
-        if (cmd.length !== 0 && children.length !== 0) {
-            children[0].showPage(cmd)
+        if (cmd.length !== 0 && showPageFun) {
+            showPageFun(cmd)
             cmd = ""
         }
     }
@@ -15,7 +16,7 @@ DccObject {
     displayName: qsTr("Network")
     icon: "dcc_network"
     weight: 20
-    onChildrenChanged: showPage()
+    onShowPageFunChanged: showPage()
     onActive: function (cmdParam) {
         cmd = cmdParam
         showPage()
