@@ -17,31 +17,31 @@
     <name>NetUtils</name>
     <message>
         <source>Off</source>
-        <translation type="unfinished"/>
+        <translation>Désactivé</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"/>
+        <translation>Connecté</translation>
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"/>
+        <translation>Conflit d&apos;adresses IP</translation>
     </message>
     <message>
         <source>Connecting</source>
-        <translation type="unfinished"/>
+        <translation>Connexion</translation>
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation type="unfinished"/>
+        <translation>Obtention de l&apos;adresse</translation>
     </message>
     <message>
         <source>Authenticating</source>
-        <translation type="unfinished"/>
+        <translation>Authentification</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>Déconnecté</translation>
     </message>
 </context>
 <context>
@@ -173,7 +173,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"/>
+        <translation>Propriétés du réseau %1</translation>
     </message>
 </context>
 <context>
@@ -295,7 +295,7 @@
     </message>
     <message>
         <source>Enable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;Wireless Network Adapter&lt;/a&gt; first if you want to use the personal hotspot.</source>
-        <translation type="unfinished"/>
+        <translation>Activez d&apos;abord l&apos;&lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;adaptateur réseau sans fil&lt;/a&gt; si vous souhaitez utiliser le point d&apos;accès personnel.</translation>
     </message>
 </context>
 <context>
@@ -318,7 +318,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"/>
+        <translation>Propriétés du réseau %1</translation>
     </message>
 </context>
 <context>
@@ -455,7 +455,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"/>
+        <translation>Propriétés du réseau %1</translation>
     </message>
 </context>
 <context>
@@ -517,7 +517,7 @@
     </message>
     <message>
         <source>My Networks</source>
-        <translation type="unfinished"/>
+        <translation>Mes réseaux</translation>
     </message>
 </context>
 <context>
@@ -583,7 +583,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"/>
+        <translation>MTU (1280-9000)</translation>
     </message>
 </context>
 <context>
@@ -1472,7 +1472,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"/>
+        <translation>MTU (1280-9000)</translation>
     </message>
 </context>
 <context>
@@ -1651,11 +1651,11 @@
     <name>networkMain</name>
     <message>
         <source>Connection settings</source>
-        <translation type="unfinished"/>
+        <translation>Paramètres de connexion</translation>
     </message>
     <message>
         <source>Related Settings</source>
-        <translation type="unfinished"/>
+        <translation>Paramètres associés</translation>
     </message>
 </context>
 </TS>
