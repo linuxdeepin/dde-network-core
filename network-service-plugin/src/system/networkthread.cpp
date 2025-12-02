@@ -321,9 +321,9 @@ QString NetworkThread::disableDevice(NetworkManager::Device::Ptr device)
     // TODO:
     // cause of nm'bug, sometimes accessapoints list is nil
     // so add a judge in system network, if get nil in GetAllAccessPoints func, set wirelessEnable down.
-    auto state = device->state();
+    // device->state 的值更新不及时，不判断
     auto oldWirelessEnabled = NetworkManager::isWirelessEnabled();
-    if (device->type() == NetworkManager::Device::Wifi && state > NetworkManager::Device::Unavailable) {
+    if (device->type() == NetworkManager::Device::Wifi) {
         NetworkManager::WirelessDevice::Ptr wDevice = device.objectCast<NetworkManager::WirelessDevice>();
         if (wDevice->mode() != WirelessDevice::ApMode) {
             auto accessPointsList = wDevice->accessPoints();
@@ -341,11 +341,10 @@ QString NetworkThread::disableDevice(NetworkManager::Device::Ptr device)
             }
         }
     }
-    if (state >= NetworkManager::Device::Preparing && state <= NetworkManager::Device::Activated) {
-        QDBusPendingReply<> reply = device->disconnectInterface();
-        if (reply.isError()) {
-            return reply.error().message();
-        }
+    QDBusPendingReply<> reply = device->disconnectInterface();
+    if (reply.isError()) {
+        qCWarning(DSM()) << "Failed to disconnect device:" << device->uni() << "Error:" << reply.error().message();
+        return reply.error().message();
     }
     return QString();
 }
