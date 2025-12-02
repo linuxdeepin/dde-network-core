@@ -63,6 +63,8 @@ NetworkStateHandler::NetworkStateHandler(QObject *parent)
     , m_delayShowWifiOSD(new QTimer(this))
     , m_resetWifiOSDEnableTimer(new QTimer(this))
 {
+    m_delayShowWifiOSD->setSingleShot(true);
+    m_resetWifiOSDEnableTimer->setSingleShot(true);
     connect(m_dbusService, &QDBusServiceWatcher::serviceRegistered, this, &NetworkStateHandler::init);
     connect(m_delayShowWifiOSD, &QTimer::timeout, this, &NetworkStateHandler::delayShowWifiOSD);
     connect(m_resetWifiOSDEnableTimer, &QTimer::timeout, this, &NetworkStateHandler::resetWifiOSDEnable);
@@ -744,7 +746,7 @@ void NetworkStateHandler::delayShowWifiOSD()
 
 void NetworkStateHandler::updateOSDTimer(int interval)
 {
-    if (interval < 60) {  // 确保interval不会导致负数
+    if (interval < 60) { // 确保interval不小于60ms，避免定时器间隔过短
         interval = 60;
     }
     m_delayShowWifiOSD->setInterval(interval - 50);
