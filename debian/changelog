@@ -1,3 +1,17 @@
+dde-network-core (2.0.75) unstable; urgency=medium
+
+  * fix: set single shot for wifi OSD delay timer
+  * fix: remove device state check in disableDevice
+  * fix: remove de_DE and de_CH resources again caused by transifex
+    change
+  * i18n: remove de_DE translation resources
+  * [dde-network-core] Updates for project Deepin Desktop Environment
+    (#432)
+  * chore: remove hardcoded debug flags from CMake
+  * feat: add reproducible build parameters
+
+ -- fuleyi <fuleyi@uniontech.com>  Thu, 04 Dec 2025 19:13:34 +0800
+
 dde-network-core (2.0.74) unstable; urgency=medium
 
   * fix: resolve WiFi connection notification issue on login screen
