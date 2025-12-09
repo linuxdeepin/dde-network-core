@@ -14,7 +14,7 @@ import "NetUtils.js" as NetUtils
 DccObject {
     id: root
     property var config: null
-    property var item: null
+    property var netItem: null
     property int vpnType: NetUtils.VpnTypeEnum["l2tp"]
     property bool modified: false
     signal finished
@@ -206,7 +206,7 @@ DccObject {
                             }
                             onClicked: {
                                 close()
-                                dccData.exec(NetManager.DeleteConnect, item.id, {
+                                dccData.exec(NetManager.DeleteConnect, netItem.id, {
                                                  "uuid": config.connection.uuid
                                              })
                                 root.finished()
@@ -236,7 +236,7 @@ DccObject {
                     nameFilters: [qsTr("*.conf")]
                     currentFile: root.config.connection.id
                     onAccepted: {
-                        dccData.exec(NetManager.ExportConnect, item.id, {
+                        dccData.exec(NetManager.ExportConnect, netItem.id, {
                                          "file": currentFile.toString().replace("file://", "")
                                      })
                         this.destroy(10)
@@ -310,8 +310,8 @@ DccObject {
                     nConfig["ipv4"]["dns"] = ipv4Dns
                     nConfig["ipv6"]["dns"] = ipv6Dns
                     nConfig["vpn"]["service-type"] = NetUtils.toVpnKey(vpnType)
-                    if (item) {
-                        dccData.exec(NetManager.SetConnectInfo, item.id, nConfig)
+                    if (netItem) {
+                        dccData.exec(NetManager.SetConnectInfo, netItem.id, nConfig)
                     } else {
                         dccData.exec(NetManager.SetConnectInfo, "", nConfig)
                     }

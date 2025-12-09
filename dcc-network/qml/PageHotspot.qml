@@ -15,16 +15,16 @@ import org.deepin.dcc.network 1.0
 
 DccObject {
     id: root
-    property var item: null
+    property var netItem: null
     property var airplaneItem: null
     property var config: null
     property bool isAirplane: false
     property string interfaceName: ""
 
-    function setItem(netItem) {
-        if (item !== netItem) {
-            item = netItem
-            config = item.config
+    function setNetItem(item) {
+        if (netItem !== item) {
+            netItem = item
+            config = netItem.config
             updateDevModel()
         }
     }
@@ -80,7 +80,7 @@ DccObject {
             value: ""
         }
     }
-    visible: item && item.enabledable
+    visible: netItem && netItem.enabledable
     displayName: qsTr("Personal Hotspot")
     description: qsTr("Share the network")
     icon: "dcc_hotspot"
@@ -95,19 +95,19 @@ DccObject {
             D.Switch {
                 id: switchControl
                 anchors.fill: parent
-                checked: item.isEnabled
-                enabled: item.enabledable && !isAirplane && item.deviceEnabled
+                checked: netItem.isEnabled
+                enabled: netItem.enabledable && !isAirplane && netItem.deviceEnabled
                 onClicked: {
                     if (checked) {
                         if (config["connection"]["uuid"] === "{00000000-0000-0000-0000-000000000000}") {
-                            dccData.exec(NetManager.SetConnectInfo, item.id, config)
+                            dccData.exec(NetManager.SetConnectInfo, netItem.id, config)
                         } else {
-                            dccData.exec(NetManager.Connect, item.id, {
+                            dccData.exec(NetManager.Connect, netItem.id, {
                                              "uuid": config["connection"]["uuid"]
                                          })
                         }
                     } else {
-                        dccData.exec(NetManager.Disconnect, item.id, {
+                        dccData.exec(NetManager.Disconnect, netItem.id, {
                                          "uuid": config["connection"]["uuid"]
                                      })
                     }
@@ -116,7 +116,7 @@ DccObject {
         }
     }
     Connections {
-        target: item
+        target: netItem
         function onConfigChanged(config) {
             root.config = config
             updateDevModel()
@@ -154,7 +154,7 @@ DccObject {
         DccObject {
             name: "devEnabledTips"
             parentName: root.name + "/menu"
-            visible: !item.deviceEnabled && !isAirplane
+            visible: !netItem.deviceEnabled && !isAirplane
             displayName: qsTr("Enable <a style='text-decoration: none;' href='network'>Wireless Network Adapter</a> first if you want to use the personal hotspot.")
             weight: 30
             pageType: DccObject.Item
@@ -163,8 +163,8 @@ DccObject {
                 text: dccObj.displayName
                 wrapMode: Text.WordWrap
                 onLinkActivated: function (link) {
-                    if (item.optionalDevicePath.length > 0) {
-                        DccApp.showPage("network/wireless" + item.optionalDevicePath[0].slice(40))
+                    if (netItem.optionalDevicePath.length > 0) {
+                        DccApp.showPage("network/wireless" + netItem.optionalDevicePath[0].slice(40))
                     }
                 }
             }
@@ -174,7 +174,7 @@ DccObject {
             parentName: root.name + "/menu"
             weight: 40
             visible: !isAirplane
-            enabled: item.deviceEnabled
+            enabled: netItem.deviceEnabled
             displayName: qsTr("My Hotspot")
             pageType: DccObject.Item
             page: RowLayout {
@@ -372,7 +372,7 @@ DccObject {
                                         break
                                     }
                                     editDlg.config["connection"]["id"] = editDlg.config["802-11-wireless"].ssid
-                                    dccData.exec(NetManager.SetConnectInfo, item.id, editDlg.config)
+                                    dccData.exec(NetManager.SetConnectInfo, netItem.id, editDlg.config)
                                 }
                             }
                         }
@@ -386,7 +386,7 @@ DccObject {
             parentName: root.name + "/menu"
             weight: 50
             visible: !isAirplane
-            enabled: item.deviceEnabled
+            enabled: netItem.deviceEnabled
             pageType: DccObject.Item
             page: DccGroupView {}
             DccObject {
@@ -459,7 +459,7 @@ DccObject {
             name: "shareTitle"
             parentName: root.name + "/menu"
             visible: !isAirplane
-            enabled: item.deviceEnabled
+            enabled: netItem.deviceEnabled
             weight: 60
             displayName: qsTr("Shared Settings")
         }
@@ -468,7 +468,7 @@ DccObject {
             name: "shareConfig"
             parentName: root.name + "/menu"
             visible: !isAirplane
-            enabled: item.deviceEnabled
+            enabled: netItem.deviceEnabled
             weight: 70
             pageType: DccObject.Item
             page: DccGroupView {}
@@ -519,14 +519,14 @@ DccObject {
                         } else {
                             root.config["connection"]["interface-name"] = interfaceName
                         }
-                        root.config["setAndConn"] = item.isEnabled
-                        dccData.exec(NetManager.SetConnectInfo, item.id, root.config)
+                        root.config["setAndConn"] = netItem.isEnabled
+                        dccData.exec(NetManager.SetConnectInfo, netItem.id, root.config)
                     }
                     Component.onCompleted: {
                         updateCurrentIndex()
                     }
                     Connections {
-                        target: item
+                        target: netItem
                         function onConfigChanged() {
                             updateCurrentIndex()
                         }

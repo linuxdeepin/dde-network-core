@@ -13,9 +13,9 @@ import org.deepin.dcc.network 1.0
 
 DccObject {
     id: root
-    property var item: null
+    property var netItem: null
 
-    visible: item
+    visible: netItem
     displayName: qsTr("VPN")
     description: qsTr("Connect, add, import")
     icon: "dcc_vpn"
@@ -24,10 +24,10 @@ DccObject {
     Component {
         id: devCheck
         D.Switch {
-            checked: item.isEnabled
-            enabled: item.enabledable
+            checked: netItem.isEnabled
+            enabled: netItem.enabledable
             onClicked: {
-                dccData.exec(item.isEnabled ? NetManager.DisabledDevice : NetManager.EnabledDevice, item.id, {})
+                dccData.exec(netItem.isEnabled ? NetManager.DisabledDevice : NetManager.EnabledDevice, netItem.id, {})
             }
         }
     }
@@ -61,7 +61,7 @@ DccObject {
                     Repeater {
                         id: repeater
                         model: NetItemModel {
-                            root: item
+                            root: netItem
                         }
 
                         delegate: ItemDelegate {
@@ -129,7 +129,7 @@ DccObject {
                             if (cmd !== NetManager.ConnectInfo) {
                                 return
                             }
-                            const items = new Array(root.item)
+                            const items = new Array(root.netItem)
                             while (items.length !== 0) {
                                 let tmpItem = items[0]
                                 if (tmpItem.id === id) {
@@ -138,7 +138,7 @@ DccObject {
                                     } else {
                                         vpnSettings.displayName = tmpItem.name
                                     }
-                                    vpnSettings.item = tmpItem
+                                    vpnSettings.netItem = tmpItem
                                     vpnSettings.setConfig(param)
 
                                     DccApp.showPage(vpnSettings)
@@ -182,7 +182,7 @@ DccObject {
                 Connections {
                     target: dccData
                     function onRequest(cmd, id, param) {
-                        if (cmd === NetManager.ImportError && id === root.item.id) {
+                        if (cmd === NetManager.ImportError && id === root.netItem.id) {
                             importErrorDialog.createObject(this).show()
                         }
                     }
@@ -194,7 +194,7 @@ DccObject {
                         visible: false
                         nameFilters: [qsTr("*.conf")]
                         onAccepted: {
-                            dccData.exec(NetManager.ImportConnect, item.id, {
+                            dccData.exec(NetManager.ImportConnect, netItem.id, {
                                              "file": currentFile.toString().replace("file://", "")
                                          })
                             this.destroy(10)
@@ -247,7 +247,7 @@ DccObject {
                     text: qsTr("Add VPN")
                     Layout.alignment: Qt.AlignRight
                     onClicked: {
-                        dccData.exec(NetManager.ConnectInfo, item.id, {})
+                        dccData.exec(NetManager.ConnectInfo, netItem.id, {})
                     }
                 }
             }

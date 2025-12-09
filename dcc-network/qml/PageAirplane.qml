@@ -13,12 +13,12 @@ import org.deepin.dcc.network 1.0
 
 DccObject {
     id: root
-    property var item: null
+    property var netItem: null
 
     displayName: qsTr("Airplane mode")
     description: qsTr("Stop wireless communication")
     icon: "dcc_airplane_mode"
-    visible: item && item.enabledable
+    visible: netItem && netItem.enabledable
     backgroundType: DccObject.Normal
     pageType: DccObject.MenuEditor
     page: devCheck
@@ -30,10 +30,10 @@ DccObject {
             D.Switch {
                 id: switchControl
                 anchors.fill: parent
-                checked: item.isEnabled
-                enabled: item.enabledable
+                checked: netItem.isEnabled
+                enabled: netItem.enabledable
                 onClicked: {
-                    dccData.exec(NetManager.SetConnectInfo, item.id, {
+                    dccData.exec(NetManager.SetConnectInfo, netItem.id, {
                                      "enable": checked
                                  })
                 }

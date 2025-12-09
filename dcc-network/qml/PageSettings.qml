@@ -12,7 +12,7 @@ import org.deepin.dcc.network 1.0
 DccObject {
     id: root
     property var config: null
-    property var item: null
+    property var netItem: null
     property int type: NetType.WiredItem
     property bool modified: false
     readonly property string parentUrl: parentName + "/" + name
@@ -151,7 +151,7 @@ DccObject {
                             }
                             onClicked: {
                                 close()
-                                dccData.exec(NetManager.DeleteConnect, item.id, {
+                                dccData.exec(NetManager.DeleteConnect, netItem.id, {
                                                  "uuid": config.connection.uuid
                                              })
                                 root.finished()
@@ -244,8 +244,8 @@ DccObject {
                     }
 
                     nConfig[config.connection.type] = devConfig
-                    if (item) {
-                        dccData.exec(NetManager.SetConnectInfo, item.id, nConfig)
+                    if (netItem) {
+                        dccData.exec(NetManager.SetConnectInfo, netItem.id, nConfig)
                     } else {
                         dccData.exec(NetManager.SetConnectInfo, "", nConfig)
                     }

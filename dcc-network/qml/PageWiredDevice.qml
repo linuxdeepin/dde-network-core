@@ -15,27 +15,27 @@ import "NetUtils.js" as NetUtils
 
 DccObject {
     id: root
-    property var item: null
+    property var netItem: null
 
     component DevCheck: D.Switch {
-        checked: item.isEnabled
-        enabled: item.enabledable
+        checked: netItem.isEnabled
+        enabled: netItem.enabledable
         onClicked: {
-            dccData.exec(item.isEnabled ? NetManager.DisabledDevice : NetManager.EnabledDevice, item.id, {})
+            dccData.exec(netItem.isEnabled ? NetManager.DisabledDevice : NetManager.EnabledDevice, netItem.id, {})
         }
     }
 
-    name: "wired" + item.pathIndex
+    name: "wired" + netItem.pathIndex
     parentName: "network"
-    displayName: item.name
+    displayName: netItem.name
     description: qsTr("Connect, edit network settings")
     backgroundType: DccObject.Normal
     icon: "dcc_ethernet"
-    weight: 1010 + item.pathIndex
+    weight: 1010 + netItem.pathIndex
     pageType: DccObject.MenuEditor
     page: RowLayout {
         DccLabel {
-            text: NetUtils.getStatusName(item.status)
+            text: NetUtils.getStatusName(netItem.status)
         }
         DevCheck {}
     }
@@ -51,7 +51,7 @@ DccObject {
             DccObject {
                 name: "title"
                 parentName: root.name + "/page/body"
-                displayName: item.name
+                displayName: netItem.name
                 icon: "dcc_ethernet"
                 weight: 10
                 backgroundType: DccObject.Normal
@@ -61,11 +61,11 @@ DccObject {
             DccObject {
                 name: "nocable"
                 parentName: root.name + "/page/body"
-                displayName: item.name
+                displayName: netItem.name
                 weight: 20
                 backgroundType: DccObject.Normal
                 pageType: DccObject.Item
-                visible: item.status === NetType.DS_NoCable
+                visible: netItem.status === NetType.DS_NoCable
                 page: Item {
                     implicitHeight: 80
                     Label {
@@ -87,7 +87,7 @@ DccObject {
                     Repeater {
                         id: repeater
                         model: NetItemModel {
-                            root: item
+                            root: netItem
                         }
 
                         delegate: ItemDelegate {
@@ -240,7 +240,7 @@ DccObject {
                             if (cmd !== NetManager.ConnectInfo) {
                                 return
                             }
-                            const items = new Array(root.item)
+                            const items = new Array(root.netItem)
                             while (items.length !== 0) {
                                 let tmpItem = items[0]
                                 if (tmpItem.id === id) {
@@ -249,7 +249,7 @@ DccObject {
                                     } else {
                                         wiredSettings.displayName = tmpItem.name
                                     }
-                                    wiredSettings.item = tmpItem
+                                    wiredSettings.netItem = tmpItem
                                     wiredSettings.config = param
 
                                     DccApp.showPage(wiredSettings)
@@ -280,7 +280,7 @@ DccObject {
                     text: dccObj.displayName
                     Layout.alignment: Qt.AlignRight
                     onClicked: {
-                        dccData.exec(NetManager.ConnectInfo, item.id, {})
+                        dccData.exec(NetManager.ConnectInfo, netItem.id, {})
                     }
                 }
             }
