@@ -11,6 +11,7 @@
 #include <NetworkManagerQt/WirelessSecuritySetting>
 
 #include <QObject>
+#include <QMap>
 
 class QTimer;
 
@@ -27,6 +28,7 @@ class VPNItem;
 class DSLItem;
 class NetDeviceItemPrivate;
 class NetSecretAgentInterface;
+class NetworkDetails;
 enum class NetConnectionStatus;
 enum class NetworkNotifyType;
 enum class ProxyMethod;
@@ -284,7 +286,7 @@ private:
     bool m_airplaneModeEnabled;
     bool m_isSleeping;
     QString m_serverKey;
-    QSet<QString> m_detailsItems;
+    QMap<NetworkDetails*, QString> m_detailsItemsMap;  // 存储 NetworkDetails 指针到唯一ID的映射
     QString m_showPageCmd;
     QTimer *m_showPageTimer;
     QString m_newVPNuuid;

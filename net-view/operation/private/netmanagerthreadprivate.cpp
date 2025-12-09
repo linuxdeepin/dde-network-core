@@ -2401,31 +2401,61 @@ void NetManagerThreadPrivate::onDslActiveConnectionChanged()
 
 void NetManagerThreadPrivate::updateDetails()
 {
-    QSet<QString> detailsItems = m_detailsItems;
+    // 使用对象指针作为键，而不是 name()
+    QSet<NetworkDetails*> currentDetails;
+    for (auto &&details : NetworkController::instance()->networkDetails()) {
+        if (!details) // 空指针检查
+            continue;
+        currentDetails.insert(details);
+    }
+    
+    // 找出需要删除的项（在 m_detailsItemsMap 中但不在 currentDetails 中）
+    QList<NetworkDetails*> toRemove;
+    for (auto it = m_detailsItemsMap.begin(); it != m_detailsItemsMap.end(); ++it) {
+        if (!currentDetails.contains(it.key())) {
+            toRemove.append(it.key());
+        }
+    }
+    
+    // 删除不再存在的项
+    for (auto *details : toRemove) {
+        QString itemId = m_detailsItemsMap.value(details);
+        m_detailsItemsMap.remove(details);
+        // 断开信号连接，避免连接泄漏
+        disconnect(details, &NetworkDetails::infoChanged, this, &NetManagerThreadPrivate::updateDetails);
+        Q_EMIT itemRemoved(itemId);
+    }
+    
+    // 添加新项或更新现有项
     int index = 0;
     for (auto &&details : NetworkController::instance()->networkDetails()) {
-        if (detailsItems.contains(details->name())) {
-            detailsItems.remove(details->name());
-        } else {
-            m_detailsItems.insert(details->name());
+        if (!details) // 空指针检查
+            continue;
+            
+        // 生成唯一ID：使用对象指针地址
+        QString uniqueId = QString("detail_%1").arg(reinterpret_cast<quintptr>(details));
+        
+        if (!m_detailsItemsMap.contains(details)) {
+            // 新项，创建 NetDetailsInfoItem
+            m_detailsItemsMap.insert(details, uniqueId);
             connect(details, &NetworkDetails::infoChanged, this, &NetManagerThreadPrivate::updateDetails, Qt::QueuedConnection);
-            NetDetailsInfoItemPrivate *item = NetItemNew(DetailsInfoItem, details->name());
+            
+            NetDetailsInfoItemPrivate *item = NetItemNew(DetailsInfoItem, uniqueId);
             item->updatename(details->name());
             item->updateindex(index);
             item->item()->moveToThread(m_parentThread);
+            
             Q_EMIT itemAdded("Details", item);
         }
+        
+        // 更新数据
         QList<QStringList> data;
         for (auto &&info : details->items()) {
             data.append({ info.first, info.second });
         }
-        Q_EMIT dataChanged(DataChanged::DetailsChanged, details->name(), QVariant::fromValue(data));
-        Q_EMIT dataChanged(DataChanged::IndexChanged, details->name(), QVariant::fromValue(index));
+        Q_EMIT dataChanged(DataChanged::DetailsChanged, uniqueId, QVariant::fromValue(data));
+        Q_EMIT dataChanged(DataChanged::IndexChanged, uniqueId, QVariant::fromValue(index));
         ++index;
-    }
-    for (auto &&item : detailsItems) {
-        m_detailsItems.remove(item);
-        Q_EMIT itemRemoved(item);
     }
 }
 
