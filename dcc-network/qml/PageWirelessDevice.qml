@@ -15,32 +15,32 @@ import "NetUtils.js" as NetUtils
 
 DccObject {
     id: root
-    property var item: null
+    property var netItem: null
     property var airplaneItem: null
     readonly property var c_levelString: ["-signal-no", "-signal-low", "-signal-medium", "-signal-high", "-signal-full"]
 
     component DevCheck: D.Switch {
-        checked: root.item.isEnabled
-        enabled: root.item.enabledable
+        checked: root.netItem.isEnabled
+        enabled: root.netItem.enabledable
         onClicked: {
-            dccData.exec(root.item.isEnabled ? NetManager.DisabledDevice : NetManager.EnabledDevice, root.item.id, {})
+            dccData.exec(root.netItem.isEnabled ? NetManager.DisabledDevice : NetManager.EnabledDevice, root.netItem.id, {})
         }
     }
-    name: "wireless" + item.pathIndex
+    name: "wireless" + netItem.pathIndex
     parentName: "network"
-    displayName: item.name
+    displayName: netItem.name
     description: qsTr("Connect, edit network settings")
     backgroundType: DccObject.Normal
     icon: "dcc_wifi"
-    weight: 2010 + item.pathIndex
+    weight: 2010 + netItem.pathIndex
     pageType: DccObject.MenuEditor
     page: RowLayout {
         DccLabel {
             text: {
-                switch (item.status) {
+                switch (netItem.status) {
                 case NetType.DS_Connected:
                 case NetType.DS_ConnectNoInternet:
-                    var childrenItem = [item]
+                    var childrenItem = [netItem]
                     while (childrenItem.length > 0) {
                         var childItem = childrenItem.pop()
                         if (childItem.itemType === NetType.WirelessItem && childItem.status === NetType.CS_Connected) {
@@ -54,7 +54,7 @@ DccObject {
                 default:
                     break
                 }
-                return NetUtils.getStatusName(item.status)
+                return NetUtils.getStatusName(netItem.status)
             }
         }
         DevCheck {}
@@ -69,7 +69,7 @@ DccObject {
             Repeater {
                 id: repeater
                 model: NetItemModel {
-                    root: dccObj.item
+                    root: dccObj.netItem
                 }
                 delegate: DelegateChooser {
                     role: "type"
@@ -91,7 +91,7 @@ DccObject {
                             bottomPadding: 0 // 恢复适量下边距
                             spacing: 10
                             icon {
-                                name: "network-wireless" + (item.flags ? "-6" : "") + c_levelString[item.strengthLevel] + (item.secure ? "-secure" : "") + "-symbolic"
+                                name: "network-wireless" + (model.item.flags ? "-6" : "") + c_levelString[model.item.strengthLevel] + (model.item.secure ? "-secure" : "") + "-symbolic"
                                 height: 16
                                 width: 16
                             }
@@ -243,7 +243,7 @@ DccObject {
         DccObject {
             name: "title"
             parentName: root.name + "/page"
-            displayName: root.item.name
+            displayName: root.netItem.name
             icon: "dcc_wifi"
             weight: 10
             backgroundType: DccObject.Normal
@@ -273,14 +273,14 @@ DccObject {
         }
         DccObject {
             id: mineNetwork
-            property var item: null
+            property var netItem: null
 
             name: "mineNetwork"
             parentName: root.name + "/page"
             weight: 40
             pageType: DccObject.Item
             backgroundType: DccObject.Normal
-            visible: root.item && root.item.isEnabled && !root.item.apMode && this.item && this.item.children.length > 0
+            visible: root.netItem && root.netItem.isEnabled && !root.netItem.apMode && this.netItem && this.netItem.children.length > 0
             page: networkList
         }
         DccObject {
@@ -306,12 +306,12 @@ DccObject {
         }
         DccObject {
             id: otherNetwork
-            property var item: null
+            property var netItem: null
 
             name: "otherNetwork"
             parentName: root.name + "/page"
             weight: 60
-            visible: root.item && root.item.isEnabled && !root.item.apMode && this.item && this.item.children.length > 0
+            visible: root.netItem && root.netItem.isEnabled && !root.netItem.apMode && this.netItem && this.netItem.children.length > 0
             pageType: DccObject.Item
             backgroundType: DccObject.Normal
             page: networkList
@@ -333,7 +333,7 @@ DccObject {
         DccObject {
             name: "airplaneTips"
             parentName: root.name + "/page"
-            visible: root.item && root.item.apMode
+            visible: root.netItem && root.netItem.apMode
             displayName: qsTr("Disable hotspot first if you want to connect to a wireless network")
             weight: 70
             pageType: DccObject.Item
@@ -357,13 +357,13 @@ DccObject {
                         return
                     }
 
-                    const items = new Array(root.item)
+                    const items = new Array(root.netItem)
                     while (items.length !== 0) {
                         let tmpItem = items[0]
                         if (tmpItem.id === id) {
                             wirelessSettings.displayName = tmpItem.name
                             wirelessSettings.type = tmpItem.itemType
-                            wirelessSettings.item = tmpItem
+                            wirelessSettings.netItem = tmpItem
                             wirelessSettings.config = param
 
                             DccApp.showPage(wirelessSettings)
@@ -381,33 +381,33 @@ DccObject {
     }
     function updateItem() {
         let hasNet = 0
-        for (let i in root.item.children) {
-            const child = root.item.children[i]
+        for (let i in root.netItem.children) {
+            const child = root.netItem.children[i]
             switch (child.itemType) {
             case NetType.WirelessMineItem:
-                if (mineNetwork.item !== child) {
-                    mineNetwork.item = child
+                if (mineNetwork.netItem !== child) {
+                    mineNetwork.netItem = child
                 }
                 hasNet |= 1
                 break
             case NetType.WirelessOtherItem:
-                if (otherNetwork.item !== child) {
-                    otherNetwork.item = child
+                if (otherNetwork.netItem !== child) {
+                    otherNetwork.netItem = child
                 }
                 hasNet |= 2
                 break
             }
         }
         if (!(hasNet & 1)) {
-            mineNetwork.item = null
+            mineNetwork.netItem = null
         }
         if (!(hasNet & 2)) {
-            otherNetwork.item = null
+            otherNetwork.netItem = null
         }
     }
 
     Connections {
-        target: root.item
+        target: root.netItem
         function onChildrenChanged() {
             updateItem()
         }

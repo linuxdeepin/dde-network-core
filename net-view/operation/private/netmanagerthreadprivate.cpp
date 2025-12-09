@@ -2421,8 +2421,6 @@ void NetManagerThreadPrivate::updateDetails()
     for (auto *details : toRemove) {
         QString itemId = m_detailsItemsMap.value(details);
         m_detailsItemsMap.remove(details);
-        // 断开信号连接，避免连接泄漏
-        disconnect(details, &NetworkDetails::infoChanged, this, &NetManagerThreadPrivate::updateDetails);
         Q_EMIT itemRemoved(itemId);
     }
     

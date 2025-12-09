@@ -45,7 +45,7 @@ DccObject {
         name: "airplaneMode"
         parentName: "network"
         weight: 3040
-        item: dccData.root
+        netItem: dccData.root
     }
     DccRepeater {
         model: NetItemModel {
@@ -56,13 +56,13 @@ DccObject {
             DelegateChoice {
                 roleValue: NetType.WiredDeviceItem
                 delegate: PageWiredDevice {
-                    item: model.item
+                    netItem: model.item
                 }
             }
             DelegateChoice {
                 roleValue: NetType.WirelessDeviceItem
                 delegate: PageWirelessDevice {
-                    item: model.item
+                    netItem: model.item
                 }
             }
             DelegateChoice {
@@ -71,7 +71,7 @@ DccObject {
                     name: "networkVpn"
                     parentName: "network"
                     weight: 3010
-                    item: model.item
+                    netItem: model.item
                 }
             }
             DelegateChoice {
@@ -80,7 +80,7 @@ DccObject {
                     name: "dsl"
                     parentName: "network"
                     weight: 3020
-                    item: model.item
+                    netItem: model.item
                 }
             }
             DelegateChoice {
@@ -90,7 +90,7 @@ DccObject {
                     parentName: "network"
                     isAirplane: dccData.root.isEnabled
                     weight: 3030
-                    Component.onCompleted: setItem(model.item)
+                    Component.onCompleted: setNetItem(model.item)
                 }
             }
             DelegateChoice {
@@ -99,7 +99,7 @@ DccObject {
                     name: "systemProxy"
                     parentName: "network"
                     weight: 3050
-                    Component.onCompleted: setItem(model.item)
+                    Component.onCompleted: setNetItem(model.item)
                 }
             }
             DelegateChoice {
@@ -108,7 +108,7 @@ DccObject {
                     name: "applicationProxy"
                     parentName: "network"
                     weight: 3060
-                    item: model.item
+                    netItem: model.item
                 }
             }
             DelegateChoice {
@@ -117,7 +117,7 @@ DccObject {
                     name: "networkDetails"
                     parentName: "network"
                     weight: 3070
-                    item: model.item
+                    netItem: model.item
                 }
             }
         }

@@ -13,28 +13,28 @@ import org.deepin.dcc.network 1.0
 
 DccObject {
     id: root
-    property var item: null
+    property var netItem: null
     property int method: NetType.None
     property bool autoUrlAlert: false
     property int inputItem: 0
 
-    function setItem(netItem) {
-        item = netItem
-        method = item.method
+    function setNetItem(item) {
+        netItem = item
+        method = netItem.method
         autoUrlAlert = false
         // methodChanged()
     }
     function resetData() {
-        root.method = root.item.method
-        autoUrl.config = root.item.autoProxy
-        http.config = root.item.manualProxy.http
-        https.config = root.item.manualProxy.https
-        ftp.config = root.item.manualProxy.ftp
-        socks.config = root.item.manualProxy.socks
-        ignoreHosts.config = root.item.manualProxy.ignoreHosts
+        root.method = root.netItem.method
+        autoUrl.config = root.netItem.autoProxy
+        http.config = root.netItem.manualProxy.http
+        https.config = root.netItem.manualProxy.https
+        ftp.config = root.netItem.manualProxy.ftp
+        socks.config = root.netItem.manualProxy.socks
+        ignoreHosts.config = root.netItem.manualProxy.ignoreHosts
     }
 
-    visible: item
+    visible: netItem
     displayName: qsTr("System Proxy")
     description: qsTr("Set up proxy servers")
     icon: "dcc_system_agent"
@@ -43,10 +43,10 @@ DccObject {
     Component {
         id: devCheck
         D.Switch {
-            checked: item.isEnabled
-            enabled: item.enabledable
+            checked: netItem.isEnabled
+            enabled: netItem.enabledable
             onClicked: {
-                dccData.exec(item.isEnabled ? NetManager.DisabledDevice : NetManager.EnabledDevice, item.id, {})
+                dccData.exec(netItem.isEnabled ? NetManager.DisabledDevice : NetManager.EnabledDevice, netItem.id, {})
             }
         }
     }
@@ -70,13 +70,13 @@ DccObject {
                 pageType: DccObject.Editor
                 page: D.Switch {
                     checked: root.method !== NetType.None
-                    enabled: item.enabledable
+                    enabled: netItem.enabledable
                     onClicked: {
                         if (checked) {
-                            root.method = item.lastMethod
+                            root.method = netItem.lastMethod
                         } else {
                             root.method = NetType.None
-                            dccData.exec(NetManager.SetConnectInfo, item.id, {
+                            dccData.exec(NetManager.SetConnectInfo, netItem.id, {
                                              "method": method
                                          })
                         }
@@ -127,7 +127,7 @@ DccObject {
             }
             DccObject {
                 id: autoUrl
-                property var config: item.autoProxy
+                property var config: netItem.autoProxy
                 name: "autoUrl"
                 parentName: root.name + "/menu/body"
                 displayName: qsTr("Configuration URL")
@@ -168,7 +168,7 @@ DccObject {
                 displayName: qsTr("HTTP Proxy")
                 visible: method === NetType.Manual
                 weight: 40
-                config: root.item.manualProxy.http
+                config: root.netItem.manualProxy.http
                 onHasUrlChanged: {
                     if (hasUrl) {
                         inputItem |= 0x01
@@ -184,7 +184,7 @@ DccObject {
                 displayName: qsTr("HTTPS Proxy")
                 visible: method === NetType.Manual
                 weight: 50
-                config: root.item.manualProxy.https
+                config: root.netItem.manualProxy.https
                 onHasUrlChanged: {
                     if (hasUrl) {
                         inputItem |= 0x02
@@ -200,7 +200,7 @@ DccObject {
                 displayName: qsTr("FTP Proxy")
                 visible: method === NetType.Manual
                 weight: 60
-                config: root.item.manualProxy.ftp
+                config: root.netItem.manualProxy.ftp
                 onHasUrlChanged: {
                     if (hasUrl) {
                         inputItem |= 0x04
@@ -216,7 +216,7 @@ DccObject {
                 displayName: qsTr("SOCKS Proxy")
                 visible: method === NetType.Manual
                 weight: 70
-                config: root.item.manualProxy.socks
+                config: root.netItem.manualProxy.socks
                 onHasUrlChanged: {
                     if (hasUrl) {
                         inputItem |= 0x08
@@ -227,7 +227,7 @@ DccObject {
             }
             DccObject {
                 id: ignoreHosts
-                property var config: root.item.manualProxy.ignoreHosts
+                property var config: root.netItem.manualProxy.ignoreHosts
 
                 name: "ignoreHosts"
                 parentName: root.name + "/menu/body"
@@ -371,7 +371,7 @@ DccObject {
                             break
                         }
                         config["method"] = method
-                        dccData.exec(NetManager.SetConnectInfo, item.id, config)
+                        dccData.exec(NetManager.SetConnectInfo, netItem.id, config)
                     }
                 }
             }

@@ -13,12 +13,12 @@ import org.deepin.dcc.network 1.0
 
 DccObject {
     id: root
-    property var item: null
+    property var netItem: null
 
     displayName: qsTr("DSL")
     description: qsTr("Set up a dial-up network connection")
     icon: "dcc_dsl"
-    visible: item.enabledable
+    visible: netItem.enabledable
     page: DccSettingsView {}
 
     DccObject {
@@ -37,7 +37,7 @@ DccObject {
                 Repeater {
                     id: repeater
                     model: NetItemModel {
-                        root: item
+                        root: netItem
                     }
 
                     delegate: ItemDelegate {
@@ -107,7 +107,7 @@ DccObject {
                     if (cmd !== NetManager.ConnectInfo) {
                         return
                     }
-                    const items = new Array(root.item)
+                    const items = new Array(root.netItem)
                     while (items.length !== 0) {
                         let tmpItem = items[0]
                         if (tmpItem.id === id) {
@@ -116,7 +116,7 @@ DccObject {
                             } else {
                                 dslSettings.displayName = tmpItem.name
                             }
-                            dslSettings.item = tmpItem
+                            dslSettings.netItem = tmpItem
                             dslSettings.config = param
 
                             DccApp.showPage(dslSettings)
@@ -145,7 +145,7 @@ DccObject {
                 Layout.alignment: Qt.AlignRight
                 text: qsTr("Add PPPoE connection")
                 onClicked: {
-                    dccData.exec(NetManager.ConnectInfo, item.id, {})
+                    dccData.exec(NetManager.ConnectInfo, netItem.id, {})
                 }
             }
         }

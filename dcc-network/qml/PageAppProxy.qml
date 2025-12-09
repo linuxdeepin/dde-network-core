@@ -13,9 +13,9 @@ import org.deepin.dcc.network 1.0
 
 DccObject {
     id: root
-    property var item: null
-    property bool proxyEnable: item && item.isEnabled
-    property var config: item ? item.config : {}
+    property var netItem: null
+    property bool proxyEnable: netItem && netItem.isEnabled
+    property var config: netItem ? netItem.config : {}
     property bool urlAlert: false
     property bool portAlert: false
 
@@ -37,7 +37,7 @@ DccObject {
         return true
     }
 
-    visible: item
+    visible: netItem
     displayName: qsTr("Application Proxy")
     description: qsTr("Set up proxy servers")
     icon: "dcc_app_agent"
@@ -45,7 +45,7 @@ DccObject {
         Component.onDestruction: {
             urlAlert = false
             portAlert = false
-            proxyEnable = item.isEnabled
+            proxyEnable = netItem.isEnabled
         }
     }
 
@@ -63,13 +63,13 @@ DccObject {
             pageType: DccObject.Editor
             page: D.Switch {
                 checked: proxyEnable
-                enabled: item.enabledable
+                enabled: netItem.enabledable
                 onClicked: {
                     if (checked != proxyEnable) {
                         proxyEnable = checked
                     }
                     if (!proxyEnable) {
-                        dccData.exec(NetManager.SetConnectInfo, item.id, {
+                        dccData.exec(NetManager.SetConnectInfo, netItem.id, {
                                          "enable": false
                                      })
                     }
@@ -108,7 +108,7 @@ DccObject {
                             "text": qsTr("socks5")
                         }]
                     Component.onCompleted: {
-                        root.config = item.config
+                        root.config = netItem.config
                     }
                     Connections {
                         target: root
@@ -260,8 +260,8 @@ DccObject {
                 text: qsTr("Cancel")
                 Layout.alignment: Qt.AlignRight
                 onClicked: {
-                    proxyEnable = item.isEnabled
-                    root.config = root.item.config
+                    proxyEnable = netItem.isEnabled
+                    root.config = root.netItem.config
                 }
             }
         }
@@ -291,7 +291,7 @@ DccObject {
                     }
                     config.enable = proxyEnable
 
-                    dccData.exec(NetManager.SetConnectInfo, item.id, config)
+                    dccData.exec(NetManager.SetConnectInfo, netItem.id, config)
                 }
             }
         }

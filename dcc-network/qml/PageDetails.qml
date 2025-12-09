@@ -13,17 +13,17 @@ import org.deepin.dcc.network 1.0
 
 DccObject {
     id: root
-    property var item: null
+    property var netItem: null
     property var detailsItems: []
 
-    visible: item
+    visible: netItem
     displayName: qsTr("Network Details")
     description: qsTr("View all network configurations")
     icon: "dcc_netinfo"
     page: DccSettingsView {}
     DccRepeater {
         model: NetItemModel {
-            root: item
+            root: netItem
         }
         delegate: DccObject {
             property var infoItem: model.item
