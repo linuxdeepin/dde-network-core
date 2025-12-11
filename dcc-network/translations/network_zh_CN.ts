@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="zh_CN">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_CN">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -585,7 +583,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -675,7 +673,7 @@
     </message>
     <message>
         <source>Only one gateway is allowed</source>
-        <translation>只允许一个网关</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -746,7 +744,7 @@
     </message>
     <message>
         <source>Only one gateway is allowed</source>
-        <translation>只允许一个网关</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1482,7 +1480,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
