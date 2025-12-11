@@ -14,9 +14,9 @@
 #include <NetworkManagerQt/Security8021xSetting>
 #include <NetworkManagerQt/WirelessSecuritySetting>
 
-const QString ipwatchdService = "com.deepin.system.IPWatchD";
-const QString ipwatchdPath = "/com/deepin/system/IPWatchD";
-const QString ipwatchdInterface = "com.deepin.system.IPWatchD";
+const QString ipwatchdService = "org.deepin.dde.IPWatchD1";
+const QString ipwatchdPath = "/org/deepin/dde/IPWatchD1";
+const QString ipwatchdInterface = "org.deepin.dde.IPWatchD1";
 
 IPConflictHandler::IPConflictHandler(QObject *parent)
     : QObject (parent)
