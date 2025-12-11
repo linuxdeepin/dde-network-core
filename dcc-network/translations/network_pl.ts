@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pl">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="pl">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -671,6 +673,10 @@
         <source>Duplicate IP address</source>
         <translation>Zduplikowany adres IP</translation>
     </message>
+    <message>
+        <source>Only one gateway is allowed</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SectionIPv6</name>
@@ -737,6 +743,10 @@
     <message>
         <source>Invalid gateway</source>
         <translation>Nieprawidłowa brama sieciowa</translation>
+    </message>
+    <message>
+        <source>Only one gateway is allowed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
