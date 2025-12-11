@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_HK">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh_HK">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -583,7 +585,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -671,6 +673,10 @@
         <source>Duplicate IP address</source>
         <translation>重複的IP位址</translation>
     </message>
+    <message>
+        <source>Only one gateway is allowed</source>
+        <translation>只允許一個網關</translation>
+    </message>
 </context>
 <context>
     <name>SectionIPv6</name>
@@ -737,6 +743,10 @@
     <message>
         <source>Invalid gateway</source>
         <translation>無效的網關地址</translation>
+    </message>
+    <message>
+        <source>Only one gateway is allowed</source>
+        <translation>只允許一個網關</translation>
     </message>
 </context>
 <context>
@@ -1472,7 +1482,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

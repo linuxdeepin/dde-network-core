@@ -673,6 +673,10 @@
         <source>Duplicate IP address</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Only one gateway is allowed</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SectionIPv6</name>
@@ -738,6 +742,10 @@
     </message>
     <message>
         <source>Invalid gateway</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only one gateway is allowed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
