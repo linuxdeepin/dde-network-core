@@ -673,7 +673,7 @@
     </message>
     <message>
         <source>Only one gateway is allowed</source>
-        <translation type="unfinished"/>
+        <translation>只允许一个网关</translation>
     </message>
 </context>
 <context>
@@ -744,7 +744,7 @@
     </message>
     <message>
         <source>Only one gateway is allowed</source>
-        <translation type="unfinished"/>
+        <translation>只允许一个网关</translation>
     </message>
 </context>
 <context>
