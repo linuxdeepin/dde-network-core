@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="sq">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="sq">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -19,7 +17,7 @@
     <name>NetUtils</name>
     <message>
         <source>Off</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connected</source>
@@ -233,7 +231,7 @@
     </message>
     <message>
         <source>Not Bind</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Personal Hotspot</source>
@@ -281,7 +279,7 @@
     </message>
     <message>
         <source>Shared Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hotspot Sharing Device</source>
@@ -545,7 +543,7 @@
     <name>SectionDevice</name>
     <message>
         <source>Not Bind</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>WLAN</source>
@@ -675,7 +673,7 @@
     </message>
     <message>
         <source>Only one gateway is allowed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -746,7 +744,7 @@
     </message>
     <message>
         <source>Only one gateway is allowed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -765,7 +763,7 @@
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
@@ -793,7 +791,7 @@
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>No TCP Header Compression</source>
@@ -923,7 +921,7 @@
     </message>
     <message>
         <source>Provisioning</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disabled</source>
@@ -1034,7 +1032,7 @@
     </message>
     <message>
         <source>Pre-Shared Key</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>User Cert</source>
@@ -1178,7 +1176,7 @@
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
@@ -1206,7 +1204,7 @@
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>No TCP Header Compression</source>
@@ -1290,7 +1288,7 @@
     </message>
     <message>
         <source>Restrict Tunnel TCP MSS</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Randomize Remote Hosts</source>
@@ -1310,7 +1308,7 @@
     </message>
     <message>
         <source>Netscreen</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Version</source>
@@ -1334,7 +1332,7 @@
     </message>
     <message>
         <source>NAT Traversal Mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>NAT-T When Available (default)</source>
@@ -1370,7 +1368,7 @@
     </message>
     <message>
         <source>Forward Secrecy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Server (default)</source>
