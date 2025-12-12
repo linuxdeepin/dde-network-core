@@ -1,3 +1,14 @@
+dde-network-core (2.0.76) unstable; urgency=medium
+
+  * fix: update IPWatchD D-Bus service interface
+  * feat: add gateway validation message to translations
+  * refactor: rename item property to netItem
+  * fix: prevent multiple gateways in manual network configuration
+  * fix: fix network details management with pointer-based tracking
+  * refactor: replace manual object management with DccRepeater
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Fri, 12 Dec 2025 15:00:06 +0800
+
 dde-network-core (2.0.75) unstable; urgency=medium
 
   * fix: set single shot for wifi OSD delay timer
