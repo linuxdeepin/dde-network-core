@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="pl">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pl">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -675,7 +673,7 @@
     </message>
     <message>
         <source>Only one gateway is allowed</source>
-        <translation type="unfinished"></translation>
+        <translation>Tylko jedna brama sieciowa jest dozwolona</translation>
     </message>
 </context>
 <context>
@@ -746,7 +744,7 @@
     </message>
     <message>
         <source>Only one gateway is allowed</source>
-        <translation type="unfinished"></translation>
+        <translation>Tylko jedna brama sieciowa jest dozwolona</translation>
     </message>
 </context>
 <context>

@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="fr">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fr">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -19,31 +17,31 @@
     <name>NetUtils</name>
     <message>
         <source>Off</source>
-        <translation type="unfinished"></translation>
+        <translation>Désactivé</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"></translation>
+        <translation>Connecté</translation>
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished">Conflit d&apos;adresses IP</translation>
+        <translation>Conflit d&apos;adresses IP</translation>
     </message>
     <message>
         <source>Connecting</source>
-        <translation type="unfinished"></translation>
+        <translation>Connexion</translation>
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation type="unfinished"></translation>
+        <translation>Obtention de l&apos;adresse</translation>
     </message>
     <message>
         <source>Authenticating</source>
-        <translation type="unfinished"></translation>
+        <translation>Authentification</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"></translation>
+        <translation>Déconnecté</translation>
     </message>
 </context>
 <context>
@@ -175,7 +173,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Propriétés du réseau %1</translation>
     </message>
 </context>
 <context>
@@ -297,7 +295,7 @@
     </message>
     <message>
         <source>Enable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;Wireless Network Adapter&lt;/a&gt; first if you want to use the personal hotspot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Activez d&apos;abord l&apos;&lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;adaptateur réseau sans fil&lt;/a&gt; si vous souhaitez utiliser le point d&apos;accès personnel.</translation>
     </message>
 </context>
 <context>
@@ -320,7 +318,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Propriétés du réseau %1</translation>
     </message>
 </context>
 <context>
@@ -457,7 +455,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Propriétés du réseau %1</translation>
     </message>
 </context>
 <context>
@@ -519,7 +517,7 @@
     </message>
     <message>
         <source>My Networks</source>
-        <translation type="unfinished">Mes réseaux</translation>
+        <translation>Mes réseaux</translation>
     </message>
 </context>
 <context>
@@ -585,7 +583,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"></translation>
+        <translation>MTU (1280-9000)</translation>
     </message>
 </context>
 <context>
@@ -675,7 +673,7 @@
     </message>
     <message>
         <source>Only one gateway is allowed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -746,7 +744,7 @@
     </message>
     <message>
         <source>Only one gateway is allowed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1482,7 +1480,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"></translation>
+        <translation>MTU (1280-9000)</translation>
     </message>
 </context>
 <context>
@@ -1661,11 +1659,11 @@
     <name>networkMain</name>
     <message>
         <source>Connection settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Paramètres de connexion</translation>
     </message>
     <message>
         <source>Related Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Paramètres associés</translation>
     </message>
 </context>
 </TS>
