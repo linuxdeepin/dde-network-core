@@ -95,19 +95,96 @@ DccObject {
         parentName: root.parentUrl
         weight: 20
         pageType: DccObject.Item
-        DccObject {
-            name: "delete"
-            parentName: root.parentUrl + "/footer"
-            weight: 10
-            pageType: DccObject.Item
-            visible: config && config.connection.uuid !== "{00000000-0000-0000-0000-000000000000}"
-            page: NetButton {
-                contentItem: D.IconLabel {
-                    text: qsTr("Delete")
-                    color: "red"
+        page: Item {
+            implicitHeight: footerLayout.implicitHeight + 10
+            RowLayout {
+                id: footerLayout
+                anchors.fill: parent
+                anchors.leftMargin: -10
+                anchors.rightMargin: -10
+                NetButton {
+                    visible: config && config.connection.uuid !== "{00000000-0000-0000-0000-000000000000}"
+                    contentItem: D.IconLabel {
+                        text: qsTr("Delete")
+                        color: "red"
+                    }
+                    onClicked: {
+                        deleteDialog.createObject(this).show()
+                    }
                 }
-                onClicked: {
-                    deleteDialog.createObject(this).show()
+                Item {
+                    Layout.fillWidth: true
+                }
+                NetButton {
+                    text: qsTr("Cancel")
+                    onClicked: {
+                        root.finished()
+                    }
+                }
+                NetButton {
+                    text: qsTr("Save")
+                    enabled: root.modified
+                    onClicked: {
+                        if (!sectionGeneric.checkInput() || !sectionSecret.checkInput() || !sectionIPv4.checkInput() || !sectionIPv6.checkInput() || !sectionDNS.checkInput() || !sectionDevice.checkInput()) {
+                            return
+                        }
+
+                        let nConfig = {}
+                        nConfig["connection"] = sectionGeneric.getConfig()
+                        nConfig["802-11-wireless-security"] = sectionSecret.getConfigWSecurity()
+                        nConfig["802-1x"] = sectionSecret.getConfig802_1x()
+                        nConfig["ipv4"] = sectionIPv4.getConfig()
+                        nConfig["ipv6"] = sectionIPv6.getConfig()
+                        if (nConfig["ipv4"] === undefined) {
+                            nConfig["ipv4"] = {}
+                        }
+                        if (nConfig["ipv6"] === undefined) {
+                            nConfig["ipv6"] = {}
+                        }
+
+                        // 获取DNS配置并分离IPv4和IPv6
+                        let dnsConfig = sectionDNS.getConfig()
+                        let ipv4Dns = []
+                        let ipv6Dns = []
+
+                        for (let dns of dnsConfig) {
+                            if (typeof dns === 'number') {
+                                // IPv4 DNS（数字格式）
+                                ipv4Dns.push(dns)
+                            } else if (typeof dns === 'string') {
+                                // IPv6 DNS（字符串格式）
+                                ipv6Dns.push(dns)
+                            }
+                        }
+
+                        // 分别保存到IPv4和IPv6配置中，但要考虑各自的方法
+                        // 只有当IPv4不是disabled时才分配DNS
+                        if (nConfig["ipv4"]["method"] !== "disabled") {
+                            nConfig["ipv4"]["dns"] = ipv4Dns
+                        }
+                        // 只有当IPv6不是disabled和ignore时才分配DNS
+                        if (nConfig["ipv6"]["method"] !== "disabled" && nConfig["ipv6"]["method"] !== "ignore") {
+                            nConfig["ipv6"]["dns"] = ipv6Dns
+                        }
+                        let devConfig = sectionDevice.getConfig()
+                        if (devConfig.interfaceName.length === 0) {
+                            delete nConfig["connection"]["interface-name"]
+                        } else {
+                            nConfig["connection"]["interface-name"] = devConfig.interfaceName
+                        }
+                        if (nConfig["connection"].type === "802-11-wireless" && !devConfig.hasOwnProperty("ssid")) {
+                            devConfig["ssid"] = nConfig["connection"]["id"]
+                        }
+
+                        nConfig[config.connection.type] = devConfig
+                        if (netItem) {
+                            dccData.exec(NetManager.SetConnectInfo, netItem.id, nConfig)
+                        } else {
+                            dccData.exec(NetManager.SetConnectInfo, "", nConfig)
+                        }
+                        root.modified = false
+                        root.finished()
+                    }
                 }
             }
         }
@@ -158,99 +235,6 @@ DccObject {
                             }
                         }
                     }
-                }
-            }
-        }
-
-        DccObject {
-            name: "spacer"
-            parentName: root.parentUrl + "/footer"
-            weight: 20
-            pageType: DccObject.Item
-            page: Item {
-                Layout.fillWidth: true
-            }
-        }
-        DccObject {
-            name: "cancel"
-            parentName: root.parentUrl + "/footer"
-            weight: 30
-            pageType: DccObject.Item
-            page: NetButton {
-                text: qsTr("Cancel")
-                onClicked: {
-                    root.finished()
-                }
-            }
-        }
-        DccObject {
-            name: "save"
-            parentName: root.parentUrl + "/footer"
-            weight: 40
-            enabled: root.modified
-            pageType: DccObject.Item
-            page: NetButton {
-                text: qsTr("Save")
-                onClicked: {
-                    if (!sectionGeneric.checkInput() || !sectionSecret.checkInput() || !sectionIPv4.checkInput() || !sectionIPv6.checkInput() || !sectionDNS.checkInput() || !sectionDevice.checkInput()) {
-                        return
-                    }
-
-                    let nConfig = {}
-                    nConfig["connection"] = sectionGeneric.getConfig()
-                    nConfig["802-11-wireless-security"] = sectionSecret.getConfigWSecurity()
-                    nConfig["802-1x"] = sectionSecret.getConfig802_1x()
-                    nConfig["ipv4"] = sectionIPv4.getConfig()
-                    nConfig["ipv6"] = sectionIPv6.getConfig()
-                    if (nConfig["ipv4"] === undefined) {
-                        nConfig["ipv4"] = {}
-                    }
-                    if (nConfig["ipv6"] === undefined) {
-                        nConfig["ipv6"] = {}
-                    }
-                    
-                    // 获取DNS配置并分离IPv4和IPv6
-                    let dnsConfig = sectionDNS.getConfig()
-                    let ipv4Dns = []
-                    let ipv6Dns = []
-                    
-                    for (let dns of dnsConfig) {
-                        if (typeof dns === 'number') {
-                            // IPv4 DNS（数字格式）
-                            ipv4Dns.push(dns)
-                        } else if (typeof dns === 'string') {
-                            // IPv6 DNS（字符串格式）
-                            ipv6Dns.push(dns)
-                        }
-                    }
-                    
-                    // 分别保存到IPv4和IPv6配置中，但要考虑各自的方法
-                    // 只有当IPv4不是disabled时才分配DNS
-                    if (nConfig["ipv4"]["method"] !== "disabled") {
-                        nConfig["ipv4"]["dns"] = ipv4Dns
-                    }
-                    // 只有当IPv6不是disabled和ignore时才分配DNS
-                    if (nConfig["ipv6"]["method"] !== "disabled" && nConfig["ipv6"]["method"] !== "ignore") {
-                        nConfig["ipv6"]["dns"] = ipv6Dns
-                    }
-                    let devConfig = sectionDevice.getConfig()
-                    if (devConfig.interfaceName.length === 0) {
-                        delete nConfig["connection"]["interface-name"]
-                    } else {
-                        nConfig["connection"]["interface-name"] = devConfig.interfaceName
-                    }
-                    if (nConfig["connection"].type === "802-11-wireless" && !devConfig.hasOwnProperty("ssid")) {
-                        devConfig["ssid"] = nConfig["connection"]["id"]
-                    }
-
-                    nConfig[config.connection.type] = devConfig
-                    if (netItem) {
-                        dccData.exec(NetManager.SetConnectInfo, netItem.id, nConfig)
-                    } else {
-                        dccData.exec(NetManager.SetConnectInfo, "", nConfig)
-                    }
-                    root.modified = false
-                    root.finished()
                 }
             }
         }

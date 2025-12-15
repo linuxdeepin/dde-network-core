@@ -150,19 +150,86 @@ DccObject {
         parentName: root.parentUrl
         weight: 20
         pageType: DccObject.Item
-        DccObject {
-            name: "delete"
-            parentName: root.parentUrl + "/footer"
-            weight: 10
-            pageType: DccObject.Item
-            visible: config && config.connection.uuid !== "{00000000-0000-0000-0000-000000000000}"
-            page: NetButton {
-                contentItem: D.IconLabel {
-                    text: qsTr("Delete")
-                    color: "red"
+        page: Item {
+            implicitHeight: footerLayout.implicitHeight + 10
+            RowLayout {
+                id: footerLayout
+                anchors.fill: parent
+                anchors.leftMargin: -10
+                anchors.rightMargin: -10
+                NetButton {
+                    visible: config && config.connection.uuid !== "{00000000-0000-0000-0000-000000000000}"
+                    contentItem: D.IconLabel {
+                        text: qsTr("Delete")
+                        color: "red"
+                    }
+                    onClicked: {
+                        deleteDialog.createObject(this).show()
+                    }
                 }
-                onClicked: {
-                    deleteDialog.createObject(this).show()
+                NetButton {
+                    visible: config && config.connection.uuid !== "{00000000-0000-0000-0000-000000000000}" && (vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["openvpn"]))
+                    text: qsTr("Export")
+                    onClicked: {
+                        exportFileDialog.createObject(this).open()
+                    }
+                }
+                Item {
+                    Layout.fillWidth: true
+                }
+                NetButton {
+                    text: qsTr("Cancel")
+                    onClicked: {
+                        root.finished()
+                    }
+                }
+                NetButton {
+                    text: qsTr("Save")
+                    enabled: root.modified
+                    onClicked: {
+                        if (!sectionGeneric.checkInput() || !sectionVPN.checkInput() || !sectionIPv4.checkInput() || !sectionIPv6.checkInput() || !sectionDNS.checkInput()) {
+                            return
+                        }
+
+                        let nConfig = {}
+                        nConfig["connection"] = sectionGeneric.getConfig()
+                        nConfig["vpn"] = sectionVPN.getConfig()
+                        nConfig["ipv4"] = sectionIPv4.getConfig()
+                        nConfig["ipv6"] = sectionIPv6.getConfig()
+                        if (nConfig["ipv4"] === undefined) {
+                            nConfig["ipv4"] = {}
+                        }
+                        if (nConfig["ipv6"] === undefined) {
+                            nConfig["ipv6"] = {}
+                        }
+
+                        // 获取DNS配置并分离IPv4和IPv6
+                        let dnsConfig = sectionDNS.getConfig()
+                        let ipv4Dns = []
+                        let ipv6Dns = []
+
+                        for (let dns of dnsConfig) {
+                            if (typeof dns === 'number') {
+                                // IPv4 DNS（数字格式）
+                                ipv4Dns.push(dns)
+                            } else if (typeof dns === 'string') {
+                                // IPv6 DNS（字符串格式）
+                                ipv6Dns.push(dns)
+                            }
+                        }
+
+                        // 分别保存到IPv4和IPv6配置中
+                        nConfig["ipv4"]["dns"] = ipv4Dns
+                        nConfig["ipv6"]["dns"] = ipv6Dns
+                        nConfig["vpn"]["service-type"] = NetUtils.toVpnKey(vpnType)
+                        if (netItem) {
+                            dccData.exec(NetManager.SetConnectInfo, netItem.id, nConfig)
+                        } else {
+                            dccData.exec(NetManager.SetConnectInfo, "", nConfig)
+                        }
+                        root.modified = false
+                        root.finished()
+                    }
                 }
             }
         }
@@ -197,7 +264,6 @@ DccObject {
                             Layout.fillHeight: true
                             color: this.palette.button
                         }
-
                         D.Button {
                             Layout.fillWidth: true
                             contentItem: D.IconLabel {
@@ -216,108 +282,20 @@ DccObject {
                 }
             }
         }
-        DccObject {
-            name: "export"
-            parentName: root.parentUrl + "/footer"
-            weight: 20
-            visible: config && config.connection.uuid !== "{00000000-0000-0000-0000-000000000000}" && (vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["openvpn"]))
-            pageType: DccObject.Item
-            page: NetButton {
-                text: qsTr("Export")
-                onClicked: {
-                    exportFileDialog.createObject(this).open()
+        Component {
+            id: exportFileDialog
+            FileDialog {
+                visible: false
+                fileMode: FileDialog.SaveFile
+                nameFilters: [qsTr("*.conf")]
+                currentFile: root.config.connection.id
+                onAccepted: {
+                    dccData.exec(NetManager.ExportConnect, netItem.id, {
+                                     "file": currentFile.toString().replace("file://", "")
+                                 })
+                    this.destroy(10)
                 }
-            }
-            Component {
-                id: exportFileDialog
-                FileDialog {
-                    visible: false
-                    fileMode: FileDialog.SaveFile
-                    nameFilters: [qsTr("*.conf")]
-                    currentFile: root.config.connection.id
-                    onAccepted: {
-                        dccData.exec(NetManager.ExportConnect, netItem.id, {
-                                         "file": currentFile.toString().replace("file://", "")
-                                     })
-                        this.destroy(10)
-                    }
-                    onRejected: this.destroy(10)
-                }
-            }
-        }
-        DccObject {
-            name: "spacer"
-            parentName: root.parentUrl + "/footer"
-            weight: 30
-            pageType: DccObject.Item
-            page: Item {
-                Layout.fillWidth: true
-            }
-        }
-        DccObject {
-            name: "cancel"
-            parentName: root.parentUrl + "/footer"
-            weight: 40
-            pageType: DccObject.Item
-            page: NetButton {
-                text: qsTr("Cancel")
-                onClicked: {
-                    root.finished()
-                }
-            }
-        }
-        DccObject {
-            name: "save"
-            parentName: root.parentUrl + "/footer"
-            weight: 50
-            enabled: root.modified
-            pageType: DccObject.Item
-            page: NetButton {
-                text: qsTr("Save")
-                onClicked: {
-                    if (!sectionGeneric.checkInput() || !sectionVPN.checkInput() || !sectionIPv4.checkInput() || !sectionIPv6.checkInput() || !sectionDNS.checkInput()) {
-                        return
-                    }
-
-                    let nConfig = {}
-                    nConfig["connection"] = sectionGeneric.getConfig()
-                    nConfig["vpn"] = sectionVPN.getConfig()
-                    nConfig["ipv4"] = sectionIPv4.getConfig()
-                    nConfig["ipv6"] = sectionIPv6.getConfig()
-                    if (nConfig["ipv4"] === undefined) {
-                        nConfig["ipv4"] = {}
-                    }
-                    if (nConfig["ipv6"] === undefined) {
-                        nConfig["ipv6"] = {}
-                    }
-                    
-                    // 获取DNS配置并分离IPv4和IPv6
-                    let dnsConfig = sectionDNS.getConfig()
-                    let ipv4Dns = []
-                    let ipv6Dns = []
-                    
-                    for (let dns of dnsConfig) {
-                        if (typeof dns === 'number') {
-                            // IPv4 DNS（数字格式）
-                            ipv4Dns.push(dns)
-                        } else if (typeof dns === 'string') {
-                            // IPv6 DNS（字符串格式）
-                            ipv6Dns.push(dns)
-                        }
-                    }
-                    
-                    // 分别保存到IPv4和IPv6配置中
-                    nConfig["ipv4"]["dns"] = ipv4Dns
-                    nConfig["ipv6"]["dns"] = ipv6Dns
-                    nConfig["vpn"]["service-type"] = NetUtils.toVpnKey(vpnType)
-                    if (netItem) {
-                        dccData.exec(NetManager.SetConnectInfo, netItem.id, nConfig)
-                    } else {
-                        dccData.exec(NetManager.SetConnectInfo, "", nConfig)
-                    }
-                    root.modified = false
-                    root.finished()
-                }
+                onRejected: this.destroy(10)
             }
         }
     }

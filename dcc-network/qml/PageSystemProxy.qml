@@ -59,6 +59,7 @@ DccObject {
         DccObject {
             name: "body"
             parentName: root.name + "/menu"
+            weight: 10
             pageType: DccObject.Item
             DccObject {
                 name: "title"
@@ -260,118 +261,90 @@ DccObject {
         DccObject {
             name: "footer"
             parentName: root.name + "/menu"
+            weight: 20
+            visible: method !== NetType.None
             pageType: DccObject.Item
-            DccObject {
-                name: "spacer"
-                parentName: root.name + "/menu/footer"
-                visible: method !== NetType.None
-                weight: 20
-                pageType: DccObject.Item
-                page: Item {
-                    Layout.fillWidth: true
-                }
-            }
-            DccObject {
-                name: "cancel"
-                parentName: root.name + "/menu/footer"
-                visible: method !== NetType.None
-                displayName: qsTr("Cancel")
-                weight: 30
-                pageType: DccObject.Item
-                page: Button {
-                    implicitHeight: implicitContentHeight + 10
-                    implicitWidth: implicitContentWidth + 10
-                    topPadding: 0
-                    bottomPadding: 0
-                    leftPadding: 0
-                    rightPadding: 0
-                    spacing: 0
-                    text: dccObj.displayName
-                    Layout.alignment: Qt.AlignRight
-                    onClicked: root.resetData()
-                }
-            }
-            DccObject {
-                name: "Save"
-                parentName: root.name + "/menu/footer"
-                displayName: qsTr("Save")
-                visible: method !== NetType.None
-                weight: 40
-                pageType: DccObject.Item
-                page: Button {
-                    implicitHeight: implicitContentHeight + 10
-                    implicitWidth: implicitContentWidth + 10
-                    topPadding: 0
-                    bottomPadding: 0
-                    leftPadding: 0
-                    rightPadding: 0
-                    spacing: 0
-                    enabled: (method === NetType.Auto && (inputItem & 0xf0)) || (method === NetType.Manual && (inputItem & 0x0f))
-                    text: dccObj.displayName
-                    Layout.alignment: Qt.AlignRight
-                    function printfObj(obj) {
-                        for (let k in obj) {
-                            console.log(k, obj[k])
-                        }
+            page: Item {
+                implicitHeight: footerLayout.implicitHeight + (method === NetType.Manual ? 10 : 0)
+                RowLayout {
+                    id: footerLayout
+                    anchors.fill: parent
+                    anchors.leftMargin: -10
+                    anchors.rightMargin: -10
+                    Item {
+                        Layout.fillWidth: true
                     }
-
-                    onClicked: {
-                        console.log("save:", method)
-                        console.log("autoUrl.config :", autoUrl.config)
-                        console.log("http.config:", http.config)
-                        printfObj(http.config)
-                        console.log("https.config:", https.config)
-                        printfObj(https.config)
-                        console.log("ftp.config:", ftp.config)
-                        printfObj(ftp.config)
-                        console.log("socks.config:", socks.config)
-                        printfObj(socks.config)
-                        console.log("ignoreHosts.config:", ignoreHosts.config)
-                        let config = {}
-                        switch (method) {
-                        case NetType.None:
-                            break
-                        case NetType.Auto:
-                            autoUrlAlert = false
-                            if (autoUrl.config.length === 0) {
-                                autoUrlAlert = true
-                                return
+                    NetButton {
+                        text: qsTr("Cancel")
+                        onClicked: root.resetData()
+                    }
+                    NetButton {
+                        text: qsTr("Save")
+                        enabled: (method === NetType.Auto && (inputItem & 0xf0)) || (method === NetType.Manual && (inputItem & 0x0f))
+                        function printfObj(obj) {
+                            for (let k in obj) {
+                                console.log(k, obj[k])
                             }
-
-                            config["autoUrl"] = autoUrl.config
-                            break
-                        case NetType.Manual:
-                            if (!http.checkInput() || !https.checkInput() || !ftp.checkInput() || !socks.checkInput()) {
-                                return
-                            }
-                            config["httpAddr"] = http.config["url"]
-                            config["httpPort"] = http.config["port"]
-                            config["httpAuth"] = http.config["auth"]
-                            config["httpUser"] = http.config["user"]
-                            config["httpPassword"] = http.config["password"]
-
-                            config["httpsAddr"] = https.config["url"]
-                            config["httpsPort"] = https.config["port"]
-                            config["httpsAuth"] = https.config["auth"]
-                            config["httpsUser"] = https.config["user"]
-                            config["httpsPassword"] = https.config["password"]
-
-                            config["ftpAddr"] = ftp.config["url"]
-                            config["ftpPort"] = ftp.config["port"]
-                            config["ftpAuth"] = ftp.config["auth"]
-                            config["ftpUser"] = ftp.config["user"]
-                            config["ftpPassword"] = ftp.config["password"]
-
-                            config["socksAddr"] = socks.config["url"]
-                            config["socksPort"] = socks.config["port"]
-                            config["socksAuth"] = socks.config["auth"]
-                            config["socksUser"] = socks.config["user"]
-                            config["socksPassword"] = socks.config["password"]
-                            config["ignoreHosts"] = ignoreHosts.config
-                            break
                         }
-                        config["method"] = method
-                        dccData.exec(NetManager.SetConnectInfo, netItem.id, config)
+
+                        onClicked: {
+                            console.log("save:", method)
+                            console.log("autoUrl.config :", autoUrl.config)
+                            console.log("http.config:", http.config)
+                            printfObj(http.config)
+                            console.log("https.config:", https.config)
+                            printfObj(https.config)
+                            console.log("ftp.config:", ftp.config)
+                            printfObj(ftp.config)
+                            console.log("socks.config:", socks.config)
+                            printfObj(socks.config)
+                            console.log("ignoreHosts.config:", ignoreHosts.config)
+                            let config = {}
+                            switch (method) {
+                            case NetType.None:
+                                break
+                            case NetType.Auto:
+                                autoUrlAlert = false
+                                if (autoUrl.config.length === 0) {
+                                    autoUrlAlert = true
+                                    return
+                                }
+
+                                config["autoUrl"] = autoUrl.config
+                                break
+                            case NetType.Manual:
+                                if (!http.checkInput() || !https.checkInput() || !ftp.checkInput() || !socks.checkInput()) {
+                                    return
+                                }
+                                config["httpAddr"] = http.config["url"]
+                                config["httpPort"] = http.config["port"]
+                                config["httpAuth"] = http.config["auth"]
+                                config["httpUser"] = http.config["user"]
+                                config["httpPassword"] = http.config["password"]
+
+                                config["httpsAddr"] = https.config["url"]
+                                config["httpsPort"] = https.config["port"]
+                                config["httpsAuth"] = https.config["auth"]
+                                config["httpsUser"] = https.config["user"]
+                                config["httpsPassword"] = https.config["password"]
+
+                                config["ftpAddr"] = ftp.config["url"]
+                                config["ftpPort"] = ftp.config["port"]
+                                config["ftpAuth"] = ftp.config["auth"]
+                                config["ftpUser"] = ftp.config["user"]
+                                config["ftpPassword"] = ftp.config["password"]
+
+                                config["socksAddr"] = socks.config["url"]
+                                config["socksPort"] = socks.config["port"]
+                                config["socksAuth"] = socks.config["auth"]
+                                config["socksUser"] = socks.config["user"]
+                                config["socksPassword"] = socks.config["password"]
+                                config["ignoreHosts"] = ignoreHosts.config
+                                break
+                            }
+                            config["method"] = method
+                            dccData.exec(NetManager.SetConnectInfo, netItem.id, config)
+                        }
                     }
                 }
             }

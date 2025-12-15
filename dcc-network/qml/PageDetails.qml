@@ -156,23 +156,29 @@ DccObject {
     DccObject {
         name: "body"
         parentName: root.name
+        weight: 10
         pageType: DccObject.Item
     }
     DccObject {
         name: "footer"
         parentName: root.name
+        weight: 20
         pageType: DccObject.Item
-        DccObject {
-            name: "checkNetwork"
-            parentName: root.name + "/footer"
-            weight: 40
-            pageType: DccObject.Item
-            visible: dccData.netCheckAvailable()
-            page: NetButton {
-                text: qsTr("Network Detection")
-                Layout.alignment: Qt.AlignRight
-                onClicked: {
-                    dccData.exec(NetManager.GoToSecurityTools, "net-check", {})
+        visible: dccData.netCheckAvailable()
+        page: Item {
+            implicitHeight: footerLayout.implicitHeight
+            RowLayout {
+                id: footerLayout
+                anchors.fill: parent
+                anchors.rightMargin: -10
+                Item {
+                    Layout.fillWidth: true
+                }
+                NetButton {
+                    text: qsTr("Network Detection")
+                    onClicked: {
+                        dccData.exec(NetManager.GoToSecurityTools, "net-check", {})
+                    }
                 }
             }
         }

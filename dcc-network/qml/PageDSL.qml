@@ -24,6 +24,7 @@ DccObject {
     DccObject {
         name: "body"
         parentName: root.name
+        weight: 10
         pageType: DccObject.Item
         DccObject {
             name: "networkList"
@@ -135,17 +136,22 @@ DccObject {
     DccObject {
         name: "footer"
         parentName: root.name
+        weight: 20
         pageType: DccObject.Item
-        DccObject {
-            name: "addDSL"
-            parentName: root.name + "/footer"
-            weight: 40
-            pageType: DccObject.Item
-            page: NetButton {
-                Layout.alignment: Qt.AlignRight
-                text: qsTr("Add PPPoE connection")
-                onClicked: {
-                    dccData.exec(NetManager.ConnectInfo, netItem.id, {})
+        page: Item {
+            implicitHeight: footerLayout.implicitHeight
+            RowLayout {
+                id: footerLayout
+                anchors.fill: parent
+                anchors.rightMargin: -10
+                Item {
+                    Layout.fillWidth: true
+                }
+                NetButton {
+                    text: qsTr("Add PPPoE connection")
+                    onClicked: {
+                        dccData.exec(NetManager.ConnectInfo, netItem.id, {})
+                    }
                 }
             }
         }

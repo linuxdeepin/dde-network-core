@@ -47,6 +47,7 @@ DccObject {
         DccObject {
             name: "body"
             parentName: root.name + "/page"
+            weight: 10
             pageType: DccObject.Item
             DccObject {
                 name: "title"
@@ -269,18 +270,23 @@ DccObject {
         DccObject {
             name: "footer"
             parentName: root.name + "/page"
+            weight: 20
             pageType: DccObject.Item
-            DccObject {
-                name: "addNetwork"
-                parentName: root.name + "/page/footer"
-                displayName: qsTr("Add Network Connection")
-                weight: 40
-                pageType: DccObject.Item
-                page: NetButton {
-                    text: dccObj.displayName
-                    Layout.alignment: Qt.AlignRight
-                    onClicked: {
-                        dccData.exec(NetManager.ConnectInfo, netItem.id, {})
+            page: Item {
+                implicitHeight: footerLayout.implicitHeight
+                RowLayout {
+                    id: footerLayout
+                    anchors.fill: parent
+                    anchors.leftMargin: -10
+                    anchors.rightMargin: -10
+                    Item {
+                        Layout.fillWidth: true
+                    }
+                    NetButton {
+                        text: qsTr("Add Network Connection")
+                        onClicked: {
+                            dccData.exec(NetManager.ConnectInfo, netItem.id, {})
+                        }
                     }
                 }
             }

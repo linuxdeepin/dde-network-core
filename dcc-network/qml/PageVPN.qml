@@ -38,6 +38,7 @@ DccObject {
         DccObject {
             name: "body"
             parentName: root.name + "/menu"
+            weight: 10
             pageType: DccObject.Item
             DccObject {
                 name: "title"
@@ -47,7 +48,13 @@ DccObject {
                 weight: 10
                 backgroundType: DccObject.Normal
                 pageType: DccObject.Editor
-                page: devCheck
+                page: D.Switch {
+                    checked: netItem.isEnabled
+                    enabled: netItem.enabledable
+                    onClicked: {
+                        dccData.exec(netItem.isEnabled ? NetManager.DisabledDevice : NetManager.EnabledDevice, netItem.id, {})
+                    }
+                }
             }
             DccObject {
                 name: "networkList"
@@ -157,97 +164,86 @@ DccObject {
         DccObject {
             name: "footer"
             parentName: root.name + "/menu"
+            weight: 20
             pageType: DccObject.Item
-            DccObject {
-                name: "spacer"
-                parentName: root.name + "/menu/footer"
-                weight: 20
-                pageType: DccObject.Item
-                page: Item {
-                    Layout.fillWidth: true
-                }
-            }
-            DccObject {
-                name: "importVPN"
-                parentName: root.name + "/menu/footer"
-                weight: 30
-                pageType: DccObject.Item
-                page: NetButton {
-                    text: qsTr("Import VPN")
-                    Layout.alignment: Qt.AlignRight
-                    onClicked: {
-                        importFileDialog.createObject(this).open()
+            page: Item {
+                implicitHeight: footerLayout.implicitHeight
+                RowLayout {
+                    id: footerLayout
+                    anchors.fill: parent
+                    anchors.leftMargin: -10
+                    anchors.rightMargin: -10
+                    Item {
+                        Layout.fillWidth: true
                     }
-                }
-                Connections {
-                    target: dccData
-                    function onRequest(cmd, id, param) {
-                        if (cmd === NetManager.ImportError && id === root.netItem.id) {
-                            importErrorDialog.createObject(this).show()
+                    NetButton {
+                        text: qsTr("Import VPN")
+                        onClicked: {
+                            importFileDialog.createObject(this).open()
                         }
                     }
-                }
-
-                Component {
-                    id: importFileDialog
-                    FileDialog {
-                        visible: false
-                        nameFilters: [qsTr("*.conf")]
-                        onAccepted: {
-                            dccData.exec(NetManager.ImportConnect, netItem.id, {
-                                             "file": currentFile.toString().replace("file://", "")
-                                         })
-                            this.destroy(10)
-                        }
-                        onRejected: this.destroy(10)
-                    }
-                }
-                Component {
-                    id: importErrorDialog
-                    D.DialogWindow {
-                        modality: Qt.ApplicationModal
-                        width: 380
-                        icon: "dialog-error"
-                        onClosing: this.destroy(10)
-                        ColumnLayout {
-                            width: parent.width
-                            Label {
-                                Layout.fillWidth: true
-                                Layout.leftMargin: 50
-                                Layout.rightMargin: 50
-                                text: qsTr("Import Error")
-                                font.bold: true
-                                wrapMode: Text.WordWrap
-                                horizontalAlignment: Text.AlignHCenter
-                            }
-                            Label {
-                                Layout.fillWidth: true
-                                Layout.leftMargin: 50
-                                Layout.rightMargin: 50
-                                text: qsTr("File error")
-                                wrapMode: Text.WordWrap
-                                horizontalAlignment: Text.AlignHCenter
-                            }
-                            Button {
-                                Layout.fillWidth: true
-                                Layout.margins: 10
-                                text: qsTr("OK")
-                                onClicked: close()
-                            }
+                    NetButton {
+                        text: qsTr("Add VPN")
+                        onClicked: {
+                            dccData.exec(NetManager.ConnectInfo, netItem.id, {})
                         }
                     }
                 }
             }
-            DccObject {
-                name: "addVPN"
-                parentName: root.name + "/menu/footer"
-                weight: 40
-                pageType: DccObject.Item
-                page: NetButton {
-                    text: qsTr("Add VPN")
-                    Layout.alignment: Qt.AlignRight
-                    onClicked: {
-                        dccData.exec(NetManager.ConnectInfo, netItem.id, {})
+            Connections {
+                target: dccData
+                function onRequest(cmd, id, param) {
+                    if (cmd === NetManager.ImportError && id === root.netItem.id) {
+                        importErrorDialog.createObject(this).show()
+                    }
+                }
+            }
+            Component {
+                id: importFileDialog
+                FileDialog {
+                    visible: false
+                    nameFilters: [qsTr("*.conf")]
+                    onAccepted: {
+                        dccData.exec(NetManager.ImportConnect, netItem.id, {
+                                         "file": currentFile.toString().replace("file://", "")
+                                     })
+                        this.destroy(10)
+                    }
+                    onRejected: this.destroy(10)
+                }
+            }
+            Component {
+                id: importErrorDialog
+                D.DialogWindow {
+                    modality: Qt.ApplicationModal
+                    width: 380
+                    icon: "dialog-error"
+                    onClosing: this.destroy(10)
+                    ColumnLayout {
+                        width: parent.width
+                        Label {
+                            Layout.fillWidth: true
+                            Layout.leftMargin: 50
+                            Layout.rightMargin: 50
+                            text: qsTr("Import Error")
+                            font.bold: true
+                            wrapMode: Text.WordWrap
+                            horizontalAlignment: Text.AlignHCenter
+                        }
+                        Label {
+                            Layout.fillWidth: true
+                            Layout.leftMargin: 50
+                            Layout.rightMargin: 50
+                            text: qsTr("File error")
+                            wrapMode: Text.WordWrap
+                            horizontalAlignment: Text.AlignHCenter
+                        }
+                        Button {
+                            Layout.fillWidth: true
+                            Layout.margins: 10
+                            text: qsTr("OK")
+                            onClicked: close()
+                        }
                     }
                 }
             }
