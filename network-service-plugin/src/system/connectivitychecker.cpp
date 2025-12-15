@@ -278,10 +278,11 @@ void LocalConnectionvityChecker::onFinished(int exitCode)
 void LocalConnectionvityChecker::clearProcess()
 {
     for (auto it = m_checkUrls.begin(); it != m_checkUrls.end(); ++it) {
-        if (it.value()) {
-            it.value()->terminate();
-            it.value()->deleteLater();
+        if (auto process = it.value()) {
             it.value() = nullptr;
+            if (process->state() != QProcess::NotRunning) {
+                process->terminate();
+            }
         }
     }
 }
