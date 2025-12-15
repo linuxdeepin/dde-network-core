@@ -1547,22 +1547,16 @@ void NetManagerThreadPrivate::doSetConnectInfo(const QString &id, NetType::NetIt
         if (!settings->autoconnect()) {
             usedAdd = true;
         }
-        // settings->connectionType()
-        // if (settings->connectionType() == ConnectionSettings::Vpn || settings->connectionType() == ConnectionSettings::Pppoe || !settings->autoconnect()) {
-        //     usedAdd = true;
-        // } else if (settings->connectionType() == ConnectionSettings::Wired) {
-        //     NetworkManager::Device::Ptr device = NetworkManager::findNetworkInterface(devPath);
-        //     if (device && device->type() == NetworkManager::Device::Type::Ethernet) {
-        //         // 有线连接且当前网卡没有插入网线的情况下，只调用addConnection而不调用addAndActivateConnection
-        //         // 否则会无法添加连接
-        //         usedAdd = !device.staticCast<NetworkManager::WiredDevice>()->carrier();
-        //     }
-        // }
         if (usedAdd || devPath.isEmpty()) {
             reply = NetworkManager::addConnection(settings->toMap());
         } else {
             // 其他场景
-            reply = NetworkManager::addAndActivateConnection(settings->toMap(), devPath, QString());
+            QVariantMap options;
+            if (settings->connectionType() == ConnectionSettings::Wireless) {
+                options.insert("persist", "memory");
+                options.insert("flags", MANULCONNECTION);
+            }
+            reply = NetworkManager::addAndActivateConnection2(settings->toMap(), devPath, QString(), options);
         }
         reply.waitForFinished();
         const QString &connPath = reply.argumentAt(0).value<QDBusObjectPath>().path();
@@ -2402,50 +2396,50 @@ void NetManagerThreadPrivate::onDslActiveConnectionChanged()
 void NetManagerThreadPrivate::updateDetails()
 {
     // 使用对象指针作为键，而不是 name()
-    QSet<NetworkDetails*> currentDetails;
+    QSet<NetworkDetails *> currentDetails;
     for (auto &&details : NetworkController::instance()->networkDetails()) {
         if (!details) // 空指针检查
             continue;
         currentDetails.insert(details);
     }
-    
+
     // 找出需要删除的项（在 m_detailsItemsMap 中但不在 currentDetails 中）
-    QList<NetworkDetails*> toRemove;
+    QList<NetworkDetails *> toRemove;
     for (auto it = m_detailsItemsMap.begin(); it != m_detailsItemsMap.end(); ++it) {
         if (!currentDetails.contains(it.key())) {
             toRemove.append(it.key());
         }
     }
-    
+
     // 删除不再存在的项
     for (auto *details : toRemove) {
         QString itemId = m_detailsItemsMap.value(details);
         m_detailsItemsMap.remove(details);
         Q_EMIT itemRemoved(itemId);
     }
-    
+
     // 添加新项或更新现有项
     int index = 0;
     for (auto &&details : NetworkController::instance()->networkDetails()) {
         if (!details) // 空指针检查
             continue;
-            
+
         // 生成唯一ID：使用对象指针地址
         QString uniqueId = QString("detail_%1").arg(reinterpret_cast<quintptr>(details));
-        
+
         if (!m_detailsItemsMap.contains(details)) {
             // 新项，创建 NetDetailsInfoItem
             m_detailsItemsMap.insert(details, uniqueId);
             connect(details, &NetworkDetails::infoChanged, this, &NetManagerThreadPrivate::updateDetails, Qt::QueuedConnection);
-            
+
             NetDetailsInfoItemPrivate *item = NetItemNew(DetailsInfoItem, uniqueId);
             item->updatename(details->name());
             item->updateindex(index);
             item->item()->moveToThread(m_parentThread);
-            
+
             Q_EMIT itemAdded("Details", item);
         }
-        
+
         // 更新数据
         QList<QStringList> data;
         for (auto &&info : details->items()) {
