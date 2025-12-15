@@ -344,6 +344,12 @@ DccObject {
                             if (!http.checkInput() || !https.checkInput() || !ftp.checkInput() || !socks.checkInput()) {
                                 return
                             }
+                            // Normalize port to remove leading zeros (e.g. 00123 -> 123)
+                            http.normalizePort()
+                            https.normalizePort()
+                            ftp.normalizePort()
+                            socks.normalizePort()
+
                             config["httpAddr"] = http.config["url"]
                             config["httpPort"] = http.config["port"]
                             config["httpAuth"] = http.config["auth"]

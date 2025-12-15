@@ -288,6 +288,10 @@ DccObject {
                     let config = {}
                     if (proxyEnable) {
                         config = root.config
+                        // Normalize port to remove leading zeros and clamp to valid range (0-65535)
+                        let port = Math.min(65535, Math.max(0, parseInt(config.port, 10) || 0))
+                        config.port = String(port)
+                        root.config.port = config.port
                     }
                     config.enable = proxyEnable
 
