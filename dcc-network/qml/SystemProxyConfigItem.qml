@@ -34,6 +34,13 @@ DccObject {
         }
         return true
     }
+
+    // Normalize port value to remove leading zeros and clamp to valid range (0-65535)
+    function normalizePort() {
+        let port = Math.min(65535, Math.max(0, parseInt(root.config.port, 10) || 0))
+        root.config.port = String(port)
+        root.configChanged()
+    }
     pageType: DccObject.Item
     page: DccGroupView {}
     DccObject {
