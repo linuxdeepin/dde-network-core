@@ -244,15 +244,17 @@ DccObject {
                             while (items.length !== 0) {
                                 let tmpItem = items[0]
                                 if (tmpItem.id === id) {
-                                    if (tmpItem.itemType !== NetType.WiredItem) {
-                                        wiredSettings.displayName = qsTr("Add Network Connection")
-                                    } else {
-                                        wiredSettings.displayName = tmpItem.name
-                                    }
-                                    wiredSettings.netItem = tmpItem
-                                    wiredSettings.config = param
+                                    if ((wiredSettings.netItem !== tmpItem) || (DccApp.activeObject !== wiredSettings)) {
+                                        if (tmpItem.itemType !== NetType.WiredItem) {
+                                            wiredSettings.displayName = qsTr("Add Network Connection")
+                                        } else {
+                                            wiredSettings.displayName = tmpItem.name
+                                        }
+                                        wiredSettings.netItem = tmpItem
+                                        wiredSettings.config = param
 
-                                    DccApp.showPage(wiredSettings)
+                                        DccApp.showPage(wiredSettings)
+                                    }
                                     break
                                 }
                                 for (let i in tmpItem.children) {
