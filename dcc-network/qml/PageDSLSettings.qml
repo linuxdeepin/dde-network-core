@@ -30,6 +30,11 @@ DccObject {
             parentName: root.parentUrl + "/body"
             weight: 10
             displayName: qsTr("%1 Network Properties").arg(sectionGeneric.settingsID)
+            onParentItemChanged: {
+                if (parentItem) {
+                    parentItem.leftPadding = 2
+                }
+            }
         }
         SectionGeneric {
             id: sectionGeneric
