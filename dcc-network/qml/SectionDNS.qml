@@ -112,11 +112,16 @@ DccObject {
     canSearch: false
     pageType: DccObject.Item
     page: RowLayout {
-        Label {
-            text: dccObj.displayName
-            font: DccUtils.copyFont(D.DTK.fontManager.t4, {
-                                        "bold": true
+        DccLabel {
+            property D.Palette textColor: D.Palette {
+                normal: Qt.rgba(0, 0, 0, 0.9)
+                normalDark: Qt.rgba(1, 1, 1, 0.9)
+            }
+            font: DccUtils.copyFont(D.DTK.fontManager.t5, {
+                                        "weight": 500
                                     })
+            text: dccObj.displayName
+            color: D.ColorSelector.textColor
         }
         Item {
             Layout.fillWidth: true
@@ -132,6 +137,11 @@ DccObject {
                     isEdit = !isEdit
                 }
             }
+        }
+    }
+    onParentItemChanged: {
+        if (parentItem) {
+            parentItem.leftPadding = 12
         }
     }
     DccObject {
