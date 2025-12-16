@@ -361,12 +361,14 @@ DccObject {
                     while (items.length !== 0) {
                         let tmpItem = items[0]
                         if (tmpItem.id === id) {
-                            wirelessSettings.displayName = tmpItem.name
-                            wirelessSettings.type = tmpItem.itemType
                             wirelessSettings.netItem = tmpItem
-                            wirelessSettings.config = param
+                            if ((wirelessSettings.displayName !== tmpItem.name) || (DccApp.activeObject !== wirelessSettings)) {
+                                wirelessSettings.displayName = tmpItem.name
+                                wirelessSettings.type = tmpItem.itemType
+                                wirelessSettings.config = param
 
-                            DccApp.showPage(wirelessSettings)
+                                DccApp.showPage(wirelessSettings)
+                            }
                             break
                         }
                         for (let i in tmpItem.children) {
