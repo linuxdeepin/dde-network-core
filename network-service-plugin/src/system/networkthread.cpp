@@ -162,9 +162,6 @@ void NetworkThread::onDevicestateChanged(NetworkManager::Device::State newState,
         qCWarning(DSM()) << "sender is not Device";
         return;
     }
-    if ((oldState >= Device::Activated && reason == Device::DeviceRemovedReason) || (newState > oldState && newState == Device::Activated)) {
-        restartIPWatchD();
-    }
     bool enabled = m_networkConfig->deviceEnabled(dev->uni());
     if (!enabled) {
         Device::State state = dev->state();
@@ -361,13 +358,6 @@ bool NetworkThread::airplaneWifiEnabled()
         qCWarning(DSM()) << "get WifiEnabled err:" << reply.error().message();
     }
     return false;
-}
-
-void NetworkThread::restartIPWatchD()
-{
-    if (!QProcess::startDetached("systemctl", { "restart", "ipwatchd.service" })) {
-        qCWarning(DSM()) << "restart IPWatchD failed";
-    }
 }
 
 Device::Ptr NetworkThread::findDevice(QString pathOrIface)
