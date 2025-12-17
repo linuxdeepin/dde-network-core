@@ -38,16 +38,12 @@ void NetworkEnabledConfig::setVpnEnabled(bool enabled)
 
 bool NetworkEnabledConfig::deviceEnabled(const QString &dev)
 {
-    qWarning() << __LINE__ << m_map;
     return m_map.value("Devices", QVariant::fromValue(QMap<QString, bool>())).value<QMap<QString, bool>>().value(dev, true);
 }
 
 void NetworkEnabledConfig::setDeviceEnabled(const QString &dev, bool enabled)
 {
-    qWarning() << __LINE__ << __FUNCTION__ << dev << enabled;
     QMap<QString, bool> map = m_map.value("Devices", QVariant::fromValue(QMap<QString, bool>())).value<QMap<QString, bool>>();
-    qWarning() << __LINE__ << __FUNCTION__ << dev << enabled << map;
-    qWarning() << __LINE__ << __FUNCTION__ << enabled << map.contains(dev);
     if (!enabled || map.contains(dev)) {
         map.insert(dev, enabled);
         m_map.insert("Devices", QVariant::fromValue(map));
@@ -103,7 +99,6 @@ QString NetworkEnabledConfig::saveConfig()
     jsonObj.insert("Devices", devsObj);
     QJsonDocument jsonDoc(jsonObj);
     QString jsonString = jsonDoc.toJson(QJsonDocument::Compact);
-    qWarning() << __LINE__ << m_map << jsonString;
     QFileInfo info(configFile);
     if (!info.dir().mkpath(info.dir().path())) {
         QString err = "failed to save config: failed to create the directory";
