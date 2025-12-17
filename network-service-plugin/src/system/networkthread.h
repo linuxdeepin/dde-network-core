@@ -53,7 +53,6 @@ protected Q_SLOTS:
 protected:
     void disableVpn();
     bool airplaneWifiEnabled();
-    void restartIPWatchD();
     NetworkManager::Device::Ptr findDevice(QString pathOrIface);
 
     inline QDBusConnection dbusConnection() const { return m_dbusConnection; }
