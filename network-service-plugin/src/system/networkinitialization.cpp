@@ -109,25 +109,27 @@ void NetworkInitialization::initConnection()
     QTimer::singleShot(3000, this, [this] {
         // 3秒过后直接调用addFirstConnection函数，在这个函数中，如果连接已经创建了，就不再创建
         // 如果没有创建过连接，那么就执行创建的操作
-        // 调用checkAccountStatus检查当前用户状态并安装当前用户的语言
-        qCDebug(DSM) << "check connection status";
-        checkAccountStatus();
-        if (!m_initilized) {
-            qCWarning(DSM) << "can not found current user, used default lauguage to create connection";
-            // 不管语言有没有安装上，直接添加新连接，如果语言没有安装上，这个时候肯定不会有当前用户的语言了，此时安装就安装默认的
-            // 如果语言安装上了，此时就使用已经安装的语言来新建连接
-            installSystemTranslator();
-        }
         addFirstConnection();
     });
 }
 
 void NetworkInitialization::addFirstConnection()
 {
-    qCDebug(DSM) << "add wired device connection: has add" << m_hasAddFirstConnection;
+    qCDebug(DSM) << "add wired device connection: has add" << m_hasAddFirstConnection << "initilized:" << m_initilized;
 
     if (m_hasAddFirstConnection) {
         return;
+    }
+    if (!m_initilized) {
+        // 调用checkAccountStatus检查当前用户状态并安装当前用户的语言
+        qCDebug(DSM) << "check connection status";
+        checkAccountStatus();
+        if (!m_initilized) {
+            qCInfo(DSM) << "can not found current user, used default lauguage to create connection";
+            // 不管语言有没有安装上，直接添加新连接，如果语言没有安装上，这个时候肯定不会有当前用户的语言了，此时安装就安装默认的
+            // 如果语言安装上了，此时就使用已经安装的语言来新建连接
+            m_initilized = installSystemTranslator();
+        }
     }
     QDBusMessage devs = QDBusMessage::createMethodCall("org.freedesktop.NetworkManager", "/org/freedesktop/NetworkManager", "org.freedesktop.NetworkManager", "GetDevices");
     QDBusPendingReply<QList<QDBusObjectPath>> reply = QDBusConnection::systemBus().asyncCall(devs);
