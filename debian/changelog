@@ -1,3 +1,18 @@
+dde-network-core (2.0.77) unstable; urgency=medium
+
+  * i18n: Updates for project Deepin Desktop Environment (#447)
+  * fix: fix disabled wired network card display issue
+  * style: fix QML function formatting and component reference
+  * feat: optimize wireless connection persistence and network details
+    management
+  * fix: prevent duplicate page navigation
+  * fix: remove debug logs and optimize connection initialization
+  * refactor: remove IPWatchD restart functionality
+  * fix: update network settings page title styles and padding
+  * fix: normalize port input to remove leading zeros in proxy settings
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 18 Dec 2025 19:48:31 +0800
+
 dde-network-core (2.0.76) unstable; urgency=medium
 
   * fix: update IPWatchD D-Bus service interface
