@@ -8,7 +8,7 @@ project(dde-network-core
   LANGUAGES CXX C
 )
 
-option(ENABLE_DEEPIN_NMQT "enable nmqt patch on deepin" OFF)
+option(ENABLE_DEEPIN_NMQT "enable nmqt patch on deepin" ON)
 option(BUILD_TESTS "Build unit tests" OFF)
 
 set(DDE-Network-Core_INCLUDE_DIRS  "${CMAKE_SOURCE_DIR}/src-old")
