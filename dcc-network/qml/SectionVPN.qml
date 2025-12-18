@@ -992,7 +992,7 @@ DccTitleObject {
             weight: 280
             visible: root.vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])
             pageType: DccObject.Editor
-            page: requiredLineEdit
+            page: lineEdit
         }
         DccObject {
             name: "virtual"
@@ -1536,7 +1536,7 @@ DccTitleObject {
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 1194
                 from: 0
                 to: 65535
-                textFromValue: function(value) {
+                textFromValue: function (value) {
                     return value.toString()
                 }
                 onValueChanged: {
@@ -1580,7 +1580,7 @@ DccTitleObject {
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 0
                 from: 0
                 to: 65535
-                textFromValue: function(value) {
+                textFromValue: function (value) {
                     return value.toString()
                 }
                 onValueChanged: {
@@ -1662,7 +1662,7 @@ DccTitleObject {
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 1500
                 from: 1280
                 to: 9000
-                textFromValue: function(value) {
+                textFromValue: function (value) {
                     return value.toString()
                 }
                 onValueChanged: {
@@ -1706,7 +1706,7 @@ DccTitleObject {
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 1300
                 from: 0
                 to: 65535
-                textFromValue: function(value) {
+                textFromValue: function (value) {
                     return value.toString()
                 }
                 onValueChanged: {
@@ -1934,7 +1934,7 @@ DccTitleObject {
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 0
                 from: 0
                 to: 65535
-                textFromValue: function(value) {
+                textFromValue: function (value) {
                     return value.toString()
                 }
                 onValueChanged: {
@@ -2177,7 +2177,7 @@ DccTitleObject {
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 0
                 from: 0
                 to: 65535
-                textFromValue: function(value) {
+                textFromValue: function (value) {
                     return value.toString()
                 }
                 onValueChanged: {
