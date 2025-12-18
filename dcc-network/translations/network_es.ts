@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="es">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="es">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -19,31 +17,31 @@
     <name>NetUtils</name>
     <message>
         <source>Off</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished">Conflicto de IP</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connecting</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authenticating</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -175,7 +173,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -297,7 +295,7 @@
     </message>
     <message>
         <source>Enable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;Wireless Network Adapter&lt;/a&gt; first if you want to use the personal hotspot.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -320,7 +318,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -457,7 +455,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -519,7 +517,7 @@
     </message>
     <message>
         <source>My Networks</source>
-        <translation type="unfinished">Mis redes</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -585,7 +583,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -675,7 +673,7 @@
     </message>
     <message>
         <source>Only one gateway is allowed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -746,7 +744,7 @@
     </message>
     <message>
         <source>Only one gateway is allowed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1482,7 +1480,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1594,7 +1592,7 @@
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation>No se puede encontrar la red WLAN 802.11 &quot;%1&quot;&#xa0;</translation>
+        <translation>No se puede encontrar la red WLAN 802.11 &quot;%1&quot; </translation>
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
@@ -1661,11 +1659,11 @@
     <name>networkMain</name>
     <message>
         <source>Connection settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Related Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>
