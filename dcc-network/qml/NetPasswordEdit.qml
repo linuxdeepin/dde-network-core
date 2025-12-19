@@ -15,6 +15,15 @@ D.PasswordEdit {
     placeholderText: qsTr("Required")
     echoButtonVisible: newInput
     showAlert: dataItem.errorKey === dccObj.name
+    MouseArea {
+        anchors.fill: parent
+        acceptedButtons: Qt.RightButton
+        onClicked: {
+            if (mouse.button === Qt.RightButton) {
+                mouse.accepted = true
+            }
+        }
+    }
     onTextChanged: {
         if (!initialized) {
             return
