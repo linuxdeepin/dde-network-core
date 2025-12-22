@@ -464,7 +464,7 @@
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"/>
+        <translation>Connecté</translation>
     </message>
 </context>
 <context>
