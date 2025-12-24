@@ -56,5 +56,7 @@ Description: the plugin of network for dde-lock
 Package: deepin-service-plugin-network
 Architecture: any
 Depends: ${misc:Depends},${shlibs:Depends},curl
+Breaks: dde-daemon (<<6.1.58)
+Replaces: dde-daemon (<<6.1.58)
 Description: the plugin of network service for deepin-service-manager
  deepin-service-plugin-network module
