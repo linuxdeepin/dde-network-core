@@ -1,3 +1,13 @@
+dde-network-core (2.0.78) unstable; urgency=medium
+
+  * fix: remove Net_MonitorNotify from Net_GreeterFlags
+  * i18n: Updates for project Deepin Desktop Environment (#462)
+  * fix: declare breaks and replace older version of dde-daemon
+  * fix: prevent QProcess warning when destroying running processes
+  * fix: block right-click context menu in NetPasswordEdit
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 25 Dec 2025 19:34:17 +0800
+
 dde-network-core (2.0.77) unstable; urgency=medium
 
   * i18n: Updates for project Deepin Desktop Environment (#447)
