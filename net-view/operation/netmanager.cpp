@@ -625,8 +625,8 @@ void NetManagerPrivate::onDataChanged(int dataType, const QString &id, const QVa
             item->updateapMode(value.toBool());
     } break;
     case NetManagerThreadPrivate::AvailableConnectionsChanged: {
-        NetWirelessDeviceItemPrivate *item = NetItemPrivate::toItem<NetWirelessDeviceItemPrivate>(findItem(id));
-        if (item) {
+        NetWirelessDeviceItemPrivate *devItem = NetItemPrivate::toItem<NetWirelessDeviceItemPrivate>(findItem(id));
+        if (devItem) {
             const QStringList &connList = value.toStringList();
             NetItemPrivate *mine = findItem(id + ":Mine");
             NetItemPrivate *other = findItem(id + ":Other");
@@ -638,24 +638,25 @@ void NetManagerPrivate::onDataChanged(int dataType, const QString &id, const QVa
                     if (connList.contains(wirelessItem->id())) {
                         wirelessItem->updatehasConnection(true);
                         if (wirelessItem->getParentPrivate() == other) {
-                            other->removeChild(wirelessItem);
-                        }
-                        if (wirelessItem->getParentPrivate() != mine) {
+                            if (!mine->getParent()) {
+                                devItem->addChild(mine);
+                            }
+                            other->moveChild(wirelessItem, mine);
+                        } else if (wirelessItem->getParentPrivate() != mine) {
                             mine->addChild(wirelessItem);
                         }
                     } else {
                         wirelessItem->updatehasConnection(false);
                         if (wirelessItem->getParentPrivate() == mine) {
-                            mine->removeChild(wirelessItem);
-                        }
-                        if (wirelessItem->getParentPrivate() != other) {
+                            mine->moveChild(wirelessItem, other);
+                        } else if (wirelessItem->getParentPrivate() != other) {
                             other->addChild(wirelessItem);
                         }
                     }
                 }
             }
             if (!mine->getParent() && mine->getChildrenNumber() != 0) {
-                findItem(id)->addChild(mine);
+                devItem->addChild(mine);
             } else if (mine->getParent() && mine->getChildrenNumber() == 0) {
                 mine->getParentPrivate()->removeChild(mine);
             }

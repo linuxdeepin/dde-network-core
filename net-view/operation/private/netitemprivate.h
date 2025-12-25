@@ -52,7 +52,8 @@ public:
 public:
     virtual ~NetItemPrivate();
     virtual bool addChild(NetItemPrivate *child, int index = -1);
-    void removeChild(NetItemPrivate *child);
+    bool removeChild(NetItemPrivate *child);
+    bool moveChild(NetItemPrivate *child, NetItemPrivate *newParent);
     void updatename(const QString &name);
     void updateid(const QString &id);
 

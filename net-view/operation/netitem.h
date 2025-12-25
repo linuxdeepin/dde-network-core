@@ -63,6 +63,9 @@ Q_SIGNALS:
     void childAdded(const NetItem *child);
     void childAboutToBeRemoved(const NetItem *parent, int pos);
     void childRemoved(const NetItem *child);
+    // Move过程中，会有对应的Added、Removed，使用model时需要过虑掉
+    void childAboutToBeMoved(const NetItem *parent, int pos, const NetItem *newParent, int newPos);
+    void childMoved(const NetItem *child);
     void childrenChanged();
 
 protected:

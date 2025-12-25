@@ -10,8 +10,8 @@
 #include <NetworkManagerQt/Device>
 #include <NetworkManagerQt/WirelessSecuritySetting>
 
-#include <QObject>
 #include <QMap>
+#include <QObject>
 
 class QTimer;
 
@@ -51,9 +51,9 @@ public:
     static QVariantMap CheckParamValid(const QVariantMap &param);
     static bool CheckPasswordValid(const QString &key, const QString &password);
 
-    inline bool NetCheckAvailable() { return m_netCheckAvailable; }
+    inline bool NetCheckAvailable() const { return m_netCheckAvailable; }
 
-    inline bool AirplaneModeEnabled() { return m_airplaneModeEnabled; }
+    inline bool AirplaneModeEnabled() const { return m_airplaneModeEnabled; }
 
     void setEnabled(bool enabled);
     void setAutoScanInterval(int ms);
@@ -286,7 +286,7 @@ private:
     bool m_airplaneModeEnabled;
     bool m_isSleeping;
     QString m_serverKey;
-    QMap<NetworkDetails*, QString> m_detailsItemsMap;  // 存储 NetworkDetails 指针到唯一ID的映射
+    QMap<NetworkDetails *, QString> m_detailsItemsMap; // 存储 NetworkDetails 指针到唯一ID的映射
     QString m_showPageCmd;
     QTimer *m_showPageTimer;
     QString m_newVPNuuid;
