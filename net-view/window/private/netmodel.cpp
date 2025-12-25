@@ -147,10 +147,12 @@ void NetModel::connectObject(const NetItem *obj)
         const NetItem *o = objs.takeFirst();
 
         connect(o, &NetItem::dataChanged, this, &NetModel::updateObject);
-        connect(o, &NetItem::childAboutToBeAdded, this, &NetModel::AboutToAddObject);
+        connect(o, &NetItem::childAboutToBeAdded, this, &NetModel::aboutToAddObject);
         connect(o, &NetItem::childAdded, this, &NetModel::addObject);
-        connect(o, &NetItem::childAboutToBeRemoved, this, &NetModel::AboutToRemoveObject);
+        connect(o, &NetItem::childAboutToBeRemoved, this, &NetModel::aboutToRemoveObject);
         connect(o, &NetItem::childRemoved, this, &NetModel::removeObject);
+        connect(o, &NetItem::childAboutToBeMoved, this, &NetModel::aboutToBeMoveObject);
+        connect(o, &NetItem::childMoved, this, &NetModel::moveObject);
         int i = o->getChildrenNumber();
         while (i--) {
             objs.append(o->getChild(i));
@@ -181,7 +183,7 @@ void NetModel::updateObject()
     }
 }
 
-void NetModel::AboutToAddObject(const NetItem *parent, int pos)
+void NetModel::aboutToAddObject(const NetItem *parent, int pos)
 {
     QModelIndex i = index(parent);
     beginInsertRows(i, pos, pos);
@@ -193,7 +195,7 @@ void NetModel::addObject(const NetItem *child)
     connectObject(child);
 }
 
-void NetModel::AboutToRemoveObject(const NetItem *parent, int pos)
+void NetModel::aboutToRemoveObject(const NetItem *parent, int pos)
 {
     QModelIndex i = index(parent);
     beginRemoveRows(i, pos, pos);
@@ -203,6 +205,18 @@ void NetModel::removeObject(const NetItem *child)
 {
     endRemoveRows();
     disconnectObject(child);
+}
+
+void NetModel::aboutToBeMoveObject(const NetItem *parent, int pos, const NetItem *newParent, int newPos)
+{
+    QModelIndex i = index(parent);
+    QModelIndex newI = index(newParent);
+    beginMoveRows(i, pos, pos, newI, newPos);
+}
+
+void NetModel::moveObject(const NetItem *child)
+{
+    endMoveRows();
 }
 
 } // namespace network

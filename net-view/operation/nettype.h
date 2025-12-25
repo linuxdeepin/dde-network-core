@@ -83,6 +83,7 @@ public:
         Net_CheckPortal = 0x00000010,            // 设置检查认证网页
         Net_tipsLinkEnabled = 0x00000020,        // 可跳转连接
         Net_autoUpdateHiddenConfig = 0x00000040, // 自动更新隐藏网络配置
+        Net_noUseMoveItem = 0x00000080,          // 不使用项移动，作为列表项时，不应移动处理
 
         Net_8021xToConnect = 0x00000100,                                                         // 连接
         Net_8021xToControlCenter = 0x00000200,                                                   // 跳转控制中心
@@ -108,7 +109,7 @@ public:
         Net_DockFlags = Net_Device | Net_VPN | Net_SysProxy | Net_Airplane | Net_AirplaneTips | Net_VPNTips | Net_tipsLinkEnabled | Net_UseSecretAgent | Net_CheckPortal | Net_8021xToControlCenterUnderConnect | Net_autoUpdateHiddenConfig,
         Net_LockFlags = Net_Device | Net_VPN | Net_SysProxy | Net_Airplane | Net_AirplaneTips | Net_VPNTips | Net_UseSecretAgent | Net_CheckPortal | Net_8021xSendNotifyUnderConnect,
         Net_GreeterFlags = Net_Device | Net_Airplane | Net_AirplaneTips | Net_ServiceNM | Net_AutoAddConnection | Net_UseSecretAgent | Net_CheckPortal | Net_8021xSendNotifyUnderConnect,
-        Net_DccFlags = Net_Device | Net_VPN | Net_VPNChildren | Net_SysProxy | Net_Hotspot | Net_Airplane | Net_DSL | Net_Details,
+        Net_DccFlags = Net_Device | Net_VPN | Net_VPNChildren | Net_SysProxy | Net_Hotspot | Net_Airplane | Net_DSL | Net_Details | Net_noUseMoveItem,
         //
         Net_8021xMask = 0x00000F00,
     };

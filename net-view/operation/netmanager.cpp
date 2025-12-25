@@ -625,8 +625,8 @@ void NetManagerPrivate::onDataChanged(int dataType, const QString &id, const QVa
             item->updateapMode(value.toBool());
     } break;
     case NetManagerThreadPrivate::AvailableConnectionsChanged: {
-        NetWirelessDeviceItemPrivate *item = NetItemPrivate::toItem<NetWirelessDeviceItemPrivate>(findItem(id));
-        if (item) {
+        NetWirelessDeviceItemPrivate *devItem = NetItemPrivate::toItem<NetWirelessDeviceItemPrivate>(findItem(id));
+        if (devItem) {
             const QStringList &connList = value.toStringList();
             NetItemPrivate *mine = findItem(id + ":Mine");
             NetItemPrivate *other = findItem(id + ":Other");
@@ -638,7 +638,14 @@ void NetManagerPrivate::onDataChanged(int dataType, const QString &id, const QVa
                     if (connList.contains(wirelessItem->id())) {
                         wirelessItem->updatehasConnection(true);
                         if (wirelessItem->getParentPrivate() == other) {
-                            other->removeChild(wirelessItem);
+                            if (!mine->getParent()) {
+                                devItem->addChild(mine);
+                            }
+                            if (m_managerThread->flags().testFlag(NetType::Net_noUseMoveItem)) {
+                                other->removeChild(wirelessItem);
+                            } else {
+                                other->moveChild(wirelessItem, mine);
+                            }
                         }
                         if (wirelessItem->getParentPrivate() != mine) {
                             mine->addChild(wirelessItem);
@@ -646,7 +653,11 @@ void NetManagerPrivate::onDataChanged(int dataType, const QString &id, const QVa
                     } else {
                         wirelessItem->updatehasConnection(false);
                         if (wirelessItem->getParentPrivate() == mine) {
-                            mine->removeChild(wirelessItem);
+                            if (m_managerThread->flags().testFlag(NetType::Net_noUseMoveItem)) {
+                                mine->removeChild(wirelessItem);
+                            } else {
+                                mine->moveChild(wirelessItem, other);
+                            }
                         }
                         if (wirelessItem->getParentPrivate() != other) {
                             other->addChild(wirelessItem);
@@ -655,7 +666,7 @@ void NetManagerPrivate::onDataChanged(int dataType, const QString &id, const QVa
                 }
             }
             if (!mine->getParent() && mine->getChildrenNumber() != 0) {
-                findItem(id)->addChild(mine);
+                devItem->addChild(mine);
             } else if (mine->getParent() && mine->getChildrenNumber() == 0) {
                 mine->getParentPrivate()->removeChild(mine);
             }

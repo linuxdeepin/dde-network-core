@@ -149,6 +149,26 @@ void NetItemPrivate::removeChild(NetItemPrivate *child)
     }
 }
 
+void NetItemPrivate::moveChild(NetItemPrivate *child, NetItemPrivate *newParent)
+{
+    if (!child || child->m_parent == newParent->item()) {
+        return;
+    }
+    auto it = std::find(m_children.begin(), m_children.end(), child->item());
+    if (it == m_children.end()) {
+        return;
+    }
+
+    int newIndex = newParent->getChildrenNumber();
+    Q_EMIT m_item->childAboutToBeMoved(m_item, it - m_children.begin(), newParent->item(), newIndex);
+    m_children.erase(it);
+    newParent->m_children.insert(newParent->m_children.begin() + newIndex, child->item());
+    child->m_parent = newParent->item();
+    Q_EMIT m_item->childMoved(child->item());
+    Q_EMIT m_item->childrenChanged();
+    Q_EMIT newParent->item()->childrenChanged();
+}
+
 // UPDATEFUN(NetItem, const QString &, name)
 void NetItemPrivate::updatename(const QString &name)
 {

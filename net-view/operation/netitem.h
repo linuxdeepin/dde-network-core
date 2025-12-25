@@ -63,6 +63,8 @@ Q_SIGNALS:
     void childAdded(const NetItem *child);
     void childAboutToBeRemoved(const NetItem *parent, int pos);
     void childRemoved(const NetItem *child);
+    void childAboutToBeMoved(const NetItem *parent, int pos, const NetItem *newParent, int newPos);
+    void childMoved(const NetItem *child);
     void childrenChanged();
 
 protected:
