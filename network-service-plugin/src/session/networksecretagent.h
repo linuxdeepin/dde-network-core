@@ -12,6 +12,7 @@
 #include <QLocalServer>
 #include <QObject>
 #include <QProcess>
+#include <QTimer>
 
 namespace network {
 namespace sessionservice {
@@ -26,7 +27,7 @@ public:
         DeleteSecrets,
     };
 
-    enum Status { Begin, WaitDialog, End };
+    enum Status { Begin, WaitClient, WaitDialog, End };
 
     explicit SecretsRequest(Type _type)
         : type(_type)
@@ -110,6 +111,9 @@ private Q_SLOTS:
     void authDialogStarted();
     void authDialogReadAllOutput(bool isEnd);
     void doSecretsResult(QString callId, const QByteArray &data, bool isEnd);
+    void runAuthDialog(SecretsRequest &request);
+
+    void waitClientTimeOut();
 
 private:
     QString nextId();
@@ -144,6 +148,7 @@ private:
     QList<QLocalSocket *> m_clients;
     QByteArray m_lastData;
     SecretService *m_secretService;
+    QTimer *m_waitClientTimer;
 };
 } // namespace sessionservice
 } // namespace network

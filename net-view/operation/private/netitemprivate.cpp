@@ -107,14 +107,8 @@ NetItem *NetItemPrivate::getChild(int childPos) const
 
 int NetItemPrivate::getChildIndex(const NetItem *child) const
 {
-    int index = 0;
-    for (auto it = m_children.cbegin(); it != m_children.cend(); it++, index++) {
-        if (*it == child) {
-            return index;
-        }
-    }
-
-    return -1;
+    auto it = std::find(m_children.begin(), m_children.end(), child);
+    return it == m_children.end() ? -1 : it - m_children.begin();
 }
 
 bool NetItemPrivate::addChild(NetItemPrivate *child, int index)
@@ -134,19 +128,35 @@ bool NetItemPrivate::addChild(NetItemPrivate *child, int index)
     return true;
 }
 
-void NetItemPrivate::removeChild(NetItemPrivate *child)
+bool NetItemPrivate::removeChild(NetItemPrivate *child)
 {
-    int index = 0;
-    for (auto it = m_children.begin(); it != m_children.end(); it++, index++) {
-        if (*it == child->item()) {
-            Q_EMIT m_item->childAboutToBeRemoved(m_item, index);
-            m_children.erase(it);
-            child->m_parent = nullptr;
-            Q_EMIT m_item->childRemoved(child->item());
-            Q_EMIT m_item->childrenChanged();
-            break;
-        }
+    auto it = std::find(m_children.begin(), m_children.end(), child->item());
+    if (it == m_children.end()) {
+        return false;
     }
+    Q_EMIT m_item->childAboutToBeRemoved(m_item, it - m_children.begin());
+    m_children.erase(it);
+    child->m_parent = nullptr;
+    Q_EMIT m_item->childRemoved(child->item());
+    Q_EMIT m_item->childrenChanged();
+    return true;
+}
+
+bool NetItemPrivate::moveChild(NetItemPrivate *child, NetItemPrivate *newParent)
+{
+    if (!child || !newParent || child->m_parent == newParent->item()) {
+        return false;
+    }
+    auto it = std::find(m_children.begin(), m_children.end(), child->item());
+    if (it == m_children.end()) {
+        return false;
+    }
+
+    Q_EMIT m_item->childAboutToBeMoved(m_item, it - m_children.begin(), newParent->item(), newParent->getChildrenNumber());
+    removeChild(child);
+    newParent->addChild(child);
+    Q_EMIT m_item->childMoved(child->item());
+    return true;
 }
 
 // UPDATEFUN(NetItem, const QString &, name)

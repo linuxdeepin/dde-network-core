@@ -40,15 +40,18 @@ private:
     void connectObject(const NetItem *obj);
     void disconnectObject(const NetItem *obj);
 
-public Q_SLOTS:
+protected Q_SLOTS:
     void updateObject();
-    void AboutToAddObject(const NetItem *parent, int pos);
+    void aboutToAddObject(const NetItem *parent, int pos);
     void addObject(const NetItem *child);
-    void AboutToRemoveObject(const NetItem *parent, int pos);
+    void aboutToRemoveObject(const NetItem *parent, int pos);
     void removeObject(const NetItem *child);
+    void aboutToBeMoveObject(const NetItem *parent, int pos, const NetItem *newParent, int newPos);
+    void moveObject(const NetItem *child);
 
 private:
     NetItem *m_treeRoot;
+    bool m_moving;
 };
 
 } // namespace network
