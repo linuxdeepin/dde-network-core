@@ -63,7 +63,11 @@ NetworkSecretAgent::NetworkSecretAgent(QObject *parent)
     : NetworkManager::SecretAgent(QStringLiteral("com.deepin.system.network.SecretAgent"), parent)
     , m_callNextId(0)
     , m_secretService(new SecretService(this))
+    , m_waitClientTimer(new QTimer(this))
 {
+    m_waitClientTimer->setSingleShot(true);
+    m_waitClientTimer->setInterval(5000);
+    connect(m_waitClientTimer, &QTimer::timeout, this, &NetworkSecretAgent::waitClientTimeOut);
     m_server = new QLocalServer(this);
     connect(m_server, &QLocalServer::newConnection, this, &NetworkSecretAgent::newConnectionHandler);
     m_server->setSocketOptions(QLocalServer::WorldAccessOption);
@@ -203,24 +207,12 @@ void NetworkSecretAgent::askPasswords(SecretsRequest &request, const QStringList
     QString reqJSON = QJsonDocument(req).toJson(QJsonDocument::Compact);
     qCDebug(DSM()) << "reqJSON:" << reqJSON;
     request.inputCache = reqJSON.toUtf8();
-    // 无线网密码拉起任务栏网络面板，其他使用密码输入弹窗
-    if (connType == "802-11-wireless" && !m_clients.isEmpty()) {
-        for (auto &&client : m_clients) {
-            client->write("\nrequestSecrets:" + reqJSON.toUtf8() + "\n");
-        }
+    if (connType == "802-11-wireless" && m_clients.isEmpty()) {
+        // 启动定时器，等待
+        request.status = SecretsRequest::WaitClient;
+        m_waitClientTimer->start();
     } else {
-        // run auth dialog
-        qCInfo(DSM()) << "run auth dialog:" << NMSecretDialogBin;
-        QProcess *process = new QProcess(this);
-        process->setProperty("callId", request.callId);
-        request.process = process;
-        connect(process, &QProcess::finished, this, &NetworkSecretAgent::authDialogFinished);
-        connect(process, &QProcess::readyReadStandardOutput, this, &NetworkSecretAgent::authDialogReadOutput);
-        connect(process, &QProcess::readyReadStandardError, this, &NetworkSecretAgent::authDialogReadError);
-        connect(process, &QProcess::errorOccurred, this, &NetworkSecretAgent::authDialogError);
-        connect(process, &QProcess::started, this, &NetworkSecretAgent::authDialogStarted);
-        QTimer::singleShot(GET_SECRETS_TIMEOUT, process, &QProcess::kill);
-        process->start(NMSecretDialogBin);
+        runAuthDialog(request);
     }
 }
 
@@ -231,6 +223,8 @@ void NetworkSecretAgent::newConnectionHandler()
     connect(socket, &QLocalSocket::disconnected, this, &NetworkSecretAgent::disconnectedHandler);
     QTimer::singleShot(GET_SECRETS_TIMEOUT, socket, &QLocalSocket::disconnectFromServer);
     m_clients.append(socket);
+    m_waitClientTimer->stop();
+    waitClientTimeOut();
 }
 
 void NetworkSecretAgent::disconnectedHandler()
@@ -535,6 +529,42 @@ void NetworkSecretAgent::doSecretsResult(QString callId, const QByteArray &data,
     dbusConnection().send(request->message.createReply(QVariant::fromValue(request->result)));
     request->status = SecretsRequest::End;
     m_calls.removeAll(*request);
+}
+
+void NetworkSecretAgent::runAuthDialog(SecretsRequest &request)
+{
+    const QString &connType = request.connection.value("connection").value("type").toString();
+    request.status = SecretsRequest::WaitDialog;
+    // 无线网密码拉起任务栏网络面板，其他使用密码输入弹窗
+    if (connType == "802-11-wireless" && !m_clients.isEmpty()) {
+        for (auto &&client : m_clients) {
+            client->write("\nrequestSecrets:" + request.inputCache + "\n");
+        }
+    } else {
+        // run auth dialog
+        qCInfo(DSM()) << "run auth dialog:" << NMSecretDialogBin;
+        QProcess *process = new QProcess(this);
+        process->setProperty("callId", request.callId);
+        request.process = process;
+        connect(process, &QProcess::finished, this, &NetworkSecretAgent::authDialogFinished);
+        connect(process, &QProcess::readyReadStandardOutput, this, &NetworkSecretAgent::authDialogReadOutput);
+        connect(process, &QProcess::readyReadStandardError, this, &NetworkSecretAgent::authDialogReadError);
+        connect(process, &QProcess::errorOccurred, this, &NetworkSecretAgent::authDialogError);
+        connect(process, &QProcess::started, this, &NetworkSecretAgent::authDialogStarted);
+        QTimer::singleShot(GET_SECRETS_TIMEOUT, process, &QProcess::kill);
+        process->start(NMSecretDialogBin);
+    }
+}
+
+void NetworkSecretAgent::waitClientTimeOut()
+{
+    auto it = std::find_if(m_calls.begin(), m_calls.end(), [](const SecretsRequest &req) {
+        return req.status == SecretsRequest::WaitClient;
+    });
+
+    if (it != m_calls.end()) {
+        runAuthDialog(*it);
+    }
 }
 
 QString NetworkSecretAgent::nextId()
