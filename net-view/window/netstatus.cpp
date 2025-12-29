@@ -241,7 +241,7 @@ QWidget *NetStatus::createDockItemTips()
             setHoverTips(HoverType::vpnAndProxy);
     });
     connect(qApp, &QGuiApplication::fontChanged, m_tipsLabel, &QLabel::adjustSize, Qt::QueuedConnection);
-    m_tipsLabel->setContentsMargins(10, 0, 10, 0);
+    m_tipsLabel->setContentsMargins(0, 0, 0, 0);
     m_tipsLabel->setForegroundRole(QPalette::BrightText);
     setHoverTips(m_hoverType);
     return m_tipsLabel;
