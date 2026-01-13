@@ -413,6 +413,7 @@ void NetView::showEvent(QShowEvent *event)
     if (m_shouldUpdateExpand)
         m_manager->exec(NetManager::ToggleExpand, "");
     m_shouldUpdateExpand = false;
+    updateGeometries();
 }
 
 void NetView::hideEvent(QHideEvent *event)
