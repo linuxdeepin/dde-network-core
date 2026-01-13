@@ -69,6 +69,8 @@ public:
         m_mainLayout->setContentsMargins(margin);
     }
     void setMinHeight(int minHeight) { m_minHeight = minHeight; }
+
+public Q_SLOTS:
     void updateSize() {
         auto h = Dock::DOCK_POPUP_WIDGET_MAX_HEIGHT - 20 - m_mainLayout->contentsMargins().top() - (m_netCheckBtn->isVisible() ? (m_netSetBtn->height() + m_netCheckBtn->height() + 10) : m_netSetBtn->height());
         m_netView->setMaxHeight(h);
@@ -88,6 +90,24 @@ protected:
             updateSize();
         }
         return QWidget::eventFilter(watch, event);
+    }
+
+    void showEvent(QShowEvent *event) override
+    {
+        updateSize();
+        QWidget::showEvent(event);
+        QMetaObject::invokeMethod(this, [this]() {
+            updateSize();
+            resize(size());
+        }, Qt::QueuedConnection);
+    }
+
+    void hideEvent(QHideEvent *event) override
+    {
+        QWidget::hideEvent(event);
+        m_minHeight = -1;
+        // 隐藏时更新尺寸为折叠状态，确保下次显示时初始尺寸正确
+        QMetaObject::invokeMethod(this, "updateSize", Qt::QueuedConnection);
     }
 
 private:
