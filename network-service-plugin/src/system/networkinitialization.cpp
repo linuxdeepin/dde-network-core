@@ -403,7 +403,7 @@ static QString getLocaleValue(const QString &filePath, const QStringList &keys, 
 {
     QFile file(filePath);
     if (!file.open(QFile::ReadOnly | QFile::Text)) {
-        qWarning() << "Failed to open locale file:" << filePath << "-" << file.errorString();
+        qCWarning(DSM) << "Failed to open locale file:" << filePath << "-" << file.errorString();
         return QString();
     }
 

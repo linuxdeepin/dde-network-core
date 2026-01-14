@@ -16,15 +16,14 @@ void dbusDebug(const QString &service, const QString &funName, const QDBusConnec
     msg << service;
     QDBusPendingReply<uint> reply = dbusConnection.asyncCall(msg);
     if (reply.isError()) {
-        qWarning() << "API" << funName << "is called by" << service;
-        qWarning() << funName << "error:" << reply.error();
+        qCWarning(DSM) << "API" << funName << "is called by" << service << "error:" << reply.error();
         return;
     }
     uint pid = reply.value();
     QFile file(QString("/proc/%1/cmdline").arg(pid));
     if (file.open(QFile::ReadOnly)) {
         QByteArray cmd = file.readAll();
-        qWarning() << "API" << funName << "is called by" << service << "(" << cmd.split('\0').join(" ") << ")";
+        qCWarning(DSM) << "API" << funName << "is called by" << service << "(" << cmd.split('\0').join(" ") << ")";
     }
 }
 } // namespace service

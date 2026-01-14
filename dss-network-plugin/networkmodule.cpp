@@ -290,7 +290,7 @@ QString NetworkPlugin::message(const QString &msgData)
     QJsonDocument json = QJsonDocument::fromJson(msgData.toLatin1());
     QJsonObject jsonObject = json.object();
     if (!jsonObject.contains("data")) {
-        qWarning() << "msgData don't containt data" << msgData;
+        qCWarning(DNC()) << "msgData don't containt data" << msgData;
         QJsonDocument jsonResult;
         QJsonObject resultObject;
         resultObject.insert("data", QString("msgData don't containt data %1").arg(msgData));
@@ -308,7 +308,7 @@ QString NetworkPlugin::message(const QString &msgData)
         QDBusPendingCall reply = dbusInter.asyncCall("UpdateLanguage", locale);
         reply.waitForFinished();
     } else {
-        qWarning() << networkService << "don't start, wait for it start";
+        qCWarning(DNC()) << networkService << "don't start, wait for it start";
         QDBusServiceWatcher *serviceWatcher = new QDBusServiceWatcher(this);
         serviceWatcher->setConnection(QDBusConnection::systemBus());
         serviceWatcher->addWatchedService(networkService);

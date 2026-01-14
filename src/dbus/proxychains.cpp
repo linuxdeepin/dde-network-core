@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "proxychains.h"
+#include "networkconst.h"
 
 /*
  * Implementation of interface class __ProxyChains
@@ -112,7 +113,7 @@ void ProxyChains::onPropertyChanged(const QString &propName, const QVariant &val
         return;
     }
 
-    qWarning() << "On property changed，property not handle: " << propName;
+    qCWarning(DNC()) << "On property changed，property not handle: " << propName;
     return;
 }
 

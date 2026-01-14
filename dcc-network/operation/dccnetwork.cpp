@@ -6,6 +6,7 @@
 #include "dde-control-center/dccfactory.h"
 #include "netitemmodel.h"
 #include "netmanager.h"
+#include "networkconst.h"
 
 #include <NetworkManagerQt/GenericTypes>
 
@@ -78,7 +79,7 @@ void DccNetwork::exec(NetManager::CmdType cmd, const QString &id, const QVariant
                                 dns.append(addr.toIPv4Address());
                             } else if (addr.protocol() == QAbstractSocket::IPv6Protocol) {
                                 // IPv6地址转换为128位表示（当前系统可能不支持，先跳过）
-                                qWarning() << "IPv6 DNS not fully implemented in backend, DNS:" << dnsStr;
+                                qCWarning(DNC()) << "IPv6 DNS not fully implemented in backend, DNS:" << dnsStr;
                                 // 这里需要实现IPv6 DNS的完整支持
                             }
                         }
@@ -90,7 +91,7 @@ void DccNetwork::exec(NetManager::CmdType cmd, const QString &id, const QVariant
         }
         if (param.contains("ipv6")) {
             QVariantMap ipv6Data = param.value("ipv6").toMap();
-            
+
             // 处理IPv6地址
             if (ipv6Data.contains("address-data")) {
                 const QVariantList &addressData = ipv6Data.value("address-data").toList();
@@ -111,7 +112,7 @@ void DccNetwork::exec(NetManager::CmdType cmd, const QString &id, const QVariant
                 }
                 ipv6Data["addresses"] = QVariant::fromValue(ipv6AddressList);
             }
-            
+
             // 处理IPv6 DNS
             if (ipv6Data.contains("dns")) {
                 const QVariantList &dnsData = ipv6Data.value("dns").toList();
@@ -133,7 +134,7 @@ void DccNetwork::exec(NetManager::CmdType cmd, const QString &id, const QVariant
                     for (const QHostAddress &addr : ipv6DnsAddresses) {
                         ipv6DnsStrings.append(addr.toString());
                     }
-                    
+
                     // 使用字符串列表格式保存IPv6 DNS
                     ipv6Data["dns"] = ipv6DnsStrings;
                     ipv6Data["ignore-auto-dns"] = true;
@@ -143,13 +144,13 @@ void DccNetwork::exec(NetManager::CmdType cmd, const QString &id, const QVariant
                     ipv6Data.remove("dns");
                     ipv6Data.remove("ignore-auto-dns");
                 }
-                
+
                 // 确保IPv6设置存在，即使没有DNS也要设置，以便被正确处理
                 if (ipv6Data.isEmpty()) {
-                    ipv6Data["method"] = "auto";  // 至少设置一个值确保IPv6部分存在
+                    ipv6Data["method"] = "auto"; // 至少设置一个值确保IPv6部分存在
                 }
             }
-            
+
             tmpParam["ipv6"] = QVariant::fromValue(ipv6Data);
         }
         m_manager->exec(cmd, id, tmpParam);
@@ -170,7 +171,7 @@ bool DccNetwork::netCheckAvailable()
     if (!m_manager) {
         return false;
     }
-    
+
     return m_manager->netCheckAvailable();
 }
 

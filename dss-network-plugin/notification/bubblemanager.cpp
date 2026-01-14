@@ -48,14 +48,12 @@ void BubbleManager::CloseNotification(uint id)
         if (bubble->entity()->replacesId() == str_id) {
             bubble->close();
             m_bubbleList.removeOne(bubble);
-            qDebug() << "CloseNotification : id" << str_id;
         }
     }
 
     foreach (auto notify, m_oldEntities) {
         if (notify->replacesId() == str_id) {
             m_oldEntities.removeOne(notify);
-            qDebug() << "CloseNotification : id" << str_id;
         }
     }
 }
