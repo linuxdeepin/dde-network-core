@@ -18,8 +18,6 @@
 #include "wirelessdevice.h"
 #include "connectivityhandler.h"
 
-#include <DLog>
-
 // const static QString networkService = "org.deepin.dde.Network1";
 // const static QString networkPath = "/org/deepin/dde/Network1";
 static QString localeName;
@@ -42,7 +40,6 @@ NetworkController::NetworkController()
     , m_hotspotController(Q_NULLPTR)
     , m_connectivityHandler(new ConnectivityHandler(this))
 {
-    Dtk::Core::loggerInstance()->setDefaultCategory(DNC().categoryName());
     retranslate(QLocale().name());
 
     if (ConfigSetting::instance()->serviceFromNetworkManager()) {
@@ -152,9 +149,9 @@ void NetworkController::installTranslator(const QString &locale)
     }
     if (m_translator->load(QLocale(localeName), "dde-network-core", "_", "/usr/share/dde-network-core/translations")) {
         QCoreApplication::installTranslator(m_translator);
-        qInfo() << "Loaded translation file for dde-network-core:" << m_translator->filePath();
+        qCInfo(DNC()) << "Loaded translation file for dde-network-core:" << m_translator->filePath();
     } else {
-        qWarning() << "Failed to load translation file for dde-network-core";
+        qCWarning(DNC()) << "Failed to load translation file for dde-network-core";
         m_translator->deleteLater();
         m_translator = nullptr;
     }
