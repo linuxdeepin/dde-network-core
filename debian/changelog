@@ -1,3 +1,13 @@
+dde-network-core (2.0.79) unstable; urgency=medium
+
+  * chore: replace qWarning with categorized logging
+  * fix: Fix the abnormal display of network panel height
+  * fix: initialize wireless other item expanded state
+  * feat: add item move support and secret agent improvements
+  * fix: remove left/right margin for dock-network-plugin
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 15 Jan 2026 19:38:34 +0800
+
 dde-network-core (2.0.78) unstable; urgency=medium
 
   * fix: remove Net_MonitorNotify from Net_GreeterFlags
