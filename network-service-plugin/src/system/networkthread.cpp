@@ -277,6 +277,22 @@ QString NetworkThread::setPropVpnEnabled(bool enabled)
 
 QString NetworkThread::enableDevice(NetworkManager::Device::Ptr device)
 {
+    auto availableConnections = device->availableConnections();
+    qCDebug(DSM()) << "available connections:" << availableConnections;
+    QString connPath0;
+    QDateTime maxTs;
+    for (auto &&connPath : availableConnections) {
+        auto settings = connPath->settings();
+        if (!settings->autoconnect()) {
+            continue;
+        }
+        QDateTime ts = settings->timestamp();
+        if (maxTs < ts || connPath0.isEmpty()) {
+            maxTs = ts;
+            connPath0 = connPath->path();
+        }
+    }
+
     bool enabled = NetworkManager::isNetworkingEnabled();
     if (!enabled) {
         NetworkManager::setNetworkingEnabled(true);
@@ -295,20 +311,6 @@ QString NetworkThread::enableDevice(NetworkManager::Device::Ptr device)
     }
 
     // device->setManaged(true); // TODO: 应该不需要
-    auto connPaths = device->availableConnections();
-    qCDebug(DSM()) << "available connections:" << connPaths;
-    QString connPath0;
-    QDateTime maxTs;
-    for (auto &&connPath : connPaths) {
-        auto settings = connPath->settings();
-        if (!settings->autoconnect()) {
-            continue;
-        }
-        QDateTime ts = settings->timestamp();
-        if (maxTs < ts || connPath0.isEmpty()) {
-            connPath0 = connPath->path();
-        }
-    }
     return connPath0.isEmpty() ? "/" : connPath0;
 }
 
