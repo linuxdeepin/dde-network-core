@@ -33,6 +33,7 @@ NetManager::NetManager(NetType::NetManagerFlags flags, QObject *parent)
 {
     NetItemRegisterMetaType();
     connect(d_ptrNetManager.get(), &NetManagerPrivate::request, this, &NetManager::request, Qt::QueuedConnection);
+    connect(d_ptrNetManager.get(), &NetManagerPrivate::vpnStatusChanged, this, &NetManager::vpnStatusChanged, Qt::QueuedConnection);
     d_ptrNetManager->init(flags);
 }
 
