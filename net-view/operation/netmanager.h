@@ -98,7 +98,7 @@ Q_SIGNALS:
     void toControlCenter();
     void netCheckAvailableChanged(const bool &netCheckAvailable);
     void primaryConnectionTypeChanged(ConnectionType type);
-    // void vpnStatusChanged();
+    void vpnStatusChanged();
 
 private:
     QScopedPointer<NetManagerPrivate> d_ptrNetManager;

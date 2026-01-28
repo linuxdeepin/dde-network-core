@@ -404,7 +404,7 @@ void NetStatus::onChildAdded(const NetItem *child)
             connect(deviceItem, &NetDeviceItem::nameChanged, this, &NetStatus::updateVpnAndProxyStatus);
             connect(deviceItem, &NetDeviceItem::enabledableChanged, this, &NetStatus::updateVpnAndProxyStatus);
             connect(deviceItem, &NetDeviceItem::enabledChanged, this, &NetStatus::updateVpnAndProxyStatus);
-            // connect(m_manager, &NetManager::vpnStatusChanged, this, &NetStatus::updateVpnAndProxyStatus);
+            connect(m_manager, &NetManager::vpnStatusChanged, this, &NetStatus::updateVpnAndProxyStatus);
             updateVpnAndProxyStatus();
         } break;
         case NetType::SystemProxyControlItem: {
