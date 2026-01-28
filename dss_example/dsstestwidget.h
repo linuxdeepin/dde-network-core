@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -7,11 +7,6 @@
 
 #include <QWidget>
 
-namespace dss {
-  namespace module {
-    class NetworkPlugin;
-  }
-}
 namespace Dtk {
   namespace Widget {
     class DFloatingButton;
@@ -29,11 +24,9 @@ public:
     ~DssTestWidget();
 
 private:
-    void loadDssPlugin();
     bool eventFilter(QObject *watched, QEvent *event);
 
 private:
-    dss::module::NetworkPlugin *m_pModule;
     Dtk::Widget::DFloatingButton *m_button;
 };
 
