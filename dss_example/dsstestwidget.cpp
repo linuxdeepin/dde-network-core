@@ -1,10 +1,11 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
 #include "dsstestwidget.h"
-#include "networkmodule.h"
 #include <QPushButton>
+#include <QLabel>
+#include <QMessageBox>
 
 #include <DPalette>
 #include <DFloatingButton>
@@ -13,42 +14,30 @@
 #include <QHBoxLayout>
 #include <networkcontroller.h>
 
-using namespace dss::module;
-using namespace dde::network;
 using namespace Dtk::Widget;
 DGUI_USE_NAMESPACE
 
 DssTestWidget::DssTestWidget(QWidget *parent)
     : QWidget(parent)
-    , m_pModule(new NetworkPlugin(this))
+    , m_button(nullptr)
 {
     m_button = new Dtk::Widget::DFloatingButton(this);
     m_button->setIconSize(QSize(26, 26));
     m_button->setFixedSize(QSize(52, 52));
     m_button->setAutoExclusive(true);
     m_button->setBackgroundRole(DPalette::Button);
+    m_button->setIcon(QIcon("network-online-symbolic"));
     m_button->installEventFilter(this);
-    loadDssPlugin();
+    
+    // 创建一个简单的布局
+    QHBoxLayout *layout = new QHBoxLayout(this);
+    layout->setSpacing(0);
+    layout->setContentsMargins(0, 0, 0, 0);
+    layout->addWidget(m_button);
 }
 
 DssTestWidget::~DssTestWidget()
 {
-}
-
-void DssTestWidget::loadDssPlugin()
-{
-    m_pModule->init();
-    if (QWidget *trayWidget = m_pModule->itemWidget()) {
-        trayWidget->setParent(this);
-        QHBoxLayout *layout = new QHBoxLayout(this);
-        layout->setSpacing(0);
-        layout->setContentsMargins(0, 0, 0, 0);
-        layout->addWidget(trayWidget);
-
-        m_button->setLayout(layout);
-    } else {
-        m_button->setIcon(QIcon(m_pModule->icon()));
-    }
 }
 
 bool DssTestWidget::eventFilter(QObject *watched, QEvent *event)
@@ -58,10 +47,9 @@ bool DssTestWidget::eventFilter(QObject *watched, QEvent *event)
         case QEvent::MouseButtonPress: {
                 QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(event);
                 if (mouseEvent->button() == Qt::RightButton) {
-                    const QString itemMenu = m_pModule->itemContextMenu();
-                    qInfo() << itemMenu;
+                    QMessageBox::information(this, "DSS Example", "右键点击 - 网络测试程序");
                 } else if (mouseEvent->button() == Qt::LeftButton) {
-                    m_pModule->content()->show();
+                    QMessageBox::information(this, "DSS Example", "左键点击 - 网络测试程序");
                 }
             }
             break;
