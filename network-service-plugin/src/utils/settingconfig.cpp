@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -22,6 +22,11 @@ bool SettingConfig::reconnectIfIpConflicted() const
 bool SettingConfig::enableConnectivity() const
 {
     return m_enableConnectivity;
+}
+
+int SettingConfig::connectivityIntervalWhenLimit() const
+{
+    return m_connectivityIntervalWhenLimit;
 }
 
 int SettingConfig::connectivityCheckInterval() const
@@ -59,6 +64,16 @@ int SettingConfig::resetWifiOSDEnableTimeout() const
     return m_resetWifiOSDEnableTimeout;
 }
 
+int SettingConfig::httpRequestTimeout() const
+{
+    return m_httpRequestTimeout;
+}
+
+int SettingConfig::httpConnectTimeout() const
+{
+    return m_httpConnectTimeout;
+}
+
 void SettingConfig::onValueChanged(const QString &key)
 {
     if (key == "reconnectIfIpConflicted") {
@@ -66,6 +81,8 @@ void SettingConfig::onValueChanged(const QString &key)
     } else if (key == "enableConnectivity") {
         m_enableConnectivity = dConfig->value(key).toBool();
         enableConnectivityChanged(m_enableConnectivity);
+    } else if (key == QString("ConnectivityIntervalWhenLimit")) {
+        m_connectivityIntervalWhenLimit = dConfig->value("ConnectivityIntervalWhenLimit").toInt();
     } else if (key == QString("ConnectivityCheckInterval")) {
         m_connectivityCheckInterval = dConfig->value("ConnectivityCheckInterval").toInt() * 1000;
         emit connectivityCheckIntervalChanged(m_connectivityCheckInterval);
@@ -81,6 +98,10 @@ void SettingConfig::onValueChanged(const QString &key)
     } else if (key == QString("resetWifiOSDEnableTimeout")) {
         m_resetWifiOSDEnableTimeout = dConfig->value("resetWifiOSDEnableTimeout").toInt();
         emit resetWifiOSDEnableTimeoutChanged(m_resetWifiOSDEnableTimeout);
+    } else if (key == QString("httpRequestTimeout")) {
+        m_httpRequestTimeout = dConfig->value("httpRequestTimeout").toInt();
+    } else if (key == QString("httpConnectTimeout")) {
+        m_httpConnectTimeout = dConfig->value("httpConnectTimeout").toInt();
     }
 }
 
@@ -108,6 +129,9 @@ SettingConfig::SettingConfig(QObject *parent)
         if (keys.contains("enableConnectivity"))
             m_enableConnectivity = dConfig->value("enableConnectivity").toBool();
 
+        if (keys.contains("ConnectivityIntervalWhenLimit"))
+            m_connectivityIntervalWhenLimit = dConfig->value("ConnectivityIntervalWhenLimit").toInt();
+
         if (keys.contains("ConnectivityCheckInterval"))
             m_connectivityCheckInterval = dConfig->value("ConnectivityCheckInterval").toInt();
 
@@ -125,6 +149,12 @@ SettingConfig::SettingConfig(QObject *parent)
 
         if (keys.contains("resetWifiOSDEnableTimeout"))
             m_resetWifiOSDEnableTimeout = dConfig->value("resetWifiOSDEnableTimeout").toInt();
+
+        if (keys.contains("httpRequestTimeout"))
+            m_httpRequestTimeout = dConfig->value("httpRequestTimeout").toInt();
+
+        if (keys.contains("httpConnectTimeout"))
+            m_httpConnectTimeout = dConfig->value("httpConnectTimeout").toInt();
 
         m_disableFailureNotify = dConfig->value("disableFailureNotify", false).toBool();
     }

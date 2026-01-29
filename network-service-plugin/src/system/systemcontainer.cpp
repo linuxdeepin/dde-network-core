@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -12,7 +12,7 @@ using namespace network::systemservice;
 SystemContainer::SystemContainer(QObject *parent)
     : QObject (parent)
     , m_ipConflictHandler(new SystemIPConflict(this))
-    , m_connectivityHelper(new ConnectivityProcesser(m_ipConflictHandler, this))
+    , m_connectivityHelper(new ConnectivityProcesser(this))
 {
     NetworkInitialization::doInit();
 }

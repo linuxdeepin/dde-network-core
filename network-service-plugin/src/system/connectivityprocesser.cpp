@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -10,9 +10,8 @@
 
 using namespace network::systemservice;
 
-ConnectivityProcesser::ConnectivityProcesser(SystemIPConflict *ipConflict, QObject *parent)
+ConnectivityProcesser::ConnectivityProcesser(QObject *parent)
     : QObject(parent)
-    , m_ipConflictHandler(ipConflict)
 {
     SettingConfig *config = SettingConfig::instance();
     connect(config, &SettingConfig::enableConnectivityChanged, this, &ConnectivityProcesser::onEnableConnectivityChanged);
@@ -43,7 +42,7 @@ ConnectivityChecker *ConnectivityProcesser::createConnectivityChecker(bool enabl
     ConnectivityChecker *checker = nullptr;
     if (enableConnectivity) {
         qCDebug(DSM) << "uses local connectivity checker";
-        LocalConnectionvityChecker *localChecker = new LocalConnectionvityChecker(m_ipConflictHandler, this);
+        LocalConnectionvityChecker *localChecker = new LocalConnectionvityChecker(this);
         connect(localChecker, &LocalConnectionvityChecker::portalDetected, this, &ConnectivityProcesser::portalDetected);
         checker = localChecker;
     } else {
