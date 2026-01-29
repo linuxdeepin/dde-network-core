@@ -29,6 +29,7 @@ set(CMAKE_PREFER_PTHREAD_FLAG ON)
 find_package(Qt${QT_NS} COMPONENTS Core Widgets DBus Network LinguistTools REQUIRED)
 find_package(KF${QT_NS}NetworkManagerQt REQUIRED)
 find_package(${DTK_NS} COMPONENTS Core REQUIRED)
+find_package(CURL REQUIRED)
 
 pkg_check_modules(LibNM REQUIRED IMPORTED_TARGET libnm)
 pkg_check_modules(QGSettings REQUIRED gsettings-qt6)
@@ -44,6 +45,7 @@ target_include_directories(${BIN_NAME} PUBLIC
   KF${QT_NS}::NetworkManagerQt
   ${DTK_NS}::Core
   ${QGSettings_INCLUDE_DIRS}
+  ${CURL_INCLUDE_DIRS}
   src
   src/system
   src/session
@@ -61,6 +63,7 @@ target_link_libraries(${BIN_NAME} PRIVATE
   KF${QT_NS}::NetworkManagerQt
   ${DTK_NS}::Core
   ${QGSettings_LIBRARIES}
+  ${CURL_LIBRARIES}
 )
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")

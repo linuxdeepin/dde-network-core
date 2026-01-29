@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -15,6 +15,7 @@ public:
     static SettingConfig *instance();
     bool reconnectIfIpConflicted() const;
     bool enableConnectivity() const;
+    int connectivityIntervalWhenLimit() const;
     int connectivityCheckInterval() const;
     QStringList networkCheckerUrls() const; // 网络检测地址，用于检测网络连通性
     bool checkPortal() const;               // 是否检测网络认证信息
@@ -22,6 +23,8 @@ public:
     bool enableAccountNetwork() const;      // 是否开启用户私有网络(工银瑞信定制)
     bool disableFailureNotify() const;      // 当网络连接失败后,true:不弹出消息,false:弹出消息
     int resetWifiOSDEnableTimeout() const;  // 重新显示网络连接OSD超时
+    int httpRequestTimeout() const;                 // HTTP请求超时时间（秒）
+    int httpConnectTimeout() const;                 // HTTP连接超时时间（秒）
 
 signals:
     void enableConnectivityChanged(bool);
@@ -40,6 +43,7 @@ private:
 private:
     bool m_reconnectIfIpConflicted;
     bool m_enableConnectivity;
+    int m_connectivityIntervalWhenLimit;
     int m_connectivityCheckInterval;
     QStringList m_networkUrls;
     bool m_checkPortal;
@@ -47,6 +51,8 @@ private:
     bool m_enableAccountNetwork;
     bool m_disableFailureNotify;
     int m_resetWifiOSDEnableTimeout;
+    int m_httpRequestTimeout;
+    int m_httpConnectTimeout;
 };
 
 #endif // SERVICE_H

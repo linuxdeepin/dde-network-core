@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -22,7 +22,7 @@ class ConnectivityProcesser : public QObject
     Q_OBJECT
 
 public:
-    explicit ConnectivityProcesser(SystemIPConflict *ipConflict, QObject *parent = nullptr);
+    explicit ConnectivityProcesser(QObject *parent = nullptr);
     ~ConnectivityProcesser();
     void checkConnectivity();
     network::service::Connectivity connectivity() const;
@@ -40,7 +40,6 @@ private slots:
 
 private:
     QScopedPointer<ConnectivityChecker> m_checker;
-    SystemIPConflict *m_ipConflictHandler;
 };
 
 }

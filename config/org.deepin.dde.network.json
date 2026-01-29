@@ -138,7 +138,7 @@
             "visibility": "private"
         },
         "ConnectivityCheckInterval": {
-            "value": 30,
+            "value": 150,
             "serial": 0,
             "flags": [],
             "name": "ConnectivityCheckInterval",
@@ -307,6 +307,39 @@
             "description": "if network connect failure: true:do not notify message, false:notify message",
             "permissions": "readwrite",
             "visibility": "private"
-        }
+        },
+        "httpRequestTimeout":{
+            "value": 15,
+            "serial": 0,
+            "flags":["global"],
+            "name":"httpRequestTimeout",
+            "name[zh_CN]":"HTTP请求超时时间",
+            "description[zh_CN]":"HTTP请求超时时间（单位：秒），默认15秒",
+            "description":"HTTP request timeout in seconds, default 15 seconds",
+            "permissions":"readwrite",
+            "visibility":"private"
+        },
+        "httpConnectTimeout":{
+            "value": 10,
+            "serial": 0,
+            "flags":["global"],
+            "name":"httpConnectTimeout",
+            "name[zh_CN]":"HTTP连接超时时间",
+            "description[zh_CN]":"HTTP连接超时时间（单位：秒），默认10秒",
+            "description":"HTTP connection timeout in seconds, default 10 seconds",
+            "permissions":"readwrite",
+            "visibility":"private"
+        },
+         "ConnectivityIntervalWhenLimit":{
+            "value":30,
+            "serial":0,
+            "flags":["global"],
+            "name":"ConnectivityIntervalWhenLimit",
+            "name[zh_CN]":"网络不通的时候检测网络联通性的时间间隔（单位：秒）",
+            "description[zh_CN]":"网络不通的时候检测网络联通性的时间间隔（单位：秒）",
+            "description":"the span to check connectivity(unit:second) when limit",
+            "permissions":"readwrite",
+            "visibility":"private"
+         }
     }
 }
