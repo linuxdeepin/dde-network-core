@@ -1688,7 +1688,7 @@
     </message>
 </context>
 <context>
-    <name>network</name>
+    <name>Network</name>
     <message>
         <source>Network</source>
         <translation type="unfinished"></translation>
