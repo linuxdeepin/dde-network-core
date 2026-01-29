@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ca">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ca">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -50,18 +48,18 @@
     <name>Network</name>
     <message>
         <source>Network</source>
-        <translation>Xarxa</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>NetworkMain</name>
     <message>
         <source>Connection settings</source>
-        <translation>Configuració de la connexió</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Related Settings</source>
-        <translation>Paràmetres relacionats</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
