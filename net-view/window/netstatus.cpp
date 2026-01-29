@@ -456,6 +456,7 @@ void NetStatus::onStrengthLevelChanged()
     if (item && item->status() != NetType::CS_UnConnected) {
         updateStatus();
     }
+    updateNetworkIcon();
 }
 
 void NetStatus::updateVpnAndProxyStatus()

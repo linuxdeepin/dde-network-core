@@ -114,6 +114,15 @@ bool AccessPointProxyNM::isWlan6() const
     return false;
 }
 
+void AccessPointProxyNM::updateStrengthFromActiveAp(int strength)
+{
+    if (strength == m_strength)
+        return;
+
+    m_strength = strength;
+    Q_EMIT strengthChanged(m_strength);
+}
+
 void AccessPointProxyNM::initState()
 {
     // 获取当前网络的连接状态
