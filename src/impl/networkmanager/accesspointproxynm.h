@@ -39,6 +39,7 @@ public:
     ConnectionStatus status() const override;
     bool hidden() const override;
     bool isWlan6() const override;
+    void updateStrengthFromActiveAp(int strength);
 
 private:
     void initState();

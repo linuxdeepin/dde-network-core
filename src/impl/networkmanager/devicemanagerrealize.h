@@ -11,6 +11,7 @@
 #include <NetworkManagerQt/WirelessDevice>
 #include <NetworkManagerQt/WirelessSecuritySetting>
 
+#include <QMetaObject>
 #include <QDBusReply>
 
 namespace NetworkManager {
@@ -153,6 +154,7 @@ private:
     bool m_hotspotEnabled;
     ProcesserInterface *m_netProcesser;
     bool m_available;
+    QMetaObject::Connection m_activeApStrengthConn;
 };
 
 }

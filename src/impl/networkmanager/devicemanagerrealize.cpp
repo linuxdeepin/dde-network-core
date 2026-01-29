@@ -614,6 +614,36 @@ WirelessDeviceManagerRealize::WirelessDeviceManagerRealize(NetworkManager::Wirel
     NetworkManager::WirelessNetwork::List networks = m_device->networks();
     for (NetworkManager::WirelessNetwork::Ptr network : networks)
         addNetwork(network);
+
+    auto updateActiveApStrength = [this](const NetworkManager::AccessPoint::Ptr &activeAp) {
+        if (activeAp.isNull())
+            return;
+        for (AccessPointInfo *apInfo : m_accessPointInfos) {
+            if (apInfo && apInfo->proxy() && apInfo->proxy()->contains(activeAp->uni())) {
+                apInfo->proxy()->updateStrengthFromActiveAp(activeAp->signalStrength());
+                break;
+            }
+        }
+    };
+
+    // referenceAccessPoint 信号强度变化不及时，需要监听 activeAccessPointChanged 信号
+    auto changeActiveAp = [this, updateActiveApStrength] {
+        if (m_activeApStrengthConn)
+            disconnect(m_activeApStrengthConn);
+        NetworkManager::AccessPoint::Ptr activeAp = m_device->activeAccessPoint();
+        if (activeAp.isNull())
+            return;
+
+        updateActiveApStrength(activeAp);
+        m_activeApStrengthConn = connect(activeAp.data(), &NetworkManager::AccessPoint::signalStrengthChanged, this, [updateActiveApStrength, activeAp] {
+                    updateActiveApStrength(activeAp);
+                }, Qt::UniqueConnection);
+    };
+
+    connect(device.data(), &NetworkManager::WirelessDevice::activeAccessPointChanged, this, [changeActiveAp] {
+        changeActiveAp();
+    });
+    changeActiveAp();
 }
 
 WirelessDeviceManagerRealize::~WirelessDeviceManagerRealize()
@@ -1144,11 +1174,19 @@ void WirelessDeviceManagerRealize::addNetwork(const NetworkManager::WirelessNetw
         AccessPointInfo *apInfo = new AccessPointInfo(m_device, network);
         m_accessPointInfos << apInfo;
 
+        NetworkManager::AccessPoint::Ptr activeAp = m_device->activeAccessPoint();
+        if (!activeAp.isNull() && apInfo->proxy()->contains(activeAp->uni()))
+            apInfo->proxy()->updateStrengthFromActiveAp(activeAp->signalStrength());
+
         Q_EMIT networkAdded({ apInfo->accessPoint() });
     } else {
         // 已经存在该无线网络，只需要更新内部的数据即可
         AccessPointInfo *apInfo = *itApInfo;
         apInfo->proxy()->updateNetwork(network);
+
+        NetworkManager::AccessPoint::Ptr activeAp = m_device->activeAccessPoint();
+        if (!activeAp.isNull() && apInfo->proxy()->contains(activeAp->uni()))
+            apInfo->proxy()->updateStrengthFromActiveAp(activeAp->signalStrength());
     }
 }
 
