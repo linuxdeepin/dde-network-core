@@ -48,18 +48,18 @@
     <name>Network</name>
     <message>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Rrjet</translation>
     </message>
 </context>
 <context>
     <name>NetworkMain</name>
     <message>
         <source>Connection settings</source>
-        <translation type="unfinished"/>
+        <translation>Rregullime lidhjesh</translation>
     </message>
     <message>
         <source>Related Settings</source>
-        <translation type="unfinished"/>
+        <translation>Rregullime të Afërta</translation>
     </message>
 </context>
 <context>
@@ -297,7 +297,7 @@
     </message>
     <message>
         <source>Shared Settings</source>
-        <translation type="unfinished"/>
+        <translation>Rregullime të Përbashkëta</translation>
     </message>
     <message>
         <source>Hotspot Sharing Device</source>
