@@ -47,6 +47,24 @@
     </message>
 </context>
 <context>
+    <name>Network</name>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NetworkMain</name>
+    <message>
+        <source>Connection settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Related Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PageAirplane</name>
     <message>
         <source>Airplane mode</source>
@@ -1647,24 +1665,6 @@
     <name>dde::network::NetWirelessOtherItem</name>
     <message>
         <source>Other Networks</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>network</name>
-    <message>
-        <source>Network</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>networkMain</name>
-    <message>
-        <source>Connection settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Related Settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fr">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="fr">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -42,6 +44,24 @@
     <message>
         <source>Disconnected</source>
         <translation>Déconnecté</translation>
+    </message>
+</context>
+<context>
+    <name>Network</name>
+    <message>
+        <source>Network</source>
+        <translation>Réseau</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkMain</name>
+    <message>
+        <source>Connection settings</source>
+        <translation>Paramètres de connexion</translation>
+    </message>
+    <message>
+        <source>Related Settings</source>
+        <translation>Paramètres associés</translation>
     </message>
 </context>
 <context>
@@ -1646,24 +1666,6 @@
     <message>
         <source>Other Networks</source>
         <translation>Autres réseaux</translation>
-    </message>
-</context>
-<context>
-    <name>network</name>
-    <message>
-        <source>Network</source>
-        <translation>Réseau</translation>
-    </message>
-</context>
-<context>
-    <name>networkMain</name>
-    <message>
-        <source>Connection settings</source>
-        <translation>Paramètres de connexion</translation>
-    </message>
-    <message>
-        <source>Related Settings</source>
-        <translation>Paramètres associés</translation>
     </message>
 </context>
 </TS>

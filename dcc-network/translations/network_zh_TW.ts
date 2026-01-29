@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_TW">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh_TW">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -42,6 +44,24 @@
     <message>
         <source>Disconnected</source>
         <translation>已斷開</translation>
+    </message>
+</context>
+<context>
+    <name>Network</name>
+    <message>
+        <source>Network</source>
+        <translation>網路</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkMain</name>
+    <message>
+        <source>Connection settings</source>
+        <translation>連線設定</translation>
+    </message>
+    <message>
+        <source>Related Settings</source>
+        <translation>相關設定</translation>
     </message>
 </context>
 <context>
@@ -583,7 +603,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1480,7 +1500,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1646,24 +1666,6 @@
     <message>
         <source>Other Networks</source>
         <translation>其他網路</translation>
-    </message>
-</context>
-<context>
-    <name>network</name>
-    <message>
-        <source>Network</source>
-        <translation>網路</translation>
-    </message>
-</context>
-<context>
-    <name>networkMain</name>
-    <message>
-        <source>Connection settings</source>
-        <translation>連線設定</translation>
-    </message>
-    <message>
-        <source>Related Settings</source>
-        <translation>相關設定</translation>
     </message>
 </context>
 </TS>

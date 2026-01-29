@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="tr">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="tr">
 <context>
     <name>NetFileChooseEdit</name>
     <message>
@@ -42,6 +44,24 @@
     <message>
         <source>Disconnected</source>
         <translation>Bağlantı kesildi</translation>
+    </message>
+</context>
+<context>
+    <name>Network</name>
+    <message>
+        <source>Network</source>
+        <translation>Ağ</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkMain</name>
+    <message>
+        <source>Connection settings</source>
+        <translation>Bağlantı ayarları</translation>
+    </message>
+    <message>
+        <source>Related Settings</source>
+        <translation>İlgili Ayarlar</translation>
     </message>
 </context>
 <context>
@@ -673,7 +693,7 @@
     </message>
     <message>
         <source>Only one gateway is allowed</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -744,7 +764,7 @@
     </message>
     <message>
         <source>Only one gateway is allowed</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1646,24 +1666,6 @@
     <message>
         <source>Other Networks</source>
         <translation>Diğer Ağlar</translation>
-    </message>
-</context>
-<context>
-    <name>network</name>
-    <message>
-        <source>Network</source>
-        <translation>Ağ</translation>
-    </message>
-</context>
-<context>
-    <name>networkMain</name>
-    <message>
-        <source>Connection settings</source>
-        <translation>Bağlantı ayarları</translation>
-    </message>
-    <message>
-        <source>Related Settings</source>
-        <translation>İlgili Ayarlar</translation>
     </message>
 </context>
 </TS>
