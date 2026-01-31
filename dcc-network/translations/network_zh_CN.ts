@@ -55,11 +55,11 @@
     <name>NetworkMain</name>
     <message>
         <source>Connection settings</source>
-        <translation type="unfinished"/>
+        <translation>连接设置</translation>
     </message>
     <message>
         <source>Related Settings</source>
-        <translation type="unfinished"/>
+        <translation>相关设置</translation>
     </message>
 </context>
 <context>
