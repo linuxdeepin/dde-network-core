@@ -636,8 +636,8 @@ WirelessDeviceManagerRealize::WirelessDeviceManagerRealize(NetworkManager::Wirel
 
         updateActiveApStrength(activeAp);
         m_activeApStrengthConn = connect(activeAp.data(), &NetworkManager::AccessPoint::signalStrengthChanged, this, [updateActiveApStrength, activeAp] {
-                    updateActiveApStrength(activeAp);
-                }, Qt::UniqueConnection);
+            updateActiveApStrength(activeAp);
+        });
     };
 
     connect(device.data(), &NetworkManager::WirelessDevice::activeAccessPointChanged, this, [changeActiveAp] {
