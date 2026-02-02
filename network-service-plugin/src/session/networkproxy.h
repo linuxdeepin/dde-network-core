@@ -64,6 +64,10 @@ class NetworkProxy : public QObject, protected QDBusContext
                 "    <signal name='ProxyMethodChanged'>\n"
                 "        <arg name='method' type='s'></arg>\n"
                 "    </signal>\n"
+                "    <signal name='proxyChanged'>\n"
+                "        <arg name='method' type='s'></arg>\n"
+                "        <arg name='method' type='s'></arg>\n"
+                "    </signal>\n"
                 // 空实现
                 "    <method name='ActivateAccessPoint'>\n"
                 "        <arg name='uuid' type='s' direction='in'></arg>\n"
@@ -223,6 +227,7 @@ public Q_SLOTS:
 
 Q_SIGNALS:
     void ProxyMethodChanged(const QString &proxyMode);
+    void proxyChanged(const QString &type, const QString &value);
 
 private Q_SLOTS:
     void onConfigChanged(const QString &key);
@@ -233,7 +238,7 @@ private:
     inline QDBusConnection dbusConnection() const { return m_dbusConnection; }
 
 private:
-    QDBusConnection &m_dbusConnection;
+    QDBusConnection m_dbusConnection;
     NetworkStateHandler *m_networkStateHandler;
     QGSettings *m_proxySettings;
     QGSettings *m_proxyChildSettingsHttp;

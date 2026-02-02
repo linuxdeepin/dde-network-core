@@ -459,13 +459,13 @@ void NetManagerThreadPrivate::doInit()
         item->updateenabled(method == ProxyMethod::Auto || method == ProxyMethod::Manual);
         item->updatelastMethod(NetType::ProxyMethod(ConfigWatcher::instance()->proxyMethod()));
         item->updatemethod(NetType::ProxyMethod(method));
-        // item->updateenabledable(networkController->proxyController()->systemProxyExist());
         item->item()->moveToThread(m_parentThread);
         Q_EMIT itemAdded("Root", item);
+        onSystemProxyExistChanged(networkController->proxyController()->systemProxyExist());
         onSystemAutoProxyChanged(networkController->proxyController()->autoProxy());
         onSystemManualProxyChanged();
 
-        // connect(networkController->proxyController(), &ProxyController::systemProxyExistChanged, this, &NetManagerThreadPrivate::onSystemProxyExistChanged);
+        connect(networkController->proxyController(), &ProxyController::systemProxyExistChanged, this, &NetManagerThreadPrivate::onSystemProxyExistChanged);
         connect(networkController->proxyController(), &ProxyController::proxyMethodChanged, this, &NetManagerThreadPrivate::onSystemProxyMethodChanged);
         connect(networkController->proxyController(), &ProxyController::autoProxyChanged, this, &NetManagerThreadPrivate::onSystemAutoProxyChanged);
         connect(networkController->proxyController(), &ProxyController::proxyChanged, this, &NetManagerThreadPrivate::onSystemManualProxyChanged);
