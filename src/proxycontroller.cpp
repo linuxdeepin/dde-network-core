@@ -23,6 +23,9 @@ ProxyController::ProxyController(QObject *parent)
     // 判断是否存在proxychains4来决定是否存在应用代理
     m_appProxyExist = !QStandardPaths::findExecutable("proxychains4").isEmpty();
     QDBusConnection::sessionBus().connect(networkService, networkPath, networkInterface, "ProxyMethodChanged", this, SLOT(onProxyMethodChanged(const QString&)));
+    QDBusConnection::sessionBus().connect(networkService, networkPath, networkInterface, "proxyChanged", this, SLOT(onProxyChanged(const QString &, const QString &)));
+    connect(this, &ProxyController::proxyChanged, this, [ this ] { checkSystemProxyExist(); });
+    querySysProxyData();
 
     connect(m_networkInter, &NetworkInter::serviceValidChanged, this, [this](bool valid) {
         // 设置快速登录，重启后，锁屏的网络插件进行初始化，但是dbus服务无效,导致系统代理等设置异常，等dbus有效后，重新同步数据
@@ -41,19 +44,12 @@ void ProxyController::onProxyMethodChanged(const QString &method)
         m_proxyMethod = value;
         Q_EMIT proxyMethodChanged(value);
     }
-    // 如果没有配置，则关掉代理，避免升级问题
-    bool isConfExist = false;
-    for (auto conf : m_sysProxyConfig) {
-        if (!conf.url.isEmpty()) {
-            isConfExist = true;
-            break;
-        }
-    }
-    bool systemProxyExist = isConfExist || !m_autoProxyURL.isEmpty();
-    if (m_systemProxyExist != systemProxyExist) {
-        m_systemProxyExist = systemProxyExist;
-        Q_EMIT systemProxyExistChanged(m_systemProxyExist);
-    }
+    checkSystemProxyExist();
+}
+
+void ProxyController::onProxyChanged(const QString &type, const QString &value)
+{
+    queryProxyDataByType(type);
 }
 
 void ProxyController::setProxyMethod(const ProxyMethod &pm)
@@ -167,6 +163,7 @@ void ProxyController::queryAutoProxy()
         if (m_autoProxyURL != autoProxyURL) {
             m_autoProxyURL = autoProxyURL;
             Q_EMIT autoProxyChanged(autoProxyURL);
+            checkSystemProxyExist();
         }
     });
 }
@@ -380,6 +377,23 @@ QString ProxyController::appProxyType(const AppProxyType &v)
     }
 
     return "http";
+}
+
+void ProxyController::checkSystemProxyExist()
+{
+    // 如果没有配置，则关掉代理，避免升级问题
+    bool isConfExist = false;
+    for (auto conf : m_sysProxyConfig) {
+        if (!conf.url.isEmpty()) {
+            isConfExist = true;
+            break;
+        }
+    }
+    bool systemProxyExist = isConfExist || !m_autoProxyURL.isEmpty();
+    if (m_systemProxyExist != systemProxyExist) {
+        m_systemProxyExist = systemProxyExist;
+        Q_EMIT systemProxyExistChanged(m_systemProxyExist);
+    }
 }
 
 void ProxyController::onTypeChanged(const QString &value)

@@ -15,6 +15,7 @@
 namespace network {
 namespace sessionservice {
 
+const QString ProxyTypeAuto = "auto";
 const QString ProxyTypeHttp = "http";
 const QString ProxyTypeHttps = "https";
 const QString ProxyTypeFtp = "ftp";
@@ -60,14 +61,19 @@ NetworkProxy::NetworkProxy(QDBusConnection &dbusConnection, NetworkStateHandler 
         return;
     }
     m_proxySettings = new QGSettings(GSettingsIdProxy, QByteArray(), this);
+    m_proxySettings->setProperty("type", ProxyTypeAuto);
     connect(m_proxySettings, &QGSettings::changed, this, &NetworkProxy::onConfigChanged);
     m_proxyChildSettingsHttp = new QGSettings(GChildProxyHttp, QByteArray(), this);
+    m_proxyChildSettingsHttp->setProperty("type", ProxyTypeHttp);
     connect(m_proxyChildSettingsHttp, &QGSettings::changed, this, &NetworkProxy::onConfigChanged);
     m_proxyChildSettingsHttps = new QGSettings(GChildProxyHttps, QByteArray(), this);
+    m_proxyChildSettingsHttps->setProperty("type", ProxyTypeHttps);
     connect(m_proxyChildSettingsHttps, &QGSettings::changed, this, &NetworkProxy::onConfigChanged);
     m_proxyChildSettingsFtp = new QGSettings(GChildProxyFtp, QByteArray(), this);
+    m_proxyChildSettingsFtp->setProperty("type", ProxyTypeFtp);
     connect(m_proxyChildSettingsFtp, &QGSettings::changed, this, &NetworkProxy::onConfigChanged);
     m_proxyChildSettingsSocks = new QGSettings(GChildProxySocks, QByteArray(), this);
+    m_proxyChildSettingsSocks->setProperty("type", ProxyTypeSocks);
     connect(m_proxyChildSettingsSocks, &QGSettings::changed, this, &NetworkProxy::onConfigChanged);
     // 如果ip全为空，则自动设置代理为None
     QString proxyAuto = m_proxySettings->get(GKeyProxyAuto).toString();
@@ -147,8 +153,14 @@ void NetworkProxy::GetProxy(const QString &proxyType)
         dbusConnection().send(message().createErrorReply(QDBusError::InvalidArgs, err));
         return;
     }
-    QString host = childSettings->get(GKeyProxyHost).toString();
-    int port = childSettings->get(GKeyProxyPort).toInt();
+    QString host;
+    int port = 0;
+    if (proxyType == ProxyTypeAuto) {
+        host = childSettings->get("autoconfigUrl").toString();
+    } else {
+       host = childSettings->get(GKeyProxyHost).toString();
+       port = childSettings->get(GKeyProxyPort).toInt();
+    }
     dbusConnection().send(message().createReply({ host, QString::number(port) }));
 }
 
@@ -156,7 +168,7 @@ void NetworkProxy::SetProxy(const QString &proxyType, const QString &host, const
 {
     qCDebug(DSM()) << QString("Manager.SetProxy proxyType: %1, host: %2, port: %3").arg(proxyType).arg(host).arg(port);
     int portInt = port.toInt();
-    if (portInt < 0 || portInt > 65535) {
+    if (portInt < 0 || portInt >= 65535) {
         setDelayedReply(true);
         dbusConnection().send(message().createErrorReply(QDBusError::InvalidArgs, "port number must be an integer between 0 and 65535"));
         return;
@@ -210,7 +222,16 @@ void NetworkProxy::SetProxyAuthentication(const QString &proxyType, const QStrin
     childSettings->set(GKeyProxyAuthenticationPassword, password);
 }
 
-void NetworkProxy::onConfigChanged(const QString &key) { }
+void NetworkProxy::onConfigChanged(const QString &key)
+{
+    QGSettings *settings = qobject_cast<QGSettings *>(sender());
+    if (!settings)
+        return;
+
+    if (key == "host" || key == "autoconfigUrl") {
+        emit proxyChanged(settings->property("type").toString(), settings->get(key).toString());
+    }
+}
 
 QGSettings *NetworkProxy::getProxyChildSettings(const QString &proxyType)
 {
@@ -222,6 +243,8 @@ QGSettings *NetworkProxy::getProxyChildSettings(const QString &proxyType)
         return m_proxyChildSettingsFtp;
     } else if (proxyType == ProxyTypeSocks) {
         return m_proxyChildSettingsSocks;
+    } else if (proxyType == ProxyTypeAuto) {
+        return m_proxySettings;
     }
     qCWarning(DSM()) << "not a valid proxy type:" << proxyType;
     return nullptr;

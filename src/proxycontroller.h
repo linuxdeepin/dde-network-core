@@ -83,6 +83,8 @@ protected:
     AppProxyType appProxyType(const QString &v);                            // 系统代理类型转换，字符串到枚举
     QString appProxyType(const AppProxyType &v);                            // 系统代理类型转换，枚举到字符串
 
+    void checkSystemProxyExist();
+
 protected Q_SLOTS:
     void onIPChanged(const QString &value);
     void onPasswordChanged(const QString &value);
@@ -90,6 +92,7 @@ protected Q_SLOTS:
     void onUserChanged(const QString &value);
     void onPortChanged(uint value);
     void onProxyMethodChanged(const QString &method);
+    void onProxyChanged(const QString &type, const QString &value);
 
 private:
     NetworkInter *m_networkInter;
