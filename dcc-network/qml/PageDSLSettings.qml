@@ -89,6 +89,7 @@ DccObject {
         sectionDNS.setConfig(combinedDns.length > 0 ? combinedDns : null)
         sectionDevice.setConfig(config["802-3-ethernet"])
         sectionPPP.setConfig(config["ppp"])
+        sectionGeneric.band = config["802-3-ethernet"].band
         modified = config.connection.uuid === "{00000000-0000-0000-0000-000000000000}"
     }
 
@@ -234,6 +235,11 @@ DccObject {
                     let devConfig = sectionDevice.getConfig()
                     if (devConfig.interfaceName.length !== 0) {
                         nConfig["pppoe"]["parent"] = devConfig.interfaceName
+                    }
+                    if (sectionGeneric.band) {
+                        devConfig["band"] = sectionGeneric.band
+                    } else {
+                        delete devConfig["band"]
                     }
                     nConfig["connection"]["interface-name"] = devConfig.interfaceName
                     nConfig["802-3-ethernet"] = devConfig

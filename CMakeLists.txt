@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.7)
+cmake_minimum_required(VERSION 3.23)
 
 set(VERSION "2.0.18" CACHE STRING "define project version")
 project(dde-network-core

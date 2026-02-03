@@ -19,13 +19,6 @@ DccObject {
     property var airplaneItem: null
     readonly property var c_levelString: ["-signal-no", "-signal-low", "-signal-medium", "-signal-high", "-signal-full"]
 
-    component DevCheck: D.Switch {
-        checked: root.netItem.isEnabled
-        enabled: root.netItem.enabledable
-        onClicked: {
-            dccData.exec(root.netItem.isEnabled ? NetManager.DisabledDevice : NetManager.EnabledDevice, root.netItem.id, {})
-        }
-    }
     name: "wireless" + netItem.pathIndex
     parentName: "network"
     displayName: netItem.name
@@ -34,30 +27,10 @@ DccObject {
     icon: "dcc_wifi"
     weight: 2010 + netItem.pathIndex
     pageType: DccObject.MenuEditor
-    page: RowLayout {
-        DccLabel {
-            text: {
-                switch (netItem.status) {
-                case NetType.DS_Connected:
-                case NetType.DS_ConnectNoInternet:
-                    var childrenItem = [netItem]
-                    while (childrenItem.length > 0) {
-                        var childItem = childrenItem.pop()
-                        if (childItem.itemType === NetType.WirelessItem && childItem.status === NetType.CS_Connected) {
-                            return childItem.name
-                        }
-                        for (let i in childItem.children) {
-                            childrenItem.push(childItem.children[i])
-                        }
-                    }
-                    break
-                default:
-                    break
-                }
-                return NetUtils.getStatusName(netItem.status)
-            }
-        }
-        DevCheck {}
+    page: DeviceStatusItem{
+        netItem: root.netItem
+        connectedNameVisible: true
+        statusVisible: true
     }
 
     Component {
@@ -248,7 +221,10 @@ DccObject {
             weight: 10
             backgroundType: DccObject.Normal
             pageType: DccObject.Editor
-            page: DevCheck {}
+            page: DeviceStatusItem{
+                netItem: root.netItem
+                statusVisible: false
+            }
         }
         DccObject {
             name: "mineTitle"

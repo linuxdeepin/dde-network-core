@@ -69,7 +69,6 @@ function numToIp(num) {
 }
 
 function ipToNum(ip) {
-    console.log("ipToNum----", ip, typeof ip)
     const ips = ip.split('.')
     let cidr = 0
     let ipNum = 0
@@ -173,30 +172,4 @@ function strToByteArray(data) {
         }
     }
     return undefined
-}
-
-function getStatusName(status) {
-    switch (status) {
-    case NetType.DS_Disabled:
-        return qsTr("Off")
-    case NetType.DS_Connected:
-    case NetType.DS_ConnectNoInternet:
-        return qsTr("Connected")
-    case NetType.DS_IpConflicted:
-        return qsTr("IP conflict")
-    case NetType.DS_Connecting:
-        return qsTr("Connecting")
-    case NetType.DS_ObtainingIP:
-        return qsTr("Obtaining address")
-    case NetType.DS_Authenticating:
-        return qsTr("Authenticating")
-    case NetType.DS_ObtainIpFailed:
-    case NetType.DS_ConnectFailed:
-    case NetType.DS_Unknown:
-    case NetType.DS_Enabled:
-    case NetType.DS_NoCable:
-    case NetType.DS_Disconnected:
-    default:
-        return qsTr("Disconnected")
-    }
 }

@@ -209,37 +209,4 @@ DccTitleObject {
             }
         }
     }
-    // 配置在config[root.config.connection.type]中，显示在Generic中
-    DccObject {
-        name: "band"
-        parentName: root.parentName + "/genericGroup"
-        displayName: qsTr("Band")
-        canSearch: false
-        weight: 30
-        visible: type === NetType.WirelessItem
-        pageType: DccObject.Editor
-        page: ComboBox {
-            flat: true
-            textRole: "text"
-            valueRole: "value"
-            model: [{
-                    "text": qsTr("Auto"),
-                    "value": undefined
-                }, {
-                    "text": qsTr("2.4 GHz"),
-                    "value": "bg"
-                }, {
-                    "text": qsTr("5 GHz"),
-                    "value": "a"
-                }]
-            currentIndex: indexOfValue(root.config["band"])
-            onActivated: {
-                root.config["band"] = currentValue
-                root.editClicked()
-            }
-            Component.onCompleted: {
-                currentIndex = indexOfValue(root.config["band"])
-            }
-        }
-    }
 }

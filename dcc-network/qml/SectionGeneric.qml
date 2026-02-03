@@ -12,6 +12,7 @@ DccTitleObject {
     id: root
     property var config: new Object()
     property string settingsID: ""
+    property var band
 
     property string errorKey: ""
     signal editClicked
@@ -87,6 +88,38 @@ DccTitleObject {
                 onClicked: {
                     root.config.autoconnect = checked
                     root.editClicked()
+                }
+            }
+        }
+        DccObject {
+            name: "band"
+            parentName: root.parentName + "/genericGroup"
+            displayName: qsTr("Band")
+            canSearch: false
+            weight: 30
+            visible: type === NetType.WirelessItem
+            pageType: DccObject.Editor
+            page: ComboBox {
+                flat: true
+                textRole: "text"
+                valueRole: "value"
+                model: [{
+                        "text": qsTr("Auto"),
+                        "value": undefined
+                    }, {
+                        "text": qsTr("2.4 GHz"),
+                        "value": "bg"
+                    }, {
+                        "text": qsTr("5 GHz"),
+                        "value": "a"
+                    }]
+                currentIndex: indexOfValue(root.band)
+                onActivated: {
+                    root.band = currentValue
+                    root.editClicked()
+                }
+                Component.onCompleted: {
+                    currentIndex = indexOfValue(root.band)
                 }
             }
         }
