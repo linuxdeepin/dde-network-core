@@ -3,31 +3,31 @@
     <name>DeviceStatusItem</name>
     <message>
         <source>Off</source>
-        <translation type="unfinished"/>
+        <translation>Off</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"/>
+        <translation>U lidh</translation>
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"/>
+        <translation>Përplasje IP-sh</translation>
     </message>
     <message>
         <source>Connecting</source>
-        <translation type="unfinished"/>
+        <translation>Po lidhet</translation>
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation type="unfinished"/>
+        <translation>Po merret adresë</translation>
     </message>
     <message>
         <source>Authenticating</source>
-        <translation type="unfinished"/>
+        <translation>Po bëhet mirëfilltësimi</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>U shkëput</translation>
     </message>
 </context>
 <context>
@@ -612,19 +612,19 @@
     </message>
     <message>
         <source>Band</source>
-        <translation type="unfinished"/>
+        <translation>Bandë</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"/>
+        <translation>Auto</translation>
     </message>
     <message>
         <source>2.4 GHz</source>
-        <translation type="unfinished"/>
+        <translation>2.4 GHz</translation>
     </message>
     <message>
         <source>5 GHz</source>
-        <translation type="unfinished"/>
+        <translation>5 GHz</translation>
     </message>
 </context>
 <context>
