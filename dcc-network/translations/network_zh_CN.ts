@@ -1,35 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="zh_CN">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_CN">
 <context>
     <name>DeviceStatusItem</name>
     <message>
         <source>Off</source>
-        <translation>已关闭</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connected</source>
-        <translation>已连接</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>IP conflict</source>
-        <translation>IP地址冲突</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connecting</source>
-        <translation>正在连接</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation>获取地址中</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authenticating</source>
-        <translation>认证中</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation>已断开</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -50,7 +48,7 @@
     <name>Network</name>
     <message>
         <source>Network</source>
-        <translation>网络</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -587,7 +585,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -614,19 +612,19 @@
     </message>
     <message>
         <source>Band</source>
-        <translation>频段</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Auto</source>
-        <translation>自动</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>2.4 GHz</source>
-        <translation>2.4 GHz</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>5 GHz</source>
-        <translation>5 GHz</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1500,7 +1498,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
