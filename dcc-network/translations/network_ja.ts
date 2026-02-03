@@ -2,21 +2,7 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ja">
 <context>
-    <name>NetFileChooseEdit</name>
-    <message>
-        <source>All files (*)</source>
-        <translation>すべてのファイル (*)</translation>
-    </message>
-</context>
-<context>
-    <name>NetPasswordEdit</name>
-    <message>
-        <source>Required</source>
-        <translation>必須</translation>
-    </message>
-</context>
-<context>
-    <name>NetUtils</name>
+    <name>DeviceStatusItem</name>
     <message>
         <source>Off</source>
         <translation type="unfinished"></translation>
@@ -44,6 +30,20 @@
     <message>
         <source>Disconnected</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NetFileChooseEdit</name>
+    <message>
+        <source>All files (*)</source>
+        <translation>すべてのファイル (*)</translation>
+    </message>
+</context>
+<context>
+    <name>NetPasswordEdit</name>
+    <message>
+        <source>Required</source>
+        <translation>必須</translation>
     </message>
 </context>
 <context>
@@ -586,22 +586,6 @@
         <translation>MTU をカスタマイズ</translation>
     </message>
     <message>
-        <source>Band</source>
-        <translation>バンド</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>自動</translation>
-    </message>
-    <message>
-        <source>2.4 GHz</source>
-        <translation>2.4 GHz</translation>
-    </message>
-    <message>
-        <source>5 GHz</source>
-        <translation>5 GHz</translation>
-    </message>
-    <message>
         <source>MTU (1280-9000)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -627,6 +611,22 @@
     <message>
         <source>Auto Connect</source>
         <translation>自動接続</translation>
+    </message>
+    <message>
+        <source>Band</source>
+        <translation type="unfinished">バンド</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished">自動</translation>
+    </message>
+    <message>
+        <source>2.4 GHz</source>
+        <translation type="unfinished">2.4 GHz</translation>
+    </message>
+    <message>
+        <source>5 GHz</source>
+        <translation type="unfinished">5 GHz</translation>
     </message>
 </context>
 <context>

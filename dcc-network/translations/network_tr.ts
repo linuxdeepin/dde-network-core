@@ -2,6 +2,37 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="tr">
 <context>
+    <name>DeviceStatusItem</name>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished">Kapalı</translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished">Bağlı</translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished">IP çakışması</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation type="unfinished">Bağlanıyor</translation>
+    </message>
+    <message>
+        <source>Obtaining address</source>
+        <translation type="unfinished">Adres alma</translation>
+    </message>
+    <message>
+        <source>Authenticating</source>
+        <translation type="unfinished">Kimlik doğrulama</translation>
+    </message>
+    <message>
+        <source>Disconnected</source>
+        <translation type="unfinished">Bağlantı kesildi</translation>
+    </message>
+</context>
+<context>
     <name>NetFileChooseEdit</name>
     <message>
         <source>All files (*)</source>
@@ -13,37 +44,6 @@
     <message>
         <source>Required</source>
         <translation>Gerekli</translation>
-    </message>
-</context>
-<context>
-    <name>NetUtils</name>
-    <message>
-        <source>Off</source>
-        <translation>Kapalı</translation>
-    </message>
-    <message>
-        <source>Connected</source>
-        <translation>Bağlı</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>IP çakışması</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>Bağlanıyor</translation>
-    </message>
-    <message>
-        <source>Obtaining address</source>
-        <translation>Adres alma</translation>
-    </message>
-    <message>
-        <source>Authenticating</source>
-        <translation>Kimlik doğrulama</translation>
-    </message>
-    <message>
-        <source>Disconnected</source>
-        <translation>Bağlantı kesildi</translation>
     </message>
 </context>
 <context>
@@ -586,22 +586,6 @@
         <translation>MTU Değerini Özelleştir</translation>
     </message>
     <message>
-        <source>Band</source>
-        <translation>Bant</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Otomatik</translation>
-    </message>
-    <message>
-        <source>2.4 GHz</source>
-        <translation>2.4 GHz</translation>
-    </message>
-    <message>
-        <source>5 GHz</source>
-        <translation>5 GHz</translation>
-    </message>
-    <message>
         <source>MTU (1280-9000)</source>
         <translation>MTU (1280-9000)</translation>
     </message>
@@ -627,6 +611,22 @@
     <message>
         <source>Auto Connect</source>
         <translation>Otomatik Bağlan</translation>
+    </message>
+    <message>
+        <source>Band</source>
+        <translation type="unfinished">Bant</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished">Otomatik</translation>
+    </message>
+    <message>
+        <source>2.4 GHz</source>
+        <translation type="unfinished">2.4 GHz</translation>
+    </message>
+    <message>
+        <source>5 GHz</source>
+        <translation type="unfinished">5 GHz</translation>
     </message>
 </context>
 <context>

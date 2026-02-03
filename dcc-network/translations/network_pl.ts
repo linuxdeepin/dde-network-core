@@ -2,6 +2,37 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="pl">
 <context>
+    <name>DeviceStatusItem</name>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished">Wyłączony</translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished">Połączono</translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished">Konflikt IP</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation type="unfinished">Łączenie</translation>
+    </message>
+    <message>
+        <source>Obtaining address</source>
+        <translation type="unfinished">Uzyskiwanie adresu</translation>
+    </message>
+    <message>
+        <source>Authenticating</source>
+        <translation type="unfinished">Uwierzytelnianie</translation>
+    </message>
+    <message>
+        <source>Disconnected</source>
+        <translation type="unfinished">Rozłączono</translation>
+    </message>
+</context>
+<context>
     <name>NetFileChooseEdit</name>
     <message>
         <source>All files (*)</source>
@@ -13,37 +44,6 @@
     <message>
         <source>Required</source>
         <translation>Wymagane</translation>
-    </message>
-</context>
-<context>
-    <name>NetUtils</name>
-    <message>
-        <source>Off</source>
-        <translation>Wyłączony</translation>
-    </message>
-    <message>
-        <source>Connected</source>
-        <translation>Połączono</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>Konflikt IP</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>Łączenie</translation>
-    </message>
-    <message>
-        <source>Obtaining address</source>
-        <translation>Uzyskiwanie adresu</translation>
-    </message>
-    <message>
-        <source>Authenticating</source>
-        <translation>Uwierzytelnianie</translation>
-    </message>
-    <message>
-        <source>Disconnected</source>
-        <translation>Rozłączono</translation>
     </message>
 </context>
 <context>
@@ -586,22 +586,6 @@
         <translation>Dostosuj MTU</translation>
     </message>
     <message>
-        <source>Band</source>
-        <translation>Pasmo</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Automatycznie</translation>
-    </message>
-    <message>
-        <source>2.4 GHz</source>
-        <translation>2.4 GHz</translation>
-    </message>
-    <message>
-        <source>5 GHz</source>
-        <translation>5 GHz</translation>
-    </message>
-    <message>
         <source>MTU (1280-9000)</source>
         <translation>MTU (1280-9000)</translation>
     </message>
@@ -627,6 +611,22 @@
     <message>
         <source>Auto Connect</source>
         <translation>Połącz automatycznie</translation>
+    </message>
+    <message>
+        <source>Band</source>
+        <translation type="unfinished">Pasmo</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished">Automatycznie</translation>
+    </message>
+    <message>
+        <source>2.4 GHz</source>
+        <translation type="unfinished">2.4 GHz</translation>
+    </message>
+    <message>
+        <source>5 GHz</source>
+        <translation type="unfinished">5 GHz</translation>
     </message>
 </context>
 <context>

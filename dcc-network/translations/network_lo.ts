@@ -2,21 +2,7 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="lo">
 <context>
-    <name>NetFileChooseEdit</name>
-    <message>
-        <source>All files (*)</source>
-        <translation>ໄຟລ໌ທັງຫມົດ (*)</translation>
-    </message>
-</context>
-<context>
-    <name>NetPasswordEdit</name>
-    <message>
-        <source>Required</source>
-        <translation>ຈຳເປັນ</translation>
-    </message>
-</context>
-<context>
-    <name>NetUtils</name>
+    <name>DeviceStatusItem</name>
     <message>
         <source>Off</source>
         <translation type="unfinished"></translation>
@@ -44,6 +30,20 @@
     <message>
         <source>Disconnected</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NetFileChooseEdit</name>
+    <message>
+        <source>All files (*)</source>
+        <translation>ໄຟລ໌ທັງຫມົດ (*)</translation>
+    </message>
+</context>
+<context>
+    <name>NetPasswordEdit</name>
+    <message>
+        <source>Required</source>
+        <translation>ຈຳເປັນ</translation>
     </message>
 </context>
 <context>
@@ -587,22 +587,6 @@
         <translation>ກຳນົດ MTU ເອງ</translation>
     </message>
     <message>
-        <source>Band</source>
-        <translation>ຄື່ນຄວາມຖີ່</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>ອັດຕະໂນມັດ</translation>
-    </message>
-    <message>
-        <source>2.4 GHz</source>
-        <translation>2.4 GHz</translation>
-    </message>
-    <message>
-        <source>5 GHz</source>
-        <translation>5 GHz</translation>
-    </message>
-    <message>
         <source>MTU (1280-9000)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -628,6 +612,22 @@
     <message>
         <source>Auto Connect</source>
         <translation>ເຊື່ອມຕໍ່ອັດຕະໂນມັດ</translation>
+    </message>
+    <message>
+        <source>Band</source>
+        <translation type="unfinished">ຄື່ນຄວາມຖີ່</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2.4 GHz</source>
+        <translation type="unfinished">2.4 GHz</translation>
+    </message>
+    <message>
+        <source>5 GHz</source>
+        <translation type="unfinished">5 GHz</translation>
     </message>
 </context>
 <context>

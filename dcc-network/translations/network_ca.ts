@@ -2,6 +2,37 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ca">
 <context>
+    <name>DeviceStatusItem</name>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished">Desactivat</translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished">Connectat</translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished">Conflicte d&apos;IP</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation type="unfinished">Es connecta</translation>
+    </message>
+    <message>
+        <source>Obtaining address</source>
+        <translation type="unfinished">S&apos;obté l&apos;adreça</translation>
+    </message>
+    <message>
+        <source>Authenticating</source>
+        <translation type="unfinished">S&apos;autentica</translation>
+    </message>
+    <message>
+        <source>Disconnected</source>
+        <translation type="unfinished">Desconnectat</translation>
+    </message>
+</context>
+<context>
     <name>NetFileChooseEdit</name>
     <message>
         <source>All files (*)</source>
@@ -13,37 +44,6 @@
     <message>
         <source>Required</source>
         <translation>Cal</translation>
-    </message>
-</context>
-<context>
-    <name>NetUtils</name>
-    <message>
-        <source>Off</source>
-        <translation>Desactivat</translation>
-    </message>
-    <message>
-        <source>Connected</source>
-        <translation>Connectat</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>Conflicte d&apos;IP</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>Es connecta</translation>
-    </message>
-    <message>
-        <source>Obtaining address</source>
-        <translation>S&apos;obté l&apos;adreça</translation>
-    </message>
-    <message>
-        <source>Authenticating</source>
-        <translation>S&apos;autentica</translation>
-    </message>
-    <message>
-        <source>Disconnected</source>
-        <translation>Desconnectat</translation>
     </message>
 </context>
 <context>
@@ -586,22 +586,6 @@
         <translation>Personalitzeu l&apos;MTU</translation>
     </message>
     <message>
-        <source>Band</source>
-        <translation>Banda</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Automàtic</translation>
-    </message>
-    <message>
-        <source>2.4 GHz</source>
-        <translation>2.4 GHz</translation>
-    </message>
-    <message>
-        <source>5 GHz</source>
-        <translation>5 GHz</translation>
-    </message>
-    <message>
         <source>MTU (1280-9000)</source>
         <translation>MTU (1280-9000)</translation>
     </message>
@@ -627,6 +611,22 @@
     <message>
         <source>Auto Connect</source>
         <translation>Connexió automàtica</translation>
+    </message>
+    <message>
+        <source>Band</source>
+        <translation type="unfinished">Banda</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished">Automàtic</translation>
+    </message>
+    <message>
+        <source>2.4 GHz</source>
+        <translation type="unfinished">2.4 GHz</translation>
+    </message>
+    <message>
+        <source>5 GHz</source>
+        <translation type="unfinished">5 GHz</translation>
     </message>
 </context>
 <context>

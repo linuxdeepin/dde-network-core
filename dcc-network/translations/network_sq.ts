@@ -2,6 +2,37 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="sq">
 <context>
+    <name>DeviceStatusItem</name>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished">I lidhur</translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished">Përplasje IP-sh</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation type="unfinished">Po bëhet lidhja</translation>
+    </message>
+    <message>
+        <source>Obtaining address</source>
+        <translation type="unfinished">Po merret adresë</translation>
+    </message>
+    <message>
+        <source>Authenticating</source>
+        <translation type="unfinished">Po bëhet mirëfilltësim</translation>
+    </message>
+    <message>
+        <source>Disconnected</source>
+        <translation type="unfinished">E shkëputur</translation>
+    </message>
+</context>
+<context>
     <name>NetFileChooseEdit</name>
     <message>
         <source>All files (*)</source>
@@ -13,37 +44,6 @@
     <message>
         <source>Required</source>
         <translation>E domosdoshme</translation>
-    </message>
-</context>
-<context>
-    <name>NetUtils</name>
-    <message>
-        <source>Off</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Connected</source>
-        <translation>I lidhur</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>Përplasje IP-sh</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>Po bëhet lidhja</translation>
-    </message>
-    <message>
-        <source>Obtaining address</source>
-        <translation>Po merret adresë</translation>
-    </message>
-    <message>
-        <source>Authenticating</source>
-        <translation>Po bëhet mirëfilltësim</translation>
-    </message>
-    <message>
-        <source>Disconnected</source>
-        <translation>E shkëputur</translation>
     </message>
 </context>
 <context>
@@ -586,22 +586,6 @@
         <translation>Përshtatni MTU</translation>
     </message>
     <message>
-        <source>Band</source>
-        <translation>Bandë</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Auto</translation>
-    </message>
-    <message>
-        <source>2.4 GHz</source>
-        <translation>2.4 GHz</translation>
-    </message>
-    <message>
-        <source>5 GHz</source>
-        <translation>5 GHz</translation>
-    </message>
-    <message>
         <source>MTU (1280-9000)</source>
         <translation>MTU (1280-9000)</translation>
     </message>
@@ -627,6 +611,22 @@
     <message>
         <source>Auto Connect</source>
         <translation>Vetëlidhu</translation>
+    </message>
+    <message>
+        <source>Band</source>
+        <translation type="unfinished">Bandë</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished">Auto</translation>
+    </message>
+    <message>
+        <source>2.4 GHz</source>
+        <translation type="unfinished">2.4 GHz</translation>
+    </message>
+    <message>
+        <source>5 GHz</source>
+        <translation type="unfinished">5 GHz</translation>
     </message>
 </context>
 <context>

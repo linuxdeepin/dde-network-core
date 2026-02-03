@@ -2,21 +2,7 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="uk">
 <context>
-    <name>NetFileChooseEdit</name>
-    <message>
-        <source>All files (*)</source>
-        <translation>усі файли (*)</translation>
-    </message>
-</context>
-<context>
-    <name>NetPasswordEdit</name>
-    <message>
-        <source>Required</source>
-        <translation>Обов&apos;язкове</translation>
-    </message>
-</context>
-<context>
-    <name>NetUtils</name>
+    <name>DeviceStatusItem</name>
     <message>
         <source>Off</source>
         <translation type="unfinished"></translation>
@@ -44,6 +30,20 @@
     <message>
         <source>Disconnected</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NetFileChooseEdit</name>
+    <message>
+        <source>All files (*)</source>
+        <translation>усі файли (*)</translation>
+    </message>
+</context>
+<context>
+    <name>NetPasswordEdit</name>
+    <message>
+        <source>Required</source>
+        <translation>Обов&apos;язкове</translation>
     </message>
 </context>
 <context>
@@ -586,22 +586,6 @@
         <translation>Налаштувати MTU</translation>
     </message>
     <message>
-        <source>Band</source>
-        <translation>Смуга</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Авто</translation>
-    </message>
-    <message>
-        <source>2.4 GHz</source>
-        <translation>2,4 ГГц</translation>
-    </message>
-    <message>
-        <source>5 GHz</source>
-        <translation>5 ГГц</translation>
-    </message>
-    <message>
         <source>MTU (1280-9000)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -627,6 +611,22 @@
     <message>
         <source>Auto Connect</source>
         <translation>Автоматичне з&apos;єднання</translation>
+    </message>
+    <message>
+        <source>Band</source>
+        <translation type="unfinished">Смуга</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished">Авто</translation>
+    </message>
+    <message>
+        <source>2.4 GHz</source>
+        <translation type="unfinished">2,4 ГГц</translation>
+    </message>
+    <message>
+        <source>5 GHz</source>
+        <translation type="unfinished">5 ГГц</translation>
     </message>
 </context>
 <context>

@@ -2,21 +2,7 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_TW">
 <context>
-    <name>NetFileChooseEdit</name>
-    <message>
-        <source>All files (*)</source>
-        <translation>所有檔案 (*)</translation>
-    </message>
-</context>
-<context>
-    <name>NetPasswordEdit</name>
-    <message>
-        <source>Required</source>
-        <translation>必填</translation>
-    </message>
-</context>
-<context>
-    <name>NetUtils</name>
+    <name>DeviceStatusItem</name>
     <message>
         <source>Off</source>
         <translation>已關閉</translation>
@@ -44,6 +30,20 @@
     <message>
         <source>Disconnected</source>
         <translation>已斷開</translation>
+    </message>
+</context>
+<context>
+    <name>NetFileChooseEdit</name>
+    <message>
+        <source>All files (*)</source>
+        <translation>所有檔案 (*)</translation>
+    </message>
+</context>
+<context>
+    <name>NetPasswordEdit</name>
+    <message>
+        <source>Required</source>
+        <translation>必填</translation>
     </message>
 </context>
 <context>
@@ -586,22 +586,6 @@
         <translation>自定義MTU</translation>
     </message>
     <message>
-        <source>Band</source>
-        <translation>頻段</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>自動</translation>
-    </message>
-    <message>
-        <source>2.4 GHz</source>
-        <translation>2.4 GHz</translation>
-    </message>
-    <message>
-        <source>5 GHz</source>
-        <translation>5 GHz</translation>
-    </message>
-    <message>
         <source>MTU (1280-9000)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -627,6 +611,22 @@
     <message>
         <source>Auto Connect</source>
         <translation>自動連線</translation>
+    </message>
+    <message>
+        <source>Band</source>
+        <translation>頻段</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>自動</translation>
+    </message>
+    <message>
+        <source>2.4 GHz</source>
+        <translation>2.4 GHz</translation>
+    </message>
+    <message>
+        <source>5 GHz</source>
+        <translation>5 GHz</translation>
     </message>
 </context>
 <context>
