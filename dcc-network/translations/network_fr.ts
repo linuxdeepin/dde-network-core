@@ -2,6 +2,37 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="fr">
 <context>
+    <name>DeviceStatusItem</name>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished">Désactivé</translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished">Connecté</translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished">Conflit d&apos;adresses IP</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation type="unfinished">Connexion</translation>
+    </message>
+    <message>
+        <source>Obtaining address</source>
+        <translation type="unfinished">Obtention de l&apos;adresse</translation>
+    </message>
+    <message>
+        <source>Authenticating</source>
+        <translation type="unfinished">Authentification</translation>
+    </message>
+    <message>
+        <source>Disconnected</source>
+        <translation type="unfinished">Déconnecté</translation>
+    </message>
+</context>
+<context>
     <name>NetFileChooseEdit</name>
     <message>
         <source>All files (*)</source>
@@ -13,37 +44,6 @@
     <message>
         <source>Required</source>
         <translation>Requis</translation>
-    </message>
-</context>
-<context>
-    <name>NetUtils</name>
-    <message>
-        <source>Off</source>
-        <translation>Désactivé</translation>
-    </message>
-    <message>
-        <source>Connected</source>
-        <translation>Connecté</translation>
-    </message>
-    <message>
-        <source>IP conflict</source>
-        <translation>Conflit d&apos;adresses IP</translation>
-    </message>
-    <message>
-        <source>Connecting</source>
-        <translation>Connexion</translation>
-    </message>
-    <message>
-        <source>Obtaining address</source>
-        <translation>Obtention de l&apos;adresse</translation>
-    </message>
-    <message>
-        <source>Authenticating</source>
-        <translation>Authentification</translation>
-    </message>
-    <message>
-        <source>Disconnected</source>
-        <translation>Déconnecté</translation>
     </message>
 </context>
 <context>
@@ -586,22 +586,6 @@
         <translation>Personnaliser la MTU</translation>
     </message>
     <message>
-        <source>Band</source>
-        <translation>Bande</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Auto</translation>
-    </message>
-    <message>
-        <source>2.4 GHz</source>
-        <translation>2.4 GHz</translation>
-    </message>
-    <message>
-        <source>5 GHz</source>
-        <translation>5 GHz</translation>
-    </message>
-    <message>
         <source>MTU (1280-9000)</source>
         <translation>MTU (1280-9000)</translation>
     </message>
@@ -627,6 +611,22 @@
     <message>
         <source>Auto Connect</source>
         <translation>Connexion automatique</translation>
+    </message>
+    <message>
+        <source>Band</source>
+        <translation type="unfinished">Bande</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished">Auto</translation>
+    </message>
+    <message>
+        <source>2.4 GHz</source>
+        <translation type="unfinished">2.4 GHz</translation>
+    </message>
+    <message>
+        <source>5 GHz</source>
+        <translation type="unfinished">5 GHz</translation>
     </message>
 </context>
 <context>

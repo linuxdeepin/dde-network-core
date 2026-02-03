@@ -2,21 +2,7 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
-    <name>NetFileChooseEdit</name>
-    <message>
-        <source>All files (*)</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>NetPasswordEdit</name>
-    <message>
-        <source>Required</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>NetUtils</name>
+    <name>DeviceStatusItem</name>
     <message>
         <source>Off</source>
         <translation type="unfinished"></translation>
@@ -43,6 +29,20 @@
     </message>
     <message>
         <source>Disconnected</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NetFileChooseEdit</name>
+    <message>
+        <source>All files (*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NetPasswordEdit</name>
+    <message>
+        <source>Required</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -586,22 +586,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Band</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>2.4 GHz</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>5 GHz</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>MTU (1280-9000)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -626,6 +610,22 @@
     </message>
     <message>
         <source>Auto Connect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Band</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2.4 GHz</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>5 GHz</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
