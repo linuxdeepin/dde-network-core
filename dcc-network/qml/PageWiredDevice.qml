@@ -17,14 +17,6 @@ DccObject {
     id: root
     property var netItem: null
 
-    component DevCheck: D.Switch {
-        checked: netItem.isEnabled
-        enabled: netItem.enabledable
-        onClicked: {
-            dccData.exec(netItem.isEnabled ? NetManager.DisabledDevice : NetManager.EnabledDevice, netItem.id, {})
-        }
-    }
-
     name: "wired" + netItem.pathIndex
     parentName: "network"
     displayName: netItem.name
@@ -33,11 +25,10 @@ DccObject {
     icon: "dcc_ethernet"
     weight: 1010 + netItem.pathIndex
     pageType: DccObject.MenuEditor
-    page: RowLayout {
-        DccLabel {
-            text: NetUtils.getStatusName(netItem.status)
-        }
-        DevCheck {}
+    page: DeviceStatusItem {
+        netItem: root.netItem
+        connectedNameVisible: false
+        statusVisible: true
     }
 
     DccObject {
@@ -56,7 +47,10 @@ DccObject {
                 weight: 10
                 backgroundType: DccObject.Normal
                 pageType: DccObject.Editor
-                page: DevCheck {}
+                page: DeviceStatusItem {
+                    netItem: root.netItem
+                    statusVisible: false
+                }
             }
             DccObject {
                 name: "nocable"

@@ -92,6 +92,7 @@ DccObject {
         sectionDNS.setConfig(combinedDns.length > 0 ? combinedDns : null)
         sectionDevice.type = type
         sectionDevice.setConfig(config[config.connection.type])
+        sectionGeneric.band = config[config.connection.type].band
         modified = config.connection.uuid === "{00000000-0000-0000-0000-000000000000}" && sectionGeneric.settingsID.length !== 0
     }
 
@@ -213,12 +214,12 @@ DccObject {
                     if (nConfig["ipv6"] === undefined) {
                         nConfig["ipv6"] = {}
                     }
-                    
+
                     // 获取DNS配置并分离IPv4和IPv6
                     let dnsConfig = sectionDNS.getConfig()
                     let ipv4Dns = []
                     let ipv6Dns = []
-                    
+
                     for (let dns of dnsConfig) {
                         if (typeof dns === 'number') {
                             // IPv4 DNS（数字格式）
@@ -228,7 +229,7 @@ DccObject {
                             ipv6Dns.push(dns)
                         }
                     }
-                    
+
                     // 分别保存到IPv4和IPv6配置中，但要考虑各自的方法
                     // 只有当IPv4不是disabled时才分配DNS
                     if (nConfig["ipv4"]["method"] !== "disabled") {
@@ -239,6 +240,11 @@ DccObject {
                         nConfig["ipv6"]["dns"] = ipv6Dns
                     }
                     let devConfig = sectionDevice.getConfig()
+                    if (sectionGeneric.band) {
+                        devConfig["band"] = sectionGeneric.band
+                    } else {
+                        delete devConfig["band"]
+                    }
                     if (devConfig.interfaceName.length === 0) {
                         delete nConfig["connection"]["interface-name"]
                     } else {
