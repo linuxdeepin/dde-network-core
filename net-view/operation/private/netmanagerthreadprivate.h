@@ -55,6 +55,8 @@ public:
 
     inline bool AirplaneModeEnabled() const { return m_airplaneModeEnabled; }
 
+    bool supportWireless() const;
+
     void setEnabled(bool enabled);
     void setAutoScanInterval(int ms);
     void setAutoScanEnabled(bool enabled);
