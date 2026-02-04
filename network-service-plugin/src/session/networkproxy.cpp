@@ -109,7 +109,6 @@ void NetworkProxy::SetProxyMethod(const QString &proxyMode)
         return;
     }
     m_proxySettings->set(GkeyProxyMode, proxyMode);
-    Q_EMIT ProxyMethodChanged(proxyMode);
     if (proxyMode == ProxyModeNone) {
         m_networkStateHandler->notify(notifyIconProxyDisabled, tr("Network"), tr("System proxy has been cancelled."));
     } else {
@@ -228,7 +227,19 @@ void NetworkProxy::onConfigChanged(const QString &key)
     if (!settings)
         return;
 
-    if (key == "host" || key == "autoconfigUrl") {
+    bool isHost = false;
+    if (settings == m_proxySettings) {
+        if (key == "autoconfigUrl") {
+            isHost = true;
+        } else if (key == "mode") {
+            // 模式发生变化，此时需要告诉外面
+            Q_EMIT ProxyMethodChanged(settings->get(key).toString());
+        }
+    } else {
+        isHost = (key == "host");
+    }
+
+    if (isHost) {
         emit proxyChanged(settings->property("type").toString(), settings->get(key).toString());
     }
 }
