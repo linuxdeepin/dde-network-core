@@ -1010,7 +1010,7 @@ void NetManagerPrivate::updateAirplaneMode(bool enabled)
         Q_Q(NetManager);
         Q_EMIT q->airplaneModeChanged(m_airplaneMode);
     }
-    updateItemVisible("NetAirplaneModeTipsItem", enabled);
+    updateItemVisible("NetAirplaneModeTipsItem", enabled && m_managerThread->supportWireless());
     if (enabled) {
         updateItemVisible("NetWirelessDisabledItem", false);
         updateItemVisible("NetWiredDisabledItem", false);
