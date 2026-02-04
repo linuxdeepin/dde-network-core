@@ -107,6 +107,7 @@ Q_SIGNALS:
     // clang-format on
     void toControlCenter();
     void netCheckAvailableChanged(const bool &netCheckAvailable);
+    void supportWirelessChanged(bool supportWireless);
 
 public Q_SLOTS:
     void setDeviceEnabled(const QString &id, bool enabled);
@@ -257,6 +258,8 @@ protected:
     QString connectionSuffixNum(const QString &matchConnName, const QString &name = QString(), NetworkManager::Connection *exception = nullptr);
     NetworkManager::WirelessSecuritySetting::KeyMgmt getKeyMgmtByAp(NetworkManager::AccessPoint *ap);
 
+    void updateSupportWireless();
+
     static NetType::NetDeviceStatus toNetDeviceStatus(ConnectionStatus status);
     static NetType::NetConnectionStatus toNetConnectionStatus(ConnectionStatus status);
     static NetType::NetDeviceStatus deviceStatus(NetworkDeviceBase *device);
@@ -290,6 +293,7 @@ private:
     QString m_showPageCmd;
     QTimer *m_showPageTimer;
     QString m_newVPNuuid;
+    bool m_supportWireless;
 };
 
 } // namespace network

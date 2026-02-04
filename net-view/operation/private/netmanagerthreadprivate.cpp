@@ -98,6 +98,7 @@ NetManagerThreadPrivate::NetManagerThreadPrivate()
     , m_netCheckAvailable(false)
     , m_isSleeping(false)
     , m_showPageTimer(nullptr)
+    , m_supportWireless(false)
 {
     moveToThread(m_thread);
     m_thread->start();
@@ -1941,6 +1942,7 @@ void NetManagerThreadPrivate::onDeviceAdded(QList<NetworkDeviceBase *> devices)
         }
     }
     updateDSLEnabledable();
+    updateSupportWireless();
 }
 
 void NetManagerThreadPrivate::onDeviceRemoved(QList<NetworkDeviceBase *> devices)
@@ -1953,6 +1955,7 @@ void NetManagerThreadPrivate::onDeviceRemoved(QList<NetworkDeviceBase *> devices
         updateDetails();
     }
     updateDSLEnabledable();
+    updateSupportWireless();
 }
 
 void NetManagerThreadPrivate::onConnectivityChanged()
@@ -2992,6 +2995,24 @@ NetworkManager::WirelessSecuritySetting::KeyMgmt NetManagerThreadPrivate::getKey
         keyMgmt = WirelessSecuritySetting::KeyMgmt::WpaPsk;
     }
     return keyMgmt;
+}
+
+void NetManagerThreadPrivate::updateSupportWireless()
+{
+    bool supportWireless = false;
+    QList<dde::network::NetworkDeviceBase *> devices = NetworkController::instance()->devices();
+    for (dde::network::NetworkDeviceBase *device : devices) {
+        if (device->deviceType() != dde::network::DeviceType::Wireless)
+            continue;
+
+        supportWireless = true;
+        break;
+    }
+
+    if (m_supportWireless != supportWireless) {
+        m_supportWireless = supportWireless;
+        Q_EMIT supportWirelessChanged(m_supportWireless);
+    }
 }
 
 NetType::NetDeviceStatus NetManagerThreadPrivate::toNetDeviceStatus(ConnectionStatus status)
