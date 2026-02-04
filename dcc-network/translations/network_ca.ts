@@ -3,31 +3,31 @@
     <name>DeviceStatusItem</name>
     <message>
         <source>Off</source>
-        <translation type="unfinished"/>
+        <translation>Desactivat</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"/>
+        <translation>Connectat</translation>
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"/>
+        <translation>Conflicte d&apos;IP</translation>
     </message>
     <message>
         <source>Connecting</source>
-        <translation type="unfinished"/>
+        <translation>Es connecta</translation>
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation type="unfinished"/>
+        <translation>Se n&apos;obté l&apos;adreça</translation>
     </message>
     <message>
         <source>Authenticating</source>
-        <translation type="unfinished"/>
+        <translation>S&apos;autentica</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>Desconnectat</translation>
     </message>
 </context>
 <context>
@@ -612,19 +612,19 @@
     </message>
     <message>
         <source>Band</source>
-        <translation type="unfinished"/>
+        <translation>Banda</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"/>
+        <translation>Automàtic</translation>
     </message>
     <message>
         <source>2.4 GHz</source>
-        <translation type="unfinished"/>
+        <translation>2.4 GHz</translation>
     </message>
     <message>
         <source>5 GHz</source>
-        <translation type="unfinished"/>
+        <translation>5 GHz</translation>
     </message>
 </context>
 <context>
