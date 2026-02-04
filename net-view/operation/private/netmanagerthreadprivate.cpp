@@ -137,17 +137,6 @@ bool NetManagerThreadPrivate::CheckPasswordValid(const QString &key, const QStri
     return !password.isEmpty();
 }
 
-bool NetManagerThreadPrivate::supportWireless() const
-{
-    NetworkManager::Device::List devices = NetworkManager::networkInterfaces();
-    for (NetworkManager::Device::Ptr device : devices) {
-        if (device->type() == NetworkManager::Device::Type::Wifi && device->managed())
-            return true;
-    }
-
-    return false;
-}
-
 void NetManagerThreadPrivate::getNetCheckAvailableFromDBus()
 {
     QDBusMessage message = QDBusMessage::createMethodCall("com.deepin.defender.netcheck", "/com/deepin/defender/netcheck", "org.freedesktop.DBus.Properties", "Get");
@@ -872,7 +861,13 @@ bool NetManagerThreadPrivate::supportAirplaneMode() const
         }
     }
 
-    return supportWireless();
+    NetworkManager::Device::List devices = NetworkManager::networkInterfaces();
+    for (NetworkManager::Device::Ptr device : devices) {
+        if (device->type() == NetworkManager::Device::Type::Wifi && device->managed())
+            return true;
+    }
+
+    return false;
 }
 
 void NetManagerThreadPrivate::doConnectOrInfo(const QString &id, NetType::NetItemType type, const QVariantMap &param)
