@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2025 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #include "networkstatehandler.h"
@@ -53,6 +53,9 @@ const QString notifyIconMobile4gDisconnected = "notification-network-mobile-4g-d
 const QString notifyIconMobileUnknownConnected = "notification-network-mobile-unknown-connected";
 const QString notifyIconMobileUnknownDisconnected = "notification-network-mobile-unknown-disconnected";
 
+constexpr auto DBUS_PROPERTIES_IFACE = "org.freedesktop.DBus.Properties";
+constexpr auto LOGIN1_SERVICE = "org.freedesktop.login1";
+
 NetworkStateHandler::NetworkStateHandler(QObject *parent)
     : QObject(parent)
     , m_notifyEnabled(true)
@@ -62,6 +65,8 @@ NetworkStateHandler::NetworkStateHandler(QObject *parent)
     , m_wifiEnabled(true)
     , m_delayShowWifiOSD(new QTimer(this))
     , m_resetWifiOSDEnableTimer(new QTimer(this))
+    , m_sessionActive(false)
+    , m_sessionRemote(false)
 {
     m_delayShowWifiOSD->setSingleShot(true);
     m_resetWifiOSDEnableTimer->setSingleShot(true);
@@ -71,13 +76,18 @@ NetworkStateHandler::NetworkStateHandler(QObject *parent)
     connect(SettingConfig::instance(), &SettingConfig::resetWifiOSDEnableTimeoutChanged, this, &NetworkStateHandler::updateOSDTimer);
     QDBusConnection::systemBus().connect("org.deepin.dde.Network1", "/org/deepin/dde/Network1", "org.deepin.dde.Network1", "DeviceEnabled", this, SLOT(onDeviceEnabled(QDBusObjectPath, bool)));
     QDBusConnection::systemBus().connect("org.freedesktop.NetworkManager", "", "org.freedesktop.NetworkManager.VPN.Connection", "VpnStateChanged", this, SLOT(onVpnStateChanged(QDBusMessage)));
-    QDBusConnection::systemBus().connect("org.deepin.dde.AirplaneMode1", "/org/deepin/dde/AirplaneMode1", "org.freedesktop.DBus.Properties", "PropertiesChanged", this, SLOT(onAirplaneModePropertiesChanged(QString, QVariantMap, QStringList)));
+    QDBusConnection::systemBus().connect("org.deepin.dde.AirplaneMode1", "/org/deepin/dde/AirplaneMode1", DBUS_PROPERTIES_IFACE, "PropertiesChanged", this, SLOT(onAirplaneModePropertiesChanged(QString, QVariantMap, QStringList)));
     // 迁移dde-daemon/session/power1/sleep_inhibit.go ConnectHandleForSleep处理
     QDBusConnection::systemBus().connect("org.deepin.dde.Daemon1", "/org/deepin/dde/Daemon1", "org.deepin.dde.Daemon1", "HandleForSleep", this, SLOT(onHandleForSleep(bool)));
     QDBusMessage message = QDBusMessage::createMethodCall("org.freedesktop.DBus", "/org/freedesktop/DBus", "org.freedesktop.DBus", "GetNameOwner");
     message << "org.freedesktop.NetworkManager";
     QDBusConnection::systemBus().callWithCallback(message, this, SLOT(init()));
     updateOSDTimer(SettingConfig::instance()->resetWifiOSDEnableTimeout());
+
+    uid_t uid = getuid();
+    QDBusMessage userMsg = QDBusMessage::createMethodCall(LOGIN1_SERVICE, QString("/org/freedesktop/login1/user/_%1").arg(uid), DBUS_PROPERTIES_IFACE, "Get");
+    userMsg << "org.freedesktop.login1.User" << "Display";
+    QDBusConnection::systemBus().callWithCallback(userMsg, this, SLOT(initUserDisplay(QDBusMessage)));
 }
 
 void NetworkStateHandler::init()
@@ -635,7 +645,7 @@ void *NetworkStateHandler::nmGetDeviceActiveConnectionData(NetworkManager::Devic
 void NetworkStateHandler::notify(const QString &icon, const QString &summary, const QString &body)
 {
     qCDebug(DSM()) << "notify icon:" << icon << ", summary:" << summary << ", body:" << body;
-    if (!m_notifyEnabled) {
+    if (!m_notifyEnabled || !m_sessionActive || m_sessionRemote) {
         qCDebug(DSM()) << "notify disabled";
         return;
     }
@@ -751,6 +761,50 @@ void NetworkStateHandler::updateOSDTimer(int interval)
     }
     m_delayShowWifiOSD->setInterval(interval - 50);
     m_resetWifiOSDEnableTimer->setInterval(interval);
+}
+
+void NetworkStateHandler::initUserDisplay(const QDBusMessage &msg)
+{
+    if (msg.arguments().isEmpty()) {
+        return;
+    }
+    QDBusVariant display = msg.arguments().first().value<QDBusVariant>();
+    const QDBusArgument arg = display.variant().value<QDBusArgument>();
+    if (arg.currentType() != QDBusArgument::StructureType) {
+        qCWarning(DSM()) << "Invalid argument type, expected StructureType";
+        return;
+    }
+
+    QString id;
+    QDBusObjectPath displayPath;
+    arg.beginStructure();
+    arg >> id >> displayPath;
+    arg.endStructure();
+    QString sessionPath = displayPath.path();
+    if (sessionPath.isEmpty()) {
+        qCWarning(DSM()) << "Empty session path";
+        return;
+    }
+    QDBusMessage sessionMsg = QDBusMessage::createMethodCall(LOGIN1_SERVICE, sessionPath, DBUS_PROPERTIES_IFACE, "GetAll");
+    sessionMsg << "org.freedesktop.login1.Session";
+
+    QDBusConnection::systemBus().callWithCallback(sessionMsg, this, SLOT(updateLogin1Properties(QVariantMap)));
+    QDBusConnection::systemBus().connect(LOGIN1_SERVICE, sessionPath, DBUS_PROPERTIES_IFACE, "PropertiesChanged", this, SLOT(onLogin1PropertiesChanged(QString, QVariantMap, QStringList)));
+}
+
+void NetworkStateHandler::onLogin1PropertiesChanged(const QString &, const QVariantMap &properties, const QStringList &)
+{
+    updateLogin1Properties(properties);
+}
+
+void NetworkStateHandler::updateLogin1Properties(const QVariantMap &properties)
+{
+    if (properties.contains("Active")) {
+        m_sessionActive = properties.value("Active").toBool();
+    }
+    if (properties.contains("Remote")) {
+        m_sessionRemote = properties.value("Remote").toBool();
+    }
 }
 
 static QString getMobileConnectedNotifyIcon(ModemDevice::Capabilities mobileNetworkType)
