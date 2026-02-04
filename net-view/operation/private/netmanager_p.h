@@ -61,6 +61,7 @@ protected Q_SLOTS:
     void clearPasswordRequest(const QString &id);
     void retranslateUi();
     void onItemDestroyed(QObject *obj);
+    void onSupportWirelessChanged(bool supportWireless);
 
 protected:
     void setDeviceEnabled(const QString &id, bool enabled);
@@ -92,6 +93,7 @@ private:
     QString m_showInputId;
 
     int m_deviceCount[DeviceItemCount];
+    bool m_supportWireless;
 
     NetManager *q_ptr;
     Q_DECLARE_PUBLIC(NetManager)

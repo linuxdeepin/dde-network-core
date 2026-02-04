@@ -204,6 +204,7 @@ NetManagerPrivate::NetManagerPrivate(NetManager *manager)
     , m_autoAddConnection(false)
     , m_managerThread(new NetManagerThreadPrivate)
     , m_passwordRequestData(nullptr)
+    , m_supportWireless(false)
     , q_ptr(manager)
 {
     m_root->updateenabled(false);
@@ -225,6 +226,7 @@ NetManagerPrivate::NetManagerPrivate(NetManager *manager)
     connect(q_ptr, &NetManager::languageChange, this, &NetManagerPrivate::retranslateUi);
     connect(m_managerThread, &NetManagerThreadPrivate::toControlCenter, q_ptr, &NetManager::toControlCenter, Qt::QueuedConnection);
     connect(m_managerThread, &NetManagerThreadPrivate::netCheckAvailableChanged, q_ptr, &NetManager::netCheckAvailableChanged, Qt::QueuedConnection);
+    connect(m_managerThread, &NetManagerThreadPrivate::supportWirelessChanged, this, &NetManagerPrivate::onSupportWirelessChanged, Qt::QueuedConnection);
 }
 
 NetManagerPrivate::~NetManagerPrivate()
@@ -877,6 +879,11 @@ void NetManagerPrivate::onItemDestroyed(QObject *obj)
     m_dataMap.remove(obj->objectName());
 }
 
+void NetManagerPrivate::onSupportWirelessChanged(bool supportWireless)
+{
+    m_supportWireless = supportWireless;
+}
+
 void NetManagerPrivate::setDeviceEnabled(const QString &id, bool enabled)
 {
     NetItemPrivate *item = findItem(id);
@@ -1010,7 +1017,7 @@ void NetManagerPrivate::updateAirplaneMode(bool enabled)
         Q_Q(NetManager);
         Q_EMIT q->airplaneModeChanged(m_airplaneMode);
     }
-    updateItemVisible("NetAirplaneModeTipsItem", enabled);
+    updateItemVisible("NetAirplaneModeTipsItem", enabled && m_supportWireless);
     if (enabled) {
         updateItemVisible("NetWirelessDisabledItem", false);
         updateItemVisible("NetWiredDisabledItem", false);
