@@ -1,35 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="fi">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fi">
 <context>
     <name>DeviceStatusItem</name>
     <message>
         <source>Off</source>
-        <translation type="unfinished">Pois</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished">Yhdistetty</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished">IP ristiriita</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connecting</source>
-        <translation type="unfinished">Yhdistetään</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation type="unfinished">Osoitteen haku</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authenticating</source>
-        <translation type="unfinished">Todennus</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished">Katkaistu</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -50,18 +48,18 @@
     <name>Network</name>
     <message>
         <source>Network</source>
-        <translation>Verkko</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>NetworkMain</name>
     <message>
         <source>Connection settings</source>
-        <translation>Yhteysasetukset</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Related Settings</source>
-        <translation>Lisäasetukset</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -614,19 +612,19 @@
     </message>
     <message>
         <source>Band</source>
-        <translation type="unfinished">Taajuusalue</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished">Autom</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>2.4 GHz</source>
-        <translation type="unfinished">2.4 GHz</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>5 GHz</source>
-        <translation type="unfinished">5 GHz</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
