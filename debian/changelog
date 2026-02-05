@@ -1,3 +1,21 @@
+dde-network-core (2.0.81) unstable; urgency=medium
+
+  * fix: update tips color to white
+  * tests: update dss-network-plugin test example
+  * fix: Fix airplane mode tips display logic
+  * Revert "fix: Fix airplane mode tips display logic"
+  * fix: Remove redundant signal emission in proxy settings
+  * fix: Fix airplane mode tips display logic
+  * feat: Updated translation
+  * feat: refactor network device status display and CMake version
+  * fix: fix system proxy status change error
+  * fix: 修复更新信号崩溃
+  * fix: Update taskbar signal strength icon in real-time when network
+    strength changes
+  * chore: replace the connectivity check type
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 05 Feb 2026 20:16:44 +0800
+
 dde-network-core (2.0.80) unstable; urgency=medium
 
   * tests: add service tests
