@@ -1,33 +1,46 @@
 // SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
-// SPDX-License-Identifier: LGPL-3.0-or-later
+// SPDX-License-Identifier: GPL-3.0-or-later
 
 #ifndef DSSTESTWIDGET_H
 #define DSSTESTWIDGET_H
 
+#include <DFloatingButton>
+
 #include <QWidget>
 
-namespace Dtk {
-  namespace Widget {
-    class DFloatingButton;
-  }
-}
+class PopupWindow;
+
+namespace dde {
+namespace network {
+class NetworkPlugin;
+} // namespace network
+} // namespace dde
 
 class QPushButton;
+using namespace Dtk::Widget;
 
 class DssTestWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    DssTestWidget(QWidget *parent = Q_NULLPTR);
-    ~DssTestWidget();
+    explicit DssTestWidget(dde::network::NetworkPlugin *networkPlugin, QWidget *parent = Q_NULLPTR);
+    ~DssTestWidget() override;
+
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override;
+    void resizeEvent(QResizeEvent *event) override;
+    void mousePressEvent(QMouseEvent *event) override;
+
+protected slots:
+    void onClickButton();
 
 private:
-    bool eventFilter(QObject *watched, QEvent *event);
-
-private:
-    Dtk::Widget::DFloatingButton *m_button;
+    dde::network::NetworkPlugin *m_pModule;
+    DFloatingButton *m_iconButton;
+    PopupWindow *m_container;
+    PopupWindow *m_tipContainer;
 };
 
 #endif // DSSTESTWIDGET_H
