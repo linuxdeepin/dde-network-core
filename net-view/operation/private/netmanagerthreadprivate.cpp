@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2019 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #include "netmanagerthreadprivate.h"
@@ -3042,6 +3042,40 @@ NetType::NetConnectionStatus NetManagerThreadPrivate::toNetConnectionStatus(Conn
     return NetType::NetConnectionStatus::CS_UnConnected;
 }
 
+bool NetManagerThreadPrivate::isWirelessApMode(NetworkDeviceBase *device)
+{
+    // 增加空指针保护，防止 deviceType() 崩溃
+    if (!device || device->deviceType() != dde::network::DeviceType::Wireless) {
+        return false;
+    }
+
+    // 查找 NetworkManager 的接口对象
+    auto dev = NetworkManager::findNetworkInterface(device->path());
+    if (!dev) {
+        return false;
+    }
+
+    // 获取当前活动连接
+    auto activeConn = dev->activeConnection();
+    if (!activeConn || !activeConn->connection()) {
+        return false;
+    }
+
+    // 获取连接设置
+    auto settings = activeConn->connection()->settings();
+    if (!settings) {
+        return false;
+    }
+
+    // 检查无线设置的模式是否为 AP
+    // 使用 staticCast 因为前面已经确认了设备类型，性能优于 dynamicCast
+    // 显式获取 WirelessSetting 指针，提高可读性
+    auto wSettings = settings->setting(Setting::Wireless).staticCast<NetworkManager::WirelessSetting>();
+
+    // 检查 wSettings 是否有效以及模式是否匹配
+    return wSettings && wSettings->mode() == NetworkManager::WirelessSetting::Ap;
+}
+
 NetType::NetDeviceStatus NetManagerThreadPrivate::deviceStatus(NetworkDeviceBase *device)
 {
     // 如果当前网卡是有线网卡，且没有插入网线，那么就返回未插入网线
@@ -3080,7 +3114,9 @@ NetType::NetDeviceStatus NetManagerThreadPrivate::deviceStatus(NetworkDeviceBase
         return NetType::NetDeviceStatus::DS_Disconnected;
     case DeviceStatus::Prepare:
     case DeviceStatus::Config:
-        return NetType::NetDeviceStatus::DS_Connecting;
+        // 当设备处于 AP 模式时，虽然底层状态可能是 Prepare 或 Config，
+        // 但为了避免 UI 显示"正在连接"（用户并未连接外部网络），返回 Disconnected 状态。
+        return isWirelessApMode(device) ? NetType::NetDeviceStatus::DS_Disconnected : NetType::NetDeviceStatus::DS_Connecting;
     case DeviceStatus::Needauth:
         return NetType::NetDeviceStatus::DS_Authenticating;
     case DeviceStatus::IpConfig:

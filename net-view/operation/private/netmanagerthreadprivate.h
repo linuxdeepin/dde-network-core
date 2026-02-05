@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2019 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #ifndef NETMANAGERTHREADPRIVATE_H
@@ -246,7 +246,7 @@ protected Q_SLOTS:
     bool handle8021xAccessPoint(AccessPoints *ap, bool hidden);
     void onPrepareForSleep(bool state);
 
-protected:
+private:
     void addDevice(NetDeviceItemPrivate *deviceItem, NetworkDeviceBase *dev);
 
     void getNetCheckAvailableFromDBus();
@@ -262,6 +262,7 @@ protected:
 
     static NetType::NetDeviceStatus toNetDeviceStatus(ConnectionStatus status);
     static NetType::NetConnectionStatus toNetConnectionStatus(ConnectionStatus status);
+    static bool isWirelessApMode(NetworkDeviceBase *device);
     static NetType::NetDeviceStatus deviceStatus(NetworkDeviceBase *device);
 
 private:
