@@ -21,6 +21,7 @@ add_executable(${PROJECT_NAME}
 target_include_directories(${PROJECT_NAME} PUBLIC
     .
     ../src
+    ../dss-network-plugin
     Dtk6::Widget
     Qt6::DBus
     Qt6::Network
@@ -35,5 +36,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::Network
     Qt6::Widgets
     KF6::NetworkManagerQt
+    dss-network-plugin
     dde-network-core6
 )
