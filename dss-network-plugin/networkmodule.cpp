@@ -121,7 +121,7 @@ QWidget *NetworkModule::itemTipsWidget() const
 {
     QWidget *itemTips = m_netStatus->createItemTips();
     QPalette p = itemTips->palette();
-    p.setColor(QPalette::BrightText, Qt::black);
+    p.setColor(QPalette::BrightText, Qt::white);
     itemTips->setPalette(p);
     return itemTips;
 }
