@@ -109,6 +109,9 @@ public Q_SLOTS:
     void resetWifiOSDEnable();
     void delayShowWifiOSD();
     void updateOSDTimer(int interval);
+    void initUserDisplay(const QDBusMessage &msg);
+    void onLogin1PropertiesChanged(const QString &, const QVariantMap &properties, const QStringList &);
+    void updateLogin1Properties(const QVariantMap &properties);
 
 protected:
     bool isVirtualDeviceIfc(NetworkManager::Device::Ptr dev);
@@ -142,6 +145,9 @@ private:
     bool m_wifiEnabled;
     QTimer *m_delayShowWifiOSD;
     QTimer *m_resetWifiOSDEnableTimer;
+
+    bool m_sessionActive;
+    bool m_sessionRemote;
 };
 } // namespace sessionservice
 } // namespace network
