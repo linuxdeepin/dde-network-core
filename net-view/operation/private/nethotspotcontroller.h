@@ -46,6 +46,7 @@ private Q_SLOTS:
     void updateConfig();
     void onLoginSessionPropertiesChanged(const QString &, const QVariantMap &properties, const QStringList &);
     void updateDisplay(const QDBusVariant &display);
+    void onItemChanged();
 
 private:
     HotspotController *m_hotspotController;
@@ -57,7 +58,7 @@ private:
     QStringList m_shareDevice;
     QStringList m_optionalDevice;
     QStringList m_optionalDevicePath;
-    QTimer *m_updatedTimer;
+    int m_updateCount;
 };
 } // namespace network
 } // namespace dde
