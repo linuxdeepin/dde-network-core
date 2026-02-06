@@ -262,6 +262,7 @@ protected:
 
     static NetType::NetDeviceStatus toNetDeviceStatus(ConnectionStatus status);
     static NetType::NetConnectionStatus toNetConnectionStatus(ConnectionStatus status);
+    static bool isWirelessApMode(NetworkDeviceBase *device);
     static NetType::NetDeviceStatus deviceStatus(NetworkDeviceBase *device);
 
 private:
