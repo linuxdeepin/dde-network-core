@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2027 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #include "nethotspotcontroller.h"
@@ -20,10 +20,8 @@ NetHotspotController::NetHotspotController(QObject *parent)
     , m_enabledable(true)
     , m_deviceEnabled(true)
     , m_userActive(true)
-    , m_updatedTimer(new QTimer(this))
+    , m_updateCount(0)
 {
-    m_updatedTimer->setSingleShot(true);
-    m_updatedTimer->setInterval(50);
     m_hotspotController = NetworkController::instance()->hotspotController();
     updateData();
     updateConfig();
@@ -34,7 +32,7 @@ NetHotspotController::NetHotspotController(QObject *parent)
     connect(m_hotspotController, &HotspotController::activeConnectionChanged, this, &NetHotspotController::updateConfig);
     connect(m_hotspotController, &HotspotController::itemAdded, this, &NetHotspotController::updateConfig);
     connect(m_hotspotController, &HotspotController::itemRemoved, this, &NetHotspotController::updateConfig);
-    connect(m_hotspotController, &HotspotController::itemChanged, this, &NetHotspotController::updateConfig, Qt::QueuedConnection);
+    connect(m_hotspotController, &HotspotController::itemChanged, this, &NetHotspotController::onItemChanged, Qt::QueuedConnection);
     QDBusMessage msg = QDBusMessage::createMethodCall("org.freedesktop.login1", "/org/freedesktop/login1/user/self", "org.freedesktop.DBus.Properties", "Get");
     msg << "org.freedesktop.login1.User" << "Display";
     QDBusConnection::systemBus().callWithCallback(msg, this, SLOT(updateDisplay(QDBusVariant)));
@@ -131,12 +129,13 @@ void NetHotspotController::updateData()
     }
     updateEnabled();
     updateEnabledable();
+    updateConfig();
 }
 
 void NetHotspotController::updateConfig()
 {
     // 用户不为Active状态时，获取密码需要认证
-    if (!m_userActive || m_updatedTimer->isActive()) {
+    if (!m_userActive) {
         return;
     }
     QList<HotspotItem *> items;
@@ -176,7 +175,7 @@ void NetHotspotController::updateConfig()
         ipv4Setting->setInitialized(true);
     } else {
         // conn->secrets会触发两次itemChanged信号
-        m_updatedTimer->start();
+        m_updateCount = 2;
         NetworkManager::WirelessSecuritySetting::Ptr const sSetting = settings->setting(NetworkManager::Setting::SettingType::WirelessSecurity).staticCast<NetworkManager::WirelessSecuritySetting>();
         sSetting->secretsFromMap(conn->secrets(sSetting->name()).value().value(sSetting->name()));
     }
@@ -224,6 +223,15 @@ void NetHotspotController::updateDisplay(const QDBusVariant &display)
         }
         self->deleteLater();
     });
+}
+
+void NetHotspotController::onItemChanged()
+{
+    if (m_updateCount > 0) {
+        m_updateCount--;
+    } else {
+        updateConfig();
+    }
 }
 
 } // namespace network
