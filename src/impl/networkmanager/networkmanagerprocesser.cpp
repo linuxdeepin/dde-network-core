@@ -196,6 +196,9 @@ void NetworkManagerProcesser::createOrRemoveDevice(const QString &path)
         if (!deviceExist(device->uni())) {
             NetworkDeviceBase *newDevice = createDevice(device);
             if (newDevice) {
+                connect(newDevice, &NetworkDeviceBase::deviceStatusChanged, this, &NetworkManagerProcesser::onUpdateNetworkDetail);
+                connect(newDevice, &NetworkDeviceBase::activeConnectionChanged, this, &NetworkManagerProcesser::onUpdateNetworkDetail);
+                connect(newDevice, &NetworkDeviceBase::ipV4Changed, this, &NetworkManagerProcesser::onUpdateNetworkDetail);
                 m_devices << newDevice;
                 sortDevice();
                 updateDeviceName();
