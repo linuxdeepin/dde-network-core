@@ -3,31 +3,31 @@
     <name>DeviceStatusItem</name>
     <message>
         <source>Off</source>
-        <translation type="unfinished"/>
+        <translation>Wyłączone</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"/>
+        <translation>Połączono</translation>
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"/>
+        <translation>Konflikt IP</translation>
     </message>
     <message>
         <source>Connecting</source>
-        <translation type="unfinished"/>
+        <translation>Łączenie</translation>
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation type="unfinished"/>
+        <translation>Uzyskiwanie adresu</translation>
     </message>
     <message>
         <source>Authenticating</source>
-        <translation type="unfinished"/>
+        <translation>Uwierzytelnianie</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>Rozłączono</translation>
     </message>
 </context>
 <context>
@@ -48,18 +48,18 @@
     <name>Network</name>
     <message>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Sieć</translation>
     </message>
 </context>
 <context>
     <name>NetworkMain</name>
     <message>
         <source>Connection settings</source>
-        <translation type="unfinished"/>
+        <translation>Ustawienia sieci</translation>
     </message>
     <message>
         <source>Related Settings</source>
-        <translation type="unfinished"/>
+        <translation>Powiązane ustawienia</translation>
     </message>
 </context>
 <context>
@@ -612,19 +612,19 @@
     </message>
     <message>
         <source>Band</source>
-        <translation type="unfinished"/>
+        <translation>Pasmo</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"/>
+        <translation>Automatycznie</translation>
     </message>
     <message>
         <source>2.4 GHz</source>
-        <translation type="unfinished"/>
+        <translation>2.4 GHz</translation>
     </message>
     <message>
         <source>5 GHz</source>
-        <translation type="unfinished"/>
+        <translation>5 GHz</translation>
     </message>
 </context>
 <context>
