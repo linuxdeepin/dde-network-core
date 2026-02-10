@@ -44,7 +44,7 @@ DccObject {
         id: devCheck
         D.Switch {
             checked: netItem.isEnabled
-            enabled: netItem.enabledable
+            enabled: true
             onClicked: {
                 dccData.exec(netItem.isEnabled ? NetManager.DisabledDevice : NetManager.EnabledDevice, netItem.id, {})
             }
@@ -70,7 +70,7 @@ DccObject {
                 pageType: DccObject.Editor
                 page: D.Switch {
                     checked: root.method !== NetType.None
-                    enabled: netItem.enabledable
+                    enabled: true
                     onClicked: {
                         if (checked) {
                             root.method = netItem.lastMethod

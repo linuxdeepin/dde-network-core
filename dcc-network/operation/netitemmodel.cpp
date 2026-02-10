@@ -3,8 +3,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 #include "netitemmodel.h"
 
-#include "netitem.h"
-
 namespace dde {
 namespace network {
 enum NetModelRole {
@@ -42,9 +40,31 @@ protected Q_SLOTS:
         onAddObject(child);
     }
 
-    void AboutToRemoveObject(const NetItem *, int pos) { beginRemoveRows(QModelIndex(), pos, pos); }
+    bool needRemoveNodeItem(const NetItem *childItem) const
+    {
+        if (childItem && (childItem->itemType() == NetType::NetItemType::SystemProxyControlItem
+            || childItem->itemType() == NetType::NetItemType::AppProxyControlItem)) {
+            // 对于系统代理和应用代理（应用代理在V25上被裁减了，但是这里还是加上去这个判断，防止以后加上），
+            // 这里始终显示当前的节点
+            return false;
+        }
+        return true;
+    }
 
-    void removeObject(const NetItem *child) { endRemoveRows(); }
+    void AboutToRemoveObject(const NetItem *parentItem, int pos)
+    {
+        if (!parentItem)
+            return;
+
+        if (needRemoveNodeItem(parentItem->getChild(pos)))
+            beginRemoveRows(QModelIndex(), pos, pos);
+    }
+
+    void removeObject(const NetItem *child)
+    {
+        if (needRemoveNodeItem(child))
+            endRemoveRows();
+    }
 
 protected:
     NetItem *m_root;
@@ -195,10 +215,32 @@ QHash<int, QByteArray> NetItemModel::roleNames() const
     return names;
 }
 
+bool NetItemModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
+{
+    QModelIndex childIndex = sourceModel()->index(source_row, 0, source_parent);
+    NetItem *curItem = static_cast<NetItem *>(childIndex.internalPointer());
+    if (!curItem) {
+        return false;
+    }
+    // 有的节点出现了两次，所以这里让显示第一次出现的那个节点
+    if (m_rowMap.contains(curItem->itemType())) {
+        return (m_rowMap[curItem->itemType()] == source_row);
+    }
+
+    m_rowMap[curItem->itemType()] = source_row;
+    return true;
+}
+
 bool NetItemModel::lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const
 {
     NetItem *leftItem = static_cast<NetItem *>(source_left.internalPointer());
+    if (!leftItem)
+        return false;
+
     NetItem *rightItem = static_cast<NetItem *>(source_right.internalPointer());
+    if (!rightItem)
+        return false;
+
     if (leftItem->itemType() != rightItem->itemType())
         return leftItem->itemType() < rightItem->itemType();
     switch (leftItem->itemType()) {

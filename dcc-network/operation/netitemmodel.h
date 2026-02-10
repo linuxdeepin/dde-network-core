@@ -6,6 +6,8 @@
 
 #include <QSortFilterProxyModel>
 
+#include "netitem.h"
+
 namespace dde {
 namespace network {
 class NetItem;
@@ -27,7 +29,11 @@ Q_SIGNALS:
     void rootChanged(NetItem *root);
 
 protected:
+    bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const override;
     bool lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const override;
+
+private:
+    mutable QMap<NetType::NetItemType, int> m_rowMap;
 };
 } // namespace network
 } // namespace dde
