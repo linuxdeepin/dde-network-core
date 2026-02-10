@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2019 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #include "netmanagerthreadprivate.h"
@@ -462,11 +462,12 @@ void NetManagerThreadPrivate::doInit()
         item->updatemethod(NetType::ProxyMethod(method));
         item->item()->moveToThread(m_parentThread);
         Q_EMIT itemAdded("Root", item);
-        onSystemProxyExistChanged(networkController->proxyController()->systemProxyExist());
         onSystemAutoProxyChanged(networkController->proxyController()->autoProxy());
         onSystemManualProxyChanged();
-
-        connect(networkController->proxyController(), &ProxyController::systemProxyExistChanged, this, &NetManagerThreadPrivate::onSystemProxyExistChanged);
+        if (!m_flags.testFlags(NetType::NetManagerFlag::Net_SysProxyAlwaysShow)) {
+            onSystemProxyExistChanged(networkController->proxyController()->systemProxyExist());
+            connect(networkController->proxyController(), &ProxyController::systemProxyExistChanged, this, &NetManagerThreadPrivate::onSystemProxyExistChanged);
+        }
         connect(networkController->proxyController(), &ProxyController::proxyMethodChanged, this, &NetManagerThreadPrivate::onSystemProxyMethodChanged);
         connect(networkController->proxyController(), &ProxyController::autoProxyChanged, this, &NetManagerThreadPrivate::onSystemAutoProxyChanged);
         connect(networkController->proxyController(), &ProxyController::proxyChanged, this, &NetManagerThreadPrivate::onSystemManualProxyChanged);
