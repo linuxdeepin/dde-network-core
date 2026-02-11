@@ -12,6 +12,7 @@ D.PasswordEdit {
     property bool initialized: false
     signal textUpdated
 
+    D.ColorSelector.inactived: false
     placeholderText: qsTr("Required")
     echoButtonVisible: newInput
     showAlert: dataItem.errorKey === dccObj.name

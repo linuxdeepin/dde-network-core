@@ -236,6 +236,7 @@ DccObject {
                                     text: qsTr("Name (SSID)")
                                     corners: getCornersForBackground(0, colLayout.children.length)
                                     content: D.LineEdit {
+                                        D.ColorSelector.inactived: false
                                         showAlert: ssidAlert
                                         alertDuration: 2000
                                         placeholderText: qsTr("Required")
@@ -327,6 +328,7 @@ DccObject {
                             Button {
                                 Layout.fillWidth: true
                                 text: qsTr("Cancel")
+                                D.ColorSelector.inactived: false
                                 onClicked: close()
                             }
                             Rectangle {
@@ -337,6 +339,7 @@ DccObject {
 
                             D.Button {
                                 Layout.fillWidth: true
+                                D.ColorSelector.inactived: false
                                 // contentItem: D.IconLabel {
                                 text: qsTr("Save")
                                 //     color: "red"

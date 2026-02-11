@@ -3,6 +3,8 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 
+import org.deepin.dtk 1.0 as D
+
 Button {
     implicitHeight: implicitContentHeight + 6
     implicitWidth: implicitContentWidth + 10
@@ -11,4 +13,5 @@ Button {
     leftPadding: 0
     rightPadding: 0
     spacing: 0
+    D.ColorSelector.inactived: false
 }

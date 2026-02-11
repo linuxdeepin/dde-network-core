@@ -50,6 +50,7 @@ DccObject {
         weight: 10
         pageType: DccObject.Editor
         page: D.LineEdit {
+            D.ColorSelector.inactived: false
             topInset: 4
             bottomInset: 4
             text: root.config.url
@@ -69,6 +70,7 @@ DccObject {
         weight: 20
         pageType: DccObject.Editor
         page: D.LineEdit {
+            D.ColorSelector.inactived: false
             topInset: 4
             bottomInset: 4
             validator: IntValidator {
@@ -109,6 +111,7 @@ DccObject {
         weight: 40
         pageType: DccObject.Editor
         page: D.LineEdit {
+            D.ColorSelector.inactived: false
             topInset: 4
             bottomInset: 4
             text: root.config.user

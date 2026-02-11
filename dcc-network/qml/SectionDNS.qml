@@ -113,15 +113,10 @@ DccObject {
     pageType: DccObject.Item
     page: RowLayout {
         DccLabel {
-            property D.Palette textColor: D.Palette {
-                normal: Qt.rgba(0, 0, 0, 0.9)
-                normalDark: Qt.rgba(1, 1, 1, 0.9)
-            }
             font: DccUtils.copyFont(D.DTK.fontManager.t5, {
                                         "weight": 500
                                     })
             text: dccObj.displayName
-            color: D.ColorSelector.textColor
         }
         Item {
             Layout.fillWidth: true
@@ -165,6 +160,7 @@ DccObject {
             pageType: DccObject.Editor
             page: RowLayout {
                 D.LineEdit {
+                    D.ColorSelector.inactived: false
                     text: root.config[index]
                     // 移除正则验证器，改用手动验证以支持IPv6
                     // 显式允许所有字符输入，包括冒号
