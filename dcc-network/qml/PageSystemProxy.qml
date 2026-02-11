@@ -136,6 +136,7 @@ DccObject {
                 pageType: DccObject.Editor
                 visible: method === NetType.Auto
                 page: D.LineEdit {
+                    D.ColorSelector.inactived: false
                     topInset: 4
                     bottomInset: 4
                     placeholderText: qsTr("Required")
@@ -236,6 +237,7 @@ DccObject {
                 pageType: DccObject.Item
                 page: TextArea {
                     wrapMode: TextEdit.WordWrap
+                    D.ColorSelector.inactived: false
                     text: dccObj.config
                     onTextChanged: {
                         if (dccObj.config !== text) {
@@ -286,6 +288,7 @@ DccObject {
                     leftPadding: 0
                     rightPadding: 0
                     spacing: 0
+                    D.ColorSelector.inactived: false
                     text: dccObj.displayName
                     Layout.alignment: Qt.AlignRight
                     onClicked: root.resetData()
@@ -306,6 +309,7 @@ DccObject {
                     leftPadding: 0
                     rightPadding: 0
                     spacing: 0
+                    D.ColorSelector.inactived: false
                     enabled: (method === NetType.Auto && (inputItem & 0xf0)) || (method === NetType.Manual && (inputItem & 0x0f))
                     text: dccObj.displayName
                     Layout.alignment: Qt.AlignRight

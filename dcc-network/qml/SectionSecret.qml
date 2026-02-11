@@ -416,6 +416,7 @@ DccTitleObject {
             visible: root.keyMgmt === "wpa-eap"
             pageType: DccObject.Editor
             page: D.LineEdit {
+                D.ColorSelector.inactived: false
                 placeholderText: qsTr("Required")
                 text: root.config802_1x && root.config802_1x.hasOwnProperty("identity") ? root.config802_1x.identity : ""
                 onTextChanged: {
@@ -536,6 +537,7 @@ DccTitleObject {
             visible: root.keyMgmt === "wpa-eap" && (root.eapType === "fast" || root.eapType === "ttls" || root.eapType === "peap")
             pageType: DccObject.Editor
             page: D.LineEdit {
+                D.ColorSelector.inactived: false
                 text: root.config802_1x && root.config802_1x.hasOwnProperty("anonymous-identity") ? root.config802_1x["anonymous-identity"] : ""
                 onTextChanged: {
                     if (root.config802_1x["anonymous-identity"] !== text) {

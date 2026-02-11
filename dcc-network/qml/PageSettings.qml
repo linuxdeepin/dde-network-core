@@ -141,6 +141,7 @@ DccObject {
                         Button {
                             Layout.fillWidth: true
                             text: qsTr("Cancel")
+                            D.ColorSelector.inactived: false
                             onClicked: close()
                         }
                         Rectangle {
@@ -151,6 +152,7 @@ DccObject {
 
                         D.Button {
                             Layout.fillWidth: true
+                            D.ColorSelector.inactived: false
                             contentItem: D.IconLabel {
                                 text: qsTr("Delete")
                                 color: "red"

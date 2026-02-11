@@ -231,6 +231,7 @@ DccObject {
                             Button {
                                 Layout.fillWidth: true
                                 Layout.margins: 10
+                                D.ColorSelector.inactived: false
                                 text: qsTr("OK")
                                 onClicked: close()
                             }
@@ -246,6 +247,7 @@ DccObject {
                 page: NetButton {
                     text: qsTr("Add VPN")
                     Layout.alignment: Qt.AlignRight
+                    D.ColorSelector.inactived: false
                     onClicked: {
                         dccData.exec(NetManager.ConnectInfo, netItem.id, {})
                     }

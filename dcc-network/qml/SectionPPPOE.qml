@@ -51,6 +51,7 @@ DccTitleObject {
             weight: 10
             pageType: DccObject.Editor
             page: D.LineEdit {
+                D.ColorSelector.inactived: false
                 placeholderText: qsTr("Required")
                 text: root.config.hasOwnProperty("username") ? root.config.username : ""
                 showAlert: errorKey === dccObj.name
@@ -80,6 +81,7 @@ DccTitleObject {
             weight: 20
             pageType: DccObject.Editor
             page: D.LineEdit {
+                D.ColorSelector.inactived: false
                 text: root.config.hasOwnProperty("service") ? root.config.service : ""
                 onTextChanged: {
                     if (root.config.service !== text) {

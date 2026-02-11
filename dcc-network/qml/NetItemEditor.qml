@@ -12,6 +12,7 @@ D.ItemDelegate {
     Layout.fillWidth: true
     backgroundVisible: false
     checkable: false
+    D.ColorSelector.inactived: false
     background: DccItemBackground {
         separatorVisible: true
     }

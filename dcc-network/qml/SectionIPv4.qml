@@ -138,15 +138,11 @@ DccObject {
     pageType: DccObject.Item
     page: RowLayout {
         DccLabel {
-            property D.Palette textColor: D.Palette {
-                normal: Qt.rgba(0, 0, 0, 0.9)
-                normalDark: Qt.rgba(1, 1, 1, 0.9)
-            }
             font: DccUtils.copyFont(D.DTK.fontManager.t5, {
                                         "weight": 500
                                     })
             text: dccObj.displayName
-            color: D.ColorSelector.textColor
+            D.ColorSelector.inactived: false
         }
         Item {
             Layout.fillWidth: true
@@ -331,6 +327,7 @@ DccObject {
                     canSearch: false
                     pageType: DccObject.Editor
                     page: D.LineEdit {
+                        D.ColorSelector.inactived: false
                         text: addressData.length > index ? addressData[index][0] : "0.0.0.0"
                         validator: RegularExpressionValidator {
                             regularExpression: NetUtils.ipRegExp
@@ -363,6 +360,7 @@ DccObject {
                     canSearch: false
                     pageType: DccObject.Editor
                     page: D.LineEdit {
+                        D.ColorSelector.inactived: false
                         text: addressData.length > index ? addressData[index][1] : "255.255.255.0"
                         validator: RegularExpressionValidator {
                             regularExpression: NetUtils.maskRegExp
@@ -395,6 +393,7 @@ DccObject {
                     pageType: DccObject.Editor
                     page: D.LineEdit {
                         enabled: index === 0
+                        D.ColorSelector.inactived: false
                         text: index === 0 && addressData.length > index ? addressData[index][2] : ""
                         validator: RegularExpressionValidator {
                             regularExpression: NetUtils.ipRegExp

@@ -172,7 +172,7 @@ DccObject {
                                         "weight": 500
                                     })
             text: dccObj.displayName
-            color: D.ColorSelector.textColor
+            D.ColorSelector.inactived: falsegit
         }
         Item {
             Layout.fillWidth: true
@@ -336,6 +336,7 @@ DccObject {
                     canSearch: false
                     pageType: DccObject.Editor
                     page: D.LineEdit {
+                        D.ColorSelector.inactived: false
                         text: root.addressData.length > index ? root.addressData[index].address : ""
                         validator: RegularExpressionValidator {
                             regularExpression: NetUtils.ipv6RegExp
@@ -405,6 +406,7 @@ DccObject {
                     pageType: DccObject.Editor
                     page: D.LineEdit {
                         enabled: index === 0
+                        D.ColorSelector.inactived: false
                         text: index === 0 ? gateway[index] : ""
                         validator: RegularExpressionValidator {
                             regularExpression: NetUtils.ipv6RegExp

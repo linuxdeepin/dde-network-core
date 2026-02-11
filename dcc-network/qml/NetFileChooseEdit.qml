@@ -30,6 +30,7 @@ RowLayout {
     }
     D.LineEdit {
         id: edit
+        D.ColorSelector.inactived: false
         onTextChanged: {
             if (!initialized) {
                 return

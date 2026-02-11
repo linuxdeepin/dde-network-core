@@ -355,6 +355,7 @@ DccTitleObject {
         RowLayout {
             D.LineEdit {
                 id: fileEdit
+                D.ColorSelector.inactived: false
                 text: root.dataMap.hasOwnProperty(dccObj.name) ? NetUtils.removeTrailingNull(root.dataMap[dccObj.name]) : ""
                 onTextChanged: {
                     if (showAlert) {
@@ -389,6 +390,7 @@ DccTitleObject {
         RowLayout {
             D.LineEdit {
                 id: fileEdit
+                D.ColorSelector.inactived: false
                 placeholderText: qsTr("Required")
                 text: root.dataMap.hasOwnProperty(dccObj.name) ? NetUtils.removeTrailingNull(root.dataMap[dccObj.name]) : ""
                 onTextChanged: {
@@ -422,6 +424,7 @@ DccTitleObject {
     Component {
         id: gatewayLineEdit
         D.LineEdit {
+            D.ColorSelector.inactived: false
             placeholderText: qsTr("Required")
             text: root.dataMap.hasOwnProperty(dccObj.name) ? root.dataMap[dccObj.name] : ""
             onTextChanged: {
@@ -447,6 +450,7 @@ DccTitleObject {
     Component {
         id: requiredLineEdit
         D.LineEdit {
+            D.ColorSelector.inactived: false
             placeholderText: qsTr("Required")
             text: root.dataMap.hasOwnProperty(dccObj.name) ? root.dataMap[dccObj.name] : ""
             onTextChanged: {
@@ -471,6 +475,7 @@ DccTitleObject {
     Component {
         id: lineEdit
         D.LineEdit {
+            D.ColorSelector.inactived: false
             text: root.dataMap.hasOwnProperty(dccObj.name) ? root.dataMap[dccObj.name] : ""
             onTextChanged: {
                 if (showAlert) {
@@ -633,6 +638,7 @@ DccTitleObject {
             page: RowLayout {
                 D.LineEdit {
                     id: usercertEdit
+                    D.ColorSelector.inactived: false
                     placeholderText: root.vpnType === NetUtils.VpnTypeEnum["strongswan"] ? "" : qsTr("Required")
                     text: root.dataMap.hasOwnProperty(dccObj.name) ? NetUtils.removeTrailingNull(root.dataMap[dccObj.name]) : ""
                     onTextChanged: {
@@ -674,6 +680,7 @@ DccTitleObject {
             page: RowLayout {
                 D.LineEdit {
                     id: userkeyEdit
+                    D.ColorSelector.inactived: false
                     placeholderText: root.vpnType === NetUtils.VpnTypeEnum["strongswan"] ? "" : qsTr("Required")
                     text: root.dataMap.hasOwnProperty(dccObj.name) ? NetUtils.removeTrailingNull(root.dataMap[dccObj.name]) : ""
                     onTextChanged: {

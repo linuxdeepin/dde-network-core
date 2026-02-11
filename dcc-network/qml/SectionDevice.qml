@@ -137,6 +137,7 @@ DccTitleObject {
             pageType: DccObject.Editor
             page: D.LineEdit {
                 text: root.config.hasOwnProperty("cloned-mac-address") ? root.config["cloned-mac-address"] : ""
+                D.ColorSelector.inactived: false
                 validator: RegularExpressionValidator {
                     regularExpression: NetUtils.macRegExp
                 }

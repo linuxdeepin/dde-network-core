@@ -125,6 +125,7 @@ DccObject {
                 weight: 20
                 pageType: DccObject.Editor
                 page: D.LineEdit {
+                    D.ColorSelector.inactived: false
                     topInset: 4
                     bottomInset: 4
                     validator: RegularExpressionValidator {
@@ -155,6 +156,7 @@ DccObject {
                 weight: 30
                 pageType: DccObject.Editor
                 page: D.LineEdit {
+                    D.ColorSelector.inactived: false
                     topInset: 4
                     bottomInset: 4
                     validator: IntValidator {
@@ -186,6 +188,7 @@ DccObject {
                 weight: 40
                 pageType: DccObject.Editor
                 page: D.LineEdit {
+                    D.ColorSelector.inactived: false
                     topInset: 4
                     bottomInset: 4
                     text: root.config.user
@@ -257,6 +260,7 @@ DccObject {
                 leftPadding: 0
                 rightPadding: 0
                 spacing: 0
+                D.ColorSelector.inactived: false
                 text: qsTr("Cancel")
                 Layout.alignment: Qt.AlignRight
                 onClicked: {
@@ -279,6 +283,7 @@ DccObject {
                 leftPadding: 0
                 rightPadding: 0
                 spacing: 0
+                D.ColorSelector.inactived: false
                 text: qsTr("Save")
                 Layout.alignment: Qt.AlignRight
                 onClicked: {

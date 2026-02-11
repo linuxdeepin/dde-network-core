@@ -55,6 +55,7 @@ DccTitleObject {
             enabled: root.config.type !== "802-11-wireless" || !root.config.hasOwnProperty("id") || root.config.id.length === 0
             pageType: DccObject.Editor
             page: D.LineEdit {
+                D.ColorSelector.inactived: false
                 text: settingsID
                 placeholderText: qsTr("Required")
                 onTextChanged: {
