@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2027 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 // SPDX-License-Identifier: GPL-3.0-or-later
 import QtQuick 2.15
 import QtQuick.Controls 2.15
@@ -290,6 +290,12 @@ DccObject {
                                                 editDlg.config["802-11-wireless-security"] = {}
                                             }
                                             editDlg.config["802-11-wireless-security"].psk = text
+                                        }
+                                        // 在显示明文时禁用右键菜单
+                                        MouseArea {
+                                            anchors.fill: parent
+                                            acceptedButtons: Qt.RightButton
+                                            enabled: parent.echoMode === TextInput.Password
                                         }
                                     }
                                 }
