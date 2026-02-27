@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2027 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 // SPDX-License-Identifier: GPL-3.0-or-later
 import QtQuick 2.15
 import QtQuick.Controls 2.15
@@ -137,9 +137,6 @@ DccTitleObject {
             pageType: DccObject.Editor
             page: D.LineEdit {
                 text: root.config.hasOwnProperty("cloned-mac-address") ? root.config["cloned-mac-address"] : ""
-                validator: RegularExpressionValidator {
-                    regularExpression: NetUtils.macRegExp
-                }
                 onTextChanged: {
                     if (showAlert) {
                         errorKey = ""
