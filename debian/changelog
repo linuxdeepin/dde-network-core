@@ -1,3 +1,20 @@
+dde-network-core (2.0.82) unstable; urgency=medium
+
+  * fix: remove MAC address validator from cloned MAC field
+  * fix: disable the popup menu when show password mode
+  * fix: fix system and app proxy is hide
+  * fix: resolve hotspot device not updating when network interface
+    changes
+  * chore: update dde-control-center dependency version
+  * fix: resolve hotspot status transition issue
+  * fix: prevent notifications when user inactive
+  * fix: Fix failure to update network details after a newly inserted
+    device connects to the network
+  * fix: 修复内存泄露
+  * fix: 任务栏网络弹窗打开的时候闪烁
+
+ -- zhangkun <zhangkun2@uniontech.com>  Fri, 27 Feb 2026 17:02:20 +0800
+
 dde-network-core (2.0.81) unstable; urgency=medium
 
   * fix: update tips color to white
