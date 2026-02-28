@@ -1,3 +1,9 @@
+dde-network-core (2.0.83) unstable; urgency=medium
+
+  * fix: auto scan when in the wireless page
+
+ -- zhangkun <zhangkun2@uniontech.com>  Sat, 28 Feb 2026 10:06:28 +0800
+
 dde-network-core (2.0.82) unstable; urgency=medium
 
   * fix: remove MAC address validator from cloned MAC field
