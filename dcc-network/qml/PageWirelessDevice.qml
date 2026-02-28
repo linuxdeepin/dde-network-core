@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2027 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 // SPDX-License-Identifier: GPL-3.0-or-later
 import QtQuick 2.15
 import QtQuick.Controls 2.15
@@ -271,6 +271,18 @@ DccObject {
                                             "bold": true
                                         })
                 text: dccObj.displayName
+
+                Timer {
+                    id: refreshTimer
+                    interval: 60000 // 一分钟间隔
+                    running: true
+                    repeat: true
+                    triggeredOnStart: true
+                    onTriggered: {
+                        // 定期扫描网络
+                        dccData.exec(NetManager.RequestScan, root.netItem.id, {})
+                    }
+                }
             }
             onParentItemChanged: {
                 if (parentItem) {
