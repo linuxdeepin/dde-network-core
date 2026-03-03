@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2019 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #include "netview.h"
@@ -16,6 +16,7 @@
 #include <QHoverEvent>
 #include <QScrollBar>
 #include <QScroller>
+#include <QScrollerProperties>
 #include <QSortFilterProxyModel>
 #include <QTimer>
 
@@ -82,9 +83,13 @@ NetView::NetView(NetManager *manager)
     connect(this, &NetView::activated, this, &NetView::onActivated);
 
     // 支持在触摸屏上滚动
-    // QScroller::grabGesture(viewport(), QScroller::LeftMouseButtonGesture);
-    // QScrollerProperties sp;
-    // sp.setScrollMetric(QScrollerProperties::VerticalOvershootPolicy, QScrollerProperties::OvershootAlwaysOff);
+    QScroller::grabGesture(viewport(), QScroller::TouchGesture);
+    QScrollerProperties sp = QScroller::scroller(viewport())->scrollerProperties();
+    sp.setScrollMetric(QScrollerProperties::VerticalOvershootPolicy, QScrollerProperties::OvershootAlwaysOff);
+    sp.setScrollMetric(QScrollerProperties::HorizontalOvershootPolicy, QScrollerProperties::OvershootAlwaysOff);
+    sp.setScrollMetric(QScrollerProperties::DecelerationFactor, 0.5);
+    sp.setScrollMetric(QScrollerProperties::MaximumVelocity, 0.5);
+    QScroller::scroller(viewport())->setScrollerProperties(sp);
 }
 
 NetView::~NetView() = default;
