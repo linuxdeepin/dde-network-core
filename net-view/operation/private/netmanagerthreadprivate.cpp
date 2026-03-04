@@ -1570,6 +1570,10 @@ void NetManagerThreadPrivate::doSetConnectInfo(const QString &id, NetType::NetIt
     } else {
         // 更新
         connection = findConnectionByUuid(settings->uuid());
+        if (!connection) {
+            qCWarning(DNC) << "Update connection failed: connection not found for UUID" << settings->uuid();
+            return;
+        }
         NMVariantMapMap finalSettings = settings->toMap();
 
         QDBusPendingReply<> reply = connection->isUnsaved() ? connection->updateUnsaved(finalSettings) : connection->update(finalSettings);
