@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -186,12 +186,7 @@ void NetworkManagerProcesser::createOrRemoveDevice(const QString &path)
         }
     };
 
-    if (device->managed()
-#ifdef USE_DEEPIN_NMQT
-                && ((device->interfaceFlags() & DEVICE_INTERFACE_FLAG_UP) ||
-                device->type() == NetworkManager::Device::Wifi)
-#endif
-            ) {
+    if (device->managed() && ((device->interfaceFlags() & DEVICE_INTERFACE_FLAG_UP) || device->type() == NetworkManager::Device::Wifi)) {
         // 如果由非manager变成manager的模式，则新增设备
         if (!deviceExist(device->uni())) {
             NetworkDeviceBase *newDevice = createDevice(device);
@@ -327,21 +322,15 @@ void NetworkManagerProcesser::onDeviceAdded(const QString &uni)
         }
     }
 
-#ifdef USE_DEEPIN_NMQT
     connect(currentDevice.get(), &NetworkManager::Device::interfaceFlagsChanged, currentDevice.get(), [ uni, this ] {
         createOrRemoveDevice(uni);
     });
-#endif
+
     connect(currentDevice.get(), &NetworkManager::Device::managedChanged, currentDevice.get(), [ uni, this ] {
         createOrRemoveDevice(uni);
     });
 
-    if (currentDevice->managed()
-#ifdef USE_DEEPIN_NMQT
-                 && ((currentDevice->interfaceFlags() & DEVICE_INTERFACE_FLAG_UP) ||
-                     currentDevice->type() == NetworkManager::Device::Wifi)
-#endif
-            ) {
+    if (currentDevice->managed() && ((currentDevice->interfaceFlags() & DEVICE_INTERFACE_FLAG_UP) || currentDevice->type() == NetworkManager::Device::Wifi)) {
         NetworkDeviceBase *newDevice = createDevice(currentDevice);
         connect(newDevice, &NetworkDeviceBase::deviceStatusChanged, this, &NetworkManagerProcesser::onUpdateNetworkDetail);
         connect(newDevice, &NetworkDeviceBase::activeConnectionChanged, this, &NetworkManagerProcesser::onUpdateNetworkDetail);

@@ -8,7 +8,6 @@ project(dde-network-core
   LANGUAGES CXX C
 )
 
-option(ENABLE_DEEPIN_NMQT "enable nmqt patch on deepin" ON)
 option(BUILD_TESTS "Build unit tests" OFF)
 option(BUILD_EXAMPLE "Build example programs" OFF)
 
@@ -32,10 +31,6 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     message(" GLIB_INCLUDE_DIRS :" ${GLIB_INCLUDE_DIRS})
     message(" CMAKE_CURRENT_SOURCE_DIR: " ${CMAKE_CURRENT_SOURCE_DIR})
     message(STATUS ${result})
-endif()
-
-if (ENABLE_DEEPIN_NMQT)
-    add_definitions(-DUSE_DEEPIN_NMQT)
 endif()
 
 message(STATUS DEEPIN_NMQT_TEST ": ${DEEPIN_NMQT_TEST}")
