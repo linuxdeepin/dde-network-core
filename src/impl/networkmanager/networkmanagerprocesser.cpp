@@ -324,11 +324,11 @@ void NetworkManagerProcesser::onDeviceAdded(const QString &uni)
 
     connect(currentDevice.get(), &NetworkManager::Device::interfaceFlagsChanged, currentDevice.get(), [ uni, this ] {
         createOrRemoveDevice(uni);
-    });
+    }, Qt::QueuedConnection);
 
     connect(currentDevice.get(), &NetworkManager::Device::managedChanged, currentDevice.get(), [ uni, this ] {
         createOrRemoveDevice(uni);
-    });
+    }, Qt::QueuedConnection);
 
     if (currentDevice->managed() && ((currentDevice->interfaceFlags() & DEVICE_INTERFACE_FLAG_UP) || currentDevice->type() == NetworkManager::Device::Wifi)) {
         NetworkDeviceBase *newDevice = createDevice(currentDevice);
