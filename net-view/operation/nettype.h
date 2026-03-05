@@ -106,8 +106,8 @@ public:
         Net_SysProxyAlwaysShow = 0x08000000,
         //
         Net_DockFlags = Net_Device | Net_VPN | Net_SysProxy | Net_Airplane | Net_AirplaneTips | Net_VPNTips | Net_tipsLinkEnabled | Net_UseSecretAgent | Net_CheckPortal | Net_8021xToControlCenterUnderConnect | Net_autoUpdateHiddenConfig,
-        Net_LockFlags = Net_Device | Net_VPN | Net_SysProxy | Net_Airplane | Net_AirplaneTips | Net_VPNTips | Net_UseSecretAgent | Net_CheckPortal | Net_8021xSendNotifyUnderConnect,
-        Net_GreeterFlags = Net_Device | Net_Airplane | Net_AirplaneTips | Net_ServiceNM | Net_AutoAddConnection | Net_UseSecretAgent | Net_CheckPortal | Net_8021xSendNotifyUnderConnect,
+        Net_LockFlags = Net_Device | Net_VPN | Net_SysProxy | Net_Airplane | Net_AirplaneTips | Net_VPNTips | Net_UseSecretAgent | Net_CheckPortal | Net_8021xSendNotifyUnderConnect | Net_autoUpdateHiddenConfig,
+        Net_GreeterFlags = Net_Device | Net_Airplane | Net_AirplaneTips | Net_ServiceNM | Net_AutoAddConnection | Net_UseSecretAgent | Net_CheckPortal | Net_8021xSendNotifyUnderConnect | Net_autoUpdateHiddenConfig,
         Net_DccFlags = Net_Device | Net_VPN | Net_VPNChildren | Net_SysProxy | Net_Hotspot | Net_Airplane | Net_DSL | Net_Details | Net_SysProxyAlwaysShow,
         //
         Net_8021xMask = 0x00000F00,
