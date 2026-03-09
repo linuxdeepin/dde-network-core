@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2025 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2025-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #include "networkthread.h"
@@ -163,8 +163,17 @@ void NetworkThread::onDevicestateChanged(NetworkManager::Device::State newState,
         return;
     }
     bool enabled = m_networkConfig->deviceEnabled(dev->uni());
-    if (!enabled) {
-        Device::State state = dev->state();
+    Device::State state = dev->state();
+    if (enabled) {
+        if (state == Device::Activated) {
+            qCDebug(DSM) << "device connection success";
+            NetworkManager::ActiveConnection::Ptr activeConnection = dev->activeConnection();
+            if (activeConnection) {
+                m_networkConfig->setConnectionInfo(dev->interfaceName(), activeConnection->connection()->uuid());
+                m_networkConfig->saveConfig();
+            }
+        }
+    } else {
         if (state >= Device::Preparing && state <= Device::Activated) {
             qCDebug(DSM()) << "disconnect device" << dev->uni();
             dev->disconnectInterface();
@@ -277,20 +286,33 @@ QString NetworkThread::setPropVpnEnabled(bool enabled)
 
 QString NetworkThread::enableDevice(NetworkManager::Device::Ptr device)
 {
-    auto availableConnections = device->availableConnections();
-    qCDebug(DSM()) << "available connections:" << availableConnections;
     QString connPath0;
-    QDateTime maxTs;
-    for (auto &&connPath : availableConnections) {
-        auto settings = connPath->settings();
-        if (!settings->autoconnect()) {
-            continue;
+    const QString &device_uuid = m_networkConfig->connectionUuid(device->interfaceName());
+    if (!device_uuid.isEmpty()) {
+        NetworkManager::Connection::Ptr current_connection = NetworkManager::findConnectionByUuid(device_uuid);
+        if (current_connection && current_connection->settings()->autoconnect()) {
+            connPath0 = current_connection->path();
         }
-        QDateTime ts = settings->timestamp();
-        if (maxTs < ts || connPath0.isEmpty()) {
-            maxTs = ts;
-            connPath0 = connPath->path();
+    }
+    if (connPath0.isEmpty()) {
+        auto availableConnections = device->availableConnections();
+        qCDebug(DSM()) << "available connections:" << availableConnections;
+        QDateTime maxTs;
+        for (auto &&connPath : availableConnections) {
+            auto settings = connPath->settings();
+            if (!settings->autoconnect()) {
+                continue;
+            }
+            QDateTime ts = settings->timestamp();
+            if (maxTs < ts || connPath0.isEmpty()) {
+                maxTs = ts;
+                connPath0 = connPath->path();
+            }
         }
+    }
+    if (!connPath0.isEmpty()) {
+        NetworkManager::activateConnection(connPath0, device->uni(), QString());
+        qDebug() << "connected:" << connPath0;
     }
 
     bool enabled = NetworkManager::isNetworkingEnabled();

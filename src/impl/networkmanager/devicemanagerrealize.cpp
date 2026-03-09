@@ -1,4 +1,4 @@
-﻿// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+﻿// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -296,8 +296,7 @@ void DeviceManagerRealize::setEnabled(bool enabled)
 
     qCDebug(DNC) << QString("set Device %1, enabled: %2").arg(m_device->uni()).arg(enabled ? "true" : "false");
     QDBusInterface dbusInter(SYS_NETWORK_SERVICE, SYS_NETWORK_PATH, SYS_NETWORK_INTER, QDBusConnection::systemBus());
-    QDBusReply<QDBusObjectPath> reply = dbusInter.call("EnableDevice", m_device->uni(), enabled);
-    deviceEnabledAction(reply, enabled);
+    dbusInter.call("EnableDevice", m_device->uni(), enabled);
 }
 
 void DeviceManagerRealize::disconnectNetwork()
@@ -551,26 +550,6 @@ void WiredDeviceManagerRealize::onActiveConnectionChanged()
 
     activeWiredConnection->setConnectionStatus(convertStateFromNetworkManager(activeConnection->state()));
     Q_EMIT activeConnectionChanged();
-}
-
-void WiredDeviceManagerRealize::deviceEnabledAction(const QDBusReply<QDBusObjectPath> &reply, bool enabled)
-{
-    if (!enabled)
-        return;
-
-    // 如果是开启，则让其自动连接
-    QString activeConnectionPath = reply.value().path();
-    // 开启自动连接才需要回连
-    bool isAutoConnect = false;
-    for (const auto connection : m_device->availableConnections()) {
-        if (activeConnectionPath == connection->path()) {
-            isAutoConnect = connection->settings()->autoconnect();
-        }
-    }
-    if (isAutoConnect) {
-        NetworkManager::activateConnection(activeConnectionPath, m_device->uni(), QString());
-        qCDebug(DNC) << "connected:" << activeConnectionPath;
-    }
 }
 
 QString WiredDeviceManagerRealize::usingHwAdr() const
@@ -1081,72 +1060,6 @@ void WirelessDeviceManagerRealize::deviceEnabledChanged(bool enabled)
 
     if (m_netProcesser)
         m_netProcesser->deviceEnabledChanged();
-}
-
-void WirelessDeviceManagerRealize::deviceEnabledAction(const QDBusReply<QDBusObjectPath> &reply, bool enabled)
-{
-    if (!enabled)
-        return;
-
-    QString enableConnectionPath = reply.value().path();
-    // 获取所有的wlan的连接
-    // 如果禁用之前的连接是热点，就让其不自动连接
-    do {
-        auto itLastActiveConnection = std::find_if(m_wirelessConnections.begin(), m_wirelessConnections.end(), [ enableConnectionPath ](WirelessConnection *item) {
-            return item->connection()->path() == enableConnectionPath;
-        });
-        if (itLastActiveConnection != m_wirelessConnections.end())
-            break;
-
-        auto connectionPath = [ this ] {
-            // 如果不在当前的连接列表中，说明连接的是热点，则让其连接当前的wlan即可
-            NetworkManager::Connection::List connections = m_device->availableConnections();
-            NetworkManager::Connection::List wirelessConnections;
-            for (NetworkManager::Connection::Ptr conn : connections) {
-                if (conn->settings()->connectionType() != NetworkManager::ConnectionSettings::ConnectionType::Wireless
-                        || !conn->settings()->timestamp().isValid() || !conn->settings()->autoconnect())
-                    continue;
-
-                // 获取无线连接的设置
-                NetworkManager::WirelessSetting::Ptr wirelessSetting = conn->settings()->setting(NetworkManager::Setting::SettingType::Wireless)
-                        .dynamicCast<NetworkManager::WirelessSetting>();
-                if (wirelessSetting.isNull())
-                    continue;
-
-                // 只有mode为Ap的连接才是自建的热点
-                if (wirelessSetting->mode() == NetworkManager::WirelessSetting::NetworkMode::Ap)
-                    continue;
-
-                wirelessConnections << conn;
-            }
-
-            if (wirelessConnections.size() == 0)
-                return QString();
-
-            std::sort(wirelessConnections.begin(), wirelessConnections.end(), [](NetworkManager::Connection::Ptr item1, NetworkManager::Connection::Ptr item2 ) {
-                return item1->settings()->timestamp() > item2->settings()->timestamp();
-            });
-            return wirelessConnections.first()->path();
-        };
-        enableConnectionPath = connectionPath();
-        if (enableConnectionPath.isEmpty()) {
-            connect(m_device.data(), &NetworkManager::WirelessDevice::availableConnectionAppeared, this, [ this, connectionPath ](const QString &connectionUni) {
-                QString enablePath = connectionPath();
-                if (enablePath != connectionUni)
-                    return;
-
-                // 自动连接
-                NetworkManager::activateConnection(enablePath, m_device->uni(), QString());
-                qCDebug(DNC) << "connected:" << enablePath;
-            });
-        }
-    } while (0);
-
-    if (!enableConnectionPath.isEmpty()) {
-        // 自动连接
-        NetworkManager::activateConnection(enableConnectionPath, m_device->uni(), QString());
-        qCDebug(DNC) << "connected:" << enableConnectionPath;
-    }
 }
 
 QString WirelessDeviceManagerRealize::usingHwAdr() const
