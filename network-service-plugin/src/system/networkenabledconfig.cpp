@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2025 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2025-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #include "networkenabledconfig.h"
@@ -78,6 +78,14 @@ void NetworkEnabledConfig::loadConfig()
             map.insert(key, valObj.value("Enabled").toBool());
         }
         m_map.insert("Devices", QVariant::fromValue(map));
+        // 读取最后一次保存的
+        QJsonObject connObj = jsonObj.value("Connections").toObject();
+        QVariantMap conn_map;
+        for (const QString &conn_key : connObj.keys()) {
+            QString curr_obj_value = connObj.value(conn_key).toString();
+            conn_map.insert(conn_key, curr_obj_value);
+        }
+        m_map.insert("Connections", conn_map);
     } else {
         qCWarning(DSM()) << "failed to load config:" << file.errorString();
     }
@@ -94,9 +102,15 @@ QString NetworkEnabledConfig::saveConfig()
             devsObj.insert(it.key(), obj);
         }
     }
+    QJsonObject connectionObj;
+    QVariantMap connection_map = m_map.value("Connections").value<QVariantMap>();
+    for (auto it = connection_map.constBegin(); it != connection_map.constEnd(); it++) {
+        connectionObj.insert(it.key(), it.value().toString());
+    }
     QJsonObject jsonObj;
     jsonObj.insert("VpnEnabled", vpnEnabled());
     jsonObj.insert("Devices", devsObj);
+    jsonObj.insert("Connections", connectionObj);
     QJsonDocument jsonDoc(jsonObj);
     QString jsonString = jsonDoc.toJson(QJsonDocument::Compact);
     QFileInfo info(configFile);
@@ -111,6 +125,24 @@ QString NetworkEnabledConfig::saveConfig()
         qCWarning(DSM()) << err;
         return err;
     }
+    return QString();
+}
+
+void NetworkEnabledConfig::setConnectionInfo(const QString &dev, const QString &uuid)
+{
+    QVariant conn = m_map["Connections"];
+    QVariantMap conn_map = conn.value<QVariantMap>();
+    conn_map[dev] = uuid;
+    m_map["Connections"] = conn_map;
+}
+
+QString NetworkEnabledConfig::connectionUuid(const QString &dev) const
+{
+    QVariant conn = m_map["Connections"];
+    QVariantMap conn_map = conn.value<QVariantMap>();
+    if (conn_map.contains(dev))
+        return conn_map.value(dev).toString();
+
     return QString();
 }
 } // namespace systemservice

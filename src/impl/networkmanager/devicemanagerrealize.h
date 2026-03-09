@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -58,7 +58,6 @@ protected:
     virtual void removeConnection(const QString &connection) = 0;
     virtual void onActiveConnectionChanged() = 0;
     virtual void deviceEnabledChanged(bool) {}
-    virtual void deviceEnabledAction(const QDBusReply<QDBusObjectPath> &, bool) {}
 
 private:
     void initConnection();
@@ -96,7 +95,6 @@ protected:
     void addConnection(const NetworkManager::Connection::Ptr &connection) override;                         // 新增有线网络连接
     void removeConnection(const QString &connectionUni) override;                                           // 移除有线网络连接
     void onActiveConnectionChanged() override;                                                              // 活动连接变化
-    void deviceEnabledAction(const QDBusReply<QDBusObjectPath> &reply, bool enabled) override;
     QString usingHwAdr() const override;
     bool carrier() const override;                                                                          // 是否插入网线
 
@@ -133,7 +131,6 @@ protected:
     void onActiveConnectionChanged() override;
     DeviceStatus deviceStatus() const override;                                           // 返回设备的状态
     void deviceEnabledChanged(bool enabled) override;                                     // 设备启用状态发生变化
-    void deviceEnabledAction(const QDBusReply<QDBusObjectPath> &reply, bool enabled) override;
     QString usingHwAdr() const override;
 
 private:
