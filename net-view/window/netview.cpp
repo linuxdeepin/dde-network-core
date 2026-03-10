@@ -15,6 +15,7 @@
 #include <QEvent>
 #include <QHoverEvent>
 #include <QScrollBar>
+#include <QCoreApplication>
 #include <QScroller>
 #include <QScrollerProperties>
 #include <QSortFilterProxyModel>
@@ -66,6 +67,8 @@ NetView::NetView(NetManager *manager)
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
+    setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+    setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
 
     setSelectionMode(QAbstractItemView::NoSelection);
     setRootIsDecorated(false);
@@ -83,13 +86,8 @@ NetView::NetView(NetManager *manager)
     connect(this, &NetView::activated, this, &NetView::onActivated);
 
     // 支持在触摸屏上滚动
-    QScroller::grabGesture(viewport(), QScroller::TouchGesture);
-    QScrollerProperties sp = QScroller::scroller(viewport())->scrollerProperties();
-    sp.setScrollMetric(QScrollerProperties::VerticalOvershootPolicy, QScrollerProperties::OvershootAlwaysOff);
-    sp.setScrollMetric(QScrollerProperties::HorizontalOvershootPolicy, QScrollerProperties::OvershootAlwaysOff);
-    sp.setScrollMetric(QScrollerProperties::DecelerationFactor, 0.5);
-    sp.setScrollMetric(QScrollerProperties::MaximumVelocity, 0.5);
-    QScroller::scroller(viewport())->setScrollerProperties(sp);
+    setAttribute(Qt::WA_AcceptTouchEvents, true);
+    viewport()->setAttribute(Qt::WA_AcceptTouchEvents, true);
 }
 
 NetView::~NetView() = default;
@@ -183,6 +181,74 @@ void NetView::rowsInserted(const QModelIndex &parent, int start, int end)
 
 bool NetView::viewportEvent(QEvent *event)
 {
+    const QEvent::Type type = event->type();
+    if (type == QEvent::TouchBegin || type == QEvent::TouchUpdate ||
+        type == QEvent::TouchEnd || type == QEvent::TouchCancel) {
+
+        QTouchEvent *te = static_cast<QTouchEvent *>(event);
+        if (te->points().isEmpty()) {
+            event->accept();
+            return true;
+        }
+
+        QEventPoint pt = te->points().first();
+
+        switch (type) {
+        case QEvent::TouchBegin: {
+            m_touchPressPos = pt.globalPosition();
+            m_isDrag = false;
+            break;
+        }
+        case QEvent::TouchUpdate: {
+            QPointF delta = pt.globalPosition() - m_touchPressPos;
+
+            if (!m_isDrag && (qAbs(delta.y()) >= QApplication::startDragDistance() || qAbs(delta.x()) >= QApplication::startDragDistance())) {
+                m_isDrag = true;
+            }
+
+            if (m_isDrag) {
+                if (qAbs(delta.y()) > 0 && verticalScrollBar()) {
+                    verticalScrollBar()->setValue(verticalScrollBar()->value() - delta.y());
+                }
+                if (qAbs(delta.x()) > 0 && horizontalScrollBar()) {
+                    horizontalScrollBar()->setValue(horizontalScrollBar()->value() - delta.x());
+                }
+                m_touchPressPos = pt.globalPosition();
+            }
+            break;
+        }
+        case QEvent::TouchEnd: {
+            if (!m_isDrag) {
+                // Determine the correct target widget for the click
+                QWidget *target = viewport();
+                QPoint widgetPos = pt.position().toPoint();
+
+                if (QWidget *child = target->childAt(widgetPos)) {
+                    target = child;
+                    if (target) {
+                        widgetPos = target->mapFrom(viewport(), widgetPos);
+                    }
+                }
+
+                QMouseEvent press(QEvent::MouseButtonPress, widgetPos, pt.globalPosition(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
+                QCoreApplication::sendEvent(target, &press);
+                QMouseEvent release(QEvent::MouseButtonRelease, widgetPos, pt.globalPosition(), Qt::LeftButton, Qt::NoButton, Qt::NoModifier);
+                QCoreApplication::sendEvent(target, &release);
+            }
+            break;
+        }
+        case QEvent::TouchCancel: {
+            m_isDrag = false;
+            break;
+        }
+        default:
+            break;
+        }
+
+        event->accept();
+        return true;
+    }
+
     switch (event->type()) {
     case QEvent::HoverLeave: {
         setCurrentIndex(QModelIndex());

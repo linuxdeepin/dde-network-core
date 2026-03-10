@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -111,6 +111,7 @@ void NetworkPanel::initUi()
     m_netListView->setMouseTracking(true);
     m_netListView->setItemMargins(QMargins(10, 0, 10, 0));
     m_netListView->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+    m_netListView->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
     m_netListView->setItemRadius(0);
 
     NetworkDelegate *delegate = new NetworkDelegate(m_netListView);
@@ -163,11 +164,8 @@ void NetworkPanel::initUi()
     setControlBackground();
 
     // 支持在触摸屏上滚动
-    QScroller::grabGesture(m_netListView->viewport(), QScroller::LeftMouseButtonGesture);
-    QScroller *scroller = QScroller::scroller(m_netListView->window());
-    QScrollerProperties sp;
-    sp.setScrollMetric(QScrollerProperties::VerticalOvershootPolicy, QScrollerProperties::OvershootAlwaysOff);
-    scroller->setScrollerProperties(sp);
+    m_netListView->setAttribute(Qt::WA_AcceptTouchEvents, true);
+    m_netListView->viewport()->setAttribute(Qt::WA_AcceptTouchEvents, true);
 }
 
 void NetworkPanel::initConnection()

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2019 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #ifndef NETVIEW_H
@@ -74,6 +74,8 @@ private:
     NetDelegate *m_delegate;
     bool m_closeOnClear;
     int m_maxHeight;
+    QPointF m_touchPressPos;
+    bool m_isDrag = false;
 };
 
 } // namespace network
