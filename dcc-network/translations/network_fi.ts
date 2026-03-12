@@ -1,35 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="fi">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fi">
 <context>
     <name>DeviceStatusItem</name>
     <message>
         <source>Off</source>
-        <translation type="unfinished">Pois</translation>
+        <translation>Pois</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished">Yhdistetty</translation>
+        <translation>Yhdistetty</translation>
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished">IP ristiriita</translation>
+        <translation>IP ristiriita</translation>
     </message>
     <message>
         <source>Connecting</source>
-        <translation type="unfinished">Yhdistetään</translation>
+        <translation>Yhdistetään</translation>
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation type="unfinished">Osoitteen haku</translation>
+        <translation>Osoitteen haku</translation>
     </message>
     <message>
         <source>Authenticating</source>
-        <translation type="unfinished">Todennus</translation>
+        <translation>Todennus</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished">Katkaistu</translation>
+        <translation>Katkaistu</translation>
     </message>
 </context>
 <context>
@@ -614,19 +612,19 @@
     </message>
     <message>
         <source>Band</source>
-        <translation type="unfinished">Taajuusalue</translation>
+        <translation>Taajuus</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished">Autom</translation>
+        <translation>Autom.</translation>
     </message>
     <message>
         <source>2.4 GHz</source>
-        <translation type="unfinished">2.4 GHz</translation>
+        <translation>2.4 GHz</translation>
     </message>
     <message>
         <source>5 GHz</source>
-        <translation type="unfinished">5 GHz</translation>
+        <translation>5 GHz</translation>
     </message>
 </context>
 <context>
