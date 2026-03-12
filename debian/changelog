@@ -1,3 +1,17 @@
+dde-network-core (2.0.85) unstable; urgency=medium
+
+  * fix: Fix missing notification after closing network
+  * fix(touch): enable manual touch scrolling for network plugin in
+    Wayland
+  * fix: Fix incorrect network selection after disabling and re-enabling
+    network interface
+  * fix: Fix interface not displaying in real-time after inserting wired
+    network card
+  * fix: Add WiFi password input flag for lock screen and login
+    interface
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 12 Mar 2026 21:22:01 +0800
+
 dde-network-core (2.0.84) unstable; urgency=medium
 
   * fix: add null check for connection update
