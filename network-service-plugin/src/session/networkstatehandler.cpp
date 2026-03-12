@@ -77,6 +77,7 @@ NetworkStateHandler::NetworkStateHandler(QObject *parent)
     QDBusConnection::systemBus().connect("org.deepin.dde.Network1", "/org/deepin/dde/Network1", "org.deepin.dde.Network1", "DeviceEnabled", this, SLOT(onDeviceEnabled(QDBusObjectPath, bool)));
     QDBusConnection::systemBus().connect("org.freedesktop.NetworkManager", "", "org.freedesktop.NetworkManager.VPN.Connection", "VpnStateChanged", this, SLOT(onVpnStateChanged(QDBusMessage)));
     QDBusConnection::systemBus().connect("org.deepin.dde.AirplaneMode1", "/org/deepin/dde/AirplaneMode1", DBUS_PROPERTIES_IFACE, "PropertiesChanged", this, SLOT(onAirplaneModePropertiesChanged(QString, QVariantMap, QStringList)));
+    QDBusConnection::sessionBus().connect("org.deepin.dde.Notification1", "/org/freedesktop/Notifications", "org.deepin.dde.Notification1", "NotificationClosed", this, SLOT(onNotificationClosed(uint, uint)));
     // 迁移dde-daemon/session/power1/sleep_inhibit.go ConnectHandleForSleep处理
     QDBusConnection::systemBus().connect("org.deepin.dde.Daemon1", "/org/deepin/dde/Daemon1", "org.deepin.dde.Daemon1", "HandleForSleep", this, SLOT(onHandleForSleep(bool)));
     QDBusMessage message = QDBusMessage::createMethodCall("org.freedesktop.DBus", "/org/freedesktop/DBus", "org.freedesktop.DBus", "GetNameOwner");
@@ -911,6 +912,13 @@ void NetworkStateHandler::notifyVpnDisconnected(const QString &id)
 void NetworkStateHandler::notifyVpnFailed(const QString &id, uint reason)
 {
     notify(notifyIconVpnDisconnected, tr("Disconnected"), m_vpnErrorTable[reason]);
+}
+
+void NetworkStateHandler::onNotificationClosed(uint id, uint reason)
+{
+    Q_UNUSED(id);
+    Q_UNUSED(reason);
+    m_replacesId = 0;
 }
 
 NetworkStateHandler::ConnectionType NetworkStateHandler::getCustomConnectionType(NetworkManager::ConnectionSettings *settings)

@@ -130,6 +130,9 @@ protected:
     void notifyVpnDisconnected(const QString &id);
     void notifyVpnFailed(const QString &id, uint reason);
 
+private Q_SLOTS:
+    void onNotificationClosed(uint id, uint reason);
+
 private:
     bool m_notifyEnabled;
     QDBusServiceWatcher *m_dbusService;
