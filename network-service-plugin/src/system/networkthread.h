@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2025 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2025-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #ifndef NETWORKTHREAD_H
@@ -6,6 +6,7 @@
 
 #include "networkenabledconfig.h"
 
+#include <NetworkManagerQt/Manager>
 #include <NetworkManagerQt/Device>
 
 #include <QDBusConnection>
@@ -49,6 +50,8 @@ protected Q_SLOTS:
     QString setPropVpnEnabled(bool enabled);
     QString enableDevice(NetworkManager::Device::Ptr device);
     QString disableDevice(NetworkManager::Device::Ptr device);
+
+    void onStatusChanged(NetworkManager::Status status);
 
 protected:
     void disableVpn();
