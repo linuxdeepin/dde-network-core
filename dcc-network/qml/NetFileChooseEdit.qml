@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 // SPDX-License-Identifier: GPL-3.0-or-later
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
@@ -8,6 +8,7 @@ import org.deepin.dtk 1.0 as D
 
 RowLayout {
     id: root
+    implicitWidth: edit.implicitWidth
     property var dataItem
     property var nameFilters: [qsTr("All files (*)")]
     property alias placeholderText: edit.placeholderText
@@ -30,6 +31,7 @@ RowLayout {
     }
     D.LineEdit {
         id: edit
+        Layout.preferredWidth: edit.implicitWidth - browseBtn.width - root.spacing
         onTextChanged: {
             if (!initialized) {
                 return
@@ -50,7 +52,9 @@ RowLayout {
         }
         Component.onCompleted: initialized = true
     }
+    
     NetButton {
+        id: browseBtn
         text: "..."
         onClicked: {
             fileDialog.createObject(this).open()
