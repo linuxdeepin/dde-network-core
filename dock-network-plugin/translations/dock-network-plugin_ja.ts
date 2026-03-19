@@ -290,7 +290,7 @@
     <name>dde::network::NetWirelessMineItem</name>
     <message>
         <source>My Networks</source>
-        <translation>マイ ネットワーク</translation>
+        <translation>保存済みのネットワーク</translation>
     </message>
 </context>
 <context>
