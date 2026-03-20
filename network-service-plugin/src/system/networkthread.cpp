@@ -6,10 +6,13 @@
 #include "constants.h"
 #include "networkdbus.h"
 
-#include <NetworkManagerQt/Manager>
 #include <NetworkManagerQt/Settings>
 #include <NetworkManagerQt/VpnConnection>
 #include <NetworkManagerQt/WirelessDevice>
+#include <NetworkManagerQt/ActiveConnection>
+#include <NetworkManagerQt/Connection>
+#include <NetworkManagerQt/ConnectionSettings>
+#include <NetworkManagerQt/VpnSetting>
 
 #include <QDBusMessage>
 #include <QProcess>
@@ -121,6 +124,8 @@ void NetworkThread::init()
         auto notifier = NetworkManager::notifier();
         connect(notifier, &NetworkManager::Notifier::deviceAdded, this, &NetworkThread::onDeviceAdded);
         connect(notifier, &NetworkManager::Notifier::deviceRemoved, this, &NetworkThread::onDeviceRemoved);
+        connect(notifier, &NetworkManager::Notifier::statusChanged, this, &NetworkThread::onStatusChanged);
+        onStatusChanged(NetworkManager::status());
     }
     m_devices.clear();
     addDevicesWithRetry();
@@ -368,6 +373,72 @@ QString NetworkThread::disableDevice(NetworkManager::Device::Ptr device)
         return reply.error().message();
     }
     return QString();
+}
+
+void NetworkThread::onStatusChanged(NetworkManager::Status status)
+{
+    if (!m_networkConfig->vpnEnabled())
+        return;
+
+    if (status != NetworkManager::Status::Connected)
+        return;
+
+    QStringList activeConnectionPaths;
+    NetworkManager::ActiveConnection::List allactiveConnections = NetworkManager::activeConnections();
+    for (const NetworkManager::ActiveConnection::Ptr &activeConnection : allactiveConnections) {
+        if (activeConnection->connection().isNull())
+            continue;
+
+        if (activeConnection->state() == NetworkManager::ActiveConnection::State::Activated
+            || activeConnection->state() == NetworkManager::ActiveConnection::State::Activating)
+            activeConnectionPaths << activeConnection->connection()->path();
+    }
+    QMap<QString, NetworkManager::Connection::Ptr> candidateVpns;
+    // 检查到网络状态为连接成功后，检查本地是否存在自动连接的VPN，如果存在，就让它连接
+    NetworkManager::Connection::List allConnections = NetworkManager::listConnections();
+    for (const NetworkManager::Connection::Ptr &conn : allConnections) {
+        // 过滤掉正在连接的或者已经连接成功的
+        if (activeConnectionPaths.contains(conn->path()))
+            continue;
+
+        // 这里只查找设置了自动连接的
+        if (!conn->settings()->autoconnect())
+            continue;
+
+        // 查找VPN的连接方式
+        NetworkManager::ConnectionSettings::ConnectionType type = conn->settings()->connectionType();
+        if (type == NetworkManager::ConnectionSettings::ConnectionType::Vpn) {
+            NetworkManager::VpnSetting::Ptr setting = conn->settings()->setting(NetworkManager::Setting::SettingType::Vpn).dynamicCast<NetworkManager::VpnSetting>();
+            if (setting.isNull())
+                continue;
+
+            QString serviceType = setting->serviceType();
+            if (candidateVpns.contains(serviceType)) {
+                // 优先使用最后一次连接成功的连接
+                const NetworkManager::Connection::Ptr &lastSetting = candidateVpns[serviceType];
+                if (lastSetting->settings()->timestamp() < conn->settings()->timestamp())
+                    candidateVpns[serviceType] = conn;
+            } else {
+                candidateVpns[serviceType] = conn;
+            }
+        }
+    }
+    for (auto it = candidateVpns.begin(); it != candidateVpns.end(); it++) {
+        const NetworkManager::Connection::Ptr &connection = it.value();
+        QDBusPendingReply<QDBusObjectPath> reply = NetworkManager::activateConnection(connection->path(), "/", "/");
+        // 使用 Watcher 监听异步结果（推荐做法）
+        QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(reply, this);
+        QString connection_name = connection->name();
+        connect(watcher, &QDBusPendingCallWatcher::finished, watcher, &QDBusPendingCallWatcher::deleteLater);
+        connect(watcher, &QDBusPendingCallWatcher::finished, this, [this, connection_name](QDBusPendingCallWatcher *watcher) {
+            QDBusPendingReply<QDBusObjectPath> reply = *watcher;
+            if (reply.isError()) {
+                qWarning() << "Failed to connect VPN:" << connection_name << "Reason:" << reply.error().message();
+            } else {
+                qDebug() << "VPN connection initiated successfully:" << connection_name;
+            }
+        });
+    }
 }
 
 bool NetworkThread::airplaneWifiEnabled()
