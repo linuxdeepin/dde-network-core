@@ -179,7 +179,7 @@
     </message>
     <message>
         <source>Are you sure you want to delete this configuration?</source>
-        <translation>Você tem certeza que quer apagar essa configuração?</translation>
+        <translation>Excluir esta configuração?</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -324,7 +324,7 @@
     </message>
     <message>
         <source>Are you sure you want to delete this configuration?</source>
-        <translation>Tem certeza de que deseja excluir esta configuração?</translation>
+        <translation>Excluir esta configuração?</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -453,7 +453,7 @@
     </message>
     <message>
         <source>Are you sure you want to delete this configuration?</source>
-        <translation>Tem certeza de que deseja excluir esta configuração?</translation>
+        <translation>Excluir esta configuração?</translation>
     </message>
     <message>
         <source>Cancel</source>
