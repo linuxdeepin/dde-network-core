@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2027 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 // SPDX-License-Identifier: GPL-3.0-or-later
 import QtQuick 2.15
 import QtQuick.Controls 2.15
@@ -47,11 +47,16 @@ DccObject {
                     pageType: DccObject.Item
                     page: RowLayout {
                         DccLabel {
+                            property D.Palette textColor: D.Palette {
+                                normal: Qt.rgba(0, 0, 0, 0.9)
+                                normalDark: Qt.rgba(1, 1, 1, 0.9)
+                            }
                             Layout.alignment: Qt.AlignLeft
                             Layout.fillWidth: true
-                            font: DccUtils.copyFont(D.DTK.fontManager.t4, {
-                                                        "bold": true
+                            font: DccUtils.copyFont(D.DTK.fontManager.t5, {
+                                                        "weight": 500
                                                     })
+                            color: D.ColorSelector.textColor
                             text: dccObj.displayName
                             elide: Text.ElideMiddle
                         }
