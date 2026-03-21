@@ -74,7 +74,7 @@
     </message>
     <message>
         <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
-        <translation>Habilitar modo avião e desligar rede sem fio, hotspot pessoal e Bluetooth</translation>
+        <translation>Ativar o Modo Avião desliga a placa Wi-Fi, o ponto de acesso pessoal e o Bluetooth</translation>
     </message>
 </context>
 <context>
@@ -305,11 +305,11 @@
     </message>
     <message>
         <source>If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.</source>
-        <translation>Se você quiser usar o ponto de acesso pessoal, desative o Modo Avião primeiro e depois ative o adaptador de rede sem fio.</translation>
+        <translation>Se você quiser usar o ponto de acesso pessoal, desative o Modo Avião e, em seguida, ative a placa Wi-Fi.</translation>
     </message>
     <message>
         <source>If you want to use the personal hotspot, disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first and then enable the wireless network adapter.</source>
-        <translation>Se você quiser usar o hotspot pessoal, desative&lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt; o modo avião&lt;/a&gt;primeiro e depois habilite o adaptador de rede sem fio.</translation>
+        <translation>Se você quiser usar o ponto de acesso pessoal, desative o &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Modo Avião&lt;/a&gt; e, em seguida, ative a placa Wi-Fi.</translation>
     </message>
     <message>
         <source>Enable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;Wireless Network Adapter&lt;/a&gt; first if you want to use the personal hotspot.</source>
@@ -519,11 +519,11 @@
     </message>
     <message>
         <source>Disable Airplane Mode first if you want to connect to a wireless network</source>
-        <translation>Desative o Modo Avião primeiro se quiser se conectar a uma rede sem fio</translation>
+        <translation>Desative o Modo Avião se você quiser se conectar a uma rede Wi-Fi</translation>
     </message>
     <message>
         <source>Disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation>Desative&lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt; o Modo Avião&lt;/a&gt; primeiro se quiser se conectar a uma rede sem fio</translation>
+        <translation>Desative o &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Modo Avião&lt;/a&gt; se você quiser se conectar a uma rede Wi-Fi</translation>
     </message>
     <message>
         <source>Disable hotspot first if you want to connect to a wireless network</source>
