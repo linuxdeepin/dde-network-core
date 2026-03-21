@@ -175,7 +175,7 @@
     <name>PageDSLSettings</name>
     <message>
         <source>Delete</source>
-        <translation>Deletar</translation>
+        <translation>Excluir</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this configuration?</source>
@@ -320,7 +320,7 @@
     <name>PageSettings</name>
     <message>
         <source>Delete</source>
-        <translation>Deletar</translation>
+        <translation>Excluir</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this configuration?</source>
