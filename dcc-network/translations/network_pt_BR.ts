@@ -527,11 +527,11 @@
     </message>
     <message>
         <source>Disable hotspot first if you want to connect to a wireless network</source>
-        <translation>Desative o hotspot primeiro se quiser se conectar a uma rede sem fio</translation>
+        <translation>Desative o hotspot se você quiser se conectar a uma rede Wi-Fi</translation>
     </message>
     <message>
         <source>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Disable hotspot&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Desative o hotspot&lt;/a&gt; primeiro se quiser se conectar a uma rede sem fio</translation>
+        <translation>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Desative o hotspot&lt;/a&gt; se você quiser se conectar a uma rede Wi-Fi</translation>
     </message>
     <message>
         <source>My Networks</source>
