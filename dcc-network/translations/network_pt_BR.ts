@@ -1628,7 +1628,7 @@
     <name>dde::network::NetVPNTipsItem</name>
     <message>
         <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
-        <translation>A configuração de VPN não está conectada ou falhou ao conectar-se. Acesse a &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;Central de Controle&lt;/a&gt; para verificar.</translation>
+        <translation>A configuração de VPN não está conectada ou falhou ao conectar-se. Acesse as &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;Configurações&lt;/a&gt; para verificar.</translation>
     </message>
 </context>
 <context>
