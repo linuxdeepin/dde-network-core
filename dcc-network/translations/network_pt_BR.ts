@@ -202,7 +202,7 @@
     </message>
     <message>
         <source>View all network configurations</source>
-        <translation>Visualizar todas as configurações de rede</translation>
+        <translation>Exibir todas as configurações de rede</translation>
     </message>
     <message>
         <source>Details has been copied</source>
