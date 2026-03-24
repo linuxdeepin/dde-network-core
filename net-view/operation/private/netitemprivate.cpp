@@ -49,7 +49,6 @@ NetItemPrivate::~NetItemPrivate()
     case NetType::Type:                                             \
         netItemPrivate = new Net##Type##Private();                  \
         netItemPrivate->m_item = new Net##Type(netItemPrivate, id); \
-        netItemPrivate->m_item->setParent(netItemPrivate);          \
         break
 
 NetItemPrivate *NetItemPrivate::New(NetType::NetItemType type, const QString &id)
