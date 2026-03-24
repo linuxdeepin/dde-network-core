@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -49,6 +49,7 @@ NetItemPrivate::~NetItemPrivate()
     case NetType::Type:                                             \
         netItemPrivate = new Net##Type##Private();                  \
         netItemPrivate->m_item = new Net##Type(netItemPrivate, id); \
+        netItemPrivate->m_item->setParent(netItemPrivate);          \
         break
 
 NetItemPrivate *NetItemPrivate::New(NetType::NetItemType type, const QString &id)
@@ -121,6 +122,7 @@ bool NetItemPrivate::addChild(NetItemPrivate *child, int index)
 
     Q_EMIT m_item->childAboutToBeAdded(m_item, index);
     m_children.insert(m_children.begin() + index, child->item());
+    child->m_item->setParent(m_item);
 
     child->m_parent = m_item;
     Q_EMIT m_item->childAdded(child->item());
@@ -137,6 +139,7 @@ bool NetItemPrivate::removeChild(NetItemPrivate *child)
     Q_EMIT m_item->childAboutToBeRemoved(m_item, it - m_children.begin());
     m_children.erase(it);
     child->m_parent = nullptr;
+    child->item()->setParent(nullptr);
     Q_EMIT m_item->childRemoved(child->item());
     Q_EMIT m_item->childrenChanged();
     return true;

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -207,6 +207,8 @@ NetManagerPrivate::NetManagerPrivate(NetManager *manager)
     , m_supportWireless(false)
     , q_ptr(manager)
 {
+    m_root->item()->setParent(this);
+    m_deleteItem->item()->setParent(this);
     m_root->updateenabled(false);
     addItem(m_root, nullptr);
     addItem(m_deleteItem, nullptr);
