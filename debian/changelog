@@ -1,3 +1,14 @@
+dde-network-core (2.0.86) unstable; urgency=medium
+
+  * fix: remove redundant setParent call in NetItemPrivate
+  * fix: set parent for NetItem to prevent JS release
+  * style(qml): optimize UI styling and fix copyright year
+  * fix: Optimize UI display of the network module
+  * fix: fix proxy method change handling and add type property
+  * fix: Add automatic VPN connection after network state monitoring
+
+ -- zhangkun <zhangkun2@uniontech.com>  Wed, 25 Mar 2026 17:13:29 +0800
+
 dde-network-core (2.0.85) unstable; urgency=medium
 
   * fix: Fix missing notification after closing network
