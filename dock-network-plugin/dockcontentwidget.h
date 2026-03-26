@@ -18,6 +18,7 @@
 #include <QTreeView>
 #include <QVBoxLayout>
 #include <QWidget>
+#include <QTimer>
 
 namespace dde {
 namespace network {
@@ -31,7 +32,12 @@ public:
         , m_mainLayout(new QVBoxLayout(this))
         , m_netView(netView)
         , m_minHeight(-1)
+        , m_updateTimer(new QTimer(this))
     {
+        m_updateTimer->setSingleShot(true);
+        m_updateTimer->setInterval(150);
+        connect(m_updateTimer, &QTimer::timeout, this, &DockContentWidget::doUpdateSize);
+
         m_netView->installEventFilter(this);
         m_netView->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
         connect(m_netView, &NetView::updateSize, this, &DockContentWidget::updateSize);
@@ -71,6 +77,14 @@ public:
 
 public Q_SLOTS:
     void updateSize() {
+        if (!isVisible()) {
+            doUpdateSize();
+        } else {
+            m_updateTimer->start();
+        }
+    }
+
+    void doUpdateSize() {
         auto h = Dock::DOCK_POPUP_WIDGET_MAX_HEIGHT - 20 - m_mainLayout->contentsMargins().top() - (m_netCheckBtn->isVisible() ? (m_netSetBtn->height() + m_netCheckBtn->height() + 10) : m_netSetBtn->height());
         m_netView->setMaxHeight(h);
         if (m_netView->height() > h)
@@ -93,10 +107,10 @@ protected:
 
     void showEvent(QShowEvent *event) override
     {
-        updateSize();
+        doUpdateSize();
         QWidget::showEvent(event);
         QMetaObject::invokeMethod(this, [this]() {
-            updateSize();
+            doUpdateSize();
             resize(size());
         }, Qt::QueuedConnection);
     }
@@ -115,6 +129,7 @@ private:
     int m_minHeight;
     JumpSettingButton *m_netSetBtn;
     JumpSettingButton *m_netCheckBtn;
+    QTimer *m_updateTimer;
 };
 
 } // namespace network
