@@ -13,6 +13,7 @@ namespace systemservice {
 
 class SystemIPConflict;
 class ConnectivityProcesser;
+class NetworkInitialization;
 
 class SystemContainer : public QObject
 {
@@ -27,6 +28,7 @@ public:
 private:
     SystemIPConflict *m_ipConflictHandler;
     ConnectivityProcesser *m_connectivityHelper;
+    NetworkInitialization *m_initializator;
 };
 
 }
