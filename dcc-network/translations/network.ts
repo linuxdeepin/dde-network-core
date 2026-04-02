@@ -2,6 +2,37 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>DeviceStatusItem</name>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IP conflict</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Obtaining address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authenticating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disconnected</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>NetFileChooseEdit</name>
     <message>
         <source>All files (*)</source>
@@ -12,6 +43,24 @@
     <name>NetPasswordEdit</name>
     <message>
         <source>Required</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Network</name>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NetworkMain</name>
+    <message>
+        <source>Connection settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Related Settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -143,7 +192,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> Network Properties</source>
+        <source>%1 Network Properties</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -264,6 +313,10 @@
         <source>Share the network</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;Wireless Network Adapter&lt;/a&gt; first if you want to use the personal hotspot.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PageSettings</name>
@@ -284,7 +337,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> Network Properties</source>
+        <source>%1 Network Properties</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -397,30 +450,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>L2TP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>PPTP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>OpenVPN</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>OpenConnect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>StrongSwan</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VPNC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete this configuration?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -445,7 +474,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> Network Properties</source>
+        <source>%1 Network Properties</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -471,6 +500,10 @@
         <source>Connect, edit network settings</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Open a browser to authenticate</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PageWirelessDevice</name>
@@ -480,10 +513,6 @@
     </message>
     <message>
         <source>Connect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>My&#xa0;Networks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -508,6 +537,14 @@
     </message>
     <message>
         <source>Connect, edit network settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a browser to authenticate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>My Networks</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -557,23 +594,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>MTU</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Band</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>2.4 GHz</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>5 GHz</source>
+        <source>MTU (1280-9000)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -597,6 +618,22 @@
     </message>
     <message>
         <source>Name (SSID)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Band</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2.4 GHz</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>5 GHz</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -648,6 +685,22 @@
     </message>
     <message>
         <source>Gateway</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid netmask</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only one gateway is allowed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid gateway</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duplicate IP address</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -703,6 +756,22 @@
     </message>
     <message>
         <source>Gateway</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid netmask</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duplicate IP address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only one gateway is allowed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid gateway</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -791,47 +860,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>TLS</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>MD5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>FAST</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Tunneled TLS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Protected EAP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>LEAP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>GTC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>MSCHAPV2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>PAP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>MSCHAP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>CHAP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1274,10 +1307,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>MTU</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Customize UDP Fragment Size</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1398,70 +1427,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>DES-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>RC2-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>DES-EDE-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>DES-EDE3-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>DESX-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BF-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>RC2-40-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>CAST5-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>RC2-64-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>AES-128-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>AES-192-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>AES-256-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>CAMELLIA-128-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>CAMELLIA-192-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>CAMELLIA-256-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SEED-CBC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>HMAC Auth</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1506,14 +1471,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>HTTP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SOCKS</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Server IP</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1549,6 +1506,10 @@
         <source>Key File</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>MTU (1280-9000)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SystemProxyConfigItem</name>
@@ -1574,123 +1535,6 @@
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetManagerPrivate</name>
-    <message>
-        <source>IP conflict</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Network</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetManagerThreadPrivate</name>
-    <message>
-        <source>Wired Connection %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VPN L2TP %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VPN PPTP %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VPN VPNC %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VPN OpenVPN %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VPN StrongSwan %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VPN OpenConnect %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>PPPoE Connection %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Connecting &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&quot;%1&quot; connected</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&quot;%1&quot; disconnected</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Password is required to connect &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetVPNTipsItem</name>
-    <message>
-        <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetWiredControlItem</name>
-    <message>
-        <source>Wired Network</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetWirelessControlItem</name>
-    <message>
-        <source>Wireless Network</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetWirelessHiddenItem</name>
-    <message>
-        <source>Connect to hidden network</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Network</name>
-    <message>
-        <source>Network</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
