@@ -65,6 +65,7 @@ public:
         ImportError,       // 导入出错
         ExportConnect,     // 导出配置
         ShowPage,          // 查找配置 任务栏打开网络配置界面
+        OpenUrl            // 打开指定网页
     };
     Q_ENUM(CmdType)
 

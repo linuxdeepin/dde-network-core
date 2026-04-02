@@ -14,6 +14,7 @@
 #include <QDebug>
 #include <QFile>
 #include <QTimer>
+#include <QDesktopServices>
 Q_LOGGING_CATEGORY(DNC, "org.deepin.dde.dcc.network");
 
 namespace dde {
@@ -475,6 +476,11 @@ void NetManagerPrivate::exec(NetManager::CmdType cmd, const QString &id, const Q
             m_managerThread->showPage(id);
         }
     } break;
+    case NetManager::OpenUrl: {
+        if (param.contains("url")) {
+            QDesktopServices::openUrl(param.value("url").toString());
+        }
+    }
     default:
         break;
     }
