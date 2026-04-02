@@ -68,111 +68,171 @@ DccObject {
                                 height: 16
                                 width: 16
                             }
-                            content: RowLayout {
-                                spacing: 10
-                                BusyIndicator {
-                                    running: model.item.status === NetType.CS_Connecting
-                                    visible: running
-                                }
-                                DccCheckIcon {
-                                    visible: model.item.status === NetType.CS_Connected && !itemDelegate.hovered
-                                }
-                                NetButton {
-                                    implicitHeight: implicitContentHeight - 4
-                                    topInset: -4
-                                    bottomInset: -4
-                                    visible: model.item.status !== NetType.CS_Connecting && itemDelegate.hovered
-                                    text: model.item.status === NetType.CS_Connected ? qsTr("Disconnect") : qsTr("Connect")
-                                    Layout.alignment: Qt.AlignVCenter
-                                    onClicked: {
-                                        dccData.exec(model.item.status === NetType.CS_Connected ? NetManager.Disconnect : NetManager.ConnectOrInfo, model.item.id, {})
+                            contentItem: ColumnLayout {
+
+                                RowLayout {
+
+                                    spacing: 10
+                                    D.IconLabel {
+                                        Layout.fillWidth: true
+                                        spacing: itemDelegate.spacing
+                                        mirrored: itemDelegate.mirrored
+                                        display: itemDelegate.display
+                                        alignment: itemDelegate.display === D.IconLabel.IconOnly || itemDelegate.display === D.IconLabel.TextUnderIcon
+                                                   ? Qt.AlignCenter : Qt.AlignLeft | Qt.AlignVCenter
+                                        text: itemDelegate.text
+                                        font: itemDelegate.font
+                                        color: itemDelegate.palette.windowText
+                                        icon: D.DTK.makeIcon(itemDelegate.icon, itemDelegate.D.DciIcon)
+                                        // Layout.fillWidth: !itemDelegate.contentFlow
                                     }
-                                }
+                                    BusyIndicator {
+                                        running: model.item.status === NetType.CS_Connecting
+                                        visible: running
+                                    }
+                                    DccCheckIcon {
+                                        visible: model.item.status === NetType.CS_Connected
+                                                 && !itemDelegate.hovered
+                                    }
+                                    NetButton {
+                                        implicitHeight: implicitContentHeight - 4
+                                        topInset: -4
+                                        bottomInset: -4
+                                        visible: model.item.status !== NetType.CS_Connecting
+                                                 && itemDelegate.hovered
+                                        text: model.item.status
+                                              === NetType.CS_Connected ? qsTr("Disconnect") : qsTr(
+                                                                             "Connect")
+                                        Layout.alignment: Qt.AlignVCenter
+                                        onClicked: {
+                                            dccData.exec(model.item.status === NetType.CS_Connected ? NetManager.Disconnect : NetManager.ConnectOrInfo,
+                                                         model.item.id, {})
+                                        }
+                                    }
 
-                                // 箭头悬浮效果 - 右侧圆角（包含分割线）
-                                Item {
-                                    width: 30 // 20px悬浮区域 + 10px扩展到边缘
-                                    height: 40 // 填满ItemDelegate高度
+                                    // 箭头悬浮效果 - 右侧圆角（包含分割线）
+                                    Item {
+                                        width: 30 // 20px悬浮区域 + 10px扩展到边缘
+                                        height: 40 // 填满ItemDelegate高度
 
-                                    Canvas {
-                                        id: hoverCanvas
-                                        anchors.fill: parent
-                                        property color bgColor: "transparent"
+                                        Canvas {
+                                            id: hoverCanvas
+                                            anchors.fill: parent
+                                            property color bgColor: "transparent"
 
-                                        onPaint: {
-                                            var ctx = getContext("2d")
-                                            ctx.clearRect(0, 0, width, height)
+                                            onPaint: {
+                                                var ctx = getContext("2d")
+                                                ctx.clearRect(0, 0,
+                                                              width, height)
 
-                                            if (bgColor.a > 0) {
-                                                ctx.fillStyle = bgColor
-                                                ctx.beginPath()
+                                                if (bgColor.a > 0) {
+                                                    ctx.fillStyle = bgColor
+                                                    ctx.beginPath()
 
-                                                // 绘制右侧圆角的矩形
-                                                ctx.moveTo(0, 0) // 左上角
-                                                ctx.lineTo(width - 6, 0) // 右上角前
-                                                ctx.arcTo(width, 0, width, 6, 6) // 右上圆角
-                                                ctx.lineTo(width, height - 6) // 右下角前
-                                                ctx.arcTo(width, height, width - 6, height, 6) // 右下圆角
-                                                ctx.lineTo(0, height) // 左下角
-                                                ctx.lineTo(0, 0) // 回到左上角
+                                                    // 绘制右侧圆角的矩形
+                                                    ctx.moveTo(0, 0) // 左上角
+                                                    ctx.lineTo(width - 6,
+                                                               0) // 右上角前
+                                                    ctx.arcTo(width, 0, width,
+                                                              6, 6) // 右上圆角
+                                                    ctx.lineTo(width,
+                                                               height - 6) // 右下角前
+                                                    ctx.arcTo(width, height,
+                                                              width - 6,
+                                                              height, 6) // 右下圆角
+                                                    ctx.lineTo(0, height) // 左下角
+                                                    ctx.lineTo(0, 0) // 回到左上角
 
-                                                ctx.fill()
+                                                    ctx.fill()
+                                                }
+                                            }
+
+                                            onBgColorChanged: requestPaint()
+                                        }
+
+                                        // 分割线 - 一直显示
+                                        Rectangle {
+                                            width: 1
+                                            height: 20
+                                            anchors.left: parent.left
+                                            anchors.leftMargin: 0 // 在悬浮区域最左边
+                                            anchors.verticalCenter: parent.verticalCenter
+                                            color: palette.windowText
+                                            opacity: 0.05
+                                        }
+
+                                        D.IconLabel {
+                                            anchors.centerIn: parent
+                                            icon {
+                                                name: "arrow_ordinary_right"
+                                                palette: D.DTK.makeIconPalette(
+                                                             palette)
                                             }
                                         }
 
-                                        onBgColorChanged: requestPaint()
-                                    }
+                                        MouseArea {
+                                            anchors.fill: parent
+                                            hoverEnabled: true
+                                            acceptedButtons: Qt.LeftButton
 
-                                    // 分割线 - 一直显示
-                                    Rectangle {
-                                        width: 1
-                                        height: 20
-                                        anchors.left: parent.left
-                                        anchors.leftMargin: 0 // 在悬浮区域最左边
-                                        anchors.verticalCenter: parent.verticalCenter
-                                        color: palette.windowText
-                                        opacity: 0.05
-                                    }
+                                            onClicked: {
+                                                dccData.exec(NetManager.ConnectInfo,
+                                                             model.item.id, {})
+                                            }
 
-                                    D.IconLabel {
-                                        anchors.centerIn: parent
-                                        icon {
-                                            name: "arrow_ordinary_right"
-                                            palette: D.DTK.makeIconPalette(palette)
-                                        }
-                                    }
+                                            onEntered: {
+                                                hoverCanvas.bgColor = Qt.rgba(
+                                                            palette.windowText.r,
+                                                            palette.windowText.g,
+                                                            palette.windowText.b,
+                                                            0.1)
+                                            }
 
-                                    MouseArea {
-                                        anchors.fill: parent
-                                        hoverEnabled: true
-                                        acceptedButtons: Qt.LeftButton
-
-                                        onClicked: {
-                                            dccData.exec(NetManager.ConnectInfo, model.item.id, {})
-                                        }
-
-                                        onEntered: {
-                                            hoverCanvas.bgColor = Qt.rgba(palette.windowText.r, palette.windowText.g, palette.windowText.b, 0.1)
-                                        }
-
-                                        onExited: {
-                                            hoverCanvas.bgColor = "transparent"
-                                        }
-
-                                        onPressed: {
-                                            hoverCanvas.bgColor = Qt.rgba(palette.windowText.r, palette.windowText.g, palette.windowText.b, 0.2)
-                                        }
-
-                                        onReleased: {
-                                            if (containsMouse) {
-                                                hoverCanvas.bgColor = Qt.rgba(palette.windowText.r, palette.windowText.g, palette.windowText.b, 0.1)
-                                            } else {
+                                            onExited: {
                                                 hoverCanvas.bgColor = "transparent"
                                             }
+
+                                            onPressed: {
+                                                hoverCanvas.bgColor = Qt.rgba(
+                                                            palette.windowText.r,
+                                                            palette.windowText.g,
+                                                            palette.windowText.b,
+                                                            0.2)
+                                            }
+
+                                            onReleased: {
+                                                if (containsMouse) {
+                                                    hoverCanvas.bgColor = Qt.rgba(
+                                                                palette.windowText.r,
+                                                                palette.windowText.g,
+                                                                palette.windowText.b,
+                                                                0.1)
+                                                } else {
+                                                    hoverCanvas.bgColor = "transparent"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                D.Label{
+                                    id: portalLinkLabel
+                                    Layout.leftMargin: 25
+                                    textFormat: Text.RichText
+                                    visible: model.item.portalUrl.length >0
+                                    text:qsTr("Open a browser to authenticate")
+                                    color: D.DTK.platformTheme.activeColor
+                                    MouseArea {
+                                        anchors.fill: parent
+                                        acceptedButtons: Qt.LeftButton
+                                        hoverEnabled: true
+                                        cursorShape: Qt.PointingHandCursor
+                                        onClicked: function(mouse) {
+                                            dccData.exec(NetManager.OpenUrl, model.item.id, {"url": model.item.portalUrl})
                                         }
                                     }
                                 }
                             }
+
                             onDoubleClicked: {
                                 if (model.item.status === NetType.CS_UnConnected) {
                                     dccData.exec(NetManager.ConnectOrInfo, model.item.id, {})

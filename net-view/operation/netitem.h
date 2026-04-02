@@ -204,6 +204,7 @@ protected:
 class NetWiredItem : public NetConnectionItem
 {
     Q_OBJECT
+    Q_PROPERTY(QString portalUrl READ portalUrl NOTIFY portalUrlChanged)
 public:
     const QString & portalUrl() const;
 protected:
