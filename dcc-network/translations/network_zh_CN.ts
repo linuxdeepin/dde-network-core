@@ -500,6 +500,10 @@
         <source>Add Network Connection</source>
         <translation>添加网络设置</translation>
     </message>
+    <message>
+        <source>Open a browser to authenticate</source>
+        <translation>打开浏览器认证</translation>
+    </message>
 </context>
 <context>
     <name>PageWirelessDevice</name>
@@ -534,6 +538,10 @@
     <message>
         <source>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Disable hotspot&lt;/a&gt; first if you want to connect to a wireless network</source>
         <translation>若要连接并使用无线网络功能，请先&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;关闭热点分享&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <source>Open a browser to authenticate</source>
+        <translation>打开浏览器认证</translation>
     </message>
     <message>
         <source>My Networks</source>

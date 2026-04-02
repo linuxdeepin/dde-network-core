@@ -18,6 +18,13 @@
     </message>
 </context>
 <context>
+    <name>dde::network::NetItemWidget</name>
+    <message>
+        <source>Open a browser to authenticate</source>
+        <translation>打開瀏覽器認證</translation>
+    </message>
+</context>
+<context>
     <name>dde::network::NetManagerPrivate</name>
     <message>
         <source>IP conflict</source>

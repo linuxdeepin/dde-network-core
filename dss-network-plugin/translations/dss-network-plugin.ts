@@ -16,6 +16,13 @@
     </message>
 </context>
 <context>
+    <name>dde::network::NetItemWidget</name>
+    <message>
+        <source>Open a browser to authenticate</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>dde::network::NetManagerPrivate</name>
     <message>
         <source>IP conflict</source>
