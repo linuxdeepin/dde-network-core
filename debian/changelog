@@ -1,3 +1,14 @@
+dde-network-core (2.0.87) unstable; urgency=medium
+
+  * chore: update the translations
+  * feat: add portal address detection prompt in Control Center
+  * feat: add portal authentication prompt to taskbar
+  * fix: add configuration for whether to open the portal web page
+  * fix: optimize the logic for opening the authentication web page
+  * fix: opening portal webpage no longer depends on taskbar
+
+ -- zhangkun <zhangkun2@uniontech.com>  Fri, 03 Apr 2026 11:25:07 +0800
+
 dde-network-core (2.0.86) unstable; urgency=medium
 
   * fix: remove redundant setParent call in NetItemPrivate
