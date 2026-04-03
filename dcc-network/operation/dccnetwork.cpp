@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2027 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #include "dccnetwork.h"
@@ -26,10 +26,6 @@ DccNetwork::DccNetwork(QObject *parent)
     : QObject(parent)
     , m_manager(nullptr)
 {
-    qRegisterMetaType<QList<QVariantMap>>("NMVariantMapList");
-    qmlRegisterType<NetType>("org.deepin.dcc.network", 1, 0, "NetType");
-    qmlRegisterType<NetItemModel>("org.deepin.dcc.network", 1, 0, "NetItemModel");
-    qmlRegisterType<NetManager>("org.deepin.dcc.network", 1, 0, "NetManager");
     QMetaObject::invokeMethod(this, "init", Qt::QueuedConnection);
 }
 
@@ -202,6 +198,12 @@ void DccNetwork::init()
     Q_EMIT rootChanged();
 }
 DCC_FACTORY_CLASS(DccNetwork)
+DCC_FACTORY_INITIALIZED([]() {
+    qRegisterMetaType<QList<QVariantMap>>("NMVariantMapList");
+    qmlRegisterType<NetType>("org.deepin.dcc.network", 1, 0, "NetType");
+    qmlRegisterType<NetItemModel>("org.deepin.dcc.network", 1, 0, "NetItemModel");
+    qmlRegisterType<NetManager>("org.deepin.dcc.network", 1, 0, "NetManager");
+})
 } // namespace network
 } // namespace dde
 
