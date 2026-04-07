@@ -106,6 +106,16 @@ DccObject {
         console.log("[DNS-Check] All DNS entries validated successfully")
         return true
     }
+    function addAddressData(addr) {
+        config.push(addr)
+        configChanged()
+        editClicked()
+    }
+    function removeAddressData(index) {
+        config.splice(index, 1)
+        configChanged()
+        editClicked()
+    }
 
     name: "dnsTitle"
     displayName: qsTr("DNS")
@@ -153,105 +163,81 @@ DccObject {
         canSearch: false
         pageType: DccObject.Item
         page: DccGroupView {}
-    }
-    Component {
-        id: dnsComponent
-        DccObject {
-            id: dnsItem
-            property int index: 0
-            weight: root.weight + 30 + index
-            name: "dns" + index
-            displayName: qsTr("DNS") + (index + 1)
-            parentName: root.parentName + "/dnsGroup"
-            canSearch: false
-            pageType: DccObject.Editor
-            page: RowLayout {
-                D.LineEdit {
-                    text: root.config[index]
-                    // 移除正则验证器，改用手动验证以支持IPv6
-                    // 显式允许所有字符输入，包括冒号
-                    inputMethodHints: Qt.ImhNone
-                    onTextChanged: {
-                        console.log("[DNS-Input] Text changed in DNS field", index, ":", text)
-                        if (showAlert) {
-                            errorKey = ""
+        DccRepeater {
+            model: root.config
+            delegate: DccObject {
+                id: dnsItem
+                weight: root.weight + 30 + index
+                name: "dns" + index
+                displayName: qsTr("DNS") + (index + 1)
+                parentName: root.parentName + "/dnsGroup"
+                canSearch: false
+                pageType: DccObject.Editor
+                page: RowLayout {
+                    D.LineEdit {
+                        text: root.config[index]
+                        // 移除正则验证器，改用手动验证以支持IPv6
+                        // 显式允许所有字符输入，包括冒号
+                        inputMethodHints: Qt.ImhNone
+                        onTextChanged: {
+                            console.log("[DNS-Input] Text changed in DNS field", index, ":", text)
+                            if (showAlert) {
+                                errorKey = ""
+                            }
+                            if (text !== root.config[index]) {
+                                console.log("[DNS-Input] Updating config[" + index + "] from", root.config[index], "to", text)
+                                root.config[index] = text
+                                root.editClicked()
+                            }
                         }
-                        if (text !== root.config[index]) {
-                            console.log("[DNS-Input] Updating config[" + index + "] from", root.config[index], "to", text)
-                            root.config[index] = text
-                            root.editClicked()
-                        }
-                    }
-                    showAlert: errorKey === dccObj.name
-                    alertDuration: 2000
-                    alertText: qsTr("Invalid IP address")
-                    onShowAlertChanged: {
-                        if (showAlert) {
-                            DccApp.showPage(dccObj)
-                            forceActiveFocus()
-                        }
-                    }
-                }
-                D.IconLabel {
-                    Layout.margins: 0
-                    Layout.maximumHeight: 16
-                    visible: isEdit && root.config.length < 3
-                    // enabled: root.config.length < 3
-                    icon {
-                        name: "list_add"
-                        width: 16
-                        height: 16
-                    }
-                    MouseArea {
-                        anchors.fill: parent
-                        acceptedButtons: Qt.LeftButton
-                        onClicked: {
-                            root.config.push("")
-                            root.configChanged()
+                        showAlert: errorKey === dccObj.name
+                        alertDuration: 2000
+                        alertText: qsTr("Invalid IP address")
+                        onShowAlertChanged: {
+                            if (showAlert) {
+                                DccApp.showPage(dccObj)
+                                forceActiveFocus()
+                            }
                         }
                     }
-                }
-                D.IconLabel {
-                    Layout.margins: 0
-                    Layout.maximumHeight: 16
-                    visible: isEdit && root.config.length > 2
-                    // enabled: root.config.length > 2
-                    icon {
-                        name: "list_delete"
-                        width: 16
-                        height: 16
+                    D.IconLabel {
+                        Layout.margins: 0
+                        Layout.maximumHeight: 16
+                        visible: isEdit && root.config.length < 3
+                        // enabled: root.config.length < 3
+                        icon {
+                            name: "list_add"
+                            width: 16
+                            height: 16
+                        }
+                        MouseArea {
+                            anchors.fill: parent
+                            acceptedButtons: Qt.LeftButton
+                            onClicked: {
+                                root.addAddressData("")
+                            }
+                        }
                     }
-                    MouseArea {
-                        anchors.fill: parent
-                        acceptedButtons: Qt.LeftButton
-                        onClicked: {
-                            root.config.splice(index, 1)
-                            root.configChanged()
+                    D.IconLabel {
+                        Layout.margins: 0
+                        Layout.maximumHeight: 16
+                        visible: isEdit && root.config.length > 2
+                        // enabled: root.config.length > 2
+                        icon {
+                            name: "list_delete"
+                            width: 16
+                            height: 16
+                        }
+                        MouseArea {
+                            anchors.fill: parent
+                            acceptedButtons: Qt.LeftButton
+                            onClicked: {
+                                root.removeAddressData(index)
+                            }
                         }
                     }
                 }
             }
-        }
-    }
-    function addIpItem() {
-        let dnsItem = dnsComponent.createObject(root, {
-                                                    "index": dnsItems.length
-                                                })
-        DccApp.addObject(dnsItem)
-        dnsItems.push(dnsItem)
-    }
-    function removeIpItem() {
-        let tmpItem = dnsItems.pop()
-        DccApp.removeObject(tmpItem)
-        tmpItem.destroy()
-    }
-
-    onConfigChanged: {
-        while (root.config.length > dnsItems.length) {
-            addIpItem()
-        }
-        while (root.config.length < dnsItems.length) {
-            removeIpItem()
         }
     }
 }

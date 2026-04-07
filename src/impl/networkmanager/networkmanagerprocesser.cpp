@@ -381,7 +381,7 @@ void NetworkManagerProcesser::checkConnectivityFinished(quint32 conntity)
 
 void NetworkManagerProcesser::onConnectivityChanged(NetworkManager::Connectivity conntity)
 {
-    dde::network::Connectivity ctity;
+    dde::network::Connectivity ctity = m_connectivity;
     switch (conntity) {
     case NetworkManager::Connectivity::Full: {
         ctity = dde::network::Connectivity::Full;
