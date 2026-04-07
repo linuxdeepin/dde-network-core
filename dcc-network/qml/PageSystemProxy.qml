@@ -249,7 +249,7 @@ DccObject {
                 parentName: root.name + "/menu/body"
                 displayName: qsTr("Ignore the proxy configurations for the above hosts and domains")
                 weight: 90
-                visible: ignoreHosts.visibleToApp
+                visible: ignoreHosts && ignoreHosts.visibleToApp
                 pageType: DccObject.Item
                 page: Label {
                     text: dccObj.displayName
