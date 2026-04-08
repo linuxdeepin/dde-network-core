@@ -341,7 +341,7 @@ DccObject {
                                 color: this.palette.button
                             }
 
-                            D.Button {
+                            D.RecommandButton {
                                 Layout.fillWidth: true
                                 // contentItem: D.IconLabel {
                                 text: qsTr("Save")
