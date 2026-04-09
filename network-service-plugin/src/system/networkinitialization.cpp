@@ -1,33 +1,32 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
 #include "networkinitialization.h"
-
 #include "settingconfig.h"
 #include "systemservice.h"
 
-#include <NetworkManagerQt/Manager>
-#include <NetworkManagerQt/Settings>
-#include <NetworkManagerQt/WiredDevice>
-#include <NetworkManagerQt/WiredSetting>
-#include <NetworkManagerQt/WirelessDevice>
+#include <DSysInfo>
 
 #include <QCoreApplication>
+#include <QEventLoop>
 #include <QDBusConnection>
 #include <QDBusConnectionInterface>
-#include <QDBusInterface>
-#include <QDBusMessage>
 #include <QDBusServiceWatcher>
-#include <QEventLoop>
-#include <QFile>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QJsonParseError>
-#include <QMap>
-#include <QMutex>
 #include <QTimer>
+#include <QMutex>
+#include <QJsonDocument>
+#include <QJsonParseError>
+#include <QJsonObject>
 #include <QTranslator>
+#include <QDBusInterface>
+
+#include <NetworkManagerQt/WiredDevice>
+#include <NetworkManagerQt/WirelessDevice>
+#include <NetworkManagerQt/Manager>
+#include <NetworkManagerQt/Settings>
+#include <NetworkManagerQt/WiredSetting>
+#include <NetworkManagerQt/Ipv4Setting>
 
 using namespace network::systemservice;
 
@@ -36,18 +35,13 @@ using namespace network::systemservice;
 
 #define NETWORKMANAGER_SERVICE "org.freedesktop.NetworkManager"
 
-#define LOCKERVICE "org.deepin.dde.LockService1"
-#define LOCKPATH "/org/deepin/dde/LockService1"
-#define LOCKINTERFACE "org.deepin.dde.LockService1"
+#define LOCKERVICE "com.deepin.dde.LockService"
+#define LOCKPATH "/com/deepin/dde/LockService"
+#define LOCKINTERFACE "com.deepin.dde.LockService"
 
-#define DEAMONACCOUNTSERVICE "org.deepin.dde.Accounts1"
-#define DEAMONACCOUNTPATH "/org/deepin/dde/Accounts1"
-#define DEAMONACCOUNTINTERFACE "org.deepin.dde.Accounts1"
-
-void NetworkInitialization::doInit()
-{
-    static NetworkInitialization init;
-}
+#define DEAMONACCOUNTSERVICE "com.deepin.daemon.Accounts"
+#define DEAMONACCOUNTPATH "/com/deepin/daemon/Accounts"
+#define DEAMONACCOUNTINTERFACE "com.deepin.daemon.Accounts"
 
 NetworkInitialization::NetworkInitialization(QObject *parent)
     : QObject(parent)
@@ -59,6 +53,14 @@ NetworkInitialization::NetworkInitialization(QObject *parent)
     initConnection();
 }
 
+void NetworkInitialization::updateLanguage(const QString &locale)
+{
+    qWarning(DSM) << "update local language" << locale;
+    installLaunguage(locale);
+    m_initilized = true;
+    updateConnectionLaunguage();
+}
+
 void NetworkInitialization::initDeviceInfo()
 {
     // 处理无线网络
@@ -68,7 +70,7 @@ void NetworkInitialization::initDeviceInfo()
     } else {
         qCWarning(DSM) << "ConfigManager is not start, wait for it start";
         QDBusServiceWatcher *serviceWatcher = new QDBusServiceWatcher(this);
-        serviceWatcher->setConnection(QDBusConnection::sessionBus());
+        serviceWatcher->setConnection(QDBusConnection::systemBus());
         serviceWatcher->addWatchedService("org.desktopspec.ConfigManager");
         connect(serviceWatcher, &QDBusServiceWatcher::serviceRegistered, this, &NetworkInitialization::onInitDeviceConnection);
     }
@@ -80,9 +82,7 @@ void NetworkInitialization::initConnection()
     QDBusConnection::systemBus().callWithCallback(lock, this, SLOT(onUserChanged(QString)));
     QDBusConnection::systemBus().connect(LOCKERVICE, LOCKPATH, LOCKINTERFACE, "UserChanged", this, SLOT(onUserChanged(QString)));
     QDBusConnection::systemBus().connect(DEAMONACCOUNTSERVICE, DEAMONACCOUNTPATH, DEAMONACCOUNTINTERFACE, "UserAdded", this, SLOT(onUserAdded(QString)));
-    connect(NetworkManager::notifier(), &NetworkManager::Notifier::deviceAdded, this, [this](const QString &uni) {
-        addFirstConnection();
-    });
+
     m_accountServiceRegister = QDBusConnection::systemBus().interface()->isServiceRegistered(DEAMONACCOUNTINTERFACE);
     if (!m_accountServiceRegister) {
         // 如果服务未启动，则等待服务启动
@@ -102,6 +102,7 @@ void NetworkInitialization::initConnection()
             if (m_initilized) {
                 addFirstConnection();
             }
+            updateConnectionLaunguage();
         });
     }
     // 等待3秒过后再执行一次创建的动作，正常情况下，在500毫秒内系统肯定会发送当前账户变化的信号，
@@ -109,61 +110,38 @@ void NetworkInitialization::initConnection()
     QTimer::singleShot(3000, this, [this] {
         // 3秒过后直接调用addFirstConnection函数，在这个函数中，如果连接已经创建了，就不再创建
         // 如果没有创建过连接，那么就执行创建的操作
+        // 调用checkAccountStatus检查当前用户状态并安装当前用户的语言
+        qCDebug(DSM) << "check connection status";
+        checkAccountStatus();
+        if (!m_initilized)
+            qCWarning(DSM) << "can not found current user, used default lauguage to create connection";
+        // 不管语言有没有安装上，直接添加新连接，如果语言没有安装上，这个时候肯定不会有当前用户的语言了，此时安装就安装默认的英文
+        // 如果语言安装上了，此时就使用已经安装的语言来新建连接
         addFirstConnection();
     });
 }
 
 void NetworkInitialization::addFirstConnection()
 {
-    qCDebug(DSM) << "add wired device connection: has add" << m_hasAddFirstConnection << "initilized:" << m_initilized;
+    qCDebug(DSM) << "add wired device connection: has add" << m_hasAddFirstConnection;
 
     if (m_hasAddFirstConnection) {
         return;
     }
-    if (!m_initilized) {
-        // 调用checkAccountStatus检查当前用户状态并安装当前用户的语言
-        qCDebug(DSM) << "check connection status";
-        checkAccountStatus();
-        if (!m_initilized) {
-            qCInfo(DSM) << "can not found current user, used default lauguage to create connection";
-            // 不管语言有没有安装上，直接添加新连接，如果语言没有安装上，这个时候肯定不会有当前用户的语言了，此时安装就安装默认的
-            // 如果语言安装上了，此时就使用已经安装的语言来新建连接
-            m_initilized = installSystemTranslator();
-        }
-    }
-    QDBusMessage devs = QDBusMessage::createMethodCall("org.freedesktop.NetworkManager", "/org/freedesktop/NetworkManager", "org.freedesktop.NetworkManager", "GetDevices");
-    QDBusPendingReply<QList<QDBusObjectPath>> reply = QDBusConnection::systemBus().asyncCall(devs);
-    reply.waitForFinished();
-    for (auto objPath : reply.value()) {
-        NetworkManager::Device::Ptr device;
-        bool isNMDev = true;
-        if (device.isNull()) {
-            if (m_devs.contains(objPath.path())) {
-                device = m_devs.value(objPath.path());
-            } else {
-                device.reset(new NetworkManager::Device(objPath.path()));
-                isNMDev = false;
-            }
-        }
-
+    m_hasAddFirstConnection = true;
+    NetworkManager::Device::List devices = NetworkManager::networkInterfaces();
+    for (NetworkManager::Device::Ptr device : devices) {
         if (device->type() != NetworkManager::Device::Type::Ethernet)
             continue;
 
-        m_hasAddFirstConnection = true;
         qCDebug(DSM) << "device" << device->interfaceName() << "add first connection";
-        NetworkManager::WiredDevice::Ptr wiredDevice;
-        if (isNMDev) {
-            wiredDevice = device.staticCast<NetworkManager::WiredDevice>();
-        } else {
-            wiredDevice.reset(new NetworkManager::WiredDevice(objPath.path(), this));
-            m_devs.insert(objPath.path(), wiredDevice);
-        }
+        NetworkManager::WiredDevice::Ptr wiredDevice = device.staticCast<NetworkManager::WiredDevice>();
         initDeviceConnection(wiredDevice);
-        addFirstConnection(wiredDevice);
+        addFirstConnection(wiredDevice.data());
     }
 }
 
-void NetworkInitialization::addFirstConnection(const QSharedPointer<NetworkManager::WiredDevice> &device)
+void NetworkInitialization::addFirstConnection(NetworkManager::WiredDevice *device)
 {
     if (!device)
         return;
@@ -173,6 +151,12 @@ void NetworkInitialization::addFirstConnection(const QSharedPointer<NetworkManag
              << "interfaceFlags:" << device->interfaceFlags() << "carrier:" << device->carrier();
     if (!device->managed() || !(device->interfaceFlags() & DEVICE_INTERFACE_FLAG_UP)
             || !device->carrier()) {
+        // clear the unsave connection
+        NetworkManager::Connection::List unSaveConnections;
+        hasConnection(device, unSaveConnections);
+        // 按照需求，需要将未保存的连接删除
+        for (const NetworkManager::Connection::Ptr &conn : unSaveConnections)
+            conn->remove();
         return;
     }
 
@@ -195,23 +179,26 @@ void NetworkInitialization::addFirstConnection(const QSharedPointer<NetworkManag
         // 记录当前设备创建连接的时间，在下一次为该设备创建连接的时候，会等待5秒，否则会出现创建的连接的
         m_lastCreateTime[device->interfaceName()] = QDateTime::currentDateTime();
         // 如果发现当前的连接的数量为空,则自动创建以当前语言为基础的连接
-        QString matchName = connectionMatchName();
-        m_newConnectionNames << matchName;
-        qCDebug(DSM) << "device:" << device->interfaceName() << "start create first connection" << matchName;
+        QPair<int, QString> matchName = connectionMatchName(device);
+        qCDebug(DSM) << "device:" << device->interfaceName() << "start create first connection" << matchName.second;
         NetworkManager::ConnectionSettings::Ptr conn(new NetworkManager::ConnectionSettings(NetworkManager::ConnectionSettings::ConnectionType::Wired));
-        conn->setId(matchName);
+        conn->setId(matchName.second);
         conn->setUuid(conn->createNewUuid());
         conn->setInterfaceName(device->interfaceName());
         conn->setAutoconnect(!SettingConfig::instance()->enableAccountNetwork());
-        // TODO: permanentHardwareAddress会崩溃，暂时屏蔽
-        // NetworkManager::WiredSetting::Ptr wiredSetting = conn->setting(NetworkManager::Setting::Wired).staticCast<NetworkManager::WiredSetting>();
-        // QString macAddress = device->permanentHardwareAddress();
-        // macAddress.remove(":");
-        // wiredSetting->setMacAddress(QByteArray::fromHex(macAddress.toUtf8()));
-        // wiredSetting->setInitialized(true);
+        NetworkManager::WiredSetting::Ptr wiredSetting = conn->setting(NetworkManager::Setting::Wired).staticCast<NetworkManager::WiredSetting>();
+        QString macAddress = device->permanentHardwareAddress();
+        macAddress.remove(":");
+        wiredSetting->setMacAddress(QByteArray::fromHex(macAddress.toUtf8()));
+        wiredSetting->setInitialized(true);
         QDBusPendingReply<QDBusObjectPath> reply = NetworkManager::addConnection(conn->toMap());
         reply.waitForFinished();
-        qCDebug(DSM) << "device" << device->interfaceName() << "create connection success,count:" << device->availableConnections().size();
+        qDebug() << "device" << device->interfaceName() << "create connection success,count:" << device->availableConnections().size();
+        if (!m_initilized && matchName.first >= 0) {
+            qCDebug(DSM) << "can't found user, add " << matchName.second << conn->uuid() << " to cache";
+            m_untranslactionConnections[conn->uuid()] = matchName.first;
+        }
+        m_newConnectionNames[reply.value().path()] = matchName.second;
     };
     if (m_lastCreateTime.contains(device->interfaceName())) {
         QDateTime lastCreateTime = m_lastCreateTime.value(device->interfaceName());
@@ -231,11 +218,12 @@ void NetworkInitialization::addFirstConnection(const QSharedPointer<NetworkManag
     }
 }
 
-bool NetworkInitialization::hasConnection(const QSharedPointer<NetworkManager::WiredDevice> &device, QList<QSharedPointer<NetworkManager::Connection> > &unSaveDevices)
+bool NetworkInitialization::hasConnection(NetworkManager::WiredDevice *device, QList<QSharedPointer<NetworkManager::Connection> > &unSaveDevices)
 {
-    if (device.isNull())
+    if (!device)
         return false;
 
+    qCDebug(DSM) << "device permanent mac" << device->permanentHardwareAddress() << "mac" << device->hardwareAddress();
     bool hasConnection = false;
     QStringList uuids;
     NetworkManager::Connection::List connList = NetworkManager::listConnections();
@@ -262,7 +250,8 @@ bool NetworkInitialization::hasConnection(const QSharedPointer<NetworkManager::W
 
         NetworkManager::WiredSetting::Ptr settings = conn->settings()->setting(NetworkManager::Setting::Wired).staticCast<NetworkManager::WiredSetting>();
         // 如果当前连接的MAC地址不为空且连接的MAC地址不等于当前设备的MAC地址，则认为不是当前的连接，跳过
-        if (settings.isNull() || (!settings->macAddress().isEmpty() && device->permanentHardwareAddress().compare(settings->macAddress().toHex(':'), Qt::CaseInsensitive) != 0))
+        QString deviceMac = device->permanentHardwareAddress().isEmpty() ? device->hardwareAddress() : device->permanentHardwareAddress();
+        if (settings.isNull() || (!settings->macAddress().isEmpty() && deviceMac.compare(settings->macAddress().toHex(':'), Qt::CaseInsensitive) != 0))
             continue;
 
         // 将未保存的连接放入到列表中，供外面调用删除
@@ -271,6 +260,7 @@ bool NetworkInitialization::hasConnection(const QSharedPointer<NetworkManager::W
             continue;
         }
 
+        qCDebug(DSM) << "find device uuid" << conn->settings()->uuid() << "interface name" << interfaceName << settings->macAddress().toHex(':');
         // 只要走到这里，就认为当前网卡存在有线连接，就不再继续
         hasConnection = true;
     }
@@ -278,10 +268,13 @@ bool NetworkInitialization::hasConnection(const QSharedPointer<NetworkManager::W
     return hasConnection;
 }
 
-QString NetworkInitialization::connectionMatchName() const
+QPair<int, QString> NetworkInitialization::connectionMatchName(NetworkManager::WiredDevice *device) const
 {
+    if (isServerSystem()) {
+        return qMakePair(-1, device->interfaceName());
+    }
     NetworkManager::Connection::List connList = NetworkManager::listConnections();
-    QStringList connNameList = m_newConnectionNames;
+    QStringList connNameList = m_newConnectionNames.values();
 
     for (const NetworkManager::Connection::Ptr &conn : connList) {
         if (conn->settings()->connectionType() == NetworkManager::ConnectionSettings::ConnectionType::Wired
@@ -291,7 +284,7 @@ QString NetworkInitialization::connectionMatchName() const
 
     QString matchConnName = tr("Wired Connection");
     if (!connNameList.contains(matchConnName))
-        return matchConnName;
+        return qMakePair(0, matchConnName);
 
     int connSuffixNum = 1;
     matchConnName = QString(tr("Wired Connection")) + QString(" %1");
@@ -304,7 +297,19 @@ QString NetworkInitialization::connectionMatchName() const
             connSuffixNum = i + 1;
     }
 
-    return matchConnName.arg(connSuffixNum);
+    return qMakePair(connSuffixNum, matchConnName.arg(connSuffixNum));
+}
+
+QVariant NetworkInitialization::accountInterface(const QString &path, const QString &key, bool isUser) const
+{
+    QString interfaceName;
+    if (isUser) {
+        interfaceName = "com.deepin.daemon.Accounts.User";
+    } else {
+        interfaceName = "com.deepin.daemon.Accounts";
+    }
+    QDBusInterface dbus("com.deepin.daemon.Accounts", path, interfaceName, QDBusConnection::systemBus());
+    return dbus.property(key.toLocal8Bit().constData());
 }
 
 bool NetworkInitialization::installUserTranslator(const QString &json)
@@ -317,57 +322,29 @@ bool NetworkInitialization::installUserTranslator(const QString &json)
     qCDebug(DSM) << "user changed " << json;
     QString locale;
     if (json.startsWith("/")) {
-        QDBusMessage userMsg = QDBusMessage::createMethodCall(DEAMONACCOUNTSERVICE, json, "org.freedesktop.DBus.Properties", "Get");
-        userMsg << DEAMONACCOUNTINTERFACE ".User"
-                << "Locale";
-        QDBusPendingReply<QVariant> userProp = QDBusConnection::systemBus().asyncCall(userMsg);
-        if (userProp.value().isValid()) {
-            locale = userProp.value().toString().split(".").first().trimmed();
-        }
+        QString localeValue = accountInterface(json, "Locale").toString();
+        locale = localeValue.split(".").first().trimmed();
         qCDebug(DSM) << "get locale: " << locale;
     }
 
     QJsonParseError error;
     QJsonDocument doc = QJsonDocument::fromJson(json.toUtf8(), &error);
-    if (!locale.isEmpty()) {
-        // do nothing
+    if (!locale.isEmpty() ) {
+        //do nothing
     } else if (error.error == QJsonParseError::NoError && doc.isObject()) {
-        const QString name = doc.object().value("Name").toString();
-        if (name.isEmpty()) {
-            return false;
-        }
-        QDBusMessage msg = QDBusMessage::createMethodCall(DEAMONACCOUNTSERVICE, DEAMONACCOUNTPATH, DEAMONACCOUNTINTERFACE, "FindUserByName");
-        msg << name;
-        QDBusPendingReply<QString> path = QDBusConnection::systemBus().asyncCall(msg);
-        if (path.isError()) {
-            return false;
-        }
-        QDBusMessage userMsg = QDBusMessage::createMethodCall(DEAMONACCOUNTSERVICE, path, "org.freedesktop.DBus.Properties", "Get");
-        userMsg << DEAMONACCOUNTINTERFACE ".User"
-                << "Locale";
-        QDBusPendingReply<QVariant> userProp = QDBusConnection::systemBus().asyncCall(userMsg);
-        if (userProp.value().isValid()) {
-            locale = userProp.value().toString().split(".").first().trimmed();
-        }
+        int uid = doc.object().value("Uid").toInt();
+        QVariant localeVariant = accountInterface(QString("/com/deepin/daemon/Accounts/User%1").arg(uid), "Locale");
+        locale = localeVariant.toString().split(".").first();
     } else if (m_accountServiceRegister) {
         // 如果是非法的json，就直接从Accounts服务中获取
-        QDBusMessage msg = QDBusMessage::createMethodCall(DEAMONACCOUNTSERVICE, DEAMONACCOUNTPATH, "org.freedesktop.DBus.Properties", "Get");
-        msg << DEAMONACCOUNTINTERFACE << "UserList";
-        QDBusPendingReply<QVariant> prop = QDBusConnection::systemBus().asyncCall(msg);
-        if (!prop.value().isValid()) {
-            return false;
-        }
-        const QStringList userList = prop.value().toStringList();
+        QVariant userListVariant = accountInterface("/com/deepin/daemon/Accounts", "UserList", false);
+        const QStringList userList = userListVariant.toStringList();
         qCDebug(DSM) << "found users" << userList;
         if (userList.isEmpty())
             return false;
-        QDBusMessage userMsg = QDBusMessage::createMethodCall(DEAMONACCOUNTSERVICE, userList.first(), "org.freedesktop.DBus.Properties", "Get");
-        userMsg << DEAMONACCOUNTINTERFACE ".User"
-                << "Locale";
-        QDBusPendingReply<QVariant> userProp = QDBusConnection::systemBus().asyncCall(userMsg);
-        if (userProp.value().isValid()) {
-            locale = userProp.value().toString().split(".").first().trimmed();
-        }
+
+        QVariant localeVariant = accountInterface(userList.first(), "Locale");
+        locale = localeVariant.toString().split(".").first();
     } else {
         return false;
     }
@@ -377,66 +354,24 @@ bool NetworkInitialization::installUserTranslator(const QString &json)
         return false;
     }
 
-    return installTranslator(locale);
-}
-
-bool NetworkInitialization::installTranslator(const QString &locale)
-{
     static QString localTmp;
 
     if (localTmp != locale) {
         localTmp = locale;
-        static QTranslator translator;
-        QCoreApplication::removeTranslator(&translator);
-        if (translator.load(QLocale(locale), "network-service-plugin", "_", QM_FILES_DIR)) {
-            QCoreApplication::installTranslator(&translator);
-            qCInfo(DSM) << "Loaded translation file for network-service-plugin:" << translator.filePath();
-        } else {
-            qCWarning(DSM) << "Failed to load translation file for network-service-plugin with locale:" << locale;
-        }
+        installLaunguage(locale);
     }
 
     return true;
 }
 
-static QString getLocaleValue(const QString &filePath, const QStringList &keys, const QString &splitKey = "=", const QString &keywords = QString())
+void NetworkInitialization::installLaunguage(const QString &locale)
 {
-    QFile file(filePath);
-    if (!file.open(QFile::ReadOnly | QFile::Text)) {
-        qCWarning(DSM) << "Failed to open locale file:" << filePath << "-" << file.errorString();
-        return QString();
-    }
-
-    QMap<QString, QString> localeMap;
-    QTextStream in(&file);
-    while (!in.atEnd()) {
-        QString line = in.readLine();
-        if (!keywords.isEmpty() && !line.contains(keywords)) {
-            continue;
-        }
-        QStringList pair = line.split(splitKey);
-        if (pair.size() == 2) {
-            localeMap.insert(pair.at(0).trimmed(), pair.at(1).trimmed());
-        }
-    }
-    for (const auto &key : keys) {
-        if (localeMap.contains(key))
-            return localeMap.value(key).split('.').first();
-    }
-    return QString();
-}
-
-bool NetworkInitialization::installSystemTranslator()
-{
-    QString locale = getLocaleValue("/etc/locale.conf", { "LANGUAGE", "LANG" }, "=", "LANG");
-    if (locale.isEmpty()) {
-        locale = getLocaleValue("/etc/deepin-installer/deepin-installer.conf", { "DI_LOCALE", "LIVE_LOCALES" }, "=", "LOCALE");
-    }
-    if (!locale.isEmpty()) {
-        qCInfo(DSM) << "Install system language:" << locale;
-        return installTranslator(locale);
-    }
-    return false;
+    static QTranslator translator;
+    QCoreApplication::removeTranslator(&translator);
+    const QString qmFile = QString("%1/network-service-plugin_%2.qm").arg(QM_FILES_DIR).arg(locale);
+    translator.load(qmFile);
+    QCoreApplication::installTranslator(&translator);
+    qCDebug(DSM) << "install translation file" << qmFile;
 }
 
 void NetworkInitialization::hideWirelessDevice(const QSharedPointer<NetworkManager::Device> &device, bool disableNetwork)
@@ -450,14 +385,25 @@ void NetworkInitialization::hideWirelessDevice(const QSharedPointer<NetworkManag
         QDBusInterface dbusInter("org.freedesktop.NetworkManager", device->uni(), "org.freedesktop.NetworkManager.Device", QDBusConnection::systemBus());
         dbusInter.setProperty("Managed", managed);
     }
-    connect(device.data(), &NetworkManager::Device::managedChanged, this, &NetworkInitialization::onManagedChanged, Qt::UniqueConnection);
+    NetworkManager::Device *devicePtr = device.data();
+    connect(devicePtr, &NetworkManager::Device::managedChanged, this, [ devicePtr, managed ] {
+        if (devicePtr->managed() == managed)
+            return ;
+
+        qCDebug(DSM) << "device" << devicePtr->interfaceName() << "managed changed" << devicePtr->managed() << ", will set it managed" << managed;
+        QDBusInterface dbusInter("org.freedesktop.NetworkManager", devicePtr->uni(), "org.freedesktop.NetworkManager.Device", QDBusConnection::systemBus());
+        dbusInter.setProperty("Managed", managed);
+    });
 }
 
 void NetworkInitialization::initDeviceConnection(const QSharedPointer<NetworkManager::WiredDevice> &device)
 {
-    connect(device.data(), &NetworkManager::WiredDevice::interfaceFlagsChanged, this, &NetworkInitialization::onAddFirstConnection, Qt::UniqueConnection);
-    connect(device.data(), &NetworkManager::WiredDevice::managedChanged, this, &NetworkInitialization::onAddFirstConnection, Qt::UniqueConnection);
-    connect(device.data(), &NetworkManager::WiredDevice::carrierChanged, this, &NetworkInitialization::onAddFirstConnection, Qt::UniqueConnection);
+    QString deviceUni = device->uni();
+    qCDebug(DSM) << "init device connection" << deviceUni;
+    connect(device.data(), &NetworkManager::WiredDevice::interfaceFlagsChanged, this, &NetworkInitialization::onWiredDevicePropertyChanged, Qt::UniqueConnection);
+    connect(device.data(), &NetworkManager::WiredDevice::managedChanged, this, &NetworkInitialization::onWiredDevicePropertyChanged, Qt::UniqueConnection);
+    connect(device.data(), &NetworkManager::WiredDevice::carrierChanged, this, &NetworkInitialization::onWiredDevicePropertyChanged, Qt::UniqueConnection);
+    connect(device.data(), &NetworkManager::WiredDevice::availableConnectionDisappeared, this, &NetworkInitialization::onAvailableConnectionDisappeared, Qt::UniqueConnection);
 }
 
 void NetworkInitialization::checkAccountStatus()
@@ -467,6 +413,53 @@ void NetworkInitialization::checkAccountStatus()
     reply.waitForFinished();
     QDBusPendingReply<QString> replyResult = reply.reply();
     m_initilized = installUserTranslator(replyResult.value());
+}
+
+void NetworkInitialization::updateConnectionLaunguage(const QString &accountPath)
+{
+    QVariant localeVariant = accountInterface(accountPath, "Locale");
+    QString locale = localeVariant.toString().split(".").first();
+    installLaunguage(locale);
+    m_initilized = true;
+
+    if (m_untranslactionConnections.isEmpty()) {
+        qDebug() << "can't found untranslation connections";
+        return;
+    }
+    qDebug() << "update connection launguage";
+
+    updateConnectionLaunguage();
+}
+
+void NetworkInitialization::updateConnectionLaunguage()
+{
+    qCWarning(DSM) << "cache connection count" << m_untranslactionConnections.size();
+    for (auto it = m_untranslactionConnections.begin(); it != m_untranslactionConnections.end(); it++) {
+        NetworkManager::Connection::Ptr connection = NetworkManager::findConnectionByUuid(it.key());
+        if (connection.isNull()) {
+            qWarning() << "can't found connection " << it.key();
+            continue;
+        }
+
+        QString name = tr("Wired Connection");
+        if (it.value() > 0) {
+            name += QString(" %1").arg(it.value());
+        }
+        connection->settings()->setId(name);
+        QDBusPendingReply<> reply = connection->isUnsaved() ? connection->updateUnsaved(connection->settings()->toMap()) : connection->update(connection->settings()->toMap());
+        reply.waitForFinished();
+        if (reply.isError()) {
+            qWarning() << reply.error().message();
+        }
+        m_newConnectionNames[connection->path()] = name;
+    }
+
+    m_untranslactionConnections.clear();
+}
+
+bool NetworkInitialization::isServerSystem() const
+{
+    return (Dtk::Core::DSysInfo::uosType() == Dtk::Core::DSysInfo::UosServer);
 }
 
 void NetworkInitialization::onInitDeviceConnection()
@@ -479,10 +472,10 @@ void NetworkInitialization::onInitDeviceConnection()
         } else if (device->type() == NetworkManager::Device::Type::Ethernet) {
             checkAccountStatus();
             qCDebug(DSM) << "Wired device" << device->interfaceName() << "initilized" << m_initilized << ",add first connection";
+            NetworkManager::WiredDevice::Ptr wiredDevice = device.staticCast<NetworkManager::WiredDevice>();
+            initDeviceConnection(wiredDevice);
             if (m_initilized) {
-                NetworkManager::WiredDevice::Ptr wiredDevice = device.staticCast<NetworkManager::WiredDevice>();
-                initDeviceConnection(wiredDevice);
-                addFirstConnection(wiredDevice);
+                addFirstConnection(wiredDevice.data());
             }
         }
     }
@@ -492,60 +485,50 @@ void NetworkInitialization::onInitDeviceConnection()
     for (const NetworkManager::WirelessDevice::Ptr &device : wirelessDevices) {
         hideWirelessDevice(device, disableNetwork);
     }
-    connect(NetworkManager::notifier(), &NetworkManager::Notifier::deviceAdded, this, [ disableNetwork, this ](const QString &uni) {
-        NetworkManager::Device::Ptr device = NetworkManager::findNetworkInterface(uni);
-        // 这里只处理无线网卡
-        if (!device)
-            return;
-
-        switch (device->type()) {
-        case NetworkManager::Device::Type::Wifi:
-            hideWirelessDevice(device, disableNetwork);
-            break;
-        case NetworkManager::Device::Type::Ethernet: {
-            checkAccountStatus();
-            qCDebug(DSM) << "new Wired device" << device->interfaceName() << "initilized" << m_initilized << ",add first connection";
-            if (m_initilized) {
-                NetworkManager::WiredDevice::Ptr wiredDevice = device.staticCast<NetworkManager::WiredDevice>();
-                initDeviceConnection(wiredDevice);
-                addFirstConnection(wiredDevice);
-            }
-            break;
-        }
-        default:
-            break;
-        }
-    });
+    connect(NetworkManager::notifier(), &NetworkManager::Notifier::deviceAdded, this, &NetworkInitialization::onDeviceAdded, Qt::UniqueConnection);
 }
 
-void NetworkInitialization::onAddFirstConnection()
+void NetworkInitialization::onWiredDevicePropertyChanged()
 {
-    NetworkManager::WiredDevice *dev = qobject_cast<NetworkManager::WiredDevice *>(sender());
-    if (!dev) {
+    NetworkManager::WiredDevice *wiredDevice = qobject_cast<NetworkManager::WiredDevice *>(sender());
+    if (!wiredDevice)
         return;
-    }
-    NetworkManager::Device::Ptr devPtr = NetworkManager::findNetworkInterface(dev->uni());
-    if (!devPtr) {
-        return;
-    }
-    NetworkManager::WiredDevice::Ptr device = devPtr.staticCast<NetworkManager::WiredDevice>();
-    qCDebug(DSM) << "device" << device->interfaceName() << " carrier:" << device->carrier() << " managed:" << device->managed() << " interfaceFlags:" << device->interfaceFlags();
-    addFirstConnection(device);
+
+    qCDebug(DSM) << "device" << wiredDevice->interfaceName() << "carrier:" << wiredDevice->carrier()
+                 << "interfaceFlags" << wiredDevice->interfaceFlags() << "managed:" << wiredDevice->managed();
+    addFirstConnection(wiredDevice);
 }
 
-void NetworkInitialization::onManagedChanged()
+void NetworkInitialization::onDeviceAdded(const QString &uni)
 {
-    NetworkManager::Device *device = qobject_cast<NetworkManager::Device *>(sender());
-    if (!device) {
-        return;
-    }
-    bool managed = SettingConfig::instance()->disableNetwork();
-    if (device->managed() == managed)
+    NetworkManager::Device::Ptr device = NetworkManager::findNetworkInterface(uni);
+    // 这里只处理无线网卡
+    if (!device)
         return;
 
-    qCDebug(DSM) << "device" << device->interfaceName() << "managed changed" << device->managed() << ", will set it managed" << managed;
-    QDBusInterface dbusInter("org.freedesktop.NetworkManager", device->uni(), "org.freedesktop.NetworkManager.Device", QDBusConnection::systemBus());
-    dbusInter.setProperty("Managed", managed);
+    switch (device->type()) {
+    case NetworkManager::Device::Type::Wifi:
+        hideWirelessDevice(device, SettingConfig::instance()->disableNetwork());
+        break;
+    case NetworkManager::Device::Type::Ethernet: {
+        checkAccountStatus();
+        qCDebug(DSM) << "new Wired device" << device->interfaceName() << "initilized" << m_initilized << ",add first connection";
+        NetworkManager::WiredDevice::Ptr wiredDevice = device.staticCast<NetworkManager::WiredDevice>();
+        initDeviceConnection(wiredDevice);
+        if (m_initilized) {
+            addFirstConnection(wiredDevice.data());
+        }
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void NetworkInitialization::onAvailableConnectionDisappeared(const QString &connectionUni)
+{
+    if (m_newConnectionNames.contains(connectionUni))
+        m_newConnectionNames.remove(connectionUni);
 }
 
 void NetworkInitialization::onUserChanged(const QString &json)
@@ -562,12 +545,13 @@ void NetworkInitialization::onUserChanged(const QString &json)
 void NetworkInitialization::onUserAdded(const QString &user)
 {
     qCDebug(DSM) << "onUserAdded:" << user << "initilized =" << m_initilized;
-
+    updateConnectionLaunguage(user);
     if (m_hasAddFirstConnection) {
+        qDebug() << "has add connection";
         return;
     }
 
-    //取第一个用户的locale
+    // 取第一个用户的locale
     m_initilized = installUserTranslator(user);
 
     if (!m_initilized)
