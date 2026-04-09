@@ -266,7 +266,18 @@ QWidget *NetDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &
 QSize NetDelegate::sizeHint(const QStyleOptionViewItem &, const QModelIndex &index) const
 {
     ItemSpacing itemSpacing = getItemSpacing(index);
-    return QSize(-1, itemSpacing.top + itemSpacing.height + itemSpacing.bottom);
+    int h = itemSpacing.top + itemSpacing.height + itemSpacing.bottom;
+
+    // 当密码输入框展开时，编辑器实际高度会大于默认行高，需要使用实际高度
+    // 否则密码输入区域会被裁剪导致不可见
+    QWidget *editor = m_view->indexWidget(index);
+    if (editor) {
+        int editorH = editor->sizeHint().height();
+        if (editorH > h)
+            h = editorH;
+    }
+
+    return QSize(-1, h);
 }
 
 void NetDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const

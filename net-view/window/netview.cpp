@@ -317,8 +317,7 @@ void NetView::onActivated(const QModelIndex &index)
 void NetView::updateLayout()
 {
     scheduleDelayedItemsLayout();
-    if (!isVisible())
-        updateGeometries();
+    updateGeometries();
 }
 
 void NetView::onExpandStatusChanged()
