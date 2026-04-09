@@ -55,9 +55,8 @@ public:
         buttonWidget->setLayout(buttonLayout);
 
         m_mainLayout->setContentsMargins(0, 10, 0, 0);
+        m_mainLayout->setSpacing(0);
         m_mainLayout->addWidget(m_netView, 0, Qt::AlignTop | Qt::AlignHCenter);
-        m_mainLayout->addStretch();
-        m_mainLayout->addSpacing(10);
         m_mainLayout->addWidget(buttonWidget, 0, Qt::AlignBottom);
         setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         setMaximumHeight(Dock::DOCK_POPUP_WIDGET_MAX_HEIGHT);
