@@ -368,91 +368,91 @@
     </message>
     <message>
         <source>The connection attempt to VPN service timed out</source>
-        <translation type="unfinished"/>
+        <translation>Час, відведений на спробу встановлення з&apos;єднання зі службою VPN, вичерпано.</translation>
     </message>
     <message>
         <source>The VPN service start timed out</source>
-        <translation type="unfinished"/>
+        <translation>Вичерпано час на запуск служби VPN</translation>
     </message>
     <message>
         <source>The VPN service failed to start</source>
-        <translation type="unfinished"/>
+        <translation>Службу VPN не вдалося запустити</translation>
     </message>
     <message>
         <source>The VPN connection password was not provided</source>
-        <translation type="unfinished"/>
+        <translation>Пароль з&apos;єднання VPN не надано</translation>
     </message>
     <message>
         <source>Authentication to VPN server failed</source>
-        <translation type="unfinished"/>
+        <translation>Не вдалося пройти розпізнавання на сервері VPN</translation>
     </message>
     <message>
         <source>The connection was deleted from settings</source>
-        <translation type="unfinished"/>
+        <translation>З&apos;єднання було вилучено з налаштувань</translation>
     </message>
     <message>
         <source>Enabling hotspot</source>
-        <translation type="unfinished"/>
+        <translation>Вмикання точки доступу</translation>
     </message>
     <message>
         <source>Connecting &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Встановлюємо з&apos;єднання із «%1»</translation>
     </message>
     <message>
         <source>Hotspot enabled</source>
-        <translation type="unfinished"/>
+        <translation>Точку доступу увімкнено</translation>
     </message>
     <message>
         <source>&quot;%1&quot; connected</source>
-        <translation type="unfinished"/>
+        <translation>З&apos;єднання із «%1» встановлено</translation>
     </message>
     <message>
         <source>Hotspot disabled</source>
-        <translation type="unfinished"/>
+        <translation>Точку доступу вимкнено</translation>
     </message>
     <message>
         <source>&quot;%1&quot; disconnected</source>
-        <translation type="unfinished"/>
+        <translation>З&apos;єднання із «%1» розірвано</translation>
     </message>
     <message>
         <source>Unable to share hotspot, please check dnsmasq settings</source>
-        <translation type="unfinished"/>
+        <translation>Не вдалося поділитися точкою доступу, перевірте налаштування dnsmasq</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
-        <translation type="unfinished"/>
+        <translation>Не вдалося встановити з&apos;єднання із «%1». Будь ласка, підійдіть ближче до бездротового маршрутизатора.</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
-        <translation type="unfinished"/>
+        <translation>Не вдалося з&apos;єднатися із «%1». Будь ласка, перевірте, чи працює ваш маршрутизатор або мережевий кабель.</translation>
     </message>
     <message>
         <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
-        <translation type="unfinished"/>
+        <translation>Не вдалося встановити з&apos;єднання із «%1». Вказано помилковий пароль.</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Не вдалося встановити з&apos;єднання із «%1»</translation>
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info</source>
-        <translation type="unfinished"/>
+        <translation>Для встановлення з&apos;єднання з «%1», будь ласка, вкажіть ваші дані для розпізнавання</translation>
     </message>
     <message>
         <source>Password is required to connect &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Для встановлення з&apos;єднання із «%1» потрібен пароль</translation>
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"/>
+        <translation>Не вдалося знайти мережу WLAN 802.11 «%1»</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>Від’єднано</translation>
     </message>
     <message>
         <source>Airplane mode enabled.</source>
-        <translation type="unfinished"/>
+        <translation>Увімкнено режим польоту.</translation>
     </message>
     <message>
         <source>Network</source>
