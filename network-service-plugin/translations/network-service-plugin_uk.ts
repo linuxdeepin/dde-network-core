@@ -240,63 +240,63 @@
     </message>
     <message>
         <source>The device&apos;s carrier/link changed</source>
-        <translation type="unfinished"/>
+        <translation>Змінено надавача послуг або посилання пристрою</translation>
     </message>
     <message>
         <source>The device&apos;s existing connection was assumed</source>
-        <translation type="unfinished"/>
+        <translation>Було передбачено наявне з&apos;єднання пристрою</translation>
     </message>
     <message>
         <source>The 802.1x supplicant is now available</source>
-        <translation type="unfinished"/>
+        <translation>Тепер доступним є запитувальний пристрій 802.1x</translation>
     </message>
     <message>
         <source>The modem could not be found</source>
-        <translation type="unfinished"/>
+        <translation>Не вдалося знайти модем</translation>
     </message>
     <message>
         <source>The Bluetooth connection timed out or failed</source>
-        <translation type="unfinished"/>
+        <translation>Перевищено час очікування на з&apos;єднання Bluetooth або спроба з&apos;єднання зазнала невдачі</translation>
     </message>
     <message>
         <source>GSM Modem&apos;s SIM Card was not inserted</source>
-        <translation type="unfinished"/>
+        <translation>У GSM-модемі немає SIM-картки</translation>
     </message>
     <message>
         <source>GSM Modem&apos;s SIM PIN required</source>
-        <translation type="unfinished"/>
+        <translation>Потрібен PIN-код SIM-картки GSM-модема</translation>
     </message>
     <message>
         <source>GSM Modem&apos;s SIM PUK required</source>
-        <translation type="unfinished"/>
+        <translation>Слід вказати PUK-код від GSM-модема</translation>
     </message>
     <message>
         <source>SIM card error in GSM Modem</source>
-        <translation type="unfinished"/>
+        <translation>Помилка SIM-картки у модемі GSM</translation>
     </message>
     <message>
         <source>InfiniBand device does not support connected mode</source>
-        <translation type="unfinished"/>
+        <translation>На пристрої InfiniBand не передбачено підтримки режиму з&apos;єднання</translation>
     </message>
     <message>
         <source>A dependency of the connection failed</source>
-        <translation type="unfinished"/>
+        <translation>Збій залежності з&apos;єднання</translation>
     </message>
     <message>
         <source>RFC 2684 Ethernet bridging error to ADSL</source>
-        <translation type="unfinished"/>
+        <translation>Помилка містка до ADSL Ethernet RFC 2684</translation>
     </message>
     <message>
         <source>ModemManager did not run or quitted unexpectedly</source>
-        <translation type="unfinished"/>
+        <translation>ModemManager не запустився, або несподівано припинив роботу</translation>
     </message>
     <message>
         <source>The 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"/>
+        <translation>Не вдалося знайти мережу 802.11 WLAN</translation>
     </message>
     <message>
         <source>A secondary connection of the base connection failed</source>
-        <translation type="unfinished"/>
+        <translation>Помилка вторинного з&apos;єднання базового з&apos;єднання</translation>
     </message>
     <message>
         <source>DCB or FCoE setup failed</source>
