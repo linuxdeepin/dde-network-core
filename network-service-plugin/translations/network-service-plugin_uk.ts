@@ -364,7 +364,7 @@
     </message>
     <message>
         <source>The IP config of VPN connection was invalid</source>
-        <translation type="unfinished"/>
+        <translation>IP-налаштування з&apos;єднання VPN були некоректними</translation>
     </message>
     <message>
         <source>The connection attempt to VPN service timed out</source>
@@ -456,15 +456,15 @@
     </message>
     <message>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Мережа</translation>
     </message>
     <message>
         <source>The hardware switch of WLAN Card is off, please switch on as necessary.</source>
-        <translation type="unfinished"/>
+        <translation>Апаратний перемикач WLAN Card вимкнений, будь ласка, увімкніть його у разі потреби</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"/>
+        <translation>З&apos;єднано</translation>
     </message>
 </context>
 <context>
