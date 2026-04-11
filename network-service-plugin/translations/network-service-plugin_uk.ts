@@ -300,67 +300,67 @@
     </message>
     <message>
         <source>DCB or FCoE setup failed</source>
-        <translation type="unfinished"/>
+        <translation>Налаштувати DCB чи FCoE не вдалося</translation>
     </message>
     <message>
         <source>Network teaming control failed</source>
-        <translation type="unfinished"/>
+        <translation>Помилка об’єднання мережевих карт</translation>
     </message>
     <message>
         <source>Modem failed to run or not available</source>
-        <translation type="unfinished"/>
+        <translation>Модем не вдалося запустити, або він недоступний</translation>
     </message>
     <message>
         <source>Modem now ready and available</source>
-        <translation type="unfinished"/>
+        <translation>Тепер модем готовий і доступний</translation>
     </message>
     <message>
         <source>SIM PIN is incorrect</source>
-        <translation type="unfinished"/>
+        <translation>Помилковий PIN-код SIM</translation>
     </message>
     <message>
         <source>New connection activation is enqueuing</source>
-        <translation type="unfinished"/>
+        <translation>Активацію нового з&apos;єднання додано до черги</translation>
     </message>
     <message>
         <source>Parent device changed</source>
-        <translation type="unfinished"/>
+        <translation>Батьківський пристрій змінено</translation>
     </message>
     <message>
         <source>Management status of parent device changed</source>
-        <translation type="unfinished"/>
+        <translation>Стан керування основним пристроєм змінено</translation>
     </message>
     <message>
         <source>Network cable is unplugged</source>
-        <translation type="unfinished"/>
+        <translation>Кабель мережі від&apos;єднано</translation>
     </message>
     <message>
         <source>Please make sure SIM card has been inserted with mobile network signal</source>
-        <translation type="unfinished"/>
+        <translation>Переконайтеся, будь ласка, що SIM-карта встановлена з сигналом мобільної мережі</translation>
     </message>
     <message>
         <source>Please make sure a correct plan was selected without arrearage of SIM card</source>
-        <translation type="unfinished"/>
+        <translation>Будь ласка, переконайтеся, що було вибрано правильний тарифний план без заборгованості на SIM-картці</translation>
     </message>
     <message>
         <source>Failed to activate VPN connection, reason unknown</source>
-        <translation type="unfinished"/>
+        <translation>Не вдалося активувати з&apos;єднання VPN, причина невідома</translation>
     </message>
     <message>
         <source>Failed to activate VPN connection</source>
-        <translation type="unfinished"/>
+        <translation>Не вдалося активувати з&apos;єднання VPN</translation>
     </message>
     <message>
         <source>The VPN connection state changed due to being disconnected by users</source>
-        <translation type="unfinished"/>
+        <translation>Стан з&apos;єднання VPN змінено через від&apos;єднання користувачів</translation>
     </message>
     <message>
         <source>The VPN connection state changed due to being disconnected from devices</source>
-        <translation type="unfinished"/>
+        <translation>Стан з&apos;єднання VPN змінено через від&apos;єднання від пристроїв</translation>
     </message>
     <message>
         <source>VPN service stopped</source>
-        <translation type="unfinished"/>
+        <translation>Службу VPN зупинено</translation>
     </message>
     <message>
         <source>The IP config of VPN connection was invalid</source>
