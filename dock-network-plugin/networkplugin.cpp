@@ -385,6 +385,13 @@ QString NetworkPlugin::message(const QString &msg)
     }
 
     const auto &msgObj = resultDoc.object();
+
+    if (msgObj.value(Dock::MSG_TYPE).toString() == Dock::MSG_SET_APPLET_MIN_HEIGHT) {
+        const int minHeight = msgObj.value(Dock::MSG_DATA).toInt(-1);
+        if (m_dockContentWidget && minHeight > 0)
+            m_dockContentWidget->setMinHeight(minHeight);
+    }
+
     if (msgObj.value(Dock::MSG_TYPE).toString() == Dock::MSG_APPLET_CONTAINER && m_dockContentWidget) {
         m_dockContentWidget->setMainLayoutMargins(QMargins(0, msgObj.value(Dock::MSG_DATA).toInt(-1) ==
             Dock::APPLET_CONTAINER_QUICK_PANEL ? 6 : 10, 0, 0));
