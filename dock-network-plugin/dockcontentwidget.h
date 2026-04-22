@@ -118,7 +118,6 @@ protected:
     void hideEvent(QHideEvent *event) override
     {
         QWidget::hideEvent(event);
-        m_minHeight = -1;
         // 隐藏时更新尺寸为折叠状态，确保下次显示时初始尺寸正确
         QMetaObject::invokeMethod(this, "updateSize", Qt::QueuedConnection);
     }
