@@ -718,7 +718,7 @@ QString WirelessDeviceManagerRealize::activeAp() const
     NetworkManager::WirelessDevice::Ptr wirelessDevice = m_device.staticCast<NetworkManager::WirelessDevice>();
     NetworkManager::AccessPoint::Ptr ap = wirelessDevice->activeAccessPoint();
     if (ap)
-        return ap->ssid();
+        return decodeByteArray(ap->rawSsid());
 
     return QString();
 }
@@ -1081,7 +1081,8 @@ bool WirelessDeviceManagerRealize::hotspotEnabled()
 void WirelessDeviceManagerRealize::addNetwork(const NetworkManager::WirelessNetwork::Ptr &network)
 {
     // 在当前的网络列表中查找同名SSID的网络，如果查找到了，就更新数据，没有查找到，就新增一条网络
-    QList<AccessPointInfo *>::iterator itApInfo = std::find_if(m_accessPointInfos.begin(), m_accessPointInfos.end(), [ network ](AccessPointInfo *accessPoint) { return accessPoint->accessPoint()->ssid() == network->ssid(); });
+    QString ssid = decodeByteArray(network->referenceAccessPoint()->rawSsid());
+    QList<AccessPointInfo *>::iterator itApInfo = std::find_if(m_accessPointInfos.begin(), m_accessPointInfos.end(), [ ssid ](AccessPointInfo *accessPoint) { return accessPoint->accessPoint()->ssid() == ssid; });
     if (itApInfo == m_accessPointInfos.end()) {
         // 新增的无线网络
         AccessPointInfo *apInfo = new AccessPointInfo(m_device, network);

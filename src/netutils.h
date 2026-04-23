@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2022 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -36,6 +36,9 @@ Connectivity connectivityValue(uint sourceConnectivity);
 DeviceStatus convertDeviceStatus(int sourceDeviceStatus);
 ConnectionStatus convertConnectionStatus(int sourceConnectionStatus);
 ConnectionStatus convertStateFromNetworkManager(NetworkManager::ActiveConnection::State state);
+
+// 检测并转换 SSID 编码，处理 GBK 和 UTF-8 编码
+QString decodeByteArray(const QByteArray &rawSsid);
 }
 }
 #endif  // NETUTILS_H

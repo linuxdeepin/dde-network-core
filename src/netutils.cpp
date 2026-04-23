@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2022 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -6,6 +6,7 @@
 
 #include <QMetaType>
 #include <QDBusMetaType>
+#include <QStringConverter>
 
 namespace dde {
 namespace network {
@@ -75,5 +76,21 @@ ConnectionStatus convertStateFromNetworkManager(NetworkManager::ActiveConnection
     return ConnectionStatus::Deactivated;
 }
 
+QString decodeByteArray(const QByteArray &data)
+{
+    if (data.isEmpty()) {
+        return QString();
+    }
+
+    QStringDecoder utf8Decoder(QStringDecoder::Utf8);
+    QString utf8Result = utf8Decoder(data);
+    if (utf8Result.contains(QChar::ReplacementCharacter)) {
+        QStringDecoder gbkDecoder("GBK");
+        if (gbkDecoder.isValid()) {
+            return gbkDecoder.decode(data);
+        }
+    }
+    return utf8Result;
+}
 }
 }
