@@ -1,9 +1,10 @@
-// SPDX-FileCopyrightText: 2011 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2011 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #include "networkdetailnmrealize.h"
 #include "devicemanagerrealize.h"
 #include "ipmanager.h"
+#include "netutils.h"
 
 #include <NetworkManagerQt/WirelessDevice>
 #include <NetworkManagerQt/WirelessSecuritySetting>
@@ -61,7 +62,7 @@ void NetworkDetailNMRealize::initProperties()
         QString frequencyBand = tr("automatic");
         NetworkManager::AccessPoint::Ptr activeAccessPoint = wirelessDevice->activeAccessPoint();
         if (activeAccessPoint) {
-            ssid = activeAccessPoint->ssid();
+            ssid = decodeByteArray(activeAccessPoint->rawSsid());
             switch (NetworkManager::findFrequencyBand(static_cast<int>(activeAccessPoint->frequency()))) {
             case NetworkManager::WirelessSetting::FrequencyBand::A:
                 frequencyBand = "5 GHz";
