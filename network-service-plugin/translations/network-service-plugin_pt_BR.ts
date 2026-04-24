@@ -324,31 +324,31 @@
     </message>
     <message>
         <source>Parent device changed</source>
-        <translation type="unfinished"/>
+        <translation>Dispositivo principal alterado</translation>
     </message>
     <message>
         <source>Management status of parent device changed</source>
-        <translation type="unfinished"/>
+        <translation>Status de gerenciamento do dispositivo principal alterado</translation>
     </message>
     <message>
         <source>Network cable is unplugged</source>
-        <translation type="unfinished"/>
+        <translation>O cabo de rede está desconectado</translation>
     </message>
     <message>
         <source>Please make sure SIM card has been inserted with mobile network signal</source>
-        <translation type="unfinished"/>
+        <translation>Verifique se o cartão SIM está inserido e há sinal de rede móvel</translation>
     </message>
     <message>
         <source>Please make sure a correct plan was selected without arrearage of SIM card</source>
-        <translation type="unfinished"/>
+        <translation>Verifique se um plano correto foi selecionado e se o cartão SIM não possui pendências</translation>
     </message>
     <message>
         <source>Failed to activate VPN connection, reason unknown</source>
-        <translation type="unfinished"/>
+        <translation>Falha ao ativar a conexão VPN, motivo desconhecido</translation>
     </message>
     <message>
         <source>Failed to activate VPN connection</source>
-        <translation type="unfinished"/>
+        <translation>Falha ao ativar a conexão VPN</translation>
     </message>
     <message>
         <source>The VPN connection state changed due to being disconnected by users</source>
