@@ -352,35 +352,35 @@
     </message>
     <message>
         <source>The VPN connection state changed due to being disconnected by users</source>
-        <translation type="unfinished"/>
+        <translation>O estado da conexão VPN foi alterado devido à desconexão solicitada pelo usuário</translation>
     </message>
     <message>
         <source>The VPN connection state changed due to being disconnected from devices</source>
-        <translation type="unfinished"/>
+        <translation>O estado da conexão VPN foi alterado devido à desconexão pelo dispositivo</translation>
     </message>
     <message>
         <source>VPN service stopped</source>
-        <translation type="unfinished"/>
+        <translation>Serviço VPN interrompido</translation>
     </message>
     <message>
         <source>The IP config of VPN connection was invalid</source>
-        <translation type="unfinished"/>
+        <translation>A configuração de IP da conexão VPN era inválida</translation>
     </message>
     <message>
         <source>The connection attempt to VPN service timed out</source>
-        <translation type="unfinished"/>
+        <translation>A tentativa de conexão ao serviço VPN expirou por tempo limite</translation>
     </message>
     <message>
         <source>The VPN service start timed out</source>
-        <translation type="unfinished"/>
+        <translation>O serviço VPN não iniciou dentro do tempo permitido</translation>
     </message>
     <message>
         <source>The VPN service failed to start</source>
-        <translation type="unfinished"/>
+        <translation>Falha ao iniciar o serviço VPN</translation>
     </message>
     <message>
         <source>The VPN connection password was not provided</source>
-        <translation type="unfinished"/>
+        <translation>A senha da conexão VPN não foi fornecida</translation>
     </message>
     <message>
         <source>Authentication to VPN server failed</source>
