@@ -384,55 +384,55 @@
     </message>
     <message>
         <source>Authentication to VPN server failed</source>
-        <translation type="unfinished"/>
+        <translation>Falha na autenticação no servidor VPN</translation>
     </message>
     <message>
         <source>The connection was deleted from settings</source>
-        <translation type="unfinished"/>
+        <translation>A conexão foi removida das configurações</translation>
     </message>
     <message>
         <source>Enabling hotspot</source>
-        <translation type="unfinished"/>
+        <translation>Ativando ponto de acesso</translation>
     </message>
     <message>
         <source>Connecting &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Conectando a &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Hotspot enabled</source>
-        <translation type="unfinished"/>
+        <translation>Ponto de acesso ativado</translation>
     </message>
     <message>
         <source>&quot;%1&quot; connected</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; conectado</translation>
     </message>
     <message>
         <source>Hotspot disabled</source>
-        <translation type="unfinished"/>
+        <translation>Ponto de acesso desativado</translation>
     </message>
     <message>
         <source>&quot;%1&quot; disconnected</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; desconectado</translation>
     </message>
     <message>
         <source>Unable to share hotspot, please check dnsmasq settings</source>
-        <translation type="unfinished"/>
+        <translation>Não foi possível compartilhar o ponto de acesso, verifique as configurações do dnsmasq</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
-        <translation type="unfinished"/>
+        <translation>Não foi possível conectar a &quot;%1&quot;, aproxime-se do roteador sem fio</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
-        <translation type="unfinished"/>
+        <translation>Não foi possível conectar a &quot;%1&quot;, verifique o roteador ou o cabo de rede.</translation>
     </message>
     <message>
         <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
-        <translation type="unfinished"/>
+        <translation>Falha na conexão, não foi possível conectar a &quot;%1&quot;, senha incorreta.</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Não foi possível conectar a &quot;%1&quot;</translation>
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info</source>
