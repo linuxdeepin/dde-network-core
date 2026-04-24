@@ -436,35 +436,35 @@
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info</source>
-        <translation type="unfinished"/>
+        <translation>Para conectar a &quot;%1&quot;, configure suas informações de autenticação</translation>
     </message>
     <message>
         <source>Password is required to connect &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>É necessária senha para conectar a &quot;%1&quot;</translation>
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"/>
+        <translation>A rede WLAN 802.11 &quot;%1&quot; não pôde ser encontrada</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>Desconectado</translation>
     </message>
     <message>
         <source>Airplane mode enabled.</source>
-        <translation type="unfinished"/>
+        <translation>Modo avião ativado.</translation>
     </message>
     <message>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Rede</translation>
     </message>
     <message>
         <source>The hardware switch of WLAN Card is off, please switch on as necessary.</source>
-        <translation type="unfinished"/>
+        <translation>O interruptor físico da placa WLAN está desligado, ative-o se necessário.</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"/>
+        <translation>Conectado</translation>
     </message>
 </context>
 <context>
