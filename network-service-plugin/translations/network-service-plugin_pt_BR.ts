@@ -288,23 +288,23 @@
     </message>
     <message>
         <source>ModemManager did not run or quitted unexpectedly</source>
-        <translation type="unfinished"/>
+        <translation>O Gerenciador de Modem não foi executado ou foi encerrado inesperadamente</translation>
     </message>
     <message>
         <source>The 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"/>
+        <translation>A rede WLAN 802.11 não pôde ser encontrada</translation>
     </message>
     <message>
         <source>A secondary connection of the base connection failed</source>
-        <translation type="unfinished"/>
+        <translation>Uma conexão secundária da conexão base falhou</translation>
     </message>
     <message>
         <source>DCB or FCoE setup failed</source>
-        <translation type="unfinished"/>
+        <translation>A configuração de DCB ou FCoE falhou</translation>
     </message>
     <message>
         <source>Network teaming control failed</source>
-        <translation type="unfinished"/>
+        <translation>O controle de teaming de rede falhou</translation>
     </message>
     <message>
         <source>Modem failed to run or not available</source>
