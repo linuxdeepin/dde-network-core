@@ -308,11 +308,11 @@
     </message>
     <message>
         <source>Modem failed to run or not available</source>
-        <translation type="unfinished"/>
+        <translation>O modem não iniciou ou não está disponível</translation>
     </message>
     <message>
         <source>Modem now ready and available</source>
-        <translation type="unfinished"/>
+        <translation>O modem está pronto e disponível</translation>
     </message>
     <message>
         <source>SIM PIN is incorrect</source>
