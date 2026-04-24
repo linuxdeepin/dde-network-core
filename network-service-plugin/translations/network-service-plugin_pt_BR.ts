@@ -316,11 +316,11 @@
     </message>
     <message>
         <source>SIM PIN is incorrect</source>
-        <translation type="unfinished"/>
+        <translation>O PIN do SIM está incorreto</translation>
     </message>
     <message>
         <source>New connection activation is enqueuing</source>
-        <translation type="unfinished"/>
+        <translation>A ativação da nova conexão está sendo enfileirada</translation>
     </message>
     <message>
         <source>Parent device changed</source>
