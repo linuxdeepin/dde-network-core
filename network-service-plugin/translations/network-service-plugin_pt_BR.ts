@@ -276,15 +276,15 @@
     </message>
     <message>
         <source>InfiniBand device does not support connected mode</source>
-        <translation type="unfinished"/>
+        <translation>O dispositivo InfiniBand não suporta o modo conectado</translation>
     </message>
     <message>
         <source>A dependency of the connection failed</source>
-        <translation type="unfinished"/>
+        <translation>Uma dependência da conexão falhou</translation>
     </message>
     <message>
         <source>RFC 2684 Ethernet bridging error to ADSL</source>
-        <translation type="unfinished"/>
+        <translation>Erro de bridging Ethernet RFC 2684 para ADSL</translation>
     </message>
     <message>
         <source>ModemManager did not run or quitted unexpectedly</source>
