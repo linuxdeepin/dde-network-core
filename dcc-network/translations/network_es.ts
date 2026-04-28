@@ -1,35 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="es">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="es">
 <context>
     <name>DeviceStatusItem</name>
     <message>
         <source>Off</source>
-        <translation type="unfinished"></translation>
+        <translation>Apagado</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectado</translation>
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished">Conflicto de IP</translation>
+        <translation>Conflicto de IP</translation>
     </message>
     <message>
         <source>Connecting</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectando</translation>
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation type="unfinished"></translation>
+        <translation>Obteniendo dirección</translation>
     </message>
     <message>
         <source>Authenticating</source>
-        <translation type="unfinished"></translation>
+        <translation>Autentificando</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"></translation>
+        <translation>Desconectar</translation>
     </message>
 </context>
 <context>
@@ -57,11 +55,11 @@
     <name>NetworkMain</name>
     <message>
         <source>Connection settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustes de conexión</translation>
     </message>
     <message>
         <source>Related Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustes relacionados</translation>
     </message>
 </context>
 <context>
@@ -193,7 +191,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Propiedades de red</translation>
     </message>
 </context>
 <context>
@@ -315,7 +313,7 @@
     </message>
     <message>
         <source>Enable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;Wireless Network Adapter&lt;/a&gt; first if you want to use the personal hotspot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Primero habilte el &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;adaptador de red inalámbrica.&lt;/a&gt; si desea utilizar el punto de acceso personal.</translation>
     </message>
 </context>
 <context>
@@ -338,7 +336,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Propiedades de red</translation>
     </message>
 </context>
 <context>
@@ -475,7 +473,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Propiedades de red</translation>
     </message>
 </context>
 <context>
@@ -537,7 +535,7 @@
     </message>
     <message>
         <source>My Networks</source>
-        <translation type="unfinished">Mis redes</translation>
+        <translation>Mis redes</translation>
     </message>
 </context>
 <context>
@@ -587,7 +585,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"></translation>
+        <translation>MTU (1280-9000)</translation>
     </message>
 </context>
 <context>
@@ -614,19 +612,19 @@
     </message>
     <message>
         <source>Band</source>
-        <translation type="unfinished">Banda</translation>
+        <translation>Banda</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished">Automático</translation>
+        <translation>Automático</translation>
     </message>
     <message>
         <source>2.4 GHz</source>
-        <translation type="unfinished">2.4 GHz</translation>
+        <translation>2.4 GHz</translation>
     </message>
     <message>
         <source>5 GHz</source>
-        <translation type="unfinished">5 GHz</translation>
+        <translation>5 GHz</translation>
     </message>
 </context>
 <context>
@@ -693,7 +691,7 @@
     </message>
     <message>
         <source>Only one gateway is allowed</source>
-        <translation type="unfinished"></translation>
+        <translation>Sólo se permite un gateway</translation>
     </message>
 </context>
 <context>
@@ -764,7 +762,7 @@
     </message>
     <message>
         <source>Only one gateway is allowed</source>
-        <translation type="unfinished"></translation>
+        <translation>Sólo se permite un gateway</translation>
     </message>
 </context>
 <context>
@@ -1500,7 +1498,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"></translation>
+        <translation>MTU (1280-9000)</translation>
     </message>
 </context>
 <context>
@@ -1612,7 +1610,7 @@
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation>No se puede encontrar la red WLAN 802.11 &quot;%1&quot;&#xa0;</translation>
+        <translation>No se puede encontrar la red WLAN 802.11 &quot;%1&quot; </translation>
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>

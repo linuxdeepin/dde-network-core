@@ -1,35 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="pt_BR">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pt_BR">
 <context>
     <name>DeviceStatusItem</name>
     <message>
         <source>Off</source>
-        <translation type="unfinished"></translation>
+        <translation>Desativado</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectado</translation>
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished">Conflito de IP</translation>
+        <translation>Conflito de IP</translation>
     </message>
     <message>
         <source>Connecting</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectando</translation>
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation type="unfinished"></translation>
+        <translation>Obtendo endereço</translation>
     </message>
     <message>
         <source>Authenticating</source>
-        <translation type="unfinished"></translation>
+        <translation>Autenticando</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"></translation>
+        <translation>Desconectado</translation>
     </message>
 </context>
 <context>
@@ -57,11 +55,11 @@
     <name>NetworkMain</name>
     <message>
         <source>Connection settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações de conexão</translation>
     </message>
     <message>
         <source>Related Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações relacionadas</translation>
     </message>
 </context>
 <context>
@@ -76,7 +74,7 @@
     </message>
     <message>
         <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
-        <translation>Habilitar modo avião e desligar rede sem fio, hotspot pessoal e Bluetooth</translation>
+        <translation>Ativar o Modo Avião desliga a placa Wi-Fi, o ponto de acesso pessoal e o Bluetooth</translation>
     </message>
 </context>
 <context>
@@ -177,11 +175,11 @@
     <name>PageDSLSettings</name>
     <message>
         <source>Delete</source>
-        <translation>Deletar</translation>
+        <translation>Excluir</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this configuration?</source>
-        <translation>Você tem certeza que quer apagar essa configuração?</translation>
+        <translation>Excluir esta configuração?</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -193,7 +191,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Propriedades da rede %1</translation>
     </message>
 </context>
 <context>
@@ -204,7 +202,7 @@
     </message>
     <message>
         <source>View all network configurations</source>
-        <translation>Visualizar todas as configurações de rede</translation>
+        <translation>Exibir todas as configurações de rede</translation>
     </message>
     <message>
         <source>Details has been copied</source>
@@ -307,26 +305,26 @@
     </message>
     <message>
         <source>If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.</source>
-        <translation>Se você quiser usar o ponto de acesso pessoal, desative o Modo Avião primeiro e depois ative o adaptador de rede sem fio.</translation>
+        <translation>Se você quiser usar o ponto de acesso pessoal, desative o Modo Avião e, em seguida, ative a placa Wi-Fi.</translation>
     </message>
     <message>
         <source>If you want to use the personal hotspot, disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first and then enable the wireless network adapter.</source>
-        <translation>Se você quiser usar o hotspot pessoal, desative&lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt; o modo avião&lt;/a&gt;primeiro e depois habilite o adaptador de rede sem fio.</translation>
+        <translation>Se você quiser usar o ponto de acesso pessoal, desative o &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Modo Avião&lt;/a&gt; e, em seguida, ative a placa Wi-Fi.</translation>
     </message>
     <message>
         <source>Enable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;Wireless Network Adapter&lt;/a&gt; first if you want to use the personal hotspot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ativar &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;Placa de rede Wi-Fi&lt;/a&gt; se quiser usar o hotspot pessoal.</translation>
     </message>
 </context>
 <context>
     <name>PageSettings</name>
     <message>
         <source>Delete</source>
-        <translation>Deletar</translation>
+        <translation>Excluir</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this configuration?</source>
-        <translation>Tem certeza de que deseja excluir esta configuração?</translation>
+        <translation>Excluir esta configuração?</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -338,7 +336,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Propriedades da rede %1</translation>
     </message>
 </context>
 <context>
@@ -440,7 +438,7 @@
     </message>
     <message>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Ok</translation>
     </message>
 </context>
 <context>
@@ -455,7 +453,7 @@
     </message>
     <message>
         <source>Are you sure you want to delete this configuration?</source>
-        <translation>Tem certeza de que deseja excluir esta configuração?</translation>
+        <translation>Excluir esta configuração?</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -475,7 +473,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Propriedades da rede %1</translation>
     </message>
 </context>
 <context>
@@ -521,23 +519,23 @@
     </message>
     <message>
         <source>Disable Airplane Mode first if you want to connect to a wireless network</source>
-        <translation>Desative o Modo Avião primeiro se quiser se conectar a uma rede sem fio</translation>
+        <translation>Desative o Modo Avião se você quiser se conectar a uma rede Wi-Fi</translation>
     </message>
     <message>
         <source>Disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation>Desative&lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt; o Modo Avião&lt;/a&gt; primeiro se quiser se conectar a uma rede sem fio</translation>
+        <translation>Desative o &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Modo Avião&lt;/a&gt; se você quiser se conectar a uma rede Wi-Fi</translation>
     </message>
     <message>
         <source>Disable hotspot first if you want to connect to a wireless network</source>
-        <translation>Desative o hotspot primeiro se quiser se conectar a uma rede sem fio</translation>
+        <translation>Desative o hotspot se você quiser se conectar a uma rede Wi-Fi</translation>
     </message>
     <message>
         <source>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Disable hotspot&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Desative o hotspot&lt;/a&gt; primeiro se quiser se conectar a uma rede sem fio</translation>
+        <translation>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Desative o hotspot&lt;/a&gt; se você quiser se conectar a uma rede Wi-Fi</translation>
     </message>
     <message>
         <source>My Networks</source>
-        <translation type="unfinished">Minhas redes</translation>
+        <translation>Minhas redes</translation>
     </message>
 </context>
 <context>
@@ -587,7 +585,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"></translation>
+        <translation>MTU (1280-9000)</translation>
     </message>
 </context>
 <context>
@@ -614,19 +612,19 @@
     </message>
     <message>
         <source>Band</source>
-        <translation type="unfinished">Banda</translation>
+        <translation>Banda</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished">Automático</translation>
+        <translation>Automático</translation>
     </message>
     <message>
         <source>2.4 GHz</source>
-        <translation type="unfinished">2.4 GHz</translation>
+        <translation>2.4 GHz</translation>
     </message>
     <message>
         <source>5 GHz</source>
-        <translation type="unfinished">5 GHz</translation>
+        <translation>5 GHz</translation>
     </message>
 </context>
 <context>
@@ -693,7 +691,7 @@
     </message>
     <message>
         <source>Only one gateway is allowed</source>
-        <translation type="unfinished"></translation>
+        <translation>Apenas um gateway é permitido</translation>
     </message>
 </context>
 <context>
@@ -764,7 +762,7 @@
     </message>
     <message>
         <source>Only one gateway is allowed</source>
-        <translation type="unfinished"></translation>
+        <translation>Apenas um gateway é permitido</translation>
     </message>
 </context>
 <context>
@@ -1500,7 +1498,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"></translation>
+        <translation>MTU (1280-9000)</translation>
     </message>
 </context>
 <context>
@@ -1630,7 +1628,7 @@
     <name>dde::network::NetVPNTipsItem</name>
     <message>
         <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
-        <translation>A configuração de VPN não está conectada ou falhou ao conectar-se. Acesse a &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;Central de Controle&lt;/a&gt; para verificar.</translation>
+        <translation>A configuração de VPN não está conectada ou falhou ao conectar-se. Acesse as &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;Configurações&lt;/a&gt; para verificar.</translation>
     </message>
 </context>
 <context>
