@@ -438,7 +438,7 @@
     </message>
     <message>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Ok</translation>
     </message>
 </context>
 <context>
