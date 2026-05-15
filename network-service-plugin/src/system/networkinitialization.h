@@ -38,12 +38,14 @@ private:
     QPair<int, QString> connectionMatchName(NetworkManager::WiredDevice *device) const;
     QVariant accountInterface(const QString &path, const QString &key, bool isUser = true) const;
     bool installUserTranslator(const QString &json);
-    void installLaunguage(const QString &locale);
+    void installLanguage(const QString &locale);
+    bool installSystemTranslator();
+    void ensureTranslatorInstalled();
     void hideWirelessDevice(const QSharedPointer<NetworkManager::Device> &device, bool disableNetwork);
     void initDeviceConnection(const QSharedPointer<NetworkManager::WiredDevice> &device);
     void checkAccountStatus();
-    void updateConnectionLaunguage(const QString &account);
-    void updateConnectionLaunguage();
+    void updateConnectionLanguage(const QString &account);
+    void updateConnectionLanguage();
     bool isServerSystem() const;
 
 private slots:
@@ -57,7 +59,7 @@ private slots:
 
 private:
     QMap<QString, QString> m_newConnectionNames;
-    bool m_initilized;
+    bool m_initialized;
     bool m_accountServiceRegister;
     bool m_hasAddFirstConnection;
     QMap<QString, QDateTime> m_lastCreateTime;
