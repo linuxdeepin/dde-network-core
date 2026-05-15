@@ -299,6 +299,7 @@ private:
     QMap<NetworkDetails *, QString> m_detailsItemsMap; // 存储 NetworkDetails 指针到唯一ID的映射
     QString m_showPageCmd;
     QTimer *m_showPageTimer;
+    QTimer *m_vpnStateUpdateTimer;
     QString m_newVPNuuid;
     bool m_supportWireless;
 };
