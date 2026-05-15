@@ -98,6 +98,7 @@ NetManagerThreadPrivate::NetManagerThreadPrivate()
     , m_netCheckAvailable(false)
     , m_isSleeping(false)
     , m_showPageTimer(nullptr)
+    , m_vpnStateUpdateTimer(nullptr)
     , m_supportWireless(false)
 {
     moveToThread(m_thread);
@@ -106,12 +107,15 @@ NetManagerThreadPrivate::NetManagerThreadPrivate()
 
 NetManagerThreadPrivate::~NetManagerThreadPrivate()
 {
+    // 先断开所有信号，防止析构期间再有新任务（如singleShot）入队
+    disconnect();
     m_thread->quit();
-    m_thread->wait(QDeadlineTimer(200));
+    // 增大等待时间至1000ms，避免50ms定时器回调等正在执行的任务被terminate强杀
+    m_thread->wait(QDeadlineTimer(1000));
     if (m_thread->isRunning()) {
         m_thread->terminate();
     }
-    m_thread->wait(QDeadlineTimer(200));
+    m_thread->wait(QDeadlineTimer(500));
     delete m_thread;
 }
 
@@ -416,6 +420,9 @@ void NetManagerThreadPrivate::doInit()
         }
         Q_EMIT itemAdded("Root", vpnControlItem);
 
+        m_vpnStateUpdateTimer = new QTimer(this);
+        m_vpnStateUpdateTimer->setSingleShot(true);
+        m_vpnStateUpdateTimer->setInterval(55);
         auto updateVPNConnectionState = [this]() {
             auto itemList = NetworkController::instance()->vpnController()->items();
             NetType::NetDeviceStatus state = NetType::DS_Disconnected;
@@ -431,8 +438,10 @@ void NetManagerThreadPrivate::doInit()
             }
             Q_EMIT dataChanged(DataChanged::VPNConnectionStateChanged, "NetVPNControlItem", QVariant::fromValue(state));
         };
-        auto vpnConnectionStateChanged = [this, updateVPNConnectionState] {
-            QTimer::singleShot(50, this, updateVPNConnectionState);
+        connect(m_vpnStateUpdateTimer, &QTimer::timeout, this, updateVPNConnectionState);
+        auto vpnConnectionStateChanged = [this] {
+            // 使用成员定时器，重复触发时自动重置计时，防止多次触发累积
+            m_vpnStateUpdateTimer->start();
         };
 
         auto vpnItemChanged = [this, vpnConnectionStateChanged] {
@@ -595,6 +604,11 @@ void NetManagerThreadPrivate::clearData()
     if (m_autoScanTimer) {
         delete m_autoScanTimer;
         m_autoScanTimer = nullptr;
+    }
+    if (m_vpnStateUpdateTimer) {
+        m_vpnStateUpdateTimer->stop();
+        delete m_vpnStateUpdateTimer;
+        m_vpnStateUpdateTimer = nullptr;
     }
     if (m_secretAgent) {
         delete m_secretAgent;

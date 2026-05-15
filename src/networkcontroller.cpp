@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -17,6 +17,8 @@
 #include "wireddevice.h"
 #include "wirelessdevice.h"
 #include "connectivityhandler.h"
+
+#include <QGlobalStatic>
 
 // const static QString networkService = "org.deepin.dde.Network1";
 // const static QString networkPath = "/org/deepin/dde/Network1";
@@ -102,10 +104,12 @@ void NetworkController::onDeviceAdded(QList<NetworkDeviceBase *> device)
 
 NetworkController::~NetworkController() = default;
 
+// 文件级互斥锁，instance() 和 free() 共用，防止数据竞争
+Q_GLOBAL_STATIC(QMutex, s_networkControllerMutex)
+
 NetworkController *NetworkController::instance()
 {
-    static QMutex m;
-    QMutexLocker locker(&m);
+    QMutexLocker locker(s_networkControllerMutex());
     if (!m_networkController) {
         m_networkController = new NetworkController;
     };
@@ -114,6 +118,7 @@ NetworkController *NetworkController::instance()
 
 void NetworkController::free()
 {
+    QMutexLocker locker(s_networkControllerMutex());
     if (m_networkController) {
         m_networkController->deleteLater();
         m_networkController = nullptr;

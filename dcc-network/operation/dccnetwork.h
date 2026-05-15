@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2027 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #ifndef DCCNETWORK_H
@@ -23,6 +23,7 @@ class DccNetwork : public QObject
 
 public:
     explicit DccNetwork(QObject *parent = nullptr);
+    ~DccNetwork() override;
     NetItem *root() const;
     Q_INVOKABLE static bool CheckPasswordValid(const QString &key, const QString &password);
 

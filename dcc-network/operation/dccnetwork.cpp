@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2027 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #include "dccnetwork.h"
@@ -33,9 +33,16 @@ DccNetwork::DccNetwork(QObject *parent)
     QMetaObject::invokeMethod(this, "init", Qt::QueuedConnection);
 }
 
+DccNetwork::~DccNetwork()
+{
+    if (m_manager) {
+        disconnect(m_manager, &NetManager::request, this, &DccNetwork::request);
+    }
+}
+
 NetItem *DccNetwork::root() const
 {
-    return m_manager->root();
+    return m_manager ? m_manager->root() : nullptr;
 }
 
 bool DccNetwork::CheckPasswordValid(const QString &key, const QString &password)
