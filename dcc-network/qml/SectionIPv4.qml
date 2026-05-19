@@ -340,7 +340,7 @@ DccObject {
                     page: D.LineEdit {
                         text: addressData.length > index ? addressData[index][0] : "0.0.0.0"
                         validator: RegularExpressionValidator {
-                            regularExpression: NetUtils.ipRegExp
+                            regularExpression: NetUtils.ipEditRegExp
                         }
                         onTextChanged: {
                             if (showAlert) {
@@ -372,7 +372,7 @@ DccObject {
                     page: D.LineEdit {
                         text: addressData.length > index ? addressData[index][1] : "255.255.255.0"
                         validator: RegularExpressionValidator {
-                            regularExpression: NetUtils.maskRegExp
+                            regularExpression: NetUtils.maskEditRegExp
                         }
                         onTextChanged: {
                             if (showAlert) {
@@ -404,7 +404,7 @@ DccObject {
                         enabled: index === 0
                         text: index === 0 && addressData.length > index ? addressData[index][2] : ""
                         validator: RegularExpressionValidator {
-                            regularExpression: NetUtils.ipRegExp
+                            regularExpression: NetUtils.ipEditRegExp
                         }
                         onTextChanged: {
                             if (showAlert) {
