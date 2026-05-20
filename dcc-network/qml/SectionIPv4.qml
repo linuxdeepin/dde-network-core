@@ -384,7 +384,8 @@ DccObject {
                             }
                         }
                         showAlert: errorKey === index + dccObj.name
-                        alertDuration: 1
+                        alertDuration: 2000
+                        alertText: errorKey === index + dccObj.name ? root.errorMsg : ""
                         onShowAlertChanged: {
                             if (showAlert) {
                                 DccApp.showPage(dccObj)
