@@ -1,3 +1,16 @@
+dde-network-core (2.0.90) unstable; urgency=medium
+
+  * fix: set alert duration to 2000ms and show error text
+  * fix: enforce baseLayer focus when launcher becomes visible
+  * fix: use loose regex for IP and mask input
+  * fix: restore right-click context menu in windowed launcher's
+    frequently used view
+  * fix: resolve potential crash and resource management issues in
+    network module
+  * fix: fix wired connection name showing English on Chinese locale
+
+ -- zhangkun <zhangkun2@uniontech.com>  Wed, 20 May 2026 15:16:51 +0800
+
 dde-network-core (2.0.89) unstable; urgency=medium
 
   * fix: remove minHeight reset and add minHeight message handling
