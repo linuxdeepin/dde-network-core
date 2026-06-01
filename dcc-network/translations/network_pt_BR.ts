@@ -137,7 +137,7 @@
     </message>
     <message>
         <source>Check &quot;Use a proxy&quot; in application context menu in Launcher after configured</source>
-        <translation>Marque &quot;Usar um proxy&quot; no menu de contexto do aplicativo no Launcher após a configuração</translation>
+        <translation>Após configurar, verifique a opção &quot;Usar um proxy&quot; no menu de contexto do aplicativo no Launcher</translation>
     </message>
     <message>
         <source>Cancel</source>
