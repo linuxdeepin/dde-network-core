@@ -20,6 +20,7 @@ namespace network {
 namespace systemservice {
 
 class StatusChecker;
+class InternetChecker;
 
 // 网络连通性的检测
 class ConnectivityChecker : public QObject
@@ -64,6 +65,8 @@ private:
     QString m_portalUrl;
     network::service::Connectivity m_connectivity;
     QThread *m_thread;
+    QThread *m_internetCheckerThread;
+    InternetChecker *m_internetChecker;
 };
 
 class StatusChecker : public QObject

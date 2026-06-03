@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "connectivitychecker.h"
+#include "internetchecker.h"
 
 #include "settingconfig.h"
 #include "httpmanager.h"
@@ -27,12 +28,22 @@ LocalConnectionvityChecker::LocalConnectionvityChecker(QObject *parent)
     , m_statusChecker(new StatusChecker)
     , m_connectivity(network::service::Connectivity::Unknownconnectivity)
     , m_thread(new QThread)
+    , m_internetCheckerThread(nullptr)
+    , m_internetChecker(nullptr)
 {
     m_statusChecker->moveToThread(m_thread);
     connect(m_statusChecker, &StatusChecker::portalDetected, this, &LocalConnectionvityChecker::onPortalDetected);
     connect(m_statusChecker, &StatusChecker::connectivityChanged, this, &LocalConnectionvityChecker::onConnectivityChanged);
     m_thread->start();
     QMetaObject::invokeMethod(m_statusChecker, &StatusChecker::initConnectivityChecker, Qt::QueuedConnection);
+    if (SettingConfig::instance()->needCheckNetwork()) {
+        m_internetCheckerThread = new QThread(this);
+        m_internetChecker = new InternetChecker;
+        m_internetChecker->moveToThread(m_internetCheckerThread);
+        m_internetCheckerThread->start();
+        connect(m_internetChecker, &InternetChecker::switchSuccess, m_statusChecker, &StatusChecker::checkConnectivity);
+        connect(m_internetCheckerThread, &QThread::finished, m_internetChecker, &QObject::deleteLater);
+    }
 }
 
 LocalConnectionvityChecker::~LocalConnectionvityChecker()
@@ -42,6 +53,11 @@ LocalConnectionvityChecker::~LocalConnectionvityChecker()
     m_thread->wait();
     m_statusChecker->deleteLater();
     m_thread->deleteLater();
+    if (m_internetCheckerThread) {
+        m_internetCheckerThread->quit();
+        m_internetCheckerThread->wait();
+        m_internetCheckerThread->deleteLater();
+    }
 }
 
 network::service::Connectivity LocalConnectionvityChecker::connectivity() const
@@ -75,6 +91,12 @@ void LocalConnectionvityChecker::onPortalDetected(const QString &portalUrl)
 
 void LocalConnectionvityChecker::onConnectivityChanged(network::service::Connectivity connectivity)
 {
+    if (m_internetChecker && (connectivity == network::service::Connectivity::Limited
+                              || connectivity == network::service::Connectivity::Noconnectivity
+                              || connectivity == network::service::Connectivity::Unknownconnectivity)) {
+        // 在开启网络检测的情况下，如果当前网络不可用，则启动切换主连接的工作流程，尝试恢复网络连通性。
+        QMetaObject::invokeMethod(m_internetChecker, &InternetChecker::switchInternetAccess, Qt::QueuedConnection);
+    }
     qCInfo(DSM) << "Connectivity changed, incomming: " << static_cast<int>(connectivity) << ", current: " << static_cast<int>(m_connectivity);
     if (m_connectivity == connectivity)
         return;

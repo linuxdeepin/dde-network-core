@@ -338,6 +338,17 @@
             "description":"the span to check connectivity(unit:second) when limit",
             "permissions":"readwrite",
             "visibility":"private"
+         },
+         "needCheckNetwork":{
+            "value":true,
+            "serial":0,
+            "flags":["global"],
+            "name":"needCheckNetwork",
+            "name[zh_CN]":"是否检测网络可用性并切换网络",
+            "description[zh_CN]":"是否检测网络可用性并切换网络",
+            "description":"if check the network is unavailable and then switch to the available network",
+            "permissions":"readwrite",
+            "visibility":"private"
          }
     }
 }

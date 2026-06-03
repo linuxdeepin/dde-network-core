@@ -28,8 +28,7 @@ public:
 
     bool supportAutoOpenPortal() const;             // 是否支持自动打开网页
     bool supportPortalPromp() const;                // 是否支持在任务栏或控制中心给出提示
-    bool checkDeviceConnection() const;             // 是否检测设备连接
-    bool enableLocalNotify() const;
+    bool needCheckNetwork() const;                     // 是否需要检测网络
 
 signals:
     void enableConnectivityChanged(bool);
@@ -57,6 +56,7 @@ private:
     int m_resetWifiOSDEnableTimeout;
     int m_httpRequestTimeout;
     int m_httpConnectTimeout;
+    bool m_needCheckNetwork;
 };
 
 #endif // SERVICE_H
