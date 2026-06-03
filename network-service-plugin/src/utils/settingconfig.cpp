@@ -84,6 +84,11 @@ int SettingConfig::httpConnectTimeout() const
     return m_httpConnectTimeout;
 }
 
+bool SettingConfig::needCheckNetwork() const
+{
+    return m_needCheckNetwork;
+}
+
 void SettingConfig::onValueChanged(const QString &key)
 {
     if (key == "reconnectIfIpConflicted") {
@@ -113,6 +118,8 @@ void SettingConfig::onValueChanged(const QString &key)
         m_httpConnectTimeout = dConfig->value("httpConnectTimeout").toInt();
     } else if (key == QString("portalProcessMode")) {
         m_protalProcessMode = dConfig->value("portalProcessMode").toString();
+    } else if (key == QString("needCheckNetwork")) {
+        m_needCheckNetwork = dConfig->value("needCheckNetwork").toBool();
     }
 }
 
@@ -126,6 +133,7 @@ SettingConfig::SettingConfig(QObject *parent)
     , m_enableAccountNetwork(false)
     , m_disableFailureNotify(false)
     , m_resetWifiOSDEnableTimeout(300)
+    , m_needCheckNetwork(true)
 {
     if (!dConfig)
         dConfig = Dtk::Core::DConfig::create("org.deepin.dde.network", "org.deepin.dde.network");
@@ -166,6 +174,9 @@ SettingConfig::SettingConfig(QObject *parent)
 
         if (keys.contains("httpConnectTimeout"))
             m_httpConnectTimeout = dConfig->value("httpConnectTimeout").toInt();
+
+        if (keys.contains("needCheckNetwork"))
+            m_needCheckNetwork = dConfig->value("needCheckNetwork").toBool();
 
         m_disableFailureNotify = dConfig->value("disableFailureNotify", false).toBool();
     }
