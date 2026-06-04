@@ -109,6 +109,27 @@ NetManagerThreadPrivate::~NetManagerThreadPrivate()
 {
     // 先断开所有信号，防止析构期间再有新任务（如singleShot）入队
     disconnect();
+
+    // 断开 doInit() 中注册的 D-Bus 系统总线连接
+    // 必须在 m_thread->quit() 之前执行，否则 QDBusConnectionManager 线程
+    // 在全局清理时会访问已释放的工作线程对象，导致 use-after-free 崩溃
+    QDBusConnection::systemBus().disconnect("com.deepin.defender.netcheck", "/com/deepin/defender/netcheck", "org.freedesktop.DBus.Properties", "PropertiesChanged", this, SLOT(onNetCheckPropertiesChanged(QString, QVariantMap, QStringList)));
+    QDBusConnection::systemBus().disconnect("org.freedesktop.login1", "/org/freedesktop/login1", "org.freedesktop.login1.Manager", "PrepareForSleep", this, SLOT(onPrepareForSleep(bool)));
+    if (ConfigSetting::instance()->supportPortalPromp()) {
+        QDBusConnection::systemBus().disconnect("org.deepin.dde.Network1",
+                                                "/org/deepin/service/SystemNetwork",
+                                                "org.deepin.service.SystemNetwork",
+                                                "PortalDetected",
+                                                this,
+                                                SLOT(onPortalDetected(const QString &)));
+    }
+    
+    if (m_flags.testFlags(NetType::NetManagerFlag::Net_Airplane)) {
+        QDBusConnection::systemBus().disconnect("org.deepin.dde.Bluetooth1", "/org/deepin/dde/Bluetooth1", "org.deepin.dde.Bluetooth1", "AdapterAdded", this, SLOT(getAirplaneModeEnabled()));
+        QDBusConnection::systemBus().disconnect("org.deepin.dde.Bluetooth1", "/org/deepin/dde/Bluetooth1", "org.deepin.dde.Bluetooth1", "AdapterRemoved", this, SLOT(getAirplaneModeEnabled()));
+        QDBusConnection::systemBus().disconnect("org.deepin.dde.AirplaneMode1", "/org/deepin/dde/AirplaneMode1", "org.freedesktop.DBus.Properties", "PropertiesChanged", this, SLOT(onAirplaneModeEnabledPropertiesChanged(QString, QVariantMap, QStringList)));
+    }
+
     m_thread->quit();
     // 增大等待时间至1000ms，避免50ms定时器回调等正在执行的任务被terminate强杀
     m_thread->wait(QDeadlineTimer(1000));
