@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -7,6 +7,7 @@
 #include "wireddevice.h"
 #include "wirelessdevice.h"
 #include "accesspointsproxyinter.h"
+#include "../networkmanager/sessionstatetracker.h"
 
 #include <QHostAddress>
 
@@ -366,14 +367,16 @@ void DeviceInterRealize::onActiveConnectionChanged()
     connect(activeConnection.data(), &NetworkManager::ActiveConnection::stateChanged, this, [ activeConnection, this ](NetworkManager::ActiveConnection::State state) {
         if (state == NetworkManager::ActiveConnection::State::Activated) {
             NetworkManager::Connection::Ptr  conn = activeConnection->connection();
-            const NetworkManager::Setting::SettingType settingType[] = { NetworkManager::Setting::Security8021x, NetworkManager::Setting::WirelessSecurity };
-            for (auto type : settingType) {
-                NetworkManager::Setting::Ptr setting = conn->settings()->setting(type);
-                if (setting) {
-                    conn->secrets(setting->name());
+            if (SessionStateTracker::instance()->isSessionActive()) {
+                const NetworkManager::Setting::SettingType settingType[] = { NetworkManager::Setting::Security8021x, NetworkManager::Setting::WirelessSecurity };
+                for (auto type : settingType) {
+                    NetworkManager::Setting::Ptr setting = conn->settings()->setting(type);
+                    if (setting) {
+                        conn->secrets(setting->name());
+                    }
                 }
+                conn->save();
             }
-            conn->save();
             connect(conn.data(), &NetworkManager::Connection::unsavedChanged, this, [this] {
                     Q_EMIT activeConnectionChanged();
             });

@@ -7,6 +7,7 @@
 #include "hotspotcontrollernm.h"
 #include "networkdevicebase.h"
 #include "networkmanagerprocesser.h"
+#include "sessionstatetracker.h"
 #include "proxycontrollernm.h"
 #include "vpncontrollernm.h"
 #include "networkdetails.h"
@@ -80,6 +81,13 @@ void NetworkManagerProcesser::initConnections()
     connect(NetworkManager::notifier(), &NetworkManager::Notifier::activeConnectionsChanged, this, &NetworkManagerProcesser::onUpdateNetworkDetail);
     // 当网络状态发生变化时，也刷新Detail
     connect(NetworkManager::notifier(), &NetworkManager::Notifier::statusChanged, this, &NetworkManagerProcesser::onUpdateNetworkDetail);
+    // 会话从后台切回前台时，本地用户主动刷新网络状态
+    connect(SessionStateTracker::instance(), &SessionStateTracker::sessionResumed, this, [this] {
+        if (SessionStateTracker::instance()->isLocalUser()) {
+            qCDebug(DNC) << "session resumed, refreshing network state";
+            onUpdateNetworkDetail();
+        }
+    });
 }
 
 void NetworkManagerProcesser::onDevicesChanged(const QList<QDBusObjectPath> &devices)

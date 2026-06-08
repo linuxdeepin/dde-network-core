@@ -10,6 +10,7 @@
 #include "configsetting.h"
 #include "ipmanager.h"
 #include "nmnetworkmanager.h"
+#include "sessionstatetracker.h"
 
 #include <networkmanagerqt/wirelessdevice.h>
 #include <networkmanagerqt/wireddevice.h>
@@ -846,12 +847,14 @@ void WirelessDeviceManagerRealize::connectNetwork(const AccessPoints *accessPoin
             wsSetting->setInitialized(keyMgmt != NetworkManager::WirelessSecuritySetting::KeyMgmt::WpaNone && keyMgmt != NetworkManager::WirelessSecuritySetting::KeyMgmt::Unknown);
             NMVariantMapMap settingMap = currentConnection->settings()->toMap();
             qCDebug(DNC) << "securit changed..." << settingMap;
-            if (currentConnection->isUnsaved()) {
-                currentConnection->updateUnsaved(settingMap);
-            } else {
-                currentConnection->update(settingMap);
-                QDBusPendingReply<> reply = currentConnection->save();
-                reply.waitForFinished();
+            if (SessionStateTracker::instance()->isSessionActive()) {
+                if (currentConnection->isUnsaved()) {
+                    currentConnection->updateUnsaved(settingMap);
+                } else {
+                    currentConnection->update(settingMap);
+                    QDBusPendingReply<> reply = currentConnection->save();
+                    reply.waitForFinished();
+                }
             }
         }
         QVariantMap options;
@@ -1009,14 +1012,16 @@ void WirelessDeviceManagerRealize::onActiveConnectionChanged()
             if (activeAp && conn) {
                 conn->settings()->setTimestamp(QDateTime::currentDateTime());
                 if (state == NetworkManager::ActiveConnection::Activated && conn->isUnsaved()) {
-                    const NetworkManager::Setting::SettingType settingType[] = { NetworkManager::Setting::Security8021x, NetworkManager::Setting::WirelessSecurity };
-                    for (auto type : settingType) {
-                        NetworkManager::Setting::Ptr setting = conn->settings()->setting(type);
-                        if (setting) {
-                            conn->secrets(setting->name());
+                    if (SessionStateTracker::instance()->isSessionActive()) {
+                        const NetworkManager::Setting::SettingType settingType[] = { NetworkManager::Setting::Security8021x, NetworkManager::Setting::WirelessSecurity };
+                        for (auto type : settingType) {
+                            NetworkManager::Setting::Ptr setting = conn->settings()->setting(type);
+                            if (setting) {
+                                conn->secrets(setting->name());
+                            }
                         }
+                        conn->save();
                     }
-                    conn->save();
                     connect(conn.data(), &NetworkManager::Connection::unsavedChanged, this, [this] {
                         Q_EMIT activeConnectionChanged();
                     });
