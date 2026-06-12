@@ -48,6 +48,11 @@ Files: dss-network-plugin/50-dss-network-plugin.rules src/dde-network-core.pc.in
 Copyright: UnionTech Software Technology Co., Ltd.
 License: LGPL-3.0-or-later
 
+# policy
+Files: src/misc/*.policy
+Copyright: UnionTech Software Technology Co., Ltd.
+License: LGPL-3.0-or-later
+
 # sh
 Files: *.sh
 Copyright: UnionTech Software Technology Co., Ltd.

@@ -703,6 +703,38 @@
         <source>Only one gateway is allowed</source>
         <translation>只允许一个网关</translation>
     </message>
+    <message>
+        <source>When enabled, only traffic to the target network is routed through the VPN. Other traffic continues to use the local network connection.</source>
+        <translation>开启后，仅目标网络流量通过 VPN，其他流量仍使用本地网络连接。</translation>
+    </message>
+    <message>
+        <source>VPN DNS Mode</source>
+        <translation>VPN DNS 模式</translation>
+    </message>
+    <message>
+        <source>The system uses both local DNS and VPN DNS for resolution, and prefers the result returned first.</source>
+        <translation>系统会同时使用本地 DNS 和 VPN DNS 进行解析，并优先采用先返回的结果。</translation>
+    </message>
+    <message>
+        <source>Prefer VPN DNS. All DNS queries are sent through the VPN connection.</source>
+        <translation>优先使用 VPN DNS，所有 DNS 解析请求将通过 VPN 连接发送。</translation>
+    </message>
+    <message>
+        <source>Do not specify how VPN DNS is used. Keep the current system DNS resolution policy.</source>
+        <translation>不额外指定 VPN DNS 的使用方式，保持系统当前 DNS 解析策略。</translation>
+    </message>
+    <message>
+        <source>Not Set</source>
+        <translation>不设置</translation>
+    </message>
+    <message>
+        <source>Secondary</source>
+        <translation>作为备选</translation>
+    </message>
+    <message>
+        <source>Preferred</source>
+        <translation>作为首选</translation>
+    </message>
 </context>
 <context>
     <name>SectionIPv6</name>
@@ -773,6 +805,38 @@
     <message>
         <source>Only one gateway is allowed</source>
         <translation>只允许一个网关</translation>
+    </message>
+    <message>
+        <source>When enabled, only traffic to the target network is routed through the VPN. Other traffic continues to use the local network connection.</source>
+        <translation>开启后，仅目标网络流量通过 VPN，其他流量仍使用本地网络连接。</translation>
+    </message>
+    <message>
+        <source>VPN DNS Mode</source>
+        <translation>VPN DNS 模式</translation>
+    </message>
+    <message>
+        <source>The system uses both local DNS and VPN DNS for resolution, and prefers the result returned first.</source>
+        <translation>系统会同时使用本地 DNS 和 VPN DNS 进行解析，并优先采用先返回的结果。</translation>
+    </message>
+    <message>
+        <source>Prefer VPN DNS. All DNS queries are sent through the VPN connection.</source>
+        <translation>优先使用 VPN DNS，所有 DNS 解析请求将通过 VPN 连接发送。</translation>
+    </message>
+    <message>
+        <source>Do not specify how VPN DNS is used. Keep the current system DNS resolution policy.</source>
+        <translation>不额外指定 VPN DNS 的使用方式，保持系统当前 DNS 解析策略。</translation>
+    </message>
+    <message>
+        <source>Not Set</source>
+        <translation>不设置</translation>
+    </message>
+    <message>
+        <source>Secondary</source>
+        <translation>作为备选</translation>
+    </message>
+    <message>
+        <source>Preferred</source>
+        <translation>作为首选</translation>
     </message>
 </context>
 <context>
