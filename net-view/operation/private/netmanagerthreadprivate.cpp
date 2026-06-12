@@ -1465,6 +1465,23 @@ void NetManagerThreadPrivate::doGetConnectInfo(const QString &id, NetType::NetIt
             typeMap.insert("optionalDevice", optionalDevice);
             retParam[deviceKey] = typeMap;
         }
+        // For VPN connections, ensure ipv6.dns-priority is preserved
+        // (NMQt's Ipv6Setting doesn't expose this field; ipv4 has native support)
+        if (settings->connectionType() == ConnectionSettings::Vpn) {
+            auto msg = QDBusMessage::createMethodCall("org.freedesktop.NetworkManager", conn->path(), "org.freedesktop.NetworkManager.Settings.Connection", "GetSettings");
+            QDBusPendingReply<NMVariantMapMap> dbusSettingsReply = QDBusConnection::systemBus().call(msg, QDBus::Block, 100);
+            if (!dbusSettingsReply.isError()) {
+                const NMVariantMapMap &rawSettings = dbusSettingsReply.value();
+                if (rawSettings.contains("ipv6")) {
+                    int dp = rawSettings["ipv6"].value("dns-priority", 0).toInt();
+                    if (dp != 0) {
+                        QVariantMap ipv6Map = retParam.value("ipv6").toMap();
+                        ipv6Map["dns-priority"] = dp;
+                        retParam["ipv6"] = ipv6Map;
+                    }
+                }
+            }
+        }
         if (param.value("check").toBool()) {
             retParam.insert("check", true);
         }
@@ -1600,8 +1617,20 @@ void NetManagerThreadPrivate::doSetConnectInfo(const QString &id, NetType::NetIt
         if (!settings->autoconnect()) {
             usedAdd = true;
         }
+        NMVariantMapMap addSettings = settings->toMap();
+
+        // ipv6.dns-priority is NOT preserved (NMQt's Ipv6Setting doesn't expose it)
+        {
+            const QVariantMap &ipv6Param = map.value("ipv6");
+            if (ipv6Param.contains("dns-priority")) {
+                QVariantMap ipv6Map = addSettings.value("ipv6");
+                ipv6Map["dns-priority"] = ipv6Param.value("dns-priority");
+                addSettings["ipv6"] = ipv6Map;
+            }
+        }
+
         if (usedAdd || devPath.isEmpty()) {
-            reply = NetworkManager::addConnection(settings->toMap());
+            reply = NetworkManager::addConnection(addSettings);
         } else {
             // 其他场景
             QVariantMap options;
@@ -1609,7 +1638,7 @@ void NetManagerThreadPrivate::doSetConnectInfo(const QString &id, NetType::NetIt
                 options.insert("persist", "memory");
                 options.insert("flags", MANULCONNECTION);
             }
-            reply = NetworkManager::addAndActivateConnection2(settings->toMap(), devPath, QString(), options);
+            reply = NetworkManager::addAndActivateConnection2(addSettings, devPath, QString(), options);
         }
         reply.waitForFinished();
         const QString &connPath = reply.argumentAt(0).value<QDBusObjectPath>().path();
@@ -1626,6 +1655,16 @@ void NetManagerThreadPrivate::doSetConnectInfo(const QString &id, NetType::NetIt
             return;
         }
         NMVariantMapMap finalSettings = settings->toMap();
+
+        // ipv6.dns-priority is NOT preserved (NMQt's Ipv6Setting doesn't expose it)
+        {
+            const QVariantMap &ipv6Param = map.value("ipv6");
+            if (ipv6Param.contains("dns-priority")) {
+                QVariantMap ipv6Map = finalSettings.value("ipv6");
+                ipv6Map["dns-priority"] = ipv6Param.value("dns-priority");
+                finalSettings["ipv6"] = ipv6Map;
+            }
+        }
 
         QDBusPendingReply<> reply = connection->isUnsaved() ? connection->updateUnsaved(finalSettings) : connection->update(finalSettings);
         reply.waitForFinished();

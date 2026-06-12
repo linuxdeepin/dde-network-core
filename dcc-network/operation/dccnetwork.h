@@ -20,11 +20,13 @@ class DccNetwork : public QObject
     Q_OBJECT
     Q_PROPERTY(NetManager* manager READ manager NOTIFY managerChanged)
     Q_PROPERTY(NetItem* root READ root NOTIFY rootChanged)
+    Q_PROPERTY(bool resolvedAvailable READ resolvedAvailable NOTIFY resolvedAvailableChanged)
 
 public:
     explicit DccNetwork(QObject *parent = nullptr);
     ~DccNetwork() override;
     NetItem *root() const;
+    bool resolvedAvailable() const;
     Q_INVOKABLE static bool CheckPasswordValid(const QString &key, const QString &password);
 
     NetManager *manager() const { return m_manager; }
@@ -42,6 +44,7 @@ Q_SIGNALS:
 
     void managerChanged(NetManager *manager);
     void rootChanged();
+    void resolvedAvailableChanged();
 
 protected Q_SLOTS:
     void init();

@@ -22,6 +22,7 @@ find_package(Qt6 COMPONENTS Core DBus Network Gui LinguistTools REQUIRED)
 find_package(PkgConfig REQUIRED)
 find_package(Dtk6 COMPONENTS Core REQUIRED)
 find_package(KF6NetworkManagerQt REQUIRED)
+find_package(PolkitQt6-1 REQUIRED)
 
 pkg_check_modules(LibNM REQUIRED IMPORTED_TARGET libnm)
 
@@ -54,6 +55,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Dtk6::Core
     KF6::NetworkManagerQt
     PkgConfig::LibNM
+    PolkitQt6-1::Core
     udev
 )
 
@@ -84,3 +86,6 @@ install(FILES ${INTERFACEFILES} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/libddene
 install(FILES ../config/org.deepin.dde.network.json DESTINATION ${CMAKE_INSTALL_DATADIR}/dsg/configs/org.deepin.dde.network)
 # 安装 .qm 文件
 install(FILES ${QM_FILES} DESTINATION ${CMAKE_INSTALL_DATADIR}/dde-network-core/translations)
+# 安装 polkit 策略
+set(POLKIT_ACTION_DIR misc/polkit-action)
+install(FILES ${POLKIT_ACTION_DIR}/com.deepin.dde.network.policy DESTINATION ${CMAKE_INSTALL_DATADIR}/polkit-1/actions)

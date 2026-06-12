@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC
+ "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "https://www.freedesktop.org/standards/PolicyKit/1.0/policyconfig.dtd">
+<policyconfig>
+  <vendor>LinuxDeepin</vendor>
+  <vendor_url>https://www.deepin.com/</vendor_url>
+
+  <action id="com.deepin.dde.network.configure-dns">
+    <description>Configure VPN DNS Mode</description>
+    <message>Authentication is required to configure VPN DNS Mode</message>
+    <description xml:lang="en_US">Configure VPN DNS Mode</description>
+    <message xml:lang="en_US">Authentication is required to configure VPN DNS Mode</message>
+    <description xml:lang="zh_CN">配置 VPN DNS 模式</description>
+    <message xml:lang="zh_CN">需要授权配置 VPN DNS 模式</message>
+    <description xml:lang="zh_TW">配置 VPN DNS 模式</description>
+    <message xml:lang="zh_TW">需要授權配置 VPN DNS 模式</message>
+    <description xml:lang="zh_HK">配置 VPN DNS 模式</description>
+    <message xml:lang="zh_HK">需要授權配置 VPN DNS 模式</message>
+    <defaults>
+      <allow_any>auth_admin</allow_any>
+      <allow_inactive>auth_admin</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.imply">org.freedesktop.resolve1.set-dns-servers org.freedesktop.resolve1.set-domains org.freedesktop.resolve1.set-default-route org.freedesktop.resolve1.revert</annotate>
+  </action>
+</policyconfig>

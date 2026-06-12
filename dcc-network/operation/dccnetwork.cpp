@@ -12,6 +12,8 @@
 
 #include <QClipboard>
 #include <QCoreApplication>
+#include <QDBusConnection>
+#include <QDBusConnectionInterface>
 #include <QDebug>
 #include <QGuiApplication>
 #include <QHostAddress>
@@ -180,6 +182,11 @@ bool DccNetwork::netCheckAvailable()
     }
 
     return m_manager->netCheckAvailable();
+}
+
+bool DccNetwork::resolvedAvailable() const
+{
+    return QDBusConnection::systemBus().interface()->isServiceRegistered("org.freedesktop.resolve1");
 }
 
 QVariantMap DccNetwork::toMap(QMap<QString, QString> map)
