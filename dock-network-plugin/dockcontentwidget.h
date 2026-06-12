@@ -8,6 +8,7 @@
 #include "netmanager.h"
 #include "netview.h"
 #include "widget/jumpsettingbutton.h"
+#include "xdgactivation.h"
 #include "constants.h"
 
 #include <QDebug>
@@ -45,7 +46,15 @@ public:
         m_netSetBtn = new JumpSettingButton(this);
         m_netSetBtn->setIcon(QIcon::fromTheme("network-setting"));
         m_netSetBtn->setDescription(tr("Network settings"));
-        connect(m_netSetBtn, &JumpSettingButton::clicked, netManager, &NetManager::gotoControlCenter);
+        connect(m_netSetBtn, &JumpSettingButton::clicked, this, [this, netManager]() {
+            auto *activation = new XdgActivation(this);
+            connect(activation, &XdgActivation::tokenReady, this,
+                [netManager, activation](const QString &token) {
+                    netManager->gotoControlCenter(token);
+                    activation->deleteLater();
+                }, Qt::SingleShotConnection);
+            activation->requestToken();
+        });
 
         m_netCheckBtn = new JumpSettingButton(this);
         m_netCheckBtn->setIcon(QIcon::fromTheme("network-check"));

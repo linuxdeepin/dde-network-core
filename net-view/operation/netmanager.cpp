@@ -135,9 +135,12 @@ void NetManager::setProxyEnabled(bool enabled)
     exec(enabled ? NetManager::EnabledDevice : NetManager::DisabledDevice, "NetSystemProxyControlItem");
 }
 
-void NetManager::gotoControlCenter()
+void NetManager::gotoControlCenter(const QString &token)
 {
-    exec(NetManager::GoToControlCenter, "");
+    QVariantMap param;
+    if (!token.isEmpty())
+        param.insert("token", token);
+    exec(NetManager::GoToControlCenter, "", param);
 }
 
 void NetManager::gotoCheckNet()
@@ -393,7 +396,7 @@ void NetManagerPrivate::exec(NetManager::CmdType cmd, const QString &id, const Q
         sendRequest(NetManager::CloseInput, id);
     } break;
     case NetManager::GoToControlCenter:
-        m_managerThread->gotoControlCenter(id);
+        m_managerThread->gotoControlCenter(id, param.value("token").toString());
         break;
     case NetManager::GoToSecurityTools:
         m_managerThread->gotoSecurityTools(id);

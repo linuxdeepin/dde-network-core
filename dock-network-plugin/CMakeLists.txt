@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2025 UnionTech Software Technology Co., Ltd.
+# SPDX-FileCopyrightText: 2025 - 2026 UnionTech Software Technology Co., Ltd.
 #
 # SPDX-License-Identifier: CC0-1.0
 
@@ -14,6 +14,7 @@ set(CMAKE_AUTOMOC ON)
 # 启用 qrc 资源文件的支持
 set(CMAKE_AUTORCC ON)
 
+
 file(GLOB_RECURSE SRCS
     "networkplugin.h"
     "networkplugin.cpp"
@@ -26,6 +27,8 @@ file(GLOB_RECURSE SRCS
     "widget/jumpsettingbutton.cpp"
     "widget/commoniconbutton.h"
     "widget/commoniconbutton.cpp"
+    "xdgactivation.h"
+    "xdgactivation.cpp"
 )
 
 set(CMAKE_THREAD_LIBS_INIT "-lpthread")
@@ -33,7 +36,7 @@ set(CMAKE_HAVE_THREADS_LIBRARY 1)
 set(CMAKE_USE_PTHREADS_INIT 1)
 set(CMAKE_PREFER_PTHREAD_FLAG ON)
 
-find_package(${QT_NS} COMPONENTS Core Widgets DBus Network LinguistTools REQUIRED)
+find_package(${QT_NS} COMPONENTS Core Widgets DBus Network WaylandClient LinguistTools REQUIRED)
 find_package(PkgConfig REQUIRED)
 find_package(${DTK_NS} REQUIRED COMPONENTS Widget)
 find_package(KF6NetworkManagerQt REQUIRED)
@@ -46,6 +49,10 @@ find_package(DdeDock REQUIRED)
 
 add_definitions("${QT_DEFINITIONS} -DQT_PLUGIN")
 add_library(${PLUGIN_NAME} SHARED ${SRCS} ../net-view/window/qrc/network.qrc)
+
+qt_generate_wayland_protocol_client_sources(${PLUGIN_NAME} FILES
+    ${WaylandProtocols_DATADIR}/staging/xdg-activation/xdg-activation-v1.xml
+)
 set_target_properties(${PLUGIN_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ../../dde-dock)
 
 file(GLOB TS_FILES "translations/*.ts")
@@ -67,12 +74,14 @@ target_include_directories(${PLUGIN_NAME} PUBLIC
     "../net-view/operation"
     "../net-view/window"
     "../src"
+    ${CMAKE_CURRENT_BINARY_DIR}
 )
 
 target_link_libraries(${PLUGIN_NAME} PRIVATE
     ${QT_NS}::Widgets
     ${QT_NS}::DBus
     ${QT_NS}::Network
+    ${QT_NS}::WaylandClientPrivate
     ${DTK_NS}::Widget
     KF6::NetworkManagerQt
     dde-network-core6

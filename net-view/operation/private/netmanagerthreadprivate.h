@@ -120,7 +120,7 @@ public Q_SLOTS:
     void connectWired(const QString &id, const QVariantMap &param);
     void connectWireless(const QString &id, const QVariantMap &param);
     void connectHotspot(const QString &id, const QVariantMap &param, bool connect);
-    void gotoControlCenter(const QString &page);
+    void gotoControlCenter(const QString &page, const QString &token = QString());
     void gotoSecurityTools(const QString &page);
     void userCancelRequest(const QString &id);
     void retranslate(const QString &locale); // 更新翻译
@@ -149,7 +149,7 @@ protected Q_SLOTS:
     void doConnectWired(const QString &id, const QVariantMap &param);
     void doConnectWireless(const QString &id, const QVariantMap &param);
     void doConnectHotspot(const QString &id, const QVariantMap &param, bool connect);
-    void doGotoControlCenter(const QString &page);
+    void doGotoControlCenter(const QString &page, const QString &token = QString());
     void doGotoSecurityTools(const QString &page);
     void doUserCancelRequest(const QString &id);
     void doRetranslate(const QString &locale);

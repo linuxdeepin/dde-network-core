@@ -12,6 +12,8 @@
 
 #include <DGuiApplicationHelper>
 
+#include "xdgactivation.h"
+
 #include <QDBusConnection>
 #include <QDBusMessage>
 #include <QMouseEvent>
@@ -164,11 +166,7 @@ const QString NetworkPlugin::itemCommand(const QString &itemKey)
 {
     Q_UNUSED(itemKey)
     if (m_netStatus->needShowControlCenter()) {
-        return QString("dbus-send --print-reply "
-                       "--dest=org.deepin.dde.ControlCenter1 "
-                       "/org/deepin/dde/ControlCenter1 "
-                       "org.deepin.dde.ControlCenter1.ShowModule "
-                       "string:network");
+        return QString("dde-am --by-user org.deepin.dde.control-center -- -p network");
     }
 
     return QString();
@@ -350,7 +348,13 @@ void NetworkPlugin::updateNetCheckVisible()
 void NetworkPlugin::onQuickIconClicked()
 {
     if (m_netStatus->needShowControlCenter()) {
-        m_manager->gotoControlCenter();
+        auto *activation = new XdgActivation(this);
+        connect(activation, &XdgActivation::tokenReady, this,
+            [this, activation](const QString &token) {
+                m_manager->gotoControlCenter(token);
+                activation->deleteLater();
+            }, Qt::SingleShotConnection);
+        activation->requestToken();
     } else {
         m_netStatus->toggleNetworkActive();
     }
@@ -359,7 +363,13 @@ void NetworkPlugin::onQuickIconClicked()
 void NetworkPlugin::onQuickPanelClicked()
 {
     if (m_netStatus->needShowControlCenter()) {
-        m_manager->gotoControlCenter();
+        auto *activation = new XdgActivation(this);
+        connect(activation, &XdgActivation::tokenReady, this,
+            [this, activation](const QString &token) {
+                m_manager->gotoControlCenter(token);
+                activation->deleteLater();
+            }, Qt::SingleShotConnection);
+        activation->requestToken();
     } else {
         showNetworkDialog();
     }
