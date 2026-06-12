@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2027 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 // SPDX-License-Identifier: GPL-3.0-or-later
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
@@ -132,6 +132,7 @@ DccObject {
             type: NetType.VPNControlItem
             parentName: root.parentUrl + "/body"
             weight: 1000
+            resolvedAvailable: dccData ? dccData.resolvedAvailable : false
             onEditClicked: modified = true
         }
         SectionIPv6 {
@@ -140,7 +141,20 @@ DccObject {
             parentName: root.parentUrl + "/body"
             visible: vpnType & (NetUtils.VpnTypeEnum["openvpn"] | NetUtils.VpnTypeEnum["openconnect"])
             weight: 1100
+            resolvedAvailable: dccData ? dccData.resolvedAvailable : false
             onEditClicked: modified = true
+        }
+        Connections {
+            target: sectionIPv4
+            function onDnsPriorityChanged(priority) {
+                sectionIPv6.setDnsPriority(priority)
+            }
+        }
+        Connections {
+            target: sectionIPv6
+            function onDnsPriorityChanged(priority) {
+                sectionIPv4.setDnsPriority(priority)
+            }
         }
         SectionDNS {
             id: sectionDNS

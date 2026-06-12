@@ -22,7 +22,10 @@ DccObject {
 
     property string errorKey: ""
     property string errorMsg: ""
+    property bool neverDefault: false
+    property bool resolvedAvailable: false
     signal editClicked
+    signal dnsPriorityChanged(int priority)
 
     function setConfig(c) {
         errorKey = ""
@@ -33,6 +36,7 @@ DccObject {
         } else {
             root.config = c
             method = root.config.method
+            neverDefault = root.config && root.config["never-default"] === true
             resetAddressData()
         }
     }
@@ -141,6 +145,11 @@ DccObject {
         addressDataChanged()
         editClicked()
     }
+    function setDnsPriority(dp) {
+        root.config["dns-priority"] = dp
+        ipv4DnsMode.dnsPriority = dp
+        root.editClicked()
+    }
 
     name: "ipv4Title"
     displayName: qsTr("IPv4")
@@ -245,17 +254,69 @@ DccObject {
         weight: root.weight + 90
         visible: type === NetType.VPNControlItem
         displayName: qsTr("Only applied in corresponding resources")
+        description: qsTr("When enabled, only traffic to the target network is routed through the VPN. Other traffic continues to use the local network connection.")
         canSearch: false
-        pageType: DccObject.Item
-        page: D.CheckBox {
-            text: dccObj.displayName
-            checked: root.config && root.config.hasOwnProperty("never-default") ? root.config["never-default"] : false
+        backgroundType: DccObject.Normal
+        pageType: DccObject.Editor
+        page: D.Switch {
+            checked: root.neverDefault
             onClicked: {
+                root.neverDefault = checked
                 root.config["never-default"] = checked
                 root.editClicked()
             }
         }
     }
+
+    DccObject {
+        id: ipv4DnsMode
+        property int dnsPriority: 0
+        readonly property int dnsModeIndex: dnsPriority === 100 ? 1 : dnsPriority === -100 ? 2 : 0
+        readonly property int dnsPriorityFromConfig: root.config && root.config["dns-priority"] !== undefined ? root.config["dns-priority"] : 0
+        name: "ipv4DnsMode"
+        parentName: root.parentName
+        weight: root.weight + 95
+        visible: type === NetType.VPNControlItem && root.neverDefault && root.resolvedAvailable
+        displayName: qsTr("VPN DNS Mode")
+        description: {
+            switch (dnsPriority) {
+            case 100: return qsTr("The system uses both local DNS and VPN DNS for resolution, and prefers the result returned first.")
+            case -100: return qsTr("Prefer VPN DNS. All DNS queries are sent through the VPN connection.")
+            default: return qsTr("Do not specify how VPN DNS is used. Keep the current system DNS resolution policy.")
+            }
+        }
+        canSearch: false
+        backgroundType: DccObject.Normal
+        pageType: DccObject.Editor
+        page: ComboBox {
+            flat: true
+            textRole: "text"
+            valueRole: "value"
+            currentIndex: ipv4DnsMode.dnsModeIndex
+
+            model: [
+                { value: 0, text: qsTr("Not Set") },
+                { value: 100, text: qsTr("Secondary") },
+                { value: -100, text: qsTr("Preferred") }
+            ]
+            onActivated: {
+                root.config["dns-priority"] = currentValue
+                ipv4DnsMode.dnsPriority = currentValue
+                root.editClicked()
+                root.dnsPriorityChanged(currentValue)
+            }
+            Component.onCompleted: {
+                ipv4DnsMode.dnsPriority = ipv4DnsMode.dnsPriorityFromConfig
+            }
+            Connections {
+                target: root
+                function onConfigChanged() {
+                    ipv4DnsMode.dnsPriority = ipv4DnsMode.dnsPriorityFromConfig
+                }
+            }
+        }
+    }
+
     DccRepeater {
         model: root.addressData
         delegate: DccObject {

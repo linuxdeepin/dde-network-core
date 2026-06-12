@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -11,6 +11,8 @@
 
 namespace dde {
 namespace network {
+
+class VpnDnsRouteController;
 
 class VPNController_NM : public VPNController
 {
@@ -44,10 +46,12 @@ private Q_SLOTS:
     void onConnectionRemoved(const QString &path);
     void onActiveConnectionsChanged();
     void onPropertiesChanged(const QString &interfaceName, const QVariantMap &changedProperties);
+    void onVpnIp4ConfigChanged();
 
 private:
     QList<VPNItem *> m_items;
     QMap<VPNItem *, NetworkManager::Connection::Ptr> m_vpnConnectionsMap;
+    VpnDnsRouteController *m_dnsRouteController = nullptr;
 };
 
 }
