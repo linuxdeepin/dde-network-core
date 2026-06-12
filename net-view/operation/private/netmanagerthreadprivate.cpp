@@ -38,6 +38,7 @@
 #include <proxycontroller.h>
 
 #include <QDBusConnection>
+#include <QProcess>
 #include <QThread>
 
 using namespace NetworkManager;
@@ -301,9 +302,9 @@ void NetManagerThreadPrivate::connectHotspot(const QString &id, const QVariantMa
         QMetaObject::invokeMethod(this, "doConnectHotspot", Qt::QueuedConnection, Q_ARG(QString, id), Q_ARG(QVariantMap, param), Q_ARG(bool, connect));
 }
 
-void NetManagerThreadPrivate::gotoControlCenter(const QString &page)
+void NetManagerThreadPrivate::gotoControlCenter(const QString &page, const QString &token)
 {
-    QMetaObject::invokeMethod(this, "doGotoControlCenter", Qt::QueuedConnection, Q_ARG(QString, page));
+    QMetaObject::invokeMethod(this, "doGotoControlCenter", Qt::QueuedConnection, Q_ARG(QString, page), Q_ARG(QString, token));
 }
 
 void NetManagerThreadPrivate::gotoSecurityTools(const QString &page)
@@ -821,13 +822,18 @@ void NetManagerThreadPrivate::doConnectHotspot(const QString &id, const QVariant
     }
 }
 
-void NetManagerThreadPrivate::doGotoControlCenter(const QString &page)
+void NetManagerThreadPrivate::doGotoControlCenter(const QString &page, const QString &token)
 {
     if (!m_enabled)
         return;
-    QDBusMessage message = QDBusMessage::createMethodCall("org.deepin.dde.ControlCenter1", "/org/deepin/dde/ControlCenter1", "org.deepin.dde.ControlCenter1", "ShowPage");
-    message << "network" << page;
-    QDBusConnection::sessionBus().asyncCall(message);
+    QString pagePath = "network";
+    if (!page.isEmpty())
+        pagePath += "/" + page;
+    QStringList args { "--by-user", "org.deepin.dde.control-center" };
+    if (!token.isEmpty())
+        args << "-e" << "XDG_ACTIVATION_TOKEN=" + token;
+    args << "--" << "-p" << pagePath;
+    QProcess::startDetached("dde-am", args);
     Q_EMIT toControlCenter();
 }
 

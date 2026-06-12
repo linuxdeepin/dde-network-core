@@ -85,7 +85,7 @@ public:
     Q_INVOKABLE QString wpaEapAuthmethod() const; // 企业网内部认证方式
 
 public Q_SLOTS:
-    void gotoControlCenter();
+    void gotoControlCenter(const QString &token = QString());
     void gotoCheckNet();
 
     bool netCheckAvailable();
