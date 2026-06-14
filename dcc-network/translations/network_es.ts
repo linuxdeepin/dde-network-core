@@ -406,7 +406,7 @@
     </message>
     <message>
         <source>Connect, add, import</source>
-        <translation>Conectar, añadir, importat</translation>
+        <translation>Conectar, añadir, importatar</translation>
     </message>
     <message>
         <source>Disconnect</source>
