@@ -307,23 +307,23 @@
             "visibility": "private"
         },
         "httpRequestTimeout":{
-            "value": 15,
+            "value": 10,
             "serial": 0,
             "flags":["global"],
             "name":"httpRequestTimeout",
             "name[zh_CN]":"HTTP请求超时时间",
-            "description[zh_CN]":"HTTP请求超时时间（单位：秒），默认15秒",
+            "description[zh_CN]":"HTTP请求超时时间（单位：秒），默认10秒",
             "description":"HTTP request timeout in seconds, default 15 seconds",
             "permissions":"readwrite",
             "visibility":"private"
         },
         "httpConnectTimeout":{
-            "value": 10,
+            "value": 8,
             "serial": 0,
             "flags":["global"],
             "name":"httpConnectTimeout",
             "name[zh_CN]":"HTTP连接超时时间",
-            "description[zh_CN]":"HTTP连接超时时间（单位：秒），默认10秒",
+            "description[zh_CN]":"HTTP连接超时时间（单位：秒），默认8秒",
             "description":"HTTP connection timeout in seconds, default 10 seconds",
             "permissions":"readwrite",
             "visibility":"private"

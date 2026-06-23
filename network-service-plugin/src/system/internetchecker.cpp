@@ -129,6 +129,7 @@ bool InternetChecker::checkInternetAccessible(int timeoutSec, bool &timedOut) co
 
 bool InternetChecker::checkInternetAccessibleWithRetry(int maxRetry) const
 {
+    int httpTimeout = SettingConfig::instance()->httpRequestTimeout();
     for (int i = 0; i < maxRetry; ++i) {
         // 每次检测前等待1秒，让NM路由表和DHCP先稳定
         QThread::sleep(1);
@@ -136,7 +137,7 @@ bool InternetChecker::checkInternetAccessibleWithRetry(int maxRetry) const
         // 首次使用20秒超时，避免在无网线路由器的环境中长时间阻塞
         QElapsedTimer timer;
         timer.start();
-        if (checkInternetAccessible((i == 0) ? 20 : 0, timedOut)) {
+        if (checkInternetAccessible((i == 0) ? httpTimeout : 0, timedOut)) {
             return true;
         }
         if (timedOut) {
