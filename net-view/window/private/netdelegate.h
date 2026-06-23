@@ -13,6 +13,7 @@
 
 class QSortFilterProxyModel;
 class QVBoxLayout;
+class QGraphicsOpacityEffect;
 class QLabel;
 
 namespace Dtk {
@@ -181,6 +182,9 @@ private:
     QLabel *m_portalLabel;
     NetType::NetManagerFlags m_flag;
     bool m_isEnter;
+    QGraphicsOpacityEffect *m_opacityEffect;
+    static constexpr qreal kNormalOpacity = 0.7;
+    static constexpr qreal kHoverOpacity = 1.0;
 };
 
 class NetWirelessWidget : public NetItemWidget
