@@ -236,7 +236,7 @@ HttpReply *HttpManager::get(const QString &url, int timeoutSec)
     }
 
     std::string urlStd = url.toStdString();
-    curl_easy_setopt(curl, CURLOPT_URL, urlStd);
+    curl_easy_setopt(curl, CURLOPT_URL, urlStd.c_str());
     curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1L);
     curl_easy_setopt(curl, CURLOPT_HTTPGET, 1);
     curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1L);

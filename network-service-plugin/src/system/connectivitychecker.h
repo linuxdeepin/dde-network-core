@@ -113,6 +113,7 @@ private:
     QStringList m_checkUrls;
     bool m_isStop;
     QString m_primaryId;
+    QString m_checkStartPrimaryId;
 };
 
 class NMConnectionvityChecker : public ConnectivityChecker
