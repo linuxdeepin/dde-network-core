@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -47,6 +47,7 @@ private:
     void updateInfo();
     void updateConnection();
     void updateHiddenInfo();
+    void updateSsid();
 
 private slots:
     void onUpdateNetwork();
@@ -55,6 +56,7 @@ private:
     NetworkManager::WirelessDevice::Ptr m_device;
     NetworkManager::WirelessNetwork::Ptr m_network;
     ConnectionStatus m_status;
+    QString m_ssid;
     bool m_isHidden;
     int m_strength;
     bool m_secured;
