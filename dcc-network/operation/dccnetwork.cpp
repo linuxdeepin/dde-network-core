@@ -32,7 +32,7 @@ DccNetwork::DccNetwork(QObject *parent)
     qmlRegisterType<NetType>("org.deepin.dcc.network", 1, 0, "NetType");
     qmlRegisterType<NetItemModel>("org.deepin.dcc.network", 1, 0, "NetItemModel");
     qmlRegisterType<NetManager>("org.deepin.dcc.network", 1, 0, "NetManager");
-    QMetaObject::invokeMethod(this, "init", Qt::QueuedConnection);
+    init();
 }
 
 DccNetwork::~DccNetwork()
