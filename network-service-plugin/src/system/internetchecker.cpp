@@ -10,8 +10,8 @@
 
 #include <QDebug>
 #include <QTimer>
-#include <QThread>
 #include <QElapsedTimer>
+#include <QEventLoop>
 
 #include <NetworkManagerQt/Manager>
 #include <NetworkManagerQt/ActiveConnection>
@@ -79,8 +79,9 @@ bool InternetChecker::setConnectionNeverDefault(const NetworkManager::Connection
     }
     if (changed) {
         conn->updateUnsaved(settingsMap);
-        if (!device.isNull())
-            device->reapplyConnection(conn->settings()->toMap(), 0, 0);
+        if (!device.isNull()) {
+            device->reapplyConnection(conn->settings()->toMap(), 0, SettingConfig::instance()->reapplyFlags());
+        }
         qCInfo(DSM) << "Set connection" << conn->name() << "never-default to" << neverDefault;
     }
     return changed;
@@ -132,7 +133,11 @@ bool InternetChecker::checkInternetAccessibleWithRetry(int maxRetry) const
     int httpTimeout = SettingConfig::instance()->httpRequestTimeout();
     for (int i = 0; i < maxRetry; ++i) {
         // 每次检测前等待1秒，让NM路由表和DHCP先稳定
-        QThread::sleep(1);
+        {
+            QEventLoop loop;
+            QTimer::singleShot(1000, &loop, &QEventLoop::quit);
+            loop.exec();
+        }
         bool timedOut = false;
         // 首次使用20秒超时，避免在无网线路由器的环境中长时间阻塞
         QElapsedTimer timer;
@@ -216,12 +221,25 @@ void InternetChecker::onPrimaryConnectionTimeout()
     }
 }
 
-void InternetChecker::switchInternetAccess()
+void InternetChecker::switchInternetAccess(bool checkPrimaryConnection)
 {
     // 正在切换中，忽略新的切换请求
     if (m_isSwitching) {
         qCDebug(DSM) << "current is switching";
         return;
+    }
+
+    qCDebug(DSM) << "need check primary connection" << checkPrimaryConnection;
+    // 主连接在检测期间发生变化，需要重新检查当前主连接是否可上网
+    NetworkManager::ActiveConnection::Ptr primaryConnection = NetworkManager::primaryConnection();
+    if (checkPrimaryConnection && !primaryConnection.isNull()) {
+        int httpTimeout = SettingConfig::instance()->httpRequestTimeout();
+        bool isTimeout = false;
+        if (checkInternetAccessible(httpTimeout, isTimeout)) {
+            qCInfo(DSM) << "Primary connection is accessible, skip switching";
+            emit switchSuccess();
+            return;
+        }
     }
 
     m_isSwitching = true;
@@ -244,7 +262,6 @@ void InternetChecker::switchInternetAccess()
         return;
     }
 
-    NetworkManager::ActiveConnection::Ptr primaryConnection = NetworkManager::primaryConnection();
     if (primaryConnection.isNull()) {
         qCWarning(DSM) << "primary connection is null, it will reset all never default";
         resetAllNeverDefault();

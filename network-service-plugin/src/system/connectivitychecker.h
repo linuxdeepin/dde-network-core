@@ -83,6 +83,7 @@ public:
     QString portalUrl() const;
     void checkConnectivity();
     QString detectionConnectionId() const;
+    bool primaryConnectionChanged() const;
 
 signals:
     void portalDetected(const QString &);
@@ -113,7 +114,7 @@ private:
     QStringList m_checkUrls;
     bool m_isStop;
     QString m_primaryId;
-    QString m_checkStartPrimaryId;
+    bool m_primaryConnectionChanged;
 };
 
 class NMConnectionvityChecker : public ConnectivityChecker

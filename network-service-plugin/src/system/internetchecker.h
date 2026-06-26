@@ -21,7 +21,7 @@ class InternetChecker : public QObject
 public:
     explicit InternetChecker(QObject *parent = nullptr);
     ~InternetChecker() override;
-    void switchInternetAccess();
+    void switchInternetAccess(bool checkPrimaryConnection = false);
 
 signals:
     void switchSuccess();
