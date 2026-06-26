@@ -11,6 +11,7 @@
 #include <QUrl>
 
 #include <mutex>
+#include <atomic>
 #include <curl/curl.h>
 #include <sys/socket.h>
 #include <sys/time.h>
@@ -23,34 +24,40 @@ using namespace network::service;
 namespace {
 
 struct GetAddrInfoParams {
-    const char *node;
-    const char *service;
+    std::string node;
+    std::string service;
     const addrinfo *hints;
     addrinfo *result = nullptr;
     int ret = 0;
+    std::atomic<bool> delete_by_thread{false};
 };
 
 static void *getaddrinfo_thread(void *arg)
 {
-    auto *params = static_cast<GetAddrInfoParams *>(arg);
-    params->ret = getaddrinfo(params->node, params->service, params->hints, &params->result);
+    GetAddrInfoParams *params = static_cast<GetAddrInfoParams *>(arg);
+    params->ret = getaddrinfo(params->node.c_str(), params->service.c_str(), params->hints, &params->result);
+    // deleteByThread 为 true 说明主线程已 detach，由本线程释放 params
+    if (params->delete_by_thread.load())
+        delete params;
     return nullptr;
 }
 
 // 在独立线程中执行 getaddrinfo，主线程等待 timeoutMs 毫秒
 // 如果超时返回 ETIMEDOUT，成功返回 0
-static int getaddrinfo_with_timeout(const char *node, const char *service,
+static int getaddrinfo_with_timeout(const std::string &node, const std::string &service,
                                     const addrinfo *hints, addrinfo **result,
                                     int timeoutMs)
 {
-    GetAddrInfoParams params = {node, service, hints, nullptr, 0};
+    // 在堆上分配 params，防止 detach 的线程在超时后写入已释放的栈内存
+    GetAddrInfoParams *params = new GetAddrInfoParams{node, service, hints, nullptr, 0};
     pthread_t thread;
     pthread_attr_t attr;
     pthread_attr_init(&attr);
     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
 
-    if (pthread_create(&thread, &attr, getaddrinfo_thread, &params) != 0) {
+    if (pthread_create(&thread, &attr, getaddrinfo_thread, params) != 0) {
         pthread_attr_destroy(&attr);
+        delete params;
         return EAI_SYSTEM;
     }
     pthread_attr_destroy(&attr);
@@ -67,13 +74,16 @@ static int getaddrinfo_with_timeout(const char *node, const char *service,
     void *threadRet = nullptr;
     int joinRet = pthread_timedjoin_np(thread, &threadRet, &ts);
     if (joinRet == ETIMEDOUT) {
-        // 线程超时，detach 让其自行结束（getaddrinfo 最终会返回）
+        // 通知子线程由其负责释放 params
+        params->delete_by_thread.store(true);
         pthread_detach(thread);
         return ETIMEDOUT;
     }
 
-    *result = params.result;
-    return params.ret;
+    *result = params->result;
+    int ret = params->ret;
+    delete params;
+    return ret;
 }
 
 } // anonymous namespace
@@ -196,11 +206,10 @@ HttpReply *HttpManager::get(const QString &url, int timeoutSec)
 
         // getaddrinfo 本身会调用系统 DNS，如果路由器不通，glibc 会等待很久
         // 用独立线程包装，只等待 timeoutSec 秒
-        // 注意：必须用局部变量持有 std::string，确保 getaddrinfo_with_timeout
-        // 返回前字符串生命周期有效，否则子线程会使用悬垂指针
+        // std::string 存入 GetAddrInfoParams 后独立持有数据，不依赖栈生命周期
         std::string hostStd = host.toStdString();
-        int ret = getaddrinfo_with_timeout(hostStd.c_str(),
-                                            nullptr,
+        int ret = getaddrinfo_with_timeout(hostStd,
+                                            {},
                                             &hints,
                                             &result,
                                             timeoutSec * 1000);

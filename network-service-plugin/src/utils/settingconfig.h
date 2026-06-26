@@ -29,6 +29,7 @@ public:
     bool supportAutoOpenPortal() const;             // 是否支持自动打开网页
     bool supportPortalPromp() const;                // 是否支持在任务栏或控制中心给出提示
     bool needCheckNetwork() const;                     // 是否需要检测网络
+    int reapplyFlags() const;
 
 signals:
     void enableConnectivityChanged(bool);
@@ -57,6 +58,7 @@ private:
     int m_httpRequestTimeout;
     int m_httpConnectTimeout;
     bool m_needCheckNetwork;
+    int m_reapplyFlags;
 };
 
 #endif // SERVICE_H

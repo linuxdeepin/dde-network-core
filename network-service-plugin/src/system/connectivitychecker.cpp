@@ -94,8 +94,10 @@ void LocalConnectionvityChecker::onConnectivityChanged(network::service::Connect
     if (m_internetChecker && (connectivity == network::service::Connectivity::Limited
                               || connectivity == network::service::Connectivity::Noconnectivity
                               || connectivity == network::service::Connectivity::Unknownconnectivity)) {
-        // 在开启网络检测的情况下，如果当前网络不可用，则启动切换主连接的工作流程，尝试恢复网络连通性。
-        QMetaObject::invokeMethod(m_internetChecker, &InternetChecker::switchInternetAccess, Qt::QueuedConnection);
+        bool checkPrimary = m_statusChecker->primaryConnectionChanged();
+        QMetaObject::invokeMethod(m_internetChecker, [this, checkPrimary]() {
+            m_internetChecker->switchInternetAccess(checkPrimary);
+        }, Qt::QueuedConnection);
     }
     qCInfo(DSM) << "Connectivity changed, incomming: " << static_cast<int>(connectivity) << ", current: " << static_cast<int>(m_connectivity);
     if (m_connectivity == connectivity)
@@ -115,6 +117,7 @@ StatusChecker::StatusChecker(QObject *parent)
     , m_connectivity(network::service::Connectivity::Unknownconnectivity)
     , m_checkCount(0)
     , m_isStop(false)
+    , m_primaryConnectionChanged(false)
 {
     qRegisterMetaType<NetworkManager::ActiveConnection::State>("NetworkManager::ActiveConnection::State");
     qRegisterMetaType<NetworkManager::Device::State>("NetworkManager::Device::State");
@@ -179,6 +182,11 @@ QString StatusChecker::detectionConnectionId() const
     return m_primaryId;
 }
 
+bool StatusChecker::primaryConnectionChanged() const
+{
+    return m_primaryConnectionChanged;
+}
+
 void StatusChecker::initDeviceConnect(const QList<QSharedPointer<NetworkManager::Device>> &devices)
 {
     for (const QSharedPointer<NetworkManager::Device> &device : devices) {
@@ -234,6 +242,12 @@ void StatusChecker::initConnectivityChecker()
 void StatusChecker::stop()
 {
     m_isStop = true;
+    if (m_checkTimer && m_checkTimer->isActive())
+        m_checkTimer->stop();
+    if (m_timer && m_timer->isActive())
+        m_timer->stop();
+    if (m_pendingCheckTimer && m_pendingCheckTimer->isActive())
+        m_pendingCheckTimer->stop();
 }
 
 void StatusChecker::onUpdataActiveState(const QSharedPointer<NetworkManager::ActiveConnection> &networks)
@@ -261,17 +275,11 @@ void StatusChecker::realStartCheck()
         return;
     }
 
-    NetworkManager::ActiveConnection::Ptr pConnection = NetworkManager::primaryConnection();
-    if (!pConnection.isNull()) {
-        m_primaryId = pConnection->connection()->uuid();
-        m_checkStartPrimaryId = m_primaryId;
-    } else {
-        m_checkStartPrimaryId.clear();
-    }
+    NetworkManager::ActiveConnection::Ptr prePrimary = NetworkManager::primaryConnection();
+    QString prePrimaryId = !prePrimary.isNull() ? prePrimary->connection()->uuid() : QString();
+
     int httpTimeout = SettingConfig::instance()->httpRequestTimeout();
     bool networkIsOk = false;
-    network::service::Connectivity detectedConnectivity = m_connectivity;
-    QString detectedPortalUrl;
     for (const QString &url : m_checkUrls) {
         network::service::HttpManager http;
         network::service::HttpReply *httpReply = http.get(url, httpTimeout);
@@ -280,41 +288,35 @@ void StatusChecker::realStartCheck()
             break;
         }
         if (httpReply->isTimeout()) {
-            qCWarning(DSM) << "check network time out, network is unavaibled ";
-            detectedConnectivity = network::service::Connectivity::Limited;
+            // 如果是读取超时了，则无需进行第二次检测，一般超时的情况下基本上都是网络不通
+            qCWarning(DSM) << "request network timeout";
             break;
         }
         int httpCode = httpReply->httpCode();
-        QString portalUrl = httpReply->portal();
         if (httpCode == 0) {
             qCWarning(DSM) << "Nework is unreachabel:" << url << httpReply->errorMessage();
-            detectedConnectivity = network::service::Connectivity::Limited;
             continue;
         }
+
+        QString portalUrl = httpReply->portal();
         networkIsOk = true;
         qCDebug(DSM) << "Http reply code:" << httpCode << ", portal url:" << portalUrl;
-        detectedPortalUrl = portalUrl;
-        detectedConnectivity = portalUrl.isEmpty() ? network::service::Connectivity::Full : network::service::Connectivity::Portal;
+        if (portalUrl.isEmpty()) {
+            // if the portal is empty, I think it ok
+            setConnectivity(network::service::Connectivity::Full);
+        } else {
+            setConnectivity(network::service::Connectivity::Portal);
+        }
+        setPortalUrl(portalUrl);
         break;
     }
-    if (m_isStop)
-        return;
-
-    // 主连接在检查期间可能已被 InternetChecker 切换，此时检测结果基于旧路由，必须丢弃
-    NetworkManager::ActiveConnection::Ptr currentPrimary = NetworkManager::primaryConnection();
-    QString currentPrimaryId;
-    if (!currentPrimary.isNull())
-        currentPrimaryId = currentPrimary->connection()->uuid();
-    if (m_checkStartPrimaryId != currentPrimaryId) {
-        qCInfo(DSM) << "Primary connection changed during check, discarding stale result"
-                    << "check:" << m_checkStartPrimaryId << "current:" << currentPrimaryId;
-        return;
+    // HTTP 检查完成后，再获取当前主连接，以检测检查期间是否发生了连接切换
+    NetworkManager::ActiveConnection::Ptr pConnection = NetworkManager::primaryConnection();
+    if (!pConnection.isNull()) {
+        m_primaryId = pConnection->connection()->uuid();
     }
-
-    if (networkIsOk) {
-        setConnectivity(detectedConnectivity);
-        setPortalUrl(detectedPortalUrl);
-    } else {
+    m_primaryConnectionChanged = (prePrimaryId != m_primaryId);
+    if (!m_isStop && !networkIsOk) {
         NetworkManager::Device::List devices = NetworkManager::networkInterfaces();
         int disconnectCount = 0;
         for (NetworkManager::Device::Ptr device : devices) {
@@ -324,13 +326,12 @@ void StatusChecker::realStartCheck()
             }
         }
         qCDebug(DSM) << "Network is unreachabel, disconnect count:" << disconnectCount;
+        setPortalUrl(QString());
         if (disconnectCount == devices.size()) {
-            // 如果所有的网络设备都断开了，就默认让其变为断开的状态
             setConnectivity(network::service::Connectivity::Noconnectivity);
         } else {
             setConnectivity(network::service::Connectivity::Limited);
         }
-        setPortalUrl(QString());
     }
 }
 

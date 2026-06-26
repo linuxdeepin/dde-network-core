@@ -89,6 +89,11 @@ bool SettingConfig::needCheckNetwork() const
     return m_needCheckNetwork;
 }
 
+int SettingConfig::reapplyFlags() const
+{
+    return m_reapplyFlags;
+}
+
 void SettingConfig::onValueChanged(const QString &key)
 {
     if (key == "reconnectIfIpConflicted") {
@@ -120,6 +125,9 @@ void SettingConfig::onValueChanged(const QString &key)
         m_protalProcessMode = dConfig->value("portalProcessMode").toString();
     } else if (key == QString("needCheckNetwork")) {
         m_needCheckNetwork = dConfig->value("needCheckNetwork").toBool();
+    } else if (key == QString("reapplyFlags")) {
+        int val = dConfig->value("reapplyFlags").toInt();
+        m_reapplyFlags = (val >= 0 && val <= 2) ? val : 2;
     }
 }
 
@@ -134,6 +142,7 @@ SettingConfig::SettingConfig(QObject *parent)
     , m_disableFailureNotify(false)
     , m_resetWifiOSDEnableTimeout(300)
     , m_needCheckNetwork(true)
+    , m_reapplyFlags(2)
 {
     if (!dConfig)
         dConfig = Dtk::Core::DConfig::create("org.deepin.dde.network", "org.deepin.dde.network");
@@ -179,6 +188,14 @@ SettingConfig::SettingConfig(QObject *parent)
             m_needCheckNetwork = dConfig->value("needCheckNetwork").toBool();
 
         m_disableFailureNotify = dConfig->value("disableFailureNotify", false).toBool();
+
+        if (keys.contains("reapplyFlags")) {
+            int val = dConfig->value("reapplyFlags").toInt();
+            if (val >= 0 && val <= 2)
+                m_reapplyFlags = val;
+            else
+                m_reapplyFlags = 2;
+        }
     }
     if (m_networkUrls.isEmpty())
         m_networkUrls = CheckUrls;
