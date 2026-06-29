@@ -22,6 +22,8 @@ JumpSettingButton::JumpSettingButton(QWidget *parent)
     , m_autoShowPage(true)
     , m_iconButton(new CommonIconButton(this))
     , m_descriptionLabel(new DLabel(this))
+    , m_iconOpacityEffect(new QGraphicsOpacityEffect(this))
+    , m_descOpacityEffect(new QGraphicsOpacityEffect(this))
 {
     initUI();
 }
@@ -32,6 +34,8 @@ JumpSettingButton::JumpSettingButton(const QIcon& icon, const QString& descripti
     , m_autoShowPage(true)
     , m_iconButton(new CommonIconButton(this))
     , m_descriptionLabel(new DLabel(this))
+    , m_iconOpacityEffect(new QGraphicsOpacityEffect(this))
+    , m_descOpacityEffect(new QGraphicsOpacityEffect(this))
 {
     initUI();
 
@@ -59,6 +63,13 @@ void JumpSettingButton::initUI()
     layout->setContentsMargins(10, 0, 10, 0);
     layout->addWidget(m_iconButton);
     layout->addWidget(m_descriptionLabel);
+ 
+    m_iconOpacityEffect->setOpacity(kNormalOpacity);
+    m_iconButton->setGraphicsEffect(m_iconOpacityEffect);
+ 
+    m_descOpacityEffect->setOpacity(kNormalOpacity);
+    m_descriptionLabel->setGraphicsEffect(m_descOpacityEffect);
+ 
     layout->addStretch();
 }
 
@@ -76,11 +87,16 @@ bool JumpSettingButton::event(QEvent* e)
 {
     switch (e->type()) {
     case QEvent::Leave:
-    case QEvent::Enter:
+    case QEvent::Enter: {
         m_hover = e->type() == QEvent::Enter;
+        qreal opacity = m_hover ? kHoverOpacity : kNormalOpacity;
+        m_iconOpacityEffect->setOpacity(opacity);
+        m_descOpacityEffect->setOpacity(opacity);
         update();
-        break;
+    } break;
     case QEvent::Hide:
+        m_iconOpacityEffect->setOpacity(kNormalOpacity);
+        m_descOpacityEffect->setOpacity(kNormalOpacity);
         m_hover = false;
         update();
         break;

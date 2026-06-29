@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 - 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2019 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -9,6 +9,7 @@
 
 #include <QFrame>
 #include <QLabel>
+#include <QGraphicsOpacityEffect>
 
 #include <DLabel>
 
@@ -44,6 +45,10 @@ private:
     QString m_secondPage;
     CommonIconButton *m_iconButton;
     Dtk::Widget::DLabel *m_descriptionLabel;
+    QGraphicsOpacityEffect *m_iconOpacityEffect;
+    QGraphicsOpacityEffect *m_descOpacityEffect;
+    static constexpr qreal kNormalOpacity = 0.7;
+    static constexpr qreal kHoverOpacity = 1.0;
 };
 
 #endif
