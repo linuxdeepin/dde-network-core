@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2019 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #include "netstatus.h"
@@ -118,9 +118,10 @@ void NetStatus::invokeMenuItem(const QString &menuId)
     case MenuItemKey::MenuProxyDisabled:
         m_manager->setProxyEnabled(false);
         break;
-    case MenuItemKey::MenuSettings:
-        m_manager->exec(NetManager::GoToControlCenter, "");
-        break;
+    case MenuItemKey::MenuSettings: {
+        const auto token = qEnvironmentVariable("XDG_ACTIVATION_TOKEN");
+        m_manager->gotoControlCenter(token);
+    }   break;
     default:
         break;
     }
