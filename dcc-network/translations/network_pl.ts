@@ -1,35 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="pl">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pl">
 <context>
     <name>DeviceStatusItem</name>
     <message>
         <source>Off</source>
-        <translation type="unfinished">Wyłączony</translation>
+        <translation>Wyłączone</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished">Połączono</translation>
+        <translation>Połączono</translation>
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished">Konflikt IP</translation>
+        <translation>Konflikt IP</translation>
     </message>
     <message>
         <source>Connecting</source>
-        <translation type="unfinished">Łączenie</translation>
+        <translation>Łączenie</translation>
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation type="unfinished">Uzyskiwanie adresu</translation>
+        <translation>Uzyskiwanie adresu</translation>
     </message>
     <message>
         <source>Authenticating</source>
-        <translation type="unfinished">Uwierzytelnianie</translation>
+        <translation>Uwierzytelnianie</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished">Rozłączono</translation>
+        <translation>Rozłączono</translation>
     </message>
 </context>
 <context>
@@ -614,19 +612,19 @@
     </message>
     <message>
         <source>Band</source>
-        <translation type="unfinished">Pasmo</translation>
+        <translation>Pasmo</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished">Automatycznie</translation>
+        <translation>Automatycznie</translation>
     </message>
     <message>
         <source>2.4 GHz</source>
-        <translation type="unfinished">2.4 GHz</translation>
+        <translation>2.4 GHz</translation>
     </message>
     <message>
         <source>5 GHz</source>
-        <translation type="unfinished">5 GHz</translation>
+        <translation>5 GHz</translation>
     </message>
 </context>
 <context>
