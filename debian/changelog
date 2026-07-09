@@ -1,3 +1,11 @@
+dde-network-core (2.0.96) unstable; urgency=medium
+
+  * fix(network): prevent ping-pong switching in multi-NIC scenario
+  * fix: pass activation token to control center navigation
+  * i18n: Updates for project Deepin Desktop Environment (#488)
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 09 Jul 2026 19:29:26 +0800
+
 dde-network-core (2.0.95) unstable; urgency=medium
 
   * fix: resolve network detection failure and ping-pong switching in
