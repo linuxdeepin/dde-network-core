@@ -253,7 +253,7 @@
     </message>
     <message>
         <source>Personal Hotspot</source>
-        <translation>Hotspot pessoal</translation>
+        <translation>Hotspot</translation>
     </message>
     <message>
         <source>Share the network</source>
