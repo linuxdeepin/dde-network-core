@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_HK">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh_HK">
 <context>
     <name>dde::network::DockContentWidget</name>
     <message>
@@ -280,6 +282,13 @@
     </message>
 </context>
 <context>
+    <name>dde::network::NetWiredWidget</name>
+    <message>
+        <source>Disconnect</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>dde::network::NetWirelessControlItem</name>
     <message>
         <source>Wireless Network</source>
@@ -305,6 +314,13 @@
     <message>
         <source>Other Networks</source>
         <translation>其他網絡</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessWidget</name>
+    <message>
+        <source>Disconnect</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="nl">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="nl">
 <context>
     <name>Bubble</name>
     <message>
@@ -11,6 +13,13 @@
     <message>
         <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
         <translation>Schakel de &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;vliegtuigstand&lt;/a&gt; uit als je verbinding wilt maken via bluetooth</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetItemWidget</name>
+    <message>
+        <source>Open a browser to authenticate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -269,6 +278,13 @@
     </message>
 </context>
 <context>
+    <name>dde::network::NetWiredWidget</name>
+    <message>
+        <source>Disconnect</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>dde::network::NetWirelessControlItem</name>
     <message>
         <source>Wireless Network</source>
@@ -294,6 +310,13 @@
     <message>
         <source>Other Networks</source>
         <translation>Overige netwerken</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessWidget</name>
+    <message>
+        <source>Disconnect</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

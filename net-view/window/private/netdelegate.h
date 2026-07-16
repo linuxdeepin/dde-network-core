@@ -26,6 +26,7 @@ namespace dde {
 namespace network {
 
 class NetIconButton;
+class NetCommonButton;
 class NetItem;
 class NetDeviceItem;
 class NetWiredDeviceItem;
@@ -160,7 +161,7 @@ class NetItemWidget : public NetWidget
 public:
     NetItemWidget(NetItem *item, QWidget *parent = nullptr);
     void removePasswordWidget() override;
-    void setHover(bool isHover);
+    virtual void setHover(bool isHover);
     void setFlag(NetType::NetManagerFlags flag);
 
 protected:
@@ -194,6 +195,7 @@ public Q_SLOTS:
     void updateIcon();
     void onStatusChanged(NetType::NetConnectionStatus status);
     void onDisconnectClicked();
+    void setHover(bool isHover) override;
 
 protected:
     bool isConnected() const Q_DECL_OVERRIDE;
@@ -203,6 +205,7 @@ private:
     bool m_isWifi6;
     NetIconButton *m_iconBut;
     NetIconButton *m_connBut;
+    NetCommonButton *m_disconnectBtn;
     Dtk::Widget::DSpinner *m_loading;
     dde::network::NetType::NetConnectionStatus m_status;
 };
@@ -257,6 +260,7 @@ public:
 public Q_SLOTS:
     void onStatusChanged(NetType::NetConnectionStatus status);
     void onDisconnectClicked();
+    void setHover(bool isHover) override;
 
 protected:
     bool isConnected() const Q_DECL_OVERRIDE;
@@ -265,6 +269,7 @@ protected:
 private:
     NetIconButton *m_iconBut;
     NetIconButton *m_connBut;
+    NetCommonButton *m_disconnectBtn;
     Dtk::Widget::DSpinner *m_loading;
     dde::network::NetType::NetConnectionStatus m_status;
 };
