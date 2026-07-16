@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="es">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="es">
 <context>
     <name>dde::network::DockContentWidget</name>
     <message>
@@ -15,6 +17,13 @@
     <message>
         <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
         <translation>Si desea conectarse a una red inalámbrica, primero desactive el &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;modo avión&lt;/a&gt;</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetItemWidget</name>
+    <message>
+        <source>Open a browser to authenticate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -92,7 +101,7 @@
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation>No se puede encontrar la red WLAN 802.11 &quot;%1&quot; </translation>
+        <translation>No se puede encontrar la red WLAN 802.11 &quot;%1&quot;&#xa0;</translation>
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
@@ -273,6 +282,13 @@
     </message>
 </context>
 <context>
+    <name>dde::network::NetWiredWidget</name>
+    <message>
+        <source>Disconnect</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>dde::network::NetWirelessControlItem</name>
     <message>
         <source>Wireless Network</source>
@@ -298,6 +314,13 @@
     <message>
         <source>Other Networks</source>
         <translation>Otras redes</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessWidget</name>
+    <message>
+        <source>Disconnect</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

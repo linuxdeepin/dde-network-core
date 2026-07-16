@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="sq">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="sq">
 <context>
     <name>dde::network::DockContentWidget</name>
     <message>
@@ -15,6 +17,13 @@
     <message>
         <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
         <translation>Nëse doni të lidheni me një rrjet pa fill, së pari çaktivizoni &lt;a href=&quot;Airplane Mode&quot;&gt;Mënyrën Aeroplan&lt;/a&gt;</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetItemWidget</name>
+    <message>
+        <source>Open a browser to authenticate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -273,6 +282,13 @@
     </message>
 </context>
 <context>
+    <name>dde::network::NetWiredWidget</name>
+    <message>
+        <source>Disconnect</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>dde::network::NetWirelessControlItem</name>
     <message>
         <source>Wireless Network</source>
@@ -298,6 +314,13 @@
     <message>
         <source>Other Networks</source>
         <translation>Rrjete të Tjerë</translation>
+    </message>
+</context>
+<context>
+    <name>dde::network::NetWirelessWidget</name>
+    <message>
+        <source>Disconnect</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

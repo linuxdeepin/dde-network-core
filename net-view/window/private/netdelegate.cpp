@@ -10,6 +10,7 @@
 #include "netsecretwidget.h"
 #include "networkconst.h"
 #include "nettype.h"
+#include "netcommonbutton.h"
 
 #include <DLabel>
 #include <DSpinner>
@@ -623,6 +624,7 @@ NetWirelessWidget::NetWirelessWidget(NetWirelessItem *item, QWidget *parent)
     , m_isWifi6(item->flags())
     , m_iconBut(new NetIconButton(this))
     , m_connBut(new NetIconButton(this))
+    , m_disconnectBtn(new NetCommonButton(this))
     , m_loading(new DSpinner(this))
     , m_status(dde::network::NetType::NetConnectionStatus::CS_UnConnected)
 {
@@ -643,10 +645,14 @@ NetWirelessWidget::NetWirelessWidget(NetWirelessItem *item, QWidget *parent)
     layout->addStretch();
 
     m_connBut->setIcon(QIcon::fromTheme("select"));
-    m_connBut->setHoverIcon(QIcon::fromTheme("disconnect"));
     m_connBut->setFixedSize(16, 16);
     m_connBut->setClickable(true);
     layout->addWidget(m_connBut);
+
+    m_disconnectBtn->setText(tr("Disconnect"));
+    m_disconnectBtn->setFixedHeight(24);
+    m_disconnectBtn->setVisible(false);
+    layout->addWidget(m_disconnectBtn);
 
     m_loading->setFixedSize(16, 16);
     layout->addWidget(m_loading);
@@ -659,7 +665,7 @@ NetWirelessWidget::NetWirelessWidget(NetWirelessItem *item, QWidget *parent)
     connect(item, &NetWirelessItem::portalUrlChanged, this, &NetWirelessWidget::onPortalUrlChanged);
     connect(item, &NetWirelessItem::strengthLevelChanged, this, &NetWirelessWidget::updateIcon);
     connect(item, &NetWirelessItem::statusChanged, this, &NetWirelessWidget::onStatusChanged);
-    connect(m_connBut, &NetIconButton::clicked, this, &NetWirelessWidget::onDisconnectClicked);
+    connect(m_disconnectBtn, &NetCommonButton::clicked, this, &NetWirelessWidget::onDisconnectClicked);
 }
 
 NetWirelessWidget::~NetWirelessWidget() { }
@@ -676,16 +682,19 @@ void NetWirelessWidget::onStatusChanged(NetType::NetConnectionStatus status)
     switch (status) {
     case NetType::CS_Connected:
         m_connBut->setVisible(true);
+        m_disconnectBtn->setVisible(false);
         m_loading->stop();
         m_loading->setVisible(false);
         break;
     case NetType::CS_Connecting:
         m_connBut->setVisible(false);
+        m_disconnectBtn->setVisible(false);
         m_loading->start();
         m_loading->setVisible(true);
         break;
     default:
         m_connBut->setVisible(false);
+        m_disconnectBtn->setVisible(false);
         m_loading->stop();
         m_loading->setVisible(false);
         break;
@@ -695,6 +704,15 @@ void NetWirelessWidget::onStatusChanged(NetType::NetConnectionStatus status)
 void NetWirelessWidget::onDisconnectClicked()
 {
     sendRequest(NetManager::Disconnect, item()->id());
+}
+
+void NetWirelessWidget::setHover(bool isHover)
+{
+    if (m_status == NetType::CS_Connected) {
+        m_connBut->setVisible(!isHover);
+        m_disconnectBtn->setVisible(isHover);
+    };
+    NetItemWidget::setHover(isHover);
 }
 
 bool NetWirelessWidget::isConnected() const
@@ -785,6 +803,7 @@ NetWiredWidget::NetWiredWidget(NetWiredItem *item, QWidget *parent)
     : NetItemWidget(item, parent)
     , m_iconBut(new NetIconButton(this))
     , m_connBut(new NetIconButton(this))
+    , m_disconnectBtn(new NetCommonButton(this))
     , m_loading(new DSpinner(this))
 {
     QWidget *widget = new QWidget(this);
@@ -801,10 +820,14 @@ NetWiredWidget::NetWiredWidget(NetWiredItem *item, QWidget *parent)
     layout->addStretch();
 
     m_connBut->setIcon(QIcon::fromTheme("select"));
-    m_connBut->setHoverIcon(QIcon::fromTheme("disconnect"));
     m_connBut->setFixedSize(16, 16);
     m_connBut->setClickable(true);
     layout->addWidget(m_connBut);
+
+    m_disconnectBtn->setText(tr("Disconnect"));
+    m_disconnectBtn->setFixedHeight(24);
+    m_disconnectBtn->setVisible(false);
+    layout->addWidget(m_disconnectBtn);
 
     m_loading->setFixedSize(16, 16);
     layout->addWidget(m_loading);
@@ -814,7 +837,7 @@ NetWiredWidget::NetWiredWidget(NetWiredItem *item, QWidget *parent)
 
     connect(item, &NetWiredItem::statusChanged, this, &NetWiredWidget::onStatusChanged);
     connect(item, &NetWiredItem::portalUrlChanged, this, &NetWiredWidget::onPortalUrlChanged);
-    connect(m_connBut, &NetIconButton::clicked, this, &NetWiredWidget::onDisconnectClicked);
+    connect(m_disconnectBtn, &NetCommonButton::clicked, this, &NetWiredWidget::onDisconnectClicked);
 }
 
 NetWiredWidget::~NetWiredWidget() { }
@@ -825,16 +848,19 @@ void NetWiredWidget::onStatusChanged(NetType::NetConnectionStatus status)
     switch (status) {
     case NetType::CS_Connected:
         m_connBut->setVisible(true);
+        m_disconnectBtn->setVisible(false);
         m_loading->stop();
         m_loading->setVisible(false);
         break;
     case NetType::CS_Connecting:
         m_connBut->setVisible(false);
+        m_disconnectBtn->setVisible(false);
         m_loading->start();
         m_loading->setVisible(true);
         break;
     default:
         m_connBut->setVisible(false);
+        m_disconnectBtn->setVisible(false);
         m_loading->stop();
         m_loading->setVisible(false);
         break;
@@ -844,6 +870,15 @@ void NetWiredWidget::onStatusChanged(NetType::NetConnectionStatus status)
 void NetWiredWidget::onDisconnectClicked()
 {
     sendRequest(NetManager::Disconnect, item()->id());
+}
+
+void NetWiredWidget::setHover(bool isHover)
+{
+    if (m_status == NetType::CS_Connected) {
+        m_connBut->setVisible(!isHover);
+        m_disconnectBtn->setVisible(isHover);
+    };
+    NetItemWidget::setHover(isHover);
 }
 
 bool NetWiredWidget::isConnected() const
