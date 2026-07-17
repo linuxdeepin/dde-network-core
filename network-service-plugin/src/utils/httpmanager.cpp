@@ -26,7 +26,7 @@ namespace {
 struct GetAddrInfoParams {
     std::string node;
     std::string service;
-    const addrinfo *hints;
+    addrinfo hints;
     addrinfo *result = nullptr;
     int ret = 0;
     std::atomic<bool> delete_by_thread{false};
@@ -35,7 +35,7 @@ struct GetAddrInfoParams {
 static void *getaddrinfo_thread(void *arg)
 {
     GetAddrInfoParams *params = static_cast<GetAddrInfoParams *>(arg);
-    params->ret = getaddrinfo(params->node.c_str(), params->service.c_str(), params->hints, &params->result);
+    params->ret = getaddrinfo(params->node.c_str(), params->service.c_str(), &params->hints, &params->result);
     // deleteByThread 为 true 说明主线程已 detach，由本线程释放 params
     if (params->delete_by_thread.load())
         delete params;
@@ -49,7 +49,8 @@ static int getaddrinfo_with_timeout(const std::string &node, const std::string &
                                     int timeoutMs)
 {
     // 在堆上分配 params，防止 detach 的线程在超时后写入已释放的栈内存
-    GetAddrInfoParams *params = new GetAddrInfoParams{node, service, hints, nullptr, 0};
+    // hints 也按值拷贝，避免超时分支里调用方栈上的 addrinfo 失效后被子线程解引用
+    GetAddrInfoParams *params = new GetAddrInfoParams{node, service, hints ? *hints : addrinfo{}, nullptr, 0};
     pthread_t thread;
     pthread_attr_t attr;
     pthread_attr_init(&attr);
