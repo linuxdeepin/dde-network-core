@@ -650,6 +650,10 @@ void NetworkStateHandler::notify(const QString &icon, const QString &summary, co
         qCDebug(DSM()) << "notify disabled";
         return;
     }
+    if (SettingConfig::instance()->disableAllNotify()) {
+        qCDebug(DSM()) << "disable all notify";
+        return;
+    }
 
     QDBusMessage msg = QDBusMessage::createMethodCall("org.freedesktop.Notifications", "/org/freedesktop/Notifications", "org.freedesktop.Notifications", "Notify");
     const QStringList actions;

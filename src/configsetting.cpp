@@ -33,6 +33,7 @@ ConfigSetting::ConfigSetting(QObject *parent)
     , m_nobindEthernetMacDefault(false)
     , m_portalProcessMode("promp")
     , m_disableConnectingAnimation(false)
+    , m_disableAllNotify(false)
 {
     QStringList keys;
     if (!dConfig)
@@ -103,6 +104,8 @@ void ConfigSetting::onValueChanged(const QString &key)
         m_nobindEthernetMacDefault = dConfig->value("NobindEthernetMacDefault").toBool();
     } else if (key == "disableConnectingAnimation") {
         m_disableConnectingAnimation = dConfig->value("disableConnectingAnimation", false).toBool();
+    } else if (key == "disableAllNotify") {
+        m_disableAllNotify = dConfig->value("disableAllNotify", false).toBool();
     }
 }
 
@@ -210,4 +213,9 @@ bool ConfigSetting::supportPortalPromp() const
 bool ConfigSetting::disableConnectingAnimation() const
 {
     return m_disableConnectingAnimation;
+}
+
+bool ConfigSetting::disableAllNotify() const
+{
+    return m_disableAllNotify;
 }

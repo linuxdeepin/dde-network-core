@@ -330,6 +330,8 @@ void NetManagerThreadPrivate::sendNotify(const QString &appIcon, const QString &
 {
     if (!m_enabled)
         return;
+    if (ConfigSetting::instance()->disableAllNotify())
+        return;
     Q_EMIT networkNotify(inAppName, replacesId, appIcon, summary, body, actions, hints, expireTimeout);
 }
 
