@@ -370,6 +370,17 @@
              "description[zh_CN]":"当设置为true时，有线和无线网络在连接过程中不显示连接动画，保持未连接图标直到连接成功",
              "description":"When set to true, wired and wireless network will not show connecting animation, keep disconnected icon until connected",
              "permissions":"readwrite",
+              "visibility":"private"
+           },
+         "disableAllNotify":{
+             "value":false,
+             "serial":0,
+             "flags":["global"],
+             "name":"disableAllNotify",
+             "name[zh_CN]":"禁用所有网络通知",
+             "description[zh_CN]":"当设置为true时，禁用所有网络连接相关的通知消息，包括连接成功、连接失败、断开连接等",
+             "description":"When set to true, disable all network connection notifications, including connected, failed, disconnected, etc.",
+             "permissions":"readwrite",
              "visibility":"private"
           }
     }
