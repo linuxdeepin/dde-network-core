@@ -32,6 +32,7 @@ ConfigSetting::ConfigSetting(QObject *parent)
     , m_browserUrl("https://www.uniontech.com")
     , m_nobindEthernetMacDefault(false)
     , m_portalProcessMode("promp")
+    , m_disableConnectingAnimation(false)
 {
     QStringList keys;
     if (!dConfig)
@@ -100,6 +101,8 @@ void ConfigSetting::onValueChanged(const QString &key)
         emit browserUrlChanged(m_browserUrl);
     } else if (key == "NobindEthernetMacDefault") {
         m_nobindEthernetMacDefault = dConfig->value("NobindEthernetMacDefault").toBool();
+    } else if (key == "disableConnectingAnimation") {
+        m_disableConnectingAnimation = dConfig->value("disableConnectingAnimation", false).toBool();
     }
 }
 
@@ -202,4 +205,9 @@ bool ConfigSetting::nobindEthernetMacDefault() const
 bool ConfigSetting::supportPortalPromp() const
 {
     return m_portalProcessMode.toLower().contains("promp");
+}
+
+bool ConfigSetting::disableConnectingAnimation() const
+{
+    return m_disableConnectingAnimation;
 }
