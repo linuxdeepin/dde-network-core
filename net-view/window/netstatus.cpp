@@ -6,6 +6,7 @@
 #include "netitem.h"
 #include "netmanager.h"
 #include "networkconst.h"
+#include "configsetting.h"
 
 #include <QDebug>
 #include <QEvent>
@@ -804,49 +805,61 @@ void NetStatus::updateNetworkIcon()
         iconString = "network-none-symbolic";
         break;
     case NetworkStatus::Connecting: {
-        QStringList wirelessAnimation({
-                "network-wireless-signal-no-symbolic",
-                "network-wireless-signal-low-symbolic",
-                "network-wireless-signal-medium-symbolic",
-                "network-wireless-signal-high-symbolic",
-                "network-wireless-signal-full-symbolic",
-        });
-        m_animationIcon = QStringList({
-                "network-wired-symbolic-connecting1",
-                "network-wired-symbolic-connecting2",
-                "network-wired-symbolic-connecting3",
-                "network-wired-symbolic-connecting4",
-                "network-wired-symbolic-connecting5",
-                "network-wired-symbolic-connecting1",
-                "network-wired-symbolic-connecting2",
-                "network-wired-symbolic-connecting3",
-                "network-wired-symbolic-connecting4",
-                "network-wired-symbolic-connecting5",
+        if (ConfigSetting::instance()->disableConnectingAnimation()) {
+            iconString = "network-wireless-disconnect";
+        } else {
+            QStringList wirelessAnimation({
+                    "network-wireless-signal-no-symbolic",
+                    "network-wireless-signal-low-symbolic",
+                    "network-wireless-signal-medium-symbolic",
+                    "network-wireless-signal-high-symbolic",
+                    "network-wireless-signal-full-symbolic",
+            });
+            m_animationIcon = QStringList({
+                    "network-wired-symbolic-connecting1",
+                    "network-wired-symbolic-connecting2",
+                    "network-wired-symbolic-connecting3",
+                    "network-wired-symbolic-connecting4",
+                    "network-wired-symbolic-connecting5",
+                    "network-wired-symbolic-connecting1",
+                    "network-wired-symbolic-connecting2",
+                    "network-wired-symbolic-connecting3",
+                    "network-wired-symbolic-connecting4",
+                    "network-wired-symbolic-connecting5",
 
-        });
-        m_animationIcon.append(wirelessAnimation);
-        m_animationIcon.append(wirelessAnimation);
-        iconString = m_animationIcon.first();
+            });
+            m_animationIcon.append(wirelessAnimation);
+            m_animationIcon.append(wirelessAnimation);
+            iconString = m_animationIcon.first();
+        }
     } break;
     case NetworkStatus::WirelessConnecting: {
-        m_animationIcon = QStringList({
-                "network-wireless-signal-no-symbolic",
-                "network-wireless-signal-low-symbolic",
-                "network-wireless-signal-medium-symbolic",
-                "network-wireless-signal-high-symbolic",
-                "network-wireless-signal-full-symbolic",
-        });
-        iconString = m_animationIcon.first();
+        if (ConfigSetting::instance()->disableConnectingAnimation()) {
+            iconString = "network-wireless-disconnect";
+        } else {
+            m_animationIcon = QStringList({
+                    "network-wireless-signal-no-symbolic",
+                    "network-wireless-signal-low-symbolic",
+                    "network-wireless-signal-medium-symbolic",
+                    "network-wireless-signal-high-symbolic",
+                    "network-wireless-signal-full-symbolic",
+            });
+            iconString = m_animationIcon.first();
+        }
     } break;
     case NetworkStatus::WiredConnecting: {
-        m_animationIcon = QStringList({
-                "network-wired-symbolic-connecting1",
-                "network-wired-symbolic-connecting2",
-                "network-wired-symbolic-connecting3",
-                "network-wired-symbolic-connecting4",
-                "network-wired-symbolic-connecting5",
-        });
-        iconString = m_animationIcon.first();
+        if (ConfigSetting::instance()->disableConnectingAnimation()) {
+            iconString = "network-none-symbolic";
+        } else {
+            m_animationIcon = QStringList({
+                    "network-wired-symbolic-connecting1",
+                    "network-wired-symbolic-connecting2",
+                    "network-wired-symbolic-connecting3",
+                    "network-wired-symbolic-connecting4",
+                    "network-wired-symbolic-connecting5",
+            });
+            iconString = m_animationIcon.first();
+        }
     } break;
     case NetworkStatus::ConnectNoInternet:
     case NetworkStatus::WirelessConnectNoInternet: {
@@ -938,14 +951,18 @@ void NetStatus::updateQuick(unsigned wirelessStatus, unsigned wiredStatus)
         case NetType::DS_ObtainingIP:
         case NetType::DS_Connecting:
             quickDescription = tr("Connecting");
-            m_quickAnimationIcon = QStringList({
-                    "network-wireless-signal-no-symbolic",
-                    "network-wireless-signal-low-symbolic",
-                    "network-wireless-signal-medium-symbolic",
-                    "network-wireless-signal-high-symbolic",
-                    "network-wireless-signal-full-symbolic",
-            });
-            quickIconStr = m_quickAnimationIcon.first();
+            if (ConfigSetting::instance()->disableConnectingAnimation()) {
+                quickIconStr = "network-wireless-disconnect";
+            } else {
+                m_quickAnimationIcon = QStringList({
+                        "network-wireless-signal-no-symbolic",
+                        "network-wireless-signal-low-symbolic",
+                        "network-wireless-signal-medium-symbolic",
+                        "network-wireless-signal-high-symbolic",
+                        "network-wireless-signal-full-symbolic",
+                });
+                quickIconStr = m_quickAnimationIcon.first();
+            }
             break;
         case NetType::DS_IpConflicted:
             if (m_manager->primaryConnectionType() == NetManager::Wired
@@ -998,14 +1015,18 @@ void NetStatus::updateQuick(unsigned wirelessStatus, unsigned wiredStatus)
         case NetType::DS_ObtainingIP:
         case NetType::DS_Connecting:
             quickDescription = tr("Connecting");
-            m_quickAnimationIcon = QStringList({
-                    "network-wired-symbolic-connecting1",
-                    "network-wired-symbolic-connecting2",
-                    "network-wired-symbolic-connecting3",
-                    "network-wired-symbolic-connecting4",
-                    "network-wired-symbolic-connecting5",
-            });
-            quickIconStr = m_quickAnimationIcon.first();
+            if (ConfigSetting::instance()->disableConnectingAnimation()) {
+                quickIconStr = "network-none-symbolic";
+            } else {
+                m_quickAnimationIcon = QStringList({
+                        "network-wired-symbolic-connecting1",
+                        "network-wired-symbolic-connecting2",
+                        "network-wired-symbolic-connecting3",
+                        "network-wired-symbolic-connecting4",
+                        "network-wired-symbolic-connecting5",
+                });
+                quickIconStr = m_quickAnimationIcon.first();
+            }
             break;
         case NetType::DS_IpConflicted:
             if (m_manager->primaryConnectionType() == NetManager::Wireless

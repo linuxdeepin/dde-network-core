@@ -351,15 +351,26 @@
             "visibility":"private"
          },
          "reapplyFlags":{
-            "value":2,
-            "serial":0,
-            "flags":["global"],
-            "name":"reapplyFlags",
-            "name[zh_CN]":"reapplyConnection标志位",
-            "description[zh_CN]":"reapplyConnection的标志位，只能是0、1、2三个值之一。0：无标志；1：保留外部配置(PRESERVE_EXTERNAL)；2：非阻塞(NONBLOCKING)",
-            "description":"Flags for reapplyConnection, must be 0, 1 or 2. 0: none; 1: PRESERVE_EXTERNAL; 2: NONBLOCKING",
-            "permissions":"readwrite",
-            "visibility":"private"
-         }
+             "value":2,
+             "serial":0,
+             "flags":["global"],
+             "name":"reapplyFlags",
+             "name[zh_CN]":"reapplyConnection标志位",
+             "description[zh_CN]":"reapplyConnection的标志位，只能是0、1、2三个值之一。0：无标志；1：保留外部配置(PRESERVE_EXTERNAL)；2：非阻塞(NONBLOCKING)",
+             "description":"Flags for reapplyConnection, must be 0, 1 or 2. 0: none; 1: PRESERVE_EXTERNAL; 2: NONBLOCKING",
+             "permissions":"readwrite",
+             "visibility":"private"
+          },
+         "disableConnectingAnimation":{
+             "value":false,
+             "serial":0,
+             "flags":[],
+             "name":"disableConnectingAnimation",
+             "name[zh_CN]":"禁用连接动画",
+             "description[zh_CN]":"当设置为true时，有线和无线网络在连接过程中不显示连接动画，保持未连接图标直到连接成功",
+             "description":"When set to true, wired and wireless network will not show connecting animation, keep disconnected icon until connected",
+             "permissions":"readwrite",
+             "visibility":"private"
+          }
     }
 }

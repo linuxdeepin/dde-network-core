@@ -35,6 +35,7 @@ public:
     QString browserUrl() const;             // 文字链接打开浏览器时默认网址
     bool nobindEthernetMacDefault() const;  // 控制中心添加有线连接默认选择不绑定网卡
     bool supportPortalPromp() const;        // 是否在任务栏给出
+    bool disableConnectingAnimation() const; // 是否禁用连接动画
 
 signals:
     void checkUrlsChanged(const QStringList &);
@@ -76,6 +77,7 @@ private:
     QString m_browserUrl;
     bool m_nobindEthernetMacDefault;
     QString m_portalProcessMode;
+    bool m_disableConnectingAnimation;
 };
 
 } // namespace network
