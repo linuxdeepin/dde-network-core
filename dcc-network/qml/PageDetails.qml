@@ -60,28 +60,42 @@ DccObject {
                             text: dccObj.displayName
                             elide: Text.ElideMiddle
                         }
-                        D.IconLabel {
+                        D.ActionButton {
                             property bool clipboard: false
-                            Layout.alignment: Qt.AlignRight
+                            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                            Layout.preferredWidth: 30
+                            Layout.preferredHeight: 30
                             icon {
                                 name: "copy"
-                                palette: D.DTK.makeIconPalette(palette)
+                                width: 16
+                                height: 16
                             }
                             D.ToolTip {
                                 id: tip
                                 palette: parent.palette
                             }
-                            MouseArea {
+                            hoverEnabled: true
+                            background: Rectangle {
                                 anchors.fill: parent
-                                acceptedButtons: Qt.LeftButton
-                                onClicked: {
-                                    let text = [infoItem.name]
-                                    for (let i in infoItem.details) {
-                                        text.push(infoItem.details[i][0] + "\t" + infoItem.details[i][1])
-                                    }
-                                    dccData.setClipboard(text.join("\n"))
-                                    tip.show(qsTr("Details has been copied"), 2000)
+                                property D.Palette pressedColor: D.Palette {
+                                    normal: Qt.rgba(0, 0, 0, 0.2)
+                                    normalDark: Qt.rgba(1, 1, 1, 0.25)
                                 }
+                                property D.Palette hoveredColor: D.Palette {
+                                    normal: Qt.rgba(0, 0, 0, 0.1)
+                                    normalDark: Qt.rgba(1, 1, 1, 0.1)
+                                }
+                                radius: 6
+                                color: parent.pressed ? D.ColorSelector.pressedColor : (parent.hovered ? D.ColorSelector.hoveredColor : "transparent")
+                            }
+                            focusPolicy: Qt.StrongFocus
+                            onClicked: {
+                                let text = [infoItem.name]
+                                for (let i in infoItem.details) {
+                                    text.push(infoItem.details[i][0] + "\t" + infoItem.details[i][1])
+                                }
+                                dccData.setClipboard(text.join("\n"))
+                                tip.show(qsTr("Details has been copied"), 2000)
                             }
                         }
                     }
