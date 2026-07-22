@@ -107,6 +107,7 @@ DccObject {
                             delegate: ItemDelegate {
                                 implicitHeight: 36
                                 text: modelData[0]
+                                font: D.DTK.fontManager.t6
                                 checked: false
                                 backgroundVisible: true
                                 corners: getCornersForBackground(index, repeater.count)
@@ -118,6 +119,7 @@ DccObject {
                                     id: textInput
                                     text: modelData[1]
                                     color: palette.text
+                                    font: D.DTK.fontManager.t7
                                     selectedTextColor: palette.highlightedText
                                     selectionColor: palette.highlight
                                     readOnly: true
