@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="zh_TW">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_TW">
 <context>
     <name>Bubble</name>
     <message>
@@ -12,7 +10,7 @@
     <name>dde::network::NetAirplaneModeTipsItem</name>
     <message>
         <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation>若要使用藍牙功能，請先關閉&lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;飛行模式&lt;/a&gt; </translation>
+        <translation>若要使用藍牙功能，請先關閉&lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;飛行模式&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -281,7 +279,7 @@
     <name>dde::network::NetWiredWidget</name>
     <message>
         <source>Disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation>斷 開</translation>
     </message>
 </context>
 <context>
@@ -316,7 +314,7 @@
     <name>dde::network::NetWirelessWidget</name>
     <message>
         <source>Disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation>斷 開</translation>
     </message>
 </context>
 </TS>
