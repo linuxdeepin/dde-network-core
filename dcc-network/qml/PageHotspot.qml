@@ -188,10 +188,26 @@ DccObject {
                 D.ActionButton {
                     Layout.alignment: Qt.AlignRight
                     focusPolicy: Qt.NoFocus
+                    Layout.preferredWidth: 30
+                    Layout.preferredHeight: 30
                     icon {
                         name: "dcc_network_edit"
                         width: 16
                         height: 16
+                    }
+                    hoverEnabled: true
+                    background: Rectangle {
+                        anchors.fill: parent
+                        property D.Palette pressedColor: D.Palette {
+                            normal: Qt.rgba(0, 0, 0, 0.2)
+                            normalDark: Qt.rgba(1, 1, 1, 0.25)
+                        }
+                        property D.Palette hoveredColor: D.Palette {
+                            normal: Qt.rgba(0, 0, 0, 0.1)
+                            normalDark: Qt.rgba(1, 1, 1, 0.1)
+                        }
+                        radius: 6
+                        color: parent.pressed ? D.ColorSelector.pressedColor : (parent.hovered ? D.ColorSelector.hoveredColor : "transparent")
                     }
                     onClicked: editDialog.createObject(this, {
                                                            "config": root.config
