@@ -180,10 +180,15 @@ DccObject {
             page: RowLayout {
                 Label {
                     font: DccUtils.copyFont(D.DTK.fontManager.t5, {
-                                       "weight": 700
+                                       "weight": 500
                                    })
                     text: dccObj.displayName
                     Layout.alignment: Qt.AlignLeft
+                    property D.Palette textColor: D.Palette {
+                        normal: Qt.rgba(0, 0, 0, 0.9)
+                        normalDark: Qt.rgba(1, 1, 1, 0.9)
+                    }
+                    color: D.ColorSelector.textColor
                 }
                 D.ActionButton {
                     Layout.alignment: Qt.AlignRight
