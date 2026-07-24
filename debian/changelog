@@ -1,3 +1,11 @@
+dde-network-core (2.0.98) unstable; urgency=medium
+
+  * i18n: Updates for project Deepin Desktop Environment (#575)
+  * feat(net-view): add disconnect button for connected items
+  * i18n: Updates for project Deepin Desktop Environment (#581)
+
+ -- zhangkun <zhangkun2@uniontech.com>  Fri, 24 Jul 2026 14:44:17 +0800
+
 dde-network-core (2.0.97) unstable; urgency=medium
 
   * feat(dconfig): add disableConnectingAnimation option for dock plugin
