@@ -198,7 +198,7 @@
     <name>PageDetails</name>
     <message>
         <source>Network Details</source>
-        <translation>Detalhes de Rede</translation>
+        <translation>Detalhes da rede</translation>
     </message>
     <message>
         <source>View all network configurations</source>
@@ -438,7 +438,7 @@
     </message>
     <message>
         <source>OK</source>
-        <translation>Ok</translation>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
