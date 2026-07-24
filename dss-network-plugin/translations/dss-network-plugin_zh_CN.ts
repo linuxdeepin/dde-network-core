@@ -279,7 +279,7 @@
     <name>dde::network::NetWiredWidget</name>
     <message>
         <source>Disconnect</source>
-        <translation type="unfinished"/>
+        <translation>断 开</translation>
     </message>
 </context>
 <context>
@@ -314,7 +314,7 @@
     <name>dde::network::NetWirelessWidget</name>
     <message>
         <source>Disconnect</source>
-        <translation type="unfinished"/>
+        <translation>断 开</translation>
     </message>
 </context>
 </TS>
