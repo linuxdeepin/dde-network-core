@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="bo">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="bo">
 <context>
     <name>dde::network::DockContentWidget</name>
     <message>
@@ -23,7 +21,7 @@
     <name>dde::network::NetItemWidget</name>
     <message>
         <source>Open a browser to authenticate</source>
-        <translation type="unfinished"></translation>
+        <translation>བཤར་ཆས་ཀྱི་ངོས་འཛིན་ཁ་ཕྱེ། </translation>
     </message>
 </context>
 <context>
@@ -41,35 +39,35 @@
     <name>dde::network::NetManagerThreadPrivate</name>
     <message>
         <source>Wired Connection %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>VPN L2TP %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>VPN PPTP %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>VPN VPNC %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>VPN OpenVPN %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>VPN StrongSwan %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>VPN OpenConnect %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connecting &quot;%1&quot;</source>
@@ -285,7 +283,7 @@
     <name>dde::network::NetWiredWidget</name>
     <message>
         <source>Disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -320,7 +318,7 @@
     <name>dde::network::NetWirelessWidget</name>
     <message>
         <source>Disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
