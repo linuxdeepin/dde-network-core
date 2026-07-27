@@ -579,6 +579,25 @@ void NetStatus::doUpdateStatus()
     iphtml[WIRED_DEVICE_INDEX].sort();
 
     unsigned netStatus = devStatus[WIRELESS_DEVICE_INDEX] | devStatus[WIRED_DEVICE_INDEX];
+    // 当禁用连接动画时，遍历所有网卡，如果有任意网卡已连接，则不让连接中状态覆盖已连接状态
+    if (ConfigSetting::instance()->disableConnectingAnimation()) {
+        bool hasConnectingState = (netStatus == NetType::DS_Connecting) ||
+                                  (netStatus == NetType::DS_ObtainingIP) ||
+                                  (netStatus == NetType::DS_Authenticating);
+        if (hasConnectingState) {
+            for (const auto &it : root->getChildren()) {
+                if (it->itemType() != NetType::WiredDeviceItem && it->itemType() != NetType::WirelessDeviceItem)
+                    continue;
+
+                NetDeviceItem *devItem = qobject_cast<NetDeviceItem *>(it);
+                if (!devItem || devItem->status() != NetType::DS_Connected)
+                    continue;
+
+                netStatus = NetType::DS_Connected;
+                break;
+            }
+        }
+    }
     bool isWirelessStatus = netStatus == devStatus[WIRELESS_DEVICE_INDEX];
     NetworkStatus networkStatus = NetworkStatus::Unknown;
     // 汇总有线无线状态

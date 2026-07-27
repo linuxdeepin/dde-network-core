@@ -195,6 +195,9 @@ SettingConfig::SettingConfig(QObject *parent)
         if (keys.contains("needCheckNetwork"))
             m_needCheckNetwork = dConfig->value("needCheckNetwork").toBool();
 
+        if (keys.contains("disableAllNotify"))
+            m_disableAllNotify = dConfig->value("disableAllNotify", false).toBool();
+
         m_disableFailureNotify = dConfig->value("disableFailureNotify", false).toBool();
 
         if (keys.contains("reapplyFlags")) {
