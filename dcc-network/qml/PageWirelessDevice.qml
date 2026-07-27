@@ -295,9 +295,16 @@ DccObject {
             pageType: DccObject.Item
             page: Label {
                 font: DccUtils.copyFont(D.DTK.fontManager.t5, {
-                                            "bold": true
+                                            "weight": Font.Medium
                                         })
                 text: dccObj.displayName
+                color: D.ColorSelector.textColor
+                D.Palette {
+                    id: mineTitleColor
+                    normal: Qt.rgba(0, 0, 0, 0.9)
+                    normalDark: Qt.rgba(1, 1, 1, 0.9)
+                }
+                property D.Palette textColor: mineTitleColor
             }
             onParentItemChanged: {
                 if (parentItem) {
@@ -328,9 +335,16 @@ DccObject {
             pageType: DccObject.Item
             page: Label {
                 font: DccUtils.copyFont(D.DTK.fontManager.t6, {
-                                            "bold": true
+                                            "weight": Font.Medium
                                         })
                 text: dccObj.displayName
+                color: D.ColorSelector.textColor
+                D.Palette {
+                    id: otherTitleColor
+                    normal: Qt.rgba(0, 0, 0, 0.9)
+                    normalDark: Qt.rgba(1, 1, 1, 0.9)
+                }
+                property D.Palette textColor: otherTitleColor
 
                 Timer {
                     id: refreshTimer
