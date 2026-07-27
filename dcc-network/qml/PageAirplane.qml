@@ -64,6 +64,8 @@ DccObject {
             page: D.Label {
                 text: dccObj.displayName
                 wrapMode: Text.WordWrap
+                font.pixelSize: D.DTK.fontManager.t8.pixelSize
+                leftPadding: 12
             }
         }
     }
