@@ -1,3 +1,4 @@
 usr/lib/*/libdde-network-core*.so*
 usr/share/dsg/configs/*
 usr/share/dde-network-core/translations
+usr/share/polkit-1/actions/com.deepin.dde.network.policy
