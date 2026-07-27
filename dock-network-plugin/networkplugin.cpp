@@ -10,6 +10,7 @@
 #include "netview.h"
 #include "quickpanelwidget.h"
 
+#include <DConfig>
 #include <DGuiApplicationHelper>
 
 #include "xdgactivation.h"
@@ -28,6 +29,10 @@ DGUI_USE_NAMESPACE
 
 static Q_LOGGING_CATEGORY(DNC, "org.deepin.dde.dock.network");
 
+namespace {
+constexpr auto EnableDockNetworkClickKey = "enableDockNetworkClick";
+}
+
 namespace dde {
 namespace network {
 NetworkPlugin::NetworkPlugin(QObject *parent)
@@ -37,15 +42,28 @@ NetworkPlugin::NetworkPlugin(QObject *parent)
     , m_manager(nullptr)
     , m_netView(nullptr)
     , m_netStatus(nullptr)
+    , m_dconfig(Dtk::Core::DConfig::create(QStringLiteral("org.deepin.dde.network"),
+                                           QStringLiteral("org.deepin.dde.network"),
+                                           QString(),
+                                           this))
     , m_isLockScreen(false)
     , m_replacesId(0)
     , m_dockContentWidget(nullptr)
     , m_netCheckAvailable(false)
     , m_netLimited(false)
+    , m_enableDockNetworkClick(true)
 {
     QTranslator *translator = new QTranslator(this);
     if (translator->load(QLocale(), "dock-network-plugin", "_", "/usr/share/dock-network-plugin/translations")) {
         QCoreApplication::installTranslator(translator);
+    }
+
+    if (m_dconfig && m_dconfig->isValid()) {
+        connect(m_dconfig, &Dtk::Core::DConfig::valueChanged,
+                this, &NetworkPlugin::updateDockClickSettings);
+        updateDockClickSettings();
+    } else {
+        qCWarning(DNC) << "Unable to create network DConfig; dock icon interactions remain enabled";
     }
 }
 
@@ -65,6 +83,28 @@ NetworkPlugin::~NetworkPlugin()
 
     if (m_trayIcon)
         m_trayIcon->deleteLater();
+}
+
+void NetworkPlugin::updateDockClickSettings(const QString &key)
+{
+    if (!m_dconfig || !m_dconfig->isValid())
+        return;
+
+    if (!key.isEmpty() && key != QLatin1String(EnableDockNetworkClickKey))
+        return;
+
+    const bool enabled = m_dconfig->value(QLatin1String(EnableDockNetworkClickKey), true).toBool();
+    if (enabled == m_enableDockNetworkClick)
+        return;
+
+    m_enableDockNetworkClick = enabled;
+
+    if (!m_enableDockNetworkClick && m_trayIcon && m_trayIcon->parentWidget()) {
+        QEvent leaveEvent(QEvent::Leave);
+        QCoreApplication::sendEvent(m_trayIcon->parentWidget(), &leaveEvent);
+    }
+
+    qCInfo(DNC) << "Dock network interaction setting changed:" << m_enableDockNetworkClick;
 }
 
 const QString NetworkPlugin::pluginName() const
@@ -263,6 +303,9 @@ void NetworkPlugin::refreshPluginItemsVisible()
 
 bool NetworkPlugin::eventFilter(QObject *watched, QEvent *event)
 {
+    const bool isDockIcon = m_trayIcon
+            && (watched == m_trayIcon || watched == m_trayIcon->parentWidget());
+
     switch (event->type()) {
     case QEvent::ParentChange: {
         if (watched == m_trayIcon && m_trayIcon->parentWidget()) {
@@ -274,8 +317,31 @@ bool NetworkPlugin::eventFilter(QObject *watched, QEvent *event)
         if (m_trayIcon && watched == m_trayIcon->parentWidget())
             updateIconColor();
     } break;
+    case QEvent::MouseButtonPress:
+    case QEvent::MouseButtonRelease:
+    case QEvent::MouseButtonDblClick:
+    case QEvent::ContextMenu:
+    case QEvent::TouchBegin:
+    case QEvent::TouchUpdate:
+    case QEvent::TouchEnd:
+    case QEvent::TouchCancel: {
+        if (isDockIcon && !m_enableDockNetworkClick)
+            return true;
+    } break;
     case QEvent::Enter:
-    case QEvent::MouseMove: {
+    case QEvent::HoverEnter:
+    case QEvent::HoverMove:
+    case QEvent::MouseMove:
+    case QEvent::ToolTip: {
+        if (!isDockIcon)
+            break;
+
+        if (!m_enableDockNetworkClick)
+            return true;
+
+        if (event->type() != QEvent::Enter && event->type() != QEvent::MouseMove)
+            break;
+
         const QPoint &p = m_trayIcon->mapFromGlobal(QCursor::pos());
         const bool isHorizontal = position() == Dock::Top || position() == Dock::Bottom;
         m_netStatus->setHoverTips((isHorizontal ? p.x() : p.y()) > ((isHorizontal ? m_trayIcon->width() : m_trayIcon->height()) / 2) && m_netStatus->vpnAndProxyIconVisibel()

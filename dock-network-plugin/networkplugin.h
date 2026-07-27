@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -22,6 +22,12 @@
 #define NETWORK_KEY "network-item-key"
 
 class QDBusMessage;
+
+namespace Dtk {
+namespace Core {
+class DConfig;
+}
+}
 
 namespace dde {
 namespace network {
@@ -94,6 +100,7 @@ protected:
 private:
     void loadPlugin();
     void refreshPluginItemsVisible();
+    void updateDockClickSettings(const QString &key = QString());
     bool eventFilter(QObject *watched, QEvent *event) override;
 
 private:
@@ -102,12 +109,14 @@ private:
     dde::network::NetManager *m_manager;
     dde::network::NetView *m_netView;
     dde::network::NetStatus *m_netStatus;
+    Dtk::Core::DConfig *m_dconfig;
     QPointer<QuickPanelWidget> m_quickPanel;
     bool m_isLockScreen;
     uint m_replacesId;
     DockContentWidget *m_dockContentWidget;
     bool m_netCheckAvailable;
     bool m_netLimited;
+    bool m_enableDockNetworkClick;
 };
 } // namespace network
 } // namespace dde

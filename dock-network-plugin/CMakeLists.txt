@@ -38,7 +38,7 @@ set(CMAKE_PREFER_PTHREAD_FLAG ON)
 
 find_package(${QT_NS} COMPONENTS Core Widgets DBus Network WaylandClient LinguistTools REQUIRED)
 find_package(PkgConfig REQUIRED)
-find_package(${DTK_NS} REQUIRED COMPONENTS Widget)
+find_package(${DTK_NS} REQUIRED COMPONENTS Core Widget)
 find_package(KF6NetworkManagerQt REQUIRED)
 find_package(DdeDock REQUIRED)
 
@@ -82,6 +82,7 @@ target_link_libraries(${PLUGIN_NAME} PRIVATE
     ${QT_NS}::DBus
     ${QT_NS}::Network
     ${QT_NS}::WaylandClientPrivate
+    ${DTK_NS}::Core
     ${DTK_NS}::Widget
     KF6::NetworkManagerQt
     dde-network-core6

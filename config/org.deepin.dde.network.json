@@ -372,6 +372,17 @@
              "permissions":"readwrite",
               "visibility":"private"
            },
+         "enableDockNetworkClick": {
+             "value": true,
+             "serial": 0,
+             "flags": [],
+             "name": "Enable Dock Network Interaction",
+             "name[zh_CN]": "启用任务栏网络图标交互",
+             "description": "Enable or disable click, touch long-press, and hover interaction on the network icon in the dock. When disabled, the tooltip is not shown. The quick panel network entry is not affected.",
+             "description[zh_CN]": "启用或禁用任务栏网络图标的点击、触摸长按及悬停交互；关闭时不显示提示信息，不影响快捷面板中的网络入口。",
+             "permissions": "readwrite",
+             "visibility": "private"
+          },
          "disableAllNotify":{
              "value":false,
              "serial":0,
