@@ -44,7 +44,16 @@ Description: the interface of networkcode,used for developers
 
 Package: dcc-network-plugin
 Architecture: any
-Depends: ${misc:Depends},${shlibs:Depends},network-manager-integration-plugins,libdde-network-core (= ${binary:Version})
+Depends: ${misc:Depends},
+        ${shlibs:Depends},
+        network-manager-openvpn,
+        network-manager-l2tp,
+        network-manager-pptp,
+        network-manager-vpnc,
+        network-manager-openconnect,
+        network-manager-strongswan | libreswan (>=4.12),
+        network-manager-sstp,
+        libdde-network-core (= ${binary:Version})
 Description: the plugin of network for dde control center
  dcc-network-plugin module
 
