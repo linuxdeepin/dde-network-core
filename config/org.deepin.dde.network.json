@@ -340,7 +340,7 @@
             "visibility":"private"
          },
          "needCheckNetwork":{
-            "value":true,
+            "value":false,
             "serial":0,
             "flags":["global"],
             "name":"needCheckNetwork",
