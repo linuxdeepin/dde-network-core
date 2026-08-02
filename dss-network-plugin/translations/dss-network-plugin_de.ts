@@ -99,7 +99,7 @@
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
-        <translation type="unfinished"/>
+        <translation>Um &quot;%1&quot; zu verbinden, richten Sie bitte nach der Anmeldung  ihre Authentifizierungsinformationen ein.</translation>
     </message>
 </context>
 <context>
@@ -110,7 +110,7 @@
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation type="unfinished"/>
+        <translation>Privates Passwort</translation>
     </message>
     <message>
         <source>key</source>
@@ -122,7 +122,7 @@
     </message>
     <message>
         <source>Group Password</source>
-        <translation>Gruppenpasswort</translation>
+        <translation>Gruppen-Passwort</translation>
     </message>
     <message>
         <source>Username</source>
@@ -171,19 +171,19 @@
     </message>
     <message>
         <source>Disable VPN</source>
-        <translation type="unfinished"/>
+        <translation>VPN deaktivieren</translation>
     </message>
     <message>
         <source>Enable VPN</source>
-        <translation type="unfinished"/>
+        <translation>VPN einschalten</translation>
     </message>
     <message>
         <source>Disable system proxy</source>
-        <translation type="unfinished"/>
+        <translation>System-Proxy deaktivieren</translation>
     </message>
     <message>
         <source>Enable system proxy</source>
-        <translation type="unfinished"/>
+        <translation>System-Proxy einschalten</translation>
     </message>
     <message>
         <source>Network settings</source>
@@ -191,15 +191,15 @@
     </message>
     <message>
         <source>Multiple services started</source>
-        <translation type="unfinished"/>
+        <translation>Verschiedene Services gestartet</translation>
     </message>
     <message>
         <source>Connected to: %1</source>
-        <translation type="unfinished"/>
+        <translation>Verbunden mit: %1</translation>
     </message>
     <message>
         <source>System proxy enabled</source>
-        <translation type="unfinished"/>
+        <translation>System-Proxy eingeschaltet</translation>
     </message>
     <message>
         <source>Connected</source>
@@ -258,7 +258,7 @@
     <name>dde::network::NetSystemProxyControlItem</name>
     <message>
         <source>System Proxy</source>
-        <translation type="unfinished"/>
+        <translation>System-Proxy</translation>
     </message>
 </context>
 <context>
@@ -279,7 +279,7 @@
     <name>dde::network::NetWiredWidget</name>
     <message>
         <source>Disconnect</source>
-        <translation type="unfinished"/>
+        <translation>Trennen</translation>
     </message>
 </context>
 <context>
@@ -314,7 +314,7 @@
     <name>dde::network::NetWirelessWidget</name>
     <message>
         <source>Disconnect</source>
-        <translation type="unfinished"/>
+        <translation>Trennen</translation>
     </message>
 </context>
 </TS>
