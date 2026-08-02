@@ -269,7 +269,7 @@
     <name>dde::network::NetVPNTipsItem</name>
     <message>
         <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
-        <translation type="unfinished"/>
+        <translation>VPN ist nicht eingerichtet oder die Verbindung dazu schlug fehl. Bitte überprüfen Sie das im &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;Kontrollzentrum&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
