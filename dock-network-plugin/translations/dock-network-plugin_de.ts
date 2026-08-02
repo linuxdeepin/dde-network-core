@@ -14,14 +14,14 @@
     <name>dde::network::NetAirplaneModeTipsItem</name>
     <message>
         <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation type="unfinished"/>
+        <translation>Zuerst &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Flugmodus&lt;/a&gt; ausschalten, falls Sie sich mit einem Drahtlos-Netzwerk verbinden wollen</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetItemWidget</name>
     <message>
         <source>Open a browser to authenticate</source>
-        <translation type="unfinished"/>
+        <translation>Zur Authentifizierung öffnen Sie bitte einen Browser</translation>
     </message>
 </context>
 <context>
@@ -39,71 +39,71 @@
     <name>dde::network::NetManagerThreadPrivate</name>
     <message>
         <source>Wired Connection %1</source>
-        <translation type="unfinished"/>
+        <translation>Kabelgebundene Verbindung %1</translation>
     </message>
     <message>
         <source>VPN L2TP %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN L2TP %1</translation>
     </message>
     <message>
         <source>VPN PPTP %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN PPTP %1</translation>
     </message>
     <message>
         <source>VPN VPNC %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN VPNC %1</translation>
     </message>
     <message>
         <source>VPN OpenVPN %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN OpenVPN %1</translation>
     </message>
     <message>
         <source>VPN StrongSwan %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN StrongSwan %1</translation>
     </message>
     <message>
         <source>VPN OpenConnect %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN OpenConnect %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
-        <translation type="unfinished"/>
+        <translation>PPPoE Verbindung %1</translation>
     </message>
     <message>
         <source>Connecting &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>%1 wird verbunden</translation>
     </message>
     <message>
         <source>&quot;%1&quot; connected</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; verbunden</translation>
     </message>
     <message>
         <source>&quot;%1&quot; disconnected</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; getrennt</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
-        <translation type="unfinished"/>
+        <translation>Verbindung zu &quot;%1&quot; nicht möglich, bitte überprüfen Sie Ihren Router oder Ihr Netzkabel.</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
-        <translation type="unfinished"/>
+        <translation>Verbindung zu &quot;%1&quot; nicht möglich, bitte näher zum WLAN-Router</translation>
     </message>
     <message>
         <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
-        <translation type="unfinished"/>
+        <translation>Verbindung fehlgeschlagen, Verbindung zu &quot;%1&quot; nicht möglich, falsches Passwort</translation>
     </message>
     <message>
         <source>Password is required to connect &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Für die Verbindung mit &quot;%1&quot; ist ein Passwort erforderlich</translation>
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"/>
+        <translation>Das &quot;%1&quot; 802.11-WLAN-Netzwerk konnte nicht gefunden werden</translation>
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
-        <translation type="unfinished"/>
+        <translation>Um &quot;%1&quot; zu verbinden, richten Sie bitte nach der Anmeldung  ihre Authentifizierungsinformationen ein.</translation>
     </message>
 </context>
 <context>
