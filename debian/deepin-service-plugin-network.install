@@ -5,3 +5,4 @@
 /usr/share/deepin-service-manager/network-service/translations
 /usr/lib/deepin-daemon/dde-network-secret-dialog
 /etc/NetworkManager
+usr/share/polkit-1/actions/com.deepin.dde.network.policy

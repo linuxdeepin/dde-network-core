@@ -12,8 +12,6 @@
 namespace dde {
 namespace network {
 
-class VpnDnsRouteController;
-
 class VPNController_NM : public VPNController
 {
     Q_OBJECT
@@ -46,12 +44,10 @@ private Q_SLOTS:
     void onConnectionRemoved(const QString &path);
     void onActiveConnectionsChanged();
     void onPropertiesChanged(const QString &interfaceName, const QVariantMap &changedProperties);
-    void onVpnIp4ConfigChanged();
 
 private:
     QList<VPNItem *> m_items;
     QMap<VPNItem *, NetworkManager::Connection::Ptr> m_vpnConnectionsMap;
-    VpnDnsRouteController *m_dnsRouteController = nullptr;
 };
 
 }

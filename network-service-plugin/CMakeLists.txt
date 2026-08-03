@@ -79,6 +79,7 @@ endif()
 
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/system/deepin.dde.daemon.conf DESTINATION /etc/NetworkManager/conf.d/)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/system/org.deepin.dde.Network1.conf DESTINATION share/dbus-1/system.d/)
+install(FILES ${CMAKE_SOURCE_DIR}/src/misc/polkit-action/com.deepin.dde.network.policy DESTINATION share/polkit-1/actions)
 
 # dde-network-secret-dialog属于network-service-plugin项目，翻译文件放一起
 file(GLOB_RECURSE ALL_SRCS "*.h" "*.cpp")

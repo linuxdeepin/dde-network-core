@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -18,6 +18,7 @@
 #include "settingconfig.h"
 #include "systemcontainer.h"
 #include "systemservice.h"
+#include "vpndnsmode/vpndnsmodehandler.h"
 
 #include <QCoreApplication>
 #include <QDBusConnection>
@@ -70,6 +71,7 @@ QObject *ServiceFactory::createServiceObject(bool isSystem)
         QDBusConnection::RegisterOptions opts = QDBusConnection::ExportAllSlots | QDBusConnection::ExportAllSignals | QDBusConnection::ExportAllProperties;
         network::sessionservice::NetworkProxyChains *networkProxyChains = new network::sessionservice::NetworkProxyChains(*m_dbusConnection, stateHandler, this);
         m_dbusConnection->registerObject("/org/deepin/dde/Network1/ProxyChains", networkProxyChains, opts);
+        network::sessionservice::VpnDnsModeHandler *vpnDnsModeHandler = new network::sessionservice::VpnDnsModeHandler(this);
         return networkProxy;
     }
 }

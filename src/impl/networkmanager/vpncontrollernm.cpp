@@ -10,7 +10,6 @@
 #include <NetworkManagerQt/Settings>
 #include <NetworkManagerQt/ConnectionSettings>
 #include <NetworkManagerQt/VpnSetting>
-#include "vpndnsroutecontroller.h"
 
 #define NETWORKSERVICE "org.deepin.dde.Network1"
 #define NETWORKPATH "/org/deepin/dde/Network1"
@@ -33,8 +32,6 @@ VPNController_NM::~VPNController_NM()
 
 void VPNController_NM::initMember()
 {
-    m_dnsRouteController = new VpnDnsRouteController(this);
-
     QList<VPNItem *> newItems;
     NetworkManager::Connection::List connections = NetworkManager::listConnections();
     for (NetworkManager::Connection::Ptr connection : connections) {
@@ -95,16 +92,6 @@ VPNItem *VPNController_NM::addVpnConnection(const NetworkManager::Connection::Pt
         // 更新数据
         vpnItem->setConnection(createJson(connection));
         qCDebug(DNC) << "[DNS-TRACE] NetworkManager::Connection::updated" << connection->path();
-        auto activeConns = findActiveConnection();
-        for (const auto &ac : activeConns) {
-            if (!ac.isNull() && !ac->connection().isNull()
-                && ac->connection()->path() == connection->path()
-                && m_dnsRouteController) {
-                m_dnsRouteController->requestApplyDnsModeIfChanged(ac, true);
-                break;
-            }
-        }
-        
         Q_EMIT activeConnectionChanged();
         Q_EMIT itemChanged(m_items);
     });
@@ -217,10 +204,6 @@ void VPNController_NM::onConnectionAdded(const QString &path)
 void VPNController_NM::onConnectionRemoved(const QString &path)
 {
     qCInfo(DNC) << "On connection removed, remove connection: " << path;
-
-    if (m_dnsRouteController)
-        m_dnsRouteController->cleanupConnection(path);
-
     for (VPNItem *item : m_items) {
         if (item->connection()->path() != path)
             continue;
@@ -279,9 +262,6 @@ void VPNController_NM::onActiveConnectionsChanged()
             Q_EMIT activeConnectionChanged();
         });
 
-        connect(activeConnection.data(), &NetworkManager::ActiveConnection::ipV4ConfigChanged,
-                this, &VPNController_NM::onVpnIp4ConfigChanged, Qt::UniqueConnection);
-
         QList<VPNItem *> vpnItems = vpnCategoryItems[activeServiceType];
         for (VPNItem *vpnItem : vpnItems) {
             // 查找该类型的VPN活动连接，并且修改其状态
@@ -298,20 +278,6 @@ void VPNController_NM::onActiveConnectionsChanged()
             }
         }
     }
-}
-
-void VPNController_NM::onVpnIp4ConfigChanged()
-{
-    auto *ac = qobject_cast<NetworkManager::ActiveConnection *>(sender());
-    if (!ac || ac->state() != NetworkManager::ActiveConnection::State::Activated)
-        return;
-
-    NetworkManager::ActiveConnection::Ptr acPtr = NetworkManager::findActiveConnection(ac->path());
-
-    qCDebug(DNC) << "[DNS-TRACE] requestApplyDnsModeIfChanged triggered by ipV4ConfigChanged" << ac->path();
-
-    if (!acPtr.isNull() && m_dnsRouteController)
-        m_dnsRouteController->requestApplyDnsModeIfChanged(acPtr, false);
 }
 
 void VPNController_NM::onPropertiesChanged(const QString &interfaceName, const QVariantMap &changedProperties)
