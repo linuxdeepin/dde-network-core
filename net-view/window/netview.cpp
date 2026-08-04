@@ -131,6 +131,8 @@ void NetView::rowsInserted(const QModelIndex &parent, int start, int end)
             indexes.append(m->index(j, 0, i));
         }
     }
+    // 编辑器控件重建后同步当前悬停行的状态，否则悬停行会短暂显示为未悬停状态
+    syncCurrentHoverState();
     QTreeView::rowsInserted(parent, start, end);
 
     QModelIndex newIndex = m->index(start, 0, parent);
@@ -413,6 +415,18 @@ void NetView::horizontalScrollbarValueChanged(int)
 void NetView::currentChanged(const QModelIndex &current, const QModelIndex &previous)
 {
     QTreeView::currentChanged(current, previous);
+    // 悬停状态由事件（HoverMove/HoverLeave/滚动/点击）驱动更新，
+    // 避免在 delegate 的 paint() 中修改控件可见性导致重入式重绘而产生重影
+    if (previous.isValid()) {
+        if (auto *itemWidget = qobject_cast<NetItemWidget *>(indexWidget(previous))) {
+            itemWidget->setHover(false);
+        }
+    }
+    if (current.isValid()) {
+        if (auto *itemWidget = qobject_cast<NetItemWidget *>(indexWidget(current))) {
+            itemWidget->setHover(true);
+        }
+    }
     if (previous.isValid()) {
         QRect rect = visualRect(previous);
         rect.setRect(0, rect.y() - 1, viewport()->width(), rect.height() + 2);
@@ -424,6 +438,17 @@ void NetView::currentChanged(const QModelIndex &current, const QModelIndex &prev
         viewport()->update(rect);
     }
     m_updateCurrent = false;
+}
+
+void NetView::syncCurrentHoverState()
+{
+    const QModelIndex current = currentIndex();
+    if (!current.isValid())
+        return;
+
+    if (auto *itemWidget = qobject_cast<NetItemWidget *>(indexWidget(current))) {
+        itemWidget->setHover(true);
+    }
 }
 
 void NetView::updateGeometries()
