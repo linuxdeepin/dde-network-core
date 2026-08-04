@@ -37,6 +37,7 @@
 #include <impl/vpncontroller.h>
 #include <proxycontroller.h>
 
+#include <QCoreApplication>
 #include <QDBusConnection>
 #include <QProcess>
 #include <QThread>
@@ -87,7 +88,7 @@ const QString notifyIconMobileUnknownDisconnected = "notification-network-mobile
 NetManagerThreadPrivate::NetManagerThreadPrivate()
     : QObject()
     , m_thread(new QThread(this))
-    , m_parentThread(QThread::currentThread())
+    , m_parentThread(qApp->thread())
     , m_isInitialized(false)
     , m_enabled(true)
     , m_autoScanInterval(0)
@@ -124,7 +125,7 @@ NetManagerThreadPrivate::~NetManagerThreadPrivate()
                                                 this,
                                                 SLOT(onPortalDetected(const QString &)));
     }
-    
+
     if (m_flags.testFlags(NetType::NetManagerFlag::Net_Airplane)) {
         QDBusConnection::systemBus().disconnect("org.deepin.dde.Bluetooth1", "/org/deepin/dde/Bluetooth1", "org.deepin.dde.Bluetooth1", "AdapterAdded", this, SLOT(getAirplaneModeEnabled()));
         QDBusConnection::systemBus().disconnect("org.deepin.dde.Bluetooth1", "/org/deepin/dde/Bluetooth1", "org.deepin.dde.Bluetooth1", "AdapterRemoved", this, SLOT(getAirplaneModeEnabled()));
