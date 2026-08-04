@@ -171,19 +171,11 @@ void NetDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, c
             } else {
                 textColor = boption.dpalette.highlightedText().color();
                 bgColor = boption.dpalette.highlight().color();
-                NetItemWidget *itemWidget = qobject_cast<NetItemWidget *>(m_view->indexWidget(index));
-                if (itemWidget) {
-                    itemWidget->setHover(true);
-                }
             }
         } else {
             textColor = boption.dpalette.brightText().color();
             bgColor = boption.dpalette.brightText().color();
             bgColor.setAlphaF(0.05);
-            NetItemWidget *itemWidget = qobject_cast<NetItemWidget *>(m_view->indexWidget(index));
-            if (itemWidget) {
-                itemWidget->setHover(false);
-            }
         }
     } break;
     default:

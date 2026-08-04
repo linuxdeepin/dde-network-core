@@ -65,6 +65,7 @@ protected Q_SLOTS:
 
 private:
     QModelIndex traverseAndSearch(const QModelIndex &parent, const QString &id);
+    void syncCurrentHoverState();
 
 private:
     NetManager *m_manager;
