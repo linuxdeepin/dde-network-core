@@ -20,6 +20,13 @@ DccObject {
     property var config: null
     property bool isAirplane: false
     property string interfaceName: ""
+    enum Status {
+        Disabling,
+        Enabling,
+        Disabled,
+        Enabled
+    }
+    property int hotspotStatus: (netItem && netItem.isEnabled) ? PageHotspot.Status.Enabled : PageHotspot.Status.Disabled
 
     function setNetItem(item) {
         if (netItem !== item) {
@@ -95,10 +102,11 @@ DccObject {
             D.Switch {
                 id: switchControl
                 anchors.fill: parent
-                checked: netItem.isEnabled
-                enabled: netItem.enabledable && !isAirplane && netItem.deviceEnabled
+                checked: root.hotspotStatus === PageHotspot.Status.Enabled || root.hotspotStatus === PageHotspot.Status.Enabling
+                enabled: netItem.enabledable && !isAirplane && netItem.deviceEnabled && root.hotspotStatus !== PageHotspot.Status.Enabling && root.hotspotStatus !== PageHotspot.Status.Disabling
                 onClicked: {
                     if (checked) {
+                        root.hotspotStatus = PageHotspot.Status.Enabling
                         if (config["connection"]["uuid"] === "{00000000-0000-0000-0000-000000000000}") {
                             dccData.exec(NetManager.SetConnectInfo, netItem.id, config)
                         } else {
@@ -107,6 +115,7 @@ DccObject {
                                          })
                         }
                     } else {
+                        root.hotspotStatus = PageHotspot.Status.Disabling
                         dccData.exec(NetManager.Disconnect, netItem.id, {
                                          "uuid": config["connection"]["uuid"]
                                      })
@@ -120,6 +129,9 @@ DccObject {
         function onConfigChanged(config) {
             root.config = config
             updateDevModel()
+        }
+        function onIsEnabledChanged() {
+            root.hotspotStatus = netItem.isEnabled ? PageHotspot.Status.Enabled : PageHotspot.Status.Disabled
         }
     }
 
