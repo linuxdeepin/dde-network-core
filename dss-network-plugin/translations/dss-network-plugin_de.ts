@@ -10,14 +10,14 @@
     <name>dde::network::NetAirplaneModeTipsItem</name>
     <message>
         <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation type="unfinished"/>
+        <translation>Zuerst &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Flugmodus&lt;/a&gt; ausschalten, falls Sie sich mit einem Drahtlos-Netzwerk verbinden wollen</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetItemWidget</name>
     <message>
         <source>Open a browser to authenticate</source>
-        <translation type="unfinished"/>
+        <translation>Zur Authentifizierung öffnen Sie bitte einen Browser</translation>
     </message>
 </context>
 <context>
@@ -35,71 +35,71 @@
     <name>dde::network::NetManagerThreadPrivate</name>
     <message>
         <source>Wired Connection %1</source>
-        <translation type="unfinished"/>
+        <translation>Kabelgebundene Verbindung %1</translation>
     </message>
     <message>
         <source>VPN L2TP %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN L2TP %1</translation>
     </message>
     <message>
         <source>VPN PPTP %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN PPTP %1</translation>
     </message>
     <message>
         <source>VPN VPNC %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN VPNC %1</translation>
     </message>
     <message>
         <source>VPN OpenVPN %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN OpenVPN %1</translation>
     </message>
     <message>
         <source>VPN StrongSwan %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN StrongSwan %1</translation>
     </message>
     <message>
         <source>VPN OpenConnect %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN OpenConnect %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
-        <translation type="unfinished"/>
+        <translation>PPPoE Verbindung %1</translation>
     </message>
     <message>
         <source>Connecting &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; wird verbunden</translation>
     </message>
     <message>
         <source>&quot;%1&quot; connected</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; verbunden</translation>
     </message>
     <message>
         <source>&quot;%1&quot; disconnected</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; getrennt</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
-        <translation type="unfinished"/>
+        <translation>Verbindung zu &quot;%1&quot; nicht möglich, bitte überprüfen Sie Ihren Router oder Ihr Netzwerkkabel.</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
-        <translation type="unfinished"/>
+        <translation>Verbindung zu &quot;%1&quot; nicht möglich, bitte näher zum WLAN-Router</translation>
     </message>
     <message>
         <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
-        <translation type="unfinished"/>
+        <translation>Verbindung fehlgeschlagen, Verbindung zu &quot;%1&quot; nicht möglich, falsches Passwort</translation>
     </message>
     <message>
         <source>Password is required to connect &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Für die Verbindung mit &quot;%1&quot; ist ein Passwort erforderlich</translation>
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"/>
+        <translation>Das &quot;%1&quot; 802.11-WLAN-Netzwerk konnte nicht gefunden werden</translation>
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
-        <translation type="unfinished"/>
+        <translation>Um &quot;%1&quot; zu verbinden, richten Sie bitte nach der Anmeldung  ihre Authentifizierungsinformationen ein.</translation>
     </message>
 </context>
 <context>
@@ -110,7 +110,7 @@
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation type="unfinished"/>
+        <translation>Privates Passwort</translation>
     </message>
     <message>
         <source>key</source>
@@ -122,7 +122,7 @@
     </message>
     <message>
         <source>Group Password</source>
-        <translation>Gruppenpasswort</translation>
+        <translation>Gruppen-Passwort</translation>
     </message>
     <message>
         <source>Username</source>
@@ -171,19 +171,19 @@
     </message>
     <message>
         <source>Disable VPN</source>
-        <translation type="unfinished"/>
+        <translation>VPN deaktivieren</translation>
     </message>
     <message>
         <source>Enable VPN</source>
-        <translation type="unfinished"/>
+        <translation>VPN einschalten</translation>
     </message>
     <message>
         <source>Disable system proxy</source>
-        <translation type="unfinished"/>
+        <translation>System-Proxy deaktivieren</translation>
     </message>
     <message>
         <source>Enable system proxy</source>
-        <translation type="unfinished"/>
+        <translation>System-Proxy einschalten</translation>
     </message>
     <message>
         <source>Network settings</source>
@@ -191,15 +191,15 @@
     </message>
     <message>
         <source>Multiple services started</source>
-        <translation type="unfinished"/>
+        <translation>Verschiedene Services gestartet</translation>
     </message>
     <message>
         <source>Connected to: %1</source>
-        <translation type="unfinished"/>
+        <translation>Verbunden mit: %1</translation>
     </message>
     <message>
         <source>System proxy enabled</source>
-        <translation type="unfinished"/>
+        <translation>System-Proxy eingeschaltet</translation>
     </message>
     <message>
         <source>Connected</source>
@@ -258,14 +258,14 @@
     <name>dde::network::NetSystemProxyControlItem</name>
     <message>
         <source>System Proxy</source>
-        <translation type="unfinished"/>
+        <translation>System-Proxy</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetVPNTipsItem</name>
     <message>
         <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
-        <translation type="unfinished"/>
+        <translation>VPN ist nicht eingerichtet oder die Verbindung dazu schlug fehl. Bitte überprüfen Sie das im &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;Kontrollzentrum&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -279,7 +279,7 @@
     <name>dde::network::NetWiredWidget</name>
     <message>
         <source>Disconnect</source>
-        <translation type="unfinished"/>
+        <translation>Trennen</translation>
     </message>
 </context>
 <context>
@@ -314,7 +314,7 @@
     <name>dde::network::NetWirelessWidget</name>
     <message>
         <source>Disconnect</source>
-        <translation type="unfinished"/>
+        <translation>Trennen</translation>
     </message>
 </context>
 </TS>
