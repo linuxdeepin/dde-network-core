@@ -35,35 +35,35 @@
     <name>dde::network::NetManagerThreadPrivate</name>
     <message>
         <source>Wired Connection %1</source>
-        <translation type="unfinished"/>
+        <translation>Ligação por Cabo %1</translation>
     </message>
     <message>
         <source>VPN L2TP %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN L2TP %1</translation>
     </message>
     <message>
         <source>VPN PPTP %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN PPTP %1</translation>
     </message>
     <message>
         <source>VPN VPNC %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN VPNC %1</translation>
     </message>
     <message>
         <source>VPN OpenVPN %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN OpenVPN %1</translation>
     </message>
     <message>
         <source>VPN StrongSwan %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN StrongSwan %1</translation>
     </message>
     <message>
         <source>VPN OpenConnect %1</source>
-        <translation type="unfinished"/>
+        <translation>VPN OpenConnect %1</translation>
     </message>
     <message>
         <source>PPPoE Connection %1</source>
-        <translation type="unfinished"/>
+        <translation>Ligação PPPoE %1</translation>
     </message>
     <message>
         <source>Connecting &quot;%1&quot;</source>
@@ -279,7 +279,7 @@
     <name>dde::network::NetWiredWidget</name>
     <message>
         <source>Disconnect</source>
-        <translation type="unfinished"/>
+        <translation>Desconectar</translation>
     </message>
 </context>
 <context>
@@ -300,21 +300,21 @@
     <name>dde::network::NetWirelessMineItem</name>
     <message>
         <source>My Networks</source>
-        <translation type="unfinished"/>
+        <translation>As Minhas Redes</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessOtherItem</name>
     <message>
         <source>Other Networks</source>
-        <translation type="unfinished"/>
+        <translation>Outras Redes</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessWidget</name>
     <message>
         <source>Disconnect</source>
-        <translation type="unfinished"/>
+        <translation>Desconectar</translation>
     </message>
 </context>
 </TS>
