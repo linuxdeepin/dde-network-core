@@ -360,7 +360,7 @@
     </message>
     <message>
         <source>VPN service stopped</source>
-        <translation>Serviço de VPN parou</translation>
+        <translation>Serviço de VPN parado</translation>
     </message>
     <message>
         <source>The IP config of VPN connection was invalid</source>
@@ -368,99 +368,99 @@
     </message>
     <message>
         <source>The connection attempt to VPN service timed out</source>
-        <translation type="unfinished"/>
+        <translation>A tentativa de ligação ao serviço VPN expirou</translation>
     </message>
     <message>
         <source>The VPN service start timed out</source>
-        <translation type="unfinished"/>
+        <translation>A iniciação do serviço VPN expirou</translation>
     </message>
     <message>
         <source>The VPN service failed to start</source>
-        <translation type="unfinished"/>
+        <translation>O serviço VPN falhou a iniciação</translation>
     </message>
     <message>
         <source>The VPN connection password was not provided</source>
-        <translation type="unfinished"/>
+        <translation>Não foi fornecida a palavra-passe da ligação VPN</translation>
     </message>
     <message>
         <source>Authentication to VPN server failed</source>
-        <translation type="unfinished"/>
+        <translation>Autenticação no servidor VPN falhou</translation>
     </message>
     <message>
         <source>The connection was deleted from settings</source>
-        <translation type="unfinished"/>
+        <translation>A ligação foi apagada das definições</translation>
     </message>
     <message>
         <source>Enabling hotspot</source>
-        <translation type="unfinished"/>
+        <translation>Ativar ponto de acesso</translation>
     </message>
     <message>
         <source>Connecting &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>A conectar &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Hotspot enabled</source>
-        <translation type="unfinished"/>
+        <translation>Ponto de Acesso ativado</translation>
     </message>
     <message>
         <source>&quot;%1&quot; connected</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; conectado</translation>
     </message>
     <message>
         <source>Hotspot disabled</source>
-        <translation type="unfinished"/>
+        <translation>Ponto de Acesso desativado</translation>
     </message>
     <message>
         <source>&quot;%1&quot; disconnected</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; desconectado</translation>
     </message>
     <message>
         <source>Unable to share hotspot, please check dnsmasq settings</source>
-        <translation type="unfinished"/>
+        <translation>Incapaz de partilhar ponto de acesso, por favor verifique as definições dnsmasq</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
-        <translation type="unfinished"/>
+        <translation>Incapaz de conectar &quot;%1&quot;, por favor mantenha-se perto do router sem fios</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
-        <translation type="unfinished"/>
+        <translation>Incapaz de conectar &quot;%1&quot;, por favor verifique o seu router ou cabo de rede.</translation>
     </message>
     <message>
         <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
-        <translation type="unfinished"/>
+        <translation>A conexão falhou, incapaz de conectar &quot;%1&quot;, palavra-passe errada</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Incapaz de conectar &quot;%1&quot;</translation>
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info</source>
-        <translation type="unfinished"/>
+        <translation>Para conectar &quot;%1&quot;, por favor defina a sua informação de autenticação</translation>
     </message>
     <message>
         <source>Password is required to connect &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Para conectar a &quot;%1&quot; é requerida palavra-passe</translation>
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"/>
+        <translation>A rede WLAN 802.11 &quot;%1&quot; não pode ser encontrada</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>Desligado</translation>
     </message>
     <message>
         <source>Airplane mode enabled.</source>
-        <translation type="unfinished"/>
+        <translation>Modo de Avião ativado.</translation>
     </message>
     <message>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Rede</translation>
     </message>
     <message>
         <source>The hardware switch of WLAN Card is off, please switch on as necessary.</source>
-        <translation type="unfinished"/>
+        <translation>O interruptor de hardware da Placa de Rede Sem Fios está desligado, por favor ligue conforme necessário.</translation>
     </message>
     <message>
         <source>Connected</source>
