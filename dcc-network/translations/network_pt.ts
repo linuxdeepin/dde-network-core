@@ -781,209 +781,209 @@
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation type="unfinished"/>
+        <translation>MPPE com estado</translation>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Recusar Autenticação EAP</translation>
     </message>
     <message>
         <source>Refuse PAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Recusar Autenticação PAP</translation>
     </message>
     <message>
         <source>Refuse CHAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Recusar Autenticação CHAP</translation>
     </message>
     <message>
         <source>Refuse MSCHAP Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Recusar Autenticação MSCHAP</translation>
     </message>
     <message>
         <source>Refuse MSCHAPv2 Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Recusar Autenticação MSCHAPv2</translation>
     </message>
     <message>
         <source>No BSD Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>Sem Compressão de Dados BSD</translation>
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation type="unfinished"/>
+        <translation>Sem Compressão de Dados Deflacionados</translation>
     </message>
     <message>
         <source>No TCP Header Compression</source>
-        <translation type="unfinished"/>
+        <translation>Sem Compressão de Cabeçalho TCP</translation>
     </message>
     <message>
         <source>Send PPP Echo Packets</source>
-        <translation type="unfinished"/>
+        <translation>Enviar Pacotes de Eco PPP</translation>
     </message>
 </context>
 <context>
     <name>SectionPPPOE</name>
     <message>
         <source>PPPoE</source>
-        <translation type="unfinished"/>
+        <translation>PPPoE</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Nome de utilizador</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"/>
+        <translation>Requerido</translation>
     </message>
     <message>
         <source>Service</source>
-        <translation type="unfinished"/>
+        <translation>Serviço</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Palavra-passe</translation>
     </message>
 </context>
 <context>
     <name>SectionSecret</name>
     <message>
         <source>Security</source>
-        <translation type="unfinished"/>
+        <translation>Segurança</translation>
     </message>
     <message>
         <source>Tunneled TLS</source>
-        <translation type="unfinished"/>
+        <translation>TLS Tunelado</translation>
     </message>
     <message>
         <source>Protected EAP</source>
-        <translation type="unfinished"/>
+        <translation>EAP Protegido</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Nenhum</translation>
     </message>
     <message>
         <source>WEP</source>
-        <translation type="unfinished"/>
+        <translation>WEP</translation>
     </message>
     <message>
         <source>WPA/WPA2 Personal</source>
-        <translation type="unfinished"/>
+        <translation>WPA/WPA2 Personal</translation>
     </message>
     <message>
         <source>WPA/WPA2 Enterprise</source>
-        <translation type="unfinished"/>
+        <translation>WPA/WPA2 Enterprise</translation>
     </message>
     <message>
         <source>WPA3 Personal</source>
-        <translation type="unfinished"/>
+        <translation>WPA3 Personal</translation>
     </message>
     <message>
         <source>EAP Auth</source>
-        <translation type="unfinished"/>
+        <translation>Autenticação EAP</translation>
     </message>
     <message>
         <source>Identity</source>
-        <translation type="unfinished"/>
+        <translation>Identidade</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"/>
+        <translation>Requerido</translation>
     </message>
     <message>
         <source>Pwd Options</source>
-        <translation type="unfinished"/>
+        <translation>Opções de Palavra-passe</translation>
     </message>
     <message>
         <source>Save password for this user</source>
-        <translation type="unfinished"/>
+        <translation>Guardar palavra-passe para este utilizador</translation>
     </message>
     <message>
         <source>Save password for all users</source>
-        <translation type="unfinished"/>
+        <translation>Guardar palavra-passe para todos os utilizadores</translation>
     </message>
     <message>
         <source>Ask me always</source>
-        <translation type="unfinished"/>
+        <translation>Perguntar sempre</translation>
     </message>
     <message>
         <source>Key</source>
-        <translation type="unfinished"/>
+        <translation>Chave</translation>
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation type="unfinished"/>
+        <translation>Palavra-passe Privada</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Palavra-passe</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Autenticação</translation>
     </message>
     <message>
         <source>Shared key</source>
-        <translation type="unfinished"/>
+        <translation>Chave partilhada</translation>
     </message>
     <message>
         <source>Open system</source>
-        <translation type="unfinished"/>
+        <translation>Abrir sistema</translation>
     </message>
     <message>
         <source>Private Key</source>
-        <translation type="unfinished"/>
+        <translation>Chave Privada</translation>
     </message>
     <message>
         <source>Anonymous ID</source>
-        <translation type="unfinished"/>
+        <translation>ID Anónimo</translation>
     </message>
     <message>
         <source>Provisioning</source>
-        <translation type="unfinished"/>
+        <translation>Aprovisionamento</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"/>
+        <translation>Desativado</translation>
     </message>
     <message>
         <source>Anonymous</source>
-        <translation type="unfinished"/>
+        <translation>Anónimo</translation>
     </message>
     <message>
         <source>Authenticated</source>
-        <translation type="unfinished"/>
+        <translation>Autenticado</translation>
     </message>
     <message>
         <source>Both</source>
-        <translation type="unfinished"/>
+        <translation>Ambos</translation>
     </message>
     <message>
         <source>PAC file</source>
-        <translation type="unfinished"/>
+        <translation>Ficheiro PAC</translation>
     </message>
     <message>
         <source>CA Cert</source>
-        <translation type="unfinished"/>
+        <translation>Certificado CA</translation>
     </message>
     <message>
         <source>User Cert</source>
-        <translation type="unfinished"/>
+        <translation>Certificado do Utilizador</translation>
     </message>
     <message>
         <source>PEAP Version</source>
-        <translation type="unfinished"/>
+        <translation>Versão PEAP</translation>
     </message>
     <message>
         <source>Automatic</source>
-        <translation type="unfinished"/>
+        <translation>Automático</translation>
     </message>
     <message>
         <source>Version 0</source>
-        <translation type="unfinished"/>
+        <translation>Versão 0</translation>
     </message>
     <message>
         <source>Version 1</source>
-        <translation type="unfinished"/>
+        <translation>Versão 1</translation>
     </message>
     <message>
         <source>Inner Auth</source>
