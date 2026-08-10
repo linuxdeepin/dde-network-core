@@ -1102,11 +1102,11 @@
     </message>
     <message>
         <source>Customize Key Direction</source>
-        <translation type="unfinished"/>
+        <translation>Personalizar Direção da Chave</translation>
     </message>
     <message>
         <source>Key Direction</source>
-        <translation type="unfinished"/>
+        <translation>Direção da Chave</translation>
     </message>
     <message>
         <source>0</source>
