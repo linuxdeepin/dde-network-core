@@ -9,8 +9,6 @@
 #include <NetworkManagerQt/Connection>
 #include <NetworkManagerQt/Device>
 
-class QTimer;
-
 namespace network {
 namespace systemservice {
 
@@ -20,30 +18,27 @@ class InternetChecker : public QObject
 
 public:
     explicit InternetChecker(QObject *parent = nullptr);
-    ~InternetChecker() override;
+    ~InternetChecker() override = default;
     void switchInternetAccess(bool checkPrimaryConnection = false);
 
 signals:
     void switchSuccess();
     void switchFailed();
 
-private slots:
-    void onPrimaryConnectionChanged(const QString &uni);
-    void onPrimaryConnectionTimeout();
-
 private:
-    void resetAllNeverDefault() const;
-    bool setConnectionNeverDefault(const NetworkManager::Connection::Ptr &conn, const NetworkManager::Device::Ptr &device, bool neverDefault) const;
-    void setPrimaryDeviceNeverDefault(bool neverDefault) const;
-    bool checkInternetAccessible() const;
-    bool checkInternetAccessible(int timeoutSec, bool &timedOut) const;
-    bool checkInternetAccessibleWithRetry(int maxRetry) const;
-    void changeDeviceNeverDefault(const NetworkManager::Device::Ptr &device, bool neverDefault) const;
+    QStringList getDeviceDnsList(const NetworkManager::Device::Ptr &device) const;
+    bool checkInterfaceOnline(const NetworkManager::Device::Ptr &device) const;
+    bool isIfaceReachable(const QString &ifName, const sockaddr_in &dest, int timeoutMs) const;
+    bool checkNetCardOnline(const NetworkManager::Device::Ptr &device, const QString &domain, const QStringList &dnslist, int timeoutMs) const;
+    bool resolveByBindIface(const NetworkManager::Device::Ptr &device, const QString &domain, const QStringList &dnslist, in_addr &outIp, int timeout) const;
+    bool checkIpAddrByUDP(const NetworkManager::Device::Ptr &device, const QString &dnsIp, const QString &domain, int curTimeout, in_addr &outIp) const;
+    bool checkIpAddrByTCP(const NetworkManager::Device::Ptr &device, const QString &dnsIp, const QString &domain, int curTimeout, in_addr &outIp) const;
+    bool setPrimaryDevice(const NetworkManager::Device::Ptr &device, const NetworkManager::Device::List &allDevices);
 
-    int m_tryIndex;
-    NetworkManager::Device::List m_tryDevices;
-    QTimer *m_switchTimer;
-    bool m_isSwitching;
+    // DNS辅助函数：构造查询包，返回写入的字节数；出错返回-1
+    static int buildDnsQueryPacket(const QString &domain, unsigned char *pkt, int pktSize, unsigned short txId);
+    // DNS辅助函数：解析响应，成功返回true并填充outIp
+    static bool parseDnsResponse(const unsigned char *buf, int len, unsigned short txId, in_addr &outIp);
 };
 
 }
