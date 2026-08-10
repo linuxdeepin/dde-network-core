@@ -303,11 +303,11 @@ QVariant NetworkInitialization::accountInterface(const QString &path, const QStr
 {
     QString interfaceName;
     if (isUser) {
-        interfaceName = "com.deepin.daemon.Accounts.User";
+        interfaceName = "org.deepin.dde.Accounts1.User";
     } else {
-        interfaceName = "com.deepin.daemon.Accounts";
+        interfaceName = "org.deepin.dde.Accounts1";
     }
-    QDBusInterface dbus("com.deepin.daemon.Accounts", path, interfaceName, QDBusConnection::systemBus());
+    QDBusInterface dbus("org.deepin.dde.Accounts1", path, interfaceName, QDBusConnection::systemBus());
     return dbus.property(key.toLocal8Bit().constData());
 }
 
