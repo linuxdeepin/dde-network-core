@@ -987,118 +987,118 @@
     </message>
     <message>
         <source>Inner Auth</source>
-        <translation type="unfinished"/>
+        <translation>Autenticação Interna</translation>
     </message>
 </context>
 <context>
     <name>SectionVPN</name>
     <message>
         <source>VPN</source>
-        <translation type="unfinished"/>
+        <translation>VPN</translation>
     </message>
     <message>
         <source>All files (*)</source>
-        <translation type="unfinished"/>
+        <translation>Todos os ficheiros (*)</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"/>
+        <translation>Requerido</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation type="unfinished"/>
+        <translation>Gateway inválido</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"/>
+        <translation>Gateway</translation>
     </message>
     <message>
         <source>CA Cert</source>
-        <translation type="unfinished"/>
+        <translation>Certificado CA</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation type="unfinished"/>
+        <translation>Proxy</translation>
     </message>
     <message>
         <source>Allow Cisco Secure Desktop Trojan</source>
-        <translation type="unfinished"/>
+        <translation>Permitir o Cisco Secure Desktop Trojan</translation>
     </message>
     <message>
         <source>CSD Script</source>
-        <translation type="unfinished"/>
+        <translation>CSD Script</translation>
     </message>
     <message>
         <source>Auth Type</source>
-        <translation type="unfinished"/>
+        <translation>Tipo de Autenticação</translation>
     </message>
     <message>
         <source>Private Key</source>
-        <translation type="unfinished"/>
+        <translation>Chave Privada</translation>
     </message>
     <message>
         <source>SSH Agent</source>
-        <translation type="unfinished"/>
+        <translation>Agente SSH</translation>
     </message>
     <message>
         <source>Smart Card</source>
-        <translation type="unfinished"/>
+        <translation>Cartão Smart</translation>
     </message>
     <message>
         <source>EAP</source>
-        <translation type="unfinished"/>
+        <translation>EAP</translation>
     </message>
     <message>
         <source>Pre-Shared Key</source>
-        <translation type="unfinished"/>
+        <translation>Chave Pré-Partilhada</translation>
     </message>
     <message>
         <source>User Cert</source>
-        <translation type="unfinished"/>
+        <translation>Certificado do Utilizador</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Nome de utilizador</translation>
     </message>
     <message>
         <source>Use FSID for Key Passphrase</source>
-        <translation type="unfinished"/>
+        <translation>Utilizar o FSID como Frase-passe da Chave</translation>
     </message>
     <message>
         <source>Certificates (TLS)</source>
-        <translation type="unfinished"/>
+        <translation>Certificados (TLS)</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Palavra-passe</translation>
     </message>
     <message>
         <source>Certificates with Password (TLS)</source>
-        <translation type="unfinished"/>
+        <translation>Certificados com Palavra-passe (TLS)</translation>
     </message>
     <message>
         <source>Static Key</source>
-        <translation type="unfinished"/>
+        <translation>Chave Estática</translation>
     </message>
     <message>
         <source>Pwd Options</source>
-        <translation type="unfinished"/>
+        <translation>Opções de Palavra-passe</translation>
     </message>
     <message>
         <source>Saved</source>
-        <translation type="unfinished"/>
+        <translation>Guardado</translation>
     </message>
     <message>
         <source>Ask</source>
-        <translation type="unfinished"/>
+        <translation>Perguntar</translation>
     </message>
     <message>
         <source>Not Required</source>
-        <translation type="unfinished"/>
+        <translation>Não Requerido</translation>
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation type="unfinished"/>
+        <translation>Palavra-passe Privada</translation>
     </message>
     <message>
         <source>Customize Key Direction</source>
