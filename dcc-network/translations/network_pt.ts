@@ -1402,130 +1402,130 @@
     </message>
     <message>
         <source>Disable Dead Peer Detection</source>
-        <translation type="unfinished"/>
+        <translation>Desativar Deteção de Peer Morto</translation>
     </message>
     <message>
         <source>VPN Security</source>
-        <translation type="unfinished"/>
+        <translation>Segurança da VPN</translation>
     </message>
     <message>
         <source>Cipher</source>
-        <translation type="unfinished"/>
+        <translation>Cifra</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Predefinição</translation>
     </message>
     <message>
         <source>HMAC Auth</source>
-        <translation type="unfinished"/>
+        <translation>Autenticação HMAC</translation>
     </message>
     <message>
         <source>RSA MD-4</source>
-        <translation type="unfinished"/>
+        <translation>RSA MD-4</translation>
     </message>
     <message>
         <source>MD-5</source>
-        <translation type="unfinished"/>
+        <translation>MD-5</translation>
     </message>
     <message>
         <source>SHA-1</source>
-        <translation type="unfinished"/>
+        <translation>SHA-1</translation>
     </message>
     <message>
         <source>SHA-224</source>
-        <translation type="unfinished"/>
+        <translation>SHA-224</translation>
     </message>
     <message>
         <source>SHA-256</source>
-        <translation type="unfinished"/>
+        <translation>SHA-256</translation>
     </message>
     <message>
         <source>SHA-384</source>
-        <translation type="unfinished"/>
+        <translation>SHA-384</translation>
     </message>
     <message>
         <source>SHA-512</source>
-        <translation type="unfinished"/>
+        <translation>SHA-512</translation>
     </message>
     <message>
         <source>RIPEMD-160</source>
-        <translation type="unfinished"/>
+        <translation>RIPEMD-160</translation>
     </message>
     <message>
         <source>VPN Proxy</source>
-        <translation type="unfinished"/>
+        <translation>Proxy VPN</translation>
     </message>
     <message>
         <source>Proxy Type</source>
-        <translation type="unfinished"/>
+        <translation>Tipo de Proxy</translation>
     </message>
     <message>
         <source>Server IP</source>
-        <translation type="unfinished"/>
+        <translation>IP do Servidor</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished"/>
+        <translation>Porta</translation>
     </message>
     <message>
         <source>Retry Indefinitely When Failed</source>
-        <translation type="unfinished"/>
+        <translation>Tentar Novamente Indefinidamente Quando Falhar</translation>
     </message>
     <message>
         <source>VPN TLS Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Autenticação VPN TLS</translation>
     </message>
     <message>
         <source>Subject Match</source>
-        <translation type="unfinished"/>
+        <translation>Correspondência de Assunto</translation>
     </message>
     <message>
         <source>Remote Cert Type</source>
-        <translation type="unfinished"/>
+        <translation>Tipo de Certificado Remoto</translation>
     </message>
     <message>
         <source>Client</source>
-        <translation type="unfinished"/>
+        <translation>Cliente</translation>
     </message>
     <message>
         <source>Server</source>
-        <translation type="unfinished"/>
+        <translation>Servidor</translation>
     </message>
     <message>
         <source>Key File</source>
-        <translation type="unfinished"/>
+        <translation>Ficheiro Chave</translation>
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"/>
+        <translation>MTU (1280-9000)</translation>
     </message>
 </context>
 <context>
     <name>SystemProxyConfigItem</name>
     <message>
         <source>Optional</source>
-        <translation type="unfinished"/>
+        <translation>Opcional</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished"/>
+        <translation>Porta</translation>
     </message>
     <message>
         <source>Authentication is required</source>
-        <translation type="unfinished"/>
+        <translation>É requerida autenticação</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Nome de utilizador</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"/>
+        <translation>Requerido</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Palavra-passe</translation>
     </message>
 </context>
 <context>
