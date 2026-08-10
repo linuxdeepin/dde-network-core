@@ -1370,35 +1370,35 @@
     </message>
     <message>
         <source>IKE DH Group</source>
-        <translation type="unfinished"/>
+        <translation>Grupo IKE DH</translation>
     </message>
     <message>
         <source>DH Group 1</source>
-        <translation type="unfinished"/>
+        <translation>DH Grupo 1</translation>
     </message>
     <message>
         <source>DH Group 2 (default)</source>
-        <translation type="unfinished"/>
+        <translation>DH Grupo 2 (predefinição)</translation>
     </message>
     <message>
         <source>DH Group 5</source>
-        <translation type="unfinished"/>
+        <translation>DH Grupo 5</translation>
     </message>
     <message>
         <source>Forward Secrecy</source>
-        <translation type="unfinished"/>
+        <translation>Re-encaminhar Sigilo</translation>
     </message>
     <message>
         <source>Server (default)</source>
-        <translation type="unfinished"/>
+        <translation>Servidor (predefinição)</translation>
     </message>
     <message>
         <source>DH Group 2</source>
-        <translation type="unfinished"/>
+        <translation>DH Grupo 2</translation>
     </message>
     <message>
         <source>Local Port</source>
-        <translation type="unfinished"/>
+        <translation>Porta Local</translation>
     </message>
     <message>
         <source>Disable Dead Peer Detection</source>
