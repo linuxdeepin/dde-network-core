@@ -1,95 +1,95 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ru">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pt">
 <context>
     <name>DeviceStatusItem</name>
     <message>
         <source>Off</source>
-        <translation>Выключено</translation>
+        <translation>Desligado</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation>Подключено</translation>
+        <translation>Conectado</translation>
     </message>
     <message>
         <source>IP conflict</source>
-        <translation>Конфликт IP-адресов</translation>
+        <translation>Conflito de IP</translation>
     </message>
     <message>
         <source>Connecting</source>
-        <translation>Подключение</translation>
+        <translation>A conectar</translation>
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation>Получение адреса</translation>
+        <translation>A obter endereço</translation>
     </message>
     <message>
         <source>Authenticating</source>
-        <translation>Аутентификация</translation>
+        <translation>A autenticar</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation>Отключено</translation>
+        <translation>Desconectado</translation>
     </message>
 </context>
 <context>
     <name>NetFileChooseEdit</name>
     <message>
         <source>All files (*)</source>
-        <translation>Все файлы (*)</translation>
+        <translation>Todos os ficheiros (*)</translation>
     </message>
 </context>
 <context>
     <name>NetPasswordEdit</name>
     <message>
         <source>Required</source>
-        <translation>Необходимо</translation>
+        <translation>Requerido</translation>
     </message>
 </context>
 <context>
     <name>Network</name>
     <message>
         <source>Network</source>
-        <translation>Сеть</translation>
+        <translation>Rede</translation>
     </message>
 </context>
 <context>
     <name>NetworkMain</name>
     <message>
         <source>Connection settings</source>
-        <translation>Настройки соединения</translation>
+        <translation>Definições de ligação</translation>
     </message>
     <message>
         <source>Related Settings</source>
-        <translation>Связанные настройки</translation>
+        <translation>Definições Relacionadas</translation>
     </message>
 </context>
 <context>
     <name>PageAirplane</name>
     <message>
         <source>Airplane mode</source>
-        <translation>Режим полета</translation>
+        <translation>Modo de avião</translation>
     </message>
     <message>
         <source>Stop wireless communication</source>
-        <translation>Остановит передачу данных</translation>
+        <translation>Parar comunicação sem fios</translation>
     </message>
     <message>
         <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
-        <translation>Включение режима полета отключает беспроводную сеть, персональную точку доступа и Bluetooth</translation>
+        <translation>Ativar o modo de avião desliga a rede sem fios, ponto de acesso pessoal e Bluetooth</translation>
     </message>
 </context>
 <context>
     <name>PageAppProxy</name>
     <message>
         <source>Application Proxy</source>
-        <translation>Прокси приложений</translation>
+        <translation>Proxy da Aplicação</translation>
     </message>
     <message>
         <source>Set up proxy servers</source>
-        <translation>Настройте прокси сервера</translation>
+        <translation>Definir servidores de proxy</translation>
     </message>
     <message>
         <source>Proxy Type</source>
-        <translation>Тип прокси</translation>
+        <translation>Tipo de Proxy</translation>
     </message>
     <message>
         <source>http</source>
@@ -105,47 +105,47 @@
     </message>
     <message>
         <source>IP Address</source>
-        <translation>IP-адрес</translation>
+        <translation>Endereço de IP</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation>Необходимо</translation>
+        <translation>Requerido</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
-        <translation>Недопустимый IP-адрес</translation>
+        <translation>Endereço de IP inválido</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation>Порт</translation>
+        <translation>Porta</translation>
     </message>
     <message>
         <source>Invalid port</source>
-        <translation>Недопустимый порт</translation>
+        <translation>Porta inválida</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Имя пользователя</translation>
+        <translation>Nome de utilizador</translation>
     </message>
     <message>
         <source>Optional</source>
-        <translation>Необязательно</translation>
+        <translation>Opcional</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Пароль</translation>
+        <translation>Palavra-passe</translation>
     </message>
     <message>
         <source>Check &quot;Use a proxy&quot; in application context menu in Launcher after configured</source>
-        <translation>После настройки отметьте пункт «Использовать прокси» в контекстном меню приложения в Лаунчере</translation>
+        <translation>Marque &quot;Usar um proxy&quot; no menu de contexto da aplicação no Lançador depois de configurado</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Отмена</translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Сохранить</translation>
+        <translation>Guardar</translation>
     </message>
 </context>
 <context>
@@ -156,69 +156,69 @@
     </message>
     <message>
         <source>Set up a dial-up network connection</source>
-        <translation>Настройте коммутируемое сетевое соединение</translation>
+        <translation>Configurar uma ligação de rede por ligação telefónica</translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation>Отключить</translation>
+        <translation>Desconectar</translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation>Подключить</translation>
+        <translation>Conectar</translation>
     </message>
     <message>
         <source>Add PPPoE connection</source>
-        <translation>Добавить подключение PPPoE</translation>
+        <translation>Adicionar ligação PPPoE</translation>
     </message>
 </context>
 <context>
     <name>PageDSLSettings</name>
     <message>
         <source>Delete</source>
-        <translation>Удалить</translation>
+        <translation>Apagar</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this configuration?</source>
-        <translation>Вы действительно хотите удалить эту конфигурацию?</translation>
+        <translation>Tem a certeza que deseja apagar esta configuração?</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Отмена</translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Сохранить</translation>
+        <translation>Guardar</translation>
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation>Свойства сети %1</translation>
+        <translation>Propriedades da Rede %1</translation>
     </message>
 </context>
 <context>
     <name>PageDetails</name>
     <message>
         <source>Network Details</source>
-        <translation>Детали сети</translation>
+        <translation>Detalhes da Rede</translation>
     </message>
     <message>
         <source>View all network configurations</source>
-        <translation>Просмотреть все конфигурации сети</translation>
+        <translation>Ver todas as configurações de rede</translation>
     </message>
     <message>
         <source>Details has been copied</source>
-        <translation>Сведения скопированы</translation>
+        <translation>Os detalhes foram copiados</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Копировать</translation>
+        <translation>Copiar</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation>Выбрать всё</translation>
+        <translation>Selecionar Tudo</translation>
     </message>
     <message>
         <source>Network Detection</source>
-        <translation>Обнаружение сети</translation>
+        <translation>Deteção de Rede</translation>
     </message>
 </context>
 <context>
@@ -233,169 +233,169 @@
     </message>
     <message>
         <source>None</source>
-        <translation>Нет</translation>
+        <translation>Nenhum</translation>
     </message>
     <message>
         <source>2.4 GHz</source>
-        <translation>2,4 ГГц</translation>
+        <translation>2.4 GHz</translation>
     </message>
     <message>
         <source>5 GHz</source>
-        <translation>5 ГГц</translation>
+        <translation>5 GHz</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation>Авто</translation>
+        <translation>Auto</translation>
     </message>
     <message>
         <source>Not Bind</source>
-        <translation>Не привязано</translation>
+        <translation>Não Vincula</translation>
     </message>
     <message>
         <source>Personal Hotspot</source>
-        <translation>Персональная точка доступа</translation>
+        <translation>Ponto de Acesso Pessoal</translation>
     </message>
     <message>
         <source>Share the network</source>
-        <translation>Поделиться сетью</translation>
+        <translation>Partilhar a rede</translation>
     </message>
     <message>
         <source>My Hotspot</source>
-        <translation>Моя точка доступа</translation>
+        <translation>O Meu Ponto de Acesso</translation>
     </message>
     <message>
         <source>Edit My Hotspot</source>
-        <translation>Настроить мою точку доступа</translation>
+        <translation>Editar o Meu Ponto de Acesso</translation>
     </message>
     <message>
         <source>Name (SSID)</source>
-        <translation>Имя (SSID)</translation>
+        <translation>Nome (SSID)</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation>Необходимо</translation>
+        <translation>Requerido</translation>
     </message>
     <message>
         <source>Security</source>
-        <translation>Безопасность</translation>
+        <translation>Segurança</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Пароль</translation>
+        <translation>Palavra-passe</translation>
     </message>
     <message>
         <source>Band</source>
-        <translation>Диапазон</translation>
+        <translation>Banda</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Отмена</translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Сохранить</translation>
+        <translation>Guardar</translation>
     </message>
     <message>
         <source>Shared Settings</source>
-        <translation>Общие настройки</translation>
+        <translation>Definições Partilhadas</translation>
     </message>
     <message>
         <source>Hotspot Sharing Device</source>
-        <translation>Устройство для общего доступа к точке доступа</translation>
+        <translation>Dispositivo de Partilha de Ponto de Acesso</translation>
     </message>
     <message>
         <source>If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.</source>
-        <translation>Если вы хотите использовать персональную точку доступа, сначала отключите режим полета, а затем включите адаптер беспроводной сети.</translation>
+        <translation>Se quiser usar o ponto de acesso pessoal, desative primeiro o Modo de Avião e depois ative o adaptador de rede sem fios.</translation>
     </message>
     <message>
         <source>If you want to use the personal hotspot, disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first and then enable the wireless network adapter.</source>
-        <translation>Если вы хотите использовать персональную точку доступа, сначала отключите &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Режим полета&lt;/a&gt;, а затем включите адаптер беспроводной сети.</translation>
+        <translation>Se quiser usar o ponto de acesso pessoal, desative primeiro o &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Modo de Avião&lt;/a&gt; e depois ative o adaptador de rede sem fios.</translation>
     </message>
     <message>
         <source>Enable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;Wireless Network Adapter&lt;/a&gt; first if you want to use the personal hotspot.</source>
-        <translation>Если вы хотите использовать персональную точку доступа, сначала включите &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;адаптер беспроводной сети&lt;/a&gt;.</translation>
+        <translation>Ative primeiro o &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;Adaptador de Rede Sem Fios&lt;/a&gt; se quiser usar o ponto de acesso pessoal.</translation>
     </message>
 </context>
 <context>
     <name>PageSettings</name>
     <message>
         <source>Delete</source>
-        <translation>Удалить</translation>
+        <translation>Apagar</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this configuration?</source>
-        <translation>Вы действительно хотите удалить эту конфигурацию?</translation>
+        <translation>Tem a certeza que deseja apagar esta configuração?</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Отмена</translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Сохранить</translation>
+        <translation>Guardar</translation>
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation>Свойства сети %1</translation>
+        <translation>Propriedades da Rede %1</translation>
     </message>
 </context>
 <context>
     <name>PageSystemProxy</name>
     <message>
         <source>System Proxy</source>
-        <translation>Системный прокси</translation>
+        <translation>Proxy do Sistema</translation>
     </message>
     <message>
         <source>Set up proxy servers</source>
-        <translation>Настройте прокси сервера</translation>
+        <translation>Definir servidores de proxy</translation>
     </message>
     <message>
         <source>Proxy Type</source>
-        <translation>Тип прокси</translation>
+        <translation>Tipo de Proxy</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation>Авто</translation>
+        <translation>Auto</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation>Вручную</translation>
+        <translation>Manual</translation>
     </message>
     <message>
         <source>Configuration URL</source>
-        <translation>URL конфигурации</translation>
+        <translation>URL de Configuração</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation>Необходимо</translation>
+        <translation>Requerido</translation>
     </message>
     <message>
         <source>HTTP Proxy</source>
-        <translation>Прокси HTTP</translation>
+        <translation>Proxy HTTP</translation>
     </message>
     <message>
         <source>HTTPS Proxy</source>
-        <translation>Прокси HTTPS</translation>
+        <translation>Proxy HTTPS</translation>
     </message>
     <message>
         <source>FTP Proxy</source>
-        <translation>Прокси FTP</translation>
+        <translation>Proxy FTP</translation>
     </message>
     <message>
         <source>SOCKS Proxy</source>
-        <translation>Прокси SOCKS</translation>
+        <translation>Proxy SOCKS</translation>
     </message>
     <message>
         <source>Ignore the proxy configurations for the above hosts and domains</source>
-        <translation>Игнорировать настройки прокси для указанных выше узлов и доменов</translation>
+        <translation>Ignorar as configurações de proxy para os hosts e domínios acima</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Отмена</translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Сохранить</translation>
+        <translation>Guardar</translation>
     </message>
 </context>
 <context>
@@ -406,23 +406,23 @@
     </message>
     <message>
         <source>Connect, add, import</source>
-        <translation>Подключить, добавить, импортировать</translation>
+        <translation>Conectar, adicionar, importar</translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation>Отключить</translation>
+        <translation>Desconectar</translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation>Подключить</translation>
+        <translation>Conectar</translation>
     </message>
     <message>
         <source>Add VPN</source>
-        <translation>Добавить VPN</translation>
+        <translation>Adicionar VPN</translation>
     </message>
     <message>
         <source>Import VPN</source>
-        <translation>Импорт VPN</translation>
+        <translation>Importar VPN</translation>
     </message>
     <message>
         <source>*.conf</source>
@@ -430,38 +430,38 @@
     </message>
     <message>
         <source>Import Error</source>
-        <translation>Ошибка импорта</translation>
+        <translation>Erro de Importação</translation>
     </message>
     <message>
         <source>File error</source>
-        <translation>Ошибка файла</translation>
+        <translation>Erro de ficheiro</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation>ОК</translation>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
     <name>PageVPNSettings</name>
     <message>
         <source>VPN Type</source>
-        <translation>Тип VPN</translation>
+        <translation>Tipo de VPN</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Удалить</translation>
+        <translation>Apagar</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this configuration?</source>
-        <translation>Вы действительно хотите удалить эту конфигурацию?</translation>
+        <translation>Tem a certeza que deseja apagar esta configuração?</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Отмена</translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <source>Export</source>
-        <translation>Экспорт</translation>
+        <translation>Exportar</translation>
     </message>
     <message>
         <source>*.conf</source>
@@ -469,73 +469,73 @@
     </message>
     <message>
         <source>Save</source>
-        <translation>Сохранить</translation>
+        <translation>Guardar</translation>
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation>Свойства сети %1</translation>
+        <translation>Propriedades da Rede %1</translation>
     </message>
 </context>
 <context>
     <name>PageWiredDevice</name>
     <message>
         <source>Connect, edit network settings</source>
-        <translation>Подключить, изменить настройки</translation>
+        <translation>Conectar, editar definições de rede</translation>
     </message>
     <message>
         <source>Plug in the network cable first</source>
-        <translation>Сначала подключите сетевой кабель</translation>
+        <translation>Primeiro ligue o cabo de rede</translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation>Отключить</translation>
+        <translation>Desconectar</translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation>Подключить</translation>
+        <translation>Conectar</translation>
     </message>
     <message>
         <source>Add Network Connection</source>
-        <translation>Добавить сетевое подключение</translation>
+        <translation>Adicionar Ligação de Rede</translation>
     </message>
 </context>
 <context>
     <name>PageWirelessDevice</name>
     <message>
         <source>Connect, edit network settings</source>
-        <translation>Подключить, изменить настройки</translation>
+        <translation>Conectar, editar definições de rede</translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation>Отключить</translation>
+        <translation>Desconectar</translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation>Подключить</translation>
+        <translation>Conectar</translation>
     </message>
     <message>
         <source>Other Networks</source>
-        <translation>Другие сети</translation>
+        <translation>Outras Redes</translation>
     </message>
     <message>
         <source>Disable Airplane Mode first if you want to connect to a wireless network</source>
-        <translation>Сначала отключите режим полета, если вы хотите подключиться к беспроводной сети</translation>
+        <translation>Desative primeiro o Modo Avião se quiser ligar a uma rede sem fios</translation>
     </message>
     <message>
         <source>Disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation>Если вы хотите подключиться к беспроводной сети, сначала отключите &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Режим полета&lt;/a&gt;</translation>
+        <translation>Desative primeiro o &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Modo de Avião&lt;/a&gt; se quiser ligar a uma rede sem fios</translation>
     </message>
     <message>
         <source>Disable hotspot first if you want to connect to a wireless network</source>
-        <translation>Сначала отключите точку доступа, если вы хотите подключиться к беспроводной сети</translation>
+        <translation>Desative primeiro o ponto de acesso se quiser ligar a uma rede sem fios</translation>
     </message>
     <message>
         <source>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Disable hotspot&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation>Если вы хотите подключиться к беспроводной сети, сначала отключите &lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;точку доступа&lt;/a&gt;</translation>
+        <translation>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Desative primeiro o ponto de acesso&lt;/a&gt; se quiser ligar a uma rede sem fios</translation>
     </message>
     <message>
         <source>My Networks</source>
-        <translation>Мои сети</translation>
+        <translation>As Minhas Redes</translation>
     </message>
 </context>
 <context>
@@ -546,22 +546,22 @@
     </message>
     <message>
         <source>Done</source>
-        <translation>Готово</translation>
+        <translation>Concluído</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Изменить</translation>
+        <translation>Editar</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
-        <translation>Недопустимый IP-адрес</translation>
+        <translation>Endereço de IP inválido</translation>
     </message>
 </context>
 <context>
     <name>SectionDevice</name>
     <message>
         <source>Not Bind</source>
-        <translation>Не привязано</translation>
+        <translation>Não Vincula</translation>
     </message>
     <message>
         <source>WLAN</source>
@@ -569,19 +569,19 @@
     </message>
     <message>
         <source>Ethernet</source>
-        <translation>Ethernet</translation>
+        <translation>Rede Cablada</translation>
     </message>
     <message>
         <source>Device MAC Addr</source>
-        <translation>MAC-адрес устройства</translation>
+        <translation>Endereço MAC do Dispositivo</translation>
     </message>
     <message>
         <source>Cloned MAC Addr</source>
-        <translation>Клонированный MAC-адрес</translation>
+        <translation>Endereço MAC Clonado</translation>
     </message>
     <message>
         <source>Customize MTU</source>
-        <translation>Настроить MTU</translation>
+        <translation>Personalizar MTU</translation>
     </message>
     <message>
         <source>MTU (1280-9000)</source>
@@ -592,39 +592,39 @@
     <name>SectionGeneric</name>
     <message>
         <source>General</source>
-        <translation>Основные</translation>
+        <translation>Geral</translation>
     </message>
     <message>
         <source>Name (SSID)</source>
-        <translation>Имя (SSID)</translation>
+        <translation>Nome (SSID)</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Имя</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation>Необходимо</translation>
+        <translation>Requerido</translation>
     </message>
     <message>
         <source>Auto Connect</source>
-        <translation>Автоподключение</translation>
+        <translation>Ligação Automática</translation>
     </message>
     <message>
         <source>Band</source>
-        <translation>Диапазон</translation>
+        <translation>Banda</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation>Авто</translation>
+        <translation>Auto</translation>
     </message>
     <message>
         <source>2.4 GHz</source>
-        <translation>2,4 ГГц</translation>
+        <translation>2.4 GHz</translation>
     </message>
     <message>
         <source>5 GHz</source>
-        <translation>5 ГГц</translation>
+        <translation>5 GHz</translation>
     </message>
 </context>
 <context>
@@ -635,82 +635,82 @@
     </message>
     <message>
         <source>Done</source>
-        <translation>Готово</translation>
+        <translation>Concluído</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Изменить</translation>
+        <translation>Editar</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Отключено</translation>
+        <translation>Desativado</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation>Вручную</translation>
+        <translation>Manual</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation>Авто</translation>
+        <translation>Auto</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation>Метод</translation>
+        <translation>Método</translation>
     </message>
     <message>
         <source>Only applied in corresponding resources</source>
-        <translation>Применяется только к соответствующим ресурсам</translation>
+        <translation>Apenas aplicado nos recursos correspondentes</translation>
     </message>
     <message>
         <source>IP Address</source>
-        <translation>IP-адрес</translation>
+        <translation>Endereço de IP</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
-        <translation>Недопустимый IP-адрес</translation>
+        <translation>Endereço de IP inválido</translation>
     </message>
     <message>
         <source>Netmask</source>
-        <translation>Маска сети</translation>
+        <translation>Máscara de Rede</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation>Шлюз</translation>
+        <translation>Gateway</translation>
     </message>
     <message>
         <source>Invalid netmask</source>
-        <translation>Недопустимая маска сети</translation>
+        <translation>Máscara de rede inválida</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation>Недопустимый шлюз</translation>
+        <translation>Gateway inválido</translation>
     </message>
     <message>
         <source>Duplicate IP address</source>
-        <translation>Повторяющийся IP-адрес</translation>
+        <translation>Endereço IP duplicado</translation>
     </message>
     <message>
         <source>Only one gateway is allowed</source>
-        <translation>Разрешён только один шлюз</translation>
+        <translation>Apenas um Gateway é permitido</translation>
     </message>
 </context>
 <context>
     <name>SectionIPv6</name>
     <message>
         <source>Disabled</source>
-        <translation>Отключено</translation>
+        <translation>Desativado</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation>Вручную</translation>
+        <translation>Manual</translation>
     </message>
     <message>
         <source>Ignore</source>
-        <translation>Игнорировать</translation>
+        <translation>Ignorar</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation>Авто</translation>
+        <translation>Auto</translation>
     </message>
     <message>
         <source>IPv6</source>
@@ -718,51 +718,51 @@
     </message>
     <message>
         <source>Done</source>
-        <translation>Готово</translation>
+        <translation>Concluído</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Изменить</translation>
+        <translation>Editar</translation>
     </message>
     <message>
         <source>Method</source>
-        <translation>Метод</translation>
+        <translation>Método</translation>
     </message>
     <message>
         <source>Only applied in corresponding resources</source>
-        <translation>Применяется только к соответствующим ресурсам</translation>
+        <translation>Apenas aplicado nos recursos correspondentes</translation>
     </message>
     <message>
         <source>IP Address</source>
-        <translation>IP-адрес</translation>
+        <translation>Endereço de IP</translation>
     </message>
     <message>
         <source>Invalid IP address</source>
-        <translation>Недопустимый IP-адрес</translation>
+        <translation>Endereço de IP inválido</translation>
     </message>
     <message>
         <source>Prefix</source>
-        <translation>Префикс</translation>
+        <translation>Prefixo</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation>Шлюз</translation>
+        <translation>Gateway</translation>
     </message>
     <message>
         <source>Invalid netmask</source>
-        <translation>Недопустимая маска сети</translation>
+        <translation>Máscara de rede inválida</translation>
     </message>
     <message>
         <source>Duplicate IP address</source>
-        <translation>Повторяющийся IP-адрес</translation>
+        <translation>Endereço IP duplicado</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation>Недопустимый шлюз</translation>
+        <translation>Gateway inválido</translation>
     </message>
     <message>
         <source>Only one gateway is allowed</source>
-        <translation>Разрешён только один шлюз</translation>
+        <translation>Apenas um Gateway é permitido</translation>
     </message>
 </context>
 <context>
@@ -773,51 +773,51 @@
     </message>
     <message>
         <source>Use MPPE</source>
-        <translation>Использовать MPPE</translation>
+        <translation>Usar MPPE</translation>
     </message>
     <message>
         <source>128-bit MPPE</source>
-        <translation>128-битный MPPE</translation>
+        <translation>128-bit MPPE</translation>
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation>MPPE с сохранением состояния</translation>
+        <translation>MPPE com estado</translation>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
-        <translation>Отклонять аутентификацию EAP</translation>
+        <translation>Recusar Autenticação EAP</translation>
     </message>
     <message>
         <source>Refuse PAP Authentication</source>
-        <translation>Отклонять аутентификацию PAP</translation>
+        <translation>Recusar Autenticação PAP</translation>
     </message>
     <message>
         <source>Refuse CHAP Authentication</source>
-        <translation>Отклонять аутентификацию CHAP</translation>
+        <translation>Recusar Autenticação CHAP</translation>
     </message>
     <message>
         <source>Refuse MSCHAP Authentication</source>
-        <translation>Отклонять аутентификацию MSCHAP</translation>
+        <translation>Recusar Autenticação MSCHAP</translation>
     </message>
     <message>
         <source>Refuse MSCHAPv2 Authentication</source>
-        <translation>Отклонять аутентификацию MSCHAPv2</translation>
+        <translation>Recusar Autenticação MSCHAPv2</translation>
     </message>
     <message>
         <source>No BSD Data Compression</source>
-        <translation>Без сжатия данных BSD</translation>
+        <translation>Sem Compressão de Dados BSD</translation>
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation>Без сжатия данных Deflate</translation>
+        <translation>Sem Compressão de Dados Deflacionados</translation>
     </message>
     <message>
         <source>No TCP Header Compression</source>
-        <translation>Без сжатия заголовка TCP</translation>
+        <translation>Sem Compressão de Cabeçalho TCP</translation>
     </message>
     <message>
         <source>Send PPP Echo Packets</source>
-        <translation>Отправлять эхо-пакеты PPP</translation>
+        <translation>Enviar Pacotes de Eco PPP</translation>
     </message>
 </context>
 <context>
@@ -828,38 +828,38 @@
     </message>
     <message>
         <source>Username</source>
-        <translation>Имя пользователя</translation>
+        <translation>Nome de utilizador</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation>Необходимо</translation>
+        <translation>Requerido</translation>
     </message>
     <message>
         <source>Service</source>
-        <translation>Служба</translation>
+        <translation>Serviço</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Пароль</translation>
+        <translation>Palavra-passe</translation>
     </message>
 </context>
 <context>
     <name>SectionSecret</name>
     <message>
         <source>Security</source>
-        <translation>Безопасность</translation>
+        <translation>Segurança</translation>
     </message>
     <message>
         <source>Tunneled TLS</source>
-        <translation>TLS через туннель</translation>
+        <translation>TLS Tunelado</translation>
     </message>
     <message>
         <source>Protected EAP</source>
-        <translation>Защищённый EAP</translation>
+        <translation>EAP Protegido</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Нет</translation>
+        <translation>Nenhum</translation>
     </message>
     <message>
         <source>WEP</source>
@@ -879,115 +879,115 @@
     </message>
     <message>
         <source>EAP Auth</source>
-        <translation>Аутентификация EAP</translation>
+        <translation>Autenticação EAP</translation>
     </message>
     <message>
         <source>Identity</source>
-        <translation>Идентификатор</translation>
+        <translation>Identidade</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation>Необходимо</translation>
+        <translation>Requerido</translation>
     </message>
     <message>
         <source>Pwd Options</source>
-        <translation>Параметры пароля</translation>
+        <translation>Opções de Palavra-passe</translation>
     </message>
     <message>
         <source>Save password for this user</source>
-        <translation>Сохранить пароль для этого пользователя</translation>
+        <translation>Guardar palavra-passe para este utilizador</translation>
     </message>
     <message>
         <source>Save password for all users</source>
-        <translation>Сохранить пароль для всех пользователей</translation>
+        <translation>Guardar palavra-passe para todos os utilizadores</translation>
     </message>
     <message>
         <source>Ask me always</source>
-        <translation>Всегда спрашивать</translation>
+        <translation>Perguntar sempre</translation>
     </message>
     <message>
         <source>Key</source>
-        <translation>Ключ</translation>
+        <translation>Chave</translation>
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation>Пароль закрытого ключа</translation>
+        <translation>Palavra-passe Privada</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Пароль</translation>
+        <translation>Palavra-passe</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation>Аутентификация</translation>
+        <translation>Autenticação</translation>
     </message>
     <message>
         <source>Shared key</source>
-        <translation>Общий ключ</translation>
+        <translation>Chave partilhada</translation>
     </message>
     <message>
         <source>Open system</source>
-        <translation>Открытая система</translation>
+        <translation>Abrir sistema</translation>
     </message>
     <message>
         <source>Private Key</source>
-        <translation>Закрытый ключ</translation>
+        <translation>Chave Privada</translation>
     </message>
     <message>
         <source>Anonymous ID</source>
-        <translation>Анонимный ID</translation>
+        <translation>ID Anónimo</translation>
     </message>
     <message>
         <source>Provisioning</source>
-        <translation>Подготовка</translation>
+        <translation>Aprovisionamento</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Отключено</translation>
+        <translation>Desativado</translation>
     </message>
     <message>
         <source>Anonymous</source>
-        <translation>Анонимный</translation>
+        <translation>Anónimo</translation>
     </message>
     <message>
         <source>Authenticated</source>
-        <translation>Аутентифицировано</translation>
+        <translation>Autenticado</translation>
     </message>
     <message>
         <source>Both</source>
-        <translation>Оба</translation>
+        <translation>Ambos</translation>
     </message>
     <message>
         <source>PAC file</source>
-        <translation>Файл PAC</translation>
+        <translation>Ficheiro PAC</translation>
     </message>
     <message>
         <source>CA Cert</source>
-        <translation>Сертификат ЦС</translation>
+        <translation>Certificado CA</translation>
     </message>
     <message>
         <source>User Cert</source>
-        <translation>Сертификат пользователя</translation>
+        <translation>Certificado do Utilizador</translation>
     </message>
     <message>
         <source>PEAP Version</source>
-        <translation>Версия PEAP</translation>
+        <translation>Versão PEAP</translation>
     </message>
     <message>
         <source>Automatic</source>
-        <translation>Автоматически</translation>
+        <translation>Automático</translation>
     </message>
     <message>
         <source>Version 0</source>
-        <translation>Версия 0</translation>
+        <translation>Versão 0</translation>
     </message>
     <message>
         <source>Version 1</source>
-        <translation>Версия 1</translation>
+        <translation>Versão 1</translation>
     </message>
     <message>
         <source>Inner Auth</source>
-        <translation>Внутренняя аутентификация</translation>
+        <translation>Autenticação Interna</translation>
     </message>
 </context>
 <context>
@@ -998,51 +998,51 @@
     </message>
     <message>
         <source>All files (*)</source>
-        <translation>Все файлы (*)</translation>
+        <translation>Todos os ficheiros (*)</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation>Необходимо</translation>
+        <translation>Requerido</translation>
     </message>
     <message>
         <source>Invalid gateway</source>
-        <translation>Недопустимый шлюз</translation>
+        <translation>Gateway inválido</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation>Шлюз</translation>
+        <translation>Gateway</translation>
     </message>
     <message>
         <source>CA Cert</source>
-        <translation>Сертификат ЦС</translation>
+        <translation>Certificado CA</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation>Прокси</translation>
+        <translation>Proxy</translation>
     </message>
     <message>
         <source>Allow Cisco Secure Desktop Trojan</source>
-        <translation>Разрешить Cisco Secure Desktop Trojan</translation>
+        <translation>Permitir o Cisco Secure Desktop Trojan</translation>
     </message>
     <message>
         <source>CSD Script</source>
-        <translation>Скрипт CSD</translation>
+        <translation>CSD Script</translation>
     </message>
     <message>
         <source>Auth Type</source>
-        <translation>Тип аутентификации</translation>
+        <translation>Tipo de Autenticação</translation>
     </message>
     <message>
         <source>Private Key</source>
-        <translation>Закрытый ключ</translation>
+        <translation>Chave Privada</translation>
     </message>
     <message>
         <source>SSH Agent</source>
-        <translation>Агент SSH</translation>
+        <translation>Agente SSH</translation>
     </message>
     <message>
         <source>Smart Card</source>
-        <translation>Смарт-карта</translation>
+        <translation>Cartão Smart</translation>
     </message>
     <message>
         <source>EAP</source>
@@ -1050,63 +1050,63 @@
     </message>
     <message>
         <source>Pre-Shared Key</source>
-        <translation>Общий ключ (PSK)</translation>
+        <translation>Chave Pré-Partilhada</translation>
     </message>
     <message>
         <source>User Cert</source>
-        <translation>Сертификат пользователя</translation>
+        <translation>Certificado do Utilizador</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Имя пользователя</translation>
+        <translation>Nome de utilizador</translation>
     </message>
     <message>
         <source>Use FSID for Key Passphrase</source>
-        <translation>Использовать FSID в качестве пароля ключа</translation>
+        <translation>Utilizar o FSID como Frase-passe da Chave</translation>
     </message>
     <message>
         <source>Certificates (TLS)</source>
-        <translation>Сертификаты (TLS)</translation>
+        <translation>Certificados (TLS)</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Пароль</translation>
+        <translation>Palavra-passe</translation>
     </message>
     <message>
         <source>Certificates with Password (TLS)</source>
-        <translation>Сертификаты с паролем (TLS)</translation>
+        <translation>Certificados com Palavra-passe (TLS)</translation>
     </message>
     <message>
         <source>Static Key</source>
-        <translation>Статический ключ</translation>
+        <translation>Chave Estática</translation>
     </message>
     <message>
         <source>Pwd Options</source>
-        <translation>Параметры пароля</translation>
+        <translation>Opções de Palavra-passe</translation>
     </message>
     <message>
         <source>Saved</source>
-        <translation>Сохранён</translation>
+        <translation>Guardado</translation>
     </message>
     <message>
         <source>Ask</source>
-        <translation>Спрашивать</translation>
+        <translation>Perguntar</translation>
     </message>
     <message>
         <source>Not Required</source>
-        <translation>Не требуется</translation>
+        <translation>Não Requerido</translation>
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation>Пароль закрытого ключа</translation>
+        <translation>Palavra-passe Privada</translation>
     </message>
     <message>
         <source>Customize Key Direction</source>
-        <translation>Настроить направление ключа</translation>
+        <translation>Personalizar Direção da Chave</translation>
     </message>
     <message>
         <source>Key Direction</source>
-        <translation>Направление ключа</translation>
+        <translation>Direção da Chave</translation>
     </message>
     <message>
         <source>0</source>
@@ -1118,31 +1118,31 @@
     </message>
     <message>
         <source>Remote IP</source>
-        <translation>Удалённый IP</translation>
+        <translation>IP Remoto</translation>
     </message>
     <message>
         <source>Local IP</source>
-        <translation>Локальный IP</translation>
+        <translation>IP Local</translation>
     </message>
     <message>
         <source>NT Domain</source>
-        <translation>Домен NT</translation>
+        <translation>Domínio NT</translation>
     </message>
     <message>
         <source>Request an Inner IP Address</source>
-        <translation>Запрашивать внутренний IP-адрес</translation>
+        <translation>Solicitar um Endereço de IP Interno</translation>
     </message>
     <message>
         <source>Enforce UDP Encapsulation</source>
-        <translation>Принудительная инкапсуляция UDP</translation>
+        <translation>Forçar Encapsulamento UDP</translation>
     </message>
     <message>
         <source>Use IP Compression</source>
-        <translation>Использовать сжатие IP</translation>
+        <translation>Usar Compressão de IP</translation>
     </message>
     <message>
         <source>Enable Custom Cipher Proposals</source>
-        <translation>Включить пользовательские предложения шифров</translation>
+        <translation>Ativar Propostas de Cifra Personalizadas</translation>
     </message>
     <message>
         <source>IKE</source>
@@ -1154,19 +1154,19 @@
     </message>
     <message>
         <source>Group Name</source>
-        <translation>Имя группы</translation>
+        <translation>Nome do Grupo</translation>
     </message>
     <message>
         <source>Group Pwd</source>
-        <translation>Пароль группы</translation>
+        <translation>Palavra-passe do Grupo</translation>
     </message>
     <message>
         <source>Use Hybrid Authentication</source>
-        <translation>Использовать гибридную аутентификацию</translation>
+        <translation>Usar Autenticação Híbrida</translation>
     </message>
     <message>
         <source>CA File</source>
-        <translation>Файл ЦС</translation>
+        <translation>Ficheiro CA</translation>
     </message>
     <message>
         <source>VPN PPP</source>
@@ -1174,71 +1174,71 @@
     </message>
     <message>
         <source>Use MPPE</source>
-        <translation>Использовать MPPE</translation>
+        <translation>Usar MPPE</translation>
     </message>
     <message>
         <source>Security</source>
-        <translation>Безопасность</translation>
+        <translation>Segurança</translation>
     </message>
     <message>
         <source>All Available (default)</source>
-        <translation>Все доступные (по умолчанию)</translation>
+        <translation>Tudo Disponível (predefinição)</translation>
     </message>
     <message>
         <source>40-bit (less secure)</source>
-        <translation>40-бит (менее безопасно)</translation>
+        <translation>40-bit (menos seguro)</translation>
     </message>
     <message>
         <source>128-bit (most secure)</source>
-        <translation>128-бит (максимальная безопасность)</translation>
+        <translation>128-bit (o mais seguro)</translation>
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation>MPPE с сохранением состояния</translation>
+        <translation>MPPE com estado</translation>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
-        <translation>Отклонять аутентификацию EAP</translation>
+        <translation>Recusar Autenticação EAP</translation>
     </message>
     <message>
         <source>Refuse PAP Authentication</source>
-        <translation>Отклонять аутентификацию PAP</translation>
+        <translation>Recusar Autenticação PAP</translation>
     </message>
     <message>
         <source>Refuse CHAP Authentication</source>
-        <translation>Отклонять аутентификацию CHAP</translation>
+        <translation>Recusar Autenticação CHAP</translation>
     </message>
     <message>
         <source>Refuse MSCHAP Authentication</source>
-        <translation>Отклонять аутентификацию MSCHAP</translation>
+        <translation>Recusar Autenticação MSCHAP</translation>
     </message>
     <message>
         <source>Refuse MSCHAPv2 Authentication</source>
-        <translation>Отклонять аутентификацию MSCHAPv2</translation>
+        <translation>Recusar Autenticação MSCHAPv2</translation>
     </message>
     <message>
         <source>No BSD Data Compression</source>
-        <translation>Без сжатия данных BSD</translation>
+        <translation>Sem Compressão de Dados BSD</translation>
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation>Без сжатия данных Deflate</translation>
+        <translation>Sem Compressão de Dados Deflacionados</translation>
     </message>
     <message>
         <source>No TCP Header Compression</source>
-        <translation>Без сжатия заголовка TCP</translation>
+        <translation>Sem Compressão de Cabeçalho TCP</translation>
     </message>
     <message>
         <source>No Protocol Field Compression</source>
-        <translation>Без сжатия поля протокола</translation>
+        <translation>Sem Compressão de Campo de Protocolo</translation>
     </message>
     <message>
         <source>No Address/Control Compression</source>
-        <translation>Без сжатия адреса/управления</translation>
+        <translation>Sem Compressão de Endereço/Controlo</translation>
     </message>
     <message>
         <source>Send PPP Echo Packets</source>
-        <translation>Отправлять эхо-пакеты PPP</translation>
+        <translation>Enviar Pacotes de Eco PPP</translation>
     </message>
     <message>
         <source>VPN IPsec</source>
@@ -1246,83 +1246,83 @@
     </message>
     <message>
         <source>Enable IPsec</source>
-        <translation>Включить IPsec</translation>
+        <translation>Ativar IPsec</translation>
     </message>
     <message>
         <source>Group ID</source>
-        <translation>ID группы</translation>
+        <translation>ID do Grupo</translation>
     </message>
     <message>
         <source>Phase1 Algorithms</source>
-        <translation>Алгоритмы фазы 1</translation>
+        <translation>Algoritmos Fase1</translation>
     </message>
     <message>
         <source>Phase2 Algorithms</source>
-        <translation>Алгоритмы фазы 2</translation>
+        <translation>Algoritmos Fase2</translation>
     </message>
     <message>
         <source>VPN Advanced</source>
-        <translation>Дополнительные параметры VPN</translation>
+        <translation>VPN Avançada</translation>
     </message>
     <message>
         <source>Customize Gateway Port</source>
-        <translation>Настроить порт шлюза</translation>
+        <translation>Personalizar Porta do Gateway</translation>
     </message>
     <message>
         <source>Gateway Port</source>
-        <translation>Порт шлюза</translation>
+        <translation>Porta do Gateway</translation>
     </message>
     <message>
         <source>Customize Renegotiation Interval</source>
-        <translation>Настроить интервал повторного согласования</translation>
+        <translation>Personalizar Intervalo de Renegociação</translation>
     </message>
     <message>
         <source>Renegotiation Interval</source>
-        <translation>Интервал повторного согласования</translation>
+        <translation>Intervalo de Renegociação</translation>
     </message>
     <message>
         <source>Use LZO Data Compression</source>
-        <translation>Использовать сжатие данных LZO</translation>
+        <translation>Usar Compressão de Dados LZO</translation>
     </message>
     <message>
         <source>Use TCP Connection</source>
-        <translation>Использовать TCP-соединение</translation>
+        <translation>Usar Ligação TCP</translation>
     </message>
     <message>
         <source>Use TAP Device</source>
-        <translation>Использовать устройство TAP</translation>
+        <translation>Usar Dispositivo TAP</translation>
     </message>
     <message>
         <source>Customize Tunnel MTU</source>
-        <translation>Настроить MTU туннеля</translation>
+        <translation>Personalizar Túnel MTU</translation>
     </message>
     <message>
         <source>Customize UDP Fragment Size</source>
-        <translation>Настроить размер фрагмента UDP</translation>
+        <translation>Personalizar Tamanho do Fragmento UDP</translation>
     </message>
     <message>
         <source>UDP Fragment Size</source>
-        <translation>Размер фрагмента UDP</translation>
+        <translation>Tamanho do Fragmento UDP</translation>
     </message>
     <message>
         <source>Restrict Tunnel TCP MSS</source>
-        <translation>Ограничить MSS TCP в туннеле</translation>
+        <translation>Restringir Túnel TCP MSS</translation>
     </message>
     <message>
         <source>Randomize Remote Hosts</source>
-        <translation>Случайный порядок удалённых узлов</translation>
+        <translation>Randomizar Hosts Remotos</translation>
     </message>
     <message>
         <source>Domain</source>
-        <translation>Домен</translation>
+        <translation>Domínio</translation>
     </message>
     <message>
         <source>Vendor</source>
-        <translation>Производитель</translation>
+        <translation>Fabricante</translation>
     </message>
     <message>
         <source>Cisco (default)</source>
-        <translation>Cisco (по умолчанию)</translation>
+        <translation>Cisco (predefinição)</translation>
     </message>
     <message>
         <source>Netscreen</source>
@@ -1330,35 +1330,35 @@
     </message>
     <message>
         <source>Version</source>
-        <translation>Версия</translation>
+        <translation>Versão</translation>
     </message>
     <message>
         <source>Encryption</source>
-        <translation>Шифрование</translation>
+        <translation>Encriptação</translation>
     </message>
     <message>
         <source>Secure (default)</source>
-        <translation>Безопасное (по умолчанию)</translation>
+        <translation>Segura (predefinição)</translation>
     </message>
     <message>
         <source>Weak</source>
-        <translation>Слабое</translation>
+        <translation>Fraca</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Нет</translation>
+        <translation>Nenhum</translation>
     </message>
     <message>
         <source>NAT Traversal Mode</source>
-        <translation>Режим NAT Traversal</translation>
+        <translation>Modo NAT Transversal</translation>
     </message>
     <message>
         <source>NAT-T When Available (default)</source>
-        <translation>NAT-T при наличии (по умолчанию)</translation>
+        <translation>NAT-T Quando Disponível (predefinição)</translation>
     </message>
     <message>
         <source>NAT-T Always</source>
-        <translation>NAT-T всегда</translation>
+        <translation>NAT-T Sempre</translation>
     </message>
     <message>
         <source>Cisco UDP</source>
@@ -1366,59 +1366,59 @@
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Отключено</translation>
+        <translation>Desativado</translation>
     </message>
     <message>
         <source>IKE DH Group</source>
-        <translation>Группа DH для IKE</translation>
+        <translation>Grupo IKE DH</translation>
     </message>
     <message>
         <source>DH Group 1</source>
-        <translation>Группа DH 1</translation>
+        <translation>DH Grupo 1</translation>
     </message>
     <message>
         <source>DH Group 2 (default)</source>
-        <translation>Группа DH 2 (по умолчанию)</translation>
+        <translation>DH Grupo 2 (predefinição)</translation>
     </message>
     <message>
         <source>DH Group 5</source>
-        <translation>Группа DH 5</translation>
+        <translation>DH Grupo 5</translation>
     </message>
     <message>
         <source>Forward Secrecy</source>
-        <translation>Прямая секретность</translation>
+        <translation>Re-encaminhar Sigilo</translation>
     </message>
     <message>
         <source>Server (default)</source>
-        <translation>Сервер (по умолчанию)</translation>
+        <translation>Servidor (predefinição)</translation>
     </message>
     <message>
         <source>DH Group 2</source>
-        <translation>Группа DH 2</translation>
+        <translation>DH Grupo 2</translation>
     </message>
     <message>
         <source>Local Port</source>
-        <translation>Локальный порт</translation>
+        <translation>Porta Local</translation>
     </message>
     <message>
         <source>Disable Dead Peer Detection</source>
-        <translation>Отключить обнаружение неактивных узлов</translation>
+        <translation>Desativar Deteção de Peer Morto</translation>
     </message>
     <message>
         <source>VPN Security</source>
-        <translation>Безопасность VPN</translation>
+        <translation>Segurança da VPN</translation>
     </message>
     <message>
         <source>Cipher</source>
-        <translation>Шифр</translation>
+        <translation>Cifra</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation>По умолчанию</translation>
+        <translation>Predefinição</translation>
     </message>
     <message>
         <source>HMAC Auth</source>
-        <translation>Аутентификация HMAC</translation>
+        <translation>Autenticação HMAC</translation>
     </message>
     <message>
         <source>RSA MD-4</source>
@@ -1454,47 +1454,47 @@
     </message>
     <message>
         <source>VPN Proxy</source>
-        <translation>Прокси VPN</translation>
+        <translation>Proxy VPN</translation>
     </message>
     <message>
         <source>Proxy Type</source>
-        <translation>Тип прокси</translation>
+        <translation>Tipo de Proxy</translation>
     </message>
     <message>
         <source>Server IP</source>
-        <translation>IP сервера</translation>
+        <translation>IP do Servidor</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation>Порт</translation>
+        <translation>Porta</translation>
     </message>
     <message>
         <source>Retry Indefinitely When Failed</source>
-        <translation>Повторять попытки бесконечно при сбое</translation>
+        <translation>Tentar Novamente Indefinidamente Quando Falhar</translation>
     </message>
     <message>
         <source>VPN TLS Authentication</source>
-        <translation>TLS-аутентификация VPN</translation>
+        <translation>Autenticação VPN TLS</translation>
     </message>
     <message>
         <source>Subject Match</source>
-        <translation>Совпадение субъекта</translation>
+        <translation>Correspondência de Assunto</translation>
     </message>
     <message>
         <source>Remote Cert Type</source>
-        <translation>Тип удалённого сертификата</translation>
+        <translation>Tipo de Certificado Remoto</translation>
     </message>
     <message>
         <source>Client</source>
-        <translation>Клиент</translation>
+        <translation>Cliente</translation>
     </message>
     <message>
         <source>Server</source>
-        <translation>Сервер</translation>
+        <translation>Servidor</translation>
     </message>
     <message>
         <source>Key File</source>
-        <translation>Файл ключа</translation>
+        <translation>Ficheiro Chave</translation>
     </message>
     <message>
         <source>MTU (1280-9000)</source>
@@ -1505,52 +1505,52 @@
     <name>SystemProxyConfigItem</name>
     <message>
         <source>Optional</source>
-        <translation>Необязательно</translation>
+        <translation>Opcional</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation>Порт</translation>
+        <translation>Porta</translation>
     </message>
     <message>
         <source>Authentication is required</source>
-        <translation>Требуется аутентификация</translation>
+        <translation>É requerida autenticação</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Имя пользователя</translation>
+        <translation>Nome de utilizador</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation>Необходимо</translation>
+        <translation>Requerido</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Пароль</translation>
+        <translation>Palavra-passe</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetAirplaneModeTipsItem</name>
     <message>
         <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation>Если вы хотите подключиться к беспроводной сети, сначала отключите &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Режим самолёта&lt;/a&gt;</translation>
+        <translation>Desative o &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Modo de Avião&lt;/a&gt; primeiro se pretende ligar-se a uma rede sem fios</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetManagerPrivate</name>
     <message>
         <source>IP conflict</source>
-        <translation>Конфликт IP-адресов</translation>
+        <translation>Conflito de IP</translation>
     </message>
     <message>
         <source>Network</source>
-        <translation>Сеть</translation>
+        <translation>Rede</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetManagerThreadPrivate</name>
     <message>
         <source>Wired Connection %1</source>
-        <translation>Проводное соединение %1</translation>
+        <translation>Ligação por cabo %1</translation>
     </message>
     <message>
         <source>VPN L2TP %1</source>
@@ -1578,92 +1578,92 @@
     </message>
     <message>
         <source>PPPoE Connection %1</source>
-        <translation>PPPoE соединение %1</translation>
+        <translation>Ligação PPPoE %1</translation>
     </message>
     <message>
         <source>Connecting &quot;%1&quot;</source>
-        <translation>Соединение с %1</translation>
+        <translation>A conectar &quot;%1&quot;</translation>
     </message>
     <message>
         <source>&quot;%1&quot; connected</source>
-        <translation>%1 соединено</translation>
+        <translation>&quot;%1&quot; conectado</translation>
     </message>
     <message>
         <source>&quot;%1&quot; disconnected</source>
-        <translation>%1 отключено</translation>
+        <translation>&quot;%1&quot; desconectado</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
-        <translation>Невозможно подключиться к %1, проверьте маршрутизатор или сетевой кабель.</translation>
+        <translation>Incapaz de conectar &quot;%1&quot;, por favor verifique o seu router ou cabo de rede.</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
-        <translation>Невозможно подключиться к %1, пожалуйста, держитесь ближе к беспроводному маршрутизатору</translation>
+        <translation>Incapaz de conectar &quot;%q&quot;, por favor mantenha-se perto do router sem fios</translation>
     </message>
     <message>
         <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
-        <translation>Сбой подключения, не удается подключиться &quot;%1&quot;, неверный пароль</translation>
+        <translation>A conexão falhou, incapaz de conectar &quot;%1&quot;, palavra-passe errada</translation>
     </message>
     <message>
         <source>Password is required to connect &quot;%1&quot;</source>
-        <translation>Для соединения с &quot;%1&quot; требуется пароль</translation>
+        <translation>Para conectar a &quot;%1&quot; é requerida palavra-passe</translation>
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation>Не удалось найти сеть WLAN 802.11 &quot;%1&quot;</translation>
+        <translation>A rede WLAN 802.11 &quot;%1&quot; não pode ser encontrada</translation>
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
-        <translation>Чтобы подключиться к &quot;%1&quot;, пожалуйста, настройте данные для аутентификации</translation>
+        <translation>Para conectar &quot;%1&quot;, por favor defina a sua informação de autenticação depois de iniciar sessão</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetSystemProxyControlItem</name>
     <message>
         <source>System Proxy</source>
-        <translation>Системный прокси</translation>
+        <translation>Proxy do Sistema</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetVPNTipsItem</name>
     <message>
         <source>VPN configuration is not connected or failed to connect. Please &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;go to the control center&lt;/a&gt; for inspection.</source>
-        <translation>Конфигурация VPN не подключена или не удалось подключиться. Пожалуйста, обратитесь в &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;Центр управления&lt;/a&gt; для проверки.</translation>
+        <translation>A configuração da VPN não está conectada ou falhou ao conectar. Por favor &lt;a style=&quot;text-decoration: none;&quot; href=&quot;go to the control center&quot;&gt;vá ao centro de controlo&lt;/a&gt; para inspecionar.</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWiredControlItem</name>
     <message>
         <source>Wired Network</source>
-        <translation>Проводная сеть</translation>
+        <translation>Rede Cablada</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessControlItem</name>
     <message>
         <source>Wireless Network</source>
-        <translation>Беспроводная сеть</translation>
+        <translation>Rede Sem Fios</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessHiddenItem</name>
     <message>
         <source>Connect to hidden network</source>
-        <translation>Подключение к скрытой сети</translation>
+        <translation>Conectar a uma rede oculta</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessMineItem</name>
     <message>
         <source>My Networks</source>
-        <translation>Мои сети</translation>
+        <translation>As Minhas Redes</translation>
     </message>
 </context>
 <context>
     <name>dde::network::NetWirelessOtherItem</name>
     <message>
         <source>Other Networks</source>
-        <translation>Прочие сети</translation>
+        <translation>Outras Redes</translation>
     </message>
 </context>
 </TS>
