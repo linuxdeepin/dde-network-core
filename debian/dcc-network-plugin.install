@@ -1,2 +1,3 @@
 usr/lib/*/dde-control-center
 usr/share/dde-control-center/translations
+usr/share/dde-control-center/permission-interfaces

@@ -1,0 +1,11 @@
+{
+    "version": "1.0",
+    "description": "网络插件需要授权的 D-Bus 系统服务接口",
+    "DestList": [
+        {
+            "DbusName": "org.deepin.dde.AirplaneMode1",
+            "DbusPath": "/org/deepin/dde/AirplaneMode1",
+            "DbusInterface": "org.deepin.dde.AirplaneMode1"
+        }
+    ]
+}

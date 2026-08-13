@@ -72,4 +72,8 @@ target_link_libraries(${DccNetwork_Name} PRIVATE
 
 dcc_install_plugin(NAME ${DccNetwork_Name} TARGET ${DccNetwork_Name})
 
+# security loader permission interfaces config
+install(FILES "misc/permission-interfaces/org.deepin.dcc-network.json"
+    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/dde-control-center/permission-interfaces)
+
 dcc_handle_plugin_translation(NAME ${DccNetwork_Name} )
