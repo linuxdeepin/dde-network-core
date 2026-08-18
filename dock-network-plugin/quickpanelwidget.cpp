@@ -1,4 +1,4 @@
-// Copyright (C) 2022 ~ 2022 Deepin Technology Co., Ltd.
+// Copyright (C) 2022 ~ 2026 Deepin Technology Co., Ltd.
 // SPDX-FileCopyrightText: 2018 - 2023 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
@@ -68,6 +68,11 @@ QuickPanelWidget::QuickPanelWidget(QWidget *parent)
     , m_nameLabel(new DLabel(this))
     , m_stateLabel(new DLabel(this))
     , m_expandLabel(new DIconButton(this))
+    , m_iconOpacityEffect(new QGraphicsOpacityEffect(this))
+    , m_nameOpacityEffect(new QGraphicsOpacityEffect(this))
+    , m_stateOpacityEffect(new QGraphicsOpacityEffect(this))
+    , m_hover(false)
+    , m_active(true)
 {
     initUi();
     initConnection();
@@ -98,7 +103,9 @@ void QuickPanelWidget::setDescription(const QString &description)
 
 void QuickPanelWidget::setActive(bool active)
 {
+    m_active = active;
     m_iconWidget->setBackgroundRole(active ? QPalette::Highlight : QPalette::BrightText);
+    m_iconOpacityEffect->setOpacity(active ? 1.0 : (m_hover ? kHoverOpacity : kNormalOpacity));
 }
 
 void QuickPanelWidget::mousePressEvent(QMouseEvent *event)
@@ -125,6 +132,26 @@ void QuickPanelWidget::mouseReleaseEvent(QMouseEvent *event)
     }
     m_clickPoint = QPoint();
     return QWidget::mouseReleaseEvent(event);
+}
+ 
+void QuickPanelWidget::enterEvent(QEnterEvent *event)
+{
+    m_hover = true;
+    m_nameOpacityEffect->setOpacity(kHoverOpacity);
+    m_stateOpacityEffect->setOpacity(kHoverOpacity);
+    if (!m_active)
+        m_iconOpacityEffect->setOpacity(kHoverOpacity);
+    QWidget::enterEvent(event);
+}
+ 
+void QuickPanelWidget::leaveEvent(QEvent *event)
+{
+    m_hover = false;
+    m_nameOpacityEffect->setOpacity(kNormalOpacity);
+    m_stateOpacityEffect->setOpacity(kNormalOpacity);
+    if (!m_active)
+        m_iconOpacityEffect->setOpacity(kNormalOpacity);
+    QWidget::leaveEvent(event);
 }
 
 void QuickPanelWidget::initUi()
@@ -154,6 +181,15 @@ void QuickPanelWidget::initUi()
     m_iconWidget->setCheckable(false);
     m_iconWidget->setFixedSize(QSize(40, 40));
     m_iconWidget->setFocusPolicy(Qt::NoFocus);
+ 
+    m_iconOpacityEffect->setOpacity(kNormalOpacity);
+    m_iconWidget->setGraphicsEffect(m_iconOpacityEffect);
+ 
+    m_nameOpacityEffect->setOpacity(kNormalOpacity);
+    m_nameLabel->setGraphicsEffect(m_nameOpacityEffect);
+ 
+    m_stateOpacityEffect->setOpacity(kNormalOpacity);
+    m_stateLabel->setGraphicsEffect(m_stateOpacityEffect);
 
     // 进入图标
     m_expandLabel->setIcon(DStyle::standardIcon(style(), DStyle::SP_ArrowEnter));
