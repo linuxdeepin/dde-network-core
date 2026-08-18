@@ -1,3 +1,39 @@
+dde-network-core (2.0.99) unstable; urgency=medium
+
+  * fix(network): adjust font sizes on network details page
+  * fix(network): improve copy button interaction and icon on network
+    details page
+  * fix(hotspot): improve edit button interaction and icon
+  * chore: add polkit policy to debian install
+  * fix(hotspot): align title font weight and color with Shared Settings
+  * fix(airplane): use T8 font size and add 12px left padding for tips
+    label
+  * fix(airplane): correct SPDX copyright year range from 2024 - 2027 to
+    2024-2026
+  * fix(wireless): fix title font weight and color for My/Other Networks
+  * fix(dock): show connected status when disableConnectingAnimation is
+    true
+  * feat: remove network-manager-integration-plugins dependency
+  * fix(CI): broken cppcheck
+  * fix(network): avoid use-after-free of addrinfo hints in getaddrinfo
+    worker thread
+  * i18n: Updates for project Deepin Desktop Environment (#585)
+  * fix(network): don't check network
+  * fix: call init() synchronously in DccNetwork constructor
+  * fix: fix crash in control center network module
+  * fix(net-view): fix ghosting of two checkmarks when hovering
+    connected items
+  * i18n: Updates for project Deepin Desktop Environment (#594)
+  * refactor: move VPN DNS mode handling to session plugin
+  * fix: update Accounts D-Bus interface names to
+    org.deepin.dde.Accounts1
+  * fix: optimize network switching detection
+  * fix(hotspot): optimize hotspot switch sync latency
+  * i18n: Updates for project Deepin Desktop Environment (#599)
+  * chore: add airplane mode interface permission declaration
+
+ -- zhangkun <zhangkun2@uniontech.com>  Tue, 18 Aug 2026 13:26:23 +0800
+
 dde-network-core (2.0.98) unstable; urgency=medium
 
   * i18n: Updates for project Deepin Desktop Environment (#575)
