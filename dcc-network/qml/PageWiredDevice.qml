@@ -59,7 +59,7 @@ DccObject {
                 weight: 20
                 backgroundType: DccObject.Normal
                 pageType: DccObject.Item
-                visible: netItem.status === NetType.DS_NoCable
+                visible: netItem.status === netType.DS_NoCable
                 page: Item {
                     implicitHeight: 80
                     Label {
@@ -123,25 +123,25 @@ DccObject {
                                                   itemDelegate.D.DciIcon)
                                     }
                                     BusyIndicator {
-                                        running: model.item.status === NetType.CS_Connecting
+                                        running: model.item.status === netType.CS_Connecting
                                         visible: running
                                     }
                                     DccCheckIcon {
-                                        visible: model.item.status === NetType.CS_Connected
+                                        visible: model.item.status === netType.CS_Connected
                                                  && !itemDelegate.hovered
                                     }
                                     NetButton {
                                         implicitHeight: implicitContentHeight - 4
                                         topInset: -4
                                         bottomInset: -4
-                                        visible: model.item.status !== NetType.CS_Connecting
+                                        visible: model.item.status !== netType.CS_Connecting
                                                  && itemDelegate.hovered
                                         text: model.item.status
-                                              === NetType.CS_Connected ? qsTr("Disconnect") : qsTr(
+                                              === netType.CS_Connected ? qsTr("Disconnect") : qsTr(
                                                                              "Connect")
                                         Layout.alignment: Qt.AlignVCenter
                                         onClicked: {
-                                            dccData.exec(model.item.status === NetType.CS_Connected ? NetManager.Disconnect : NetManager.ConnectOrInfo,
+                                            dccData.exec(model.item.status === netType.CS_Connected ? NetManager.Disconnect : NetManager.ConnectOrInfo,
                                                          model.item.id, {})
                                         }
                                     }
@@ -268,7 +268,7 @@ DccObject {
                                 }
                             }
                             onDoubleClicked: {
-                                if (model.item.status === NetType.CS_UnConnected) {
+                                if (model.item.status === netType.CS_UnConnected) {
                                     dccData.exec(NetManager.ConnectOrInfo, model.item.id, {})
                                 }
                             }
@@ -284,7 +284,7 @@ DccObject {
                     name: "wiredSettings"
                     parentName: root.name + "/page/body/networkList"
                     onFinished: DccApp.showPage(root)
-                    type: NetType.WiredItem
+                    type: netType.WiredItem
                     Connections {
                         target: dccData
                         function onRequest(cmd, id, param) {
@@ -296,7 +296,7 @@ DccObject {
                                 let tmpItem = items[0]
                                 if (tmpItem.id === id) {
                                     if ((wiredSettings.netItem !== tmpItem) || (DccApp.activeObject !== wiredSettings)) {
-                                        if (tmpItem.itemType !== NetType.WiredItem) {
+                                        if (tmpItem.itemType !== netType.WiredItem) {
                                             wiredSettings.displayName = qsTr("Add Network Connection")
                                         } else {
                                             wiredSettings.displayName = tmpItem.name
