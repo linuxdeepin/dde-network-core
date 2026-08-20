@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2027 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 // SPDX-License-Identifier: GPL-3.0-or-later
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
@@ -13,7 +13,7 @@ DccObject {
     id: root
     property var config: null
     property var netItem: null
-    property int type: NetType.WiredItem
+    property int type: netType.WiredItem
     property bool modified: false
     signal finished
     readonly property string parentUrl: parentName + "/" + name

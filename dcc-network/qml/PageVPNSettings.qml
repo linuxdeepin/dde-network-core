@@ -129,7 +129,7 @@ DccObject {
         }
         SectionIPv4 {
             id: sectionIPv4
-            type: NetType.VPNControlItem
+            type: netType.VPNControlItem
             parentName: root.parentUrl + "/body"
             weight: 1000
             resolvedAvailable: dccData ? dccData.resolvedAvailable : false
@@ -137,7 +137,7 @@ DccObject {
         }
         SectionIPv6 {
             id: sectionIPv6
-            type: NetType.VPNControlItem
+            type: netType.VPNControlItem
             parentName: root.parentUrl + "/body"
             visible: vpnType & (NetUtils.VpnTypeEnum["openvpn"] | NetUtils.VpnTypeEnum["openconnect"])
             weight: 1100

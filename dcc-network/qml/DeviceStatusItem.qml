@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2027 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 // SPDX-License-Identifier: GPL-3.0-or-later
 import QtQuick 2.15
 import QtQuick.Controls 2.15
@@ -15,25 +15,25 @@ RowLayout {
 
     function getStatusName(status) {
         switch (status) {
-        case NetType.DS_Disabled:
+        case netType.DS_Disabled:
             return qsTr("Off")
-        case NetType.DS_Connected:
-        case NetType.DS_ConnectNoInternet:
+        case netType.DS_Connected:
+        case netType.DS_ConnectNoInternet:
             return qsTr("Connected")
-        case NetType.DS_IpConflicted:
+        case netType.DS_IpConflicted:
             return qsTr("IP conflict")
-        case NetType.DS_Connecting:
+        case netType.DS_Connecting:
             return qsTr("Connecting")
-        case NetType.DS_ObtainingIP:
+        case netType.DS_ObtainingIP:
             return qsTr("Obtaining address")
-        case NetType.DS_Authenticating:
+        case netType.DS_Authenticating:
             return qsTr("Authenticating")
-        case NetType.DS_ObtainIpFailed:
-        case NetType.DS_ConnectFailed:
-        case NetType.DS_Unknown:
-        case NetType.DS_Enabled:
-        case NetType.DS_NoCable:
-        case NetType.DS_Disconnected:
+        case netType.DS_ObtainIpFailed:
+        case netType.DS_ConnectFailed:
+        case netType.DS_Unknown:
+        case netType.DS_Enabled:
+        case netType.DS_NoCable:
+        case netType.DS_Disconnected:
         default:
             return qsTr("Disconnected")
         }
@@ -44,12 +44,12 @@ RowLayout {
             text: {
                 if (connectedNameVisible) {
                     switch (netItem.status) {
-                    case NetType.DS_Connected:
-                    case NetType.DS_ConnectNoInternet:
+                    case netType.DS_Connected:
+                    case netType.DS_ConnectNoInternet:
                         var childrenItem = [netItem]
                         while (childrenItem.length > 0) {
                             var childItem = childrenItem.pop()
-                            if (childItem.status === NetType.CS_Connected) {
+                            if (childItem.status === netType.CS_Connected) {
                                 return childItem.name
                             }
                             for (let i in childItem.children) {
