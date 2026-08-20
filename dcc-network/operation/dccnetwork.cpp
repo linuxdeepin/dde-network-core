@@ -29,7 +29,7 @@ DccNetwork::DccNetwork(QObject *parent)
     , m_manager(nullptr)
 {
     qRegisterMetaType<QList<QVariantMap>>("NMVariantMapList");
-    qmlRegisterType<NetType>("org.deepin.dcc.network", 1, 0, "NetType");
+    qmlRegisterType<NetType>("org.deepin.dcc.network", 1, 0, "netType");
     qmlRegisterType<NetItemModel>("org.deepin.dcc.network", 1, 0, "NetItemModel");
     qmlRegisterType<NetManager>("org.deepin.dcc.network", 1, 0, "NetManager");
     init();

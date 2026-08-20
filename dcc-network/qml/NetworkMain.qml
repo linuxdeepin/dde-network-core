@@ -54,19 +54,19 @@ DccObject {
         delegate: DelegateChooser {
             role: "type"
             DelegateChoice {
-                roleValue: NetType.WiredDeviceItem
+                roleValue: netType.WiredDeviceItem
                 delegate: PageWiredDevice {
                     netItem: model.item
                 }
             }
             DelegateChoice {
-                roleValue: NetType.WirelessDeviceItem
+                roleValue: netType.WirelessDeviceItem
                 delegate: PageWirelessDevice {
                     netItem: model.item
                 }
             }
             DelegateChoice {
-                roleValue: NetType.VPNControlItem
+                roleValue: netType.VPNControlItem
                 delegate: PageVPN {
                     name: "networkVpn"
                     parentName: "network"
@@ -75,7 +75,7 @@ DccObject {
                 }
             }
             DelegateChoice {
-                roleValue: NetType.DSLControlItem
+                roleValue: netType.DSLControlItem
                 delegate: PageDSL {
                     name: "dsl"
                     parentName: "network"
@@ -84,7 +84,7 @@ DccObject {
                 }
             }
             DelegateChoice {
-                roleValue: NetType.HotspotControlItem
+                roleValue: netType.HotspotControlItem
                 delegate: PageHotspot {
                     name: "personalHotspot"
                     parentName: "network"
@@ -94,7 +94,7 @@ DccObject {
                 }
             }
             DelegateChoice {
-                roleValue: NetType.SystemProxyControlItem
+                roleValue: netType.SystemProxyControlItem
                 delegate: PageSystemProxy {
                     name: "systemProxy"
                     parentName: "network"
@@ -103,7 +103,7 @@ DccObject {
                 }
             }
             DelegateChoice {
-                roleValue: NetType.AppProxyControlItem
+                roleValue: netType.AppProxyControlItem
                 delegate: PageAppProxy {
                     name: "applicationProxy"
                     parentName: "network"
@@ -112,7 +112,7 @@ DccObject {
                 }
             }
             DelegateChoice {
-                roleValue: NetType.DetailsItem
+                roleValue: netType.DetailsItem
                 delegate: PageDetails {
                     name: "networkDetails"
                     parentName: "network"

@@ -14,7 +14,7 @@ import "NetUtils.js" as NetUtils
 DccObject {
     id: root
     property var config: null
-    property int type: NetType.WiredItem
+    property int type: netType.WiredItem
     property var ipItems: []
     property var addressData: []
     property bool isEdit: false
@@ -234,7 +234,7 @@ DccObject {
                 resetAddressData()
                 root.editClicked()
             }
-            model: type === NetType.VPNControlItem ? vpnModel : allModel
+            model: type === netType.VPNControlItem ? vpnModel : allModel
             Component.onCompleted: {
                 currentIndex = indexOfValue(method)
                 isEdit = false
@@ -252,7 +252,7 @@ DccObject {
         name: "ipv4Never"
         parentName: root.parentName
         weight: root.weight + 90
-        visible: type === NetType.VPNControlItem
+        visible: type === netType.VPNControlItem
         displayName: qsTr("Only applied in corresponding resources")
         description: qsTr("When enabled, only traffic to the target network is routed through the VPN. Other traffic continues to use the local network connection.")
         canSearch: false
@@ -276,7 +276,7 @@ DccObject {
         name: "ipv4DnsMode"
         parentName: root.parentName
         weight: root.weight + 95
-        visible: type === NetType.VPNControlItem && root.neverDefault && root.resolvedAvailable
+        visible: type === netType.VPNControlItem && root.neverDefault && root.resolvedAvailable
         displayName: qsTr("VPN DNS Mode")
         description: {
             switch (dnsPriority) {
