@@ -1,0 +1,78 @@
+Source: dde-network-core
+Section: libs
+Priority: optional
+Maintainer: donghualin <donghualin@uniontech.com>
+Build-Depends: debhelper-compat (= 12),
+               cmake,
+               extra-cmake-modules,
+               libglib2.0-dev (>= 2.32),
+               pkg-config,
+               libgtest-dev,
+               dde-control-center-dev (>= 6.1.71),
+               dde-tray-loader-dev,
+               dde-session-shell-dev,
+               libudev-dev,
+               qt6-base-dev,
+               qt6-declarative-dev,
+               qt6-tools-dev,
+               qt6-wayland-dev,
+               qt6-base-private-dev,
+               qt6-wayland-private-dev,
+               wayland-protocols,
+               libdtk6core-dev,
+               libdtk6widget-dev,
+               libgsettings-qt6-dev,
+               libkf6networkmanagerqt-dev,
+               libcurl4-openssl-dev
+Rules-Requires-Root: no
+Standards-Version: 4.5.0
+Homepage: https://gerrit.uniontech.com/admin/repos/dde-network-core
+Vcs-Browser: https://gerrit.uniontech.com/admin/repos/dde-network-core
+
+Package: libdde-network-core
+Architecture: any
+Depends: ${misc:Depends},${shlibs:Depends},deepin-service-plugin-network,dnsmasq-base
+Description: the library of network
+ libdde-network-core module
+
+Package: libdde-network-core-dev
+Architecture: any
+Depends: ${misc:Depends},${shlibs:Depends},libdde-network-core (= ${binary:Version})
+Description: the interface of networkcode,used for developers
+ libdde-network-core-dev module
+
+Package: dcc-network-plugin
+Architecture: any
+Depends: ${misc:Depends},
+        ${shlibs:Depends},
+        network-manager-openvpn,
+        network-manager-l2tp,
+        network-manager-pptp,
+        network-manager-vpnc,
+        network-manager-openconnect,
+        network-manager-strongswan | libreswan (>=4.12),
+        network-manager-sstp,
+        libdde-network-core (= ${binary:Version}),
+        dde-daemon (>= 6.1.102)
+Description: the plugin of network for dde control center
+ dcc-network-plugin module
+
+Package: dock-network-plugin
+Architecture: any
+Depends: ${misc:Depends},${shlibs:Depends},libdde-network-core (= ${binary:Version}),dde-daemon (>= 6.1.102)
+Description: the plugin of network for dde-dock
+ dock-plugin module
+
+Package: dss-network-plugin
+Architecture: any
+Depends: ${misc:Depends},${shlibs:Depends},libdde-network-core (= ${binary:Version}),dde-daemon (>= 6.1.102)
+Description: the plugin of network for dde-lock
+ dss-network-plugin module
+
+Package: deepin-service-plugin-network
+Architecture: any
+Depends: ${misc:Depends},${shlibs:Depends},curl,dde-daemon (>= 6.1.102)
+Breaks: dde-daemon (<<6.1.58)
+Replaces: dde-daemon (<<6.1.58)
+Description: the plugin of network service for deepin-service-manager
+ deepin-service-plugin-network module

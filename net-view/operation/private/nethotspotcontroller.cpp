@@ -1,0 +1,238 @@
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
+//
+// SPDX-License-Identifier: GPL-3.0-or-later
+#include "nethotspotcontroller.h"
+
+#include <NetworkManagerQt/Ipv4Setting>
+#include <NetworkManagerQt/Manager>
+#include <NetworkManagerQt/Settings>
+#include <NetworkManagerQt/WirelessSecuritySetting>
+#include <NetworkManagerQt/WirelessSetting>
+#include <hotspotcontroller.h>
+#include <networkcontroller.h>
+#include <wirelessdevice.h>
+
+namespace dde {
+namespace network {
+NetHotspotController::NetHotspotController(QObject *parent)
+    : QObject(parent)
+    , m_isEnabled(false)
+    , m_enabledable(true)
+    , m_deviceEnabled(true)
+    , m_userActive(true)
+    , m_updateCount(0)
+{
+    m_hotspotController = NetworkController::instance()->hotspotController();
+    updateData();
+    updateConfig();
+    m_enabledable = m_hotspotController->supportHotspot();
+    connect(m_hotspotController, &HotspotController::deviceAdded, this, &NetHotspotController::updateData);
+    connect(m_hotspotController, &HotspotController::deviceRemove, this, &NetHotspotController::updateData);
+    connect(m_hotspotController, &HotspotController::activeConnectionChanged, this, &NetHotspotController::updateEnabled);
+    connect(m_hotspotController, &HotspotController::activeConnectionChanged, this, &NetHotspotController::updateConfig);
+    connect(m_hotspotController, &HotspotController::itemAdded, this, &NetHotspotController::updateConfig);
+    connect(m_hotspotController, &HotspotController::itemRemoved, this, &NetHotspotController::updateConfig);
+    connect(m_hotspotController, &HotspotController::itemChanged, this, &NetHotspotController::onItemChanged, Qt::QueuedConnection);
+    QDBusMessage msg = QDBusMessage::createMethodCall("org.freedesktop.login1", "/org/freedesktop/login1/user/self", "org.freedesktop.DBus.Properties", "Get");
+    msg << "org.freedesktop.login1.User" << "Display";
+    QDBusConnection::systemBus().callWithCallback(msg, this, SLOT(updateDisplay(QDBusVariant)));
+}
+
+bool NetHotspotController::isEnabled() const
+{
+    return m_isEnabled;
+}
+
+bool NetHotspotController::enabledable() const
+{
+    return m_enabledable;
+}
+
+bool NetHotspotController::deviceEnabled()
+{
+    return m_deviceEnabled;
+}
+
+const QVariantMap &NetHotspotController::config() const
+{
+    return m_config;
+}
+
+const QStringList &NetHotspotController::optionalDevice() const
+{
+    return m_optionalDevice;
+}
+
+const QStringList &NetHotspotController::optionalDevicePath() const
+{
+    return m_optionalDevicePath;
+}
+
+const QStringList &NetHotspotController::shareDevice() const
+{
+    return m_shareDevice;
+}
+
+void NetHotspotController::updateEnabled()
+{
+    bool enabled = false;
+    bool deviceEnabled = false;
+    QStringList optionalDevice;
+    QStringList optionalDevicePath;
+    for (auto dev : m_hotspotController->devices()) {
+        enabled |= dev->hotspotEnabled();
+        deviceEnabled |= dev->isEnabled();
+        if (dev->isEnabled()) {
+            QString mac = dev->realHwAdr();
+            if (mac.isEmpty()) {
+                mac = dev->usingHwAdr();
+            }
+            mac = mac + " (" + dev->interface() + ")";
+            optionalDevice.append(mac);
+        }
+        optionalDevicePath.append(dev->path());
+    }
+    if (enabled != m_isEnabled) {
+        m_isEnabled = enabled;
+        Q_EMIT enabledChanged(m_isEnabled);
+    }
+    if (deviceEnabled != m_deviceEnabled) {
+        m_deviceEnabled = deviceEnabled;
+        Q_EMIT deviceEnabledChanged(m_deviceEnabled);
+    }
+
+    if (optionalDevice != m_optionalDevice) {
+        m_optionalDevice = optionalDevice;
+        Q_EMIT optionalDeviceChanged(m_optionalDevice);
+    }
+    if (optionalDevicePath != m_optionalDevicePath) {
+        m_optionalDevicePath = optionalDevicePath;
+        Q_EMIT optionalDevicePathChanged(m_optionalDevicePath);
+    }
+}
+
+void NetHotspotController::updateEnabledable()
+{
+    bool enabledable = m_hotspotController->supportHotspot();
+    if (enabledable != m_enabledable) {
+        m_enabledable = enabledable;
+        Q_EMIT enabledableChanged(m_enabledable);
+    }
+}
+
+void NetHotspotController::updateData()
+{
+    QStringList optionalDevice;
+    for (auto dev : m_hotspotController->devices()) {
+        connect(dev, &WirelessDevice::hotspotEnableChanged, this, &NetHotspotController::updateEnabled, Qt::UniqueConnection);
+        connect(dev, &WirelessDevice::enableChanged, this, &NetHotspotController::updateEnabled, Qt::UniqueConnection);
+    }
+    updateEnabled();
+    updateEnabledable();
+    updateConfig();
+}
+
+void NetHotspotController::updateConfig()
+{
+    // 用户不为Active状态时，获取密码需要认证
+    if (!m_userActive) {
+        return;
+    }
+    QList<HotspotItem *> items;
+    for (auto dev : m_hotspotController->devices()) {
+        items.append(m_hotspotController->items(dev));
+    }
+    NetworkManager::ConnectionSettings::Ptr settings;
+    NetworkManager::Connection::Ptr conn;
+    for (auto item : items) {
+        auto connection = NetworkManager::findConnectionByUuid(item->connection()->uuid());
+        if (!connection) {
+            continue;
+        }
+        auto connectionSettings = connection->settings();
+        if (settings.isNull()) {
+            settings = connectionSettings;
+            conn = connection;
+        } else {
+            if (connectionSettings->timestamp() > settings->timestamp()) {
+                settings = connectionSettings;
+                conn = connection;
+            }
+        }
+    }
+    if (settings.isNull()) {
+        settings.reset(new NetworkManager::ConnectionSettings(NetworkManager::ConnectionSettings::Wireless));
+
+        settings->setId(NetworkManager::hostname());
+        settings->setAutoconnect(false);
+        NetworkManager::WirelessSetting::Ptr wSetting = settings->setting(NetworkManager::Setting::SettingType::Wireless).staticCast<NetworkManager::WirelessSetting>();
+        wSetting->setSsid(settings->id().toUtf8());
+        wSetting->setMode(NetworkManager::WirelessSetting::Ap);
+        wSetting->setSecurity("802-11-wireless-security");
+        wSetting->setInitialized(true);
+        NetworkManager::Ipv4Setting::Ptr ipv4Setting = settings->setting(NetworkManager::Setting::SettingType::Ipv4).staticCast<NetworkManager::Ipv4Setting>();
+        ipv4Setting->setMethod(NetworkManager::Ipv4Setting::ConfigMethod::Shared);
+        ipv4Setting->setInitialized(true);
+    } else {
+        // conn->secrets会触发两次itemChanged信号
+        m_updateCount = 2;
+        NetworkManager::WirelessSecuritySetting::Ptr const sSetting = settings->setting(NetworkManager::Setting::SettingType::WirelessSecurity).staticCast<NetworkManager::WirelessSecuritySetting>();
+        sSetting->secretsFromMap(conn->secrets(sSetting->name()).value().value(sSetting->name()));
+    }
+
+    const NMVariantMapMap &settingsMap = settings->toMap();
+    QVariantMap config;
+    for (auto it = settingsMap.cbegin(); it != settingsMap.cend(); it++) {
+        config.insert(it.key(), it.value());
+    }
+    QVariantMap typeMap = config["802-11-wireless"].value<QVariantMap>();
+    typeMap.insert("optionalDevice", m_optionalDevice);
+    config["802-11-wireless"] = typeMap;
+    m_config = config;
+    Q_EMIT configChanged(m_config);
+}
+
+void NetHotspotController::onLoginSessionPropertiesChanged(const QString &, const QVariantMap &properties, const QStringList &)
+{
+    if (properties.contains("Active")) {
+        m_userActive = properties.value("Active").toBool();
+        updateConfig();
+    }
+}
+
+void NetHotspotController::updateDisplay(const QDBusVariant &display)
+{
+    const QDBusArgument arg = display.variant().value<QDBusArgument>();
+    QString id;
+    QDBusObjectPath path;
+    arg.beginStructure();
+    arg >> id;
+    arg >> path;
+    arg.endStructure();
+    if (path.path().isEmpty()) {
+        return;
+    }
+    QDBusMessage msg = QDBusMessage::createMethodCall("org.freedesktop.login1", path.path(), "org.freedesktop.DBus.Properties", "Get");
+    msg << "org.freedesktop.login1.Session" << "Remote";
+    QDBusPendingReply<QDBusVariant> remoteReply = QDBusConnection::systemBus().asyncCall(msg);
+    QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(remoteReply, this);
+    connect(watcher, &QDBusPendingCallWatcher::finished, this, [path, this](QDBusPendingCallWatcher *self) {
+        QDBusPendingReply<QDBusVariant> reply = *self;
+        if (!reply.isError() && !reply.value().variant().toBool()) {
+            QDBusConnection::systemBus().connect("org.freedesktop.login1", path.path(), "org.freedesktop.DBus.Properties", "PropertiesChanged", this, SLOT(onLoginSessionPropertiesChanged(QString, QVariantMap, QStringList)));
+        }
+        self->deleteLater();
+    });
+}
+
+void NetHotspotController::onItemChanged()
+{
+    if (m_updateCount > 0) {
+        m_updateCount--;
+    } else {
+        updateConfig();
+    }
+}
+
+} // namespace network
+} // namespace dde

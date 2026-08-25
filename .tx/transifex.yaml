@@ -1,0 +1,33 @@
+filters:
+  - filter_type: file
+    source_file: dcc-network/translations/network_en_US.ts
+    file_format: QT
+    source_language: en_US
+    translation_files_expression: dcc-network/translations/network_<lang>.ts
+  - filter_type: file
+    source_file: dock-network-plugin/translations/dock-network-plugin_en_US.ts
+    file_format: QT
+    source_language: en_US
+    translation_files_expression: dock-network-plugin/translations/dock-network-plugin_<lang>.ts
+  - filter_type: file
+    source_file: dss-network-plugin/translations/dss-network-plugin_en_US.ts
+    file_format: QT
+    source_language: en_US
+    translation_files_expression: dss-network-plugin/translations/dss-network-plugin_<lang>.ts
+  - filter_type: file
+    source_file: src/translations/dde-network-core_en_US.ts
+    file_format: QT
+    source_language: en_US
+    translation_files_expression: src/translations/dde-network-core_<lang>.ts
+  - filter_type: file
+    source_file: network-service-plugin/translations/network-service-plugin_en_US.ts
+    file_format: QT
+    source_language: en_US
+    translation_files_expression: network-service-plugin/translations/network-service-plugin_<lang>.ts
+  - filter_type: file
+    source_file: dock-hotspot-plugin/translations/dock-hotspot-plugin_en_US.ts
+    file_format: QT
+    source_language: en_US
+    translation_files_expression: dock-hotspot-plugin/translations/dock-hotspot-plugin_<lang>.ts
+settings:
+    pr_branch_name: transifex_update_<br_unique_id>

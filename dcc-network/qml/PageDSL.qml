@@ -1,0 +1,160 @@
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-License-Identifier: GPL-3.0-or-later
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
+import Qt.labs.platform 1.1
+import Qt.labs.qmlmodels 1.2
+
+import org.deepin.dtk 1.0 as D
+
+import org.deepin.dcc 1.0
+import org.deepin.dcc.network 1.0
+
+DccObject {
+    id: root
+    property var netItem: null
+
+    displayName: qsTr("DSL")
+    description: qsTr("Set up a dial-up network connection")
+    icon: "dcc_dsl"
+    visible: netItem.enabledable
+    page: DccSettingsView {}
+
+    DccObject {
+        name: "body"
+        parentName: root.name
+        pageType: DccObject.Item
+        DccObject {
+            name: "networkList"
+            parentName: root.name + "/body"
+            weight: 20
+            pageType: DccObject.Item
+            backgroundType: DccObject.Normal
+            page: ColumnLayout {
+                clip: true
+                spacing: 0
+                Repeater {
+                    id: repeater
+                    model: NetItemModel {
+                        root: netItem
+                    }
+
+                    delegate: ItemDelegate {
+                        Accessible.id: "ItemDelegate_2"
+                        id: itemDelegate
+                        implicitHeight: 36
+                        text: model.item.name
+                        hoverEnabled: true
+                        checked: true
+                        backgroundVisible: false
+                        corners: getCornersForBackground(index, repeater.count)
+                        cascadeSelected: true
+                        Layout.fillWidth: true
+                        content: RowLayout {
+                            BusyIndicator {
+                                running: model.item.status === NetType.CS_Connecting
+                                visible: running
+                            }
+                            DccCheckIcon {
+                                visible: model.item.status === NetType.CS_Connected && !itemDelegate.hovered
+                            }
+                            NetButton {
+                                Accessible.id: "Disconnect_2"
+                                Accessible.role: Accessible.Button
+                                implicitHeight: implicitContentHeight - 4
+                                topInset: -4
+                                bottomInset: -4
+                                visible: model.item.status !== NetType.CS_Connecting && itemDelegate.hovered
+                                text: model.item.status === NetType.CS_Connected ? qsTr("Disconnect") : qsTr("Connect")
+                                Layout.alignment: Qt.AlignCenter
+                                onClicked: {
+                                    dccData.exec(model.item.status === NetType.CS_Connected ? NetManager.Disconnect : NetManager.ConnectOrInfo, model.item.id, {})
+                                }
+                            }
+                            D.IconLabel {
+                                icon {
+                                    name: "arrow_ordinary_right"
+                                    palette: D.DTK.makeIconPalette(palette)
+                                }
+                                MouseArea {
+                                    anchors.fill: parent
+                                    acceptedButtons: Qt.LeftButton
+                                    onClicked: {
+                                        dccData.exec(NetManager.ConnectInfo, model.item.id, {})
+                                    }
+                                }
+                            }
+                        }
+                        onDoubleClicked: {
+                            if (model.item.status === NetType.CS_UnConnected) {
+                                dccData.exec(NetManager.ConnectOrInfo, model.item.id, {})
+                            }
+                        }
+                        background: DccItemBackground {
+                            separatorVisible: true
+                        }
+                    }
+                }
+            }
+        }
+        PageDSLSettings {
+            Accessible.id: "DslSettings"
+            Accessible.role: Accessible.Grouping
+            id: dslSettings
+            name: "dslSettings"
+            parentName: root.name + "/body/networkList"
+            onFinished: DccApp.showPage(root)
+            type: NetType.WiredItem
+            Connections {
+                target: dccData
+                function onRequest(cmd, id, param) {
+                    if (cmd !== NetManager.ConnectInfo) {
+                        return
+                    }
+                    const items = new Array(root.netItem)
+                    while (items.length !== 0) {
+                        let tmpItem = items[0]
+                        if (tmpItem.id === id) {
+                            if (tmpItem.itemType === NetType.DSLControlItem) {
+                                dslSettings.displayName = qsTr("Add PPPoE connection")
+                            } else {
+                                dslSettings.displayName = tmpItem.name
+                            }
+                            dslSettings.netItem = tmpItem
+                            dslSettings.config = param
+
+                            DccApp.showPage(dslSettings)
+                            break
+                        }
+                        for (let i in tmpItem.children) {
+                            items.push(tmpItem.children[i])
+                        }
+                        // items=items.concat(tmpItem.children)
+                        items.shift()
+                    }
+                }
+            }
+        }
+    }
+    DccObject {
+        name: "footer"
+        parentName: root.name
+        pageType: DccObject.Item
+        DccObject {
+            name: "addDSL"
+            parentName: root.name + "/footer"
+            weight: 40
+            pageType: DccObject.Item
+            page: NetButton {
+                Accessible.id: "AddPppoEConnection"
+                Accessible.role: Accessible.Button
+                Layout.alignment: Qt.AlignRight
+                text: qsTr("Add PPPoE connection")
+                onClicked: {
+                    dccData.exec(NetManager.ConnectInfo, netItem.id, {})
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,213 @@
+// SPDX-FileCopyrightText: 2026 UnionTech Software Technology Co., Ltd.
+//
+// SPDX-License-Identifier: LGPL-3.0-or-later
+
+#include "settingconfig.h"
+
+#include <DConfig>
+
+static Dtk::Core::DConfig *dConfig = nullptr;
+
+// 当没有进行配置的时候, 则访问我们官网
+static const QStringList CheckUrls{
+    "https://www.uniontech.com",
+};
+
+SettingConfig *SettingConfig::instance()
+{
+    static SettingConfig inst;
+    return &inst;
+}
+
+bool SettingConfig::reconnectIfIpConflicted() const
+{
+    return m_reconnectIfIpConflicted;
+}
+
+bool SettingConfig::enableConnectivity() const
+{
+    return m_enableConnectivity;
+}
+
+int SettingConfig::connectivityIntervalWhenLimit() const
+{
+    return m_connectivityIntervalWhenLimit;
+}
+
+int SettingConfig::connectivityCheckInterval() const
+{
+    return m_connectivityCheckInterval;
+}
+
+QStringList SettingConfig::networkCheckerUrls() const
+{
+    return m_networkUrls;
+}
+
+bool SettingConfig::supportAutoOpenPortal() const
+{
+    return m_protalProcessMode.toLower().contains("open");
+}
+
+bool SettingConfig::supportPortalPromp() const
+{
+    return m_protalProcessMode.toLower().contains("promp");
+}
+
+bool SettingConfig::disableNetwork() const
+{
+    return m_disabledNetwork;
+}
+
+bool SettingConfig::enableAccountNetwork() const
+{
+    return m_enableAccountNetwork;
+}
+
+bool SettingConfig::disableFailureNotify() const
+{
+    return m_disableFailureNotify;
+}
+
+bool SettingConfig::disableAllNotify() const
+{
+    return m_disableAllNotify;
+}
+
+int SettingConfig::resetWifiOSDEnableTimeout() const
+{
+    return m_resetWifiOSDEnableTimeout;
+}
+
+int SettingConfig::httpRequestTimeout() const
+{
+    return m_httpRequestTimeout;
+}
+
+int SettingConfig::httpConnectTimeout() const
+{
+    return m_httpConnectTimeout;
+}
+
+bool SettingConfig::needCheckNetwork() const
+{
+    return m_needCheckNetwork;
+}
+
+int SettingConfig::reapplyFlags() const
+{
+    return m_reapplyFlags;
+}
+
+void SettingConfig::onValueChanged(const QString &key)
+{
+    if (key == "reconnectIfIpConflicted") {
+        m_reconnectIfIpConflicted = dConfig->value(key).toBool();
+    } else if (key == "enableConnectivity") {
+        m_enableConnectivity = dConfig->value(key).toBool();
+        enableConnectivityChanged(m_enableConnectivity);
+    } else if (key == QString("ConnectivityIntervalWhenLimit")) {
+        m_connectivityIntervalWhenLimit = dConfig->value("ConnectivityIntervalWhenLimit").toInt();
+    } else if (key == QString("ConnectivityCheckInterval")) {
+        m_connectivityCheckInterval = dConfig->value("ConnectivityCheckInterval").toInt() * 1000;
+        emit connectivityCheckIntervalChanged(m_connectivityCheckInterval);
+    } else if (key == QString("NetworkCheckerUrls")) {
+        m_networkUrls = dConfig->value("NetworkCheckerUrls").toStringList();
+        if (m_networkUrls.isEmpty())
+            m_networkUrls = CheckUrls;
+        emit checkUrlsChanged(m_networkUrls);
+    } else if (key == QString("disableFailureNotify")) {
+        m_disableFailureNotify = dConfig->value("disableFailureNotify").toBool();
+        emit disableFailureNotifyChanged(m_disableFailureNotify);
+    } else if (key == QString("disableAllNotify")) {
+        m_disableAllNotify = dConfig->value("disableAllNotify", false).toBool();
+    } else if (key == QString("resetWifiOSDEnableTimeout")) {
+        m_resetWifiOSDEnableTimeout = dConfig->value("resetWifiOSDEnableTimeout").toInt();
+        emit resetWifiOSDEnableTimeoutChanged(m_resetWifiOSDEnableTimeout);
+    } else if (key == QString("httpRequestTimeout")) {
+        m_httpRequestTimeout = dConfig->value("httpRequestTimeout").toInt();
+    } else if (key == QString("httpConnectTimeout")) {
+        m_httpConnectTimeout = dConfig->value("httpConnectTimeout").toInt();
+    } else if (key == QString("portalProcessMode")) {
+        m_protalProcessMode = dConfig->value("portalProcessMode").toString();
+    } else if (key == QString("needCheckNetwork")) {
+        m_needCheckNetwork = dConfig->value("needCheckNetwork").toBool();
+    } else if (key == QString("reapplyFlags")) {
+        int val = dConfig->value("reapplyFlags").toInt();
+        m_reapplyFlags = (val >= 0 && val <= 2) ? val : 2;
+    }
+}
+
+SettingConfig::SettingConfig(QObject *parent)
+    : QObject(parent)
+    , m_reconnectIfIpConflicted(false)
+    , m_enableConnectivity(true)
+    , m_connectivityCheckInterval(30000)
+    , m_protalProcessMode("promp")
+    , m_disabledNetwork(false)
+    , m_enableAccountNetwork(false)
+    , m_disableFailureNotify(false)
+    , m_disableAllNotify(false)
+    , m_resetWifiOSDEnableTimeout(300)
+    , m_needCheckNetwork(true)
+    , m_reapplyFlags(2)
+{
+    if (!dConfig)
+        dConfig = Dtk::Core::DConfig::create("org.deepin.dde.network", "org.deepin.dde.network");
+
+    if (dConfig && dConfig->isValid()) {
+        connect(dConfig, &Dtk::Core::DConfig::valueChanged, this, &SettingConfig::onValueChanged);
+
+        QStringList keys = dConfig->keyList();
+        if (keys.contains("reconnectIfIpConflicted"))
+            m_reconnectIfIpConflicted = dConfig->value("reconnectIfIpConflicted").toBool();
+
+        if (keys.contains("enableConnectivity"))
+            m_enableConnectivity = dConfig->value("enableConnectivity").toBool();
+
+        if (keys.contains("ConnectivityIntervalWhenLimit"))
+            m_connectivityIntervalWhenLimit = dConfig->value("ConnectivityIntervalWhenLimit").toInt();
+
+        if (keys.contains("ConnectivityCheckInterval"))
+            m_connectivityCheckInterval = dConfig->value("ConnectivityCheckInterval").toInt();
+
+        if (keys.contains("NetworkCheckerUrls"))
+            m_networkUrls = dConfig->value("NetworkCheckerUrls").toStringList();
+
+        if (keys.contains("portalProcessMode"))
+            m_protalProcessMode = dConfig->value("portalProcessMode").toString();
+
+        if (keys.contains("disabledNetwork"))
+            m_disabledNetwork = dConfig->value("disabledNetwork").toBool();
+
+        if (keys.contains("enableAccountNetwork"))
+            m_enableAccountNetwork = dConfig->value("enableAccountNetwork").toBool();
+
+        if (keys.contains("resetWifiOSDEnableTimeout"))
+            m_resetWifiOSDEnableTimeout = dConfig->value("resetWifiOSDEnableTimeout").toInt();
+
+        if (keys.contains("httpRequestTimeout"))
+            m_httpRequestTimeout = dConfig->value("httpRequestTimeout").toInt();
+
+        if (keys.contains("httpConnectTimeout"))
+            m_httpConnectTimeout = dConfig->value("httpConnectTimeout").toInt();
+
+        if (keys.contains("needCheckNetwork"))
+            m_needCheckNetwork = dConfig->value("needCheckNetwork").toBool();
+
+        if (keys.contains("disableAllNotify"))
+            m_disableAllNotify = dConfig->value("disableAllNotify", false).toBool();
+
+        m_disableFailureNotify = dConfig->value("disableFailureNotify", false).toBool();
+
+        if (keys.contains("reapplyFlags")) {
+            int val = dConfig->value("reapplyFlags").toInt();
+            if (val >= 0 && val <= 2)
+                m_reapplyFlags = val;
+            else
+                m_reapplyFlags = 2;
+        }
+    }
+    if (m_networkUrls.isEmpty())
+        m_networkUrls = CheckUrls;
+}

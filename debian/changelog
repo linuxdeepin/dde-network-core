@@ -1,0 +1,984 @@
+dde-network-core (2.0.99) unstable; urgency=medium
+
+  * fix(network): adjust font sizes on network details page
+  * fix(network): improve copy button interaction and icon on network
+    details page
+  * fix(hotspot): improve edit button interaction and icon
+  * chore: add polkit policy to debian install
+  * fix(hotspot): align title font weight and color with Shared Settings
+  * fix(airplane): use T8 font size and add 12px left padding for tips
+    label
+  * fix(airplane): correct SPDX copyright year range from 2024 - 2027 to
+    2024-2026
+  * fix(wireless): fix title font weight and color for My/Other Networks
+  * fix(dock): show connected status when disableConnectingAnimation is
+    true
+  * feat: remove network-manager-integration-plugins dependency
+  * fix(CI): broken cppcheck
+  * fix(network): avoid use-after-free of addrinfo hints in getaddrinfo
+    worker thread
+  * i18n: Updates for project Deepin Desktop Environment (#585)
+  * fix(network): don't check network
+  * fix: call init() synchronously in DccNetwork constructor
+  * fix: fix crash in control center network module
+  * fix(net-view): fix ghosting of two checkmarks when hovering
+    connected items
+  * i18n: Updates for project Deepin Desktop Environment (#594)
+  * refactor: move VPN DNS mode handling to session plugin
+  * fix: update Accounts D-Bus interface names to
+    org.deepin.dde.Accounts1
+  * fix: optimize network switching detection
+  * fix(hotspot): optimize hotspot switch sync latency
+  * i18n: Updates for project Deepin Desktop Environment (#599)
+  * chore: add airplane mode interface permission declaration
+
+ -- zhangkun <zhangkun2@uniontech.com>  Tue, 18 Aug 2026 13:26:23 +0800
+
+dde-network-core (2.0.98) unstable; urgency=medium
+
+  * i18n: Updates for project Deepin Desktop Environment (#575)
+  * feat(net-view): add disconnect button for connected items
+  * i18n: Updates for project Deepin Desktop Environment (#581)
+
+ -- zhangkun <zhangkun2@uniontech.com>  Fri, 24 Jul 2026 14:44:17 +0800
+
+dde-network-core (2.0.97) unstable; urgency=medium
+
+  * feat(dconfig): add disableConnectingAnimation option for dock plugin
+  * feat(dconfig): add disableAllNotify option to disable all network
+    notifications
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 23 Jul 2026 21:49:04 +0800
+
+dde-network-core (2.0.96) unstable; urgency=medium
+
+  * fix(network): prevent ping-pong switching in multi-NIC scenario
+  * fix: pass activation token to control center navigation
+  * i18n: Updates for project Deepin Desktop Environment (#488)
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 09 Jul 2026 19:29:26 +0800
+
+dde-network-core (2.0.95) unstable; urgency=medium
+
+  * fix: resolve network detection failure and ping-pong switching in
+    multi-NIC scenario
+  * chore: Sync by
+    https://github.com/linuxdeepin/.github/commit/88706fa723e3771211cb07
+    81d3d97fd4a6cd2a68
+
+ -- zhangkun <zhangkun2@uniontech.com>  Wed, 24 Jun 2026 15:35:08 +0800
+
+dde-network-core (2.0.94) unstable; urgency=medium
+
+  * feat: adopt xdg-activation protocol for Treeland dock plugin
+
+ -- zhangkun <zhangkun2@uniontech.com>  Wed, 17 Jun 2026 16:17:47 +0800
+
+dde-network-core (2.0.93) unstable; urgency=medium
+
+  * feat(vpn): Add dependency libpolkit-qt6-1-dev in control
+
+ -- zhangkun <zhangkun2@uniontech.com>  Fri, 12 Jun 2026 14:57:06 +0800
+
+dde-network-core (2.0.92) unstable; urgency=medium
+
+  * feat(vpn): add VPN DNS mode configuration with systemd-resolved
+    integration
+
+ -- zhangkun <zhangkun2@uniontech.com>  Fri, 12 Jun 2026 14:24:20 +0800
+
+dde-network-core (2.0.91) unstable; urgency=medium
+
+  * fix: prevent polkit popup when session is in background
+  * fix: disconnect D-Bus system bus connections in destructor before
+    thread exit
+  * fix: add per-device internet connectivity check for network
+    switching
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 11 Jun 2026 19:45:37 +0800
+
+dde-network-core (2.0.90) unstable; urgency=medium
+
+  * fix: set alert duration to 2000ms and show error text
+  * fix: enforce baseLayer focus when launcher becomes visible
+  * fix: use loose regex for IP and mask input
+  * fix: restore right-click context menu in windowed launcher's
+    frequently used view
+  * fix: resolve potential crash and resource management issues in
+    network module
+  * fix: fix wired connection name showing English on Chinese locale
+
+ -- zhangkun <zhangkun2@uniontech.com>  Wed, 20 May 2026 15:16:51 +0800
+
+dde-network-core (2.0.89) unstable; urgency=medium
+
+  * fix: remove minHeight reset and add minHeight message handling
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 23 Apr 2026 21:46:50 +0800
+
+dde-network-core (2.0.88) unstable; urgency=medium
+
+  * perf: optimize dock network plugin panel height resizing frequency
+  * fix: fix incomplete display there is extra spacing in the layout,
+    causing display issues.
+  * Fix: Network panel input field in the taskbar is not within the
+    visible area.
+  * style(hotspot): optimize hotspot dialog UI appearance
+  * fix: fix the language of the first connection which create
+  * fix: fix null pointer and improve DNS/IP configuration
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 09 Apr 2026 20:27:59 +0800
+
+dde-network-core (2.0.87) unstable; urgency=medium
+
+  * chore: update the translations
+  * feat: add portal address detection prompt in Control Center
+  * feat: add portal authentication prompt to taskbar
+  * fix: add configuration for whether to open the portal web page
+  * fix: optimize the logic for opening the authentication web page
+  * fix: opening portal webpage no longer depends on taskbar
+
+ -- zhangkun <zhangkun2@uniontech.com>  Fri, 03 Apr 2026 11:25:07 +0800
+
+dde-network-core (2.0.86) unstable; urgency=medium
+
+  * fix: remove redundant setParent call in NetItemPrivate
+  * fix: set parent for NetItem to prevent JS release
+  * style(qml): optimize UI styling and fix copyright year
+  * fix: Optimize UI display of the network module
+  * fix: fix proxy method change handling and add type property
+  * fix: Add automatic VPN connection after network state monitoring
+
+ -- zhangkun <zhangkun2@uniontech.com>  Wed, 25 Mar 2026 17:13:29 +0800
+
+dde-network-core (2.0.85) unstable; urgency=medium
+
+  * fix: Fix missing notification after closing network
+  * fix(touch): enable manual touch scrolling for network plugin in
+    Wayland
+  * fix: Fix incorrect network selection after disabling and re-enabling
+    network interface
+  * fix: Fix interface not displaying in real-time after inserting wired
+    network card
+  * fix: Add WiFi password input flag for lock screen and login
+    interface
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 12 Mar 2026 21:22:01 +0800
+
+dde-network-core (2.0.84) unstable; urgency=medium
+
+  * fix: add null check for connection update
+  * fix: fixed the wired device show error
+  * fix: replece resize to setFixedSize
+  * fix: support scroll on touch screen
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 05 Mar 2026 20:44:02 +0800
+
+dde-network-core (2.0.83) unstable; urgency=medium
+
+  * fix: auto scan when in the wireless page
+
+ -- zhangkun <zhangkun2@uniontech.com>  Sat, 28 Feb 2026 10:06:28 +0800
+
+dde-network-core (2.0.82) unstable; urgency=medium
+
+  * fix: remove MAC address validator from cloned MAC field
+  * fix: disable the popup menu when show password mode
+  * fix: fix system and app proxy is hide
+  * fix: resolve hotspot device not updating when network interface
+    changes
+  * chore: update dde-control-center dependency version
+  * fix: resolve hotspot status transition issue
+  * fix: prevent notifications when user inactive
+  * fix: Fix failure to update network details after a newly inserted
+    device connects to the network
+  * fix: 修复内存泄露
+  * fix: 任务栏网络弹窗打开的时候闪烁
+
+ -- zhangkun <zhangkun2@uniontech.com>  Fri, 27 Feb 2026 17:02:20 +0800
+
+dde-network-core (2.0.81) unstable; urgency=medium
+
+  * fix: update tips color to white
+  * tests: update dss-network-plugin test example
+  * fix: Fix airplane mode tips display logic
+  * Revert "fix: Fix airplane mode tips display logic"
+  * fix: Remove redundant signal emission in proxy settings
+  * fix: Fix airplane mode tips display logic
+  * feat: Updated translation
+  * feat: refactor network device status display and CMake version
+  * fix: fix system proxy status change error
+  * fix: 修复更新信号崩溃
+  * fix: Update taskbar signal strength icon in real-time when network
+    strength changes
+  * chore: replace the connectivity check type
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 05 Feb 2026 20:16:44 +0800
+
+dde-network-core (2.0.80) unstable; urgency=medium
+
+  * tests: add service tests
+  * feat: Updated translation
+  * chore: rename network plugin files to match naming convention
+  * fix: move connection selection before network enable
+  * fix: 修复删除VPN后任务栏图标没有变化的问题
+  * tests: add test project
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 29 Jan 2026 20:22:50 +0800
+
+dde-network-core (2.0.79) unstable; urgency=medium
+
+  * chore: replace qWarning with categorized logging
+  * fix: Fix the abnormal display of network panel height
+  * fix: initialize wireless other item expanded state
+  * feat: add item move support and secret agent improvements
+  * fix: remove left/right margin for dock-network-plugin
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 15 Jan 2026 19:38:34 +0800
+
+dde-network-core (2.0.78) unstable; urgency=medium
+
+  * fix: remove Net_MonitorNotify from Net_GreeterFlags
+  * i18n: Updates for project Deepin Desktop Environment (#462)
+  * fix: declare breaks and replace older version of dde-daemon
+  * fix: prevent QProcess warning when destroying running processes
+  * fix: block right-click context menu in NetPasswordEdit
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 25 Dec 2025 19:34:17 +0800
+
+dde-network-core (2.0.77) unstable; urgency=medium
+
+  * i18n: Updates for project Deepin Desktop Environment (#447)
+  * fix: fix disabled wired network card display issue
+  * style: fix QML function formatting and component reference
+  * feat: optimize wireless connection persistence and network details
+    management
+  * fix: prevent duplicate page navigation
+  * fix: remove debug logs and optimize connection initialization
+  * refactor: remove IPWatchD restart functionality
+  * fix: update network settings page title styles and padding
+  * fix: normalize port input to remove leading zeros in proxy settings
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 18 Dec 2025 19:48:31 +0800
+
+dde-network-core (2.0.76) unstable; urgency=medium
+
+  * fix: update IPWatchD D-Bus service interface
+  * feat: add gateway validation message to translations
+  * refactor: rename item property to netItem
+  * fix: prevent multiple gateways in manual network configuration
+  * fix: fix network details management with pointer-based tracking
+  * refactor: replace manual object management with DccRepeater
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Fri, 12 Dec 2025 15:00:06 +0800
+
+dde-network-core (2.0.75) unstable; urgency=medium
+
+  * fix: set single shot for wifi OSD delay timer
+  * fix: remove device state check in disableDevice
+  * fix: remove de_DE and de_CH resources again caused by transifex
+    change
+  * i18n: remove de_DE translation resources
+  * [dde-network-core] Updates for project Deepin Desktop Environment
+    (#432)
+  * chore: remove hardcoded debug flags from CMake
+  * feat: add reproducible build parameters
+
+ -- fuleyi <fuleyi@uniontech.com>  Thu, 04 Dec 2025 19:13:34 +0800
+
+dde-network-core (2.0.74) unstable; urgency=medium
+
+  * fix: resolve WiFi connection notification issue on login screen
+  * fix: fix concurrent password request handling issue
+
+ -- xionglinlin <xionglinlin@uniontech.com>  Thu, 13 Nov 2025 19:55:40 +0800
+
+dde-network-core (2.0.73) unstable; urgency=medium
+
+  * fix: Modifying text beyond the scope of the control
+  * fix: Enterprise network processes connections based on configuration
+  * fix: Security options are given default values based on
+    configuration items
+  * fix: The control resizes based on its content
+  * i18n: Updates for project Deepin Desktop Environment (#421)
+  * fix: Obtain password only during user activity
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Thu, 06 Nov 2025 16:25:21 +0800
+
+dde-network-core (2.0.72) unstable; urgency=medium
+
+  * fix: Add network OSD processing
+  * fix: Error in obtaining VPN password modification
+  * fix: fix MTU input formatting and change detection
+
+ -- Robertkill <lvpeilong@uniontech.com>  Thu, 30 Oct 2025 19:51:50 +0800
+
+dde-network-core (2.0.71) unstable; urgency=medium
+
+  * fix: Modify DNS name
+  * fix: disable thousands separator in numeric input fields
+  * i18n: Updates for project Deepin Desktop Environment (#411)
+  * fix: Move dnetwork-secret-dialog from dde-session-ui
+  * fix: Add icon resources
+
+ -- wujiangyu <wujiangyu@uniontech.com>  Thu, 23 Oct 2025 16:00:16 +0800
+
+dde-network-core (2.0.70) unstable; urgency=medium
+
+  * fix: Add CancelGetsSecrets processing
+  * fix: add comprehensive wireless network icons
+  * fix: Update translation
+  * [dde-network-core] Updates for project Deepin Desktop Environment
+    (#405)
+  * fix: Add switch button
+  * fix: depends on dnsmasq-base
+  * fix: Modify disable network error issues
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 16 Oct 2025 20:55:18 +0800
+
+dde-network-core (2.0.69) unstable; urgency=medium
+
+  * feat: Update translation
+  * [dde-network-core] Updates for project Deepin Desktop Environment
+    (#401)
+  * feat: Migrate network-related code from dde-daemon
+
+ -- YeShanShan <yeshanshan@uniontech.com>  Fri, 10 Oct 2025 17:26:00 +0800
+
+dde-network-core (2.0.68) unstable; urgency=medium
+
+  * i18n: Updates for project Deepin Desktop Environment (#399)
+  * fix: prevent DNS assignment in disabled network modes
+  * fix: 网络图标展示为黑色
+  * fix: update MTU configuration with valid range
+
+ -- YeShanShan <yeshanshan@uniontech.com>  Thu, 04 Sep 2025 20:19:34 +0800
+
+dde-network-core (2.0.67) unstable; urgency=medium
+
+  * fix: allow empty IP list in manual mode and emit edit signals
+
+ -- YeShanShan <yeshanshan@uniontech.com>  Thu, 21 Aug 2025 19:49:26 +0800
+
+dde-network-core (2.0.66) unstable; urgency=medium
+
+  * fix: improve icon rendering with theme support
+  * chore: remove some translation markers for proper nouns
+
+ -- wujiangyu <wujiangyu@uniontech.com>  Thu, 14 Aug 2025 17:38:46 +0800
+
+dde-network-core (2.0.65) unstable; urgency=medium
+
+  * i18n: Updates for project Deepin Desktop Environment (#389)
+  * fix: Delete manually set IP address in IPv4 automatic mode
+  * chore: add wifi7 dci icon
+
+ -- wujiangyu <wujiangyu@uniontech.com>  Tue, 12 Aug 2025 10:39:43 +0800
+
+dde-network-core (2.0.64) unstable; urgency=medium
+
+  * Release 2.0.64
+
+ -- YeShanShan <yeshanshan@uniontech.com>  Thu, 31 Jul 2025 19:44:25 +0800
+
+dde-network-core (2.0.63) unstable; urgency=medium
+
+  * i18n: Updates for project Deepin Desktop Environment (#379)
+
+ -- zhangkun <zhangkun2@uniontech.com>  Wed, 16 Jul 2025 10:28:05 +0800
+
+dde-network-core (2.0.62) unstable; urgency=medium
+
+  * fix: Compatible with installer plugin processingd3f2aed [dde-network-core] Updates for project Deepin Desktop Environment (#374)
+  * fix: DSL connection deletion signal processing error
+  * fix: Use the system default language when unable to retrieve users
+  * chore: Update translation
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Thu, 10 Jul 2025 11:25:40 +0800
+
+dde-network-core (2.0.61) unstable; urgency=medium
+
+  * fix: fix safe build with debian/rules.
+  * fix: SpinBox supports keyboard input
+  * fix: Duplicate IP addresses do not prompt error messages
+  * i18n: Updates for project Deepin Desktop Environment (#362)
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Thu, 3 Jul 2025 16:55:40 +0800
+
+dde-network-core (2.0.60) unstable; urgency=medium
+
+  * chore: remove reginal variants for es language
+  * i18n: Translate network_en_US.ts in es (#360)
+  * i18n: Updates for project Deepin Desktop Environment (#359)
+  * i18n: Updates for project Deepin Desktop Environment (#353)
+  * chore: Modify compilation issues
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Thu, 12 Jun 2025 16:20:40 +0800
+
+dde-network-core (2.0.59) unstable; urgency=medium
+
+  * feat(network): add full IPv6 DNS support and fix persistence issues
+  * i18n: Translate network_en_US.ts in sq (#352)
+  * fix: translation not loaded if language code not fully matched
+  * i18n: Updates for project Deepin Desktop Environment (#350)
+  * i18n: Updates for project Deepin Desktop Environment (#348)
+  * fix: source string for dcc-network resource is empty
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Thu, 12 Jun 2025 16:20:40 +0800
+
+dde-network-core (2.0.58) unstable; urgency=medium
+
+  * i18n: Translate
+  * fix: when hide plugin,setting button sholud be hided
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Thu, 29 May 2025 15:20:40 +0800
+
+dde-network-core (2.0.57) unstable; urgency=medium
+
+  * fix: add transifex config
+  * fix: Block application proxy menu
+  * fix: Abnormal issue with modifying network icons
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Tue, 13 May 2025 16:50:40 +0800
+
+dde-network-core (2.0.56) unstable; urgency=medium
+
+  * fix: Add VPN configuration parameter check
+  * fix: Add flags of wifi6
+  * fix: Modify can't connect to new WiFi issues
+
+ -- YeShanShan <yeshanshan@uniontech.com>  Thu, 08 May 2025 16:43:39 +0800
+
+dde-network-core (2.0.55) unstable; urgency=medium
+
+  * fix: Modify icon color processing
+  * fix: Modifying network configuration displays errors
+  * fix: Modifying the opening and closing of VPN caused a crash issue
+
+ -- YeShanShan <yeshanshan@uniontech.com>  Tue, 29 Apr 2025 13:11:37 +0800
+
+dde-network-core (2.0.54) unstable; urgency=medium
+
+  * fix: Synchronize dss-network-plugin 107x interface
+  * fix: DSL should not be displayed without wired network devices
+  * fix: Airplane mode not monitoring Bluetooth status
+  * fix: Do not enable hotspots when modifying hotspot configurations
+  * fix: import QtQml.Models
+  * fix: Personal hotspot status when modifying airplane mode
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Thu, 17 Apr 2025 16:22:20 +0800
+
+dde-network-core (2.0.53) unstable; urgency=medium
+
+  * fix: Update translation
+  * feat: Synchronize to 107x
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Thu, 10 Apr 2025 16:32:20 +0800
+
+dde-network-core (2.0.52) unstable; urgency=medium
+
+  * fix: Remove Qt5 dependencies
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Thu, 27 Mar 2025 15:52:20 +0800
+
+dde-network-core (2.0.51) unstable; urgency=medium
+
+  * fix: Modify network service crash issue
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Thu, 20 Mar 2025 17:42:20 +0800
+
+dde-network-core (2.0.50) unstable; urgency=medium
+
+  * fix: Record the last proxy method
+  * fix: Modifying network connection issue without automatic creation
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Fri, 14 Mar 2025 10:02:20 +0800
+
+dde-network-core (2.0.49) unstable; urgency=medium
+
+  * fix: Modify the proxy switch associated variable
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Wed, 12 Mar 2025 10:46:20 +0800
+
+dde-network-core (2.0.48) unstable; urgency=medium
+
+  * fix: Update translation
+  * fix: Upgrade Qt version
+  * feat: Add files generated by qdbusXML2cpp and DCONG2cpp
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Thu, 6 Mar 2025 16:46:20 +0800
+
+dde-network-core (2.0.47) unstable; urgency=medium
+
+  * fit: Modify searchable items
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Thu, 27 Feb 2025 16:56:20 +0800
+
+dde-network-core (2.0.46) unstable; urgency=medium
+
+  * fix: Pop up authentication dialog box
+
+ -- Robertkill <lvpeilong@uniontech.com>  Tue, 11 Feb 2025 13:56:20 +0800
+
+dde-network-core (2.0.45) unstable; urgency=medium
+
+  * 2.0.44
+
+ -- YeShanShan <yeshanshan@uniontech.com>  Fri, 24 Jan 2025 10:55:51 +0800
+
+dde-network-core (2.0.44) unstable; urgency=medium
+
+  * fix: network did not automatically create
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Fri, 17 Dec 2025 09:22:47 +0800
+
+dde-network-core (2.0.43) unstable; urgency=medium
+
+  * fix: Modify hotspot UI style
+  * fix: Update network icon
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Mon, 13 Dec 2025 09:22:47 +0800
+
+dde-network-core (2.0.42) unstable; urgency=medium
+
+  * fix: Password configuration should not be saved without a password
+  * fix: IPv6 regular expression error
+  * fix: Add deepin-service-plugin-network
+  * fix: Create a temporary connection to an unconnected wireless network
+  * fix: The data of the network proxy is not saved correctly
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 02 Jan 2025 13:46:12 +0800
+
+dde-network-core (2.0.41) unstable; urgency=medium
+
+  * fix: Change the network configuration interface to 107x style
+  * fix: Modify hotspot configuration error
+  * fix: Wireless enterprise network did not obtain password correctly
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Wed, 25 Dec 2024 16:22:47 +0800
+
+dde-network-core (2.0.40) unstable; urgency=medium
+
+  * feat: Update weight
+  * fix: Add network parameter jump function
+  * fix: Modify the SSID location on the wireless network configuration page
+  * fix: Failed to modify VPN import issue
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Fri, 13 Dec 2024 16:22:47 +0800
+
+dde-network-core (2.0.39) unstable; urgency=medium
+
+  * fix: Implement entering the dde-control-center network configuration page from the dock
+  * feat: Update translation
+  * feat: Add menu item description
+  * fix: Enterprise network cannot connect
+  * fix: Modifying VPN configuration file without naming issue
+  * fix: Processing password unedited and not visible
+  * feat: Update weight
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Sat, 07 Dec 2024 16:02:47 +0800
+
+dde-network-core (2.0.38) unstable; urgency=medium
+
+  * fix: Standardize IconLabel writing
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Mon, 25 Nov 2024 14:08:47 +0800
+
+dde-network-core (2.0.37) unstable; urgency=medium
+
+  * fix: Adaptation control center interface adjustment
+  * fix: Handling hidden logic on web pages
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Fri, 22 Nov 2024 17:38:47 +0800
+
+dde-network-core (2.0.36) unstable; urgency=medium
+
+  * release 2.0.36
+
+ -- Mike Chen <chenke@deepin.org>  Thu, 31 Oct 2024 13:38:47 +0800
+
+dde-network-core (2.0.35) unstable; urgency=medium
+
+  * fix: Crash after manual proxy is saved
+  * feat: Implement control center network plugin
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Tue, 06 Aug 2024 15:45:40 +0800
+
+dde-network-core (2.0.34) unstable; urgency=medium
+
+  * fix: Save button is not enabled when proxy address changed after saving
+
+ -- Yutao Meng <mengyutao@deepin.org>  Wed, 11 Sep 2024 16:02:53 +0800
+
+dde-network-core (2.0.33) unstable; urgency=medium
+
+  * fix: Network panel translation not dynamically updated(Issue: 10226)
+  * fix: Modify network plugin crash issue (#263)(Issue: 10263)
+
+ -- Deepin Packages Builder <packages@deepin.org>  Thu, 08 Aug 2024 15:24:51 +0800
+
+dde-network-core (2.0.32) unstable; urgency=medium
+
+  * fix: Modify system proxy crash issue(Issue: 10118)
+  * fix: Modify network plugin translation issues(Issue: 10071)
+  * fix: Modify the issue of untranslated network name created for the first time(Issue: 10018)
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Tue, 06 Aug 2024 15:45:40 +0800
+
+dde-network-core (2.0.31) unstable; urgency=medium
+
+  * fix: Modify the interface to display multiple system proxy issues(Issue: 9961)
+  * fix: Modifying configuration errors can also set proxy issues(Issue: 9983)
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Fri, 26 Jul 2024 16:25:40 +0800
+
+dde-network-core (2.0.30) unstable; urgency=medium
+
+  * fix: Responding to proxy change signals (#252)(Issue: 9711)
+  * fix(dss): can't connect to new WiFi(Issue: 9630)
+
+ -- zyz <zhaoyingzhen@uniontech.com>  Wed, 24 Jul 2024 14:05:40 +0800
+
+dde-network-core (2.0.29) unstable; urgency=medium
+
+  * fix(dss): input  is not hidden after closing the window
+    (linuxdeepin/developer-center#8983)
+
+ -- zsien <quezhiyong@deepin.org>  Mon, 08 Jul 2024 10:23:22 +0800
+
+dde-network-core (2.0.28) unstable; urgency=medium
+
+  * fix: icon drift on the left side of listView(Issue: https://github.com/linuxdeepin/developer-center/issues/8982)
+  * fix: VPN gateway cannot input ip:port(Issue: https://github.com/linuxdeepin/developer-center/issues/9437)
+
+ -- Zhang Kun <zhangkun2@uniontech.com>  Tue, 02 Jul 2024 10:36:08 +0800
+
+dde-network-core (2.0.27) unstable; urgency=medium
+
+  * chore: Update translation
+
+ -- Zhang kun <zhangkun2@uniontech.com>  Thu, 13 Jun 2024 11:21:00 +0800
+
+dde-network-core (2.0.26) unstable; urgency=medium
+
+  * fix: lineedit alert style error
+  * fix: secure icons in lock screen are too small
+
+ -- Zhang Kun <zhangkun2@uniontech.com>  Thu, 23 May 2024 16:14:14 +0800
+
+dde-network-core (2.0.25) unstable; urgency=medium
+
+  * fix: netItem textColor error and the selected button is not centered(Issue: https://github.com/linuxdeepin/developer-center/issues/8505)
+
+ -- Zhang Kun <zhangkun2@uniontech.com>  Mon, 20 May 2024 17:58:13 +0800
+
+dde-network-core (2.0.24) unstable; urgency=medium
+
+  * fix: warning label is not translated
+  * fix: empty network panel when unavailable
+  * fix: loadingIndicator isn't deleted
+  * fix: wild pointer for networkDetails
+  * chore: build tests with cpp 14
+  * fix: line edit not fully disabled
+
+ -- Wang Fei <wangfei@deepin.org>  Tue, 16 Apr 2024 16:17:14 +0800
+
+dde-network-core (2.0.23) unstable; urgency=medium
+
+  * fix #7465
+  * chore: Shielding app proxy module
+
+ -- Mike Chen <chenke@deepin.org>  Fri, 22 Mar 2024 09:06:02 +0800
+
+dde-network-core (2.0.22) unstable; urgency=medium
+
+  * fix: interface-name is cleared after modifying the network profile
+  * fix: default method is alway manual
+
+ -- Wang Fei <wangfei@deepin.org>  Fri, 01 Mar 2024 10:06:33 +0800
+
+dde-network-core (2.0.21) unstable; urgency=medium
+
+  * fix: dss plugin shouldn't acquire focus
+
+ -- YuMing He <heyuming@deepin.org>  Tue, 30 Jan 2024 21:42:11 +0800
+
+dde-network-core (2.0.20) unstable; urgency=medium
+
+  * fix #6014
+
+ -- Mike Chen <chenke@deepin.org>  Thu, 25 Jan 2024 10:14:18 +0800
+
+dde-network-core (2.0.19) unstable; urgency=medium
+
+  * fix: update network error icon(Issue: https://github.com/linuxdeepin/developer-center/issues/4479)
+
+ -- Wang Yixue <wangyixue@deepin.org>  Fri, 19 Jan 2024 12:18:52 +0800
+
+dde-network-core (2.0.18) unstable; urgency=medium
+
+  * fix the break ci
+  * fix the changelog
+
+ -- chenhongtao <chenhongtao@deepin.org>  Thu, 11 Jan 2024 15:44:43 +0800
+
+dde-network-core (2.0.17) unstable; urgency=medium
+
+  * fix: vpn dialog open for a long time
+  * use target link of dde-control-center
+  * remote deprecated handle
+  * set extra btn of sysproxymodule to save type
+
+ -- chenhongtao <chenhongtao@deepin.org>  Tue, 19 Dec 2023 10:33:16 +0800
+
+dde-network-core (2.0.16) unstable; urgency=medium
+
+  * fix: OpenVPN网关校验等相关问题
+    Thanks to hotime
+  * fix: not set fixed size for extra(Issue: https://github.com/linuxdeepin/developer-center/issues/5714)
+  * fix: remove unused libdframeworkdbus-dev builddep from debian/control
+    Thanks to Felix Yan
+  * feat: support disable ipv4/ipv6(Issue: https://github.com/linuxdeepin/developer-center/issues/5823)
+  * feat: correct behavior when ipv6 set to ignore or set ipv4/6 to
+    disable(Issue: https://github.com/linuxdeepin/developer-center/issues/5823)
+
+ -- Deepin Packages Builder <packages@deepin.org>  Tue, 10 Oct 2023 11:02:47 +0800
+
+dde-network-core (2.0.15) unstable; urgency=medium
+
+  * fix: Missing update when refresh stopped(Issue: https://github.com/linuxdeepin/developer-center/issues/5484)
+
+ -- YeShanShan <yeshanshan@deepin.org>  Mon, 11 Sep 2023 17:03:03 +0800
+
+dde-network-core (2.0.14) unstable; urgency=medium
+
+  * fix: Can't set connection when connecting(Issue: https://github.com/linuxdeepin/developer-center/issues/5146)
+
+ -- YeShanShan <yeshanshan@deepin.org>  Fri, 08 Sep 2023 13:32:33 +0800
+
+dde-network-core (2.0.13) unstable; urgency=medium
+
+  * chore: Sync by https://github.com/linuxdeepin/.github/commit/559e91167d4919644f37bbcf123eb0651c1528ea(Influence: none)
+  * fix: Even if the hotspot does not exist its state should change
+  * fix: NetworkPanel'status unrefreshed for dss-network-plugin
+  * fix: setContentsMargins of multiipvxsection
+  * chore(CI): Update obs tag build workflow
+  * feat: Hide hotspot plugin when unsupport hotspot(Issue: https://github.com/linuxdeepin/developer-center/issues/5023)
+  * chore: dock-example can't work
+  * feat: Remove dock-hotspot-plugin temporarily(Issue: https://github.com/linuxdeepin/developer-center/issues/5415)
+
+ -- YeShanShan <yeshanshan@deepin.org>  Fri, 06 Sep 2023 10:16:15 +0800
+
+dde-network-core (2.0.12) unstable; urgency=medium
+
+  * fix: Accidentally deactivated hotspot connection due to uncertain signal order
+
+ -- Deepin Packages Builder <packages@deepin.org>  Fri, 07 Jul 2023 14:41:32 +0800
+
+dde-network-core (2.0.11) unstable; urgency=medium
+
+  * fix: Add dcc-network-plugin's displayName(Issue: #4615)
+  * chore: update translate config
+  * fix: update hotspot state failed when connection was removed
+  * fix: unchanged state when network adapter was disabled by device manager
+  * chore: add translation for hotspot plugin
+  * refactor: adjust source structure
+  * chore: enable USE_DEEPIN_NMQT macro
+  * fix: remove useless macro branch
+  * chore: correct translation
+  * fix: disable wpa3 transition mode when using wpa-psk
+  * Revert "fix: Hotspot can't be connected for Wpa/Wpa2"
+  * fix: QuickPanel text is imcompleted when font set to 20
+
+ -- Deepin Packages Builder <packages@deepin.org>  Thu, 06 Jul 2023 13:44:54 +0800
+
+dde-network-core (2.0.10) unstable; urgency=medium
+
+  * feat: add hotspot plugin for dde-dock(issue: 3794)
+  * fix: connect signal when plugin initialization
+
+ -- Deepin Packages Builder <packages@deepin.org>  Mon, 26 Jun 2023 10:14:19 +0800
+
+dde-network-core (2.0.9) unstable; urgency=medium
+
+  * fix(merge-to-v23): e636c91f
+  * fix(merge-to-v23):  0873866f
+  * fix: 防止控制中心多次推送IP冲突消息(Bug: 130419)(Influence: IP冲突横幅通知。)
+  * fix: ip冲突处理错误(Bug: 131935)(Influence: IP冲突)
+  * fix(merge-to-v23): 0dca8ebd
+  * fix(dde-network-core): 没有激活的网络连接时数据更新处理错误(Bug: 141047)(Influence: 网络个人热点功能/网络详细信息显示)
+  * fix: 不弹出网络列表(Bug: 146131)(Influence: 网络弹窗)
+  * fix: 输入密码的ap和已连接的ap不是同一个(Bug: 146165)(Influence: 连接加密网络)
+  * fix: 修复断开连接无法自动连接下一个连接问题(Bug: 146233)(Influence: 网络连接)
+  * fix(dcc-network-plugin): 修改在多块无线网卡取消绑定MAC时无法开启热点问题(Bug: 149527)(Influence: 控制中心-网络-创建热点)
+  * fix: 修复热点和wifi显示频段不统一问题(Bug: 151079)(Influence: 频段)
+  * fix: 初始化网络连接编辑界面时需要向DBUS注册NMVariantMapMap数据类型(Task: 175119)(Influence: 正常编辑网络连接)
+  * fix: 修复“使用LZO压缩”未识别“comp-lzo adaptive”的问题
+    Thanks to hotime(Influence: 控制中心 - 网络 - VPN - VPN高级选项 - 使用LZO压缩)
+  * fix: 修复隐藏网络连接失败的问题(Bug: 155277)(Influence: ARM平台且wayland下，连接隐藏网络)
+  * fix: 修改登录界面网络面板没有显示正在连接的WiFi问题(Bug: 149937)(Influence: 登录界面-网络)
+  * fix: 修复在控制中心连接隐藏网络后任务栏弹出输入密码的提示(Bug: 158483)(Influence: 打开控制中心，连接隐藏网络，输入密码，观察任务栏是否弹出网络框让输入密码)
+  * fix: 网络库类型未注册qDbus导致锁屏异常退出(Bug: 159567)(Influence: 锁屏界面正常显示)
+  * fix: 修复部份网络无法连接隐藏热点的问题 (#89)
+    Thanks to liaohanqin(Bug: 155771)(Influence: wifi)
+  * fix: 修复连接隐藏网络问题(Bug: 174223)(Influence: 网络面板-连接网络)
+  * fix: 修复个人热点无法开启问题
+    Thanks to caixr23(Bug: 174545)(Influence: 控制中心-开启个人热点)
+  * feat: 导出VPN时提供默认文件名(Task: 212939)(Influence: VPN默认文件名)
+  * feat: VPN支持域名网关 (#105)
+    Thanks to liaohanqin(Task: 212887)(Influence: vpn)
+  * fix: 修复WiFi频段单位错误问题(Bug: 176467)(Influence: WIFI频段)
+  * fix: 要求输入密码时任务栏先响应界面显示再显示密码输入框 (#117)
+    Thanks to chenjun(Bug: 172773)(Influence: 要求输入密码时密码框有焦点)
+  * fix: 修复热点激活问题 (#119)
+    Thanks to liaohanqin(Bug: 179755)(Influence: 无)
+  * fix: 连接监听"com.deepin.system.Network"的"DeviceEnabled"属性改变信号 (#121)
+    Thanks to chenjun(Bug: 179753)(Influence: 关闭网络时及时清空无线网络列表)
+  * fix: 修复dock栏无法自动回连问题 (#128)
+    Thanks to liaohanqin(Bug: 181203)(Influence: 网络)
+
+ -- Deepin Packages Builder <packages@deepin.org>  Thu, 18 May 2023 20:22:50 +0800
+
+dde-network-core (2.0.8) unstable; urgency=medium
+
+  * fix: 修复了代理与端口之间控件使用不对的问题
+    Thanks to York Lee(issue: https://github.com/linuxdeepin/dde-network-core/issues/141)
+  * fix: Crashed when exit running in debug qt
+  * fix: App crashed running in debug QT
+  * fix: wrong fix for networkdetail
+  * chore: don't use hardcode path
+  * fix: Add a missing library link
+    Thanks to Hillwood Yang
+  * chore: Sync by https://github.com/linuxdeepin/.github/commit/2e5e092ba3f86b16d1aabbabcf0bfd2ae65b19c8(Influence: none)
+  * fix: crash on exit when running in qt debug ver
+  * fix: 修复了内容区没有居中于弹窗的问题
+    Thanks to skdsfy(Issue: #141)
+  * fix: Hotspot can't be connected for Wpa/Wpa2(Issue: https://github.com/linuxdeepin/developer-center/issues/3732)
+
+ -- Deepin Packages Builder <packages@deepin.org>  Fri, 12 May 2023 10:57:03 +0800
+
+dde-network-core (2.0.7) unstable; urgency=medium
+
+  * fix: 修复了新增个人热点的弹窗名称与安全之间的间隔过大的问题
+    Thanks to York Lee(Issue: #141)
+  * fix: SessionShell crashed(Issue: https://github.com/linuxdeepin/developer-center/issues/4151)
+  * chore: correct a typo in networkdialog.cpp
+    Thanks to Felix Yan
+
+ -- Deepin Packages Builder <packages@deepin.org>  Fri, 21 Apr 2023 16:14:14 +0800
+
+dde-network-core (2.0.6) unstable; urgency=medium
+
+  [ Deepin Packages Builder ]
+  * fix(dcc-network-plugin): 修改在多块无线网卡绑定到其他设备MAC时无法开启热点问题(Issue: 3947)(Bug: 148023)(Influence: 控制中心-网络-创建热点)
+  * fix: Hightlight background for wireless panel(Issue: 4068)
+  * fix: add backgroundcolor to the line proxy type(Issue: https://github.com/linuxdeepin/dde-network-core/issues/141)
+
+ -- Deepin Packages Builder <packages@deepin.org>  Mon, 17 Apr 2023 13:41:50 +0800
+
+dde-network-core (2.0.5) unstable; urgency=medium
+
+  * refactor: delegate popup to dde-session-shell
+  * chore: reuse code and extract a function
+  * fix: Fix incorrect display of network plugins in QuickPanel
+  * fix: Control Center not automatically scanning for APs
+  * chore: use sovername
+  * chore: fix reuse
+  * chore: bring back enable_deepin_nmqt option
+
+ -- Deepin Packages Builder <packages@deepin.com>  Thu, 30 Mar 2023 15:18:56 +0800
+
+dde-network-core (2.0.4.2) unstable; urgency=medium
+
+  [ Deepin Packages Builder ]
+  * fix: 修改仅X屏模式，登录界面崩溃问题(Bug: 182829)(Influence: 仅X屏模式-注销或重启进入登录界面)
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Tue, 10 Jan 2023 21:37:42 +0800
+
+dde-network-core (2.0.4.1) unstable; urgency=medium
+
+  [ TagBuilder ]
+  * fix: 修改网卡名刷新不及时问题(Task: 224813)(Influence: 控制中心-网络-多网卡插拔，网卡名正常)
+  * fix: 修改热点开关状态错误(Task: 224819)(Influence: 控制中心-网络-开启热点)
+  * fix: 修改应用代理无输入时无错误提示(Task: 224769)(Influence: 控制中心-网络-应用代理-无输入时点保存)
+  * fix: 修改频段单位为GHz(Bug: 176471)(Influence: 控制中心-网络-网络详情-wifi频段)
+  * fix: 修改控制中心弹窗title为控制中心<2>问题(Task: 230721)(Influence: 控制中心-网络-网络设置弹窗标题)
+
+ -- zhaoyingzhen <zhaoyingzhen@uniontech.com>  Thu, 29 Dec 2022 15:14:28 +0800
+
+dde-network-core (2.0.3.1) unstable; urgency=medium
+
+  [ TagBuilder ]
+  * fix: 更新网络翻译文件(Bug: 165783)(Influence: 控制中心-网络-翻译)
+  * fix: 网络面板改为插件内窗口(Task: 196767)(Influence: 登录、锁屏、任务栏网络面板弹窗)
+  * fix: 网络插件适配DTK接口更新(Task: 112061)(Influence: 控制中心-网络-各项网络列表)
+  * chore: 更新翻译文件(Task: 196767)(Influence: 网络面板翻译)
+  * fix: 修改网络图标为空问题(Task: 208067)(Influence: 任务栏、锁屏-网络图标显示)
+  * fix: 添加network-manager-integration-plugins依赖(Task: 196767)(Influence: 控制中心-网络-有线网络EAP认证)
+  * fix: 适配任务栏网络插件(Task: 208067)(Influence: 任务栏、锁屏界面、登录界面-网络图标，任务栏网络快捷面板)
+  * chore: 更新翻译文件(Task: 208067)(Influence: 任务栏网络快捷面板)
+  * fix: 网络快捷面板增加长文本处理(Task: 208067)(Influence: 任务栏网络快捷面板)
+  * fix: 网络快捷面板文本修改(Task: 208067)(Influence: 任务栏网络快捷面板)
+  * chore: 更新翻译文件(Task: 208067)(Influence: 任务栏网络快捷面板)
+  * fix: 修改只有有线时，网络快捷面板网络状态错误问题(Task: 208067)(Influence: 只有有线时，任务栏-网络-网络快捷面板状态)
+  * fix: 增加控制中心个性化的图标定制(Bug: 172365)(Influence: 控制中心-个性化，查看插件区域，观察网络图标是否跟随主题变化)
+  * fix: 修改网络面板焦点问题(Bug: 146615)(Influence: 登陆/锁屏/任务栏-网络面板-输入焦点)
+  * fix: 修改网络快捷面板图标缩放适配(Bug: 173395)(Influence: 任务栏-网络快捷面板界面)
+  * feat: 增加任务栏可识别插件属性(Task: 220099)(Influence: 观察插件是否在任务栏快捷面板中)
+  * fix: 修复任务栏不能连接隐藏网络问题(Bug: 173619)(Influence: 任务栏-连接隐藏网络)
+  * fix: 适配基类接口(Task: 222025)(Influence: 无)
+  * chore: V23接口改造适配(Task: 207483)(Influence: 无)
+  * fix: 处理创建DSL点击保存后未触发主动连接问题(Bug: 132667)(Influence: 创建DSL点击保存后触发主动连接)
+
+ -- zhaoyingzhen <zhaoyingzhen@uniontech.com>  Tue, 13 Dec 2022 19:01:51 +0800
+
+dde-network-core (2.0.2) unstable; urgency=medium
+
+  [ Deepin Packages Builder ]
+  * fix(dcc-network-plugin): 网络插件适配控制中心接口变更(Task: 176337)(Influence: 控制中心-网络插件)
+  * fix(dcc-network-plugin): 修改通过网络设置唤起控制中心，网络二级菜单显示异常问题(Bug: 154259)(Influence: 任务栏右击网络图标打开网络设置，查看网络界面)
+  * fix: 网络适配控制中心的接口(Task: 198123)(Influence: 网络库编译打包)
+  * fix: 适配任务栏最新接口(Task: 121387)(Influence: 安装网络插件，查看网络插件是否在快捷设置面板中显示两列图标)
+
+ -- baodi <baodi@uniontech.com>  Wed, 19 Oct 2022 12:43:45 +0800
+
+dde-network-core (2.0.1) unstable; urgency=medium
+
+  [ donghualin ]
+  * UNRELEASED
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Mon, 25 Jul 2022 13:06:44 +0800
+
+dde-network-core (2.0.0.1) unstable; urgency=low
+
+  * release Tag 2.0.0.1
+
+ -- donghualin <donghualin@uniontech.com>  Mon, 5 Jul 2022 14:51:12 +0800
+
+dde-network-core (1.0.17.4) unstable; urgency=low
+
+   * release Tag 1.0.17.4
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Mon, 6 Jun 2022 14:40:48 +0800
+
+dde-network-core (1.0.17.3) unstable; urgency=low
+
+   * release Tag 1.0.17.3
+
+ -- donghualin <donghualin@uniontech.com>  Wed, 2 Jun 2022 16:10:48 +0800
+
+dde-network-core (1.0.17.2) unstable; urgency=low
+
+   * release Tag 1.0.17.2
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Wed, 1 Jun 2022 17:16:39 +0800
+
+dde-network-core (1.0.17.1) unstable; urgency=low
+
+   * release Tag 1.0.17.1
+
+ -- donghualin <donghualin@uniontech.com>  Wed, 1 Jun 2022 10:58:39 +0800
+
+dde-network-core (1.0.0.1) stable; urgency=medium
+
+ -- donghualin <donghualin@uniontech.com> (1.0.0.1) stable; urgency=medium

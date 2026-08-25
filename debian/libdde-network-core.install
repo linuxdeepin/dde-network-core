@@ -1,0 +1,3 @@
+usr/lib/*/libdde-network-core*.so*
+usr/share/dsg/configs/*
+usr/share/dde-network-core/translations

@@ -1,0 +1,58 @@
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
+//
+// SPDX-License-Identifier: GPL-3.0-or-later
+#ifndef DCCNETWORK_H
+#define DCCNETWORK_H
+#include "netitem.h"
+#include "netmanager.h"
+
+#include <NetworkManagerQt/GenericTypes>
+
+#include <QObject>
+#include <QVariant>
+#include <QVariantMap>
+
+namespace dde {
+namespace network {
+
+class DccNetwork : public QObject
+{
+    Q_OBJECT
+    Q_PROPERTY(NetManager* manager READ manager NOTIFY managerChanged)
+    Q_PROPERTY(NetItem* root READ root NOTIFY rootChanged)
+    Q_PROPERTY(bool resolvedAvailable READ resolvedAvailable NOTIFY resolvedAvailableChanged)
+
+public:
+    explicit DccNetwork(QObject *parent = nullptr);
+    ~DccNetwork() override;
+    NetItem *root() const;
+    bool resolvedAvailable() const;
+    Q_INVOKABLE static bool CheckPasswordValid(const QString &key, const QString &password);
+
+    NetManager *manager() const { return m_manager; }
+
+public Q_SLOTS:
+    void exec(NetManager::CmdType cmd, const QString &id, const QVariantMap &param = QVariantMap()); // 执行操作
+    void setClipboard(const QString &text);
+    bool netCheckAvailable(); // 检查网络检测功能是否可用
+
+    QVariantMap toMap(QMap<QString, QString> map);
+    QMap<QString, QString> toStringMap(QVariantMap map);
+
+Q_SIGNALS:
+    void request(NetManager::CmdType cmd, const QString &id, const QVariantMap &param);
+
+    void managerChanged(NetManager *manager);
+    void rootChanged();
+    void resolvedAvailableChanged();
+
+protected Q_SLOTS:
+    void init();
+
+protected:
+    NetManager *m_manager;
+};
+} // namespace network
+} // namespace dde
+
+#endif // DCCNETWORK_H

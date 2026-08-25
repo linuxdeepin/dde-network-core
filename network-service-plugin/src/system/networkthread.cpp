@@ -1,0 +1,471 @@
+// SPDX-FileCopyrightText: 2025-2026 UnionTech Software Technology Co., Ltd.
+//
+// SPDX-License-Identifier: GPL-3.0-or-later
+#include "networkthread.h"
+
+#include "constants.h"
+#include "networkdbus.h"
+
+#include <NetworkManagerQt/Settings>
+#include <NetworkManagerQt/VpnConnection>
+#include <NetworkManagerQt/WirelessDevice>
+#include <NetworkManagerQt/ActiveConnection>
+#include <NetworkManagerQt/Connection>
+#include <NetworkManagerQt/ConnectionSettings>
+#include <NetworkManagerQt/VpnSetting>
+
+#include <QDBusMessage>
+#include <QProcess>
+#include <QThread>
+
+using namespace NetworkManager;
+
+namespace network {
+namespace systemservice {
+NetworkThread::NetworkThread(QDBusConnection &dbusConnection, QObject *parent)
+    : QObject(parent)
+    , m_isInitialized(false)
+    , m_thread(new QThread(this))
+    , m_dbusConnection(dbusConnection)
+    , m_networkConfig(new NetworkEnabledConfig())
+    , m_dbusService(new QDBusServiceWatcher("org.freedesktop.NetworkManager", QDBusConnection::systemBus(), QDBusServiceWatcher::WatchForOwnerChange, this))
+    , m_count(0)
+{
+    connect(m_dbusService, &QDBusServiceWatcher::serviceRegistered, this, &NetworkThread::init);
+    QDBusConnection::systemBus().connect("org.freedesktop.NetworkManager", "", "org.freedesktop.NetworkManager.VPN.Connection", "VpnStateChanged", this, SLOT(onVpnStateChanged(QDBusMessage)));
+    QDBusMessage message = QDBusMessage::createMethodCall("org.freedesktop.DBus", "/org/freedesktop/DBus", "org.freedesktop.DBus", "GetNameOwner");
+    message << "org.freedesktop.NetworkManager";
+    QDBusConnection::systemBus().callWithCallback(message, this, SLOT(init()));
+    moveToThread(m_thread);
+    m_thread->start();
+}
+
+NetworkThread::~NetworkThread()
+{
+    m_thread->quit();
+    m_thread->wait();
+    delete m_networkConfig;
+    m_networkConfig = nullptr;
+}
+
+bool NetworkThread::VpnEnabled() const
+{
+    return m_networkConfig->vpnEnabled();
+}
+
+void NetworkThread::setVpnEnabled(bool enabled)
+{
+    qCDebug(DSM()) << "set VpnEnabled" << enabled;
+    if (!enabled) {
+        disableVpn();
+    }
+    QString err = setPropVpnEnabled(enabled);
+    m_networkConfig->setVpnEnabled(enabled);
+    if (!err.isEmpty()) {
+        qCWarning(DSM()) << "set VpnEnabled error:" << err;
+    }
+}
+
+QDBusObjectPath NetworkThread::EnableDevice(const QString &pathOrIface, const bool enabled, const QDBusMessage &message)
+{
+    qCInfo(DSM()) << "call EnableDevice, ifc:" << pathOrIface << ", enabled: " << enabled;
+
+    QString err;
+    QString path = doEnableDevice(pathOrIface, enabled, err);
+    if (err.isEmpty()) {
+        dbusConnection().send(message.createReply(QVariant::fromValue(QDBusObjectPath(path))));
+    } else {
+        dbusConnection().send(message.createErrorReply(QDBusError::Failed, err));
+    }
+    return QDBusObjectPath();
+}
+
+bool NetworkThread::IsDeviceEnabled(const QString &pathOrIface, const QDBusMessage &message)
+{
+    NetworkManager::Device::Ptr dev = findDevice(pathOrIface);
+    if (!dev) {
+        dbusConnection().send(message.createErrorReply(QDBusError::Failed, "not found device"));
+        return true;
+    }
+    dbusConnection().send(message.createReply(m_networkConfig->deviceEnabled(dev->interfaceName())));
+    return true;
+}
+
+void NetworkThread::Ping(const QString &host, const QDBusMessage &message)
+{
+    dbusConnection().send(message.createReply());
+}
+
+bool NetworkThread::ToggleWirelessEnabled(const QDBusMessage &message)
+{
+    bool enabled = NetworkManager::isWirelessEnabled();
+    enabled = !enabled;
+    NetworkManager::setWirelessEnabled(enabled);
+
+    auto list = NetworkManager::networkInterfaces();
+    for (auto dev : list) {
+        if (dev->type() == NetworkManager::Device::Wifi) {
+            QString err;
+            doEnableDevice(dev->uni(), enabled, err);
+            if (!err.isEmpty()) {
+                qCWarning(DSM()) << QString("failed to enable %1 device %2: %3").arg(enabled).arg(dev->uni()).arg(err);
+            }
+        }
+    }
+
+    dbusConnection().send(message.createReply(enabled));
+    return true;
+}
+
+void NetworkThread::init()
+{
+    if (!m_isInitialized) {
+        m_isInitialized = true;
+        auto notifier = NetworkManager::notifier();
+        connect(notifier, &NetworkManager::Notifier::deviceAdded, this, &NetworkThread::onDeviceAdded);
+        connect(notifier, &NetworkManager::Notifier::deviceRemoved, this, &NetworkThread::onDeviceRemoved);
+        connect(notifier, &NetworkManager::Notifier::statusChanged, this, &NetworkThread::onStatusChanged);
+        onStatusChanged(NetworkManager::status());
+    }
+    m_devices.clear();
+    addDevicesWithRetry();
+}
+
+void NetworkThread::onDeviceAdded(const QString &uni)
+{
+    if (m_devices.contains(uni)) {
+        return;
+    }
+    NetworkManager::Device::Ptr dev = NetworkManager::findNetworkInterface(uni);
+    if (dev) {
+        auto interface = dev->interfaceName();
+        m_devices.insert(uni, interface);
+        connect(dev.get(), &Device::stateChanged, this, &NetworkThread::onDevicestateChanged);
+        connect(dev.get(), &Device::interfaceNameChanged, this, &NetworkThread::onInterfaceNameChanged);
+        QString err;
+        doEnableDevice(interface, m_networkConfig->deviceEnabled(interface), err);
+    }
+}
+
+void NetworkThread::onDeviceRemoved(const QString &uni)
+{
+    Device *dev = qobject_cast<Device *>(sender());
+    if (!dev) {
+        qCWarning(DSM()) << "sender is not Device";
+        return;
+    }
+    disconnect(dev, nullptr, this, nullptr);
+    if (m_devices.contains(uni)) {
+        m_devices.remove(uni);
+    }
+}
+
+void NetworkThread::onDevicestateChanged(NetworkManager::Device::State newState, NetworkManager::Device::State oldState, NetworkManager::Device::StateChangeReason reason)
+{
+    Device *dev = qobject_cast<Device *>(sender());
+    if (!dev) {
+        qCWarning(DSM()) << "sender is not Device";
+        return;
+    }
+    bool enabled = m_networkConfig->deviceEnabled(dev->uni());
+    Device::State state = dev->state();
+    if (enabled) {
+        if (state == Device::Activated) {
+            qCDebug(DSM) << "device connection success";
+            NetworkManager::ActiveConnection::Ptr activeConnection = dev->activeConnection();
+            if (activeConnection) {
+                m_networkConfig->setConnectionInfo(dev->interfaceName(), activeConnection->connection()->uuid());
+                m_networkConfig->saveConfig();
+            }
+        }
+    } else {
+        if (state >= Device::Preparing && state <= Device::Activated) {
+            qCDebug(DSM()) << "disconnect device" << dev->uni();
+            dev->disconnectInterface();
+        }
+    }
+}
+
+void NetworkThread::onInterfaceNameChanged()
+{
+    Device *dev = qobject_cast<Device *>(sender());
+    if (!dev) {
+        qCWarning(DSM()) << "sender is not Device";
+        return;
+    }
+    QString uni = dev->uni();
+    if (!m_devices.contains(uni)) {
+        qCWarning(DSM()) << "device not exist, devPath:" << uni;
+        return;
+    }
+    QString newIface = dev->interfaceName();
+    QString oldItace = m_devices[uni];
+    if (newIface.isEmpty() || newIface == "/") {
+        m_networkConfig->removeDeviceEnabled(oldItace);
+        QString err = m_networkConfig->saveConfig();
+        if (!err.isEmpty()) {
+            qCWarning(DSM()) << "save config failed, err:" << err;
+        }
+        return;
+    }
+    bool enabled = m_networkConfig->deviceEnabled(newIface);
+    QString err;
+    doEnableDevice(newIface, enabled, err);
+}
+
+void NetworkThread::addDevicesWithRetry()
+{
+    auto list = NetworkManager::networkInterfaces();
+    for (auto dev : list) {
+        onDeviceAdded(dev->uni());
+    }
+}
+
+void NetworkThread::onVpnStateChanged(const QDBusMessage &msg)
+{
+    auto args = msg.arguments();
+    uint state = args.at(0).toUInt();
+    uint reason = args.at(1).toUInt();
+    qCDebug(DSM()) << msg.path() << "vpn state changed" << (NetworkManager::VpnConnection::State)state << (NetworkManager::VpnConnection::StateChangeReason)reason;
+    handleVpnStateChanged(state);
+}
+
+void NetworkThread::handleVpnStateChanged(uint state)
+{
+    NetworkManager::VpnConnection::State s = NetworkManager::VpnConnection::State(state);
+    if (s >= VpnConnection::Prepare && s < VpnConnection::Activated) {
+        setPropVpnEnabled(true);
+    }
+}
+
+QString NetworkThread::doEnableDevice(const QString &pathOrIface, const bool enabled, QString &err)
+{
+    NetworkManager::Device::Ptr dev = findDevice(pathOrIface);
+    if (!dev) {
+        err = "not found device";
+        return "/";
+    }
+    m_networkConfig->setDeviceEnabled(dev->interfaceName(), enabled);
+    m_networkConfig->saveConfig();
+    Q_EMIT DeviceEnabled(QDBusObjectPath(dev->uni()), enabled);
+    QString ret = "/";
+    if (enabled) {
+        ret = enableDevice(dev);
+    } else {
+        err = disableDevice(dev);
+    }
+    return ret;
+}
+
+void NetworkThread::disableVpn()
+{
+    auto activeConnectionList = NetworkManager::activeConnections();
+    for (auto &&conn : activeConnectionList) {
+        if (conn->vpn() && (conn->state() == NetworkManager::ActiveConnection::Activating || conn->state() == NetworkManager::ActiveConnection::Activated)) {
+            NetworkManager::deactivateConnection(conn->path());
+        }
+    }
+}
+
+QString NetworkThread::setPropVpnEnabled(bool enabled)
+{
+    QString err;
+    if (m_networkConfig->vpnEnabled() != enabled) {
+        m_networkConfig->setVpnEnabled(enabled);
+        err = m_networkConfig->saveConfig();
+
+        QVariantMap properties;
+        properties.insert("VpnEnabled", enabled);
+
+        QList<QVariant> arguments;
+        arguments.push_back(NETWORK_SYSTEM_DAEMON_INTERFACE);
+        arguments.push_back(properties);
+        arguments.push_back(QStringList());
+
+        QDBusMessage msg = QDBusMessage::createSignal(NETWORK_SYSTEM_DAEMON_PATH, "org.freedesktop.DBus.Properties", "PropertiesChanged");
+        msg.setArguments(arguments);
+        dbusConnection().send(msg);
+    }
+    return err;
+}
+
+QString NetworkThread::enableDevice(NetworkManager::Device::Ptr device)
+{
+    QString connPath0;
+    const QString &device_uuid = m_networkConfig->connectionUuid(device->interfaceName());
+    if (!device_uuid.isEmpty()) {
+        NetworkManager::Connection::Ptr current_connection = NetworkManager::findConnectionByUuid(device_uuid);
+        if (current_connection && current_connection->settings()->autoconnect()) {
+            connPath0 = current_connection->path();
+        }
+    }
+    if (connPath0.isEmpty()) {
+        auto availableConnections = device->availableConnections();
+        qCDebug(DSM()) << "available connections:" << availableConnections;
+        QDateTime maxTs;
+        for (auto &&connPath : availableConnections) {
+            auto settings = connPath->settings();
+            if (!settings->autoconnect()) {
+                continue;
+            }
+            QDateTime ts = settings->timestamp();
+            if (maxTs < ts || connPath0.isEmpty()) {
+                maxTs = ts;
+                connPath0 = connPath->path();
+            }
+        }
+    }
+    if (!connPath0.isEmpty()) {
+        NetworkManager::activateConnection(connPath0, device->uni(), QString());
+        qDebug() << "connected:" << connPath0;
+    }
+
+    bool enabled = NetworkManager::isNetworkingEnabled();
+    if (!enabled) {
+        NetworkManager::setNetworkingEnabled(true);
+    }
+    device->setAutoconnect(true);
+    if (device->type() == NetworkManager::Device::Wifi) {
+        bool wirelessEnabled = NetworkManager::isWirelessEnabled();
+        if (!wirelessEnabled) {
+            // 飞行模式开启，不激活wifi
+            if (airplaneWifiEnabled()) {
+                qCDebug(DSM()) << "disable wifi because airplane mode is on";
+            } else {
+                NetworkManager::setWirelessEnabled(true);
+            }
+        }
+    }
+
+    // device->setManaged(true); // TODO: 应该不需要
+    return connPath0.isEmpty() ? "/" : connPath0;
+}
+
+QString NetworkThread::disableDevice(NetworkManager::Device::Ptr device)
+{
+    device->setAutoconnect(false);
+    // TODO:
+    // cause of nm'bug, sometimes accessapoints list is nil
+    // so add a judge in system network, if get nil in GetAllAccessPoints func, set wirelessEnable down.
+    // device->state 的值更新不及时，不判断
+    auto oldWirelessEnabled = NetworkManager::isWirelessEnabled();
+    if (device->type() == NetworkManager::Device::Wifi) {
+        NetworkManager::WirelessDevice::Ptr wDevice = device.objectCast<NetworkManager::WirelessDevice>();
+        if (wDevice->mode() != WirelessDevice::ApMode) {
+            auto accessPointsList = wDevice->accessPoints();
+            if (accessPointsList.size() > 0) {
+                m_count = 0;
+                qCDebug(DSM()) << "have aplist existed!!!";
+            } else if (m_count++; m_count > 2) {
+                m_count = 0;
+                qCInfo(DSM()) << "try to set wireless-enabled, because ap list is empty";
+                NetworkManager::setWirelessEnabled(false);
+                if (oldWirelessEnabled) {
+                    NetworkManager::setWirelessEnabled(true);
+                }
+                return QString();
+            }
+        }
+    }
+    QDBusPendingReply<> reply = device->disconnectInterface();
+    if (reply.isError()) {
+        qCWarning(DSM()) << "Failed to disconnect device:" << device->uni() << "Error:" << reply.error().message();
+        return reply.error().message();
+    }
+    return QString();
+}
+
+void NetworkThread::onStatusChanged(NetworkManager::Status status)
+{
+    if (!m_networkConfig->vpnEnabled())
+        return;
+
+    if (status != NetworkManager::Status::Connected)
+        return;
+
+    QStringList activeConnectionPaths;
+    NetworkManager::ActiveConnection::List allactiveConnections = NetworkManager::activeConnections();
+    for (const NetworkManager::ActiveConnection::Ptr &activeConnection : allactiveConnections) {
+        if (activeConnection->connection().isNull())
+            continue;
+
+        if (activeConnection->state() == NetworkManager::ActiveConnection::State::Activated
+            || activeConnection->state() == NetworkManager::ActiveConnection::State::Activating)
+            activeConnectionPaths << activeConnection->connection()->path();
+    }
+    QMap<QString, NetworkManager::Connection::Ptr> candidateVpns;
+    // 检查到网络状态为连接成功后，检查本地是否存在自动连接的VPN，如果存在，就让它连接
+    NetworkManager::Connection::List allConnections = NetworkManager::listConnections();
+    for (const NetworkManager::Connection::Ptr &conn : allConnections) {
+        // 过滤掉正在连接的或者已经连接成功的
+        if (activeConnectionPaths.contains(conn->path()))
+            continue;
+
+        // 这里只查找设置了自动连接的
+        if (!conn->settings()->autoconnect())
+            continue;
+
+        // 查找VPN的连接方式
+        NetworkManager::ConnectionSettings::ConnectionType type = conn->settings()->connectionType();
+        if (type == NetworkManager::ConnectionSettings::ConnectionType::Vpn) {
+            NetworkManager::VpnSetting::Ptr setting = conn->settings()->setting(NetworkManager::Setting::SettingType::Vpn).dynamicCast<NetworkManager::VpnSetting>();
+            if (setting.isNull())
+                continue;
+
+            QString serviceType = setting->serviceType();
+            if (candidateVpns.contains(serviceType)) {
+                // 优先使用最后一次连接成功的连接
+                const NetworkManager::Connection::Ptr &lastSetting = candidateVpns[serviceType];
+                if (lastSetting->settings()->timestamp() < conn->settings()->timestamp())
+                    candidateVpns[serviceType] = conn;
+            } else {
+                candidateVpns[serviceType] = conn;
+            }
+        }
+    }
+    for (auto it = candidateVpns.begin(); it != candidateVpns.end(); it++) {
+        const NetworkManager::Connection::Ptr &connection = it.value();
+        QDBusPendingReply<QDBusObjectPath> reply = NetworkManager::activateConnection(connection->path(), "/", "/");
+        // 使用 Watcher 监听异步结果（推荐做法）
+        QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(reply, this);
+        QString connection_name = connection->name();
+        connect(watcher, &QDBusPendingCallWatcher::finished, watcher, &QDBusPendingCallWatcher::deleteLater);
+        connect(watcher, &QDBusPendingCallWatcher::finished, this, [this, connection_name](QDBusPendingCallWatcher *watcher) {
+            QDBusPendingReply<QDBusObjectPath> reply = *watcher;
+            if (reply.isError()) {
+                qWarning() << "Failed to connect VPN:" << connection_name << "Reason:" << reply.error().message();
+            } else {
+                qDebug() << "VPN connection initiated successfully:" << connection_name;
+            }
+        });
+    }
+}
+
+bool NetworkThread::airplaneWifiEnabled()
+{
+    QDBusMessage msg = QDBusMessage::createMethodCall("org.deepin.dde.AirplaneMode1", "/org/deepin/dde/AirplaneMode1", "org.freedesktop.DBus.Properties", "Get");
+    msg << "org.deepin.dde.AirplaneMode1" << "WifiEnabled";
+    QDBusPendingReply<QDBusVariant> reply = QDBusConnection::systemBus().asyncCall(msg);
+    reply.waitForFinished();
+    if (!reply.isError()) {
+        return reply.value().variant().toBool();
+    } else {
+        qCWarning(DSM()) << "get WifiEnabled err:" << reply.error().message();
+    }
+    return false;
+}
+
+Device::Ptr NetworkThread::findDevice(QString pathOrIface)
+{
+    auto devs = NetworkManager::networkInterfaces();
+    for (auto &&dev : devs) {
+        if (dev->interfaceName() == pathOrIface || dev->uni() == pathOrIface) {
+            return dev;
+        }
+    }
+    qCWarning(DSM()) << "cant find device, pathOrIface: " << pathOrIface;
+    return Device::Ptr();
+}
+
+} // namespace systemservice
+} // namespace network

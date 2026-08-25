@@ -1,0 +1,38 @@
+[main]
+host = https://www.transifex.com
+
+[o:linuxdeepin:p:deepin-desktop-environment:r:c7da801e5235021a92eb9c1bf752ac16]
+file_filter = dcc-network/translations/network_<lang>.ts
+source_file = dcc-network/translations/network_en_US.ts
+source_lang = en_US
+type = QT
+
+[o:linuxdeepin:p:deepin-desktop-environment:r:9259a90cdf32007aea2846f902acd883]
+file_filter = dock-network-plugin/translations/dock-network-plugin_<lang>.ts
+source_file = dock-network-plugin/translations/dock-network-plugin_en_US.ts
+source_lang = en_US
+type = QT
+
+[o:linuxdeepin:p:deepin-desktop-environment:r:6d1316079694b65ce22d0f3597ebc751]
+file_filter = dss-network-plugin/translations/dss-network-plugin_<lang>.ts
+source_file = dss-network-plugin/translations/dss-network-plugin_en_US.ts
+source_lang = en_US
+type = QT
+
+[o:linuxdeepin:p:deepin-desktop-environment:r:3d4dca4f95cbc2f5e4530c58055c7fbe]
+file_filter = src/translations/dde-network-core_<lang>.ts
+source_file = src/translations/dde-network-core_en_US.ts
+source_lang = en_US
+type = QT
+
+[o:linuxdeepin:p:deepin-desktop-environment:r:5c4e427eeb128e2429474b4577833149]
+file_filter = network-service-plugin/translations/network-service-plugin_<lang>.ts
+source_file = network-service-plugin/translations/network-service-plugin_en_US.ts
+source_lang = en_US
+type = QT
+
+[o:linuxdeepin:p:deepin-desktop-environment:r:3a6c9baf18649f487b478cac46f08a15]
+file_filter = dock-hotspot-plugin/translations/dock-hotspot-plugin_<lang>.ts
+source_file = dock-hotspot-plugin/translations/dock-hotspot-plugin_en_US.ts
+source_lang = en_US
+type = QT

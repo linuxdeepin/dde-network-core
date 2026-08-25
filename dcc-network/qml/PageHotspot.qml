@@ -1,0 +1,595 @@
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-License-Identifier: GPL-3.0-or-later
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
+import Qt.labs.platform 1.1
+import Qt.labs.qmlmodels 1.2
+import QtQml.Models
+
+import org.deepin.dtk 1.0 as D
+import org.deepin.dtk.style 1.0 as DS
+
+import org.deepin.dcc 1.0
+import org.deepin.dcc.network 1.0
+
+DccObject {
+    id: root
+    property var netItem: null
+    property var airplaneItem: null
+    property var config: null
+    property bool isAirplane: false
+    property string interfaceName: ""
+    enum Status {
+        Disabling,
+        Enabling,
+        Disabled,
+        Enabled
+    }
+    property int hotspotStatus: (netItem && netItem.isEnabled) ? PageHotspot.Status.Enabled : PageHotspot.Status.Disabled
+
+    function setNetItem(item) {
+        if (netItem !== item) {
+            netItem = item
+            config = netItem.config
+            updateDevModel()
+        }
+    }
+    function updateDevModel() {
+        if (devModel.count > 1) {
+            devModel.remove(1, devModel.count - 1)
+        }
+        for (let dev of config["802-11-wireless"].optionalDevice) {
+            devModel.append({
+                                "text": dev,
+                                "value": dev.split(' ')[0]
+                            })
+        }
+    }
+
+    function securityName(type) {
+        switch (type) {
+        case "wpa-psk":
+            return qsTr("WPA/WPA2 Personal")
+        case "sae":
+            return qsTr("WPA3 Personal")
+        default:
+            return qsTr("None")
+        }
+    }
+    function bandName(value) {
+        switch (value) {
+        case "bg":
+            return qsTr("2.4 GHz")
+        case "a":
+            return qsTr("5 GHz")
+        default:
+            return qsTr("Auto")
+        }
+    }
+    function macToString(mac) {
+        return Array.prototype.map.call(new Uint8Array(mac), x => ('00' + x.toString(16)).toUpperCase().slice(-2)).join(':')
+    }
+    function strToMac(str) {
+        if (str.length === 0)
+            return new Uint8Array()
+        let arr = str.split(":")
+        let hexArr = arr.join("")
+        return new Uint8Array(hexArr.match(/[\da-f]{2}/gi).map(bb => {
+                                                                   return parseInt(bb, 16)
+                                                               })).buffer
+    }
+
+    ListModel {
+        id: devModel
+        ListElement {
+            text: qsTr("Not Bind")
+            value: ""
+        }
+    }
+    visible: netItem && netItem.enabledable
+    displayName: qsTr("Personal Hotspot")
+    description: qsTr("Share the network")
+    icon: "dcc_hotspot"
+    backgroundType: DccObject.Normal
+    pageType: DccObject.MenuEditor
+    page: devCheck
+    Component {
+        id: devCheck
+        Item {
+            implicitHeight: switchControl.implicitHeight
+            implicitWidth: switchControl.implicitWidth
+            D.Switch {
+                Accessible.id: "SwitchControl_2"
+                id: switchControl
+                anchors.fill: parent
+                checked: root.hotspotStatus === PageHotspot.Status.Enabled || root.hotspotStatus === PageHotspot.Status.Enabling
+                enabled: netItem.enabledable && !isAirplane && netItem.deviceEnabled && root.hotspotStatus !== PageHotspot.Status.Enabling && root.hotspotStatus !== PageHotspot.Status.Disabling
+                onClicked: {
+                    if (checked) {
+                        root.hotspotStatus = PageHotspot.Status.Enabling
+                        if (config["connection"]["uuid"] === "{00000000-0000-0000-0000-000000000000}") {
+                            dccData.exec(NetManager.SetConnectInfo, netItem.id, config)
+                        } else {
+                            dccData.exec(NetManager.Connect, netItem.id, {
+                                             "uuid": config["connection"]["uuid"]
+                                         })
+                        }
+                    } else {
+                        root.hotspotStatus = PageHotspot.Status.Disabling
+                        dccData.exec(NetManager.Disconnect, netItem.id, {
+                                         "uuid": config["connection"]["uuid"]
+                                     })
+                    }
+                }
+            }
+        }
+    }
+    Connections {
+        target: netItem
+        function onConfigChanged(config) {
+            root.config = config
+            updateDevModel()
+        }
+        function onIsEnabledChanged() {
+            root.hotspotStatus = netItem.isEnabled ? PageHotspot.Status.Enabled : PageHotspot.Status.Disabled
+        }
+    }
+
+    DccObject {
+        name: "menu"
+        parentName: root.name
+        DccObject {
+            name: "title"
+            parentName: root.name + "/menu"
+            displayName: root.displayName
+            icon: "dcc_hotspot"
+            weight: 10
+            backgroundType: DccObject.Normal
+            pageType: DccObject.Editor
+            page: devCheck
+        }
+
+        DccObject {
+            name: "airplaneTips"
+            parentName: root.name + "/menu"
+            visible: isAirplane
+            displayName: qsTr("If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.")
+            weight: 20
+            pageType: DccObject.Item
+            page: D.Label {
+                textFormat: Text.RichText
+                text: qsTr("If you want to use the personal hotspot, disable <a style='text-decoration: none;' href='network/airplaneMode'>Airplane Mode</a> first and then enable the wireless network adapter.")
+                wrapMode: Text.WordWrap
+                onLinkActivated: link => DccApp.showPage(link)
+            }
+        }
+        DccObject {
+            name: "devEnabledTips"
+            parentName: root.name + "/menu"
+            visible: !netItem.deviceEnabled && !isAirplane
+            displayName: qsTr("Enable <a style='text-decoration: none;' href='network'>Wireless Network Adapter</a> first if you want to use the personal hotspot.")
+            weight: 30
+            pageType: DccObject.Item
+            page: D.Label {
+                textFormat: Text.RichText
+                text: dccObj.displayName
+                wrapMode: Text.WordWrap
+                onLinkActivated: function (link) {
+                    if (netItem.optionalDevicePath.length > 0) {
+                        DccApp.showPage("network/wireless" + netItem.optionalDevicePath[0].slice(40))
+                    }
+                }
+            }
+        }
+        DccTitleObject {
+            name: "hotspotTitle"
+            parentName: root.name + "/menu"
+            weight: 40
+            visible: !isAirplane
+            enabled: netItem.deviceEnabled
+            displayName: qsTr("My Hotspot")
+            pageType: DccObject.Item
+            page: RowLayout {
+                Label {
+                    font: DccUtils.copyFont(D.DTK.fontManager.t5, {
+                                       "weight": 500
+                                   })
+                    text: dccObj.displayName
+                    Layout.alignment: Qt.AlignLeft
+                    property D.Palette textColor: D.Palette {
+                        normal: Qt.rgba(0, 0, 0, 0.9)
+                        normalDark: Qt.rgba(1, 1, 1, 0.9)
+                    }
+                    color: D.ColorSelector.textColor
+                }
+                D.ActionButton {
+                    Layout.alignment: Qt.AlignRight
+                    Accessible.id: "EditBtn"
+                    Accessible.role: Accessible.Button
+                    focusPolicy: Qt.NoFocus
+                    Layout.preferredWidth: 30
+                    Layout.preferredHeight: 30
+                    icon {
+                        name: "dcc_network_edit"
+                        width: 16
+                        height: 16
+                    }
+                    hoverEnabled: true
+                    background: Rectangle {
+                        anchors.fill: parent
+                        property D.Palette pressedColor: D.Palette {
+                            normal: Qt.rgba(0, 0, 0, 0.2)
+                            normalDark: Qt.rgba(1, 1, 1, 0.25)
+                        }
+                        property D.Palette hoveredColor: D.Palette {
+                            normal: Qt.rgba(0, 0, 0, 0.1)
+                            normalDark: Qt.rgba(1, 1, 1, 0.1)
+                        }
+                        radius: 6
+                        color: parent.pressed ? D.ColorSelector.pressedColor : (parent.hovered ? D.ColorSelector.hoveredColor : "transparent")
+                    }
+                    onClicked: editDialog.createObject(this, {
+                                                           "config": root.config
+                                                       }).show()
+                }
+            }
+            Component {
+                id: editDialog
+                D.DialogWindow {
+                    id: editDlg
+                    property var config: null
+                    property string keyMgmt: editDlg.config.hasOwnProperty("802-11-wireless-security") ? editDlg.config["802-11-wireless-security"]["key-mgmt"] : ""
+                    property bool ssidAlert: false
+                    property bool passwordAlert: false
+
+                    modality: Qt.ApplicationModal
+                    width: 380
+                    icon: "preferences-system"
+                    onClosing: destroy()
+                    ColumnLayout {
+                        width: parent.width
+                        spacing: 0
+                        Label {
+                            Layout.fillWidth: true
+                            Layout.leftMargin: 50
+                            Layout.rightMargin: 50
+                            Layout.bottomMargin: 10
+                            text: qsTr("Edit My Hotspot")
+                            font.bold: true
+                            wrapMode: Text.WordWrap
+                            horizontalAlignment: Text.AlignHCenter
+                        }
+                        Rectangle {
+                            Layout.fillWidth: true
+                            implicitHeight: colLayout.implicitHeight
+                            color: palette.base
+                            radius: DS.Style.control.radius
+                            ColumnLayout {
+                                id: colLayout
+                                width: parent.width
+                                NetItemEditor {
+                                    Accessible.id: "NameSsid"
+                                    Accessible.role: Accessible.Button
+                                    text: qsTr("Name (SSID)")
+                                    corners: getCornersForBackground(0, colLayout.children.length)
+                                    content: D.LineEdit {
+                                        showAlert: ssidAlert
+                                        alertDuration: 2000
+                                        placeholderText: qsTr("Required")
+                                        text: editDlg.config["802-11-wireless"].ssid
+                                        onTextChanged: {
+                                            ssidAlert = false
+                                            editDlg.config["802-11-wireless"].ssid = text
+                                        }
+                                    }
+                                }
+                                NetItemEditor {
+                                    Accessible.id: "Security"
+                                    Accessible.role: Accessible.Button
+                                    text: qsTr("Security")
+                                    corners: getCornersForBackground(1, colLayout.children.length)
+                                    content: D.ComboBox {
+                                        Accessible.id: "NetItemEditor_ComboBox"
+                                        flat: true
+                                        textRole: "text"
+                                        valueRole: "value"
+                                        model: [{
+                                                "text": qsTr("None"),
+                                                "value": ""
+                                            }, {
+                                                "text": qsTr("WPA/WPA2 Personal"),
+                                                "value": "wpa-psk"
+                                            }, {
+                                                "text": qsTr("WPA3 Personal"),
+                                                "value": "sae"
+                                            }]
+                                        currentIndex: indexOfValue(keyMgmt)
+                                        onActivated: {
+                                            if (!editDlg.config.hasOwnProperty("802-11-wireless-security")) {
+                                                editDlg.config["802-11-wireless-security"] = {}
+                                            }
+                                            keyMgmt = currentValue
+                                        }
+                                        Component.onCompleted: {
+                                            currentIndex = indexOfValue(keyMgmt)
+                                        }
+                                    }
+                                }
+                                NetItemEditor {
+                                    Accessible.id: "Password_2"
+                                    Accessible.role: Accessible.Button
+                                    text: qsTr("Password")
+                                    corners: getCornersForBackground(2, colLayout.children.length)
+                                    visible: keyMgmt.length !== 0
+                                    content: D.PasswordEdit {
+                                        showAlert: passwordAlert
+                                        alertDuration: 2000
+                                        placeholderText: qsTr("Required")
+                                        text: editDlg.config.hasOwnProperty("802-11-wireless-security") ? editDlg.config["802-11-wireless-security"].psk : ""
+                                        onTextChanged: {
+                                            passwordAlert = false
+                                            if (!editDlg.config.hasOwnProperty("802-11-wireless-security")) {
+                                                editDlg.config["802-11-wireless-security"] = {}
+                                            }
+                                            editDlg.config["802-11-wireless-security"].psk = text
+                                        }
+                                        // 在显示明文时禁用右键菜单
+                                        MouseArea {
+                                            anchors.fill: parent
+                                            acceptedButtons: Qt.RightButton
+                                            enabled: parent.echoMode === TextInput.Password
+                                        }
+                                    }
+                                }
+                                NetItemEditor {
+                                    Accessible.id: "Band"
+                                    Accessible.role: Accessible.Button
+                                    text: qsTr("Band")
+                                    corners: getCornersForBackground(3, colLayout.children.length)
+                                    content: D.ComboBox {
+                                        Accessible.id: "NetItemEditor_ComboBox_2"
+                                        flat: true
+                                        textRole: "text"
+                                        valueRole: "value"
+                                        model: [{
+                                                "text": qsTr("Auto"),
+                                                "value": undefined
+                                            }, {
+                                                "text": qsTr("2.4 GHz"),
+                                                "value": "bg"
+                                            }, {
+                                                "text": qsTr("5 GHz"),
+                                                "value": "a"
+                                            }]
+                                        currentIndex: indexOfValue(editDlg.config["802-11-wireless"].band)
+                                        onActivated: {
+                                            editDlg.config["802-11-wireless"].band = currentValue
+                                        }
+                                        Component.onCompleted: {
+                                            currentIndex = indexOfValue(editDlg.config["802-11-wireless"].band)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        RowLayout {
+                            Layout.topMargin: 10
+                            Layout.bottomMargin: 10
+                            Button {
+                                Accessible.id: "Cancel_8"
+                                Layout.fillWidth: true
+                                text: qsTr("Cancel")
+                                onClicked: close()
+                            }
+                            Rectangle {
+                                implicitWidth: 2
+                                Layout.fillHeight: true
+                                color: this.palette.button
+                            }
+
+                            D.RecommandButton {
+                                Layout.fillWidth: true
+                                // contentItem: D.IconLabel {
+                                text: qsTr("Save")
+                                //     color: "red"
+                                // }
+                                onClicked: {
+                                    let ssid = editDlg.config["802-11-wireless"].ssid.trim()
+                                    if (ssid.length === 0) {
+                                        ssidAlert = true
+                                        return
+                                    }
+                                    if (keyMgmt.length !== 0 && (!editDlg.config["802-11-wireless-security"].hasOwnProperty("psk") || editDlg.config["802-11-wireless-security"].psk.length < 8)) {
+                                        passwordAlert = true
+                                        return
+                                    }
+                                    close()
+                                    switch (keyMgmt) {
+                                    case "wpa-psk":
+                                        editDlg.config["802-11-wireless-security"]["proto"] = ['wpa', 'rsn']
+                                        editDlg.config["802-11-wireless-security"]["group"] = ['ccmp']
+                                        editDlg.config["802-11-wireless-security"]["pairwise"] = ['ccmp']
+                                        editDlg.config["802-11-wireless-security"]["psk-flags"] = 0
+                                        editDlg.config["802-11-wireless-security"]["key-mgmt"] = keyMgmt
+                                        break
+                                    case "sae":
+                                        editDlg.config["802-11-wireless-security"]["proto"] = ['rsn']
+                                        editDlg.config["802-11-wireless-security"]["group"] = ['ccmp']
+                                        editDlg.config["802-11-wireless-security"]["pairwise"] = ['ccmp']
+                                        editDlg.config["802-11-wireless-security"]["psk-flags"] = 0
+                                        editDlg.config["802-11-wireless-security"]["key-mgmt"] = keyMgmt
+                                        break
+                                    default:
+                                        delete editDlg.config["802-11-wireless-security"]
+                                        break
+                                    }
+                                    editDlg.config["connection"]["id"] = editDlg.config["802-11-wireless"].ssid
+                                    dccData.exec(NetManager.SetConnectInfo, netItem.id, editDlg.config)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        DccObject {
+            id: hotspotConfig
+            name: "hotspotConfig"
+            parentName: root.name + "/menu"
+            weight: 50
+            visible: !isAirplane
+            enabled: netItem.deviceEnabled
+            pageType: DccObject.Item
+            page: DccGroupView {}
+            DccObject {
+                name: "ssid"
+                parentName: hotspotConfig.parentName + "/" + hotspotConfig.name
+                displayName: qsTr("Name (SSID)")
+                weight: 10
+                backgroundType: DccObject.Normal
+                pageType: DccObject.Editor
+                page: DccLabel {
+                    text: root.config["802-11-wireless"].ssid
+                }
+            }
+            DccObject {
+                name: "securityType"
+                parentName: hotspotConfig.parentName + "/" + hotspotConfig.name
+                displayName: qsTr("Security")
+                weight: 20
+                backgroundType: DccObject.Normal
+                pageType: DccObject.Editor
+                page: DccLabel {
+                    text: securityName(root.config.hasOwnProperty("802-11-wireless-security") ? root.config["802-11-wireless-security"]["key-mgmt"] : "")
+                }
+            }
+            DccObject {
+                name: "password"
+                parentName: hotspotConfig.parentName + "/" + hotspotConfig.name
+                displayName: qsTr("Password")
+                weight: 30
+                backgroundType: DccObject.Normal
+                pageType: DccObject.Editor
+                visible: root.config.hasOwnProperty("802-11-wireless-security")
+                page: Rectangle {
+                    property bool isEchoMode: false
+                    color: "transparent"
+                    implicitHeight: layoutView.implicitHeight
+                    implicitWidth: layoutView.implicitWidth
+                    Layout.fillWidth: true
+                    RowLayout {
+                        id: layoutView
+                        TextInput {
+                            Accessible.id: "80211WirelessSecurity"
+                            text: root.config.hasOwnProperty("802-11-wireless-security") ? root.config["802-11-wireless-security"].psk : ""
+                            color: this.palette.text
+                            selectedTextColor: this.palette.highlightedText
+                            selectionColor: this.palette.highlight
+                            readOnly: true
+                            echoMode: isEchoMode ? TextInput.Normal : TextInput.Password
+                        }
+                        D.ActionButton {
+                            focusPolicy: Qt.NoFocus
+                            Accessible.id: "PasswordToggleBtn"
+                            Accessible.role: Accessible.Button
+                            onClicked: isEchoMode = !isEchoMode
+                            icon.name: isEchoMode ? "entry_password_shown" : "entry_password_hide"
+                        }
+                    }
+                }
+            }
+            DccObject {
+                name: "band"
+                parentName: hotspotConfig.parentName + "/" + hotspotConfig.name
+                displayName: qsTr("Band")
+                weight: 40
+                backgroundType: DccObject.Normal
+                pageType: DccObject.Editor
+                page: DccLabel {
+                    text: bandName(root.config["802-11-wireless"].band)
+                }
+            }
+        }
+        DccTitleObject {
+            name: "shareTitle"
+            parentName: root.name + "/menu"
+            visible: !isAirplane
+            enabled: netItem.deviceEnabled
+            weight: 60
+            displayName: qsTr("Shared Settings")
+        }
+        DccObject {
+            id: shareConfig
+            name: "shareConfig"
+            parentName: root.name + "/menu"
+            visible: !isAirplane
+            enabled: netItem.deviceEnabled
+            weight: 70
+            pageType: DccObject.Item
+            page: DccGroupView {}
+            // TODO: 后端无接口
+            // DccObject {
+            //     name: "shareDevice"
+            //     parentName: shareConfig.parentName + "/" + shareConfig.name
+            //     displayName: qsTr("Priority Shared Network")
+            //     weight: 10
+            //     backgroundType: DccObject.Normal
+            //     pageType: DccObject.Editor
+            //     page: D.ComboBox {
+            //         textRole: "text"
+            //         valueRole: "value"
+            //         model: devModel
+            //     }
+            // }
+            DccObject {
+                name: "deviceMAC"
+                parentName: shareConfig.parentName + "/" + shareConfig.name
+                displayName: qsTr("Hotspot Sharing Device")
+                weight: 20
+                backgroundType: DccObject.Normal
+                pageType: DccObject.Editor
+                page: D.ComboBox {
+                    Accessible.id: "PageHotspot_ComboBox"
+                    function updateCurrentIndex() {
+                        if (root.config["802-11-wireless"].hasOwnProperty("mac-address")) {
+                            currentIndex = indexOfValue(macToString(root.config["802-11-wireless"]["mac-address"]))
+                            let name = /\((\w+)\)/.exec(currentText)
+                            interfaceName = (name && name.length > 1) ? name[1] : ""
+                        } else {
+                            currentIndex = 0
+                        }
+                    }
+                    flat: true
+                    textRole: "text"
+                    valueRole: "value"
+                    // currentIndex: root.config["802-11-wireless"].hasOwnProperty("mac-address") ? indexOfValue(macToString(root.config["802-11-wireless"]["mac-address"])) : 0
+                    model: devModel
+                    onActivated: {
+                        root.config["802-11-wireless"]["mac-address"] = strToMac(currentValue)
+                        let name = /\((\w+)\)/.exec(currentText)
+
+                        interfaceName = (name && name.length > 1) ? name[1] : ""
+                        if (interfaceName.length === 0) {
+                            delete root.config["802-11-wireless"]["mac-address"]
+                            delete root.config["connection"]["interface-name"]
+                        } else {
+                            root.config["connection"]["interface-name"] = interfaceName
+                        }
+                        root.config["setAndConn"] = netItem.isEnabled
+                        dccData.exec(NetManager.SetConnectInfo, netItem.id, root.config)
+                    }
+                    Component.onCompleted: {
+                        updateCurrentIndex()
+                    }
+                    Connections {
+                        target: netItem
+                        function onConfigChanged() {
+                            updateCurrentIndex()
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
