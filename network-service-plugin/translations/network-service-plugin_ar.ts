@@ -1,479 +1,477 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ar">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ar">
 <context>
     <name>NetworkSecretDialog</name>
     <message>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>كلمة المرور</translation>
     </message>
     <message>
         <source>Key</source>
-        <translation type="unfinished"></translation>
+        <translation>المفتاح</translation>
     </message>
     <message>
         <source>key</source>
-        <translation type="unfinished"></translation>
+        <translation>المفتاح</translation>
     </message>
     <message>
         <source>Private Pwd</source>
-        <translation type="unfinished"></translation>
+        <translation>كلمة المرور الخاصة</translation>
     </message>
     <message>
         <source>Proxy Password</source>
-        <translation type="unfinished"></translation>
+        <translation>كلمة مرور الوكيل</translation>
     </message>
     <message>
         <source>Group Password</source>
-        <translation type="unfinished"></translation>
+        <translation>كلمة مرور المجموعة</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>اسم المستخدم</translation>
     </message>
     <message>
         <source>Password required to connect &lt;font color=&quot;%1&quot;&gt;%2&lt;/font&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>كلمة المرور مطلوبة للاتصال بـ &lt;font color=&quot;%1&quot;&gt;%2&lt;/font&gt;</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>إلغاء</translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>اتصال</translation>
     </message>
     <message>
         <source>Wrong password, please enter again!</source>
-        <translation type="unfinished"></translation>
+        <translation>كلمة مرور خاطئة، يرجى إدخالها مرة أخرى!</translation>
     </message>
 </context>
 <context>
     <name>network::sessionservice::NetworkProxy</name>
     <message>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>الشبكة</translation>
     </message>
     <message>
         <source>System proxy has been cancelled.</source>
-        <translation type="unfinished"></translation>
+        <translation>تم إلغاء وكيل النظام.</translation>
     </message>
     <message>
         <source>System proxy is set successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>تم ضبط وكيل النظام بنجاح.</translation>
     </message>
 </context>
 <context>
     <name>network::sessionservice::NetworkProxyChains</name>
     <message>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>الشبكة</translation>
     </message>
     <message>
         <source>Application proxy is set successfully</source>
-        <translation type="unfinished"></translation>
+        <translation>تم ضبط وكيل التطبيق بنجاح</translation>
     </message>
     <message>
         <source>Failed to set the application proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل في ضبط وكيل التطبيق</translation>
     </message>
 </context>
 <context>
     <name>network::sessionservice::NetworkStateHandler</name>
     <message>
         <source>Device state changed</source>
-        <translation type="unfinished"></translation>
+        <translation>تغيّرت حالة الجهاز</translation>
     </message>
     <message>
         <source>Device state changed, reason unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>تغيّرت حالة الجهاز، السبب غير معروف</translation>
     </message>
     <message>
         <source>The device is now managed</source>
-        <translation type="unfinished"></translation>
+        <translation>أصبح الجهاز تحت الإدارة الآن</translation>
     </message>
     <message>
         <source>The device is no longer managed</source>
-        <translation type="unfinished"></translation>
+        <translation>لم يعد الجهاز تحت الإدارة</translation>
     </message>
     <message>
         <source>The device has not been ready for configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>الجهاز غير جاهز للتهيئة</translation>
     </message>
     <message>
         <source>IP configuration could not be reserved (no available address, timeout, etc)</source>
-        <translation type="unfinished"></translation>
+        <translation>تعذر حجز إعداد IP (لا يوجد عنوان متاح، انتهاء المهلة، إلخ)</translation>
     </message>
     <message>
         <source>The IP configuration is no longer valid</source>
-        <translation type="unfinished"></translation>
+        <translation>إعداد IP لم يعد صالحاً</translation>
     </message>
     <message>
         <source>Passwords were required but not provided</source>
-        <translation type="unfinished"></translation>
+        <translation>كلمات المرور مطلوبة ولكن لم يتم توفيرها</translation>
     </message>
     <message>
         <source>The 802.1X supplicant disconnected from the access point or authentication server</source>
-        <translation type="unfinished"></translation>
+        <translation>انقطع اتصال عميل 802.1X عن نقطة الوصول أو خادم المصادقة</translation>
     </message>
     <message>
         <source>Configuration of the 802.1X supplicant failed</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل في تهيئة عميل 802.1X</translation>
     </message>
     <message>
         <source>The 802.1X supplicant quitted or failed unexpectedly</source>
-        <translation type="unfinished"></translation>
+        <translation>خرج عميل 802.1X أو فشل بشكل غير متوقع</translation>
     </message>
     <message>
         <source>The 802.1X supplicant took too long time to authenticate</source>
-        <translation type="unfinished"></translation>
+        <translation>استغرق عميل 802.1X وقتاً طويلاً للمصادقة</translation>
     </message>
     <message>
         <source>The PPP service failed to start within the allowed time</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل خدمة PPP في البدء خلال الوقت المسموح</translation>
     </message>
     <message>
         <source>The PPP service disconnected unexpectedly</source>
-        <translation type="unfinished"></translation>
+        <translation>انقطع اتصال خدمة PPP بشكل غير متوقع</translation>
     </message>
     <message>
         <source>The PPP service quitted or failed unexpectedly</source>
-        <translation type="unfinished"></translation>
+        <translation>خرجت خدمة PPP أو فشلت بشكل غير متوقع</translation>
     </message>
     <message>
         <source>The DHCP service failed to start within the allowed time</source>
-        <translation type="unfinished"></translation>
+        <translation>فشلت خدمة DHCP في البدء خلال الوقت المسموح</translation>
     </message>
     <message>
         <source>The DHCP service reported an unexpected error</source>
-        <translation type="unfinished"></translation>
+        <translation>أبلغت خدمة DHCP عن خطأ غير متوقع</translation>
     </message>
     <message>
         <source>The DHCP service quitted or failed unexpectedly</source>
-        <translation type="unfinished"></translation>
+        <translation>خرجت خدمة DHCP أو فشلت بشكل غير متوقع</translation>
     </message>
     <message>
         <source>The shared connection service failed to start</source>
-        <translation type="unfinished"></translation>
+        <translation>فشلت خدمة الاتصال المشترك في البدء</translation>
     </message>
     <message>
         <source>The shared connection service quitted or failed unexpectedly</source>
-        <translation type="unfinished"></translation>
+        <translation>خرجت خدمة الاتصال المشترك أو فشلت بشكل غير متوقع</translation>
     </message>
     <message>
         <source>The AutoIP service failed to start</source>
-        <translation type="unfinished"></translation>
+        <translation>فشلت خدمة AutoIP في البدء</translation>
     </message>
     <message>
         <source>The AutoIP service reported an unexpected error</source>
-        <translation type="unfinished"></translation>
+        <translation>أبلغت خدمة AutoIP عن خطأ غير متوقع</translation>
     </message>
     <message>
         <source>The AutoIP service quitted or failed unexpectedly</source>
-        <translation type="unfinished"></translation>
+        <translation>خرجت خدمة AutoIP أو فشلت بشكل غير متوقع</translation>
     </message>
     <message>
         <source>Dialing failed due to busy lines</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل الاتصال الهاتفي بسبب انشغال الخطوط</translation>
     </message>
     <message>
         <source>Dialing failed due to no dial tone</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل الاتصال الهاتفي لعدم وجود نغمة اتصال</translation>
     </message>
     <message>
         <source>Dialing failed due to the carrier</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل الاتصال الهاتفي بسبب شركة الاتصالات</translation>
     </message>
     <message>
         <source>Dialing timed out</source>
-        <translation type="unfinished"></translation>
+        <translation>انتهت مهلة الاتصال الهاتفي</translation>
     </message>
     <message>
         <source>Dialing failed</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل الاتصال الهاتفي</translation>
     </message>
     <message>
         <source>Modem initialization failed</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل تهيئة المودم</translation>
     </message>
     <message>
         <source>Failed to select the specified GSM APN</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل في تحديد APN لشبكة GSM المحددة</translation>
     </message>
     <message>
         <source>No networks searched</source>
-        <translation type="unfinished"></translation>
+        <translation>لم يتم البحث عن شبكات</translation>
     </message>
     <message>
         <source>Network registration was denied</source>
-        <translation type="unfinished"></translation>
+        <translation>تم رفض تسجيل الشبكة</translation>
     </message>
     <message>
         <source>Network registration timed out</source>
-        <translation type="unfinished"></translation>
+        <translation>انتهت مهلة تسجيل الشبكة</translation>
     </message>
     <message>
         <source>Failed to register to the requested GSM network</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل التسجيل في شبكة GSM المطلوبة</translation>
     </message>
     <message>
         <source>PIN check failed</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل التحقق من رمز PIN</translation>
     </message>
     <message>
         <source>Necessary firmware for the device may be missed</source>
-        <translation type="unfinished"></translation>
+        <translation>قد يكون البرنامج الثابت اللازم للجهاز مفقوداً</translation>
     </message>
     <message>
         <source>The device was removed</source>
-        <translation type="unfinished"></translation>
+        <translation>تمت إزالة الجهاز</translation>
     </message>
     <message>
         <source>NetworkManager went to sleep</source>
-        <translation type="unfinished"></translation>
+        <translation>انتقل NetworkManager إلى وضع السكون</translation>
     </message>
     <message>
         <source>The device&apos;s active connection was removed or disappeared</source>
-        <translation type="unfinished"></translation>
+        <translation>تمت إزالة اتصال الجهاز النشط أو اختفى</translation>
     </message>
     <message>
         <source>A user or client requested to disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation>طلب مستخدم أو عميل قطع الاتصال</translation>
     </message>
     <message>
         <source>The device&apos;s carrier/link changed</source>
-        <translation type="unfinished"></translation>
+        <translation>تغيّر اتصال/رابط الجهاز</translation>
     </message>
     <message>
         <source>The device&apos;s existing connection was assumed</source>
-        <translation type="unfinished"></translation>
+        <translation>تم افتراض اتصال الجهاز الحالي</translation>
     </message>
     <message>
         <source>The 802.1x supplicant is now available</source>
-        <translation type="unfinished"></translation>
+        <translation>عميل 802.1x متاح الآن</translation>
     </message>
     <message>
         <source>The modem could not be found</source>
-        <translation type="unfinished"></translation>
+        <translation>تعذر العثور على المودم</translation>
     </message>
     <message>
         <source>The Bluetooth connection timed out or failed</source>
-        <translation type="unfinished"></translation>
+        <translation>انتهت مهلة اتصال Bluetooth أو فشل</translation>
     </message>
     <message>
         <source>GSM Modem&apos;s SIM Card was not inserted</source>
-        <translation type="unfinished"></translation>
+        <translation>لم يتم إدخال بطاقة SIM لمودم GSM</translation>
     </message>
     <message>
         <source>GSM Modem&apos;s SIM PIN required</source>
-        <translation type="unfinished"></translation>
+        <translation>رمز PIN لبطاقة SIM لمودم GSM مطلوب</translation>
     </message>
     <message>
         <source>GSM Modem&apos;s SIM PUK required</source>
-        <translation type="unfinished"></translation>
+        <translation>رمز PUK لبطاقة SIM لمودم GSM مطلوب</translation>
     </message>
     <message>
         <source>SIM card error in GSM Modem</source>
-        <translation type="unfinished"></translation>
+        <translation>خطأ في بطاقة SIM لمودم GSM</translation>
     </message>
     <message>
         <source>InfiniBand device does not support connected mode</source>
-        <translation type="unfinished"></translation>
+        <translation>جهاز InfiniBand لا يدعم الوضع المتصل</translation>
     </message>
     <message>
         <source>A dependency of the connection failed</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل تبعية الاتصال</translation>
     </message>
     <message>
         <source>RFC 2684 Ethernet bridging error to ADSL</source>
-        <translation type="unfinished"></translation>
+        <translation>خطأ في تجميع Ethernet RFC 2684 مع ADSL</translation>
     </message>
     <message>
         <source>ModemManager did not run or quitted unexpectedly</source>
-        <translation type="unfinished"></translation>
+        <translation>لم يعمل ModemManager أو خرج بشكل غير متوقع</translation>
     </message>
     <message>
         <source>The 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"></translation>
+        <translation>تعذر العثور على شبكة WLAN 802.11</translation>
     </message>
     <message>
         <source>A secondary connection of the base connection failed</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل اتصال ثانوي للاتصال الأساسي</translation>
     </message>
     <message>
         <source>DCB or FCoE setup failed</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل إعداد DCB أو FCoE</translation>
     </message>
     <message>
         <source>Network teaming control failed</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل التحكم في تجميع الشبكة</translation>
     </message>
     <message>
         <source>Modem failed to run or not available</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل المودم في العمل أو غير متاح</translation>
     </message>
     <message>
         <source>Modem now ready and available</source>
-        <translation type="unfinished"></translation>
+        <translation>المودم جاهز ومتاح الآن</translation>
     </message>
     <message>
         <source>SIM PIN is incorrect</source>
-        <translation type="unfinished"></translation>
+        <translation>رمز PIN لبطاقة SIM غير صحيح</translation>
     </message>
     <message>
         <source>New connection activation is enqueuing</source>
-        <translation type="unfinished"></translation>
+        <translation>تنشيط اتصال جديد قيد الانتظار</translation>
     </message>
     <message>
         <source>Parent device changed</source>
-        <translation type="unfinished"></translation>
+        <translation>تغيّر الجهاز الأصلي</translation>
     </message>
     <message>
         <source>Management status of parent device changed</source>
-        <translation type="unfinished"></translation>
+        <translation>تغيّرت حالة إدارة الجهاز الأصلي</translation>
     </message>
     <message>
         <source>Network cable is unplugged</source>
-        <translation type="unfinished"></translation>
+        <translation>كابل الشبكة غير متصل</translation>
     </message>
     <message>
         <source>Please make sure SIM card has been inserted with mobile network signal</source>
-        <translation type="unfinished"></translation>
+        <translation>يرجى التأكد من إدخال بطاقة SIM مع وجود إشارة شبكة الجوال</translation>
     </message>
     <message>
         <source>Please make sure a correct plan was selected without arrearage of SIM card</source>
-        <translation type="unfinished"></translation>
+        <translation>يرجى التأكد من تحديد الخطة الصحيحة بدون متأخرات على بطاقة SIM</translation>
     </message>
     <message>
         <source>Failed to activate VPN connection, reason unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل تنشيط اتصال VPN، السبب غير معروف</translation>
     </message>
     <message>
         <source>Failed to activate VPN connection</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل تنشيط اتصال VPN</translation>
     </message>
     <message>
         <source>The VPN connection state changed due to being disconnected by users</source>
-        <translation type="unfinished"></translation>
+        <translation>تغيّرت حالة اتصال VPN بسبب قطع الاتصال من قبل المستخدمين</translation>
     </message>
     <message>
         <source>The VPN connection state changed due to being disconnected from devices</source>
-        <translation type="unfinished"></translation>
+        <translation>تغيّرت حالة اتصال VPN بسبب قطع الاتصال من الأجهزة</translation>
     </message>
     <message>
         <source>VPN service stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>توقفت خدمة VPN</translation>
     </message>
     <message>
         <source>The IP config of VPN connection was invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>إعداد IP لاتصال VPN غير صالح</translation>
     </message>
     <message>
         <source>The connection attempt to VPN service timed out</source>
-        <translation type="unfinished"></translation>
+        <translation>انتهت مهلة محاولة الاتصال بخدمة VPN</translation>
     </message>
     <message>
         <source>The VPN service start timed out</source>
-        <translation type="unfinished"></translation>
+        <translation>انتهت مهلة بدء خدمة VPN</translation>
     </message>
     <message>
         <source>The VPN service failed to start</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل بدء خدمة VPN</translation>
     </message>
     <message>
         <source>The VPN connection password was not provided</source>
-        <translation type="unfinished"></translation>
+        <translation>لم يتم توفير كلمة مرور اتصال VPN</translation>
     </message>
     <message>
         <source>Authentication to VPN server failed</source>
-        <translation type="unfinished"></translation>
+        <translation>فشلت المصادقة على خادم VPN</translation>
     </message>
     <message>
         <source>The connection was deleted from settings</source>
-        <translation type="unfinished"></translation>
+        <translation>تم حذف الاتصال من الإعدادات</translation>
     </message>
     <message>
         <source>Enabling hotspot</source>
-        <translation type="unfinished"></translation>
+        <translation>جاري تمكين نقطة الاتصال</translation>
     </message>
     <message>
         <source>Connecting &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>جاري الاتصال بـ &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Hotspot enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>تم تمكين نقطة الاتصال</translation>
     </message>
     <message>
         <source>&quot;%1&quot; connected</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;%1&quot; متصل</translation>
     </message>
     <message>
         <source>Hotspot disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>تم تعطيل نقطة الاتصال</translation>
     </message>
     <message>
         <source>&quot;%1&quot; disconnected</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;%1&quot; غير متصل</translation>
     </message>
     <message>
         <source>Unable to share hotspot, please check dnsmasq settings</source>
-        <translation type="unfinished"></translation>
+        <translation>تعذر مشاركة نقطة الاتصال، يرجى التحقق من إعدادات dnsmasq</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
-        <translation type="unfinished"></translation>
+        <translation>تعذر الاتصال بـ &quot;%1&quot;، يرجى الاقتراب أكثر من الموجه اللاسلكي</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please check your router or net cable.</source>
-        <translation type="unfinished"></translation>
+        <translation>تعذر الاتصال بـ &quot;%1&quot;، يرجى التحقق من الموجه أو كابل الشبكة.</translation>
     </message>
     <message>
         <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل الاتصال، تعذر الاتصال بـ &quot;%1&quot;، كلمة مرور خاطئة</translation>
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>تعذر الاتصال بـ &quot;%1&quot;</translation>
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info</source>
-        <translation type="unfinished"></translation>
+        <translation>للاتصال بـ &quot;%1&quot;، يرجى إعداد معلومات المصادقة الخاصة بك</translation>
     </message>
     <message>
         <source>Password is required to connect &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>كلمة المرور مطلوبة للاتصال بـ &quot;%1&quot;</translation>
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation type="unfinished"></translation>
+        <translation>تعذر العثور على شبكة WLAN 802.11 &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"></translation>
+        <translation>غير متصل</translation>
     </message>
     <message>
         <source>Airplane mode enabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>تم تمكين وضع الطيران.</translation>
     </message>
     <message>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>الشبكة</translation>
     </message>
     <message>
         <source>The hardware switch of WLAN Card is off, please switch on as necessary.</source>
-        <translation type="unfinished"></translation>
+        <translation>المفتاح الفعلي لبطاقة WLAN مطفأ، يرجى تشغيله عند الحاجة.</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"></translation>
+        <translation>متصل</translation>
     </message>
 </context>
 <context>
     <name>network::systemservice::NetworkInitialization</name>
     <message>
         <source>Wired Connection</source>
-        <translation type="unfinished"></translation>
+        <translation>اتصال سلكي</translation>
     </message>
 </context>
 </TS>
