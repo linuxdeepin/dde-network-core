@@ -1,13 +1,9 @@
 <?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ar">
 <context>
-    <name>dde::network::DockContentWidget</name>
+    <name>Bubble</name>
     <message>
-        <source>Network settings</source>
-        <translation>إعدادات الشبكة</translation>
-    </message>
-    <message>
-        <source>Network Detection</source>
-        <translation>اكتشاف الشبكة</translation>
+        <source>1 new message</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -319,13 +315,6 @@
     <message>
         <source>Disconnect</source>
         <translation>قطع الاتصال</translation>
-    </message>
-</context>
-<context>
-    <name>dde::network::NetworkPlugin</name>
-    <message>
-        <source>Network</source>
-        <translation>الشبكة</translation>
     </message>
 </context>
 </TS>
