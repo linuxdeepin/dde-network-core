@@ -3,7 +3,7 @@
     <name>Bubble</name>
     <message>
         <source>1 new message</source>
-        <translation type="unfinished"/>
+        <translation>رسالة جديدة واحدة</translation>
     </message>
 </context>
 <context>
