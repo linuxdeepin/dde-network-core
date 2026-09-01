@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2011 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2011 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -125,6 +125,7 @@ void NetworkSecretDialog::initUI()
         lineEdit->setClearButtonEnabled(true);
         lineEdit->setCopyEnabled(false);
         lineEdit->setCutEnabled(false);
+        lineEdit->setObjectName("SecretDialogLineEdit_" + secret);
         gridLayout->addWidget(new QLabel(label + ":"), row, 0);
         gridLayout->addWidget(lineEdit, row, 1);
         m_lineEditList.append(lineEdit);

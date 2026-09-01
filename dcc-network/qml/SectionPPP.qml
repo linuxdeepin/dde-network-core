@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2027 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 // SPDX-License-Identifier: GPL-3.0-or-later
 import QtQuick 2.15
 import QtQuick.Controls 2.15
@@ -39,6 +39,7 @@ DccTitleObject {
     Component {
         id: switchItem
         D.Switch {
+            objectName: "Component_Switch_3"
             checked: root.config.hasOwnProperty(dccObj.name) && root.config[dccObj.name]
             onClicked: {
                 root.config[dccObj.name] = checked
@@ -61,6 +62,7 @@ DccTitleObject {
             weight: 10
             pageType: DccObject.Editor
             page: D.Switch {
+                objectName: "SectionPpp_Switch"
                 checked: mppe
                 onClicked: {
                     mppe = checked
@@ -184,6 +186,7 @@ DccTitleObject {
             weight: 140
             pageType: DccObject.Editor
             page: D.Switch {
+                objectName: "SectionPpp_Switch_2"
                 checked: root.config["lcp-echo-failure"] === 5 && root.config["lcp-echo-interval"] === 30
                 onClicked: {
                     if (checked) {

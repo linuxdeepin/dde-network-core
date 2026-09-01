@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -45,6 +45,7 @@ MultiIpvxSection::MultiIpvxSection(Setting::Ptr ipvSetting, QFrame *parent)
     m_headerEditWidget->setFixedHeight(30);
 
     m_methodChooser = m_methodLine->comboBox();
+    m_methodChooser->setObjectName("MethodChooser_2");
     m_methodLine->setTitle(tr("Method"));
     appendItem(m_methodLine);
 
@@ -359,6 +360,8 @@ IPInputSection::IPInputSection(IpAddress ipAddress, QFrame *parent)
     , m_deleteButton(new DIconButton(DStyle::SP_DeleteButton, this))
 {
     initUi();
+    m_newIpButton->setObjectName("NewIpBtn");
+    m_deleteButton->setObjectName("DeleteIpBtn");
     initConnection();
 }
 
@@ -445,6 +448,8 @@ IPV4InputSection::IPV4InputSection(IpAddress ipAddress, QFrame *parent)
     , m_netmaskIpv4(new LineEditWidget(this))
 {
     initUi();
+    m_newIpButton->setObjectName("NewIpBtn");
+    m_deleteButton->setObjectName("DeleteIpBtn");
     initConnection();
 }
 
@@ -591,6 +596,8 @@ IPV6InputSection::IPV6InputSection(IpAddress ipAddress, QFrame *parent)
     , m_prefixIpv6(new SpinBoxWidget(this))
 {
     initUi();
+    m_newIpButton->setObjectName("NewIpBtn");
+    m_deleteButton->setObjectName("DeleteIpBtn");
 }
 
 IPV6InputSection::~IPV6InputSection()

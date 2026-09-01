@@ -43,6 +43,7 @@ DccObject {
     Component {
         id: devCheck
         D.Switch {
+            objectName: "Component_Switch_2"
             checked: netItem.isEnabled
             enabled: netItem.enabledable
             onClicked: {
@@ -69,6 +70,7 @@ DccObject {
                 backgroundType: DccObject.Normal
                 pageType: DccObject.Editor
                 page: D.Switch {
+                    objectName: "PageSystemProxy_Switch"
                     checked: root.method !== NetType.None
                     enabled: netItem.enabledable
                     onClicked: {
@@ -100,6 +102,7 @@ DccObject {
                 visible: method !== NetType.None
                 pageType: DccObject.Editor
                 page: ComboBox {
+                    objectName: "PageSystemProxy_ComboBox"
                     flat: true
                     textRole: "text"
                     valueRole: "value"
@@ -162,6 +165,8 @@ DccObject {
                 }
             }
             SystemProxyConfigItem {
+                objectName: "Http"
+                Accessible.role: Accessible.Grouping
                 id: http
                 name: "http"
                 parentName: root.name + "/menu/body"
@@ -178,6 +183,8 @@ DccObject {
                 }
             }
             SystemProxyConfigItem {
+                objectName: "Https"
+                Accessible.role: Accessible.Grouping
                 id: https
                 name: "https"
                 parentName: root.name + "/menu/body"
@@ -194,6 +201,8 @@ DccObject {
                 }
             }
             SystemProxyConfigItem {
+                objectName: "Ftp"
+                Accessible.role: Accessible.Grouping
                 id: ftp
                 name: "ftp"
                 parentName: root.name + "/menu/body"
@@ -210,6 +219,8 @@ DccObject {
                 }
             }
             SystemProxyConfigItem {
+                objectName: "Socks"
+                Accessible.role: Accessible.Grouping
                 id: socks
                 name: "socks"
                 parentName: root.name + "/menu/body"
@@ -235,6 +246,7 @@ DccObject {
                 weight: 80
                 pageType: DccObject.Item
                 page: TextArea {
+                    objectName: "DccObjConfig"
                     wrapMode: TextEdit.WordWrap
                     text: dccObj.config
                     onTextChanged: {
@@ -279,6 +291,7 @@ DccObject {
                 weight: 30
                 pageType: DccObject.Item
                 page: Button {
+                    objectName: "DccObjDisplayName"
                     implicitHeight: implicitContentHeight + 10
                     implicitWidth: implicitContentWidth + 10
                     topPadding: 0
@@ -299,6 +312,7 @@ DccObject {
                 weight: 40
                 pageType: DccObject.Item
                 page: Button {
+                    objectName: "DccObjDisplayName_2"
                     implicitHeight: implicitContentHeight + 10
                     implicitWidth: implicitContentWidth + 10
                     topPadding: 0

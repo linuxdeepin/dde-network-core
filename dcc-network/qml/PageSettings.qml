@@ -37,6 +37,8 @@ DccObject {
             }
         }
         SectionGeneric {
+            objectName: "SectionGeneric_3"
+            Accessible.role: Accessible.Grouping
             id: sectionGeneric
             parentName: root.parentUrl + "/body"
             weight: 100
@@ -44,30 +46,40 @@ DccObject {
             onEditClicked: modified = true
         }
         SectionSecret {
+            objectName: "SectionSecret"
+            Accessible.role: Accessible.Grouping
             id: sectionSecret
             parentName: root.parentUrl + "/body"
             weight: 200
             onEditClicked: modified = true
         }
         SectionIPv4 {
+            objectName: "SectionIpv4_3"
+            Accessible.role: Accessible.Grouping
             id: sectionIPv4
             parentName: root.parentUrl + "/body"
             weight: 300
             onEditClicked: modified = true
         }
         SectionIPv6 {
+            objectName: "SectionIpv6_2"
+            Accessible.role: Accessible.Grouping
             id: sectionIPv6
             parentName: root.parentUrl + "/body"
             weight: 400
             onEditClicked: modified = true
         }
         SectionDNS {
+            objectName: "SectionDns_3"
+            Accessible.role: Accessible.Grouping
             id: sectionDNS
             parentName: root.parentUrl + "/body"
             weight: 500
             onEditClicked: modified = true
         }
         SectionDevice {
+            objectName: "SectionDevice_2"
+            Accessible.role: Accessible.Grouping
             id: sectionDevice
             parentName: root.parentUrl + "/body"
             weight: 600
@@ -109,6 +121,8 @@ DccObject {
             pageType: DccObject.Item
             visible: config && config.connection.uuid !== "{00000000-0000-0000-0000-000000000000}"
             page: NetButton {
+                objectName: "PageSettings_NetButton"
+                Accessible.role: Accessible.Button
                 contentItem: D.IconLabel {
                     text: qsTr("Delete")
                     color: "red"
@@ -140,6 +154,7 @@ DccObject {
                         Layout.topMargin: 10
                         Layout.bottomMargin: 10
                         Button {
+                            objectName: "Cancel_6"
                             Layout.fillWidth: true
                             text: qsTr("Cancel")
                             onClicked: close()
@@ -151,6 +166,7 @@ DccObject {
                         }
 
                         D.Button {
+                            objectName: "Component_Button_3"
                             Layout.fillWidth: true
                             contentItem: D.IconLabel {
                                 text: qsTr("Delete")
@@ -184,6 +200,8 @@ DccObject {
             weight: 30
             pageType: DccObject.Item
             page: NetButton {
+                objectName: "Cancel_7"
+                Accessible.role: Accessible.Button
                 text: qsTr("Cancel")
                 onClicked: {
                     root.finished()
@@ -197,6 +215,8 @@ DccObject {
             enabled: root.modified
             pageType: DccObject.Item
             page: NetButton {
+                objectName: "Save_4"
+                Accessible.role: Accessible.Button
                 text: qsTr("Save")
                 onClicked: {
                     if (!sectionGeneric.checkInput() || !sectionSecret.checkInput() || !sectionIPv4.checkInput() || !sectionIPv6.checkInput() || !sectionDNS.checkInput() || !sectionDevice.checkInput()) {

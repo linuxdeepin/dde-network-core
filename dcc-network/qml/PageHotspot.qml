@@ -100,6 +100,7 @@ DccObject {
             implicitHeight: switchControl.implicitHeight
             implicitWidth: switchControl.implicitWidth
             D.Switch {
+                objectName: "SwitchControl_2"
                 id: switchControl
                 anchors.fill: parent
                 checked: root.hotspotStatus === PageHotspot.Status.Enabled || root.hotspotStatus === PageHotspot.Status.Enabling
@@ -204,6 +205,8 @@ DccObject {
                 }
                 D.ActionButton {
                     Layout.alignment: Qt.AlignRight
+                    objectName: "EditBtn"
+                    Accessible.role: Accessible.Button
                     focusPolicy: Qt.NoFocus
                     Layout.preferredWidth: 30
                     Layout.preferredHeight: 30
@@ -266,6 +269,8 @@ DccObject {
                                 id: colLayout
                                 width: parent.width
                                 NetItemEditor {
+                                    objectName: "NameSsid"
+                                    Accessible.role: Accessible.Button
                                     text: qsTr("Name (SSID)")
                                     corners: getCornersForBackground(0, colLayout.children.length)
                                     content: D.LineEdit {
@@ -280,9 +285,12 @@ DccObject {
                                     }
                                 }
                                 NetItemEditor {
+                                    objectName: "Security"
+                                    Accessible.role: Accessible.Button
                                     text: qsTr("Security")
                                     corners: getCornersForBackground(1, colLayout.children.length)
                                     content: D.ComboBox {
+                                        objectName: "NetItemEditor_ComboBox"
                                         flat: true
                                         textRole: "text"
                                         valueRole: "value"
@@ -309,6 +317,8 @@ DccObject {
                                     }
                                 }
                                 NetItemEditor {
+                                    objectName: "Password_2"
+                                    Accessible.role: Accessible.Button
                                     text: qsTr("Password")
                                     corners: getCornersForBackground(2, colLayout.children.length)
                                     visible: keyMgmt.length !== 0
@@ -333,9 +343,12 @@ DccObject {
                                     }
                                 }
                                 NetItemEditor {
+                                    objectName: "Band"
+                                    Accessible.role: Accessible.Button
                                     text: qsTr("Band")
                                     corners: getCornersForBackground(3, colLayout.children.length)
                                     content: D.ComboBox {
+                                        objectName: "NetItemEditor_ComboBox_2"
                                         flat: true
                                         textRole: "text"
                                         valueRole: "value"
@@ -364,6 +377,7 @@ DccObject {
                             Layout.topMargin: 10
                             Layout.bottomMargin: 10
                             Button {
+                                objectName: "Cancel_8"
                                 Layout.fillWidth: true
                                 text: qsTr("Cancel")
                                 onClicked: close()
@@ -467,6 +481,7 @@ DccObject {
                     RowLayout {
                         id: layoutView
                         TextInput {
+                            objectName: "80211WirelessSecurity"
                             text: root.config.hasOwnProperty("802-11-wireless-security") ? root.config["802-11-wireless-security"].psk : ""
                             color: this.palette.text
                             selectedTextColor: this.palette.highlightedText
@@ -476,6 +491,8 @@ DccObject {
                         }
                         D.ActionButton {
                             focusPolicy: Qt.NoFocus
+                            objectName: "PasswordToggleBtn"
+                            Accessible.role: Accessible.Button
                             onClicked: isEchoMode = !isEchoMode
                             icon.name: isEchoMode ? "entry_password_shown" : "entry_password_hide"
                         }
@@ -533,6 +550,7 @@ DccObject {
                 backgroundType: DccObject.Normal
                 pageType: DccObject.Editor
                 page: D.ComboBox {
+                    objectName: "PageHotspot_ComboBox"
                     function updateCurrentIndex() {
                         if (root.config["802-11-wireless"].hasOwnProperty("mac-address")) {
                             currentIndex = indexOfValue(macToString(root.config["802-11-wireless"]["mac-address"]))

@@ -495,6 +495,7 @@ NetDeviceWidget::NetDeviceWidget(NetDeviceItem *item, QWidget *parent)
     : NetWidget(item, parent)
     , m_switchBut(new DSwitchButton(this))
 {
+    m_switchBut->setObjectName("SwitchBut");
     QWidget *widget = new QWidget(this);
     widget->setFixedHeight(36);
     QHBoxLayout *layout = new QHBoxLayout(widget);
@@ -609,6 +610,7 @@ NetWirelessWidget::NetWirelessWidget(NetWirelessItem *item, QWidget *parent)
     , m_loading(new DSpinner(this))
     , m_status(dde::network::NetType::NetConnectionStatus::CS_UnConnected)
 {
+    m_disconnectBtn->setObjectName("DisconnectBtn_2");
     QWidget *widget = new QWidget(this);
     if (item->hasConnection()) {
         widget->setFixedHeight(36);

@@ -91,6 +91,7 @@ DccObject {
         weight: 30
         pageType: DccObject.Editor
         page: Switch {
+            objectName: "SystemProxyConfigItem_Switch"
             checked: root.config.auth
             onClicked: {
                 if (root.config.auth !== checked) {
@@ -138,6 +139,8 @@ DccObject {
         weight: 50
         pageType: DccObject.Editor
         page: NetPasswordEdit {
+            objectName: "RootConfigPassword"
+            Accessible.role: Accessible.EditableText
             dataItem: root
             text: root.config.password
             onTextUpdated: root.config.password = text

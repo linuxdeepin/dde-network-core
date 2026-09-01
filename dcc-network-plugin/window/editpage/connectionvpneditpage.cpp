@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -168,6 +168,7 @@ void ConnectionVpnEditPage::initSettingsWidgetByType(ConnectionVpnEditPage::VpnT
     if (SupportedExportVpnList.contains(vpnType) && !connectionUuid().isEmpty()) {
         if (!m_exportButton) {
             m_exportButton = new QPushButton(this);
+            m_exportButton->setObjectName("ExportButton");
             m_exportButton->setText(tr("Export", "button"));
             connect(m_exportButton, &QPushButton::clicked, this, &ConnectionVpnEditPage::exportConnConfig);
             addHeaderButton(m_exportButton);

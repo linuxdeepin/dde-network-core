@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -267,6 +267,7 @@ void WiredItem::initUi()
 
     m_connectionIconAction = new DViewItemAction(Qt::AlignLeft | Qt::AlignVCenter,
                                                  QSize(20, 20), QSize(8, 20), false);
+    m_connectionIconAction->setObjectName("ConnectionIconAction");
 
     standardItem()->setActionList(Qt::LeftEdge, { emptyAction, m_connectionIconAction });
     updateView();
@@ -371,6 +372,7 @@ QString WirelessItem::getStrengthStateString(int strength)
 void WirelessItem::initUi(QWidget *parent)
 {
     m_expandItem = new DViewItemAction(Qt::AlignBottom, QSize(PANELWIDTH, 20), QSize(PANELWIDTH, 20), false);
+    m_expandItem->setObjectName("ExpandItem");
     m_stackWidget = new DStackedWidget(parent);
     // 初始化展开输入控件
     initExpandUi();
@@ -379,15 +381,18 @@ void WirelessItem::initUi(QWidget *parent)
     m_expandItem->setVisible(false);
     // 左侧的加密图标
     m_securityAction = new DViewItemAction(Qt::AlignLeft , QSize(20, 35), QSize(20, 35), false);
+    m_securityAction->setObjectName("SecurityAction");
     updateSrcirityIcon();
     // 绘制WiFi图标
     m_wifiLabel = new DViewItemAction(Qt::AlignLeft , QSize(20, 35), QSize(8, 35), false);
+    m_wifiLabel->setObjectName("WifiLabel");
     updateWifiIcon();
 
     standardItem()->setSizeHint(QSize(-1, 36));
     standardItem()->setActionList(Qt::LeftEdge, { m_securityAction, m_wifiLabel });
 
     m_topItem = new DViewItemAction(Qt::AlignTop, QSize(-1, 1), QSize(-1, 1), false);
+    m_topItem->setObjectName("TopItem");
     standardItem()->setActionList(Qt::TopEdge, { m_topItem });
     m_topItem->setVisible(false);
     // 绘制右侧的连接图标
@@ -524,6 +529,7 @@ void WirelessItem::createPasswordEdit()
     //　密码输入窗
     DWidget *passwdWidget = new DWidget(m_stackWidget);
     m_passwdEdit = new DPasswordEdit(passwdWidget);
+    m_passwdEdit->setObjectName("PasswdEdit");
     m_passwdEdit->lineEdit()->setPlaceholderText(tr("Password"));
     m_passwdEdit->lineEdit()->setMaxLength(256);
     m_passwdEdit->setContextMenuPolicy(Qt::NoContextMenu);
@@ -532,6 +538,7 @@ void WirelessItem::createPasswordEdit()
 
     DPushButton *cancelButtion = new DPushButton(tr("Cancel", "button"), passwdWidget); // 取消
     m_connectButton = new DSuggestButton(tr("Connect", "button"), passwdWidget);        // 连接
+    m_connectButton->setObjectName("ConnectButton");
     cancelButtion->setFixedHeight(36);
     cancelButtion->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     m_connectButton->setFixedHeight(36);
@@ -566,6 +573,7 @@ void WirelessItem::createSsidEdit()
     // ssid输入窗
     DWidget *ssidWidget = new DWidget(m_stackWidget);
     m_ssidEdit = new DLineEdit(ssidWidget);
+    m_ssidEdit->setObjectName("SsidEdit");
     m_ssidEdit->setPlaceholderText(tr("Name (SSID)"));
     m_ssidEdit->lineEdit()->setMaxLength(256);
     m_ssidEdit->setContextMenuPolicy(Qt::NoContextMenu);
@@ -574,6 +582,8 @@ void WirelessItem::createSsidEdit()
 
     DPushButton *cancelButtion = new DPushButton(tr("Cancel", "button"), ssidWidget);     // 取消
     DPushButton *connectButton = new DSuggestButton(tr("Connect", "button"), ssidWidget); // 连接
+    cancelButtion->setObjectName("SsidCancelBtn");
+    connectButton->setObjectName("SsidConnectBtn");
     cancelButtion->setFixedHeight(36);
     cancelButtion->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     connectButton->setFixedHeight(36);

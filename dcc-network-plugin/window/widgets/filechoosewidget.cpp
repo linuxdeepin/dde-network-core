@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -24,6 +24,7 @@ FileChooseWidget::FileChooseWidget(QWidget *parent)
     , m_fileChooserEdit(new DFileChooserEdit(this))
     , m_title(new QLabel)
 {
+    m_fileChooserEdit->setObjectName("FileChooserEdit");
     m_title->setFixedWidth(110);
     QHBoxLayout *mainLayout = new QHBoxLayout;
     mainLayout->addWidget(m_title);

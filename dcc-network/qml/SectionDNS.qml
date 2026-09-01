@@ -176,6 +176,7 @@ DccObject {
                 page: RowLayout {
                     D.LineEdit {
                         text: root.config[index]
+                        objectName: "DnsEdit_" + index
                         // 移除正则验证器，改用手动验证以支持IPv6
                         // 显式允许所有字符输入，包括冒号
                         inputMethodHints: Qt.ImhNone

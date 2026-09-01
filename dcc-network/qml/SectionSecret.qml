@@ -337,6 +337,7 @@ DccTitleObject {
             visible: root.type === NetType.WirelessItem || root.type === NetType.WirelessHiddenItem
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionSecret_ComboBox"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -375,6 +376,7 @@ DccTitleObject {
             visible: root.type === NetType.WiredItem
             pageType: DccObject.Editor
             page: D.Switch {
+                objectName: "SectionSecret_Switch"
                 checked: root.keyMgmt === "wpa-eap"
                 onClicked: {
                     if ((root.keyMgmt === "wpa-eap") !== checked) {
@@ -393,6 +395,7 @@ DccTitleObject {
             visible: root.keyMgmt === "wpa-eap"
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionSecret_ComboBox_2"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -446,6 +449,7 @@ DccTitleObject {
             visible: root.keyMgmt !== ""
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionSecret_ComboBox_3"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -478,6 +482,8 @@ DccTitleObject {
             visible: root.keyMgmt !== "" && root.pwdFlays !== 2
             pageType: DccObject.Editor
             page: NetPasswordEdit {
+                objectName: "RootPwdStr"
+                Accessible.role: Accessible.EditableText
                 text: root.pwdStr
                 dataItem: root
                 onTextUpdated: root.pwdStr = text
@@ -492,6 +498,7 @@ DccTitleObject {
             visible: root.keyMgmt === "none"
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionSecret_ComboBox_4"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -521,6 +528,8 @@ DccTitleObject {
             visible: root.keyMgmt === "wpa-eap" && root.eapType === "tls"
             pageType: DccObject.Editor
             page: NetFileChooseEdit {
+                objectName: "PrivateKey"
+                Accessible.role: Accessible.EditableText
                 dataItem: root
                 placeholderText: qsTr("Required")
                 text: root.config802_1x && root.config802_1x.hasOwnProperty("private-key") ? removeTrailingNull(root.config802_1x["private-key"]) : ""
@@ -554,6 +563,7 @@ DccTitleObject {
             visible: root.keyMgmt === "wpa-eap" && root.eapType === "fast"
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionSecret_ComboBox_5"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -592,6 +602,8 @@ DccTitleObject {
             weight: 110
             pageType: DccObject.Editor
             page: NetFileChooseEdit {
+                objectName: "SectionSecret_NetFileChooseEdit"
+                Accessible.role: Accessible.EditableText
                 dataItem: root
                 text: root.config802_1x && root.config802_1x.hasOwnProperty(dccObj.name) ? removeTrailingNull(root.config802_1x[dccObj.name]) : ""
                 onTextUpdated: root.config802_1x[dccObj.name] = text
@@ -606,6 +618,8 @@ DccTitleObject {
             visible: root.keyMgmt === "wpa-eap" && (root.eapType === "tls" || root.eapType === "ttls" || root.eapType === "peap")
             pageType: DccObject.Editor
             page: NetFileChooseEdit {
+                objectName: "SectionSecret_NetFileChooseEdit_2"
+                Accessible.role: Accessible.EditableText
                 dataItem: root
                 text: root.config802_1x && root.config802_1x.hasOwnProperty(dccObj.name) ? removeTrailingNull(root.config802_1x[dccObj.name]) : ""
                 onTextUpdated: root.config802_1x[dccObj.name] = text
@@ -620,6 +634,8 @@ DccTitleObject {
             visible: root.keyMgmt === "wpa-eap" && root.eapType === "tls"
             pageType: DccObject.Editor
             page: NetFileChooseEdit {
+                objectName: "Required"
+                Accessible.role: Accessible.EditableText
                 dataItem: root
                 placeholderText: qsTr("Required")
                 text: root.config802_1x && root.config802_1x.hasOwnProperty(dccObj.name) ? removeTrailingNull(root.config802_1x[dccObj.name]) : ""
@@ -635,6 +651,7 @@ DccTitleObject {
             visible: root.keyMgmt === "wpa-eap" && root.eapType === "peap"
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionSecret_ComboBox_6"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -670,6 +687,7 @@ DccTitleObject {
             visible: root.keyMgmt === "wpa-eap" && (root.eapType === "fast" || root.eapType === "ttls" || root.eapType === "peap")
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionSecret_ComboBox_7"
                 flat: true
                 textRole: "text"
                 valueRole: "value"

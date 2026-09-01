@@ -85,6 +85,7 @@ DccTitleObject {
             weight: 20
             pageType: DccObject.Editor
             page: D.Switch {
+                objectName: "SectionGeneric_Switch"
                 checked: !root.config.hasOwnProperty("autoconnect") || root.config.autoconnect
                 onClicked: {
                     root.config.autoconnect = checked
@@ -101,6 +102,7 @@ DccTitleObject {
             visible: type === NetType.WirelessItem
             pageType: DccObject.Editor
             page: ComboBox {
+                objectName: "SectionGeneric_ComboBox"
                 flat: true
                 textRole: "text"
                 valueRole: "value"

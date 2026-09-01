@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2019 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #include "netsecretwidget.h"
@@ -78,6 +78,7 @@ void NetSecretWidget::initUI(const QVariantMap &param)
             lineEdit->setPlaceholderText(m_secretKeyStrMap.value(key));
         }
         lineEdit->lineEdit()->setMaxLength(256);
+        lineEdit->setObjectName("SecretLineEdit_" + key);
         lineEdit->setContextMenuPolicy(Qt::NoContextMenu);
         if (!focusWidget && lineEdit->text().isEmpty())
             focusWidget = lineEdit;
@@ -89,6 +90,8 @@ void NetSecretWidget::initUI(const QVariantMap &param)
     }
     DPushButton *cancelButtion = new DPushButton(tr("Cancel", "button"), this);     // 取消
     DPushButton *connectButton = new DSuggestButton(tr("Connect", "button"), this); // 连接
+    cancelButtion->setObjectName("SecretCancelBtn");
+    connectButton->setObjectName("SecretConnectBtn");
     QHBoxLayout *butLayout = new QHBoxLayout;
     cancelButtion->setAutoDefault(true);
     connectButton->setAutoDefault(true);

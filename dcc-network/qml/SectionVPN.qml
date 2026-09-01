@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2027 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 // SPDX-License-Identifier: GPL-3.0-or-later
 import QtQuick 2.15
 import QtQuick.Controls 2.15
@@ -355,6 +355,7 @@ DccTitleObject {
         RowLayout {
             D.LineEdit {
                 id: fileEdit
+                objectName: "VpnFileEdit"
                 text: root.dataMap.hasOwnProperty(dccObj.name) ? NetUtils.removeTrailingNull(root.dataMap[dccObj.name]) : ""
                 onTextChanged: {
                     if (showAlert) {
@@ -375,6 +376,8 @@ DccTitleObject {
                 }
             }
             NetButton {
+                objectName: "Component_NetButton"
+                Accessible.role: Accessible.Button
                 text: "..."
                 onClicked: {
                     fileDialog.createObject(this, {
@@ -389,6 +392,7 @@ DccTitleObject {
         RowLayout {
             D.LineEdit {
                 id: fileEdit
+                objectName: "VpnRequiredFileEdit"
                 placeholderText: qsTr("Required")
                 text: root.dataMap.hasOwnProperty(dccObj.name) ? NetUtils.removeTrailingNull(root.dataMap[dccObj.name]) : ""
                 onTextChanged: {
@@ -410,6 +414,8 @@ DccTitleObject {
                 }
             }
             NetButton {
+                objectName: "Component_NetButton_2"
+                Accessible.role: Accessible.Button
                 text: "..."
                 onClicked: {
                     fileDialog.createObject(this, {
@@ -422,6 +428,7 @@ DccTitleObject {
     Component {
         id: gatewayLineEdit
         D.LineEdit {
+            objectName: "VpnGatewayEdit"
             placeholderText: qsTr("Required")
             text: root.dataMap.hasOwnProperty(dccObj.name) ? root.dataMap[dccObj.name] : ""
             onTextChanged: {
@@ -448,6 +455,7 @@ DccTitleObject {
         id: requiredLineEdit
         D.LineEdit {
             placeholderText: qsTr("Required")
+            objectName: "VpnRequiredEdit"
             text: root.dataMap.hasOwnProperty(dccObj.name) ? root.dataMap[dccObj.name] : ""
             onTextChanged: {
                 if (showAlert) {
@@ -472,6 +480,7 @@ DccTitleObject {
         id: lineEdit
         D.LineEdit {
             text: root.dataMap.hasOwnProperty(dccObj.name) ? root.dataMap[dccObj.name] : ""
+            objectName: "VpnLineEdit"
             onTextChanged: {
                 if (showAlert) {
                     errorKey = ""
@@ -494,6 +503,7 @@ DccTitleObject {
     Component {
         id: switchItem
         D.Switch {
+            objectName: "Component_Switch_4"
             checked: root.dataMap.hasOwnProperty(dccObj.name) && root.dataMap[dccObj.name] === "yes"
             onClicked: {
                 if (checked) {
@@ -594,6 +604,7 @@ DccTitleObject {
             visible: root.vpnType & (NetUtils.VpnTypeEnum["strongswan"])
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionVpn_ComboBox"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -633,6 +644,7 @@ DccTitleObject {
             page: RowLayout {
                 D.LineEdit {
                     id: usercertEdit
+                    objectName: "VpnUserCertEdit"
                     placeholderText: root.vpnType === NetUtils.VpnTypeEnum["strongswan"] ? "" : qsTr("Required")
                     text: root.dataMap.hasOwnProperty(dccObj.name) ? NetUtils.removeTrailingNull(root.dataMap[dccObj.name]) : ""
                     onTextChanged: {
@@ -654,6 +666,8 @@ DccTitleObject {
                     }
                 }
                 NetButton {
+                    objectName: "SectionVpn_NetButton"
+                    Accessible.role: Accessible.Button
                     text: "..."
                     onClicked: {
                         fileDialog.createObject(this, {
@@ -674,6 +688,7 @@ DccTitleObject {
             page: RowLayout {
                 D.LineEdit {
                     id: userkeyEdit
+                    objectName: "VpnUserKeyEdit"
                     placeholderText: root.vpnType === NetUtils.VpnTypeEnum["strongswan"] ? "" : qsTr("Required")
                     text: root.dataMap.hasOwnProperty(dccObj.name) ? NetUtils.removeTrailingNull(root.dataMap[dccObj.name]) : ""
                     onTextChanged: {
@@ -695,6 +710,8 @@ DccTitleObject {
                     }
                 }
                 NetButton {
+                    objectName: "SectionVpn_NetButton_2"
+                    Accessible.role: Accessible.Button
                     text: "..."
                     onClicked: {
                         fileDialog.createObject(this, {
@@ -743,6 +760,7 @@ DccTitleObject {
             visible: root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionVpn_ComboBox_2"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -796,6 +814,7 @@ DccTitleObject {
             visible: (root.vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])) || (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "password" || root.dataMap["connection-type"] === "password-tls")
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionVpn_ComboBox_3"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -834,6 +853,8 @@ DccTitleObject {
             visible: ((root.vpnType & NetUtils.VpnTypeEnum["strongswan"]) && (root.dataMap["method"] === "eap" || root.dataMap["method"] === "psk")) || (root.dataMap["password-flags"] === "0" && ((root.vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["pptp"])) || (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "password" || root.dataMap["connection-type"] === "password-tls")))
             pageType: DccObject.Editor
             page: NetPasswordEdit {
+                objectName: "RootSecretMapHasOwnPropertydccObjNamerootSecretMap"
+                Accessible.role: Accessible.EditableText
                 dataItem: root
                 text: root.secretMap.hasOwnProperty(dccObj.name) ? root.secretMap[dccObj.name] : ""
                 onTextUpdated: root.secretMap[dccObj.name] = text
@@ -868,6 +889,7 @@ DccTitleObject {
             visible: (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "password-tls" || root.dataMap["connection-type"] === "tls")
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionVpn_ComboBox_4"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -898,6 +920,8 @@ DccTitleObject {
             visible: root.dataMap["cert-pass-flags"] === "0" && (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "password-tls" || root.dataMap["connection-type"] === "tls")
             pageType: DccObject.Editor
             page: NetPasswordEdit {
+                objectName: "RootSecretMapHasOwnPropertydccObjNamerootSecretMap_2"
+                Accessible.role: Accessible.EditableText
                 dataItem: root
                 text: root.secretMap.hasOwnProperty(dccObj.name) ? root.secretMap[dccObj.name] : ""
                 onTextUpdated: root.secretMap[dccObj.name] = text
@@ -922,6 +946,7 @@ DccTitleObject {
             visible: (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "static-key")
             pageType: DccObject.Editor
             page: D.Switch {
+                objectName: "SectionVpn_Switch"
                 checked: root.dataMap.hasOwnProperty("static-key-direction")
                 onClicked: {
                     if (checked) {
@@ -942,6 +967,7 @@ DccTitleObject {
             visible: root.dataMap.hasOwnProperty(this.name) && (root.vpnType & (NetUtils.VpnTypeEnum["openvpn"])) && (root.dataMap["connection-type"] === "static-key")
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionVpn_ComboBox_5"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -1033,6 +1059,7 @@ DccTitleObject {
             visible: root.vpnType & (NetUtils.VpnTypeEnum["strongswan"])
             pageType: DccObject.Editor
             page: D.Switch {
+                objectName: "SectionVpn_Switch_2"
                 checked: root.dataMap.hasOwnProperty(dccObj.name) ? root.dataMap[dccObj.name] === "yes" : false
                 onClicked: {
                     root.dataMap[dccObj.name] = checked ? "yes" : "no"
@@ -1090,6 +1117,7 @@ DccTitleObject {
             visible: root.vpnType & (NetUtils.VpnTypeEnum["vpnc"])
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionVpn_ComboBox_6"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -1121,6 +1149,8 @@ DccTitleObject {
             visible: root.dataMap["Xauth password-flags"] === "0" && (root.vpnType & (NetUtils.VpnTypeEnum["vpnc"]))
             pageType: DccObject.Editor
             page: NetPasswordEdit {
+                objectName: "RootSecretMapHasOwnPropertydccObjNamerootSecretMap_3"
+                Accessible.role: Accessible.EditableText
                 dataItem: root
                 text: root.secretMap.hasOwnProperty(dccObj.name) ? root.secretMap[dccObj.name] : ""
                 onTextUpdated: root.secretMap[dccObj.name] = text
@@ -1145,6 +1175,7 @@ DccTitleObject {
             visible: root.vpnType & (NetUtils.VpnTypeEnum["vpnc"])
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionVpn_ComboBox_7"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -1176,6 +1207,8 @@ DccTitleObject {
             visible: root.dataMap["IPSec secret-flags"] === "0" && (root.vpnType & (NetUtils.VpnTypeEnum["vpnc"]))
             pageType: DccObject.Editor
             page: NetPasswordEdit {
+                objectName: "RootSecretMapHasOwnPropertydccObjNamerootSecretMap_4"
+                Accessible.role: Accessible.EditableText
                 dataItem: root
                 text: root.secretMap.hasOwnProperty(dccObj.name) ? root.secretMap[dccObj.name] : ""
                 onTextUpdated: root.secretMap[dccObj.name] = text
@@ -1190,6 +1223,7 @@ DccTitleObject {
             visible: root.vpnType & (NetUtils.VpnTypeEnum["vpnc"])
             pageType: DccObject.Editor
             page: D.Switch {
+                objectName: "SectionVpn_Switch_3"
                 checked: root.dataMap.hasOwnProperty(dccObj.name) && root.dataMap[dccObj.name] === "hybrid"
                 onClicked: {
                     if (checked) {
@@ -1239,6 +1273,7 @@ DccTitleObject {
             weight: 10
             pageType: DccObject.Editor
             page: D.Switch {
+                objectName: "SectionVpn_Switch_4"
                 checked: mppe
                 onClicked: {
                     mppe = checked
@@ -1255,6 +1290,7 @@ DccTitleObject {
             visible: mppe
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionVpn_ComboBox_8"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -1395,6 +1431,7 @@ DccTitleObject {
             weight: 140
             pageType: DccObject.Editor
             page: D.Switch {
+                objectName: "SectionVpn_Switch_5"
                 checked: root.dataMap["lcp-echo-failure"] === "5" && root.dataMap["lcp-echo-interval"] === "30"
                 onClicked: {
                     if (checked) {
@@ -1511,6 +1548,7 @@ DccTitleObject {
             weight: 10
             pageType: DccObject.Editor
             page: D.Switch {
+                objectName: "SectionVpn_Switch_6"
                 checked: root.dataMap.hasOwnProperty("port")
                 onClicked: {
                     if (checked) {
@@ -1532,6 +1570,7 @@ DccTitleObject {
             visible: root.dataMap.hasOwnProperty("port")
             pageType: DccObject.Editor
             page: D.SpinBox {
+                objectName: "SectionVpn_SpinBox"
                 editable: true
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 1194
                 from: 0
@@ -1555,6 +1594,7 @@ DccTitleObject {
             weight: 30
             pageType: DccObject.Editor
             page: D.Switch {
+                objectName: "SectionVpn_Switch_7"
                 checked: root.dataMap.hasOwnProperty("reneg-seconds")
                 onClicked: {
                     if (checked) {
@@ -1576,6 +1616,7 @@ DccTitleObject {
             visible: root.dataMap.hasOwnProperty("reneg-seconds")
             pageType: DccObject.Editor
             page: D.SpinBox {
+                objectName: "SectionVpn_SpinBox_2"
                 editable: true
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 0
                 from: 0
@@ -1599,6 +1640,7 @@ DccTitleObject {
             weight: 50
             pageType: DccObject.Editor
             page: D.Switch {
+                objectName: "SectionVpn_Switch_8"
                 checked: root.dataMap["comp-lzo"] === "yes" || root.dataMap["comp-lzo"] === "adaptive"
                 onClicked: {
                     if (checked) {
@@ -1637,6 +1679,7 @@ DccTitleObject {
             weight: 80
             pageType: DccObject.Editor
             page: D.Switch {
+                objectName: "SectionVpn_Switch_9"
                 checked: root.dataMap.hasOwnProperty("tunnel-mtu")
                 onClicked: {
                     if (checked) {
@@ -1658,6 +1701,7 @@ DccTitleObject {
             visible: root.dataMap.hasOwnProperty("tunnel-mtu")
             pageType: DccObject.Editor
             page: D.SpinBox {
+                objectName: "SectionVpn_SpinBox_3"
                 editable: true
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 1500
                 from: 1280
@@ -1681,6 +1725,7 @@ DccTitleObject {
             weight: 100
             pageType: DccObject.Editor
             page: D.Switch {
+                objectName: "SectionVpn_Switch_10"
                 checked: root.dataMap.hasOwnProperty("fragment-size")
                 onClicked: {
                     if (checked) {
@@ -1702,6 +1747,7 @@ DccTitleObject {
             visible: root.dataMap.hasOwnProperty("fragment-size")
             pageType: DccObject.Editor
             page: D.SpinBox {
+                objectName: "SectionVpn_SpinBox_4"
                 editable: true
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 1300
                 from: 0
@@ -1770,6 +1816,7 @@ DccTitleObject {
             weight: 20
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionVpn_ComboBox_9"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -1805,6 +1852,7 @@ DccTitleObject {
             weight: 40
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionVpn_ComboBox_10"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -1834,6 +1882,7 @@ DccTitleObject {
             weight: 50
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionVpn_ComboBox_11"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -1866,6 +1915,7 @@ DccTitleObject {
             weight: 60
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionVpn_ComboBox_12"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -1895,6 +1945,7 @@ DccTitleObject {
             weight: 70
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionVpn_ComboBox_13"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -1930,6 +1981,7 @@ DccTitleObject {
             weight: 80
             pageType: DccObject.Editor
             page: D.SpinBox {
+                objectName: "SectionVpn_SpinBox_5"
                 editable: true
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 0
                 from: 0
@@ -1953,6 +2005,7 @@ DccTitleObject {
             weight: 90
             pageType: DccObject.Editor
             page: D.Switch {
+                objectName: "SectionVpn_Switch_11"
                 checked: root.dataMap[dccObj.name] === "0"
                 onClicked: {
                     if (checked) {
@@ -1990,6 +2043,7 @@ DccTitleObject {
             weight: 10
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionVpn_ComboBox_14"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -2064,6 +2118,7 @@ DccTitleObject {
             weight: 20
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionVpn_ComboBox_15"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -2132,6 +2187,7 @@ DccTitleObject {
             weight: 10
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionVpn_ComboBox_16"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -2173,6 +2229,7 @@ DccTitleObject {
             visible: root.dataMap["proxy-type"] !== "none"
             pageType: DccObject.Editor
             page: D.SpinBox {
+                objectName: "SectionVpn_SpinBox_6"
                 editable: true
                 value: root.dataMap.hasOwnProperty(dccObj.name) ? parseInt(root.dataMap[dccObj.name], 10) : 0
                 from: 0
@@ -2220,6 +2277,8 @@ DccTitleObject {
             visible: root.dataMap["proxy-type"] === "http"
             pageType: DccObject.Editor
             page: NetPasswordEdit {
+                objectName: "RootSecretMapHasOwnPropertydccObjNamerootSecretMap_5"
+                Accessible.role: Accessible.EditableText
                 text: root.secretMap.hasOwnProperty(dccObj.name) ? root.secretMap[dccObj.name] : ""
                 dataItem: root
                 onTextUpdated: root.secretMap[dccObj.name] = text
@@ -2260,6 +2319,7 @@ DccTitleObject {
             weight: 20
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionVpn_ComboBox_17"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -2302,6 +2362,7 @@ DccTitleObject {
             weight: 40
             pageType: DccObject.Editor
             page: D.Switch {
+                objectName: "SectionVpn_Switch_12"
                 checked: root.dataMap.hasOwnProperty("ta-dir")
                 onClicked: {
                     if (checked) {
@@ -2323,6 +2384,7 @@ DccTitleObject {
             visible: root.dataMap.hasOwnProperty(this.name)
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionVpn_ComboBox_18"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
