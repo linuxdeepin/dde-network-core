@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2027 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 // SPDX-License-Identifier: GPL-3.0-or-later
 import QtQuick 2.15
 import QtQuick.Controls 2.15
@@ -62,6 +62,7 @@ DccObject {
             backgroundType: DccObject.Normal
             pageType: DccObject.Editor
             page: D.Switch {
+                objectName: "PageAppProxy_Switch"
                 checked: proxyEnable
                 enabled: netItem.enabledable
                 onClicked: {
@@ -92,6 +93,7 @@ DccObject {
                 weight: 10
                 pageType: DccObject.Editor
                 page: ComboBox {
+                    objectName: "PageAppProxy_ComboBox"
                     flat: true
                     textRole: "text"
                     valueRole: "value"
@@ -250,6 +252,7 @@ DccObject {
             weight: 30
             pageType: DccObject.Item
             page: Button {
+                objectName: "Cancel_3"
                 implicitHeight: implicitContentHeight + 10
                 implicitWidth: implicitContentWidth + 10
                 topPadding: 0
@@ -272,6 +275,7 @@ DccObject {
             weight: 40
             pageType: DccObject.Item
             page: Button {
+                objectName: "Save_2"
                 implicitHeight: implicitContentHeight + 10
                 implicitWidth: implicitContentWidth + 10
                 topPadding: 0

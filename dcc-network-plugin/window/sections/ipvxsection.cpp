@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -223,6 +223,7 @@ void IpvxSection::initUI()
     m_neverDefault->setVisible(false);
 
     m_methodChooser = m_methodLine->comboBox();
+    m_methodChooser->setObjectName("MethodChooser");
     m_methodLine->setTitle(tr("Method"));
     appendItem(m_methodLine);
     appendItem(m_ipAddress);

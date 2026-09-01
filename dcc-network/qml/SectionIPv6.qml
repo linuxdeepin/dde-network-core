@@ -228,6 +228,7 @@ DccObject {
         canSearch: false
         pageType: DccObject.Editor
         page: ComboBox {
+            objectName: "SectionIpv6_ComboBox"
             flat: true
             textRole: "text"
             valueRole: "value"
@@ -262,6 +263,7 @@ DccObject {
         backgroundType: DccObject.Normal
         pageType: DccObject.Editor
         page: D.Switch {
+            objectName: "SectionIpv6_Switch"
             checked: root.neverDefault
             onClicked: {
                 root.neverDefault = checked
@@ -291,6 +293,7 @@ DccObject {
         backgroundType: DccObject.Normal
         pageType: DccObject.Editor
         page: ComboBox {
+            objectName: "SectionIpv6_ComboBox_2"
             flat: true
             textRole: "text"
             valueRole: "value"
@@ -438,6 +441,7 @@ DccObject {
                     canSearch: false
                     pageType: DccObject.Editor
                     page: D.SpinBox {
+                        objectName: "SectionIpv6_SpinBox"
                         editable: true
                         value: root.addressData.length > index ? root.addressData[index].prefix : 64
                         from: 0

@@ -107,6 +107,7 @@ DccTitleObject {
             canSearch: false
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "SectionDevice_ComboBox"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -167,6 +168,7 @@ DccTitleObject {
             canSearch: false
             pageType: DccObject.Editor
             page: D.Switch {
+                objectName: "SectionDevice_Switch"
                 checked: hasMTU
                 onClicked: {
                     hasMTU = checked
@@ -183,6 +185,7 @@ DccTitleObject {
             visible: hasMTU
             pageType: DccObject.Editor
             page: D.SpinBox {
+                objectName: "SectionDevice_SpinBox"
                 editable: true
                 from: 1280
                 to: 9000

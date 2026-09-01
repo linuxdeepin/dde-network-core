@@ -31,6 +31,7 @@ RowLayout {
     }
     D.LineEdit {
         id: edit
+        objectName: "FileChooseEdit"
         Layout.preferredWidth: edit.implicitWidth - browseBtn.width - root.spacing
         onTextChanged: {
             if (!initialized) {
@@ -54,6 +55,8 @@ RowLayout {
     }
     
     NetButton {
+        objectName: "BrowseBtn"
+        Accessible.role: Accessible.Button
         id: browseBtn
         text: "..."
         onClicked: {

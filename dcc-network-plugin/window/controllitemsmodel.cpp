@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -34,6 +34,8 @@ struct ControllItemsAction
         , conn(_conn)
         , item(new DStandardItem())
     {
+        iconAction->setObjectName("IconAction");
+        spinnerAction->setObjectName("SpinnerAction");
         iconAction->setData(QVariant::fromValue(conn));
         rightList.append(spinnerAction);
         rightList.append(iconAction);

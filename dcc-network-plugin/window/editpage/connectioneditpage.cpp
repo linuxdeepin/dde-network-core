@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -97,6 +97,8 @@ void ConnectionEditPage::initUI()
 
     m_disconnectBtn = m_buttonTuple_conn->leftButton();
     m_removeBtn = m_buttonTuple_conn->rightButton();
+    m_disconnectBtn->setObjectName("DisconnectBtn");
+    m_removeBtn->setObjectName("RemoveBtn");
     //    GSettingWatcher::instance()->bind("removeConnection", m_removeBtn);
 
     m_disconnectBtn->setText(tr("Disconnect", "button"));

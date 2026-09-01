@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -17,6 +17,7 @@ QuickPanel::QuickPanel(QWidget *parent)
       m_text(new DLabel(this))
 {
     connect(m_icon,&DIconButton::clicked,this,&QuickPanel::iconClicked);
+    m_icon->setObjectName("HotspotQuickPanelIcon");
     initUi();
 }
 

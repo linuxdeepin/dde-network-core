@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2027 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 // SPDX-License-Identifier: GPL-3.0-or-later
 import QtQuick 2.15
 import QtQuick.Controls 2.15
@@ -97,6 +97,8 @@ DccTitleObject {
             weight: 30
             pageType: DccObject.Editor
             page: NetPasswordEdit {
+                objectName: "Password"
+                Accessible.role: Accessible.EditableText
                 dataItem: root
                 text: root.config.hasOwnProperty("password") ? root.config.password : ""
                 onTextUpdated: root.config.password = text

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -136,6 +136,7 @@ void WirelessSection::initUI()
 
     m_deviceMacLine->setTitle(tr("Device MAC Addr"));
     m_deviceMacComboBox = m_deviceMacLine->comboBox();
+    m_deviceMacComboBox->setObjectName("DeviceMacComboBox_2");
     for (const QString &key : m_macStrMap.keys())
         m_deviceMacComboBox->addItem(key, m_macStrMap.value(key).first);
 

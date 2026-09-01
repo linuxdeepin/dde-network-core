@@ -24,6 +24,7 @@ DccObject {
     Component {
         id: devCheck
         D.Switch {
+            objectName: "Component_Switch"
             checked: netItem.isEnabled
             enabled: netItem.enabledable
             onClicked: {
@@ -65,6 +66,7 @@ DccObject {
                         }
 
                         delegate: ItemDelegate {
+                            objectName: "ItemDelegate_" + index
                             id: itemDelegate
                             implicitHeight: 36
                             text: model.item.name
@@ -83,6 +85,8 @@ DccObject {
                                     visible: model.item.status === NetType.CS_Connected && !itemDelegate.hovered
                                 }
                                 NetButton {
+                                    objectName: "Disconnect_" + index
+                                    Accessible.role: Accessible.Button
                                     implicitHeight: implicitContentHeight - 4
                                     topInset: -4
                                     bottomInset: -4
@@ -119,6 +123,8 @@ DccObject {
                     }
                 }
                 PageVPNSettings {
+                    objectName: "VpnSettings"
+                    Accessible.role: Accessible.Grouping
                     id: vpnSettings
                     name: "vpnSettings"
                     parentName: root.name + "/menu/body/networkList"
@@ -173,6 +179,8 @@ DccObject {
                 weight: 30
                 pageType: DccObject.Item
                 page: NetButton {
+                    objectName: "ImportVpn"
+                    Accessible.role: Accessible.Button
                     text: qsTr("Import VPN")
                     Layout.alignment: Qt.AlignRight
                     onClicked: {
@@ -229,6 +237,7 @@ DccObject {
                                 horizontalAlignment: Text.AlignHCenter
                             }
                             Button {
+                                objectName: "Ok"
                                 Layout.fillWidth: true
                                 Layout.margins: 10
                                 text: qsTr("OK")
@@ -244,6 +253,8 @@ DccObject {
                 weight: 40
                 pageType: DccObject.Item
                 page: NetButton {
+                    objectName: "AddVpn"
+                    Accessible.role: Accessible.Button
                     text: qsTr("Add VPN")
                     Layout.alignment: Qt.AlignRight
                     onClicked: {

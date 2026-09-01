@@ -26,6 +26,8 @@ DccObject {
     weight: 1010 + netItem.pathIndex
     pageType: DccObject.MenuEditor
     page: DeviceStatusItem {
+        objectName: "PageWiredDevice_DeviceStatusItem"
+        Accessible.role: Accessible.Grouping
         netItem: root.netItem
         connectedNameVisible: false
         statusVisible: true
@@ -48,6 +50,8 @@ DccObject {
                 backgroundType: DccObject.Normal
                 pageType: DccObject.Editor
                 page: DeviceStatusItem {
+                    objectName: "PageWiredDevice_DeviceStatusItem_2"
+                    Accessible.role: Accessible.Grouping
                     netItem: root.netItem
                     statusVisible: false
                 }
@@ -85,6 +89,7 @@ DccObject {
                         }
 
                         delegate: ItemDelegate {
+                            objectName: "ItemDelegate_4"
                             id: itemDelegate
                             height: 36
                             text: model.item.name
@@ -131,6 +136,8 @@ DccObject {
                                                  && !itemDelegate.hovered
                                     }
                                     NetButton {
+                                        objectName: "ModelItemStatus_2"
+                                        Accessible.role: Accessible.Button
                                         implicitHeight: implicitContentHeight - 4
                                         topInset: -4
                                         bottomInset: -4
@@ -280,6 +287,8 @@ DccObject {
                     }
                 }
                 PageSettings {
+                    objectName: "WiredSettings"
+                    Accessible.role: Accessible.Grouping
                     id: wiredSettings
                     name: "wiredSettings"
                     parentName: root.name + "/page/body/networkList"
@@ -330,6 +339,8 @@ DccObject {
                 weight: 40
                 pageType: DccObject.Item
                 page: NetButton {
+                    objectName: "DccObjDisplayName_3"
+                    Accessible.role: Accessible.Button
                     text: dccObj.displayName
                     Layout.alignment: Qt.AlignRight
                     onClicked: {

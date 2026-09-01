@@ -26,6 +26,7 @@ DssTestWidget::DssTestWidget(dde::network::NetworkPlugin *networkPlugin, QWidget
 {
     QWidget *iconWidget = new QWidget(this);
     m_iconButton = new DFloatingButton(iconWidget);
+    m_iconButton->setObjectName("IconButton");
     m_iconButton->setIconSize(QSize(26, 26));
     m_iconButton->setFixedSize(QSize(52, 52));
     m_iconButton->setAutoExclusive(true);

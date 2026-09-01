@@ -28,6 +28,8 @@ DccObject {
     weight: 2010 + netItem.pathIndex
     pageType: DccObject.MenuEditor
     page: DeviceStatusItem{
+        objectName: "PageWirelessDevice_DeviceStatusItem"
+        Accessible.role: Accessible.Grouping
         netItem: root.netItem
         connectedNameVisible: true
         statusVisible: true
@@ -49,6 +51,7 @@ DccObject {
                     DelegateChoice {
                         roleValue: NetType.WirelessItem
                         delegate: ItemDelegate {
+                            objectName: "ItemDelegate_3"
                             id: itemDelegate
                             height: 36
                             text: model.item.name
@@ -95,6 +98,8 @@ DccObject {
                                                  && !itemDelegate.hovered
                                     }
                                     NetButton {
+                                        objectName: "ModelItemStatus"
+                                        Accessible.role: Accessible.Button
                                         implicitHeight: implicitContentHeight - 4
                                         topInset: -4
                                         bottomInset: -4
@@ -246,6 +251,7 @@ DccObject {
                     DelegateChoice {
                         roleValue: NetType.WirelessHiddenItem
                         delegate: ItemDelegate {
+                            objectName: "Repeater_ItemDelegate_" + index
                             implicitHeight: 36
                             checked: true
                             backgroundVisible: false
@@ -282,6 +288,8 @@ DccObject {
             backgroundType: DccObject.Normal
             pageType: DccObject.Editor
             page: DeviceStatusItem{
+                objectName: "PageWirelessDevice_DeviceStatusItem_2"
+                Accessible.role: Accessible.Grouping
                 netItem: root.netItem
                 statusVisible: false
             }
@@ -407,6 +415,8 @@ DccObject {
             }
         }
         PageSettings {
+            objectName: "WirelessSettings"
+            Accessible.role: Accessible.Grouping
             id: wirelessSettings
             name: "wirelessSettings"
             parentName: root.name + "/page/otherNetwork"

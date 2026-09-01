@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -60,6 +60,9 @@ ButtonEditWidget::ButtonEditWidget(QFrame *parent)
     , m_reduceBtn(new DIconButton(DStyle::SP_DeleteButton, this))
 {
     m_title->setFixedWidth(110);
+    m_edit->setObjectName("IpEdit");
+    m_addBtn->setObjectName("AddBtn");
+    m_reduceBtn->setObjectName("ReduceBtn");
     m_edit->setContextMenuPolicy(Qt::NoContextMenu);
 
     m_addBtn->setFixedSize(QSize(19, 19));
@@ -115,9 +118,9 @@ void ButtonEditWidget::setTitle(const QString &title)
 {
     m_title->setText(title);
     m_title->setWordWrap(true);
-
     setAccessibleName(title);
     m_edit->setAccessibleName(title);
+
 }
 
 void ButtonEditWidget::setText(const QString &text)

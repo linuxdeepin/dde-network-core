@@ -41,6 +41,7 @@ DccObject {
                     }
 
                     delegate: ItemDelegate {
+                        objectName: "ItemDelegate_2_" + index
                         id: itemDelegate
                         implicitHeight: 36
                         text: model.item.name
@@ -59,6 +60,8 @@ DccObject {
                                 visible: model.item.status === NetType.CS_Connected && !itemDelegate.hovered
                             }
                             NetButton {
+                                objectName: "Disconnect_2_" + index
+                                Accessible.role: Accessible.Button
                                 implicitHeight: implicitContentHeight - 4
                                 topInset: -4
                                 bottomInset: -4
@@ -96,6 +99,8 @@ DccObject {
             }
         }
         PageDSLSettings {
+            objectName: "DslSettings"
+            Accessible.role: Accessible.Grouping
             id: dslSettings
             name: "dslSettings"
             parentName: root.name + "/body/networkList"
@@ -142,6 +147,8 @@ DccObject {
             weight: 40
             pageType: DccObject.Item
             page: NetButton {
+                objectName: "AddPppoEConnection"
+                Accessible.role: Accessible.Button
                 Layout.alignment: Qt.AlignRight
                 text: qsTr("Add PPPoE connection")
                 onClicked: {

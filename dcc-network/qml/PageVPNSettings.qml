@@ -73,6 +73,7 @@ DccObject {
             backgroundType: DccObject.Normal
             pageType: DccObject.Editor
             page: D.ComboBox {
+                objectName: "PageVpnsettings_ComboBox"
                 flat: true
                 textRole: "text"
                 valueRole: "value"
@@ -115,12 +116,16 @@ DccObject {
         }
 
         SectionGeneric {
+            objectName: "SectionGeneric"
+            Accessible.role: Accessible.Grouping
             id: sectionGeneric
             parentName: root.parentUrl + "/body"
             weight: 100
             onEditClicked: modified = true
         }
         SectionVPN {
+            objectName: "SectionVpn"
+            Accessible.role: Accessible.Grouping
             id: sectionVPN
             vpnType: root.vpnType
             parentName: root.parentUrl + "/body"
@@ -128,6 +133,8 @@ DccObject {
             onEditClicked: modified = true
         }
         SectionIPv4 {
+            objectName: "SectionIpv4"
+            Accessible.role: Accessible.Grouping
             id: sectionIPv4
             type: NetType.VPNControlItem
             parentName: root.parentUrl + "/body"
@@ -136,6 +143,8 @@ DccObject {
             onEditClicked: modified = true
         }
         SectionIPv6 {
+            objectName: "SectionIpv6"
+            Accessible.role: Accessible.Grouping
             id: sectionIPv6
             type: NetType.VPNControlItem
             parentName: root.parentUrl + "/body"
@@ -157,6 +166,8 @@ DccObject {
             }
         }
         SectionDNS {
+            objectName: "SectionDns"
+            Accessible.role: Accessible.Grouping
             id: sectionDNS
             parentName: root.parentUrl + "/body"
             weight: 1200
@@ -176,6 +187,8 @@ DccObject {
             pageType: DccObject.Item
             visible: config && config.connection.uuid !== "{00000000-0000-0000-0000-000000000000}"
             page: NetButton {
+                objectName: "PageVpnsettings_NetButton"
+                Accessible.role: Accessible.Button
                 contentItem: D.IconLabel {
                     text: qsTr("Delete")
                     color: "red"
@@ -207,6 +220,7 @@ DccObject {
                         Layout.topMargin: 10
                         Layout.bottomMargin: 10
                         Button {
+                            objectName: "Cancel"
                             Layout.fillWidth: true
                             text: qsTr("Cancel")
                             onClicked: close()
@@ -218,6 +232,7 @@ DccObject {
                         }
 
                         D.Button {
+                            objectName: "Component_Button"
                             Layout.fillWidth: true
                             contentItem: D.IconLabel {
                                 text: qsTr("Delete")
@@ -242,6 +257,8 @@ DccObject {
             visible: config && config.connection.uuid !== "{00000000-0000-0000-0000-000000000000}" && (vpnType & (NetUtils.VpnTypeEnum["l2tp"] | NetUtils.VpnTypeEnum["openvpn"]))
             pageType: DccObject.Item
             page: NetButton {
+                objectName: "Export"
+                Accessible.role: Accessible.Button
                 text: qsTr("Export")
                 onClicked: {
                     exportFileDialog.createObject(this).open()
@@ -279,6 +296,8 @@ DccObject {
             weight: 40
             pageType: DccObject.Item
             page: NetButton {
+                objectName: "Cancel_2"
+                Accessible.role: Accessible.Button
                 text: qsTr("Cancel")
                 onClicked: {
                     root.finished()
@@ -292,6 +311,8 @@ DccObject {
             enabled: root.modified
             pageType: DccObject.Item
             page: NetButton {
+                objectName: "Save"
+                Accessible.role: Accessible.Button
                 text: qsTr("Save")
                 onClicked: {
                     if (!sectionGeneric.checkInput() || !sectionVPN.checkInput() || !sectionIPv4.checkInput() || !sectionIPv6.checkInput() || !sectionDNS.checkInput()) {

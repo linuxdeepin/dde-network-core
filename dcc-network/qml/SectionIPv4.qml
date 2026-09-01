@@ -225,6 +225,7 @@ DccObject {
         canSearch: false
         pageType: DccObject.Editor
         page: ComboBox {
+            objectName: "SectionIpv4_ComboBox"
             flat: true
             textRole: "text"
             valueRole: "value"
@@ -259,6 +260,7 @@ DccObject {
         backgroundType: DccObject.Normal
         pageType: DccObject.Editor
         page: D.Switch {
+            objectName: "SectionIpv4_Switch"
             checked: root.neverDefault
             onClicked: {
                 root.neverDefault = checked
@@ -289,6 +291,7 @@ DccObject {
         backgroundType: DccObject.Normal
         pageType: DccObject.Editor
         page: ComboBox {
+            objectName: "SectionIpv4_ComboBox_2"
             flat: true
             textRole: "text"
             valueRole: "value"
