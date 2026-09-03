@@ -29,12 +29,10 @@ public:
         WirelessOtherItem,                                // 其他网络,2级,虚拟项
         WirelessItem,                                     // 无线项,3级
         WirelessHiddenItem,                               // 无线隐藏项,3级,虚拟项
-        WirelessDisabledItem,                             // 无线禁用项,1级,虚拟项
         AirplaneModeTipsItem,                             // 飞行模式提示项,1级
         WiredControlItem = NET_WIRED | NET_CONTROL,       // 有线开关,1级,虚拟项
         WiredDeviceItem = NET_WIRED | NET_DEVICE,         // 有线设备,1级
         WiredItem,                                        // 有线项,2级
-        WiredDisabledItem,                                // 有线禁用项,1级,虚拟项
         VPNControlItem,                                   // vpn控制项
         VPNTipsItem,                                      // vpn提示项
         SystemProxyControlItem,                           // 系统代理控制项
