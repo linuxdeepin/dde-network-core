@@ -14,7 +14,7 @@ import "NetUtils.js" as NetUtils
 DccTitleObject {
     id: root
     property var config: new Object
-    property int type: netType.WiredItem
+    property int type: NetType.WiredItem
     property bool canNotBind: true
     property var devItems: []
     property var devData: []
@@ -90,7 +90,7 @@ DccTitleObject {
         }
     }
     name: "devTitle"
-    displayName: (type === netType.WirelessItem || type === netType.WirelessHiddenItem) ? qsTr("WLAN") : qsTr("Ethernet")
+    displayName: (type === NetType.WirelessItem || type === NetType.WirelessHiddenItem) ? qsTr("WLAN") : qsTr("Ethernet")
     canSearch: false
     DccObject {
         name: "devGroup"
@@ -133,7 +133,7 @@ DccTitleObject {
             weight: 30
             displayName: qsTr("Cloned MAC Addr")
             canSearch: false
-            visible: type === netType.WiredItem
+            visible: type === NetType.WiredItem
             pageType: DccObject.Editor
             page: D.LineEdit {
                 text: root.config.hasOwnProperty("cloned-mac-address") ? root.config["cloned-mac-address"] : ""

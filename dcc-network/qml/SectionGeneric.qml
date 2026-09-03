@@ -13,7 +13,7 @@ DccTitleObject {
     property var config: new Object()
     property string settingsID: ""
     property var band
-    property int type: netType.WiredItem
+    property int type: NetType.WiredItem
 
     property string errorKey: ""
     signal editClicked
@@ -98,7 +98,7 @@ DccTitleObject {
             displayName: qsTr("Band")
             canSearch: false
             weight: 30
-            visible: type === netType.WirelessItem
+            visible: type === NetType.WirelessItem
             pageType: DccObject.Editor
             page: ComboBox {
                 flat: true

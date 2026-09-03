@@ -52,21 +52,21 @@ DccObject {
                         Layout.fillWidth: true
                         content: RowLayout {
                             BusyIndicator {
-                                running: model.item.status === netType.CS_Connecting
+                                running: model.item.status === NetType.CS_Connecting
                                 visible: running
                             }
                             DccCheckIcon {
-                                visible: model.item.status === netType.CS_Connected && !itemDelegate.hovered
+                                visible: model.item.status === NetType.CS_Connected && !itemDelegate.hovered
                             }
                             NetButton {
                                 implicitHeight: implicitContentHeight - 4
                                 topInset: -4
                                 bottomInset: -4
-                                visible: model.item.status !== netType.CS_Connecting && itemDelegate.hovered
-                                text: model.item.status === netType.CS_Connected ? qsTr("Disconnect") : qsTr("Connect")
+                                visible: model.item.status !== NetType.CS_Connecting && itemDelegate.hovered
+                                text: model.item.status === NetType.CS_Connected ? qsTr("Disconnect") : qsTr("Connect")
                                 Layout.alignment: Qt.AlignCenter
                                 onClicked: {
-                                    dccData.exec(model.item.status === netType.CS_Connected ? NetManager.Disconnect : NetManager.ConnectOrInfo, model.item.id, {})
+                                    dccData.exec(model.item.status === NetType.CS_Connected ? NetManager.Disconnect : NetManager.ConnectOrInfo, model.item.id, {})
                                 }
                             }
                             D.IconLabel {
@@ -84,7 +84,7 @@ DccObject {
                             }
                         }
                         onDoubleClicked: {
-                            if (model.item.status === netType.CS_UnConnected) {
+                            if (model.item.status === NetType.CS_UnConnected) {
                                 dccData.exec(NetManager.ConnectOrInfo, model.item.id, {})
                             }
                         }
@@ -100,7 +100,7 @@ DccObject {
             name: "dslSettings"
             parentName: root.name + "/body/networkList"
             onFinished: DccApp.showPage(root)
-            type: netType.WiredItem
+            type: NetType.WiredItem
             Connections {
                 target: dccData
                 function onRequest(cmd, id, param) {
@@ -111,7 +111,7 @@ DccObject {
                     while (items.length !== 0) {
                         let tmpItem = items[0]
                         if (tmpItem.id === id) {
-                            if (tmpItem.itemType === netType.DSLControlItem) {
+                            if (tmpItem.itemType === NetType.DSLControlItem) {
                                 dslSettings.displayName = qsTr("Add PPPoE connection")
                             } else {
                                 dslSettings.displayName = tmpItem.name

@@ -47,7 +47,7 @@ DccObject {
                 delegate: DelegateChooser {
                     role: "type"
                     DelegateChoice {
-                        roleValue: netType.WirelessItem
+                        roleValue: NetType.WirelessItem
                         delegate: ItemDelegate {
                             id: itemDelegate
                             height: 36
@@ -87,25 +87,25 @@ DccObject {
                                         // Layout.fillWidth: !itemDelegate.contentFlow
                                     }
                                     BusyIndicator {
-                                        running: model.item.status === netType.CS_Connecting
+                                        running: model.item.status === NetType.CS_Connecting
                                         visible: running
                                     }
                                     DccCheckIcon {
-                                        visible: model.item.status === netType.CS_Connected
+                                        visible: model.item.status === NetType.CS_Connected
                                                  && !itemDelegate.hovered
                                     }
                                     NetButton {
                                         implicitHeight: implicitContentHeight - 4
                                         topInset: -4
                                         bottomInset: -4
-                                        visible: model.item.status !== netType.CS_Connecting
+                                        visible: model.item.status !== NetType.CS_Connecting
                                                  && itemDelegate.hovered
                                         text: model.item.status
-                                              === netType.CS_Connected ? qsTr("Disconnect") : qsTr(
+                                              === NetType.CS_Connected ? qsTr("Disconnect") : qsTr(
                                                                              "Connect")
                                         Layout.alignment: Qt.AlignVCenter
                                         onClicked: {
-                                            dccData.exec(model.item.status === netType.CS_Connected ? NetManager.Disconnect : NetManager.ConnectOrInfo,
+                                            dccData.exec(model.item.status === NetType.CS_Connected ? NetManager.Disconnect : NetManager.ConnectOrInfo,
                                                          model.item.id, {})
                                         }
                                     }
@@ -234,7 +234,7 @@ DccObject {
                             }
 
                             onDoubleClicked: {
-                                if (model.item.status === netType.CS_UnConnected) {
+                                if (model.item.status === NetType.CS_UnConnected) {
                                     dccData.exec(NetManager.ConnectOrInfo, model.item.id, {})
                                 }
                             }
@@ -244,7 +244,7 @@ DccObject {
                         }
                     }
                     DelegateChoice {
-                        roleValue: netType.WirelessHiddenItem
+                        roleValue: NetType.WirelessHiddenItem
                         delegate: ItemDelegate {
                             implicitHeight: 36
                             checked: true
@@ -411,7 +411,7 @@ DccObject {
             name: "wirelessSettings"
             parentName: root.name + "/page/otherNetwork"
             onFinished: DccApp.showPage(root)
-            type: netType.WirelessItem
+            type: NetType.WirelessItem
             Connections {
                 target: dccData
                 function onRequest(cmd, id, param) {
@@ -448,13 +448,13 @@ DccObject {
         for (let i in root.netItem.children) {
             const child = root.netItem.children[i]
             switch (child.itemType) {
-            case netType.WirelessMineItem:
+            case NetType.WirelessMineItem:
                 if (mineNetwork.netItem !== child) {
                     mineNetwork.netItem = child
                 }
                 hasNet |= 1
                 break
-            case netType.WirelessOtherItem:
+            case NetType.WirelessOtherItem:
                 if (otherNetwork.netItem !== child) {
                     otherNetwork.netItem = child
                 }
