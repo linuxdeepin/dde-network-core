@@ -1029,13 +1029,6 @@ void NetManagerPrivate::updateControlEnabled(int type)
         parentItem->updateenabled(pEnabled);
         parentItem->updateenabledable(pEnabledable);
     }
-
-    bool devDisabled = false;
-    int index = ((type & NET_MASK_TYPE) == NET_WIRELESS) ? WirelessDeviceIndex : WiredDeviceIndex;
-    if (m_deviceCount[index] == 1 && (m_deviceCount[WiredDeviceIndex] + m_deviceCount[WirelessDeviceIndex] == 1)) {
-        devDisabled = !pEnabled;
-    }
-    updateItemVisible(index == WirelessDeviceIndex ? "NetWirelessDisabledItem" : "NetWiredDisabledItem", devDisabled);
 }
 
 void NetManagerPrivate::updateAirplaneMode(bool enabled)
@@ -1045,10 +1038,8 @@ void NetManagerPrivate::updateAirplaneMode(bool enabled)
         Q_Q(NetManager);
         Q_EMIT q->airplaneModeChanged(m_airplaneMode);
     }
-    updateItemVisible("NetAirplaneModeTipsItem", enabled && m_supportWireless);
-    if (enabled) {
-        updateItemVisible("NetWirelessDisabledItem", false);
-        updateItemVisible("NetWiredDisabledItem", false);
+    if (flags().testFlags(NetType::Net_AirplaneTips)) {
+        updateItemVisible("NetAirplaneModeTipsItem", enabled && m_supportWireless);
     }
 }
 
