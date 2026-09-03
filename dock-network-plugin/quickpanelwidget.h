@@ -1,4 +1,4 @@
-// Copyright (C) 2022 ~ 2022 Deepin Technology Co., Ltd.
+// Copyright (C) 2022 ~ 2026 Deepin Technology Co., Ltd.
 // SPDX-FileCopyrightText: 2018 - 2023 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
@@ -10,6 +10,7 @@
 #include <DLabel>
 
 #include <QWidget>
+#include <QGraphicsOpacityEffect>
 
 class QLabel;
 
@@ -36,6 +37,8 @@ Q_SIGNALS:
     void iconClicked();
 
 protected:
+    void enterEvent(QEnterEvent *event) override;
+    void leaveEvent(QEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
 
@@ -48,6 +51,13 @@ private:
     Dtk::Widget::DLabel *m_nameLabel;
     Dtk::Widget::DLabel *m_stateLabel;
     Dtk::Widget::DIconButton *m_expandLabel;
+    QGraphicsOpacityEffect *m_iconOpacityEffect;
+    QGraphicsOpacityEffect *m_nameOpacityEffect;
+    QGraphicsOpacityEffect *m_stateOpacityEffect;
+    bool m_hover;
+    bool m_active;
+    static constexpr qreal kNormalOpacity = 0.7;
+    static constexpr qreal kHoverOpacity = 1.0;
     QPoint m_clickPoint;
 };
 } // namespace network

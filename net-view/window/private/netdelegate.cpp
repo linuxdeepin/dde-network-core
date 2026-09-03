@@ -29,6 +29,7 @@
 #include <QTextLine>
 #include <QTextDocument>
 #include <QDesktopServices>
+#include <QGraphicsOpacityEffect>
 
 DWIDGET_USE_NAMESPACE
 
@@ -918,7 +919,10 @@ NetItemWidget::NetItemWidget(NetItem *item, QWidget *parent)
     : NetWidget (item, parent)
     , m_portalLabel (nullptr)
     , m_isEnter(false)
+    , m_opacityEffect(new QGraphicsOpacityEffect(this))
 {
+    m_opacityEffect->setOpacity(kNormalOpacity);
+    setGraphicsEffect(m_opacityEffect);
 }
 
 void NetItemWidget::removePasswordWidget()
@@ -939,6 +943,8 @@ void NetItemWidget::removePasswordWidget()
 
 void NetItemWidget::setHover(bool isHover)
 {
+    m_opacityEffect->setOpacity(isHover ? kHoverOpacity : kNormalOpacity);
+
     if (!m_portalLabel)
         return;
 
