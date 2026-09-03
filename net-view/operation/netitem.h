@@ -214,13 +214,6 @@ Q_SIGNALS:
     void portalUrlChanged(const QString &url);
 };
 
-class NetWiredDisabledItem : public NetItem
-{
-    Q_OBJECT
-protected:
-    using NetItem::NetItem;
-};
-
 class NetWirelessHiddenItem : public NetItem
 {
     Q_OBJECT
@@ -281,13 +274,6 @@ class NetWirelessMineItem : public NetItem
     Q_OBJECT
 protected:
     QString name() const override;
-    using NetItem::NetItem;
-};
-
-class NetWirelessDisabledItem : public NetItem
-{
-    Q_OBJECT
-protected:
     using NetItem::NetItem;
 };
 

@@ -76,9 +76,6 @@ NetItemPrivate *NetItemPrivate::New(NetType::NetItemType type, const QString &id
         CaseNewItem(AppProxyControlItem);
         CaseNewItem(AirplaneModeTipsItem);
         CaseNewItem(VPNTipsItem);
-    case NetType::WirelessDisabledItem:
-    case NetType::WiredDisabledItem:
-        break;
     }
     return netItemPrivate;
 }

@@ -25,7 +25,6 @@
 #include <QTextDocument>
 #include <QTextLine>
 #include <QTimer>
-#include <QToolButton>
 #include <QTextLine>
 #include <QTextDocument>
 #include <QDesktopServices>
@@ -119,10 +118,6 @@ ItemSpacing NetDelegate::getItemSpacing(const QModelIndex &index) const
         spacing.height = 24;
         spacing.bottom = 4;
     } break;
-    case NetType::WirelessDisabledItem:
-    case NetType::WiredDisabledItem:
-        spacing.height = 220;
-        break;
     default:
         break;
     }
@@ -154,8 +149,6 @@ void NetDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, c
             bgColor.setAlphaF(0.05);
         }
     } break;
-    case NetType::WirelessDisabledItem:
-    case NetType::WiredDisabledItem:
     case NetType::WirelessMineItem: {
         textColor = boption.dpalette.brightText().color();
         textColor.setAlphaF(0.6);
@@ -231,10 +224,6 @@ QWidget *NetDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &
             NetWiredWidget *widget = new NetWiredWidget(static_cast<NetWiredItem *>(item), parent);
             widget->setFlag(m_flag);
             netWidget = widget;
-        } break;
-        case NetType::WirelessDisabledItem:
-        case NetType::WiredDisabledItem: {
-            netWidget = new NetDisabledWidget(item, parent);
         } break;
         case NetType::AirplaneModeTipsItem: {
             netWidget = new NetAirplaneModeTipsWidget(static_cast<NetAirplaneModeTipsItem *>(item), parent);
@@ -882,37 +871,6 @@ int NetWiredWidget::leftSpacing() const
 {
     return m_iconBut->width() + 10;
 }
-
-NetDisabledWidget::NetDisabledWidget(NetItem *item, QWidget *parent)
-    : NetWidget(item, parent)
-{
-    QWidget *widget = new QWidget(this);
-    QVBoxLayout *layout = new QVBoxLayout(widget);
-    layout->setSpacing(0);
-    layout->setContentsMargins(3, 0, 5, 10);
-
-    QToolButton *icon = new QToolButton(this);
-    icon->setIconSize(QSize(96, 96));
-    icon->setFixedSize(96, 96);
-    icon->setAttribute(Qt::WA_TransparentForMouseEvents);
-    icon->setFocusPolicy(Qt::NoFocus);
-    if (item->itemType() == NetType::WiredDisabledItem) {
-        icon->setIcon(QIcon::fromTheme("network-wired-disabled"));
-    } else {
-        icon->setIcon(QIcon::fromTheme("network-wireless-disabled"));
-    }
-
-    QLabel *label = createNemeLabel(item, this, DFontSizeManager::T8);
-    label->setAlignment(Qt::AlignCenter);
-    label->setFixedWidth(QWIDGETSIZE_MAX);
-    layout->addStretch();
-    layout->addWidget(icon, 0, Qt::AlignHCenter);
-    layout->addWidget(label);
-    layout->addStretch();
-    setCentralWidget(widget);
-}
-
-NetDisabledWidget::~NetDisabledWidget() { }
 
 NetItemWidget::NetItemWidget(NetItem *item, QWidget *parent)
     : NetWidget (item, parent)

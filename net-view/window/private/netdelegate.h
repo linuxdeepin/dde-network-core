@@ -274,15 +274,6 @@ private:
     dde::network::NetType::NetConnectionStatus m_status;
 };
 
-class NetDisabledWidget : public NetWidget
-{
-    Q_OBJECT
-
-public:
-    explicit NetDisabledWidget(NetItem *item, QWidget *parent = nullptr);
-    ~NetDisabledWidget() Q_DECL_OVERRIDE;
-};
-
 } // namespace network
 } // namespace dde
 
