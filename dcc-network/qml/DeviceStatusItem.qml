@@ -15,25 +15,25 @@ RowLayout {
 
     function getStatusName(status) {
         switch (status) {
-        case netType.DS_Disabled:
+        case NetType.DS_Disabled:
             return qsTr("Off")
-        case netType.DS_Connected:
-        case netType.DS_ConnectNoInternet:
+        case NetType.DS_Connected:
+        case NetType.DS_ConnectNoInternet:
             return qsTr("Connected")
-        case netType.DS_IpConflicted:
+        case NetType.DS_IpConflicted:
             return qsTr("IP conflict")
-        case netType.DS_Connecting:
+        case NetType.DS_Connecting:
             return qsTr("Connecting")
-        case netType.DS_ObtainingIP:
+        case NetType.DS_ObtainingIP:
             return qsTr("Obtaining address")
-        case netType.DS_Authenticating:
+        case NetType.DS_Authenticating:
             return qsTr("Authenticating")
-        case netType.DS_ObtainIpFailed:
-        case netType.DS_ConnectFailed:
-        case netType.DS_Unknown:
-        case netType.DS_Enabled:
-        case netType.DS_NoCable:
-        case netType.DS_Disconnected:
+        case NetType.DS_ObtainIpFailed:
+        case NetType.DS_ConnectFailed:
+        case NetType.DS_Unknown:
+        case NetType.DS_Enabled:
+        case NetType.DS_NoCable:
+        case NetType.DS_Disconnected:
         default:
             return qsTr("Disconnected")
         }
@@ -44,12 +44,12 @@ RowLayout {
             text: {
                 if (connectedNameVisible) {
                     switch (netItem.status) {
-                    case netType.DS_Connected:
-                    case netType.DS_ConnectNoInternet:
+                    case NetType.DS_Connected:
+                    case NetType.DS_ConnectNoInternet:
                         var childrenItem = [netItem]
                         while (childrenItem.length > 0) {
                             var childItem = childrenItem.pop()
-                            if (childItem.status === netType.CS_Connected) {
+                            if (childItem.status === NetType.CS_Connected) {
                                 return childItem.name
                             }
                             for (let i in childItem.children) {

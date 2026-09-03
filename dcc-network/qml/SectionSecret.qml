@@ -16,7 +16,7 @@ DccTitleObject {
     id: root
     property var configWSecurity
     property var config802_1x
-    property int type: netType.WiredItem
+    property int type: NetType.WiredItem
     property string eapType: "peap"
     property int pwdFlays: 0
     property string pwdStr: ""
@@ -334,7 +334,7 @@ DccTitleObject {
             displayName: qsTr("Security")
             canSearch: false
             weight: 10
-            visible: root.type === netType.WirelessItem || root.type === netType.WirelessHiddenItem
+            visible: root.type === NetType.WirelessItem || root.type === NetType.WirelessHiddenItem
             pageType: DccObject.Editor
             page: D.ComboBox {
                 flat: true
@@ -372,7 +372,7 @@ DccTitleObject {
             displayName: qsTr("Security")
             canSearch: false
             weight: 20
-            visible: root.type === netType.WiredItem
+            visible: root.type === NetType.WiredItem
             pageType: DccObject.Editor
             page: D.Switch {
                 checked: root.keyMgmt === "wpa-eap"
@@ -401,7 +401,7 @@ DccTitleObject {
                     root.eapType = currentValue
                     root.editClicked()
                 }
-                model: root.type === netType.WiredItem ? eapModelWired : eapModelWireless
+                model: root.type === NetType.WiredItem ? eapModelWired : eapModelWireless
                 Component.onCompleted: {
                     currentIndex = indexOfValue(root.eapType)
                 }

@@ -13,7 +13,7 @@ DccObject {
     id: root
     property var config: null
     property var netItem: null
-    property int type: netType.WiredItem
+    property int type: NetType.WiredItem
     property bool modified: false
     readonly property string parentUrl: parentName + "/" + name
     signal finished

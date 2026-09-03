@@ -14,7 +14,7 @@ import org.deepin.dcc.network 1.0
 DccObject {
     id: root
     property var netItem: null
-    property int method: netType.None
+    property int method: NetType.None
     property bool autoUrlAlert: false
     property int inputItem: 0
 
@@ -69,13 +69,13 @@ DccObject {
                 backgroundType: DccObject.Normal
                 pageType: DccObject.Editor
                 page: D.Switch {
-                    checked: root.method !== netType.None
+                    checked: root.method !== NetType.None
                     enabled: netItem.enabledable
                     onClicked: {
                         if (checked) {
                             root.method = netItem.lastMethod
                         } else {
-                            root.method = netType.None
+                            root.method = NetType.None
                             dccData.exec(NetManager.SetConnectInfo, netItem.id, {
                                              "method": method
                                          })
@@ -97,7 +97,7 @@ DccObject {
                 displayName: qsTr("Proxy Type")
                 weight: 20
                 backgroundType: DccObject.Normal
-                visible: method !== netType.None
+                visible: method !== NetType.None
                 pageType: DccObject.Editor
                 page: ComboBox {
                     flat: true
@@ -108,10 +108,10 @@ DccObject {
                         method = currentValue
                     }
                     model: [{
-                            "value": netType.Auto,
+                            "value": NetType.Auto,
                             "text": qsTr("Auto")
                         }, {
-                            "value": netType.Manual,
+                            "value": NetType.Manual,
                             "text": qsTr("Manual")
                         }]
                     Component.onCompleted: {
@@ -134,7 +134,7 @@ DccObject {
                 weight: 30
                 backgroundType: DccObject.Normal
                 pageType: DccObject.Editor
-                visible: method === netType.Auto
+                visible: method === NetType.Auto
                 page: D.LineEdit {
                     topInset: 4
                     bottomInset: 4
@@ -166,7 +166,7 @@ DccObject {
                 name: "http"
                 parentName: root.name + "/menu/body"
                 displayName: qsTr("HTTP Proxy")
-                visible: method === netType.Manual
+                visible: method === NetType.Manual
                 weight: 40
                 config: root.netItem.manualProxy.http
                 onHasUrlChanged: {
@@ -182,7 +182,7 @@ DccObject {
                 name: "https"
                 parentName: root.name + "/menu/body"
                 displayName: qsTr("HTTPS Proxy")
-                visible: method === netType.Manual
+                visible: method === NetType.Manual
                 weight: 50
                 config: root.netItem.manualProxy.https
                 onHasUrlChanged: {
@@ -198,7 +198,7 @@ DccObject {
                 name: "ftp"
                 parentName: root.name + "/menu/body"
                 displayName: qsTr("FTP Proxy")
-                visible: method === netType.Manual
+                visible: method === NetType.Manual
                 weight: 60
                 config: root.netItem.manualProxy.ftp
                 onHasUrlChanged: {
@@ -214,7 +214,7 @@ DccObject {
                 name: "socks"
                 parentName: root.name + "/menu/body"
                 displayName: qsTr("SOCKS Proxy")
-                visible: method === netType.Manual
+                visible: method === NetType.Manual
                 weight: 70
                 config: root.netItem.manualProxy.socks
                 onHasUrlChanged: {
@@ -231,7 +231,7 @@ DccObject {
 
                 name: "ignoreHosts"
                 parentName: root.name + "/menu/body"
-                visible: method === netType.Manual
+                visible: method === NetType.Manual
                 weight: 80
                 pageType: DccObject.Item
                 page: TextArea {
@@ -264,7 +264,7 @@ DccObject {
             DccObject {
                 name: "spacer"
                 parentName: root.name + "/menu/footer"
-                visible: method !== netType.None
+                visible: method !== NetType.None
                 weight: 20
                 pageType: DccObject.Item
                 page: Item {
@@ -274,7 +274,7 @@ DccObject {
             DccObject {
                 name: "cancel"
                 parentName: root.name + "/menu/footer"
-                visible: method !== netType.None
+                visible: method !== NetType.None
                 displayName: qsTr("Cancel")
                 weight: 30
                 pageType: DccObject.Item
@@ -295,7 +295,7 @@ DccObject {
                 name: "Save"
                 parentName: root.name + "/menu/footer"
                 displayName: qsTr("Save")
-                visible: method !== netType.None
+                visible: method !== NetType.None
                 weight: 40
                 pageType: DccObject.Item
                 page: Button {
@@ -306,7 +306,7 @@ DccObject {
                     leftPadding: 0
                     rightPadding: 0
                     spacing: 0
-                    enabled: (method === netType.Auto && (inputItem & 0xf0)) || (method === netType.Manual && (inputItem & 0x0f))
+                    enabled: (method === NetType.Auto && (inputItem & 0xf0)) || (method === NetType.Manual && (inputItem & 0x0f))
                     text: dccObj.displayName
                     Layout.alignment: Qt.AlignRight
                     function printfObj(obj) {
@@ -329,9 +329,9 @@ DccObject {
                         console.log("ignoreHosts.config:", ignoreHosts.config)
                         let config = {}
                         switch (method) {
-                        case netType.None:
+                        case NetType.None:
                             break
-                        case netType.Auto:
+                        case NetType.Auto:
                             autoUrlAlert = false
                             if (autoUrl.config.length === 0) {
                                 autoUrlAlert = true
@@ -340,7 +340,7 @@ DccObject {
 
                             config["autoUrl"] = autoUrl.config
                             break
-                        case netType.Manual:
+                        case NetType.Manual:
                             if (!http.checkInput() || !https.checkInput() || !ftp.checkInput() || !socks.checkInput()) {
                                 return
                             }
