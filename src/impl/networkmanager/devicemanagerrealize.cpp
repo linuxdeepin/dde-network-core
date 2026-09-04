@@ -818,9 +818,6 @@ void WirelessDeviceManagerRealize::connectNetwork(const AccessPoints *accessPoin
 
         NetworkManager::WirelessSetting::Ptr wirelessSetting = settings->setting(NetworkManager::Setting::Wireless).dynamicCast<NetworkManager::WirelessSetting>();
         wirelessSetting->setSsid(accessPoint->ssid().toUtf8());
-        QString macAddress = m_device->permanentHardwareAddress();
-        macAddress.remove(":");
-        wirelessSetting->setMacAddress(QByteArray::fromHex(macAddress.toUtf8()));
         wirelessSetting->setInitialized(true);
         QVariantMap options;
         options.insert("persist", "memory");

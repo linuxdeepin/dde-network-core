@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -398,15 +398,6 @@ void NetWirelessConnect::activateConnection()
     }
     if (conn.isNull()) {
         conn = findConnectionByUuid(m_connectionSettings->uuid());
-    }
-
-    // 默认设置Mac地址
-    NetworkManager::WirelessSetting::Ptr wirelessSetting = m_connectionSettings->setting(NetworkManager::Setting::Wireless).dynamicCast<NetworkManager::WirelessSetting>();
-    if (wirelessSetting) {
-        QString macAddress = m_device->realHwAdr();
-        macAddress.remove(":");
-        wirelessSetting->setMacAddress(QByteArray::fromHex(macAddress.toUtf8()));
-        wirelessSetting->setInitialized(true);
     }
 
     // 工银瑞信的项目默认关闭自动连接的功能
