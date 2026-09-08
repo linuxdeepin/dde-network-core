@@ -26,7 +26,7 @@
         <translation>认证中</translation>
     </message>
     <message>
-        <source>Disconnected</source>
+        <source>Not connected</source>
         <translation>已断开</translation>
     </message>
 </context>
