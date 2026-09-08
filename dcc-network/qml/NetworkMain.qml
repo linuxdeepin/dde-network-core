@@ -42,8 +42,6 @@ DccObject {
         }
     }
     PageAirplane {
-        objectName: "NetworkMain_PageAirplane"
-        Accessible.role: Accessible.Grouping
         name: "airplaneMode"
         parentName: "network"
         weight: 3040
@@ -58,24 +56,18 @@ DccObject {
             DelegateChoice {
                 roleValue: NetType.WiredDeviceItem
                 delegate: PageWiredDevice {
-                    objectName: "NetworkMain_PageWiredDevice_" + model.item.id
-                    Accessible.role: Accessible.Grouping
                     netItem: model.item
                 }
             }
             DelegateChoice {
                 roleValue: NetType.WirelessDeviceItem
                 delegate: PageWirelessDevice {
-                    objectName: "NetworkMain_PageWirelessDevice_" + model.item.id
-                    Accessible.role: Accessible.Grouping
                     netItem: model.item
                 }
             }
             DelegateChoice {
                 roleValue: NetType.VPNControlItem
                 delegate: PageVPN {
-                    objectName: "NetworkMain_PageVPN_" + model.item.id
-                    Accessible.role: Accessible.Grouping
                     name: "networkVpn"
                     parentName: "network"
                     weight: 3010
@@ -85,8 +77,6 @@ DccObject {
             DelegateChoice {
                 roleValue: NetType.DSLControlItem
                 delegate: PageDSL {
-                    objectName: "NetworkMain_PageDSL_" + model.item.id
-                    Accessible.role: Accessible.Grouping
                     name: "dsl"
                     parentName: "network"
                     weight: 3020
@@ -96,8 +86,6 @@ DccObject {
             DelegateChoice {
                 roleValue: NetType.HotspotControlItem
                 delegate: PageHotspot {
-                    objectName: "NetworkMain_PageHotspot_" + model.item.id
-                    Accessible.role: Accessible.Grouping
                     name: "personalHotspot"
                     parentName: "network"
                     isAirplane: dccData.root.isEnabled
@@ -108,8 +96,6 @@ DccObject {
             DelegateChoice {
                 roleValue: NetType.SystemProxyControlItem
                 delegate: PageSystemProxy {
-                    objectName: "NetworkMain_PageSystemProxy_" + model.item.id
-                    Accessible.role: Accessible.Grouping
                     name: "systemProxy"
                     parentName: "network"
                     weight: 3050
@@ -119,8 +105,6 @@ DccObject {
             DelegateChoice {
                 roleValue: NetType.AppProxyControlItem
                 delegate: PageAppProxy {
-                    objectName: "NetworkMain_PageAppProxy_" + model.item.id
-                    Accessible.role: Accessible.Grouping
                     name: "applicationProxy"
                     parentName: "network"
                     weight: 3060
@@ -130,8 +114,6 @@ DccObject {
             DelegateChoice {
                 roleValue: NetType.DetailsItem
                 delegate: PageDetails {
-                    objectName: "NetworkMain_PageDetails_" + model.item.id
-                    Accessible.role: Accessible.Grouping
                     name: "networkDetails"
                     parentName: "network"
                     weight: 3070
