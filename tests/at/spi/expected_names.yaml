@@ -242,47 +242,47 @@ qml:
   line: 11
 - file: dcc-network/qml/NetworkMain.qml
   element_type: PageAirplane
-  accessible_id: NetworkMain_PageAirplane
+  accessible_id: airplaneMode
   accessible_role: Accessible.Grouping
   line: 44
 - file: dcc-network/qml/NetworkMain.qml
   element_type: PageWiredDevice
-  accessible_id: NetworkMain_PageWiredDevice_<model_item_id>
+  accessible_id: wired<pathIndex>
   accessible_role: Accessible.Grouping
   line: 60
 - file: dcc-network/qml/NetworkMain.qml
   element_type: PageWirelessDevice
-  accessible_id: NetworkMain_PageWirelessDevice_<model_item_id>
+  accessible_id: wireless<pathIndex>
   accessible_role: Accessible.Grouping
   line: 68
 - file: dcc-network/qml/NetworkMain.qml
   element_type: PageVPN
-  accessible_id: NetworkMain_PageVPN_<model_item_id>
+  accessible_id: networkVpn
   accessible_role: Accessible.Grouping
   line: 76
 - file: dcc-network/qml/NetworkMain.qml
   element_type: PageDSL
-  accessible_id: NetworkMain_PageDSL_<model_item_id>
+  accessible_id: dsl
   accessible_role: Accessible.Grouping
   line: 87
 - file: dcc-network/qml/NetworkMain.qml
   element_type: PageHotspot
-  accessible_id: NetworkMain_PageHotspot_<model_item_id>
+  accessible_id: personalHotspot
   accessible_role: Accessible.Grouping
   line: 98
 - file: dcc-network/qml/NetworkMain.qml
   element_type: PageSystemProxy
-  accessible_id: NetworkMain_PageSystemProxy_<model_item_id>
+  accessible_id: systemProxy
   accessible_role: Accessible.Grouping
   line: 110
 - file: dcc-network/qml/NetworkMain.qml
   element_type: PageAppProxy
-  accessible_id: NetworkMain_PageAppProxy_<model_item_id>
+  accessible_id: applicationProxy
   accessible_role: Accessible.Grouping
   line: 121
 - file: dcc-network/qml/NetworkMain.qml
   element_type: PageDetails
-  accessible_id: NetworkMain_PageDetails_<model_item_id>
+  accessible_id: networkDetails
   accessible_role: Accessible.Grouping
   line: 132
 - file: dcc-network/qml/PageAirplane.qml
