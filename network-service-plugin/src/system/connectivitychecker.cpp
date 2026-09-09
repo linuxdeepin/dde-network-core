@@ -91,12 +91,11 @@ void LocalConnectionvityChecker::onPortalDetected(const QString &portalUrl)
 
 void LocalConnectionvityChecker::onConnectivityChanged(network::service::Connectivity connectivity)
 {
-    if (m_internetChecker && (connectivity == network::service::Connectivity::Limited
-                              || connectivity == network::service::Connectivity::Noconnectivity
-                              || connectivity == network::service::Connectivity::Unknownconnectivity)) {
+    if (m_internetChecker && connectivity != network::service::Connectivity::Full) {
         bool checkPrimary = m_statusChecker->primaryConnectionChanged();
-        QMetaObject::invokeMethod(m_internetChecker, [this, checkPrimary]() {
-            m_internetChecker->switchInternetAccess(checkPrimary);
+        bool switchPortal = connectivity != network::service::Connectivity::Portal;
+        QMetaObject::invokeMethod(m_internetChecker, [this, checkPrimary, switchPortal]() {
+            m_internetChecker->switchInternetAccess(checkPrimary, switchPortal);
         }, Qt::QueuedConnection);
     }
     qCInfo(DSM) << "Connectivity changed, incomming: " << static_cast<int>(connectivity) << ", current: " << static_cast<int>(m_connectivity);
