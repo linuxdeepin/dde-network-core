@@ -83,7 +83,8 @@ NetItem *NetManager::root() const
 
 NetManager::ConnectionType NetManager::primaryConnectionType() const
 {
-    return Unknown;
+    Q_D(const NetManager);
+    return d->m_primaryConnectionType;
 }
 
 /**
@@ -208,7 +209,7 @@ NetManagerPrivate::NetManagerPrivate(NetManager *manager)
     , m_deleteItem(NetItemNew(Item, "trash"))
     , m_isDeleting(false)
     , m_airplaneMode(false)
-    // , m_primaryConnectionType(NetManager::ConnectionType::Wired)
+    , m_primaryConnectionType(NetManager::ConnectionType::Wired)
     , m_monitorNetworkNotify(false)
     , m_secretAgent(false)
     , m_autoAddConnection(false)
@@ -1045,11 +1046,11 @@ void NetManagerPrivate::updateAirplaneMode(bool enabled)
 
 void NetManagerPrivate::updatePrimaryConnectionType(NetManager::ConnectionType type)
 {
-    // if (m_primaryConnectionType != type) {
-    //     m_primaryConnectionType = type;
-    //     Q_Q(NetManager);
-    //     Q_EMIT q->primaryConnectionTypeChanged(m_primaryConnectionType);
-    // }
+    if (m_primaryConnectionType != type) {
+        m_primaryConnectionType = type;
+        Q_Q(NetManager);
+        Q_EMIT q->primaryConnectionTypeChanged(m_primaryConnectionType);
+    }
 }
 
 void NetManagerPrivate::updatePortalUrl(const QString &id, const QString &url)
