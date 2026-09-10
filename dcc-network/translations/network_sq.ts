@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="sq">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="sq">
 <context>
     <name>DeviceStatusItem</name>
     <message>
@@ -26,8 +28,8 @@
         <translation>Po bëhet mirëfilltësimi</translation>
     </message>
     <message>
-        <source>Disconnected</source>
-        <translation>U shkëput</translation>
+        <source>Not connected</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -249,7 +251,7 @@
     </message>
     <message>
         <source>Not Bind</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Personal Hotspot</source>
@@ -498,6 +500,10 @@
         <source>Add Network Connection</source>
         <translation>Shtoni Lidhje Rrjeti</translation>
     </message>
+    <message>
+        <source>Open a browser to authenticate</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PageWirelessDevice</name>
@@ -537,6 +543,10 @@
         <source>My Networks</source>
         <translation>Rrjetet e Mi</translation>
     </message>
+    <message>
+        <source>Open a browser to authenticate</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SectionDNS</name>
@@ -561,7 +571,7 @@
     <name>SectionDevice</name>
     <message>
         <source>Not Bind</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>WLAN</source>
@@ -693,6 +703,38 @@
         <source>Only one gateway is allowed</source>
         <translation>Lejohet vetëm një kanal</translation>
     </message>
+    <message>
+        <source>When enabled, only traffic to the target network is routed through the VPN. Other traffic continues to use the local network connection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN DNS Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The system uses both local DNS and VPN DNS for resolution, and prefers the result returned first.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefer VPN DNS. All DNS queries are sent through the VPN connection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not specify how VPN DNS is used. Keep the current system DNS resolution policy.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not Set</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Secondary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preferred</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SectionIPv6</name>
@@ -764,6 +806,38 @@
         <source>Only one gateway is allowed</source>
         <translation>Lejohet vetëm një kanal</translation>
     </message>
+    <message>
+        <source>When enabled, only traffic to the target network is routed through the VPN. Other traffic continues to use the local network connection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN DNS Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The system uses both local DNS and VPN DNS for resolution, and prefers the result returned first.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefer VPN DNS. All DNS queries are sent through the VPN connection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not specify how VPN DNS is used. Keep the current system DNS resolution policy.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not Set</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Secondary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preferred</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SectionPPP</name>
@@ -781,7 +855,7 @@
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
@@ -809,7 +883,7 @@
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No TCP Header Compression</source>
@@ -939,7 +1013,7 @@
     </message>
     <message>
         <source>Provisioning</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -1050,7 +1124,7 @@
     </message>
     <message>
         <source>Pre-Shared Key</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User Cert</source>
@@ -1194,7 +1268,7 @@
     </message>
     <message>
         <source>Stateful MPPE</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Refuse EAP Authentication</source>
@@ -1222,7 +1296,7 @@
     </message>
     <message>
         <source>No Deflate Data Compression</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No TCP Header Compression</source>
@@ -1306,7 +1380,7 @@
     </message>
     <message>
         <source>Restrict Tunnel TCP MSS</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Randomize Remote Hosts</source>
@@ -1326,7 +1400,7 @@
     </message>
     <message>
         <source>Netscreen</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Version</source>
@@ -1350,7 +1424,7 @@
     </message>
     <message>
         <source>NAT Traversal Mode</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>NAT-T When Available (default)</source>
@@ -1386,7 +1460,7 @@
     </message>
     <message>
         <source>Forward Secrecy</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Server (default)</source>

@@ -1,33 +1,35 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="lo">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="lo">
 <context>
     <name>DeviceStatusItem</name>
     <message>
         <source>Off</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">ຄວາມຂັດແຍ້ງ IP</translation>
     </message>
     <message>
         <source>Connecting</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Obtaining address</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Authenticating</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <source>Not connected</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -48,18 +50,18 @@
     <name>Network</name>
     <message>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">ເຄືອຂ່າຍ</translation>
     </message>
 </context>
 <context>
     <name>NetworkMain</name>
     <message>
         <source>Connection settings</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Related Settings</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -191,7 +193,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -313,7 +315,7 @@
     </message>
     <message>
         <source>Enable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;Wireless Network Adapter&lt;/a&gt; first if you want to use the personal hotspot.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -337,7 +339,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -474,7 +476,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -498,6 +500,10 @@
     <message>
         <source>Add Network Connection</source>
         <translation>ເພີ່ມການເຊື່ອມຕໍ່ເຄືອຂ່າຍ</translation>
+    </message>
+    <message>
+        <source>Open a browser to authenticate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -536,7 +542,11 @@
     </message>
     <message>
         <source>My Networks</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">ສະຖານະການເຊື່ອມຕໍ່ຂອງຂ້ອຍ</translation>
+    </message>
+    <message>
+        <source>Open a browser to authenticate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -586,7 +596,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -613,19 +623,19 @@
     </message>
     <message>
         <source>Band</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">ຄື່ນຄວາມຖີ່</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>2.4 GHz</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">2.4 GHz</translation>
     </message>
     <message>
         <source>5 GHz</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">5 GHz</translation>
     </message>
 </context>
 <context>
@@ -692,7 +702,39 @@
     </message>
     <message>
         <source>Only one gateway is allowed</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When enabled, only traffic to the target network is routed through the VPN. Other traffic continues to use the local network connection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN DNS Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The system uses both local DNS and VPN DNS for resolution, and prefers the result returned first.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefer VPN DNS. All DNS queries are sent through the VPN connection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not specify how VPN DNS is used. Keep the current system DNS resolution policy.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not Set</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Secondary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preferred</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -763,7 +805,39 @@
     </message>
     <message>
         <source>Only one gateway is allowed</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When enabled, only traffic to the target network is routed through the VPN. Other traffic continues to use the local network connection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VPN DNS Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The system uses both local DNS and VPN DNS for resolution, and prefers the result returned first.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefer VPN DNS. All DNS queries are sent through the VPN connection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not specify how VPN DNS is used. Keep the current system DNS resolution policy.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not Set</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Secondary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preferred</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1455,78 +1529,78 @@
     </message>
     <message>
         <source>VPN Proxy</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Proxy Type</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">ປະເພດພຣອກຊີ</translation>
     </message>
     <message>
         <source>Server IP</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">ພອດ</translation>
     </message>
     <message>
         <source>Retry Indefinitely When Failed</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>VPN TLS Authentication</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Subject Match</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remote Cert Type</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Client</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Server</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key File</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SystemProxyConfigItem</name>
     <message>
         <source>Optional</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">ທາງເລືອກ</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">ພອດ</translation>
     </message>
     <message>
         <source>Authentication is required</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">ຊື່ຜູ້ໃຊ້</translation>
     </message>
     <message>
         <source>Required</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">ຈຳເປັນ</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">ລະຫັດຜ່ານ</translation>
     </message>
 </context>
 <context>
