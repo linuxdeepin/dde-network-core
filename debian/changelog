@@ -1,3 +1,26 @@
+dde-network-core (2.0.100) unstable; urgency=medium
+
+  * i18n: Updates for project Deepin Desktop Environment (#609)
+  * i18n: Translate dss-network-plugin_en_US.ts in ar (#610)
+  * i18n: Updates for project Deepin Desktop Environment (#611)
+  * fix: guard SystemProxyConfigItem hasAuth binding
+  * fix: rename QML NetType registration to netType
+  * fix: suppress three not-find warnings in net-view control center
+  * fix: remove dead code for
+    NetWiredDisabledItem/NetWirelessDisabledItem
+  * fix: revert QML netType rename, register NetType as uncreatable type
+  * feat(at-spi): add objectName locators for QML interactive controls
+  * fix(network): use DccObject name as at-spi anchor instead of
+    objectName
+  * i18n: Translate network_en_US.ts in pl (#615)
+  * fix(dcc-network): change device disconnected status text to "Not
+    connected"
+  * fix(network): add portal authentication detection to network
+    connectivity check
+  * fix(network): remove invalid Accessible and objectName on DccObject
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 10 Sep 2026 20:29:14 +0800
+
 dde-network-core (2.0.99) unstable; urgency=medium
 
   * fix(network): adjust font sizes on network details page
