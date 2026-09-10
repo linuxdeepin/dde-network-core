@@ -165,8 +165,6 @@ DccObject {
                 }
             }
             SystemProxyConfigItem {
-                objectName: "Http"
-                Accessible.role: Accessible.Grouping
                 id: http
                 name: "http"
                 parentName: root.name + "/menu/body"
@@ -183,8 +181,6 @@ DccObject {
                 }
             }
             SystemProxyConfigItem {
-                objectName: "Https"
-                Accessible.role: Accessible.Grouping
                 id: https
                 name: "https"
                 parentName: root.name + "/menu/body"
@@ -201,8 +197,6 @@ DccObject {
                 }
             }
             SystemProxyConfigItem {
-                objectName: "Ftp"
-                Accessible.role: Accessible.Grouping
                 id: ftp
                 name: "ftp"
                 parentName: root.name + "/menu/body"
@@ -219,8 +213,6 @@ DccObject {
                 }
             }
             SystemProxyConfigItem {
-                objectName: "Socks"
-                Accessible.role: Accessible.Grouping
                 id: socks
                 name: "socks"
                 parentName: root.name + "/menu/body"

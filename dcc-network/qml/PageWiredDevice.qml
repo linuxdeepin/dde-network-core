@@ -287,8 +287,6 @@ DccObject {
                     }
                 }
                 PageSettings {
-                    objectName: "WiredSettings"
-                    Accessible.role: Accessible.Grouping
                     id: wiredSettings
                     name: "wiredSettings"
                     parentName: root.name + "/page/body/networkList"
