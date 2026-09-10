@@ -707,7 +707,7 @@
     </message>
     <message>
         <source>VPN DNS Mode</source>
-        <translation type="unfinished"/>
+        <translation>Modo DNS da VPN</translation>
     </message>
     <message>
         <source>The system uses both local DNS and VPN DNS for resolution, and prefers the result returned first.</source>
