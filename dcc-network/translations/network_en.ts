@@ -28,7 +28,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Disconnected</source>
+        <source>Not connected</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -500,6 +500,10 @@
         <source>Add Network Connection</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Open a browser to authenticate</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PageWirelessDevice</name>
@@ -537,6 +541,10 @@
     </message>
     <message>
         <source>My Networks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a browser to authenticate</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
