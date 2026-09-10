@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="zh_CN">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_CN">
 <context>
     <name>DeviceStatusItem</name>
     <message>
@@ -540,12 +538,12 @@
         <translation>若要连接并使用无线网络功能，请先&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;关闭热点分享&lt;/a&gt;</translation>
     </message>
     <message>
-        <source>Open a browser to authenticate</source>
-        <translation>打开浏览器认证</translation>
-    </message>
-    <message>
         <source>My Networks</source>
         <translation>我的网络</translation>
+    </message>
+    <message>
+        <source>Open a browser to authenticate</source>
+        <translation>打开浏览器认证</translation>
     </message>
 </context>
 <context>
@@ -595,7 +593,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1572,7 +1570,7 @@
     </message>
     <message>
         <source>MTU (1280-9000)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
