@@ -243,47 +243,47 @@ qml:
 - file: dcc-network/qml/NetworkMain.qml
   element_type: PageAirplane
   accessible_id: airplaneMode
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 44
 - file: dcc-network/qml/NetworkMain.qml
   element_type: PageWiredDevice
   accessible_id: wired<pathIndex>
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 60
 - file: dcc-network/qml/NetworkMain.qml
   element_type: PageWirelessDevice
   accessible_id: wireless<pathIndex>
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 68
 - file: dcc-network/qml/NetworkMain.qml
   element_type: PageVPN
   accessible_id: networkVpn
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 76
 - file: dcc-network/qml/NetworkMain.qml
   element_type: PageDSL
   accessible_id: dsl
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 87
 - file: dcc-network/qml/NetworkMain.qml
   element_type: PageHotspot
   accessible_id: personalHotspot
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 98
 - file: dcc-network/qml/NetworkMain.qml
   element_type: PageSystemProxy
   accessible_id: systemProxy
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 110
 - file: dcc-network/qml/NetworkMain.qml
   element_type: PageAppProxy
   accessible_id: applicationProxy
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 121
 - file: dcc-network/qml/NetworkMain.qml
   element_type: PageDetails
   accessible_id: networkDetails
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 132
 - file: dcc-network/qml/PageAirplane.qml
   element_type: Switch
@@ -322,8 +322,8 @@ qml:
   line: 62
 - file: dcc-network/qml/PageDSL.qml
   element_type: PageDSLSettings
-  accessible_id: DslSettings
-  accessible_role: Accessible.Grouping
+  accessible_id: dslSettings
+  accessible_role: ''
   line: 101
 - file: dcc-network/qml/PageDSL.qml
   element_type: NetButton
@@ -333,32 +333,32 @@ qml:
 - file: dcc-network/qml/PageDSLSettings.qml
   element_type: SectionGeneric
   accessible_id: SectionGeneric_2
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 39
 - file: dcc-network/qml/PageDSLSettings.qml
   element_type: SectionPPPOE
   accessible_id: SectionPppoe
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 47
 - file: dcc-network/qml/PageDSLSettings.qml
   element_type: SectionIPv4
   accessible_id: SectionIpv4_2
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 55
 - file: dcc-network/qml/PageDSLSettings.qml
   element_type: SectionDNS
   accessible_id: SectionDns_2
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 63
 - file: dcc-network/qml/PageDSLSettings.qml
   element_type: SectionDevice
   accessible_id: SectionDevice
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 71
 - file: dcc-network/qml/PageDSLSettings.qml
   element_type: SectionPPP
   accessible_id: SectionPpp
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 80
 - file: dcc-network/qml/PageDSLSettings.qml
   element_type: NetButton
@@ -468,32 +468,32 @@ qml:
 - file: dcc-network/qml/PageSettings.qml
   element_type: SectionGeneric
   accessible_id: SectionGeneric_3
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 39
 - file: dcc-network/qml/PageSettings.qml
   element_type: SectionSecret
   accessible_id: SectionSecret
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 48
 - file: dcc-network/qml/PageSettings.qml
   element_type: SectionIPv4
   accessible_id: SectionIpv4_3
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 56
 - file: dcc-network/qml/PageSettings.qml
   element_type: SectionIPv6
   accessible_id: SectionIpv6_2
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 64
 - file: dcc-network/qml/PageSettings.qml
   element_type: SectionDNS
   accessible_id: SectionDns_3
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 72
 - file: dcc-network/qml/PageSettings.qml
   element_type: SectionDevice
   accessible_id: SectionDevice_2
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 80
 - file: dcc-network/qml/PageSettings.qml
   element_type: NetButton
@@ -537,23 +537,23 @@ qml:
   line: 104
 - file: dcc-network/qml/PageSystemProxy.qml
   element_type: SystemProxyConfigItem
-  accessible_id: Http
-  accessible_role: Accessible.Grouping
+  accessible_id: http
+  accessible_role: ''
   line: 167
 - file: dcc-network/qml/PageSystemProxy.qml
   element_type: SystemProxyConfigItem
-  accessible_id: Https
-  accessible_role: Accessible.Grouping
+  accessible_id: https
+  accessible_role: ''
   line: 185
 - file: dcc-network/qml/PageSystemProxy.qml
   element_type: SystemProxyConfigItem
-  accessible_id: Ftp
-  accessible_role: Accessible.Grouping
+  accessible_id: ftp
+  accessible_role: ''
   line: 203
 - file: dcc-network/qml/PageSystemProxy.qml
   element_type: SystemProxyConfigItem
-  accessible_id: Socks
-  accessible_role: Accessible.Grouping
+  accessible_id: socks
+  accessible_role: ''
   line: 221
 - file: dcc-network/qml/PageSystemProxy.qml
   element_type: TextArea
@@ -587,8 +587,8 @@ qml:
   line: 87
 - file: dcc-network/qml/PageVPN.qml
   element_type: PageVPNSettings
-  accessible_id: VpnSettings
-  accessible_role: Accessible.Grouping
+  accessible_id: vpnSettings
+  accessible_role: ''
   line: 125
 - file: dcc-network/qml/PageVPN.qml
   element_type: NetButton
@@ -613,27 +613,27 @@ qml:
 - file: dcc-network/qml/PageVPNSettings.qml
   element_type: SectionGeneric
   accessible_id: SectionGeneric
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 118
 - file: dcc-network/qml/PageVPNSettings.qml
   element_type: SectionVPN
   accessible_id: SectionVpn
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 126
 - file: dcc-network/qml/PageVPNSettings.qml
   element_type: SectionIPv4
   accessible_id: SectionIpv4
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 135
 - file: dcc-network/qml/PageVPNSettings.qml
   element_type: SectionIPv6
   accessible_id: SectionIpv6
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 145
 - file: dcc-network/qml/PageVPNSettings.qml
   element_type: SectionDNS
   accessible_id: SectionDns
-  accessible_role: Accessible.Grouping
+  accessible_role: ''
   line: 168
 - file: dcc-network/qml/PageVPNSettings.qml
   element_type: NetButton
@@ -687,8 +687,8 @@ qml:
   line: 138
 - file: dcc-network/qml/PageWiredDevice.qml
   element_type: PageSettings
-  accessible_id: WiredSettings
-  accessible_role: Accessible.Grouping
+  accessible_id: wiredSettings
+  accessible_role: ''
   line: 289
 - file: dcc-network/qml/PageWiredDevice.qml
   element_type: NetButton
@@ -722,8 +722,8 @@ qml:
   line: 290
 - file: dcc-network/qml/PageWirelessDevice.qml
   element_type: PageSettings
-  accessible_id: WirelessSettings
-  accessible_role: Accessible.Grouping
+  accessible_id: wirelessSettings
+  accessible_role: ''
   line: 417
 - file: dcc-network/qml/SectionDevice.qml
   element_type: ComboBox

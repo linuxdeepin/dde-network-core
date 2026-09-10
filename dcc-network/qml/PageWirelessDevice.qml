@@ -415,8 +415,6 @@ DccObject {
             }
         }
         PageSettings {
-            objectName: "WirelessSettings"
-            Accessible.role: Accessible.Grouping
             id: wirelessSettings
             name: "wirelessSettings"
             parentName: root.name + "/page/otherNetwork"

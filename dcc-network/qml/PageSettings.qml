@@ -37,8 +37,7 @@ DccObject {
             }
         }
         SectionGeneric {
-            objectName: "SectionGeneric_3"
-            Accessible.role: Accessible.Grouping
+            name: "SectionGeneric_3"
             id: sectionGeneric
             parentName: root.parentUrl + "/body"
             weight: 100
@@ -46,40 +45,35 @@ DccObject {
             onEditClicked: modified = true
         }
         SectionSecret {
-            objectName: "SectionSecret"
-            Accessible.role: Accessible.Grouping
+            name: "SectionSecret"
             id: sectionSecret
             parentName: root.parentUrl + "/body"
             weight: 200
             onEditClicked: modified = true
         }
         SectionIPv4 {
-            objectName: "SectionIpv4_3"
-            Accessible.role: Accessible.Grouping
+            name: "SectionIpv4_3"
             id: sectionIPv4
             parentName: root.parentUrl + "/body"
             weight: 300
             onEditClicked: modified = true
         }
         SectionIPv6 {
-            objectName: "SectionIpv6_2"
-            Accessible.role: Accessible.Grouping
+            name: "SectionIpv6_2"
             id: sectionIPv6
             parentName: root.parentUrl + "/body"
             weight: 400
             onEditClicked: modified = true
         }
         SectionDNS {
-            objectName: "SectionDns_3"
-            Accessible.role: Accessible.Grouping
+            name: "SectionDns_3"
             id: sectionDNS
             parentName: root.parentUrl + "/body"
             weight: 500
             onEditClicked: modified = true
         }
         SectionDevice {
-            objectName: "SectionDevice_2"
-            Accessible.role: Accessible.Grouping
+            name: "SectionDevice_2"
             id: sectionDevice
             parentName: root.parentUrl + "/body"
             weight: 600

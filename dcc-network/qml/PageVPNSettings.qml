@@ -116,16 +116,14 @@ DccObject {
         }
 
         SectionGeneric {
-            objectName: "SectionGeneric"
-            Accessible.role: Accessible.Grouping
+            name: "SectionGeneric"
             id: sectionGeneric
             parentName: root.parentUrl + "/body"
             weight: 100
             onEditClicked: modified = true
         }
         SectionVPN {
-            objectName: "SectionVpn"
-            Accessible.role: Accessible.Grouping
+            name: "SectionVpn"
             id: sectionVPN
             vpnType: root.vpnType
             parentName: root.parentUrl + "/body"
@@ -133,8 +131,7 @@ DccObject {
             onEditClicked: modified = true
         }
         SectionIPv4 {
-            objectName: "SectionIpv4"
-            Accessible.role: Accessible.Grouping
+            name: "SectionIpv4"
             id: sectionIPv4
             type: NetType.VPNControlItem
             parentName: root.parentUrl + "/body"
@@ -143,8 +140,7 @@ DccObject {
             onEditClicked: modified = true
         }
         SectionIPv6 {
-            objectName: "SectionIpv6"
-            Accessible.role: Accessible.Grouping
+            name: "SectionIpv6"
             id: sectionIPv6
             type: NetType.VPNControlItem
             parentName: root.parentUrl + "/body"
@@ -166,8 +162,7 @@ DccObject {
             }
         }
         SectionDNS {
-            objectName: "SectionDns"
-            Accessible.role: Accessible.Grouping
+            name: "SectionDns"
             id: sectionDNS
             parentName: root.parentUrl + "/body"
             weight: 1200
