@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ja">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ja">
 <context>
     <name>DeviceStatusItem</name>
     <message>
@@ -13,7 +11,7 @@
     </message>
     <message>
         <source>IP conflict</source>
-        <translation type="unfinished">IP競合</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connecting</source>
@@ -29,7 +27,7 @@
     </message>
     <message>
         <source>Not connected</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -61,7 +59,7 @@
     </message>
     <message>
         <source>Related Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -193,7 +191,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -315,7 +313,7 @@
     </message>
     <message>
         <source>Enable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;Wireless Network Adapter&lt;/a&gt; first if you want to use the personal hotspot.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -338,7 +336,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -475,7 +473,7 @@
     </message>
     <message>
         <source>%1 Network Properties</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -502,7 +500,7 @@
     </message>
     <message>
         <source>Open a browser to authenticate</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -545,7 +543,7 @@
     </message>
     <message>
         <source>Open a browser to authenticate</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -701,39 +699,39 @@
     </message>
     <message>
         <source>Only one gateway is allowed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>When enabled, only traffic to the target network is routed through the VPN. Other traffic continues to use the local network connection.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>VPN DNS Mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The system uses both local DNS and VPN DNS for resolution, and prefers the result returned first.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Prefer VPN DNS. All DNS queries are sent through the VPN connection.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Do not specify how VPN DNS is used. Keep the current system DNS resolution policy.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Not Set</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Secondary</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Preferred</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -804,39 +802,39 @@
     </message>
     <message>
         <source>Only one gateway is allowed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>When enabled, only traffic to the target network is routed through the VPN. Other traffic continues to use the local network connection.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>VPN DNS Mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The system uses both local DNS and VPN DNS for resolution, and prefers the result returned first.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Prefer VPN DNS. All DNS queries are sent through the VPN connection.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Do not specify how VPN DNS is used. Keep the current system DNS resolution policy.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Not Set</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Secondary</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Preferred</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
