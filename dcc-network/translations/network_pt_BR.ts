@@ -27,7 +27,7 @@
     </message>
     <message>
         <source>Not connected</source>
-        <translation type="unfinished"/>
+        <translation>Não conectado</translation>
     </message>
 </context>
 <context>
@@ -500,7 +500,7 @@
     </message>
     <message>
         <source>Open a browser to authenticate</source>
-        <translation type="unfinished"/>
+        <translation>Abrir um navegador para autenticar</translation>
     </message>
 </context>
 <context>
@@ -543,7 +543,7 @@
     </message>
     <message>
         <source>Open a browser to authenticate</source>
-        <translation type="unfinished"/>
+        <translation>Abrir um navegador para autenticar</translation>
     </message>
 </context>
 <context>
@@ -703,7 +703,7 @@
     </message>
     <message>
         <source>When enabled, only traffic to the target network is routed through the VPN. Other traffic continues to use the local network connection.</source>
-        <translation type="unfinished"/>
+        <translation>Quando ativado, somente o tráfego destinado à rede de destino será roteado pela VPN. Os demais tráfegos continuarão usando a conexão de rede local.</translation>
     </message>
     <message>
         <source>VPN DNS Mode</source>
