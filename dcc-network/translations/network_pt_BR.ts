@@ -711,27 +711,27 @@
     </message>
     <message>
         <source>The system uses both local DNS and VPN DNS for resolution, and prefers the result returned first.</source>
-        <translation type="unfinished"/>
+        <translation>O sistema usa o DNS local e o DNS da VPN para a resolução e prioriza o resultado retornado primeiro.</translation>
     </message>
     <message>
         <source>Prefer VPN DNS. All DNS queries are sent through the VPN connection.</source>
-        <translation type="unfinished"/>
+        <translation>Preferir o DNS da VPN. Todas as consultas DNS serão enviadas pela conexão VPN.</translation>
     </message>
     <message>
         <source>Do not specify how VPN DNS is used. Keep the current system DNS resolution policy.</source>
-        <translation type="unfinished"/>
+        <translation>Não especificar como o DNS da VPN é usado. Manter a política atual de resolução de DNS do sistema.</translation>
     </message>
     <message>
         <source>Not Set</source>
-        <translation type="unfinished"/>
+        <translation>Não definido</translation>
     </message>
     <message>
         <source>Secondary</source>
-        <translation type="unfinished"/>
+        <translation>Secundário</translation>
     </message>
     <message>
         <source>Preferred</source>
-        <translation type="unfinished"/>
+        <translation>Preferencial</translation>
     </message>
 </context>
 <context>
@@ -806,35 +806,35 @@
     </message>
     <message>
         <source>When enabled, only traffic to the target network is routed through the VPN. Other traffic continues to use the local network connection.</source>
-        <translation type="unfinished"/>
+        <translation>Quando ativado, somente o tráfego destinado à rede de destino será roteado pela VPN. Os demais tráfegos continuarão usando a conexão de rede local.</translation>
     </message>
     <message>
         <source>VPN DNS Mode</source>
-        <translation type="unfinished"/>
+        <translation>Modo DNS da VPN</translation>
     </message>
     <message>
         <source>The system uses both local DNS and VPN DNS for resolution, and prefers the result returned first.</source>
-        <translation type="unfinished"/>
+        <translation>O sistema usa o DNS local e o DNS da VPN para a resolução e prioriza o resultado retornado primeiro.</translation>
     </message>
     <message>
         <source>Prefer VPN DNS. All DNS queries are sent through the VPN connection.</source>
-        <translation type="unfinished"/>
+        <translation>Preferir o DNS da VPN. Todas as consultas DNS serão enviadas pela conexão VPN.</translation>
     </message>
     <message>
         <source>Do not specify how VPN DNS is used. Keep the current system DNS resolution policy.</source>
-        <translation type="unfinished"/>
+        <translation>Não especificar como o DNS da VPN é usado. Manter a política atual de resolução de DNS do sistema.</translation>
     </message>
     <message>
         <source>Not Set</source>
-        <translation type="unfinished"/>
+        <translation>Não definido</translation>
     </message>
     <message>
         <source>Secondary</source>
-        <translation type="unfinished"/>
+        <translation>Secundário</translation>
     </message>
     <message>
         <source>Preferred</source>
-        <translation type="unfinished"/>
+        <translation>Preferencial</translation>
     </message>
 </context>
 <context>
