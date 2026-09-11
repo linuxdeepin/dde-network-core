@@ -711,15 +711,15 @@
     </message>
     <message>
         <source>The system uses both local DNS and VPN DNS for resolution, and prefers the result returned first.</source>
-        <translation type="unfinished"/>
+        <translation>System wykorzystuje zarówno lokalny serwer DNS, jak i DNS VPN do rozpoznawania nazw, preferując wynik zwrócony jako pierwszy.</translation>
     </message>
     <message>
         <source>Prefer VPN DNS. All DNS queries are sent through the VPN connection.</source>
-        <translation type="unfinished"/>
+        <translation>Preferuj DNS VPN. Wszystkie zapytania DNS będą przechodziły przez połączenie VPN.</translation>
     </message>
     <message>
         <source>Do not specify how VPN DNS is used. Keep the current system DNS resolution policy.</source>
-        <translation type="unfinished"/>
+        <translation>Nie określaj sposobu korzystania z DNS sieci VPN. Zachowaj obecną politykę rozpoznawania nazw w systemie.</translation>
     </message>
     <message>
         <source>Not Set</source>
@@ -818,7 +818,7 @@
     </message>
     <message>
         <source>Prefer VPN DNS. All DNS queries are sent through the VPN connection.</source>
-        <translation type="unfinished"/>
+        <translation>Preferuj DNS VPN. Wszystkie zapytania DNS będą przechodziły przez połączenie VPN.</translation>
     </message>
     <message>
         <source>Do not specify how VPN DNS is used. Keep the current system DNS resolution policy.</source>
