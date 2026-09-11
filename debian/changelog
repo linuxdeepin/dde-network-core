@@ -1,3 +1,11 @@
+dde-network-core (2.0.101) unstable; urgency=medium
+
+  * fix(network): update disconnected source text to "Not connected"
+  * i18n: Updates for project Deepin Desktop Environment (#623)
+  * i18n: Updates for project Deepin Desktop Environment (#624)
+
+ -- zhangkun <zhangkun2@uniontech.com>  Fri, 11 Sep 2026 13:37:51 +0800
+
 dde-network-core (2.0.100) unstable; urgency=medium
 
   * i18n: Updates for project Deepin Desktop Environment (#609)
