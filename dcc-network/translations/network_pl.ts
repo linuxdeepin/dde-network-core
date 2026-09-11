@@ -27,7 +27,7 @@
     </message>
     <message>
         <source>Not connected</source>
-        <translation type="unfinished"/>
+        <translation>Nie połączono</translation>
     </message>
 </context>
 <context>
@@ -500,7 +500,7 @@
     </message>
     <message>
         <source>Open a browser to authenticate</source>
-        <translation type="unfinished"/>
+        <translation>Otwórz przeglądarkę, aby uwierzytelnić</translation>
     </message>
 </context>
 <context>
@@ -543,7 +543,7 @@
     </message>
     <message>
         <source>Open a browser to authenticate</source>
-        <translation type="unfinished"/>
+        <translation>Otwórz przeglądarkę, aby uwierzytelnić</translation>
     </message>
 </context>
 <context>
@@ -707,7 +707,7 @@
     </message>
     <message>
         <source>VPN DNS Mode</source>
-        <translation type="unfinished"/>
+        <translation>Tryb DNS VPN</translation>
     </message>
     <message>
         <source>The system uses both local DNS and VPN DNS for resolution, and prefers the result returned first.</source>
@@ -723,15 +723,15 @@
     </message>
     <message>
         <source>Not Set</source>
-        <translation type="unfinished"/>
+        <translation>Nieustawiony</translation>
     </message>
     <message>
         <source>Secondary</source>
-        <translation type="unfinished"/>
+        <translation>Drugorzędny</translation>
     </message>
     <message>
         <source>Preferred</source>
-        <translation type="unfinished"/>
+        <translation>Preferowany</translation>
     </message>
 </context>
 <context>
@@ -810,7 +810,7 @@
     </message>
     <message>
         <source>VPN DNS Mode</source>
-        <translation type="unfinished"/>
+        <translation>Tryb DNS VPN</translation>
     </message>
     <message>
         <source>The system uses both local DNS and VPN DNS for resolution, and prefers the result returned first.</source>
@@ -826,15 +826,15 @@
     </message>
     <message>
         <source>Not Set</source>
-        <translation type="unfinished"/>
+        <translation>Nieustawiony</translation>
     </message>
     <message>
         <source>Secondary</source>
-        <translation type="unfinished"/>
+        <translation>Drugorzędny</translation>
     </message>
     <message>
         <source>Preferred</source>
-        <translation type="unfinished"/>
+        <translation>Preferowany</translation>
     </message>
 </context>
 <context>
