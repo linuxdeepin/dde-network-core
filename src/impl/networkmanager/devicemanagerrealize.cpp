@@ -986,55 +986,10 @@ void WirelessDeviceManagerRealize::onActiveConnectionChanged()
 {
     NetworkManager::ActiveConnection::Ptr activeConnection = m_device->activeConnection();
 
-    auto findAccessPoints = [this](const NetworkManager::ActiveConnection::Ptr &activeConnection)->AccessPointProxyNM *{
-        if (activeConnection.isNull())
-            return nullptr;
-
-        QList<AccessPointInfo *>::iterator itAccessPoint = std::find_if(m_accessPointInfos.begin(), m_accessPointInfos.end(), [ activeConnection ](AccessPointInfo *accessPoint) {
-            NetworkManager::WirelessSetting::Ptr wirelessSetting = activeConnection->connection()->settings()->setting(NetworkManager::Setting::SettingType::Wireless).dynamicCast<NetworkManager::WirelessSetting>();
-            if (!wirelessSetting.isNull())
-                return accessPoint->accessPoint()->ssid() == wirelessSetting->ssid();
-
-            return false;
-        });
-
-        if (itAccessPoint == m_accessPointInfos.end())
-            return nullptr;
-
-        return (*itAccessPoint)->proxy();
-    };
-
-    AccessPointProxyNM *activeAccessPoint = findAccessPoints(activeConnection);
+    AccessPointProxyNM *activeAccessPoint = findAccessPoints(activeConnection.data());
     if (activeAccessPoint) {
-        connect(activeConnection.data(), &NetworkManager::ActiveConnection::stateChanged, this, [ this, activeConnection, findAccessPoints ](NetworkManager::ActiveConnection::State state) {
-            AccessPointProxyNM *activeAp = findAccessPoints(activeConnection);
-            NetworkManager::Connection::Ptr conn = activeConnection->connection();
-            if (activeAp && conn) {
-                conn->settings()->setTimestamp(QDateTime::currentDateTime());
-                if (state == NetworkManager::ActiveConnection::Activated && conn->isUnsaved()) {
-                    if (SessionStateTracker::instance()->isSessionActive()) {
-                        const NetworkManager::Setting::SettingType settingType[] = { NetworkManager::Setting::Security8021x, NetworkManager::Setting::WirelessSecurity };
-                        for (auto type : settingType) {
-                            NetworkManager::Setting::Ptr setting = conn->settings()->setting(type);
-                            if (setting) {
-                                conn->secrets(setting->name());
-                            }
-                        }
-                        conn->save();
-                    }
-                    connect(conn.data(), &NetworkManager::Connection::unsavedChanged, this, [this] {
-                        Q_EMIT activeConnectionChanged();
-                    });
-                }
-                activeAp->updateStatus(convertStateFromNetworkManager(state));
-                WirelessConnection *connection = findConnection(conn->path());
-                if (connection)
-                    connection->updateTimeStamp(conn->settings()->timestamp());
-
-                qCDebug(DNC) << "active connection changed:" << activeAp->ssid() << "device:" << m_device->interfaceName() << "status:" << activeAp->status();
-                Q_EMIT activeConnectionChanged();
-            }
-        });
+        connect(activeConnection.data(), &NetworkManager::ActiveConnection::stateChanged,
+                this, &WirelessDeviceManagerRealize::onStateChanged, Qt::UniqueConnection);
 
         activeAccessPoint->updateStatus(convertStateFromNetworkManager(activeConnection->state()));
         WirelessConnection *connection = findConnection(activeConnection->connection()->path());
@@ -1047,6 +1002,62 @@ void WirelessDeviceManagerRealize::onActiveConnectionChanged()
         if(apInfo->proxy() != activeAccessPoint)
             apInfo->proxy()->updateStatus(ConnectionStatus::Deactivated);
     }
+    Q_EMIT activeConnectionChanged();
+}
+
+AccessPointProxyNM *WirelessDeviceManagerRealize::findAccessPoints(NetworkManager::ActiveConnection *activeConnection) const
+{
+    if (!activeConnection)
+        return nullptr;
+
+    const NetworkManager::Connection::Ptr connection = activeConnection->connection();
+    if (connection.isNull())
+        return nullptr;
+
+    const NetworkManager::WirelessSetting::Ptr wirelessSetting = connection->settings()->setting(NetworkManager::Setting::SettingType::Wireless).dynamicCast<NetworkManager::WirelessSetting>();
+    if (wirelessSetting.isNull())
+        return nullptr;
+
+    const auto itAccessPoint = std::find_if(m_accessPointInfos.cbegin(), m_accessPointInfos.cend(), [wirelessSetting](AccessPointInfo *accessPoint) {
+        return accessPoint->accessPoint()->ssid() == wirelessSetting->ssid();
+    });
+
+    return itAccessPoint == m_accessPointInfos.cend() ? nullptr : (*itAccessPoint)->proxy();
+}
+
+void WirelessDeviceManagerRealize::onStateChanged(NetworkManager::ActiveConnection::State state)
+{
+    NetworkManager::ActiveConnection *activeConnection = qobject_cast<NetworkManager::ActiveConnection *>(sender());
+    AccessPointProxyNM *activeAp = findAccessPoints(activeConnection);
+    if (!activeAp)
+        return;
+
+    NetworkManager::Connection::Ptr conn = activeConnection->connection();
+    if (conn.isNull())
+        return;
+
+    conn->settings()->setTimestamp(QDateTime::currentDateTime());
+    if (state == NetworkManager::ActiveConnection::Activated && conn->isUnsaved()) {
+        if (SessionStateTracker::instance()->isSessionActive()) {
+            const NetworkManager::Setting::SettingType settingTypes[] = { NetworkManager::Setting::Security8021x, NetworkManager::Setting::WirelessSecurity };
+            for (auto type : settingTypes) {
+                NetworkManager::Setting::Ptr setting = conn->settings()->setting(type);
+                if (setting)
+                    conn->secrets(setting->name());
+            }
+            conn->save();
+        }
+        connect(conn.data(), &NetworkManager::Connection::unsavedChanged, this, [this] {
+            Q_EMIT activeConnectionChanged();
+        }, Qt::UniqueConnection);
+    }
+
+    activeAp->updateStatus(convertStateFromNetworkManager(state));
+    WirelessConnection *connection = findConnection(conn->path());
+    if (connection)
+        connection->updateTimeStamp(conn->settings()->timestamp());
+
+    qCDebug(DNC) << "active connection changed:" << activeAp->ssid() << "device:" << m_device->interfaceName() << "status:" << activeAp->status();
     Q_EMIT activeConnectionChanged();
 }
 

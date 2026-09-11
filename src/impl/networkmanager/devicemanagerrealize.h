@@ -26,6 +26,7 @@ namespace network {
 
 class ProcesserInterface;
 class IpManager;
+class AccessPointProxyNM;
 
 class DeviceManagerRealize : public NetworkDeviceRealize
 {
@@ -143,8 +144,10 @@ private Q_SLOTS:
     void onNetworkAppeared(const QString &ssid);
     void onNetworkDisappeared(const QString &ssid);
     void onInterfaceFlagsChanged();
+    void onStateChanged(NetworkManager::ActiveConnection::State state);
 
 private:
+    AccessPointProxyNM *findAccessPoints(NetworkManager::ActiveConnection *activeConnection) const;
     NetworkManager::WirelessDevice::Ptr m_device;
     QList<WirelessConnection *> m_wirelessConnections;
     QList<AccessPointInfo *> m_accessPointInfos;
