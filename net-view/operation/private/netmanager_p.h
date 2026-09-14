@@ -85,7 +85,7 @@ private:
     NetItemPrivate *m_deleteItem; // 关联无父对象item，用于删除
     bool m_isDeleting;
     bool m_airplaneMode;
-    // NetManager::ConnectionType m_primaryConnectionType;
+    NetManager::ConnectionType m_primaryConnectionType;
     bool m_monitorNetworkNotify;
     bool m_secretAgent;
     bool m_autoAddConnection;
