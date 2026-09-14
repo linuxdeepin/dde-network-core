@@ -394,7 +394,7 @@ static QJsonObject createJson(NetworkManager::Device::Ptr device, NetworkManager
         if (wsSetting.isNull())
             json.insert("Ssid", connection->settings()->id());
         else
-            json.insert("Ssid", QString(wsSetting->ssid()));
+            json.insert("Ssid", decodeSsid(wsSetting->ssid()));
     }
 
     json.insert("Hidden", false);
@@ -817,7 +817,7 @@ void WirelessDeviceManagerRealize::connectNetwork(const AccessPoints *accessPoin
         }
 
         NetworkManager::WirelessSetting::Ptr wirelessSetting = settings->setting(NetworkManager::Setting::Wireless).dynamicCast<NetworkManager::WirelessSetting>();
-        wirelessSetting->setSsid(accessPoint->ssid().toUtf8());
+        wirelessSetting->setSsid(accessPoint->proxy()->rawSsid());
         QString macAddress = m_device->permanentHardwareAddress();
         macAddress.remove(":");
         wirelessSetting->setMacAddress(QByteArray::fromHex(macAddress.toUtf8()));

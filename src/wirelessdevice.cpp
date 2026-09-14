@@ -119,6 +119,11 @@ AccessPoints::~AccessPoints()
 {
 }
 
+AccessPointProxy *AccessPoints::proxy() const
+{
+    return m_proxy;
+}
+
 QString AccessPoints::ssid() const
 {
     return m_proxy->ssid();

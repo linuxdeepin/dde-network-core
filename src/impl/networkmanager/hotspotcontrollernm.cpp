@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "hotspotcontrollernm.h"
+#include "netutils.h"
 #include "wirelessdevice.h"
 
 #include <QDebug>
@@ -66,7 +67,7 @@ HotspotItem *HotspotController_NM::addConnection(WirelessDevice *device, Network
             wsSetting = wirelessSetting;
         json.insert("HwAddress", QString(wsSetting->macAddress()));
         json.insert("ClonedAddress", QString(wsSetting->clonedMacAddress()));
-        json.insert("Ssid", QString(wsSetting->ssid()));
+        json.insert("Ssid", decodeSsid(wsSetting->ssid()));
         json.insert("Hidden", false);
 
         return json;

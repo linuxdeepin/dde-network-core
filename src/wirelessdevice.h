@@ -80,6 +80,7 @@ public:
     ~AccessPoints();
 
 public:
+    AccessPointProxy *proxy() const;
     QString ssid() const;                                           // 网络SSID，对应于返回接口中的Ssid
     int strength() const;                                           // 信号强度，对应于返回接口中的Strength
     bool secured() const;                                           // 是否加密，对应于返回接口中的Secured

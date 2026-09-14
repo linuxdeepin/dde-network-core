@@ -9,6 +9,7 @@
 
 #include <QObject>
 #include <QQueue>
+#include <QByteArray>
 
 namespace dde {
 namespace network {
@@ -179,6 +180,7 @@ protected:
 
 public:
     virtual QString ssid() const = 0;                                           // 网络SSID，对应于返回接口中的Ssid
+    virtual QByteArray rawSsid() const = 0;                                      // 网络SSID的原始字节，用于保存连接配置
     virtual int strength() const = 0;                                           // 信号强度，对应于返回接口中的Strength
     virtual bool secured() const = 0;                                           // 是否加密，对应于返回接口中的Secured
     virtual bool securedInEap() const = 0;                                      // 对应于返回接口中的SecuredInEap

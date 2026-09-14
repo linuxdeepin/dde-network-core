@@ -57,7 +57,12 @@ bool AccessPointProxyNM::contains(const QString &uni) const
 
 QString AccessPointProxyNM::ssid() const
 {
-    return m_network->ssid();
+    return decodeSsid(m_network->referenceAccessPoint()->rawSsid());
+}
+
+QByteArray AccessPointProxyNM::rawSsid() const
+{
+    return m_network->referenceAccessPoint()->rawSsid();
 }
 
 int AccessPointProxyNM::strength() const
