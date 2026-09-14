@@ -38,7 +38,7 @@ private:
     QPair<int, QString> connectionMatchName(NetworkManager::WiredDevice *device) const;
     QVariant accountInterface(const QString &path, const QString &key, bool isUser = true) const;
     bool installUserTranslator(const QString &json);
-    void installLanguage(const QString &locale);
+    bool installLanguage(const QString &locale);
     bool installSystemTranslator();
     void ensureTranslatorInstalled();
     void hideWirelessDevice(const QSharedPointer<NetworkManager::Device> &device, bool disableNetwork);
