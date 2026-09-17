@@ -23,6 +23,11 @@ QString AccessPointsProxyInter::ssid() const
     return m_json.value("Ssid").toString();
 }
 
+QByteArray AccessPointsProxyInter::rawSsid() const
+{
+    return m_json.value("Ssid").toString().toUtf8();
+}
+
 int AccessPointsProxyInter::strength() const
 {
     if (m_json.isEmpty())

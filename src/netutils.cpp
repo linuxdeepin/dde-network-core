@@ -6,6 +6,7 @@
 
 #include <QMetaType>
 #include <QDBusMetaType>
+#include <QStringDecoder>
 
 namespace dde {
 namespace network {
@@ -73,6 +74,20 @@ ConnectionStatus convertStateFromNetworkManager(NetworkManager::ActiveConnection
         break;
     }
     return ConnectionStatus::Deactivated;
+}
+
+QString decodeSsid(const QByteArray &rawSsid)
+{
+    QStringDecoder utf8Decoder(QStringDecoder::Utf8);
+    QString result = utf8Decoder.decode(rawSsid);
+    if (!utf8Decoder.hasError())
+        return result;
+
+    QStringDecoder gbkDecoder("GBK");
+    if (gbkDecoder.isValid())
+        return gbkDecoder.decode(rawSsid);
+
+    return QString::fromUtf8(rawSsid);
 }
 
 }

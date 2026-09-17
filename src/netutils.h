@@ -12,6 +12,7 @@
 
 #include <QDebug>
 #include <QJsonObject>
+#include <QStringDecoder>
 
 // #include "com_deepin_daemon_network.h"
 
@@ -36,6 +37,8 @@ Connectivity connectivityValue(uint sourceConnectivity);
 DeviceStatus convertDeviceStatus(int sourceDeviceStatus);
 ConnectionStatus convertConnectionStatus(int sourceConnectionStatus);
 ConnectionStatus convertStateFromNetworkManager(NetworkManager::ActiveConnection::State state);
+
+QString decodeSsid(const QByteArray &rawSsid);
 }
 }
 #endif  // NETUTILS_H

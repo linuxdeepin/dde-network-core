@@ -23,6 +23,7 @@ public:
 
 public:
     QString ssid() const override;
+    QByteArray rawSsid() const override;
     int strength() const override;
     bool secured() const override;
     bool securedInEap() const override;
