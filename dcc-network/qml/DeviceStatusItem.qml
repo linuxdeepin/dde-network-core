@@ -35,7 +35,7 @@ RowLayout {
         case NetType.DS_NoCable:
         case NetType.DS_Disconnected:
         default:
-            return qsTr("Disconnected")
+            return qsTr("Not connected")
         }
     }
     Loader {

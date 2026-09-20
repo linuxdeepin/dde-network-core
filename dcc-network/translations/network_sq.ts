@@ -26,8 +26,8 @@
         <translation>Po bëhet mirëfilltësimi</translation>
     </message>
     <message>
-        <source>Disconnected</source>
-        <translation>U shkëput</translation>
+        <source>Not connected</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -498,6 +498,10 @@
         <source>Add Network Connection</source>
         <translation>Shtoni Lidhje Rrjeti</translation>
     </message>
+    <message>
+        <source>Open a browser to authenticate</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PageWirelessDevice</name>
@@ -536,6 +540,10 @@
     <message>
         <source>My Networks</source>
         <translation>Rrjetet e Mi</translation>
+    </message>
+    <message>
+        <source>Open a browser to authenticate</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -693,6 +701,38 @@
         <source>Only one gateway is allowed</source>
         <translation>Lejohet vetëm një kanal</translation>
     </message>
+    <message>
+        <source>When enabled, only traffic to the target network is routed through the VPN. Other traffic continues to use the local network connection.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VPN DNS Mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The system uses both local DNS and VPN DNS for resolution, and prefers the result returned first.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prefer VPN DNS. All DNS queries are sent through the VPN connection.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do not specify how VPN DNS is used. Keep the current system DNS resolution policy.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Not Set</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Secondary</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Preferred</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>SectionIPv6</name>
@@ -763,6 +803,38 @@
     <message>
         <source>Only one gateway is allowed</source>
         <translation>Lejohet vetëm një kanal</translation>
+    </message>
+    <message>
+        <source>When enabled, only traffic to the target network is routed through the VPN. Other traffic continues to use the local network connection.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VPN DNS Mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The system uses both local DNS and VPN DNS for resolution, and prefers the result returned first.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prefer VPN DNS. All DNS queries are sent through the VPN connection.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do not specify how VPN DNS is used. Keep the current system DNS resolution policy.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Not Set</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Secondary</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Preferred</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

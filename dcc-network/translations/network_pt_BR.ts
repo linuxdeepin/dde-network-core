@@ -26,8 +26,8 @@
         <translation>Autenticando</translation>
     </message>
     <message>
-        <source>Disconnected</source>
-        <translation>Desconectado</translation>
+        <source>Not connected</source>
+        <translation>Não conectado</translation>
     </message>
 </context>
 <context>
@@ -498,6 +498,10 @@
         <source>Add Network Connection</source>
         <translation>Adicionar conexão de rede</translation>
     </message>
+    <message>
+        <source>Open a browser to authenticate</source>
+        <translation>Abrir um navegador para autenticar</translation>
+    </message>
 </context>
 <context>
     <name>PageWirelessDevice</name>
@@ -536,6 +540,10 @@
     <message>
         <source>My Networks</source>
         <translation>Minhas redes</translation>
+    </message>
+    <message>
+        <source>Open a browser to authenticate</source>
+        <translation>Abrir um navegador para autenticar</translation>
     </message>
 </context>
 <context>
@@ -693,6 +701,38 @@
         <source>Only one gateway is allowed</source>
         <translation>Apenas um gateway é permitido</translation>
     </message>
+    <message>
+        <source>When enabled, only traffic to the target network is routed through the VPN. Other traffic continues to use the local network connection.</source>
+        <translation>Quando ativado, somente o tráfego destinado à rede de destino será roteado pela VPN. Os demais tráfegos continuarão usando a conexão de rede local.</translation>
+    </message>
+    <message>
+        <source>VPN DNS Mode</source>
+        <translation>Modo DNS da VPN</translation>
+    </message>
+    <message>
+        <source>The system uses both local DNS and VPN DNS for resolution, and prefers the result returned first.</source>
+        <translation>O sistema usa o DNS local e o DNS da VPN para a resolução e prioriza o resultado retornado primeiro.</translation>
+    </message>
+    <message>
+        <source>Prefer VPN DNS. All DNS queries are sent through the VPN connection.</source>
+        <translation>Preferir o DNS da VPN. Todas as consultas DNS serão enviadas pela conexão VPN.</translation>
+    </message>
+    <message>
+        <source>Do not specify how VPN DNS is used. Keep the current system DNS resolution policy.</source>
+        <translation>Não especificar como o DNS da VPN é usado. Manter a política atual de resolução de DNS do sistema.</translation>
+    </message>
+    <message>
+        <source>Not Set</source>
+        <translation>Não definido</translation>
+    </message>
+    <message>
+        <source>Secondary</source>
+        <translation>Secundário</translation>
+    </message>
+    <message>
+        <source>Preferred</source>
+        <translation>Preferencial</translation>
+    </message>
 </context>
 <context>
     <name>SectionIPv6</name>
@@ -763,6 +803,38 @@
     <message>
         <source>Only one gateway is allowed</source>
         <translation>Apenas um gateway é permitido</translation>
+    </message>
+    <message>
+        <source>When enabled, only traffic to the target network is routed through the VPN. Other traffic continues to use the local network connection.</source>
+        <translation>Quando ativado, somente o tráfego destinado à rede de destino será roteado pela VPN. Os demais tráfegos continuarão usando a conexão de rede local.</translation>
+    </message>
+    <message>
+        <source>VPN DNS Mode</source>
+        <translation>Modo DNS da VPN</translation>
+    </message>
+    <message>
+        <source>The system uses both local DNS and VPN DNS for resolution, and prefers the result returned first.</source>
+        <translation>O sistema usa o DNS local e o DNS da VPN para a resolução e prioriza o resultado retornado primeiro.</translation>
+    </message>
+    <message>
+        <source>Prefer VPN DNS. All DNS queries are sent through the VPN connection.</source>
+        <translation>Preferir o DNS da VPN. Todas as consultas DNS serão enviadas pela conexão VPN.</translation>
+    </message>
+    <message>
+        <source>Do not specify how VPN DNS is used. Keep the current system DNS resolution policy.</source>
+        <translation>Não especificar como o DNS da VPN é usado. Manter a política atual de resolução de DNS do sistema.</translation>
+    </message>
+    <message>
+        <source>Not Set</source>
+        <translation>Não definido</translation>
+    </message>
+    <message>
+        <source>Secondary</source>
+        <translation>Secundário</translation>
+    </message>
+    <message>
+        <source>Preferred</source>
+        <translation>Preferencial</translation>
     </message>
 </context>
 <context>

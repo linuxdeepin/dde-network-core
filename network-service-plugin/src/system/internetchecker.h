@@ -12,6 +12,8 @@
 namespace network {
 namespace systemservice {
 
+enum class ProbeResult : int;
+
 class InternetChecker : public QObject
 {
     Q_OBJECT
@@ -19,7 +21,7 @@ class InternetChecker : public QObject
 public:
     explicit InternetChecker(QObject *parent = nullptr);
     ~InternetChecker() override = default;
-    void switchInternetAccess(bool checkPrimaryConnection = false);
+    void switchInternetAccess(bool checkPrimaryConnection, bool switchPortal = true);
 
 signals:
     void switchSuccess();
@@ -27,9 +29,9 @@ signals:
 
 private:
     QStringList getDeviceDnsList(const NetworkManager::Device::Ptr &device) const;
-    bool checkInterfaceOnline(const NetworkManager::Device::Ptr &device) const;
-    bool isIfaceReachable(const QString &ifName, const sockaddr_in &dest, int timeoutMs) const;
-    bool checkNetCardOnline(const NetworkManager::Device::Ptr &device, const QString &domain, const QStringList &dnslist, int timeoutMs) const;
+    ProbeResult checkInterfaceOnline(const NetworkManager::Device::Ptr &device) const;
+    ProbeResult checkReachability(const QString &ifName, const sockaddr_in &dest, const QString &host, int timeoutMs, bool httpCheck) const;
+    ProbeResult checkNetCardOnline(const NetworkManager::Device::Ptr &device, const QString &domain, const QStringList &dnslist, int timeoutMs, int port) const;
     bool resolveByBindIface(const NetworkManager::Device::Ptr &device, const QString &domain, const QStringList &dnslist, in_addr &outIp, int timeout) const;
     bool checkIpAddrByUDP(const NetworkManager::Device::Ptr &device, const QString &dnsIp, const QString &domain, int curTimeout, in_addr &outIp) const;
     bool checkIpAddrByTCP(const NetworkManager::Device::Ptr &device, const QString &dnsIp, const QString &domain, int curTimeout, in_addr &outIp) const;

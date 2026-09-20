@@ -26,8 +26,8 @@
         <translation>認證中</translation>
     </message>
     <message>
-        <source>Disconnected</source>
-        <translation>已斷開</translation>
+        <source>Not connected</source>
+        <translation>未連線</translation>
     </message>
 </context>
 <context>
@@ -538,12 +538,12 @@
         <translation>若要連線並使用無線網路功能，請先&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;關閉熱點分享&lt;/a&gt;</translation>
     </message>
     <message>
-        <source>Open a browser to authenticate</source>
-        <translation>打開瀏覽器認證</translation>
-    </message>
-    <message>
         <source>My Networks</source>
         <translation>我的網路</translation>
+    </message>
+    <message>
+        <source>Open a browser to authenticate</source>
+        <translation>打開瀏覽器認證</translation>
     </message>
 </context>
 <context>

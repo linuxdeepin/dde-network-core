@@ -99,8 +99,6 @@ DccObject {
             }
         }
         PageDSLSettings {
-            objectName: "DslSettings"
-            Accessible.role: Accessible.Grouping
             id: dslSettings
             name: "dslSettings"
             parentName: root.name + "/body/networkList"

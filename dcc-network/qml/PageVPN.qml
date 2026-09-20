@@ -123,8 +123,6 @@ DccObject {
                     }
                 }
                 PageVPNSettings {
-                    objectName: "VpnSettings"
-                    Accessible.role: Accessible.Grouping
                     id: vpnSettings
                     name: "vpnSettings"
                     parentName: root.name + "/menu/body/networkList"
