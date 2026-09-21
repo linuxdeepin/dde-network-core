@@ -22,10 +22,17 @@ using namespace network::sessionservice;
 namespace {
 constexpr const char *const NMService = "org.freedesktop.NetworkManager";
 constexpr const char *const NMConnActiveInterface = "org.freedesktop.NetworkManager.Connection.Active";
+constexpr const char *const NMDeviceInterface = "org.freedesktop.NetworkManager.Device";
 
 QString getActiveConnectionIp4Config(const QString &acPath)
 {
     QDBusInterface iface(NMService, acPath, NMConnActiveInterface, QDBusConnection::systemBus());
+    return iface.property("Ip4Config").value<QDBusObjectPath>().path();
+}
+
+QString getDeviceIp4Config(const QString &devPath)
+{
+    QDBusInterface iface(NMService, devPath, NMDeviceInterface, QDBusConnection::systemBus());
     return iface.property("Ip4Config").value<QDBusObjectPath>().path();
 }
 
@@ -51,6 +58,39 @@ struct VpnDnsModeApplyTarget
     QList<QHostAddress> dnsServers;
 };
 
+// 可承载 VPN DNS 的虚拟隧道设备类型：tun/tap、NM 未细分的虚拟口（如 xfrm）、
+// ip-tunnel、ppp（L2TP/PPTP/SSTP）以及 wireguard。
+bool isVpnTunnelDeviceType(NetworkManager::Device::Type type)
+{
+    return type == NetworkManager::Device::Type::Tun
+        || type == NetworkManager::Device::Type::Generic
+        || type == NetworkManager::Device::Type::IpTunnel
+        || type == NetworkManager::Device::Type::Ppp
+        || type == NetworkManager::Device::Type::WireGuard;
+}
+
+bool tryDeviceTarget(const NetworkManager::Device::Ptr &dev, int dnsPriority,
+                     VpnDnsModeApplyTarget *target)
+{
+    if (dev.isNull() || !isVpnTunnelDeviceType(dev->type()))
+        return false;
+
+    const int ifindex = static_cast<int>(if_nametoindex(dev->interfaceName().toStdString().c_str()));
+    if (ifindex <= 0)
+        return false;
+
+    QList<QHostAddress> dnsList;
+    if (dnsPriority != 0) {
+        dnsList = collectDnsFromDevice(dev);
+        if (dnsList.isEmpty())
+            return false;
+    }
+
+    target->ifindex = ifindex;
+    target->dnsServers = dnsList;
+    return true;
+}
+
 bool findDnsModeApplyTarget(const NetworkManager::ActiveConnection::Ptr &vpnAc, int dnsPriority,
                             VpnDnsModeApplyTarget *target)
 {
@@ -63,45 +103,35 @@ bool findDnsModeApplyTarget(const NetworkManager::ActiveConnection::Ptr &vpnAc, 
         return false;
     }
 
+    // Pass 1：与 VPN AC 共享同一 Ip4Config 的其它 ActiveConnection（tun 系等存在独立 AC 的场景）。
     const NetworkManager::ActiveConnection::List allActiveConnections = NetworkManager::activeConnections();
-    for (const NetworkManager::ActiveConnection::Ptr &tunAc : allActiveConnections) {
-        if (tunAc.isNull() || tunAc->connection().isNull() || tunAc == vpnAc)
+    for (const NetworkManager::ActiveConnection::Ptr &ac : allActiveConnections) {
+        if (ac.isNull() || ac->connection().isNull() || ac == vpnAc)
             continue;
 
-        if (tunAc->connection()->settings()->connectionType() != NetworkManager::ConnectionSettings::ConnectionType::Tun)
+        if (getActiveConnectionIp4Config(ac->path()) != vpnIp4ConfigPath)
             continue;
 
-        const QString tunIp4ConfigPath = getActiveConnectionIp4Config(tunAc->path());
-        if (tunIp4ConfigPath != vpnIp4ConfigPath)
-            continue;
-
-        for (const QString &devPath : tunAc->devices()) {
-            NetworkManager::Device::Ptr dev = NetworkManager::findNetworkInterface(devPath);
-            if (dev.isNull())
-                continue;
-
-            if (dev->type() != NetworkManager::Device::Type::Tun &&
-                dev->type() != NetworkManager::Device::Type::Generic &&
-                dev->type() != NetworkManager::Device::Type::IpTunnel)
-                continue;
-
-            const int ifindex = static_cast<int>(if_nametoindex(dev->interfaceName().toStdString().c_str()));
-            if (ifindex <= 0)
-                continue;
-
-            QList<QHostAddress> dnsList;
-            if (dnsPriority != 0) {
-                dnsList = collectDnsFromDevice(dev);
-                if (dnsList.isEmpty())
-                    continue;
-            }
-
-            target->ifindex = ifindex;
-            target->dnsServers = dnsList;
-            return true;
+        for (const QString &devPath : ac->devices()) {
+            if (tryDeviceTarget(NetworkManager::findNetworkInterface(devPath), dnsPriority, target))
+                return true;
         }
     }
-    qCDebug(DSM()) << "[DNS-TRACE] No matching Tun AC found for VPN:" << vpnAc->id();
+
+    // Pass 2：设备级兜底，设备自身 Ip4Config 与 VPN 相同（虚拟口无独立 AC 的场景，如 ppp/xfrm）。
+    const NetworkManager::Device::List allDevices = NetworkManager::networkInterfaces();
+    for (const NetworkManager::Device::Ptr &dev : allDevices) {
+        if (dev.isNull() || !isVpnTunnelDeviceType(dev->type()))
+            continue;
+
+        if (getDeviceIp4Config(dev->uni()) != vpnIp4ConfigPath)
+            continue;
+
+        if (tryDeviceTarget(dev, dnsPriority, target))
+            return true;
+    }
+
+    qCDebug(DSM()) << "[DNS-TRACE] No matching VPN virtual device found for VPN:" << vpnAc->id();
     return false;
 }
 } // namespace
