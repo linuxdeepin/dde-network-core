@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -49,6 +49,7 @@ private:
 public slots:
     bool IpConflicted(const QString &devicePath);
     void CheckConnectivity();
+    void UpdateLanguage(const QString &locale);
 
 private:
     SystemContainer *m_network;

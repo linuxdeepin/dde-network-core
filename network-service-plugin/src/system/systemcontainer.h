@@ -24,6 +24,7 @@ public:
     ~SystemContainer();
     SystemIPConflict *ipConfilctedChecker() const;
     ConnectivityProcesser *connectivityProcesser() const;
+    NetworkInitialization *initializator() const;
 
 private:
     SystemIPConflict *m_ipConflictHandler;
