@@ -30,3 +30,8 @@ ConnectivityProcesser *SystemContainer::connectivityProcesser() const
 {
     return m_connectivityHelper;
 }
+
+NetworkInitialization *SystemContainer::initializator() const
+{
+    return m_initializator;
+}

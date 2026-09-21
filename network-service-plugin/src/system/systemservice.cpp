@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -6,6 +6,7 @@
 #include "systemcontainer.h"
 #include "systemipconfilct.h"
 #include "connectivityprocesser.h"
+#include "networkinitialization.h"
 
 using namespace network::systemservice;
 
@@ -28,6 +29,11 @@ bool SystemService::IpConflicted(const QString &devicePath)
 void SystemService::CheckConnectivity()
 {
     m_network->connectivityProcesser()->checkConnectivity();
+}
+
+void SystemService::UpdateLanguage(const QString &locale)
+{
+    m_network->initializator()->updateLanguage(locale);
 }
 
 int SystemService::Connectivity()
