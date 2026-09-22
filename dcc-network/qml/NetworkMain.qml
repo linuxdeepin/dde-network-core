@@ -63,6 +63,7 @@ DccObject {
                 roleValue: NetType.WirelessDeviceItem
                 delegate: PageWirelessDevice {
                     netItem: model.item
+                    airplaneItem: dccData.root
                 }
             }
             DelegateChoice {
