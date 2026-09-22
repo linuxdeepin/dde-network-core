@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2022 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -33,6 +33,9 @@ namespace network {
 // using NetworkInter = com::deepin::daemon::Network;
 
 Connectivity connectivityValue(uint sourceConnectivity);
+QString ssidToUtf8(const QByteArray &raw);                            // 网络SSID原始字节 → UTF-8,locale 感知解码(类似 nm_utils_ssid_to_utf8)
+bool ssidBytesMatch(const QByteArray &connSsid, const QByteArray &rawSsid, const QString &displaySsid); // 连接ssid字节是否匹配某AP:优先原始字节,回退UTF-8显示名
+QByteArray ssidForSave(const QByteArray &rawSsid, const QString &displaySsid);                          // 保存用ssid字节:优先原始字节,空则回退UTF-8显示名
 DeviceStatus convertDeviceStatus(int sourceDeviceStatus);
 ConnectionStatus convertConnectionStatus(int sourceConnectionStatus);
 ConnectionStatus convertStateFromNetworkManager(NetworkManager::ActiveConnection::State state);

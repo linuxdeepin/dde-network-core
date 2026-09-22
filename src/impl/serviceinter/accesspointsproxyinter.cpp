@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -21,6 +21,20 @@ AccessPointsProxyInter::~AccessPointsProxyInter()
 QString AccessPointsProxyInter::ssid() const
 {
     return m_json.value("Ssid").toString();
+}
+
+QByteArray AccessPointsProxyInter::rawSsid() const
+{
+    // DSS 服务目前仅下发显示用的 Ssid 字符串，未提供原始字节；
+    // 若服务端未来提供 RawSsid（base64）字段，在此解析返回。
+    if (m_json.contains("RawSsid")) {
+        return QByteArray::fromBase64(m_json.value("RawSsid").toString().toLatin1());
+    }
+    if (m_json.contains("Ssid")) {
+        return m_json.value("Ssid").toString().toUtf8();
+    }
+
+    return QByteArray();
 }
 
 int AccessPointsProxyInter::strength() const

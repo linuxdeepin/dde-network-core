@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -6,6 +6,7 @@
 
 #include "configsetting.h"
 #include "nmnetworkmanager.h"
+#include <netutils.h>
 
 #include <NetworkManagerQt/AccessPoint>
 #include <NetworkManagerQt/ActiveConnection>
@@ -38,9 +39,9 @@ NetWirelessConnect::NetWirelessConnect(dde::network::WirelessDevice *device, dde
 
 NetWirelessConnect::~NetWirelessConnect() = default;
 
-void NetWirelessConnect::setSsid(const QString &ssid)
+void NetWirelessConnect::setRawSsid(const QByteArray &rawSsid)
 {
-    m_ssid = ssid;
+    m_rawSsid = rawSsid;
     m_connectionSettings.clear();
 }
 
@@ -187,12 +188,12 @@ bool NetWirelessConnect::initConnection()
     if (m_accessPoint) {
         NetworkManager::Connection::Ptr conn;
         for (const ActiveConnection::Ptr &con : NetworkManager::activeConnections()) {
-            if (con->type() != ConnectionSettings::ConnectionType::Wireless || con->id() != m_ssid)
+            if (con->type() != ConnectionSettings::ConnectionType::Wireless)
                 continue;
 
             NetworkManager::ConnectionSettings::Ptr connSettings = con->connection()->settings();
             NetworkManager::WirelessSetting::Ptr wSetting = connSettings->setting(NetworkManager::Setting::SettingType::Wireless).staticCast<NetworkManager::WirelessSetting>();
-            if (wSetting.isNull())
+            if (wSetting.isNull() || wSetting->ssid() != m_rawSsid)
                 continue;
 
             QString settingMacAddress = wSetting->macAddress().toHex().toUpper();
@@ -208,7 +209,7 @@ bool NetWirelessConnect::initConnection()
             // 如果找到的conn是空的,当前的setting也需要重置
             m_connectionSettings.reset();
             for (auto item : m_device->items()) {
-                if (item->connection()->ssid() != m_ssid)
+                if (item->connection()->ssid() != m_rawSsid)
                     continue;
 
                 QString uuid = item->connection()->uuid();
@@ -237,11 +238,12 @@ bool NetWirelessConnect::initConnection()
             uuid.replace(24, QString::number(second).length(), QString::number(second));
         }
         m_connectionSettings->setUuid(uuid);
-        m_connectionSettings->setId(m_ssid);
+        QString ssid = ssidToUtf8(m_rawSsid);
+        m_connectionSettings->setId(ssid);
         if (!m_accessPoint) {
             m_connectionSettings->setting(Setting::SettingType::Wireless).staticCast<WirelessSetting>()->setHidden(true);
         }
-        qCInfo(DNC) << "Wireless connect init, create connect: ssid: " << m_ssid << ", uuid: " << uuid << ", access point: " << m_accessPoint;
+        qCInfo(DNC) << "Wireless connect init, create connect: ssid: " << ssid << ", uuid: " << uuid << ", access point: " << m_accessPoint;
         if (m_accessPoint) {
             WirelessSecuritySetting::Ptr wsSetting = m_connectionSettings->setting(Setting::WirelessSecurity).dynamicCast<WirelessSecuritySetting>();
             WirelessSecuritySetting::KeyMgmt keyMgmt = getKeyMgmtByAp(m_accessPoint);
@@ -261,7 +263,9 @@ bool NetWirelessConnect::initConnection()
             }
         }
         WirelessSetting::Ptr const wirelessSetting = m_connectionSettings->setting(Setting::Wireless).dynamicCast<WirelessSetting>();
-        wirelessSetting->setSsid(m_ssid.toUtf8());
+        // 优先保存 AP 原始字节(与 NM 字节匹配一致),rawSsid 为空(如隐藏网络)时回退 UTF-8
+        const QByteArray rawSsid = m_accessPoint ? m_accessPoint->rawSsid() : QByteArray();
+        wirelessSetting->setSsid(ssidForSave(rawSsid, m_rawSsid));
         wirelessSetting->setInitialized(true);
         m_needUpdate = true;
         if (m_needIdentify) {

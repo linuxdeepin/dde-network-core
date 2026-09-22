@@ -20,6 +20,8 @@
 #include "private/vpnparameterschecker.h"
 #include "wireddevice.h"
 #include "wirelessdevice.h"
+#include <netutils.h>
+
 
 #include <NetworkManagerQt/AccessPoint>
 #include <NetworkManagerQt/Ipv6Setting>
@@ -717,7 +719,7 @@ void NetManagerThreadPrivate::doConnectHidden(const QString &id, const QString &
     if (!wirelessDevice)
         return;
     NetWirelessConnect wConnect(wirelessDevice, nullptr, this);
-    wConnect.setSsid(ssid);
+    wConnect.setRawSsid(ssid.toUtf8());
     wConnect.initConnection();
     wConnect.connectNetwork();
 }
@@ -779,7 +781,7 @@ void NetManagerThreadPrivate::doConnectWireless(const QString &id, const QVarian
         return;
     }
     NetWirelessConnect wConnect(wirelessDevice, ap, this);
-    wConnect.setSsid(ap->ssid());
+    wConnect.setRawSsid(ap->rawSsid());
     wConnect.initConnection();
     QString secret = wConnect.needSecrets();
 
@@ -954,9 +956,8 @@ void NetManagerThreadPrivate::doConnectOrInfo(const QString &id, NetType::NetIte
         ConnectionSettings::Ptr settings;
         for (const NetworkManager::Connection::Ptr &con : netDevice->availableConnections()) {
             NetworkManager::WirelessSetting::Ptr wSetting = con->settings()->setting(NetworkManager::Setting::SettingType::Wireless).staticCast<NetworkManager::WirelessSetting>();
-            if (wSetting->ssid() != ap->ssid()) {
+            if (!ssidBytesMatch(wSetting->ssid(), ap->rawSsid(), ap->ssid()))
                 continue;
-            }
             settings = con->settings();
 
             WirelessSecuritySetting::Ptr const sSetting = settings->setting(Setting::SettingType::WirelessSecurity).staticCast<WirelessSecuritySetting>();
@@ -980,7 +981,7 @@ void NetManagerThreadPrivate::doConnectOrInfo(const QString &id, NetType::NetIte
                 NetworkManager::ConnectionSettings::Ptr settings = NetworkManager::ConnectionSettings::Ptr(new ConnectionSettings(ConnectionSettings::Wireless));
                 settings->setId(ap->ssid());
                 NetworkManager::WirelessSetting::Ptr wSetting = settings->setting(Setting::SettingType::Wireless).staticCast<WirelessSetting>();
-                wSetting->setSsid(ap->ssid().toUtf8());
+                wSetting->setSsid(ssidForSave(ap->rawSsid(), ap->ssid()));
                 wSetting->setInitialized(true);
                 WirelessSecuritySetting::Ptr wsSetting = settings->setting(Setting::WirelessSecurity).dynamicCast<WirelessSecuritySetting>();
                 switch (keyMgmt) {
@@ -1186,9 +1187,8 @@ void NetManagerThreadPrivate::doGetConnectInfo(const QString &id, NetType::NetIt
         ConnectionSettings::Ptr settings;
         for (const NetworkManager::Connection::Ptr &con : netDevice->availableConnections()) {
             NetworkManager::WirelessSetting::Ptr wSetting = con->settings()->setting(NetworkManager::Setting::SettingType::Wireless).staticCast<NetworkManager::WirelessSetting>();
-            if (wSetting->ssid() != ap->ssid()) {
+            if (!ssidBytesMatch(wSetting->ssid(), ap->rawSsid(), ap->ssid()))
                 continue;
-            }
             settings = con->settings();
 
             WirelessSecuritySetting::Ptr sSetting = settings->setting(Setting::SettingType::WirelessSecurity).staticCast<WirelessSecuritySetting>();
@@ -1283,7 +1283,7 @@ void NetManagerThreadPrivate::doGetConnectInfo(const QString &id, NetType::NetIt
             NetworkManager::ConnectionSettings::Ptr settings = NetworkManager::ConnectionSettings::Ptr(new ConnectionSettings(ConnectionSettings::Wireless));
             settings->setId(ap->ssid());
             NetworkManager::WirelessSetting::Ptr wSetting = settings->setting(Setting::SettingType::Wireless).staticCast<WirelessSetting>();
-            wSetting->setSsid(ap->ssid().toUtf8());
+            wSetting->setSsid(ssidForSave(ap->rawSsid(), ap->ssid()));
             wSetting->setHidden(hidden);
             wSetting->setInitialized(true);
             WirelessSecuritySetting::Ptr wsSetting = settings->setting(Setting::WirelessSecurity).dynamicCast<WirelessSecuritySetting>();
@@ -2176,7 +2176,8 @@ void NetManagerThreadPrivate::addNetwork(const NetworkDeviceBase *device, QList<
             NetworkManager::WirelessSetting::Ptr wirelessSetting = connection->settings()->setting(NetworkManager::Setting::SettingType::Wireless).dynamicCast<NetworkManager::WirelessSetting>();
             if (wirelessSetting.isNull())
                 return false;
-            return wirelessSetting->ssid() == ap->ssid() && !connection->isUnsaved();
+            return ssidBytesMatch(wirelessSetting->ssid(), ap->rawSsid(), ap->ssid())
+                && !connection->isUnsaved();
         });
         item->updatehasConnection(itConnection != connections.end());
         Q_EMIT itemAdded(device->path(), item);
@@ -2290,7 +2291,8 @@ void NetManagerThreadPrivate::onAvailableConnectionsChanged()
                 NetworkManager::WirelessSetting::Ptr wirelessSetting = connection->settings()->setting(NetworkManager::Setting::SettingType::Wireless).dynamicCast<NetworkManager::WirelessSetting>();
                 if (wirelessSetting.isNull())
                     return false;
-                return wirelessSetting->ssid() == tmpAp->ssid() && !connection->isUnsaved();
+                return ssidBytesMatch(wirelessSetting->ssid(), tmpAp->rawSsid(), tmpAp->ssid())
+                    && !connection->isUnsaved();
             });
             if (itConnection != connections.end()) {
                 availableAccessPoints.append(apID(tmpAp));
@@ -2811,7 +2813,8 @@ void NetManagerThreadPrivate::updateHiddenNetworkConfig(WirelessDevice *wireless
                 NetworkManager::WirelessSecuritySetting::Ptr const wsSetting = connSettings->setting(NetworkManager::Setting::SettingType::WirelessSecurity).staticCast<NetworkManager::WirelessSecuritySetting>();
                 if ((wsSetting) && NetworkManager::WirelessSecuritySetting::KeyMgmt::Unknown == wsSetting->keyMgmt()) {
                     for (auto *ap : wireless->accessPointItems()) {
-                        if (ap->ssid() == wSetting->ssid() && ap->secured() && ap->strength() > 0) {
+                        if (ssidBytesMatch(wSetting->ssid(), ap->rawSsid(), ap->ssid())
+                                && ap->secured() && ap->strength() > 0) {
                             handleAccessPointSecure(ap);
                         }
                     }
@@ -2957,7 +2960,7 @@ void NetManagerThreadPrivate::handleAccessPointSecure(AccessPoints *accessPoint)
             return;
 
         NetWirelessConnect wConnect(dynamic_cast<WirelessDevice *>(*it), accessPoint, this);
-        wConnect.setSsid(accessPoint->ssid());
+        wConnect.setRawSsid(accessPoint->rawSsid());
         wConnect.initConnection();
         QVariantMap param;
         param.insert("secrets", { wConnect.needSecrets() });
@@ -3057,7 +3060,7 @@ void NetManagerThreadPrivate::onPortalDetected(const QString &portalUrl)
         dde::network::WirelessDevice *wirelessDevice = static_cast<dde::network::WirelessDevice *>(networkDevice);
         // 找到无线连接对应那个网络
         for (dde::network::AccessPoints *ap : wirelessDevice->accessPointItems()) {
-            if (ap->ssid() != wirelessSetting->ssid())
+            if (!ssidBytesMatch(wirelessSetting->ssid(), ap->rawSsid(), ap->ssid()))
                 continue;
 
             Q_EMIT dataChanged(DataChanged::portalUrlChanged, apID(ap), portalUrl);

@@ -725,7 +725,7 @@ WirelessConnection *WirelessDeviceInterRealize::findConnectionByAccessPoint(cons
         if (connection->accessPoints() == accessPoint)
             return connection;
 
-        if (connection->connection()->ssid() == accessPoint->ssid())
+        if (connection->connection()->ssid() == accessPoint->rawSsid())
             return connection;
     }
 
