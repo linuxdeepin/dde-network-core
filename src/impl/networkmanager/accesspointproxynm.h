@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -39,6 +39,7 @@ public:
     ConnectionStatus status() const override;
     bool hidden() const override;
     bool isWlan6() const override;
+    QByteArray rawSsid() const override;
     void updateStrengthFromActiveAp(int strength);
 
 private:

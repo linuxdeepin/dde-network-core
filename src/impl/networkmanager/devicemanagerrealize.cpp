@@ -761,7 +761,7 @@ void WirelessDeviceManagerRealize::connectNetwork(const AccessPoints *accessPoin
                 if (wSetting.isNull())
                     return false;
 
-                return wSetting->ssid() == accessPoint->ssid();
+                return ssidBytesMatch(wSetting->ssid(), accessPoint->rawSsid(), accessPoint->ssid());
             });
 
     if (itConnection == availableConnections.end()) {
@@ -780,7 +780,7 @@ void WirelessDeviceManagerRealize::connectNetwork(const AccessPoints *accessPoin
             if (!configMacAddress.isEmpty() && configMacAddress != realHwAdr().remove(":"))
                 continue;
 
-            if (wSetting->ssid() == accessPoint->ssid()) {
+            if (ssidBytesMatch(wSetting->ssid(), accessPoint->rawSsid(), accessPoint->ssid())) {
                 currentConnection = connection;
                 break;
             }
@@ -817,7 +817,7 @@ void WirelessDeviceManagerRealize::connectNetwork(const AccessPoints *accessPoin
         }
 
         NetworkManager::WirelessSetting::Ptr wirelessSetting = settings->setting(NetworkManager::Setting::Wireless).dynamicCast<NetworkManager::WirelessSetting>();
-        wirelessSetting->setSsid(accessPoint->ssid().toUtf8());
+        wirelessSetting->setSsid(ssidForSave(accessPoint->rawSsid(), accessPoint->ssid()));
         QString macAddress = m_device->permanentHardwareAddress();
         macAddress.remove(":");
         wirelessSetting->setMacAddress(QByteArray::fromHex(macAddress.toUtf8()));
@@ -1019,7 +1019,7 @@ AccessPointProxyNM *WirelessDeviceManagerRealize::findAccessPoints(NetworkManage
         return nullptr;
 
     const auto itAccessPoint = std::find_if(m_accessPointInfos.cbegin(), m_accessPointInfos.cend(), [wirelessSetting](AccessPointInfo *accessPoint) {
-        return accessPoint->accessPoint()->ssid() == wirelessSetting->ssid();
+        return ssidBytesMatch(wirelessSetting->ssid(), accessPoint->accessPoint()->rawSsid(), accessPoint->accessPoint()->ssid());
     });
 
     return itAccessPoint == m_accessPointInfos.cend() ? nullptr : (*itAccessPoint)->proxy();
@@ -1047,9 +1047,7 @@ void WirelessDeviceManagerRealize::onStateChanged(NetworkManager::ActiveConnecti
             }
             conn->save();
         }
-        connect(conn.data(), &NetworkManager::Connection::unsavedChanged, this, [this] {
-            Q_EMIT activeConnectionChanged();
-        }, Qt::UniqueConnection);
+        connect(conn.data(), &NetworkManager::Connection::unsavedChanged, this, &WirelessDeviceManagerRealize::activeConnectionChanged, Qt::UniqueConnection);
     }
 
     activeAp->updateStatus(convertStateFromNetworkManager(state));
@@ -1097,7 +1095,17 @@ bool WirelessDeviceManagerRealize::hotspotEnabled()
 void WirelessDeviceManagerRealize::addNetwork(const NetworkManager::WirelessNetwork::Ptr &network)
 {
     // 在当前的网络列表中查找同名SSID的网络，如果查找到了，就更新数据，没有查找到，就新增一条网络
-    QList<AccessPointInfo *>::iterator itApInfo = std::find_if(m_accessPointInfos.begin(), m_accessPointInfos.end(), [ network ](AccessPointInfo *accessPoint) { return accessPoint->accessPoint()->ssid() == network->ssid(); });
+    // GBK SSID 下上游 network->ssid() 是 mojibake，与本端显示名(ssidToUtf8)不一致，
+    // 因此按原始字节匹配：上游 referenceAccessPoint()->rawSsid() vs 本端 AccessPoints::rawSsid()
+    const QByteArray netRawSsid = network->referenceAccessPoint().isNull()
+            ? QByteArray()
+            : network->referenceAccessPoint()->rawSsid();
+    QList<AccessPointInfo *>::iterator itApInfo = std::find_if(m_accessPointInfos.begin(), m_accessPointInfos.end(), [ &netRawSsid, network ](AccessPointInfo *accessPoint) {
+        const QByteArray apRawSsid = accessPoint->accessPoint()->rawSsid();
+        if (!apRawSsid.isEmpty() && !netRawSsid.isEmpty())
+            return apRawSsid == netRawSsid;
+        return accessPoint->accessPoint()->ssid() == network->ssid();
+    });
     if (itApInfo == m_accessPointInfos.end()) {
         // 新增的无线网络
         AccessPointInfo *apInfo = new AccessPointInfo(m_device, network);
@@ -1142,13 +1150,32 @@ void WirelessDeviceManagerRealize::onNetworkAppeared(const QString &ssid)
 
 void WirelessDeviceManagerRealize::onNetworkDisappeared(const QString &ssid)
 {
-    // 查找移除的网络
+    // 不再依赖上游 networkDisappeared 的 ssid 参数做匹配（该参数是上游解码后的显示名，
+    // 在 GBK SSID 下与 AP 原始字节/本端显示名均不一致，且随上游 KF6 解码实现变化），
+    // 改为「上游存活 WirelessNetwork 的 rawSsid 集合」与「本端 m_accessPointInfos 的 rawSsid」做差集，
+    // 不在存活集合中的项即为已消失的网络。
+    Q_UNUSED(ssid);
+
+    // 1. 收集上游当前存活的 WirelessNetwork 的 rawSsid 字节集合
+    QSet<QByteArray> aliveRawSsids;
+    for (const NetworkManager::WirelessNetwork::Ptr &net : m_device->networks()) {
+        const NetworkManager::AccessPoint::Ptr refAp = net->referenceAccessPoint();
+        if (!refAp.isNull())
+            aliveRawSsids.insert(refAp->rawSsid());
+    }
+
+    // 2. 本端列表中 rawSsid 不在存活集合里的 → 删除；rawSsid 为空(隐藏网络)时回退显示名比对
     QList<AccessPointInfo *> removeAccessPoints;
     for (AccessPointInfo *apInfo : m_accessPointInfos) {
-        if (apInfo->accessPoint()->ssid() != ssid)
+        const QByteArray raw = apInfo->accessPoint()->rawSsid();
+        if (raw.isEmpty()) {
+            if (apInfo->accessPoint()->ssid() == ssid)
+                removeAccessPoints << apInfo;
             continue;
+        }
 
-        removeAccessPoints << apInfo;
+        if (!aliveRawSsids.contains(raw))
+            removeAccessPoints << apInfo;
     }
 
     if (removeAccessPoints.size() == 0)

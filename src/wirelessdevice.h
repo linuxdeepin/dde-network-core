@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -90,6 +90,7 @@ public:
     bool connected() const;                                         // 网络是否连接成功
     ConnectionStatus status() const;                                // 当前网络的连接状态
     bool hidden() const;                                            // 是否为隐藏网络
+    QByteArray rawSsid() const;                                     // 网络SSID原始字节，用于与NM连接字节精确匹配/保存
     WlanType type() const;
 
 Q_SIGNALS:

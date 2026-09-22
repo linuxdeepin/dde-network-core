@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -27,7 +27,7 @@ public:
     explicit NetWirelessConnect(dde::network::WirelessDevice *device, dde::network::AccessPoints *ap, QObject *parent = nullptr);
     ~NetWirelessConnect() Q_DECL_OVERRIDE;
 
-    void setSsid(const QString &ssid);
+    void setRawSsid(const QByteArray &rawSsid);
     bool initConnection();
 
     bool passwordIsValid(const QString &password);
@@ -53,7 +53,7 @@ public Q_SLOTS:
 private:
     dde::network::WirelessDevice *m_device;
     dde::network::AccessPoints *m_accessPoint;
-    QString m_ssid;
+    QByteArray m_rawSsid;
     bool m_needUpdate;
     bool m_needIdentify;
 

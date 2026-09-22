@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -57,7 +57,19 @@ bool AccessPointProxyNM::contains(const QString &uni) const
 
 QString AccessPointProxyNM::ssid() const
 {
+    // 用原始字节做 locale 感知解码(对齐 nm_utils_ssid_to_utf8),避免依赖上游 qt6 的 fromUtf8
+    const QByteArray raw = rawSsid();
+    if (!raw.isEmpty())
+        return ssidToUtf8(raw);
     return m_network->ssid();
+}
+
+QByteArray AccessPointProxyNM::rawSsid() const
+{
+    if (m_network.isNull() || m_network->referenceAccessPoint().isNull())
+        return QByteArray();
+
+    return m_network->referenceAccessPoint()->rawSsid();
 }
 
 int AccessPointProxyNM::strength() const
@@ -134,7 +146,7 @@ void AccessPointProxyNM::initState()
     if (wirelessSetting.isNull())
         return;
 
-    if (wirelessSetting->ssid() != m_network->ssid())
+    if (!ssidBytesMatch(wirelessSetting->ssid(), rawSsid(), ssid()))
         return;
 
     updateStatus(convertStateFromNetworkManager(activeConnection->state()));
@@ -180,8 +192,7 @@ void AccessPointProxyNM::updateHiddenInfo()
         NetworkManager::WirelessSetting::Ptr wirelessSetting = connection->settings()->setting(NetworkManager::Setting::SettingType::Wireless).dynamicCast<NetworkManager::WirelessSetting>();
         if (wirelessSetting.isNull())
             return false;
-
-        return wirelessSetting->ssid() == m_network->ssid();
+        return ssidBytesMatch(wirelessSetting->ssid(), rawSsid(), ssid());
     });
     // 如果没有找到连接，就是非隐藏网络
     if (itConnection == connections.end())

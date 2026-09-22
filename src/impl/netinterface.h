@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -189,6 +189,7 @@ public:
     virtual ConnectionStatus status() const = 0;                                // 当前网络的连接状态
     virtual bool hidden() const = 0;                                            // 是否为隐藏网络
     virtual bool isWlan6() const = 0;
+    virtual QByteArray rawSsid() const { return QByteArray(); }                    // 网络SSID原始字节，用于与NM侧连接字节精确匹配
 
 Q_SIGNALS:
     void strengthChanged(const int);                                            // 当前信号强度变化

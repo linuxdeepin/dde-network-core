@@ -8,8 +8,10 @@
 #include <NetworkManagerQt/Settings>
 #include <NetworkManagerQt/WirelessSecuritySetting>
 #include <NetworkManagerQt/WirelessSetting>
+
 #include <hotspotcontroller.h>
 #include <networkcontroller.h>
+#include <netutils.h>
 #include <wirelessdevice.h>
 
 namespace dde {
@@ -186,6 +188,14 @@ void NetHotspotController::updateConfig()
         config.insert(it.key(), it.value());
     }
     QVariantMap typeMap = config["802-11-wireless"].value<QVariantMap>();
+    // ssid 在 NM 侧是原始字节(可能 GBK 编码),转为 UTF-8 字符串后交给 UI 显示,
+    // 避免 QML 按 UTF-8 直读 QByteArray 产生乱码(参考 nm_utils_ssid_to_utf8 语义)
+    QByteArray rawSsid;
+    if (typeMap.contains("ssid")) {
+        rawSsid = typeMap.value("ssid").toByteArray();
+        if (!rawSsid.isEmpty())
+            typeMap["ssid"] = ssidToUtf8(rawSsid);
+    }
     typeMap.insert("optionalDevice", m_optionalDevice);
     config["802-11-wireless"] = typeMap;
     m_config = config;
