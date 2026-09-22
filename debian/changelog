@@ -1,3 +1,14 @@
+dde-network-core (2.0.102) unstable; urgency=medium
+
+  * chore(i18n): remove redundant ar_EG translations, keep ar (#632)
+  * feat: enable primary connection type tracking
+  * refactor: extract access point lookup and state handler
+  * fix: correct Accounts D-Bus object paths and translator return value
+  * refactor: improve VPN DNS target device discovery
+  * feat: add language update support to system service
+
+ -- zhangkun <zhangkun2@uniontech.com>  Tue, 22 Sep 2026 20:44:56 +0800
+
 dde-network-core (2.0.101) unstable; urgency=medium
 
   * fix(network): update disconnected source text to "Not connected"
