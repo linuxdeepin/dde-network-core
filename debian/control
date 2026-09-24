@@ -52,26 +52,25 @@ Depends: ${misc:Depends},
         network-manager-openconnect,
         network-manager-strongswan | libreswan (>=4.12),
         network-manager-sstp,
-        libdde-network-core (= ${binary:Version}),
-        dde-daemon (>= 6.1.102)
+        libdde-network-core (= ${binary:Version})
 Description: the plugin of network for dde control center
  dcc-network-plugin module
 
 Package: dock-network-plugin
 Architecture: any
-Depends: ${misc:Depends},${shlibs:Depends},libdde-network-core (= ${binary:Version}),dde-daemon (>= 6.1.102)
+Depends: ${misc:Depends},${shlibs:Depends},libdde-network-core (= ${binary:Version})
 Description: the plugin of network for dde-dock
  dock-plugin module
 
 Package: dss-network-plugin
 Architecture: any
-Depends: ${misc:Depends},${shlibs:Depends},libdde-network-core (= ${binary:Version}),dde-daemon (>= 6.1.102)
+Depends: ${misc:Depends},${shlibs:Depends},libdde-network-core (= ${binary:Version})
 Description: the plugin of network for dde-lock
  dss-network-plugin module
 
 Package: deepin-service-plugin-network
 Architecture: any
-Depends: ${misc:Depends},${shlibs:Depends},curl,dde-daemon (>= 6.1.102)
+Depends: ${misc:Depends},${shlibs:Depends},curl
 Breaks: dde-daemon (<<6.1.58)
 Replaces: dde-daemon (<<6.1.58)
 Description: the plugin of network service for deepin-service-manager
