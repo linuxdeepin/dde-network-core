@@ -27,7 +27,7 @@
     </message>
     <message>
         <source>Not connected</source>
-        <translation type="unfinished"/>
+        <translation>Ei yhteyttä</translation>
     </message>
 </context>
 <context>
@@ -500,7 +500,7 @@
     </message>
     <message>
         <source>Open a browser to authenticate</source>
-        <translation type="unfinished"/>
+        <translation>Avaa selain todennusta varten</translation>
     </message>
 </context>
 <context>
@@ -543,7 +543,7 @@
     </message>
     <message>
         <source>Open a browser to authenticate</source>
-        <translation type="unfinished"/>
+        <translation>Avaa selain todennusta varten</translation>
     </message>
 </context>
 <context>
@@ -703,35 +703,35 @@
     </message>
     <message>
         <source>When enabled, only traffic to the target network is routed through the VPN. Other traffic continues to use the local network connection.</source>
-        <translation type="unfinished"/>
+        <translation>Kun toiminto on käytössä, vain kohdeverkkoon suuntautuva liikenne reititetään VPN-yhteyden kautta. Muu liikenne käyttää edelleen lähiverkkoa.</translation>
     </message>
     <message>
         <source>VPN DNS Mode</source>
-        <translation type="unfinished"/>
+        <translation>VPN DNS-tila</translation>
     </message>
     <message>
         <source>The system uses both local DNS and VPN DNS for resolution, and prefers the result returned first.</source>
-        <translation type="unfinished"/>
+        <translation>Tietokone käyttää nimenratkaisuun paikallista DNS:ää sekä VPN-DNS:ää ja suosii sitä, joka saadaan ensimmäisenä.</translation>
     </message>
     <message>
         <source>Prefer VPN DNS. All DNS queries are sent through the VPN connection.</source>
-        <translation type="unfinished"/>
+        <translation>Käytä ensisijaisesti VPN:n DNS-palvelinta. Kaikki DNS-kyselyt lähetetään VPN:n kautta.</translation>
     </message>
     <message>
         <source>Do not specify how VPN DNS is used. Keep the current system DNS resolution policy.</source>
-        <translation type="unfinished"/>
+        <translation>Älä määritä, miten VPN-DNS:ää käytetään. Säilytä nykyinen tietokoneen DNS-nimien selvityskäytäntö.</translation>
     </message>
     <message>
         <source>Not Set</source>
-        <translation type="unfinished"/>
+        <translation>Ei asetettu</translation>
     </message>
     <message>
         <source>Secondary</source>
-        <translation type="unfinished"/>
+        <translation>Toissijainen</translation>
     </message>
     <message>
         <source>Preferred</source>
-        <translation type="unfinished"/>
+        <translation>Ensisijainen</translation>
     </message>
 </context>
 <context>
@@ -806,35 +806,35 @@
     </message>
     <message>
         <source>When enabled, only traffic to the target network is routed through the VPN. Other traffic continues to use the local network connection.</source>
-        <translation type="unfinished"/>
+        <translation>Kun toiminto on käytössä, vain kohdeverkkoon suuntautuva liikenne reititetään VPN-yhteyden kautta. Muu liikenne käyttää edelleen lähiverkkoa.</translation>
     </message>
     <message>
         <source>VPN DNS Mode</source>
-        <translation type="unfinished"/>
+        <translation>VPN DNS-tila</translation>
     </message>
     <message>
         <source>The system uses both local DNS and VPN DNS for resolution, and prefers the result returned first.</source>
-        <translation type="unfinished"/>
+        <translation>Tietokone käyttää nimenratkaisuun paikallista DNS:ää sekä VPN-DNS:ää ja suosii sitä, joka saadaan ensimmäisenä.</translation>
     </message>
     <message>
         <source>Prefer VPN DNS. All DNS queries are sent through the VPN connection.</source>
-        <translation type="unfinished"/>
+        <translation>Käytä ensisijaisesti VPN:n DNS-palvelinta. Kaikki DNS-kyselyt lähetetään VPN:n kautta.</translation>
     </message>
     <message>
         <source>Do not specify how VPN DNS is used. Keep the current system DNS resolution policy.</source>
-        <translation type="unfinished"/>
+        <translation>Älä määritä, miten VPN-DNS:ää käytetään. Säilytä nykyinen tietokoneen DNS-nimien selvityskäytäntö.</translation>
     </message>
     <message>
         <source>Not Set</source>
-        <translation type="unfinished"/>
+        <translation>Ei asetettu</translation>
     </message>
     <message>
         <source>Secondary</source>
-        <translation type="unfinished"/>
+        <translation>Toissijainen</translation>
     </message>
     <message>
         <source>Preferred</source>
-        <translation type="unfinished"/>
+        <translation>Ensisijainen</translation>
     </message>
 </context>
 <context>

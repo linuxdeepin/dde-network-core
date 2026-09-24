@@ -27,7 +27,7 @@
     </message>
     <message>
         <source>Not connected</source>
-        <translation type="unfinished"/>
+        <translation>No connectat</translation>
     </message>
 </context>
 <context>
@@ -500,7 +500,7 @@
     </message>
     <message>
         <source>Open a browser to authenticate</source>
-        <translation type="unfinished"/>
+        <translation>Obre un navegador per a l&apos;autenticació</translation>
     </message>
 </context>
 <context>
@@ -543,7 +543,7 @@
     </message>
     <message>
         <source>Open a browser to authenticate</source>
-        <translation type="unfinished"/>
+        <translation>Obre un navegador per a l&apos;autenticació</translation>
     </message>
 </context>
 <context>
@@ -703,35 +703,35 @@
     </message>
     <message>
         <source>When enabled, only traffic to the target network is routed through the VPN. Other traffic continues to use the local network connection.</source>
-        <translation type="unfinished"/>
+        <translation>Quan està activat, només el trànsit dirigit a la xarxa de destinació s&apos;encamina a través de la XPV. La resta del trànsit continua usant la connexió de xarxa local.</translation>
     </message>
     <message>
         <source>VPN DNS Mode</source>
-        <translation type="unfinished"/>
+        <translation>Mode DNS XPV</translation>
     </message>
     <message>
         <source>The system uses both local DNS and VPN DNS for resolution, and prefers the result returned first.</source>
-        <translation type="unfinished"/>
+        <translation>El sistema usa tant el DNS local com el DNS de la XPV per a la resolució, i prioritza el resultat que es rep primer.</translation>
     </message>
     <message>
         <source>Prefer VPN DNS. All DNS queries are sent through the VPN connection.</source>
-        <translation type="unfinished"/>
+        <translation>Usa preferentment el DNS de la XPV. Totes les consultes de DNS s&apos;envien a través de la connexió de XPV.</translation>
     </message>
     <message>
         <source>Do not specify how VPN DNS is used. Keep the current system DNS resolution policy.</source>
-        <translation type="unfinished"/>
+        <translation>No s&apos;especifica com s&apos;usa el DNS de la XPV. Es manté la política actual de resolució de DNS del sistema.</translation>
     </message>
     <message>
         <source>Not Set</source>
-        <translation type="unfinished"/>
+        <translation>No establert</translation>
     </message>
     <message>
         <source>Secondary</source>
-        <translation type="unfinished"/>
+        <translation>Secundari</translation>
     </message>
     <message>
         <source>Preferred</source>
-        <translation type="unfinished"/>
+        <translation>Preferit</translation>
     </message>
 </context>
 <context>
@@ -806,35 +806,35 @@
     </message>
     <message>
         <source>When enabled, only traffic to the target network is routed through the VPN. Other traffic continues to use the local network connection.</source>
-        <translation type="unfinished"/>
+        <translation>Quan està activat, només el trànsit dirigit a la xarxa de destinació s&apos;encamina a través de la XPV. La resta del trànsit continua usant la connexió de xarxa local.</translation>
     </message>
     <message>
         <source>VPN DNS Mode</source>
-        <translation type="unfinished"/>
+        <translation>Mode DNS XPV</translation>
     </message>
     <message>
         <source>The system uses both local DNS and VPN DNS for resolution, and prefers the result returned first.</source>
-        <translation type="unfinished"/>
+        <translation>El sistema usa tant el DNS local com el DNS de la XPV per a la resolució, i prioritza el resultat que es rep primer.</translation>
     </message>
     <message>
         <source>Prefer VPN DNS. All DNS queries are sent through the VPN connection.</source>
-        <translation type="unfinished"/>
+        <translation>Usa preferentment el DNS de la XPV. Totes les consultes de DNS s&apos;envien a través de la connexió de XPV.</translation>
     </message>
     <message>
         <source>Do not specify how VPN DNS is used. Keep the current system DNS resolution policy.</source>
-        <translation type="unfinished"/>
+        <translation>No s&apos;especifica com s&apos;usa el DNS de la XPV. Es manté la política actual de resolució de DNS del sistema.</translation>
     </message>
     <message>
         <source>Not Set</source>
-        <translation type="unfinished"/>
+        <translation>No establert</translation>
     </message>
     <message>
         <source>Secondary</source>
-        <translation type="unfinished"/>
+        <translation>Secundari</translation>
     </message>
     <message>
         <source>Preferred</source>
-        <translation type="unfinished"/>
+        <translation>Preferit</translation>
     </message>
 </context>
 <context>
