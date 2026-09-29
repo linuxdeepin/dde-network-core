@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -49,6 +49,13 @@ void ProxyController::onProxyMethodChanged(const QString &method)
 
 void ProxyController::onProxyChanged(const QString &type, const QString &value)
 {
+    // daemon在自动代理变化时发出的是type为"auto"的proxyChanged，
+    // 而queryProxyDataByType只识别http/https/ftp/socks，
+    // 因此这里必须单独走queryAutoProxy，否则m_autoProxyURL会一直停留在初始值
+    if (type == "auto") {
+        queryAutoProxy();
+        return;
+    }
     queryProxyDataByType(type);
 }
 

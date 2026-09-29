@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2025 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2025 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #include "networkproxy.h"
@@ -227,19 +227,20 @@ void NetworkProxy::onConfigChanged(const QString &key)
     if (!settings)
         return;
 
-    bool isHost = false;
+    bool isValueChanged = false;
     if (settings == m_proxySettings) {
         if (key == "autoconfigUrl") {
-            isHost = true;
+            isValueChanged = true;
         } else if (key == "mode") {
             // 模式发生变化，此时需要告诉外面
             Q_EMIT ProxyMethodChanged(settings->get(key).toString());
         }
     } else {
-        isHost = (key == "host");
+        // host 或 port 变化都视为该类型代理配置变化
+        isValueChanged = (key == "host" || key == "port");
     }
 
-    if (isHost) {
+    if (isValueChanged) {
         emit proxyChanged(settings->property("type").toString(), settings->get(key).toString());
     }
 }
