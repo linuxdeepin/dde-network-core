@@ -45,7 +45,7 @@ DccObject {
         D.Switch {
             objectName: "Component_Switch_2"
             checked: netItem.isEnabled
-            enabled: netItem.enabledable
+            visible: netItem.enabledable
             onClicked: {
                 dccData.exec(netItem.isEnabled ? NetManager.DisabledDevice : NetManager.EnabledDevice, netItem.id, {})
             }
@@ -72,7 +72,7 @@ DccObject {
                 page: D.Switch {
                     objectName: "PageSystemProxy_Switch"
                     checked: root.method !== NetType.None
-                    enabled: netItem.enabledable
+                    visible: netItem.enabledable
                     onClicked: {
                         if (checked) {
                             root.method = netItem.lastMethod

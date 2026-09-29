@@ -13,14 +13,14 @@ import org.deepin.dcc.network 1.0
 
 DccObject {
     id: root
+    readonly property bool hasVpnConnection: !!netItem && netItem.children.length > 0
     property var netItem: null
-
     visible: netItem
     displayName: qsTr("VPN")
     description: qsTr("Connect, add, import")
     icon: "dcc_vpn"
     pageType: DccObject.MenuEditor
-    page: devCheck
+    page: hasVpnConnection ? devCheck : null
     Component {
         id: devCheck
         D.Switch {
@@ -48,7 +48,7 @@ DccObject {
                 weight: 10
                 backgroundType: DccObject.Normal
                 pageType: DccObject.Editor
-                page: devCheck
+                page: hasVpnConnection ? devCheck : null
             }
             DccObject {
                 name: "networkList"

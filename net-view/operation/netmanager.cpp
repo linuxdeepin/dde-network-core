@@ -607,7 +607,7 @@ void NetManagerPrivate::onDataChanged(int dataType, const QString &id, const QVa
         NetControlItemPrivate *item = NetItemPrivate::toItem<NetControlItemPrivate>(findItem(id));
         if (item) {
             item->updateenabledable(value.toBool());
-            if (item->itemType() == NetType::SystemProxyControlItem || item->itemType() == NetType::VPNControlItem) {
+            if ((item->itemType() == NetType::SystemProxyControlItem && !flags().testFlags(NetType::Net_SysProxyAlwaysShow)) || item->itemType() == NetType::VPNControlItem) {
                 updateItemVisible(item->id(), value.toBool());
                 return;
             }

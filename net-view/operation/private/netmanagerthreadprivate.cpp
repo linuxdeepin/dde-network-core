@@ -505,7 +505,7 @@ void NetManagerThreadPrivate::doInit()
         Q_EMIT itemAdded("Root", item);
         onSystemAutoProxyChanged(networkController->proxyController()->autoProxy());
         onSystemManualProxyChanged();
-        if (!m_flags.testFlags(NetType::NetManagerFlag::Net_SysProxyAlwaysShow)) {
+        if (m_flags.testFlags(NetType::NetManagerFlag::Net_SysProxyEnabledable)) {
             onSystemProxyExistChanged(networkController->proxyController()->systemProxyExist());
             connect(networkController->proxyController(), &ProxyController::systemProxyExistChanged, this, &NetManagerThreadPrivate::onSystemProxyExistChanged);
         }
