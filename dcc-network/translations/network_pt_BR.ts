@@ -257,7 +257,7 @@
     </message>
     <message>
         <source>Share the network</source>
-        <translation>Compartilhar a Rede</translation>
+        <translation>Compartilhar a rede</translation>
     </message>
     <message>
         <source>My Hotspot</source>
