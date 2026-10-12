@@ -1,3 +1,12 @@
+dde-network-core (2.0.103) unstable; urgency=medium
+
+  * fix: fix missing airplane mode tips in wireless page
+  * fix: support GBK-encoded SSID display and match
+  * fix: hide VPN and system proxy switches when no configuration exists
+  * i18n: Updates for project Deepin Desktop Environment (#630)
+
+ -- zhangkun <zhangkun2@uniontech.com>  Mon, 12 Oct 2026 18:15:07 +0800
+
 dde-network-core (2.0.102) unstable; urgency=medium
 
   * chore(i18n): remove redundant ar_EG translations, keep ar (#632)
