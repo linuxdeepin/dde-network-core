@@ -72,7 +72,6 @@ DccObject {
                 page: D.Switch {
                     objectName: "PageSystemProxy_Switch"
                     checked: root.method !== NetType.None
-                    visible: netItem.enabledable
                     onClicked: {
                         if (checked) {
                             root.method = netItem.lastMethod
