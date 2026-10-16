@@ -77,7 +77,7 @@ else()
     install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/session/plugin-session-network.json DESTINATION share/deepin-service-manager/user/)
 endif()
 
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/system/deepin.dde.daemon.conf DESTINATION /etc/NetworkManager/conf.d/)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/system/deepin.dde.daemon.conf DESTINATION ${CMAKE_INSTALL_SYSCONFDIR}/NetworkManager/conf.d/)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/system/org.deepin.dde.Network1.conf DESTINATION share/dbus-1/system.d/)
 install(FILES ${CMAKE_SOURCE_DIR}/src/misc/polkit-action/com.deepin.dde.network.policy DESTINATION share/polkit-1/actions)
 
