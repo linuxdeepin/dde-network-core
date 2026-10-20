@@ -1,3 +1,9 @@
+dde-network-core (2.0.106) unstable; urgency=medium
+
+  * fix: use CMAKE_INSTALL_SYSCONFDIR for NM conf path
+
+ -- zhangkun <zhangkun2@uniontech.com>  Tue, 20 Oct 2026 21:31:17 +0800
+
 dde-network-core (2.0.105) unstable; urgency=medium
 
   * fix: keep system proxy switch visible to allow creating proxy
