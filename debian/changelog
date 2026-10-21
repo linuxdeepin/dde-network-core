@@ -1,3 +1,9 @@
+dde-network-core (2.0.107) unstable; urgency=medium
+
+  * fix: disable strongswan autostart in postinst
+
+ -- zhangkun <zhangkun2@uniontech.com>  Wed, 21 Oct 2026 09:42:10 +0800
+
 dde-network-core (2.0.106) unstable; urgency=medium
 
   * fix: use CMAKE_INSTALL_SYSCONFDIR for NM conf path
