@@ -6,6 +6,7 @@ if [ ! -e /var/cache/deepin/mark-setup-network-services ];then
     update-rc.d ipsec disable || true
     update-rc.d xl2tpd disable || true
     update-rc.d openvpn disable || true
+    systemctl disable strongswan || true
     mkdir -p /var/cache/deepin
     touch /var/cache/deepin/mark-setup-network-services
 fi
