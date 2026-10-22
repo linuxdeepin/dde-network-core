@@ -12,12 +12,17 @@
 #include <QDBusConnection>
 #include <QDBusObjectPath>
 #include <QDBusServiceWatcher>
-#include <QMutex>
+#include <QMap>
 #include <QObject>
 
 namespace network {
 namespace systemservice {
 
+// 设备启用/禁用的执行体。
+//
+// 本对象必须运行在 networkManagerThread() 上：它直接调用 NetworkManagerQt。
+// NetworkThread 由 NetworkDBus 构造，构造点会先调用
+// ensureNetworkManagerInitialized() 完成单例锚定。
 class NetworkThread : public QObject
 {
     Q_OBJECT
@@ -39,35 +44,34 @@ Q_SIGNALS:
 
 protected Q_SLOTS:
     void init();
-    void onDeviceAdded(const QString &uni);
+    void onDevicesChanged();
     void onDeviceRemoved(const QString &uni);
-    void onDevicestateChanged(NetworkManager::Device::State newState, NetworkManager::Device::State oldState, NetworkManager::Device::StateChangeReason reason);
-    void onInterfaceNameChanged();
-    void addDevicesWithRetry();
+    void onDeviceStateChanged(const QString &uni);
+    void onInterfaceNameChanged(const QString &uni, const QString &oldIface);
     void onVpnStateChanged(const QDBusMessage &msg);
     void handleVpnStateChanged(uint state);
     QString doEnableDevice(const QString &pathOrIface, const bool enabled, QString &err);
     QString setPropVpnEnabled(bool enabled);
-    QString enableDevice(NetworkManager::Device::Ptr device);
-    QString disableDevice(NetworkManager::Device::Ptr device);
+    QString enableDevice(const QString &uniOrIface);
+    QString disableDevice(const QString &uniOrIface);
 
     void onStatusChanged(NetworkManager::Status status);
+    void onAirplaneWifiEnabledResolved(bool enabled, const QString &interfaceName);
 
 protected:
     void disableVpn();
-    bool airplaneWifiEnabled();
-    NetworkManager::Device::Ptr findDevice(QString pathOrIface);
+    void requestAirplaneWifiEnabled(const QString &interfaceName);
 
     inline QDBusConnection dbusConnection() const { return m_dbusConnection; }
 
 private:
     bool m_isInitialized;
-    QThread *m_thread;
-    QMutex m_mutex;
     QDBusConnection &m_dbusConnection;
     NetworkEnabledConfig *m_networkConfig;
     QDBusServiceWatcher *m_dbusService;
+    // uni -> 上次观察到的接口名；与 m_deviceStates 一起驱动设备集合的增量收敛
     QMap<QString, QString> m_devices;
+    QMap<QString, int> m_deviceStates;
     int m_count;
 };
 } // namespace systemservice

@@ -39,7 +39,8 @@ private slots:
     void onEnableConnectivityChanged(bool enableConnectivity);
 
 private:
-    QScopedPointer<ConnectivityChecker> m_checker;
+    // 亲和线程可能是 NM 线程，删除一律经 deleteChecker()
+    ConnectivityChecker *m_checker = nullptr;
 };
 
 }

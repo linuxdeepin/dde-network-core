@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -17,7 +17,7 @@ class SystemIPConflict : public IPConflictHandler
     Q_OBJECT
 
 public:
-    SystemIPConflict(QObject *parent);
+    explicit SystemIPConflict(QObject *parent = nullptr);
     ~SystemIPConflict() override;
     bool ipConflicted(const QString &devicePath) const;
 
@@ -29,7 +29,7 @@ protected:
     void onIPConflicted(const QString &ip, const QString &localMac, const QString &remoteMac) override;
     void onIPConflictReslove(const QString &ip, const QString &localMac, const QString &remoteMac) override;
     bool ipConflicted(const QString &devicePath, const QString &ip) const override;
-    void ipv4Changed(const NetworkManager::Device::Ptr &device) override;
+    void ipv4Changed(const QString &deviceUni) override;
 
 private:
     IPConflictStore m_ipConfilctData;

@@ -19,6 +19,7 @@
 #include "systemcontainer.h"
 #include "systemservice.h"
 #include "vpndnsmode/vpndnsmodehandler.h"
+#include "nmaccess.h"
 
 #include <QCoreApplication>
 #include <QDBusConnection>
@@ -44,10 +45,28 @@ QObject *ServiceFactory::serviceObject()
 
 QObject *ServiceFactory::createServiceObject(bool isSystem)
 {
+    if (isSystem) {
+        // NM Qt 单例在首次触碰时锚定线程；必须在任何 system 组件构造之前完成，
+        // 否则单例会落到插件线程，后续 NM 线程上的访问将跨线程。
+        // 两条 system 分支（普通 / 账户网络定制）都需要先锚定。
+        network::systemservice::ensureNetworkManagerInitialized();
+    }
+
     if (SettingConfig::instance()->enableAccountNetwork()) {
         // 如果开启了用户私有账户网络（工银瑞信定制）
-        if (isSystem)
-            return new accountnetwork::systemservice::AccountNetworkSystemService(new accountnetwork::systemservice::AccountNetworkSystemContainer(this), this);
+        if (isSystem) {
+            // 定制分支同样要导出 SystemNetwork 路径与 NetworkDBus：
+            // session 侧的 ActiveAccountNetwork 依赖 /org/deepin/service/SystemNetwork
+            // 上的 AccountSystemNetwork 接口，NetworkActivator 依赖
+            // /org/deepin/dde/Network1 的 IsDeviceEnabled。
+            auto *obj = new accountnetwork::systemservice::AccountNetworkSystemService(
+                    new accountnetwork::systemservice::AccountNetworkSystemContainer(this), this);
+            QDBusConnection::RegisterOptions opts = QDBusConnection::ExportAllSlots | QDBusConnection::ExportAllSignals | QDBusConnection::ExportAllProperties;
+            m_dbusConnection->registerObject("/org/deepin/service/SystemNetwork", obj, opts);
+
+            QDBusConnection::systemBus().registerService("org.deepin.dde.Network10");
+            return new network::systemservice::NetworkDBus(*m_dbusConnection, this);
+        }
 
         return new network::sessionservice::SessionService(new accountnetwork::sessionservice::AccountNetworkSessionContainer(this), this);
     }

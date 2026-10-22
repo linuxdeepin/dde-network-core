@@ -6,13 +6,15 @@
 #define INTERNETCHECKER_H
 
 #include <QObject>
-#include <NetworkManagerQt/Connection>
-#include <NetworkManagerQt/Device>
+#include <QStringList>
+
+#include <netinet/in.h>
 
 namespace network {
 namespace systemservice {
 
 enum class ProbeResult : int;
+struct DeviceSnapshot;
 
 class InternetChecker : public QObject
 {
@@ -28,14 +30,13 @@ signals:
     void switchFailed();
 
 private:
-    QStringList getDeviceDnsList(const NetworkManager::Device::Ptr &device) const;
-    ProbeResult checkInterfaceOnline(const NetworkManager::Device::Ptr &device) const;
+    // 以下探测函数只消费 DeviceSnapshot（纯值），不触碰 NetworkManagerQt
+    ProbeResult checkInterfaceOnline(const DeviceSnapshot &device) const;
     ProbeResult checkReachability(const QString &ifName, const sockaddr_in &dest, const QString &host, int timeoutMs, bool httpCheck) const;
-    ProbeResult checkNetCardOnline(const NetworkManager::Device::Ptr &device, const QString &domain, const QStringList &dnslist, int timeoutMs, int port) const;
-    bool resolveByBindIface(const NetworkManager::Device::Ptr &device, const QString &domain, const QStringList &dnslist, in_addr &outIp, int timeout) const;
-    bool checkIpAddrByUDP(const NetworkManager::Device::Ptr &device, const QString &dnsIp, const QString &domain, int curTimeout, in_addr &outIp) const;
-    bool checkIpAddrByTCP(const NetworkManager::Device::Ptr &device, const QString &dnsIp, const QString &domain, int curTimeout, in_addr &outIp) const;
-    bool setPrimaryDevice(const NetworkManager::Device::Ptr &device, const NetworkManager::Device::List &allDevices);
+    ProbeResult checkNetCardOnline(const DeviceSnapshot &device, const QString &domain, const QStringList &dnslist, int timeoutMs, int port) const;
+    bool resolveByBindIface(const DeviceSnapshot &device, const QString &domain, const QStringList &dnslist, in_addr &outIp, int timeout) const;
+    bool checkIpAddrByUDP(const DeviceSnapshot &device, const QString &dnsIp, const QString &domain, int curTimeout, in_addr &outIp) const;
+    bool checkIpAddrByTCP(const DeviceSnapshot &device, const QString &dnsIp, const QString &domain, int curTimeout, in_addr &outIp) const;
 
     // DNS辅助函数：构造查询包，返回写入的字节数；出错返回-1
     static int buildDnsQueryPacket(const QString &domain, unsigned char *pkt, int pktSize, unsigned short txId);

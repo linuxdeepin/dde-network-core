@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -21,7 +21,6 @@ class OwnerNetController : public QObject
 
 public:
     OwnerNetController(QObject *parent = Q_NULLPTR);
-    ~OwnerNetController();
     QVariantMap authenInfo() const;
     QMap<QString, QString> accountNetwork() const;
 
@@ -38,6 +37,7 @@ private:
     NetworkConfig *m_networkConfig;
     AccountManager *m_accountManager;
     InterfaceServer *m_server;
+    // 与插件线程其他成员同线程；NM 访问全部经 NetworkManagerProxy。
     NetworkHandler *m_networkHandler;
 };
 

@@ -5,6 +5,7 @@
 #ifndef SETTINGCONFIG_H
 #define SETTINGCONFIG_H
 
+#include <QMutex>
 #include <QObject>
 
 class SettingConfig : public QObject
@@ -46,6 +47,9 @@ private:
     explicit SettingConfig(QObject *parent = nullptr);
 
 private:
+    // 访问器可能被 NM 线程 / 探测线程并发读取，而 onValueChanged 在 DConfig
+    // 所属线程写入，故统一加锁。
+    mutable QMutex m_mutex;
     bool m_reconnectIfIpConflicted;
     bool m_enableConnectivity;
     int m_connectivityIntervalWhenLimit;

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2025 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2025-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #ifndef NETWORKDBUS_H
@@ -7,6 +7,7 @@
 #include <QDBusContext>
 #include <QDBusObjectPath>
 #include <QObject>
+#include <QPointer>
 
 namespace network {
 namespace systemservice {
@@ -39,7 +40,11 @@ Q_SIGNALS:
     void DeviceEnabled(const QDBusObjectPath &devPath, bool enabled);
 
 private:
-    QScopedPointer<NetworkThread> m_networkThread;
+    // NetworkThread 已消失时给 delayed-reply 客户端回错误，避免其挂到超时
+    bool replyIfThreadGone();
+
+    // NetworkThread 运行在 NM 线程上，析构必须回到它的线程执行
+    QPointer<NetworkThread> m_networkThread;
 };
 } // namespace systemservice
 } // namespace network

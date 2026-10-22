@@ -4,6 +4,8 @@
 
 #include "networkinitialization.h"
 
+#include "nmaccess.h"
+
 #include "settingconfig.h"
 #include "systemservice.h"
 
@@ -31,12 +33,17 @@
 #include <QTimer>
 #include <QTranslator>
 
+#include <iterator>
+
 using namespace network::systemservice;
 
 // the interface is enabled from the administrative point of view. Corresponds to kernel IFF_UP.
 #define DEVICE_INTERFACE_FLAG_UP 0x1
 
 #define NETWORKMANAGER_SERVICE "org.freedesktop.NetworkManager"
+
+// 这些查询运行在 NM 线程上，超时必须远低于 D-Bus 默认的 25 秒
+static const int kAccountQueryTimeoutMs = 3000;
 
 #define LOCKSERVICE "org.deepin.dde.LockService1"
 #define LOCKPATH "/org/deepin/dde/LockService1"
@@ -51,9 +58,13 @@ NetworkInitialization::NetworkInitialization(QObject *parent)
     , m_initialized(false)
     , m_accountServiceRegister(false)
     , m_hasAddFirstConnection(false)
+    , m_translator(new QTranslator(this))
 {
-    initDeviceInfo();
-    initConnection();
+    // 本对象直接调用 NetworkManagerQt，必须与 NM Qt 单例同线程。
+    // 构造点在插件线程，因此初始化一律排队到 NM 线程执行。
+    moveToThread(networkManagerThread());
+    QMetaObject::invokeMethod(this, &NetworkInitialization::initDeviceInfo, Qt::QueuedConnection);
+    QMetaObject::invokeMethod(this, &NetworkInitialization::initConnection, Qt::QueuedConnection);
 }
 
 void NetworkInitialization::updateLanguage(const QString &locale)
@@ -121,6 +132,7 @@ void NetworkInitialization::initConnection()
 
 void NetworkInitialization::addFirstConnection()
 {
+    NMQT_ASSERT_THREAD();
     qCDebug(DSM) << "add wired device connection: has add" << m_hasAddFirstConnection;
 
     if (m_hasAddFirstConnection) {
@@ -141,6 +153,7 @@ void NetworkInitialization::addFirstConnection()
 
 void NetworkInitialization::addFirstConnection(NetworkManager::WiredDevice *device)
 {
+    NMQT_ASSERT_THREAD();
     if (!device)
         return;
     // 还没安装语言场景，信号变化触发创建连接。回退读取系统配置文件获取语言
@@ -162,15 +175,25 @@ void NetworkInitialization::addFirstConnection(NetworkManager::WiredDevice *devi
     static QMutex lock;
     QMutexLocker locker(&lock);
 
-    auto createConnection = [this, device] {
+    // 只捕获设备路径：定时器最多延迟 5 秒，期间设备可能已被销毁
+    //（NM 重启会清空 Device 表），裸指针会悬垂。回调里重新解析成 Ptr 保活。
+    const QString deviceUni = device->uni();
+    auto createConnection = [this, deviceUni] {
+        const NetworkManager::WiredDevice::Ptr device =
+                NetworkManager::findNetworkInterface(deviceUni).staticCast<NetworkManager::WiredDevice>();
+        if (device.isNull()) {
+            qCWarning(DSM()) << "device gone before creating connection:" << deviceUni;
+            return;
+        }
+
         // 先查找当前的设备下是否存在有线连接，如果不存在，则直接新建一个，因为按照要求是至少要有一个有线连接
         NetworkManager::Connection::List unSaveConnections;
-        bool findConnection = hasConnection(device, unSaveConnections);
+        bool findConnection = hasConnection(device.data(), unSaveConnections);
         // 按照需求，需要将未保存的连接删除
         for (const NetworkManager::Connection::Ptr &conn : unSaveConnections)
             conn->remove();
 
-        qCDebug(DSM) << "find connection :" << findConnection << "current device:" << device->uni();
+        qCDebug(DSM()) << "find connection :" << findConnection << "current device:" << device->uni();
 
         if (findConnection)
             return;
@@ -178,8 +201,8 @@ void NetworkInitialization::addFirstConnection(NetworkManager::WiredDevice *devi
         // 记录当前设备创建连接的时间，在下一次为该设备创建连接的时候，会等待5秒，否则会出现创建的连接的
         m_lastCreateTime[device->interfaceName()] = QDateTime::currentDateTime();
         // 如果发现当前的连接的数量为空,则自动创建以当前语言为基础的连接
-        QPair<int, QString> matchName = connectionMatchName(device);
-        qCDebug(DSM) << "device:" << device->interfaceName() << "start create first connection" << matchName.second;
+        QPair<int, QString> matchName = connectionMatchName(device.data());
+        qCDebug(DSM()) << "device:" << device->interfaceName() << "start create first connection" << matchName.second;
         NetworkManager::ConnectionSettings::Ptr conn(new NetworkManager::ConnectionSettings(NetworkManager::ConnectionSettings::ConnectionType::Wired));
         conn->setId(matchName.second);
         conn->setUuid(conn->createNewUuid());
@@ -301,14 +324,22 @@ QPair<int, QString> NetworkInitialization::connectionMatchName(NetworkManager::W
 
 QVariant NetworkInitialization::accountInterface(const QString &path, const QString &key, bool isUser) const
 {
-    QString interfaceName;
-    if (isUser) {
-        interfaceName = "org.deepin.dde.Accounts1.User";
-    } else {
-        interfaceName = "org.deepin.dde.Accounts1";
+    const QString interfaceName = isUser ? QStringLiteral("org.deepin.dde.Accounts1.User")
+                                         : QStringLiteral("org.deepin.dde.Accounts1");
+    // 本函数运行在 NM 线程，任何阻塞都会停摆 NM 的事件循环（设备状态随之丢失）。
+    // QDBusInterface 的构造会先做一次 Introspect、property() 再走一次 Get，
+    // 这里直接发一次 Properties.Get，并把等待上限压到 3 秒（默认是 25 秒）。
+    QDBusMessage message = QDBusMessage::createMethodCall(QStringLiteral("org.deepin.dde.Accounts1"),
+                                                         path,
+                                                         QStringLiteral("org.freedesktop.DBus.Properties"),
+                                                         QStringLiteral("Get"));
+    message << interfaceName << key;
+    const QDBusMessage reply = QDBusConnection::systemBus().call(message, QDBus::Block, kAccountQueryTimeoutMs);
+    if (reply.type() != QDBusMessage::ReplyMessage || reply.arguments().isEmpty()) {
+        qCDebug(DSM()) << "query account property failed" << path << key << reply.errorMessage();
+        return QVariant();
     }
-    QDBusInterface dbus("org.deepin.dde.Accounts1", path, interfaceName, QDBusConnection::systemBus());
-    return dbus.property(key.toLocal8Bit().constData());
+    return reply.arguments().first().value<QDBusVariant>().variant();
 }
 
 bool NetworkInitialization::installUserTranslator(const QString &json)
@@ -365,11 +396,10 @@ bool NetworkInitialization::installUserTranslator(const QString &json)
 
 bool NetworkInitialization::installLanguage(const QString &locale)
 {
-    static QTranslator translator;
-    QCoreApplication::removeTranslator(&translator);
+    QCoreApplication::removeTranslator(m_translator);
     const QString qmFile = QString("%1/network-service-plugin_%2.qm").arg(QM_FILES_DIR).arg(locale);
-    if (translator.load(qmFile)) {
-        QCoreApplication::installTranslator(&translator);
+    if (m_translator->load(qmFile)) {
+        QCoreApplication::installTranslator(m_translator);
         qCDebug(DSM) << "install translation file" << qmFile;
         return true;
     }
@@ -427,28 +457,59 @@ void NetworkInitialization::ensureTranslatorInstalled()
 
 void NetworkInitialization::hideWirelessDevice(const QSharedPointer<NetworkManager::Device> &device, bool disableNetwork)
 {
+    NMQT_ASSERT_THREAD();
     if (!disableNetwork)
         return;
 
     bool managed = !disableNetwork;
-    qCDebug(DSM) << "device" << device->interfaceName() << "manager" << device->managed();
+    qCDebug(DSM()) << "device" << device->interfaceName() << "manager" << device->managed();
     if (device->managed() != managed) {
-        QDBusInterface dbusInter("org.freedesktop.NetworkManager", device->uni(), "org.freedesktop.NetworkManager.Device", QDBusConnection::systemBus());
-        dbusInter.setProperty("Managed", managed);
+        setDeviceManaged(device->uni(), managed);
     }
-    NetworkManager::Device *devicePtr = device.data();
-    connect(devicePtr, &NetworkManager::Device::managedChanged, this, [ devicePtr, managed ] {
-        if (devicePtr->managed() == managed)
-            return ;
+    // 捕获设备路径而非裸指针：device 可能先于本连接被销毁。
+    // lambda 无法用 Qt::UniqueConnection，重复进入（ConfigManager 重启）时不再挂接。
+    const QString deviceUni = device->uni();
+    if (!m_managedHooked.contains(deviceUni)) {
+        m_managedHooked.insert(deviceUni);
+        connect(device.data(), &NetworkManager::Device::managedChanged, this, [this, deviceUni, managed] {
+            const NetworkManager::Device::Ptr current = NetworkManager::findNetworkInterface(deviceUni);
+            if (current.isNull() || current->managed() == managed)
+                return;
 
-        qCDebug(DSM) << "device" << devicePtr->interfaceName() << "managed changed" << devicePtr->managed() << ", will set it managed" << managed;
-        QDBusInterface dbusInter("org.freedesktop.NetworkManager", devicePtr->uni(), "org.freedesktop.NetworkManager.Device", QDBusConnection::systemBus());
-        dbusInter.setProperty("Managed", managed);
-    });
+            qCDebug(DSM()) << "device" << current->interfaceName() << "managed changed" << current->managed() << ", will set it managed" << managed;
+            setDeviceManaged(deviceUni, managed);
+        });
+    }
+}
+
+void NetworkInitialization::setDeviceManaged(const QString &deviceUni, bool managed)
+{
+    NMQT_ASSERT_THREAD();
+    // 异步写：NM 线程上任何同步 D-Bus 等待都会停摆设备状态处理
+    QDBusMessage message = QDBusMessage::createMethodCall(NETWORKMANAGER_SERVICE,
+                                                         deviceUni,
+                                                         QStringLiteral("org.freedesktop.DBus.Properties"),
+                                                         QStringLiteral("Set"));
+    message << QStringLiteral("org.freedesktop.NetworkManager.Device")
+            << QStringLiteral("Managed")
+            << QVariant::fromValue(QDBusVariant(managed));
+    QDBusConnection::systemBus().callWithCallback(message, this, SLOT(onSetDeviceManagedFinished(QDBusMessage)),
+                                                  SLOT(onSetDeviceManagedError(QDBusError, QDBusMessage)));
+}
+
+void NetworkInitialization::onSetDeviceManagedFinished(const QDBusMessage &reply)
+{
+    Q_UNUSED(reply)
+}
+
+void NetworkInitialization::onSetDeviceManagedError(const QDBusError &error, const QDBusMessage &message)
+{
+    qCWarning(DSM()) << "set Managed failed" << message.arguments().value(0).toString() << error.message();
 }
 
 void NetworkInitialization::initDeviceConnection(const QSharedPointer<NetworkManager::WiredDevice> &device)
 {
+    NMQT_ASSERT_THREAD();
     QString deviceUni = device->uni();
     qCDebug(DSM) << "init device connection" << deviceUni;
     connect(device.data(), &NetworkManager::WiredDevice::interfaceFlagsChanged, this, &NetworkInitialization::onWiredDevicePropertyChanged, Qt::UniqueConnection);
@@ -459,11 +520,18 @@ void NetworkInitialization::initDeviceConnection(const QSharedPointer<NetworkMan
 
 void NetworkInitialization::checkAccountStatus()
 {
-    QDBusInterface dbusInter(LOCKSERVICE, LOCKPATH, LOCKINTERFACE, QDBusConnection::systemBus());
-    QDBusPendingCall reply = dbusInter.asyncCall("CurrentUser");
-    reply.waitForFinished();
-    QDBusPendingReply<QString> replyResult = reply.reply();
-    m_initialized = installUserTranslator(replyResult.value());
+    // 已经确定过当前用户语言后，installUserTranslator() 只会立即返回 true，
+    // 再查一次纯属在 NM 线程上白等一次 D-Bus 往返（设备热插拔会频繁触发）。
+    if (m_initialized) {
+        return;
+    }
+    QDBusMessage message = QDBusMessage::createMethodCall(LOCKSERVICE, LOCKPATH, LOCKINTERFACE, QStringLiteral("CurrentUser"));
+    const QDBusMessage reply = QDBusConnection::systemBus().call(message, QDBus::Block, kAccountQueryTimeoutMs);
+    if (reply.type() != QDBusMessage::ReplyMessage || reply.arguments().isEmpty()) {
+        qCDebug(DSM()) << "query current user failed" << reply.errorMessage();
+        return;
+    }
+    m_initialized = installUserTranslator(reply.arguments().first().toString());
 }
 
 void NetworkInitialization::updateConnectionLanguage(const QString &accountPath)
@@ -484,6 +552,7 @@ void NetworkInitialization::updateConnectionLanguage(const QString &accountPath)
 
 void NetworkInitialization::updateConnectionLanguage()
 {
+    NMQT_ASSERT_THREAD();
     qCWarning(DSM) << "cache connection count" << m_untranslactionConnections.size();
     for (auto it = m_untranslactionConnections.begin(); it != m_untranslactionConnections.end(); it++) {
         NetworkManager::Connection::Ptr connection = NetworkManager::findConnectionByUuid(it.key());
@@ -515,13 +584,15 @@ bool NetworkInitialization::isServerSystem() const
 
 void NetworkInitialization::onInitDeviceConnection()
 {
+    NMQT_ASSERT_THREAD();
     QList<NetworkManager::WirelessDevice::Ptr> wirelessDevices;
     NetworkManager::Device::List devices = NetworkManager::networkInterfaces();
+    // 阻塞 D-Bus 调用，每台设备各查一次纯属浪费（且会卡住 NM 事件循环）
+    checkAccountStatus();
     for (NetworkManager::Device::Ptr device: devices) {
         if (device->type() == NetworkManager::Device::Type::Wifi) {
             wirelessDevices << device.staticCast<NetworkManager::WirelessDevice>();
         } else if (device->type() == NetworkManager::Device::Type::Ethernet) {
-            checkAccountStatus();
             qCDebug(DSM) << "Wired device" << device->interfaceName() << "initilized" << m_initialized << ",add first connection";
             NetworkManager::WiredDevice::Ptr wiredDevice = device.staticCast<NetworkManager::WiredDevice>();
             initDeviceConnection(wiredDevice);
@@ -536,11 +607,66 @@ void NetworkInitialization::onInitDeviceConnection()
     for (const NetworkManager::WirelessDevice::Ptr &device : wirelessDevices) {
         hideWirelessDevice(device, disableNetwork);
     }
-    connect(NetworkManager::notifier(), &NetworkManager::Notifier::deviceAdded, this, &NetworkInitialization::onDeviceAdded, Qt::UniqueConnection);
+    // 本函数已完成这些设备的初始化，登记后 devicesChanged 不再重复处理
+    for (const NetworkManager::Device::Ptr &device : devices) {
+        m_seenDevices.insert(device->uni());
+    }
+
+    // 库信号只在代理内部 connect；这里消费代理的自有信号。
+    // 本函数可能因 ConfigManager 重启再次进入，连接只能建立一次。
+    if (m_devicesChangedConnection) {
+        return;
+    }
+    m_devicesChangedConnection = connect(NetworkManagerProxy::instance(), &NetworkManagerProxy::devicesChanged, this, [this] {
+        const QList<DeviceSnapshot> devices = NetworkManagerProxy::instance()->devices();
+
+        // 先清理已消失的设备，避免这些集合长期增长，
+        // 也让 uni 被复用的新设备能重新走一次初始化
+        QSet<QString> alive;
+        QSet<QString> aliveInterfaces;
+        alive.reserve(devices.size());
+        aliveInterfaces.reserve(devices.size());
+        for (const DeviceSnapshot &device : devices) {
+            alive.insert(device.uni);
+            if (!device.interfaceName.isEmpty()) {
+                aliveInterfaces.insert(device.interfaceName);
+            }
+        }
+        for (auto it = m_seenDevices.begin(); it != m_seenDevices.end();) {
+            it = alive.contains(*it) ? std::next(it) : m_seenDevices.erase(it);
+        }
+        for (auto it = m_managedHooked.begin(); it != m_managedHooked.end();) {
+            it = alive.contains(*it) ? std::next(it) : m_managedHooked.erase(it);
+        }
+        // 以接口名为 key，网卡重新出现时会被重新登记
+        for (auto it = m_lastCreateTime.begin(); it != m_lastCreateTime.end();) {
+            it = aliveInterfaces.contains(it.key()) ? std::next(it) : m_lastCreateTime.erase(it);
+        }
+        // created-connection 缓存按 NM 现值裁剪：连接被外部删除后条目不会自己消失
+        if (!m_newConnectionNames.isEmpty()) {
+            QSet<QString> existing;
+            const NetworkManager::Connection::List connections = NetworkManager::listConnections();
+            existing.reserve(connections.size());
+            for (const NetworkManager::Connection::Ptr &connection : connections) {
+                existing.insert(connection->path());
+            }
+            for (auto it = m_newConnectionNames.begin(); it != m_newConnectionNames.end();) {
+                it = existing.contains(it.key()) ? std::next(it) : m_newConnectionNames.erase(it);
+            }
+        }
+
+        for (const DeviceSnapshot &device : devices) {
+            if (!m_seenDevices.contains(device.uni)) {
+                m_seenDevices.insert(device.uni);
+                onDeviceAdded(device.uni);
+            }
+        }
+    });
 }
 
 void NetworkInitialization::onWiredDevicePropertyChanged()
 {
+    NMQT_ASSERT_THREAD();
     NetworkManager::WiredDevice *wiredDevice = qobject_cast<NetworkManager::WiredDevice *>(sender());
     if (!wiredDevice)
         return;
@@ -552,6 +678,7 @@ void NetworkInitialization::onWiredDevicePropertyChanged()
 
 void NetworkInitialization::onDeviceAdded(const QString &uni)
 {
+    NMQT_ASSERT_THREAD();
     NetworkManager::Device::Ptr device = NetworkManager::findNetworkInterface(uni);
     // 这里只处理无线网卡
     if (!device)
@@ -578,6 +705,7 @@ void NetworkInitialization::onDeviceAdded(const QString &uni)
 
 void NetworkInitialization::onAvailableConnectionDisappeared(const QString &connectionUni)
 {
+    NMQT_ASSERT_THREAD();
     if (m_newConnectionNames.contains(connectionUni))
         m_newConnectionNames.remove(connectionUni);
 }

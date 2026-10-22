@@ -1,14 +1,17 @@
 // SPDX-FileCopyrightText: 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
-
 #ifndef CONNECTIVITYCHECKER_H
 #define CONNECTIVITYCHECKER_H
 
 #include "constants.h"
 
 #include <QObject>
+#include <QStringList>
 
+#include <atomic>
+
+class QThread;
 class QTimer;
 
 namespace NetworkManager {
@@ -21,6 +24,9 @@ namespace systemservice {
 
 class StatusChecker;
 class InternetChecker;
+class ConnectivityProber;
+struct ConnectivityProbeRequest;
+struct ConnectivityProbeResult;
 
 // 网络连通性的检测
 class ConnectivityChecker : public QObject
@@ -59,12 +65,19 @@ signals:
 private slots:
     void onPortalDetected(const QString &portalUrl);
     void onConnectivityChanged(network::service::Connectivity connectivity);
+    void onProbeFinished(const ConnectivityProbeResult &result);
 
 private:
+    void startProbe(const ConnectivityProbeRequest &request);
+
+    // 以下状态只在插件线程读写：StatusChecker 的信号跨线程排队到本对象的线程
     StatusChecker *m_statusChecker;
     QString m_portalUrl;
+    // 认证地址对应的主连接，变化后 m_portalUrl 视为过期
+    QString m_portalPrimaryId;
     network::service::Connectivity m_connectivity;
-    QThread *m_thread;
+    QThread *m_probeThread;
+    ConnectivityProber *m_prober;
     QThread *m_internetCheckerThread;
     InternetChecker *m_internetChecker;
 };
@@ -76,31 +89,38 @@ class StatusChecker : public QObject
 public:
     explicit StatusChecker(QObject *parent = Q_NULLPTR);
     ~StatusChecker() override;
+
+    // 以下接口均须在 NM 线程上执行
     void initConnectivityChecker();
     void stop();
 
+    // 返回状态仅 NM 线程可信；跨线程读取请用 LocalConnectionvityChecker 的缓存
     network::service::Connectivity connectivity() const;
     QString portalUrl() const;
     void checkConnectivity();
-    QString detectionConnectionId() const;
+    // 插件线程读取：原子量
     bool primaryConnectionChanged() const;
+
+    // 探测结果回填（由 LocalConnectionvityChecker 排队至 NM 线程调用）
+    void onProbeResult(const ConnectivityProbeResult &result);
 
 signals:
     void portalDetected(const QString &);
     void connectivityChanged(const network::service::Connectivity &);
+    void probeRequested(const ConnectivityProbeRequest &request);
 
 private:
-    void initDeviceConnect(const QList<QSharedPointer<NetworkManager::Device>> &devices);
     void setConnectivity(const network::service::Connectivity &connectivity);
     void setPortalUrl(const QString &portalUrl);
     void initDefaultConnectivity();
 
 private slots:
-    void onUpdataActiveState(const QSharedPointer<NetworkManager::ActiveConnection> &networks);
     void onUpdateUrls(const QStringList &urls);
     void startCheck();
-    void realStartCheck();
-    void onActiveConnectionChanged();
+    void startProbeCheck();
+    void onDevicesChanged();
+    void onPrimaryConnectionChanged(const QString &uni);
+    void onActiveConnectionsChanged();
 
 private:
     QTimer *m_checkTimer;
@@ -113,8 +133,9 @@ private:
     QString m_portalUrl;
     QStringList m_checkUrls;
     bool m_isStop;
-    QString m_primaryId;
-    bool m_primaryConnectionChanged;
+    QString m_primaryId;                 // 仅 NM 线程访问
+    std::atomic<bool> m_primaryConnectionChanged; // 插件线程读取
+    quint64 m_probeGeneration;
 };
 
 class NMConnectionvityChecker : public ConnectivityChecker
@@ -126,12 +147,12 @@ public:
     ~NMConnectionvityChecker() override = default;
     network::service::Connectivity connectivity() const override;
 
-private:
+public slots:
     void initMember();
     void initConnection();
 
 private:
-    network::service::Connectivity m_connectivity;
+    std::atomic<int> m_connectivity;
 };
 
 } // namespace systemservice

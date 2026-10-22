@@ -1,19 +1,18 @@
 // SPDX-FileCopyrightText: 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
-
 #include "connectivitychecker.h"
 #include "internetchecker.h"
 
+#include "connectivityprober.h"
+#include "nmaccess.h"
 #include "settingconfig.h"
-#include "httpmanager.h"
 
 #include <NetworkManagerQt/Manager>
-#include <NetworkManagerQt/WirelessDevice>
-#include <NetworkManagerQt/ActiveConnection>
 
-#include <QTimer>
+#include <QDebug>
 #include <QThread>
+#include <QTimer>
 
 using namespace network::systemservice;
 
@@ -23,40 +22,75 @@ ConnectivityChecker::ConnectivityChecker(QObject *parent)
     qRegisterMetaType<network::service::Connectivity>("network::service::Connectivity");
 }
 
+// ---------------------------------------------------------------------------
+// LocalConnectionvityChecker
+// ---------------------------------------------------------------------------
+
 LocalConnectionvityChecker::LocalConnectionvityChecker(QObject *parent)
     : ConnectivityChecker(parent)
     , m_statusChecker(new StatusChecker)
     , m_connectivity(network::service::Connectivity::Unknownconnectivity)
-    , m_thread(new QThread)
+    , m_probeThread(new QThread(this))
+    , m_prober(new ConnectivityProber)
     , m_internetCheckerThread(nullptr)
     , m_internetChecker(nullptr)
 {
-    m_statusChecker->moveToThread(m_thread);
+    // 跨线程信号需要已注册的 metatype，否则 queued 连接会被静默丢弃
+    qRegisterMetaType<ConnectivityProbeRequest>("ConnectivityProbeRequest");
+    qRegisterMetaType<ConnectivityProbeResult>("ConnectivityProbeResult");
+
+    // StatusChecker 直接调用 NetworkManagerQt，必须待在 NM 线程
+    m_statusChecker->moveToThread(networkManagerThread());
+
+    // HTTP 探测是同步阻塞调用，放在独立线程，避免堵死 NM 事件循环
+    m_prober->moveToThread(m_probeThread);
+    m_probeThread->start();
+
     connect(m_statusChecker, &StatusChecker::portalDetected, this, &LocalConnectionvityChecker::onPortalDetected);
     connect(m_statusChecker, &StatusChecker::connectivityChanged, this, &LocalConnectionvityChecker::onConnectivityChanged);
-    m_thread->start();
+    connect(m_statusChecker, &StatusChecker::probeRequested, this, &LocalConnectionvityChecker::startProbe);
+    connect(m_prober, &ConnectivityProber::finished, this, &LocalConnectionvityChecker::onProbeFinished);
+
     QMetaObject::invokeMethod(m_statusChecker, &StatusChecker::initConnectivityChecker, Qt::QueuedConnection);
+
     if (SettingConfig::instance()->needCheckNetwork()) {
         m_internetCheckerThread = new QThread(this);
         m_internetChecker = new InternetChecker;
         m_internetChecker->moveToThread(m_internetCheckerThread);
         m_internetCheckerThread->start();
-        connect(m_internetChecker, &InternetChecker::switchSuccess, m_statusChecker, &StatusChecker::checkConnectivity);
-        connect(m_internetCheckerThread, &QThread::finished, m_internetChecker, &QObject::deleteLater);
+        // 切换成功后立即重新检测连通性（跨线程自动排队到 NM 线程），
+        // 否则要等周期性检查（最长 300s），状态会长时间停留在旧值
+        connect(m_internetChecker, &InternetChecker::switchSuccess,
+                m_statusChecker, &StatusChecker::checkConnectivity);
     }
 }
 
 LocalConnectionvityChecker::~LocalConnectionvityChecker()
 {
-    m_statusChecker->stop();
-    m_thread->quit();
-    m_thread->wait();
-    m_statusChecker->deleteLater();
-    m_thread->deleteLater();
+    // StatusChecker 运行在 NM 线程，析构必须回到它的线程执行。
+    // NM 线程常驻不退出，因此 deleteLater 能正常被处理。
+    if (isNetworkManagerThread()) {
+        m_statusChecker->stop();
+        delete m_statusChecker;
+    } else {
+        QMetaObject::invokeMethod(m_statusChecker, [checker = m_statusChecker] {
+            checker->stop();
+            delete checker;
+        }, Qt::BlockingQueuedConnection);
+    }
+    m_statusChecker = nullptr;
+
+    // 探测线程即将退出，deleteLater 不会被执行，这里同步删除
+    m_probeThread->quit();
+    m_probeThread->wait();
+    delete m_prober;
+    m_prober = nullptr;
+
     if (m_internetCheckerThread) {
         m_internetCheckerThread->quit();
         m_internetCheckerThread->wait();
-        m_internetCheckerThread->deleteLater();
+        delete m_internetChecker;
+        m_internetChecker = nullptr;
     }
 }
 
@@ -67,8 +101,9 @@ network::service::Connectivity LocalConnectionvityChecker::connectivity() const
 
 QString LocalConnectionvityChecker::portalUrl() const
 {
-    NetworkManager::ActiveConnection::Ptr primaryConnection = NetworkManager::primaryConnection();
-    if (!primaryConnection.isNull() && primaryConnection->connection()->uuid() != m_statusChecker->detectionConnectionId()) {
+    if (!m_portalUrl.isEmpty()
+            && NetworkManagerProxy::instance()->primaryConnectionUni() != m_portalPrimaryId) {
+        // 主连接已经变了，旧认证地址不再适用
         return QString();
     }
     return m_portalUrl;
@@ -76,12 +111,14 @@ QString LocalConnectionvityChecker::portalUrl() const
 
 void LocalConnectionvityChecker::checkConnectivity()
 {
-    // m_statusChecker 在单独的线程中执行，因此调用QMetaObject::invokeMethod方法让其在所属的线程中来执行
+    // m_statusChecker 在 NM 线程中执行，因此让其在自己的线程里运行
     QMetaObject::invokeMethod(m_statusChecker, &StatusChecker::checkConnectivity, Qt::QueuedConnection);
 }
 
 void LocalConnectionvityChecker::onPortalDetected(const QString &portalUrl)
 {
+    // 记录检测时所处的主连接；主连接一变，缓存的认证地址就过期了
+    m_portalPrimaryId = NetworkManagerProxy::instance()->primaryConnectionUni();
     if (m_portalUrl == portalUrl)
         return;
 
@@ -92,10 +129,11 @@ void LocalConnectionvityChecker::onPortalDetected(const QString &portalUrl)
 void LocalConnectionvityChecker::onConnectivityChanged(network::service::Connectivity connectivity)
 {
     if (m_internetChecker && connectivity != network::service::Connectivity::Full) {
-        bool checkPrimary = m_statusChecker->primaryConnectionChanged();
-        bool switchPortal = connectivity != network::service::Connectivity::Portal;
-        QMetaObject::invokeMethod(m_internetChecker, [this, checkPrimary, switchPortal]() {
-            m_internetChecker->switchInternetAccess(checkPrimary, switchPortal);
+        const bool checkPrimary = m_statusChecker->primaryConnectionChanged();
+        const bool switchPortal = connectivity != network::service::Connectivity::Portal;
+        // 捕获指针而非 this：本对象可能先于排队调用被销毁
+        QMetaObject::invokeMethod(m_internetChecker, [checker = m_internetChecker, checkPrimary, switchPortal]() {
+            checker->switchInternetAccess(checkPrimary, switchPortal);
         }, Qt::QueuedConnection);
     }
     qCInfo(DSM) << "Connectivity changed, incomming: " << static_cast<int>(connectivity) << ", current: " << static_cast<int>(m_connectivity);
@@ -106,7 +144,25 @@ void LocalConnectionvityChecker::onConnectivityChanged(network::service::Connect
     emit connectivityChanged(connectivity);
 }
 
-// 通过本地检测网络连通性
+void LocalConnectionvityChecker::startProbe(const ConnectivityProbeRequest &request)
+{
+    QMetaObject::invokeMethod(m_prober, [prober = m_prober, request] {
+        prober->probe(request);
+    }, Qt::QueuedConnection);
+}
+
+void LocalConnectionvityChecker::onProbeFinished(const ConnectivityProbeResult &result)
+{
+    // 探测结果回到 NM 线程判定连通性；陈旧结果由 StatusChecker 丢弃
+    QMetaObject::invokeMethod(m_statusChecker, [checker = m_statusChecker, result] {
+        checker->onProbeResult(result);
+    }, Qt::QueuedConnection);
+}
+
+// ---------------------------------------------------------------------------
+// StatusChecker（全程运行在 NM 线程）
+// ---------------------------------------------------------------------------
+
 StatusChecker::StatusChecker(QObject *parent)
     : QObject(parent)
     , m_checkTimer(new QTimer(this))
@@ -117,6 +173,7 @@ StatusChecker::StatusChecker(QObject *parent)
     , m_checkCount(0)
     , m_isStop(false)
     , m_primaryConnectionChanged(false)
+    , m_probeGeneration(0)
 {
     qRegisterMetaType<NetworkManager::ActiveConnection::State>("NetworkManager::ActiveConnection::State");
     qRegisterMetaType<NetworkManager::Device::State>("NetworkManager::Device::State");
@@ -127,7 +184,7 @@ StatusChecker::StatusChecker(QObject *parent)
     m_pendingCheckTimer->setInterval(1000);  // 1秒防抖
     connect(m_pendingCheckTimer, &QTimer::timeout, this, [this] {
         if (m_pendingCheck)
-            realStartCheck();
+            startProbeCheck();
         m_pendingCheck = false;
     });
 }
@@ -138,20 +195,6 @@ StatusChecker::~StatusChecker()
         disconnect(connection);
     }
     m_checkerConnection.clear();
-
-    m_checkTimer->stop();
-    m_checkTimer->deleteLater();
-    m_checkTimer = nullptr;
-
-    if (m_timer->isActive())
-        m_timer->stop();
-    m_timer->deleteLater();
-    m_timer = nullptr;
-
-    if (m_pendingCheckTimer->isActive())
-        m_pendingCheckTimer->stop();
-    m_pendingCheckTimer->deleteLater();
-    m_pendingCheckTimer = nullptr;
 }
 
 network::service::Connectivity StatusChecker::connectivity() const
@@ -166,7 +209,8 @@ QString StatusChecker::portalUrl() const
 
 void StatusChecker::checkConnectivity()
 {
-    qCDebug(DSM) << "Check connectivity";
+    NMQT_ASSERT_THREAD();
+    qCDebug(DSM()) << "Check connectivity";
     m_checkCount = 0;
     initDefaultConnectivity();
     if (m_timer->isActive()) {
@@ -176,40 +220,16 @@ void StatusChecker::checkConnectivity()
     }
 }
 
-QString StatusChecker::detectionConnectionId() const
-{
-    return m_primaryId;
-}
-
 bool StatusChecker::primaryConnectionChanged() const
 {
     return m_primaryConnectionChanged;
 }
 
-void StatusChecker::initDeviceConnect(const QList<QSharedPointer<NetworkManager::Device>> &devices)
-{
-    for (const QSharedPointer<NetworkManager::Device> &device : devices) {
-        if (device.isNull())
-            continue;
-
-        m_checkerConnection << connect(device.data(), &NetworkManager::Device::stateChanged, this, &StatusChecker::startCheck, Qt::UniqueConnection);
-        m_checkerConnection << connect(device.data(), &NetworkManager::Device::activeConnectionChanged, this, [device, this] {
-            qCInfo(DSM) << "Device active connection changed";
-            m_checkCount = 0;
-            initDefaultConnectivity();
-            NetworkManager::ActiveConnection::Ptr activeConnection = device->activeConnection();
-            onUpdataActiveState(activeConnection);
-            if (!m_timer->isActive()) {
-                m_timer->start();
-            }
-        });
-        onUpdataActiveState(device->activeConnection());
-    }
-    connect(NetworkManager::notifier(), &NetworkManager::Notifier::activeConnectionsChanged, this, &StatusChecker::onActiveConnectionChanged);
-}
-
 void StatusChecker::initConnectivityChecker()
 {
+    NMQT_ASSERT_THREAD();
+    NetworkManagerProxy *proxy = NetworkManagerProxy::instance();
+
     connect(SettingConfig::instance(), &SettingConfig::checkUrlsChanged, this, &StatusChecker::onUpdateUrls);
     onUpdateUrls(SettingConfig::instance()->networkCheckerUrls());
     // 定期检查网络的状态
@@ -228,12 +248,12 @@ void StatusChecker::initConnectivityChecker()
     });
 
     // 当网络设备状态发生变化的时候需要检查网络状态
-    initDeviceConnect(NetworkManager::networkInterfaces());
+    m_checkerConnection << connect(proxy, &NetworkManagerProxy::devicesChanged, this, &StatusChecker::onDevicesChanged);
+    m_checkerConnection << connect(proxy, &NetworkManagerProxy::primaryConnectionChanged, this, &StatusChecker::onPrimaryConnectionChanged);
+    // VPN 等活跃连接的建立/拆除同样需要触发检测（旧实现由 activeConnectionsChanged 驱动）
+    m_checkerConnection << connect(proxy, &NetworkManagerProxy::activeConnectionsChanged, this, &StatusChecker::onActiveConnectionsChanged);
     initDefaultConnectivity();
 
-    m_checkerConnection << connect(NetworkManager::notifier(), &NetworkManager::Notifier::deviceAdded, this, [this](const QString &uni) {
-        initDeviceConnect(QList<QSharedPointer<NetworkManager::Device>>() << NetworkManager::findNetworkInterface(uni));
-    });
     // 第一次进来的时候执行一次网络状态的检测
     startCheck();
 }
@@ -249,16 +269,33 @@ void StatusChecker::stop()
         m_pendingCheckTimer->stop();
 }
 
-void StatusChecker::onUpdataActiveState(const QSharedPointer<NetworkManager::ActiveConnection> &networks)
+// 以下三个槽收敛了原实现里分别直连 Device::stateChanged /
+// ActiveConnection::activeConnectionChanged / Notifier::activeConnectionsChanged
+// 的多条路径，逐条对齐原有语义：
+//   - 设备状态变化：原先是 startCheck()，立刻发起一次探测（1 秒防抖）；
+//   - 活跃连接集合变化：原先只重置计数、修正默认状态并启动 2 秒轮询定时器。
+// 若统一成“只启动定时器”，连通性会推迟约 2 秒才刷新。
+void StatusChecker::onDevicesChanged()
 {
-    if (networks.isNull())
-        return;
+    NMQT_ASSERT_THREAD();
+    startCheck();
+}
 
-    connect(networks.data(), &NetworkManager::ActiveConnection::stateChanged, this, [this](NetworkManager::ActiveConnection::State state) {
-        if (state == NetworkManager::ActiveConnection::State::Activated || state == NetworkManager::ActiveConnection::State::Deactivated) {
-            checkConnectivity();
-        }
-    });
+void StatusChecker::onActiveConnectionsChanged()
+{
+    NMQT_ASSERT_THREAD();
+    m_checkCount = 0;
+    initDefaultConnectivity();
+    if (!m_timer->isActive()) {
+        m_timer->start();
+    }
+}
+
+// 主连接变化总是伴随活跃连接集合变化，这条与原 activeConnectionsChanged 路径同义
+void StatusChecker::onPrimaryConnectionChanged(const QString &uni)
+{
+    Q_UNUSED(uni)
+    onActiveConnectionsChanged();
 }
 
 void StatusChecker::onUpdateUrls(const QStringList &urls)
@@ -266,112 +303,89 @@ void StatusChecker::onUpdateUrls(const QStringList &urls)
     m_checkUrls = urls;
 }
 
-void StatusChecker::realStartCheck()
+// 探测在独立线程完成，这里只负责发起与判定
+void StatusChecker::startProbeCheck()
 {
-    qCDebug(DSM) << "Start check connectivity, real start check";
+    NMQT_ASSERT_THREAD();
     if (m_isStop) {
         qCDebug(DSM) << "Stop check connectivity";
         return;
     }
 
-    NetworkManager::ActiveConnection::Ptr prePrimary = NetworkManager::primaryConnection();
-    QString prePrimaryId = !prePrimary.isNull() ? prePrimary->connection()->uuid() : QString();
+    // 记录探测前的主连接，用于判定探测期间是否发生切换
+    const NetworkManagerProxy *proxy = NetworkManagerProxy::instance();
+    m_primaryId = proxy->primaryConnectionUni();
 
-    int httpTimeout = SettingConfig::instance()->httpRequestTimeout();
-    bool networkIsOk = false;
-    for (const QString &url : m_checkUrls) {
-        network::service::HttpManager http;
-        network::service::HttpReply *httpReply = http.get(url, httpTimeout);
-        if (m_isStop) {
-            qCDebug(DSM) << "Stop check connectivity";
-            break;
-        }
-        if (httpReply->isTimeout()) {
-            // 如果是读取超时了，则无需进行第二次检测，一般超时的情况下基本上都是网络不通
-            qCWarning(DSM) << "request network timeout";
-            break;
-        }
-        int httpCode = httpReply->httpCode();
-        if (httpCode == 0) {
-            qCWarning(DSM) << "Nework is unreachabel:" << url << httpReply->errorMessage();
-            continue;
-        }
+    ConnectivityProbeRequest request;
+    request.urls = m_checkUrls;
+    request.timeoutSec = SettingConfig::instance()->httpRequestTimeout();
+    request.generation = ++m_probeGeneration;
+    Q_EMIT probeRequested(request);
+}
 
-        QString portalUrl = httpReply->portal();
-        networkIsOk = true;
-        qCDebug(DSM) << "Http reply code:" << httpCode << ", portal url:" << portalUrl;
-        if (portalUrl.isEmpty()) {
-            // if the portal is empty, I think it ok
+void StatusChecker::onProbeResult(const ConnectivityProbeResult &result)
+{
+    NMQT_ASSERT_THREAD();
+    if (result.generation != m_probeGeneration) {
+        qCDebug(DSM) << "drop stale probe result" << result.generation << m_probeGeneration;
+        return;
+    }
+    if (m_isStop) {
+        qCDebug(DSM) << "Stop check connectivity";
+        return;
+    }
+
+    NetworkManagerProxy *proxy = NetworkManagerProxy::instance();
+
+    // HTTP 检查完成后，再获取当前主连接，以检测检查期间是否发生了连接切换。
+    // 必须先于 setConnectivity() 更新，否则信号消费者读到的是上一轮的结果。
+    const QString currentPrimaryId = proxy->primaryConnectionUni();
+    m_primaryConnectionChanged = (m_primaryId != currentPrimaryId);
+    m_primaryId = currentPrimaryId;
+
+    if (result.networkIsOk) {
+        if (result.portalUrl.isEmpty()) {
             setConnectivity(network::service::Connectivity::Full);
         } else {
             setConnectivity(network::service::Connectivity::Portal);
         }
-        setPortalUrl(portalUrl);
-        break;
+        setPortalUrl(result.portalUrl);
+        return;
     }
-    // HTTP 检查完成后，再获取当前主连接，以检测检查期间是否发生了连接切换
-    NetworkManager::ActiveConnection::Ptr pConnection = NetworkManager::primaryConnection();
-    if (!pConnection.isNull()) {
-        m_primaryId = pConnection->connection()->uuid();
+
+    const QList<DeviceSnapshot> devices = proxy->devices();
+    int disconnectCount = 0;
+    for (const DeviceSnapshot &device : devices) {
+        if (device.state == NetworkManager::Device::Disconnected
+            || device.state == NetworkManager::Device::Failed
+            || device.state == NetworkManager::Device::Unmanaged
+            || device.state == NetworkManager::Device::Unavailable) {
+            disconnectCount++;
+        }
     }
-    m_primaryConnectionChanged = (prePrimaryId != m_primaryId);
-    if (!m_isStop && !networkIsOk) {
-        NetworkManager::Device::List devices = NetworkManager::networkInterfaces();
-        int disconnectCount = 0;
-        for (NetworkManager::Device::Ptr device : devices) {
-            if (device->state() == NetworkManager::Device::Disconnected || device->state() == NetworkManager::Device::Failed || device->state() == NetworkManager::Device::Unmanaged
-                || device->state() == NetworkManager::Device::Unavailable) {
-                disconnectCount++;
-            }
-        }
-        qCDebug(DSM) << "Network is unreachabel, disconnect count:" << disconnectCount;
-        setPortalUrl(QString());
-        if (disconnectCount == devices.size()) {
-            setConnectivity(network::service::Connectivity::Noconnectivity);
-        } else {
-            setConnectivity(network::service::Connectivity::Limited);
-        }
+    qCDebug(DSM) << "Network is unreachabel, disconnect count:" << disconnectCount;
+    setPortalUrl(QString());
+    if (disconnectCount == devices.size()) {
+        setConnectivity(network::service::Connectivity::Noconnectivity);
+    } else {
+        setConnectivity(network::service::Connectivity::Limited);
     }
 }
 
-// 如果当前定时器没有激活，则立即执行请求，并把后续1s内的请求合并为一次请求
+// 如果当前定时器没有激活，则立即发起探测，并把后续1s内的请求合并为一次
 // 不是一个完美的方案，但是可以大大减少请求的次数（特别是待机唤醒的场景）。
 void StatusChecker::startCheck()
 {
+    NMQT_ASSERT_THREAD();
     qCDebug(DSM) << "Start check connectivity, sender:"
                  << (sender() ? sender()->metaObject()->className() : "direct");
     if (!m_pendingCheckTimer->isActive()) {
-        realStartCheck();
+        startProbeCheck();
         m_pendingCheck = false;
         m_pendingCheckTimer->start();
     } else {
         qCDebug(DSM) << "Debounce timer is active, mark pending check";
         m_pendingCheck = true;
-    }
-}
-
-void StatusChecker::onActiveConnectionChanged()
-{
-    qCInfo(DSM) << "Active connection changed";
-    // VPN changed
-    NetworkManager::ActiveConnection::List activeVpnConnections;
-    NetworkManager::ActiveConnection::List activeConnections = NetworkManager::activeConnections();
-    for (NetworkManager::ActiveConnection::Ptr activeConnection : activeConnections) {
-        if (activeConnection->connection()->settings()->connectionType() != NetworkManager::ConnectionSettings::ConnectionType::Vpn)
-            continue;
-
-        activeVpnConnections << activeConnection;
-    }
-
-    if (activeVpnConnections.isEmpty())
-        return;
-
-    for (NetworkManager::ActiveConnection::Ptr activeVpnConnection : activeVpnConnections) {
-        connect(activeVpnConnection.data(), &NetworkManager::ActiveConnection::stateChanged, this, [this](NetworkManager::ActiveConnection::State state) {
-            if (state == NetworkManager::ActiveConnection::State::Activated || state == NetworkManager::ActiveConnection::State::Deactivated) {
-                checkConnectivity();
-            }
-        });
     }
 }
 
@@ -409,22 +423,25 @@ void StatusChecker::setPortalUrl(const QString &portalUrl)
 
 void StatusChecker::initDefaultConnectivity()
 {
+    NMQT_ASSERT_THREAD();
     // 如果上一次检测的是网络连接受限或者需要认证，则无需设置初始值，否则会出现在使用过程种，本来是无法上网的状态，而设置了错误的初始值导致状态错误
     // 这个函数是为了在断开所有的连接后，再开启连接后设置其初始值
     if (m_connectivity != network::service::Connectivity::Noconnectivity && m_connectivity != network::service::Connectivity::Unknownconnectivity)
         return;
 
-    NetworkManager::Device::List devices = NetworkManager::networkInterfaces();
+    const QList<DeviceSnapshot> devices = NetworkManagerProxy::instance()->devices();
     if (devices.isEmpty())
         return;
 
     bool isFull = false;
     int disconnectCount = 0;
-    for (NetworkManager::Device::Ptr device : devices) {
-        if (device->state() == NetworkManager::Device::Activated) {
+    for (const DeviceSnapshot &device : devices) {
+        if (device.state == NetworkManager::Device::Activated) {
             isFull = true;
-        } else if (device->state() == NetworkManager::Device::Disconnected || device->state() == NetworkManager::Device::Failed || device->state() == NetworkManager::Device::Unmanaged
-                   || device->state() == NetworkManager::Device::Unavailable) {
+        } else if (device.state == NetworkManager::Device::Disconnected
+                   || device.state == NetworkManager::Device::Failed
+                   || device.state == NetworkManager::Device::Unmanaged
+                   || device.state == NetworkManager::Device::Unavailable) {
             disconnectCount++;
         }
     }
@@ -437,14 +454,9 @@ void StatusChecker::initDefaultConnectivity()
     }
 }
 
-// 通过使用NM的方式来获取网络连通性
-NMConnectionvityChecker::NMConnectionvityChecker(QObject *parent)
-    : ConnectivityChecker(parent)
-    , m_connectivity(network::service::Connectivity::Full)
-{
-    initMember();
-    initConnection();
-}
+// ---------------------------------------------------------------------------
+// NMConnectionvityChecker（全程运行在 NM 线程）
+// ---------------------------------------------------------------------------
 
 static network::service::Connectivity convertConnectivity(const NetworkManager::Connectivity &connectivity)
 {
@@ -464,20 +476,34 @@ static network::service::Connectivity convertConnectivity(const NetworkManager::
     return network::service::Connectivity::Unknownconnectivity;
 }
 
+NMConnectionvityChecker::NMConnectionvityChecker(QObject *parent)
+    : ConnectivityChecker(parent)
+    , m_connectivity(static_cast<int>(network::service::Connectivity::Full))
+{
+    moveToThread(networkManagerThread());
+    // 构造点可能不在 NM 线程，NM 访问排队到该线程执行
+    QMetaObject::invokeMethod(this, &NMConnectionvityChecker::initMember, Qt::QueuedConnection);
+    QMetaObject::invokeMethod(this, &NMConnectionvityChecker::initConnection, Qt::QueuedConnection);
+}
+
 network::service::Connectivity NMConnectionvityChecker::connectivity() const
 {
-    return m_connectivity;
+    return static_cast<network::service::Connectivity>(m_connectivity.load());
 }
 
 void NMConnectionvityChecker::initMember()
 {
-    m_connectivity = convertConnectivity(NetworkManager::connectivity());
+    NMQT_ASSERT_THREAD();
+    m_connectivity.store(static_cast<int>(convertConnectivity(NetworkManager::connectivity())));
 }
 
 void NMConnectionvityChecker::initConnection()
 {
-    connect(NetworkManager::notifier(), &NetworkManager::Notifier::connectivityChanged, this, [this](NetworkManager::Connectivity connectivity) {
-        m_connectivity = convertConnectivity(connectivity);
-        emit connectivityChanged(m_connectivity);
+    NMQT_ASSERT_THREAD();
+    // 库信号只在代理内部 connect；这里消费代理的自有信号
+    connect(NetworkManagerProxy::instance(), &NetworkManagerProxy::connectivityChanged, this, [this](NetworkManager::Connectivity connectivity) {
+        const auto converted = convertConnectivity(connectivity);
+        m_connectivity.store(static_cast<int>(converted));
+        emit connectivityChanged(converted);
     });
 }
