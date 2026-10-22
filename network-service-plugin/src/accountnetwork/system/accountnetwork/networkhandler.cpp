@@ -1,4 +1,4 @@
-﻿// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -7,130 +7,139 @@
 #include "accountmanager.h"
 #include "constants.h"
 
-#include <NetworkManagerQt/Manager>
-#include <NetworkManagerQt/ActiveConnection>
-#include <NetworkManagerQt/WirelessDevice>
-#include <NetworkManagerQt/WirelessSetting>
-#include <NetworkManagerQt/WirelessSecuritySetting>
-#include <NetworkManagerQt/WiredSetting>
-#include <NetworkManagerQt/ActiveConnection>
+#include <QTimer>
+
+#include <iterator>
+
+#include <NetworkManagerQt/Device>
 
 using namespace accountnetwork::systemservice;
+using network::systemservice::DeviceSnapshot;
+using network::systemservice::NetworkManagerProxy;
 
 NetworkHandler::NetworkHandler(AccountManager *accountManager, NetworkConfig *conf, QObject *parent)
     : QObject(parent)
     , m_accountManager(accountManager)
     , m_networkConfig(conf)
 {
-    initDevices();
-    initConnection();
+    // 代理在 NM 线程，本对象在插件线程 —— AutoConnection 自动变成队列投递
+    NetworkManagerProxy *proxy = NetworkManagerProxy::instance();
+    m_devicesConnection = connect(proxy, &NetworkManagerProxy::devicesChanged,
+                                  this, &NetworkHandler::onDevicesChanged);
+    m_idConnection = connect(proxy, &NetworkManagerProxy::activeConnectionIdReady,
+                             this, &NetworkHandler::onActiveConnectionIdReady);
+    onDevicesChanged();
+}
+
+NetworkHandler::~NetworkHandler()
+{
+    disconnect(m_devicesConnection);
+    disconnect(m_idConnection);
 }
 
 void NetworkHandler::disconnectNetwork()
 {
-    NetworkManager::Device::List devices = NetworkManager::networkInterfaces();
-    for (NetworkManager::Device::Ptr device : devices) {
-        if (device->type() != NetworkManager::Device::Type::Ethernet
-                && device->type() != NetworkManager::Device::Type::Wifi)
+    // D-Bus 调用的入口，运行在插件线程；写操作经代理排队到 NM 线程
+    NetworkManagerProxy *proxy = NetworkManagerProxy::instance();
+    const QList<DeviceSnapshot> devices = proxy->devices();
+    for (const DeviceSnapshot &device : devices) {
+        if (device.type != NetworkManager::Device::Type::Ethernet
+                && device.type != NetworkManager::Device::Type::Wifi)
             continue;
 
-        NetworkManager::ActiveConnection::Ptr activeConnection = device->activeConnection();
-        if (activeConnection) {
-            QDBusPendingReply<> reply = NetworkManager::deactivateConnection(activeConnection->path());
-            reply.waitForFinished();
-        }
-    }
-}
-
-NetworkHandler::~NetworkHandler() = default;
-
-void NetworkHandler::initDevices()
-{
-    NetworkManager::Device::List devices = NetworkManager::networkInterfaces();
-    for (NetworkManager::Device::Ptr device : devices) {
-        if (device->type() != NetworkManager::Device::Type::Wifi
-                && device->type() != NetworkManager::Device::Type::Ethernet)
+        if (device.activeConnectionUni.isEmpty())
             continue;
 
-        connect(device.data(), &NetworkManager::Device::activeConnectionChanged, device.data(), [ this, device ] {
-            deviceActiveHandler(device);
-        });
-        deviceActiveHandler(device);
+        proxy->deactivateConnection(device.activeConnectionUni);
     }
 }
 
-void NetworkHandler::initConnection()
+// 代理每次刷新缓存都会发 devicesChanged（含设备状态变化）。
+// 原实现通过 ActiveConnection::stateChanged 在 Activated 时记录配置，
+// 这里等价地按“设备已激活且活跃连接变化”触发，避免重复写配置文件。
+void NetworkHandler::onDevicesChanged()
 {
-    connect(NetworkManager::notifier(), &NetworkManager::Notifier::deviceAdded, this, &NetworkHandler::onDeviceAdded);
-}
+    NetworkManagerProxy *proxy = NetworkManagerProxy::instance();
+    const QList<DeviceSnapshot> devices = proxy->devices();
 
-QString NetworkHandler::getSaveId(const QSharedPointer<NetworkManager::ActiveConnection> &activeConnection, bool isWireless)
-{
-    // 这里只保存需要加密的网络
-    if (activeConnection.isNull())
-        return QString();
+    QSet<QString> aliveDevices;
+    QSet<QString> aliveConnections;
+    aliveDevices.reserve(devices.size());
+    aliveConnections.reserve(devices.size());
 
-    NetworkManager::ConnectionSettings::Ptr connectionSettings = activeConnection->connection()->settings();
-    if (isWireless) {
-        NetworkManager::WirelessSetting::Ptr wsSetting = connectionSettings->setting(NetworkManager::Setting::SettingType::Wireless)
-                .dynamicCast<NetworkManager::WirelessSetting>();
-        if (wsSetting) {
-            // 获取当前无线网络的ssid作为无线网络的ID，保存到配置文件中
-            return wsSetting->ssid();
+    for (const DeviceSnapshot &device : devices) {
+        if (device.type != NetworkManager::Device::Type::Wifi
+                && device.type != NetworkManager::Device::Type::Ethernet) {
+            continue;
         }
-        return QString();
+        aliveDevices.insert(device.uni);
+        if (!device.activeConnectionUni.isEmpty()) {
+            aliveConnections.insert(device.activeConnectionUni);
+        }
+
+        // 只在设备真正激活后才记录；activeConnectionUni 在 Activating 阶段就已写入
+        if (device.state != NetworkManager::Device::Activated || device.activeConnectionUni.isEmpty()) {
+            continue;
+        }
+        // 同一条活跃连接只记录一次
+        if (m_savedConnections.value(device.uni) == device.activeConnectionUni) {
+            continue;
+        }
+        // 已经问过代理、结果还没回来
+        if (m_pendingQueries.contains(device.activeConnectionUni)) {
+            continue;
+        }
+        m_pendingQueries.insert(device.activeConnectionUni);
+        proxy->requestActiveConnectionId(device.activeConnectionUni,
+                                         device.type == NetworkManager::Device::Type::Wifi);
     }
 
-    // 如果是有线网络，则直接保存id
-    return connectionSettings->id();
+    // 清理已消失的设备和查询
+    for (auto it = m_savedConnections.begin(); it != m_savedConnections.end();) {
+        it = aliveDevices.contains(it.key()) ? std::next(it) : m_savedConnections.erase(it);
+    }
+    for (auto it = m_pendingQueries.begin(); it != m_pendingQueries.end();) {
+        it = aliveConnections.contains(*it) ? std::next(it) : m_pendingQueries.erase(it);
+    }
 }
 
-QSharedPointer<NetworkManager::Device> NetworkHandler::getDeviceByInterfaceName(const QString &interfaceName) const
+void NetworkHandler::onActiveConnectionIdReady(const QString &activeConnectionUni, const QString &saveId)
 {
-    NetworkManager::Device::List devices = NetworkManager::networkInterfaces();
-    auto it = std::find_if(devices.begin(), devices.end(), [ interfaceName ](NetworkManager::Device::Ptr device) {
-         return interfaceName == device->interfaceName();
-    });
-
-    if (it == devices.end())
-        return nullptr;
-
-    return (*it);
-}
-
-void NetworkHandler::deviceActiveHandler(const QSharedPointer<NetworkManager::Device> &device)
-{
-    NetworkManager::ActiveConnection::Ptr activeConnection = device->activeConnection();
-    if (activeConnection.isNull())
+    m_pendingQueries.remove(activeConnectionUni);
+    if (saveId.isEmpty() || m_accountManager->account().isEmpty()) {
+        // 设备稳定在 Activated 时不会再发 devicesChanged，只等就永远不会重试；
+        // 做有限次退避重试，避免账户网络映射静默丢失。
+        scheduleRetry();
         return;
+    }
 
-    qCDebug(DSM) << "active connection changed:" << activeConnection->id();
-    connect(activeConnection.data(), &NetworkManager::ActiveConnection::stateChanged, activeConnection.data(), [ device, this, activeConnection ](NetworkManager::ActiveConnection::State state) {
-        if (state == NetworkManager::ActiveConnection::State::Activated) {
-            QString id = getSaveId(activeConnection, (device->type() == NetworkManager::Device::Type::Wifi));
-            qCDebug(DSM) << activeConnection->id() << "activated:" << id << "device:" << device->interfaceName()
-                     << "account name:" << m_accountManager->account();
-            // 连接成功的情况下，记录当前连接的网络的信息
-            if (!id.isEmpty() && !m_accountManager->account().isEmpty()) {
-                m_networkConfig->saveNetwork(m_accountManager->account(), id, device->interfaceName());
-            }
+    const QString account = m_accountManager->account();
+
+    // 用最新快照而非缓存的 m_devices：查询往返期间设备状态可能已经变了
+    const QList<DeviceSnapshot> devices = NetworkManagerProxy::instance()->devices();
+    for (const DeviceSnapshot &device : devices) {
+        if (device.activeConnectionUni != activeConnectionUni
+                || device.state != NetworkManager::Device::Activated) {
+            continue;
         }
-    });
+        qCDebug(DSM) << "activated:" << saveId << "device:" << device.interfaceName
+                     << "account name:" << account;
+        m_networkConfig->saveNetwork(account, saveId, device.interfaceName);
+        m_savedConnections.insert(device.uni, activeConnectionUni);
+        m_retryCount = 0;
+        return;
+    }
 }
 
-void NetworkHandler::onDeviceAdded(const QString &uni)
+void NetworkHandler::scheduleRetry()
 {
-    NetworkManager::Device::Ptr device = NetworkManager::findNetworkInterface(uni);
-    if (device.isNull())
+    if (m_retryScheduled || m_retryCount >= kMaxRetries) {
         return;
-
-    if (device->type() != NetworkManager::Device::Type::Wifi
-            && device->type() != NetworkManager::Device::Type::Ethernet)
-        return;
-
-    connect(device.data(), &NetworkManager::Device::activeConnectionChanged, device.data(), [ this, device ] {
-        deviceActiveHandler(device);
+    }
+    m_retryScheduled = true;
+    QTimer::singleShot(kRetryIntervalMs, this, [this] {
+        m_retryScheduled = false;
+        ++m_retryCount;
+        onDevicesChanged();
     });
-
-    deviceActiveHandler(device);
 }

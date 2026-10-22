@@ -7,19 +7,40 @@
 #include "settingconfig.h"
 
 #include <QDebug>
+#include <QThread>
 
 using namespace network::systemservice;
+
+namespace {
+
+// ConnectivityChecker 的亲和线程可能不是本对象的线程（NMConnectionvityChecker
+// 运行在 NM 线程），删除必须回到它自己的线程执行。
+void deleteChecker(ConnectivityChecker *checker)
+{
+    if (!checker) {
+        return;
+    }
+    if (checker->thread() == QThread::currentThread()) {
+        delete checker;
+        return;
+    }
+    QMetaObject::invokeMethod(checker, [checker] { delete checker; }, Qt::BlockingQueuedConnection);
+}
+
+} // namespace
 
 ConnectivityProcesser::ConnectivityProcesser(QObject *parent)
     : QObject(parent)
 {
     SettingConfig *config = SettingConfig::instance();
     connect(config, &SettingConfig::enableConnectivityChanged, this, &ConnectivityProcesser::onEnableConnectivityChanged);
-    m_checker.reset(createConnectivityChecker(config->enableConnectivity()));
+    m_checker = createConnectivityChecker(config->enableConnectivity());
 }
 
 ConnectivityProcesser::~ConnectivityProcesser()
 {
+    deleteChecker(m_checker);
+    m_checker = nullptr;
 }
 
 void ConnectivityProcesser::checkConnectivity()
@@ -42,12 +63,14 @@ ConnectivityChecker *ConnectivityProcesser::createConnectivityChecker(bool enabl
     ConnectivityChecker *checker = nullptr;
     if (enableConnectivity) {
         qCDebug(DSM) << "uses local connectivity checker";
-        LocalConnectionvityChecker *localChecker = new LocalConnectionvityChecker(this);
+        // LocalConnectionvityChecker 持有跨线程对象，生命周期由 m_checker 独占
+        LocalConnectionvityChecker *localChecker = new LocalConnectionvityChecker();
         connect(localChecker, &LocalConnectionvityChecker::portalDetected, this, &ConnectivityProcesser::portalDetected);
         checker = localChecker;
     } else {
         qCDebug(DSM) << "uses nm connectivity checker";
-        checker = new NMConnectionvityChecker(this);
+        // NMConnectionvityChecker 会被 moveToThread 到 NM 线程，不能带 parent
+        checker = new NMConnectionvityChecker();
     }
 
     connect(checker, &ConnectivityChecker::connectivityChanged, this, &ConnectivityProcesser::connectivityChanged);
@@ -57,5 +80,6 @@ ConnectivityChecker *ConnectivityProcesser::createConnectivityChecker(bool enabl
 
 void ConnectivityProcesser::onEnableConnectivityChanged(bool enableConnectivity)
 {
-    m_checker.reset(createConnectivityChecker(enableConnectivity));
+    deleteChecker(m_checker);
+    m_checker = createConnectivityChecker(enableConnectivity);
 }

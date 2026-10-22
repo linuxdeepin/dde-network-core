@@ -6,6 +6,7 @@
 #include "constants.h"
 
 #include <QDir>
+#include <QMutexLocker>
 #include <QFile>
 #include <QFileInfo>
 #include <QJsonArray>
@@ -28,21 +29,25 @@ NetworkEnabledConfig::~NetworkEnabledConfig() { }
 
 bool NetworkEnabledConfig::vpnEnabled() const
 {
+    QMutexLocker locker(&m_mutex);
     return m_map.value("VpnEnabled", QVariant(false)).toBool();
 }
 
 void NetworkEnabledConfig::setVpnEnabled(bool enabled)
 {
+    QMutexLocker locker(&m_mutex);
     m_map.insert("VpnEnabled", enabled);
 }
 
 bool NetworkEnabledConfig::deviceEnabled(const QString &dev)
 {
+    QMutexLocker locker(&m_mutex);
     return m_map.value("Devices", QVariant::fromValue(QMap<QString, bool>())).value<QMap<QString, bool>>().value(dev, true);
 }
 
 void NetworkEnabledConfig::setDeviceEnabled(const QString &dev, bool enabled)
 {
+    QMutexLocker locker(&m_mutex);
     QMap<QString, bool> map = m_map.value("Devices", QVariant::fromValue(QMap<QString, bool>())).value<QMap<QString, bool>>();
     if (!enabled || map.contains(dev)) {
         map.insert(dev, enabled);
@@ -52,6 +57,7 @@ void NetworkEnabledConfig::setDeviceEnabled(const QString &dev, bool enabled)
 
 void NetworkEnabledConfig::removeDeviceEnabled(const QString &dev)
 {
+    QMutexLocker locker(&m_mutex);
     QMap<QString, bool> map = m_map.value("Devices", QVariant::fromValue(QMap<QString, bool>())).value<QMap<QString, bool>>();
     map.remove(dev);
     m_map.insert("Devices", QVariant::fromValue(map));
@@ -59,6 +65,7 @@ void NetworkEnabledConfig::removeDeviceEnabled(const QString &dev)
 
 void NetworkEnabledConfig::loadConfig()
 {
+    QMutexLocker locker(&m_mutex);
     QFile file(configFile);
     if (file.open(QFile::ReadOnly)) {
         QByteArray data = file.readAll();
@@ -70,7 +77,7 @@ void NetworkEnabledConfig::loadConfig()
         }
         QJsonObject jsonObj = doc.object();
         bool vpnEnabled = jsonObj.value("VpnEnabled").toBool();
-        setVpnEnabled(vpnEnabled);
+        m_map.insert("VpnEnabled", vpnEnabled);
         QJsonObject devsObj = jsonObj.value("Devices").toObject();
         QMap<QString, bool> map;
         for (auto &&key : devsObj.keys()) {
@@ -93,6 +100,7 @@ void NetworkEnabledConfig::loadConfig()
 
 QString NetworkEnabledConfig::saveConfig()
 {
+    QMutexLocker locker(&m_mutex);
     QJsonObject devsObj;
     QMap<QString, bool> map = m_map.value("Devices", QVariant::fromValue(QMap<QString, bool>())).value<QMap<QString, bool>>();
     for (auto it = map.constBegin(); it != map.constEnd(); it++) {
@@ -108,7 +116,7 @@ QString NetworkEnabledConfig::saveConfig()
         connectionObj.insert(it.key(), it.value().toString());
     }
     QJsonObject jsonObj;
-    jsonObj.insert("VpnEnabled", vpnEnabled());
+    jsonObj.insert("VpnEnabled", m_map.value("VpnEnabled", QVariant(false)).toBool());
     jsonObj.insert("Devices", devsObj);
     jsonObj.insert("Connections", connectionObj);
     QJsonDocument jsonDoc(jsonObj);
@@ -130,6 +138,7 @@ QString NetworkEnabledConfig::saveConfig()
 
 void NetworkEnabledConfig::setConnectionInfo(const QString &dev, const QString &uuid)
 {
+    QMutexLocker locker(&m_mutex);
     QVariant conn = m_map["Connections"];
     QVariantMap conn_map = conn.value<QVariantMap>();
     conn_map[dev] = uuid;
@@ -138,6 +147,7 @@ void NetworkEnabledConfig::setConnectionInfo(const QString &dev, const QString &
 
 QString NetworkEnabledConfig::connectionUuid(const QString &dev) const
 {
+    QMutexLocker locker(&m_mutex);
     QVariant conn = m_map["Connections"];
     QVariantMap conn_map = conn.value<QVariantMap>();
     if (conn_map.contains(dev))

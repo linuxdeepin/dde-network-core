@@ -8,6 +8,8 @@
 #include "connectivityprocesser.h"
 #include "networkinitialization.h"
 
+#include <QMetaObject>
+
 using namespace network::systemservice;
 
 SystemService::SystemService(SystemContainer *network, QObject *parent)
@@ -33,7 +35,12 @@ void SystemService::CheckConnectivity()
 
 void SystemService::UpdateLanguage(const QString &locale)
 {
-    m_network->initializator()->updateLanguage(locale);
+    // NetworkInitialization 运行在 NM 线程；本 D-Bus 入口在插件线程，
+    // 直接调用会跨线程访问 NetworkManagerQt，必须排队到其所属线程。
+    QMetaObject::invokeMethod(m_network->initializator(),
+                             &NetworkInitialization::updateLanguage,
+                             Qt::QueuedConnection,
+                             locale);
 }
 
 int SystemService::Connectivity()

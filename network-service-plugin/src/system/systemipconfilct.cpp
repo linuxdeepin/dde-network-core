@@ -1,12 +1,17 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
 #include "systemipconfilct.h"
 #include "settingconfig.h"
 
+#include "nmaccess.h"
+
 #include <QDebug>
 
+#include <NetworkManagerQt/ActiveConnection>
+#include <NetworkManagerQt/Connection>
+#include <NetworkManagerQt/ConnectionSettings>
 #include <NetworkManagerQt/Ipv4Setting>
 
 using namespace network::systemservice;
@@ -27,7 +32,8 @@ bool SystemIPConflict::ipConflicted(const QString &devicePath) const
 
 bool SystemIPConflict::canReconnect(const QSharedPointer<NetworkManager::ActiveConnection> &activeConnection)
 {
-    if (activeConnection.isNull())
+    NMQT_ASSERT_THREAD();
+    if (activeConnection.isNull() || activeConnection->connection().isNull())
         return false;
 
     NetworkManager::Ipv4Setting::Ptr setting =
@@ -48,23 +54,34 @@ bool SystemIPConflict::canReconnect(const QSharedPointer<NetworkManager::ActiveC
 
 void SystemIPConflict::onIPConflicted(const QString &ip, const QString &localMac, const QString &remoteMac)
 {
-    QSharedPointer<NetworkManager::Device> device = m_ipConfilctData.getDevicePathByMac(localMac);
-    if (device.isNull())
+    NMQT_ASSERT_THREAD();
+    bool needReconnect = false;
+    const bool conflicted = m_ipConfilctData.doConfilcted(ip, localMac, remoteMac, needReconnect);
+    const QString uni = m_ipConfilctData.deviceUniOfMac(localMac);
+    if (uni.isEmpty())
         return;
 
-    bool needReconnect = false;
-    if (m_ipConfilctData.doConfilcted(ip, localMac, remoteMac, needReconnect))
-        emit ipConflictChanged(device->uni(), ip, true);
+    if (conflicted)
+        emit ipConflictChanged(uni, ip, true);
 
-    if (needReconnect)
-        requestReConnect(device);
+    if (needReconnect) {
+        const DeviceSnapshot snapshot = NetworkManagerProxy::instance()->device(uni);
+        const NetworkManager::ActiveConnection::Ptr activeConnection =
+                snapshot.activeConnectionUni.isEmpty()
+                ? NetworkManager::ActiveConnection::Ptr()
+                : NetworkManager::findActiveConnection(snapshot.activeConnectionUni);
+        requestReConnect(activeConnection);
+    }
 }
 
 void SystemIPConflict::onIPConflictReslove(const QString &ip, const QString &localMac, const QString &remoteMac)
 {
-    QSharedPointer<NetworkManager::Device> device = m_ipConfilctData.getDevicePathByMac(localMac);
-    if (device && m_ipConfilctData.doConflictReslove(ip, localMac, remoteMac))
-        emit ipConflictChanged(device->uni(), ip, false);
+    const QString uni = m_ipConfilctData.deviceUniOfMac(localMac);
+    if (uni.isEmpty())
+        return;
+
+    if (m_ipConfilctData.doConflictReslove(ip, localMac, remoteMac))
+        emit ipConflictChanged(uni, ip, false);
 }
 
 bool SystemIPConflict::ipConflicted(const QString &devicePath, const QString &ip) const
@@ -72,16 +89,15 @@ bool SystemIPConflict::ipConflicted(const QString &devicePath, const QString &ip
     return m_ipConfilctData.isConflicted(devicePath, ip);
 }
 
-void SystemIPConflict::ipv4Changed(const NetworkManager::Device::Ptr &device)
+void SystemIPConflict::ipv4Changed(const QString &deviceUni)
 {
-    NetworkManager::IpAddresses ipAddresses = device->ipV4Config().addresses();
-    QStringList ipV4s;
-    for (const NetworkManager::IpAddress &ip : ipAddresses) {
-        ipV4s << ip.ip().toString();
-    }
+    const DeviceSnapshot snapshot = NetworkManagerProxy::instance()->device(deviceUni);
+    if (!snapshot.isValid())
+        return;
+
     QStringList resloveIps;
-    m_ipConfilctData.updateIpv4(device, ipV4s, resloveIps);
+    m_ipConfilctData.updateIpv4(deviceUni, snapshot.ipV4Addresses, resloveIps);
     for (const QString &resloveIp : resloveIps) {
-        emit ipConflictChanged(device->uni(), resloveIp, false);
+        emit ipConflictChanged(snapshot.uni, resloveIp, false);
     }
 }

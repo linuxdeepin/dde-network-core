@@ -4,6 +4,7 @@
 #ifndef NetworkEnabledConfig_H
 #define NetworkEnabledConfig_H
 #include <QMap>
+#include <QMutex>
 
 namespace network {
 namespace systemservice {
@@ -25,6 +26,9 @@ public:
     QString connectionUuid(const QString &dev) const;
 
 private:
+    // 访问点分布在 NM 线程（写）与插件线程（NetworkDBus::VpnEnabled 读），
+    // 保护本进程自己的容器
+    mutable QMutex m_mutex;
     QMap<QString, QVariant> m_map;
 };
 } // namespace systemservice

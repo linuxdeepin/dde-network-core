@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -360,7 +360,9 @@ void ActiveAccountNetwork::onStateChanged(NetworkManager::ActiveConnection::Stat
     QSharedPointer<NetworkManager::Device> device;
     for (auto devUni : activeConnection->devices()) {
         NetworkManager::Device::Ptr dev = NetworkManager::findNetworkInterface(devUni);
-        if (!dev.isNull() && (device->type() == NetworkManager::Device::Type::Wifi && device->type() == NetworkManager::Device::Type::Ethernet)) {
+        // 判空的是 dev，不是尚未赋值的 device；类型条件是“有线或无线”
+        if (!dev.isNull() && (dev->type() == NetworkManager::Device::Type::Wifi
+                              || dev->type() == NetworkManager::Device::Type::Ethernet)) {
             device = dev;
             break;
         }

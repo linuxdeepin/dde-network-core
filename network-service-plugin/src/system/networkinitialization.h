@@ -7,7 +7,12 @@
 
 #include "constants.h"
 
+#include <QDBusError>
+#include <QDBusMessage>
+#include <QMetaObject>
 #include <QObject>
+#include <QSet>
+#include <QTranslator>
 
 namespace NetworkManager {
 class WiredDevice;
@@ -27,7 +32,8 @@ public:
     ~NetworkInitialization() = default;
     void updateLanguage(const QString &locale);
 
-protected:
+public slots:
+    // NM 访问入口：构造点排在 NM 线程上执行
     void initDeviceInfo();
     void initConnection();
 
@@ -43,12 +49,15 @@ private:
     void ensureTranslatorInstalled();
     void hideWirelessDevice(const QSharedPointer<NetworkManager::Device> &device, bool disableNetwork);
     void initDeviceConnection(const QSharedPointer<NetworkManager::WiredDevice> &device);
+    void setDeviceManaged(const QString &deviceUni, bool managed);
     void checkAccountStatus();
     void updateConnectionLanguage(const QString &account);
     void updateConnectionLanguage();
     bool isServerSystem() const;
 
 private slots:
+    void onSetDeviceManagedFinished(const QDBusMessage &reply);
+    void onSetDeviceManagedError(const QDBusError &error, const QDBusMessage &message);
     void onUserChanged(const QString &json);
     void onUserAdded(const QString &json);
     void onInitDeviceConnection();
@@ -64,6 +73,16 @@ private:
     bool m_hasAddFirstConnection;
     QMap<QString, QDateTime> m_lastCreateTime;
     QMap<QString, int> m_untranslactionConnections;
+    QSet<QString> m_seenDevices;
+    // managedChanged 的 lambda 无法用 Qt::UniqueConnection，
+    // 用集合防止 ConfigManager 重启后重复挂接
+    QSet<QString> m_managedHooked;
+    // 必须是本对象的子对象：构造时 parent 设好，moveToThread() 时随父一起迁移，
+    // 之后在 NM 线程安装、在 NM 线程析构，不出现跨线程 QObject。
+    // （值成员不带 parent，不会被 moveToThread 迁移。）
+    QTranslator *m_translator;
+    // devicesChanged 只连一次：onInitDeviceConnection 可能因 ConfigManager 重启再次进入
+    QMetaObject::Connection m_devicesChangedConnection;
 };
 
 }

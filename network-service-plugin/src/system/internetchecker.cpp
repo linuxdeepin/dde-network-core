@@ -6,6 +6,7 @@
 
 #include "settingconfig.h"
 #include "constants.h"
+#include "nmaccess.h"
 
 #include <QDebug>
 #include <QElapsedTimer>
@@ -13,10 +14,6 @@
 #include <QRandomGenerator>
 #include <QUrl>
 
-#include <NetworkManagerQt/ActiveConnection>
-#include <NetworkManagerQt/Ipv4Setting>
-#include <NetworkManagerQt/Ipv6Setting>
-#include <NetworkManagerQt/Settings>
 
 #include <sys/socket.h>
 #include <net/if.h>
@@ -50,43 +47,43 @@ InternetChecker::InternetChecker(QObject *parent)
 
 // 网络切换入口：检测到网络不通时，依次检查其他网卡是否能上网，
 // 仅在确认目标网卡可上网后才切换主链接，避免网卡反复切换
+//
+// 本函数运行在探测线程：只读 NetworkManagerProxy 的设备快照，写操作委托给代理。
 void InternetChecker::switchInternetAccess(bool checkPrimaryConnection, bool switchPortal)
 {
-    // 获取当前主连接对应的网卡 uni 列表
-    QStringList primaryDeviceUnis;
-    NetworkManager::ActiveConnection::Ptr primaryConnection = NetworkManager::primaryConnection();
-    if (!primaryConnection.isNull()) {
-        primaryDeviceUnis = primaryConnection->devices();
-    }
+    NetworkManagerProxy *proxy = NetworkManagerProxy::instance();
+
+    // 获取当前主连接占用的网卡 uni 列表
+    const QStringList primaryDeviceUnis = proxy->primaryConnectionDevices();
 
     // 遍历所有网卡，分离出主连接网卡和候选网卡（有线优先于无线）
-    NetworkManager::Device::Ptr primaryDevice;
-    NetworkManager::Device::List wiredDevice, wirelessDevice;
-    NetworkManager::Device::List devices = NetworkManager::networkInterfaces();
-    for (const NetworkManager::Device::Ptr &device : devices) {
-        if (primaryDeviceUnis.contains(device->uni())) {
+    DeviceSnapshot primaryDevice;
+    QList<DeviceSnapshot> wiredDevice, wirelessDevice;
+    const QList<DeviceSnapshot> devices = proxy->devices();
+    for (const DeviceSnapshot &device : devices) {
+        if (primaryDeviceUnis.contains(device.uni)) {
             primaryDevice = device;
             continue;
         }
 
         // 跳过未托管或未启动的网卡
-        if (!device->managed() || !(device->interfaceFlags() & IFF_UP)) {
+        if (!device.managed || !(device.interfaceFlags & IFF_UP)) {
             continue;
         }
 
         // 跳过没有活跃连接的网卡
-        if (device->activeConnection().isNull()) {
+        if (device.activeConnectionUni.isEmpty()) {
             continue;
         }
 
-        if (device->type() == NetworkManager::Device::Type::Ethernet) {
+        if (device.type == NetworkManager::Device::Type::Ethernet) {
             wiredDevice << device;
-        } else if (device->type() == NetworkManager::Device::Type::Wifi) {
+        } else if (device.type == NetworkManager::Device::Type::Wifi) {
             wirelessDevice << device;
         }
     }
     // 有线网卡优先，无线网卡次之
-    NetworkManager::Device::List checkedDevices;
+    QList<DeviceSnapshot> checkedDevices;
     checkedDevices << wiredDevice << wirelessDevice;
     // 如果没有需要切换的网络，则无需继续切换
     if (checkedDevices.isEmpty()) {
@@ -94,20 +91,21 @@ void InternetChecker::switchInternetAccess(bool checkPrimaryConnection, bool swi
         return;
     }
 
-    if (checkPrimaryConnection && !primaryDevice.isNull()) {
+    if (checkPrimaryConnection && primaryDevice.isValid()) {
         // 如果需要检查主链接，且此时主链接可以上网，则无需切换，直接告诉外面当前网络状况正常
         if (checkInterfaceOnline(primaryDevice) == ProbeResult::Online) {
-            qCInfo(DSM) << "primary device " << primaryDevice->interfaceName() << " is online";
+            qCInfo(DSM) << "primary device " << primaryDevice.interfaceName << " is online";
             emit switchSuccess();
             return;
         }
     }
     // 第一轮：检测每个候选网卡，优先切换到可以上网的网卡，同时记录需要 portal 认证的网卡
-    NetworkManager::Device::List portalDevices;
-    for (const NetworkManager::Device::Ptr &device : checkedDevices) {
+    QList<DeviceSnapshot> portalDevices;
+    for (const DeviceSnapshot &device : checkedDevices) {
         ProbeResult ret = checkInterfaceOnline(device);
-        if (ret == ProbeResult::Online && setPrimaryDevice(device, devices)) {
-            qCInfo(DSM) << device->interfaceName() << " is online, set it primary device";
+        if (ret == ProbeResult::Online) {
+            qCInfo(DSM) << device.interfaceName << " is online, set it primary device";
+            proxy->applyPrimaryDeviceMetrics(device.uni);
             emit switchSuccess();
             return;
         }
@@ -117,37 +115,15 @@ void InternetChecker::switchInternetAccess(bool checkPrimaryConnection, bool swi
     }
     // 第二轮：没有可以上网的网卡时，退而求其次切换到需要 portal 认证的网卡
     if (!portalDevices.isEmpty()) {
-        const NetworkManager::Device::Ptr &portalDevice = portalDevices.first();
-        if (setPrimaryDevice(portalDevice, devices)) {
-            qCInfo(DSM) << portalDevice->interfaceName() << " needs portal authentication, set it primary device";
-            // portal 网卡切换成功后不能发 switchSuccess，否则会被误判为已可上网；
-            // portal 状态由 StatusChecker 自行检测识别（portalDetected / Limited）
-            return;
-        }
+        const DeviceSnapshot &portalDevice = portalDevices.first();
+        qCInfo(DSM) << portalDevice.interfaceName << " needs portal authentication, set it primary device";
+        proxy->applyPrimaryDeviceMetrics(portalDevice.uni);
+        // portal 网卡切换成功后不能发 switchSuccess，否则会被误判为已可上网；
+        // portal 状态由 StatusChecker 自行检测识别（portalDetected / Limited）
+        return;
     }
     qCWarning(DSM) << "switch primary device failure";
     emit switchFailed();
-}
-
-// 获取网卡当前活跃连接的 IPv4 DNS 服务器列表
-QStringList InternetChecker::getDeviceDnsList(const NetworkManager::Device::Ptr &device) const
-{
-    NetworkManager::ActiveConnection::Ptr activeConnection = device->activeConnection();
-    if (activeConnection.isNull()) {
-        return {};
-    }
-
-    QStringList dnsList;
-    NetworkManager::IpConfig config = activeConnection->ipV4Config();
-    QList<QHostAddress> addresses = config.nameservers();
-    for (const QHostAddress &address : addresses) {
-        QString ip = address.toString();
-        if (!ip.isEmpty() && !dnsList.contains(ip)) {
-            dnsList << ip;
-        }
-    }
-
-    return dnsList;
 }
 
 // 检测指定网卡的联网状态：
@@ -155,11 +131,11 @@ QStringList InternetChecker::getDeviceDnsList(const NetworkManager::Device::Ptr 
 // 2. 若检测到 portal 认证拦截页则返回 portal 状态
 // 3. 若全部失败且未检测到 portal，使用公共 DNS 地址作为兜底 TCP 连接检测
 // 返回值：ProbeResult::Online=可上网，ProbeResult::Portal=需 portal 认证，ProbeResult::Unreachable=不可上网
-ProbeResult InternetChecker::checkInterfaceOnline(const NetworkManager::Device::Ptr &device) const
+ProbeResult InternetChecker::checkInterfaceOnline(const DeviceSnapshot &device) const
 {
-    QStringList dnsList = getDeviceDnsList(device);
+    const QStringList dnsList = device.dnsServers;
     if (dnsList.isEmpty()) {
-        qCWarning(DSM) << "interface " << device->interfaceName() << " doesn't have dns";
+        qCWarning(DSM) << "interface " << device.interfaceName << " doesn't have dns";
         return ProbeResult::Unreachable;
     }
 
@@ -202,19 +178,19 @@ ProbeResult InternetChecker::checkInterfaceOnline(const NetworkManager::Device::
             target.sin_family = AF_INET;
             target.sin_port = htons(port);
             target.sin_addr = addr;
-            if (checkReachability(device->interfaceName(), target, QString(), curTimeout, false) == ProbeResult::Online) {
-                qDebug(DSM) << "interface " << device->interfaceName() << " test ip " << url << " ok";
+            if (checkReachability(device.interfaceName, target, QString(), curTimeout, false) == ProbeResult::Online) {
+                qDebug(DSM) << "interface " << device.interfaceName << " test ip " << url << " ok";
                 return ProbeResult::Online;
             }
         } else {
             // 如果是域名，先通过指定网卡的 DNS 解析域名，再 HTTP 验证（TCP 成功不一定能上网，portal 会拦截并返回认证页）
             ProbeResult httpRet = checkNetCardOnline(device, host, dnsList, curTimeout, port);
             if (httpRet == ProbeResult::Online) {
-                qDebug(DSM) << "interface " << device->interfaceName() << " test url " << url << " ok";
+                qDebug(DSM) << "interface " << device.interfaceName << " test url " << url << " ok";
                 return ProbeResult::Online;
             }
             if (httpRet == ProbeResult::Portal) {
-                qCWarning(DSM) << "interface " << device->interfaceName() << " test url " << url << " needs portal authentication";
+                qCWarning(DSM) << "interface " << device.interfaceName << " test url " << url << " needs portal authentication";
                 // 一旦识别出 portal 立即返回，不再继续尝试后续 https 检测：
                 // portal 会透明代理任意 TCP 连接，443 可达不代表真正能上网，会被误判为 online 覆盖 portal 结果。
                 return ProbeResult::Portal;
@@ -237,12 +213,12 @@ ProbeResult InternetChecker::checkInterfaceOnline(const NetworkManager::Device::
         target.sin_family = AF_INET;
         target.sin_port = htons(80);
         inet_pton(AF_INET, dns.toStdString().c_str(), &target.sin_addr);
-        if (checkReachability(device->interfaceName(), target, QString(), curTimeout, false) == ProbeResult::Online) {
-            qCDebug(DSM) << "interface " << device->interfaceName() << "test dns " << dns << " ok";
+        if (checkReachability(device.interfaceName, target, QString(), curTimeout, false) == ProbeResult::Online) {
+            qCDebug(DSM) << "interface " << device.interfaceName << "test dns " << dns << " ok";
             return ProbeResult::Online;
         }
     }
-    qCDebug(DSM) << "interface " << device->interfaceName() << " is offline";
+    qCDebug(DSM) << "interface " << device.interfaceName << " is offline";
     return ProbeResult::Unreachable;
 }
 
@@ -450,7 +426,7 @@ ProbeResult InternetChecker::checkReachability(const QString &ifName, const sock
 
 // 检测网卡是否可以访问指定域名：先通过该网卡绑定的 DNS 解析域名得到 IP，
 // 再通过该网卡 TCP 连接解析出的 IP 地址；对 80 端口进一步做 HTTP 探测以识别 portal 认证拦截页
-ProbeResult InternetChecker::checkNetCardOnline(const NetworkManager::Device::Ptr &device, const QString &domain, const QStringList &dnslist, int timeoutMs, int port) const
+ProbeResult InternetChecker::checkNetCardOnline(const DeviceSnapshot &device, const QString &domain, const QStringList &dnslist, int timeoutMs, int port) const
 {
     in_addr targetIp{};
     QElapsedTimer elapsed;
@@ -470,14 +446,14 @@ ProbeResult InternetChecker::checkNetCardOnline(const NetworkManager::Device::Pt
     dest.sin_addr = targetIp;
 
     const bool httpCheck = (port == 80);
-    return checkReachability(device->interfaceName(), dest, httpCheck ? domain : QString(), remainTimeout, httpCheck);
+    return checkReachability(device.interfaceName, dest, httpCheck ? domain : QString(), remainTimeout, httpCheck);
 }
 
 // 绑定指定网卡进行 DNS 解析，按优先级依次尝试三种方式：
 // 1. UDP DNS 查询（常规方式）
 // 2. TCP DNS 查询（UDP 53 端口被屏蔽时的 fallback，如手机热点场景）
 // 3. 系统 getaddrinfo（兜底方案，使用系统默认路由解析）
-bool InternetChecker::resolveByBindIface(const NetworkManager::Device::Ptr &device, const QString &domain, const QStringList &dnslist, in_addr &outIp, int timeout) const
+bool InternetChecker::resolveByBindIface(const DeviceSnapshot &device, const QString &domain, const QStringList &dnslist, in_addr &outIp, int timeout) const
 {
     // 将总超时平均分配给每个 DNS 服务器，每个至少 1 秒
     int perDnsTimeout = qMax(timeout / qMax(dnslist.size(), 1), 1000);
@@ -671,7 +647,7 @@ bool InternetChecker::parseDnsResponse(const unsigned char *buf, int len, unsign
 }
 
 // 通过 UDP 向指定 DNS 服务器发送 A 记录查询，绑定网卡确保流量从该网卡发出
-bool InternetChecker::checkIpAddrByUDP(const NetworkManager::Device::Ptr &device, const QString &dnsIp, const QString &domain,
+bool InternetChecker::checkIpAddrByUDP(const DeviceSnapshot &device, const QString &dnsIp, const QString &domain,
     int curTimeout, in_addr &outIp) const
 {
     int sock = socket(AF_INET, SOCK_DGRAM, 0);
@@ -681,7 +657,7 @@ bool InternetChecker::checkIpAddrByUDP(const NetworkManager::Device::Ptr &device
     // 绑定网卡设备
     struct ifreq ifr{};
     memset(&ifr, 0, sizeof(ifr));
-    strncpy(ifr.ifr_name, device->interfaceName().toStdString().c_str(), IFNAMSIZ - 1);
+    strncpy(ifr.ifr_name, device.interfaceName.toStdString().c_str(), IFNAMSIZ - 1);
     if (setsockopt(sock, SOL_SOCKET, SO_BINDTODEVICE, &ifr, sizeof(ifr)) < 0) {
         close(sock);
         return false;
@@ -689,13 +665,12 @@ bool InternetChecker::checkIpAddrByUDP(const NetworkManager::Device::Ptr &device
 
     // 使用网卡自身的 IPv4 地址绑定源地址，确保从该网卡发出
     bool bound = false;
-    NetworkManager::IpAddresses ipv4AddrList = device->ipV4Config().addresses();
-    for (const NetworkManager::IpAddress &ipAddr : ipv4AddrList) {
+    for (const QString &ip : device.ipV4Addresses) {
         sockaddr_in localAddr{};
         memset(&localAddr, 0, sizeof(localAddr));
         localAddr.sin_family = AF_INET;
         localAddr.sin_port = 0;
-        inet_pton(AF_INET, ipAddr.ip().toString().toUtf8().constData(), &localAddr.sin_addr);
+        inet_pton(AF_INET, ip.toUtf8().constData(), &localAddr.sin_addr);
         if (::bind(sock, (sockaddr *)&localAddr, sizeof(localAddr)) == 0) {
             bound = true;
             break;
@@ -729,7 +704,7 @@ bool InternetChecker::checkIpAddrByUDP(const NetworkManager::Device::Ptr &device
 
     ssize_t sent = sendto(sock, pkt, pktLen, MSG_NOSIGNAL, (sockaddr*)&dnsAddr, sizeof(dnsAddr));
     if (sent < 0) {
-        qCWarning(DSM) << "sendto failed for" << device->interfaceName() << "dns:" << dnsIp << "errno:" << errno << strerror(errno);
+        qCWarning(DSM) << "sendto failed for" << device.interfaceName << "dns:" << dnsIp << "errno:" << errno << strerror(errno);
         close(sock);
         return false;
     }
@@ -766,7 +741,7 @@ bool InternetChecker::checkIpAddrByUDP(const NetworkManager::Device::Ptr &device
 // 通过 TCP 向指定 DNS 服务器发送 A 记录查询（DNS over TCP，RFC 7766）
 // TCP DNS 消息前有 2 字节长度前缀，与 UDP 格式不同
 // 适用场景：手机热点等环境下 UDP 53 端口可能被屏蔽，但 TCP 53 端口可用
-bool InternetChecker::checkIpAddrByTCP(const NetworkManager::Device::Ptr &device, const QString &dnsIp, const QString &domain,
+bool InternetChecker::checkIpAddrByTCP(const DeviceSnapshot &device, const QString &dnsIp, const QString &domain,
     int curTimeout, in_addr &outIp) const
 {
     int sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -776,7 +751,7 @@ bool InternetChecker::checkIpAddrByTCP(const NetworkManager::Device::Ptr &device
     // 绑定网卡设备
     struct ifreq ifr{};
     memset(&ifr, 0, sizeof(ifr));
-    strncpy(ifr.ifr_name, device->interfaceName().toStdString().c_str(), IFNAMSIZ - 1);
+    strncpy(ifr.ifr_name, device.interfaceName.toStdString().c_str(), IFNAMSIZ - 1);
     if (setsockopt(sock, SOL_SOCKET, SO_BINDTODEVICE, &ifr, sizeof(ifr)) < 0) {
         close(sock);
         return false;
@@ -784,13 +759,12 @@ bool InternetChecker::checkIpAddrByTCP(const NetworkManager::Device::Ptr &device
 
     // 使用网卡自身的 IPv4 地址绑定源地址
     bool bound = false;
-    NetworkManager::IpAddresses ipv4AddrList = device->ipV4Config().addresses();
-    for (const NetworkManager::IpAddress &ipAddr : ipv4AddrList) {
+    for (const QString &ip : device.ipV4Addresses) {
         sockaddr_in localAddr{};
         memset(&localAddr, 0, sizeof(localAddr));
         localAddr.sin_family = AF_INET;
         localAddr.sin_port = 0;
-        inet_pton(AF_INET, ipAddr.ip().toString().toUtf8().constData(), &localAddr.sin_addr);
+        inet_pton(AF_INET, ip.toUtf8().constData(), &localAddr.sin_addr);
         if (::bind(sock, (sockaddr *)&localAddr, sizeof(localAddr)) == 0) {
             bound = true;
             break;
@@ -898,69 +872,4 @@ bool InternetChecker::checkIpAddrByTCP(const NetworkManager::Device::Ptr &device
 
     close(sock);
     return succ;
-}
-
-// 通过调整网卡路由 metric 值切换主链接：
-// 目标网卡设置低 metric（优先级高），其余网卡设置高 metric（优先级低），
-// 然后通过 D-Bus 调用 NetworkManager 的 Reapply 接口使配置生效
-bool InternetChecker::setPrimaryDevice(const NetworkManager::Device::Ptr &device, const NetworkManager::Device::List &allDevices)
-{
-    if (device->activeConnection().isNull() || device->activeConnection()->state() != NetworkManager::ActiveConnection::Activated) {
-        qCWarning(DSM) << "device " << device->interfaceName() << "is not active";
-        return false;
-    }
-
-    const quint32 primaryMetric = 100;
-    const quint32 secondaryMetric = 1000;
-    QMap<NetworkManager::Device::Ptr, NMVariantMapMap> deviceSettings;
-    for (const NetworkManager::Device::Ptr &dev : allDevices) {
-        // 跳过没有活跃连接的网卡
-        if (dev->activeConnection().isNull())
-            continue;
-
-        auto ac = dev->activeConnection();
-        if (!ac || ac->state() != NetworkManager::ActiveConnection::Activated)
-            continue;
-
-        bool isTarget = (dev == device);
-        quint32 metric = isTarget ? primaryMetric : secondaryMetric;
-
-        NetworkManager::Connection::Ptr conn = ac->connection();
-        NetworkManager::ConnectionSettings::Ptr settings = conn->settings();
-
-        bool needReapply = false;
-        NetworkManager::Ipv4Setting::Ptr ipv4 = settings->setting(NetworkManager::Setting::Ipv4).staticCast<NetworkManager::Ipv4Setting>();
-        if (ipv4) {
-            ipv4->setRouteMetric(metric);
-            ipv4->setInitialized(true);
-            needReapply = true;
-        }
-
-        NetworkManager::Ipv6Setting::Ptr ipv6 = settings->setting(NetworkManager::Setting::Ipv6).staticCast<NetworkManager::Ipv6Setting>();
-        if (ipv6) {
-            ipv6->setRouteMetric(metric);
-            ipv6->setInitialized(true);
-            needReapply = true;
-        }
-
-        if (needReapply) {
-            conn->update(settings->toMap());
-            deviceSettings[dev] = conn->settings()->toMap();
-        }
-    }
-
-    if (deviceSettings.isEmpty()) {
-        qCWarning(DSM) << "can't found device for change route";
-        return false;
-    }
-
-    // 通过 D-Bus 调用 Reapply 使修改的路由 metric 生效
-    // Reapply 签名: (a{sa{sv}}tu) — settings_map, version_id(0), flags(0)
-    for (auto it = deviceSettings.constBegin(); it != deviceSettings.constEnd(); ++it) {
-        const NetworkManager::Device::Ptr &device = it.key();
-        const NMVariantMapMap &settingMap = it.value();
-        device->reapplyConnection(settingMap, 0, SettingConfig::instance()->reapplyFlags());
-    }
-
-    return true;
 }

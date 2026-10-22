@@ -1,15 +1,21 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
 #include "sessionipconfilct.h"
 #include "settingconfig.h"
+#include "system/nmaccess.h"
 
 #include <QDebug>
 
+#include <NetworkManagerQt/ActiveConnection>
+#include <NetworkManagerQt/Connection>
+#include <NetworkManagerQt/ConnectionSettings>
 #include <NetworkManagerQt/Ipv4Setting>
+#include <NetworkManagerQt/Manager>
 
 using namespace network::sessionservice;
+using network::systemservice::NetworkManagerProxy;
 
 SessionIPConflict::SessionIPConflict(QObject *parent)
     : IPConflictHandler(parent)
@@ -23,7 +29,7 @@ SessionIPConflict::~SessionIPConflict()
 
 bool SessionIPConflict::canReconnect(const QSharedPointer<NetworkManager::ActiveConnection> &activeConnection)
 {
-    if (activeConnection.isNull())
+    if (activeConnection.isNull() || activeConnection->connection().isNull())
         return false;
 
     NetworkManager::Ipv4Setting::Ptr setting =
@@ -46,8 +52,13 @@ void SessionIPConflict::onIPConflicted(const QString &ip, const QString &localMa
     bool needReconnect = false;
     m_ipStore.doConfilcted(ip, localMac, remoteMac, needReconnect);
     if (needReconnect) {
-        NetworkManager::Device::Ptr device = m_ipStore.getDevicePathByMac(localMac);
-        requestReConnect(device);
+        const QString uni = m_ipStore.deviceUniOfMac(localMac);
+        const network::systemservice::DeviceSnapshot snapshot = NetworkManagerProxy::instance()->device(uni);
+        const NetworkManager::ActiveConnection::Ptr activeConnection =
+                snapshot.activeConnectionUni.isEmpty()
+                ? NetworkManager::ActiveConnection::Ptr()
+                : NetworkManager::findActiveConnection(snapshot.activeConnectionUni);
+        requestReConnect(activeConnection);
     }
 }
 

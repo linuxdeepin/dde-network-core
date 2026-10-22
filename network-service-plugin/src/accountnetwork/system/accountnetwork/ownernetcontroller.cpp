@@ -1,4 +1,4 @@
-﻿// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+﻿// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -25,8 +25,6 @@ OwnerNetController::OwnerNetController(QObject *parent)
     connect(m_accountManager, &AccountManager::accountAdded, this, &OwnerNetController::onAccountAdded);
     connect(m_accountManager, &AccountManager::accountRemoved, this, &OwnerNetController::onAccountRemoved);
 }
-
-OwnerNetController::~OwnerNetController() = default;
 
 QVariantMap OwnerNetController::authenInfo() const
 {
