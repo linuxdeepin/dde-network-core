@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -55,5 +55,5 @@ void ConnectivityHandler::onConnectivityChanged(int connectivity)
 {
     qCWarning(DNC) << "connecviticy changed" << connectivity;
     m_connectivity = static_cast<Connectivity>(connectivity);
-    emit connectivityChanged(m_connectivity);
+    Q_EMIT connectivityChanged(m_connectivity);
 }

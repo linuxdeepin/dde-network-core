@@ -186,12 +186,9 @@ void Policy::parseConfig(const QString &path)
     QJsonObject rootObj = jsonDoc.object();
     jsonGetString(rootObj, "name", name);
     jsonGetString(rootObj, "group", group, "app");
-    jsonGetString(rootObj, "libPath", pluginPath); // 兼容
-    jsonGetString(rootObj, "pluginPath", pluginPath, pluginPath);
-    jsonGetString(rootObj, "policyVersion", version, "1.0"); // 兼容
-    jsonGetString(rootObj, "version", version, version);
-    jsonGetString(rootObj, "policyStartType", startType, "Resident"); // 兼容
-    jsonGetString(rootObj, "startType", startType, startType);
+    jsonGetString(rootObj, "libPath", pluginPath); // 兼容    jsonGetString(rootObj, "pluginPath", pluginPath, pluginPath);
+    jsonGetString(rootObj, "policyVersion", version, "1.0"); // 兼容    jsonGetString(rootObj, "version", version, version);
+    jsonGetString(rootObj, "policyStartType", startType, "Resident"); // 兼容    jsonGetString(rootObj, "startType", startType, startType);
     jsonGetStringList(rootObj, "dependencies", dependencies);
     jsonGetInt(rootObj, "startDelay", startDelay, 0);
     jsonGetInt(rootObj, "idleTime", idleTime, 10);
@@ -378,8 +375,7 @@ bool Policy::parsePolicyInterface(const QJsonObject &obj, PolicyPath &policyPath
         QMapWhitelists::const_iterator iterWhitelist = mapWhitelist.find(whitelist);
         if (iterWhitelist != mapWhitelist.end() && iterWhitelist.value().name == whitelist) {
             policyInterface.processes = iterWhitelist.value().process;
-        } // esle 错误的whitelist认为是空值
-    } else {
+        } // esle 错误的whitelist认为是空值    } else {
         // interface没有指定whitelist，则使用上级path的whitelist
         policyInterface.processes = policyPath.processes;
     }

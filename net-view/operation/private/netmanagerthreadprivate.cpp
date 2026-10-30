@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2019-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #include "netmanagerthreadprivate.h"
@@ -49,20 +49,7 @@ using namespace NetworkManager;
 namespace dde {
 namespace network {
 enum class NetworkNotifyType {
-    WiredConnecting,          // 有线连接中
-    WirelessConnecting,       // 无线连接中
-    WiredConnected,           // 有线已连接
-    WirelessConnected,        // 无线已连接
-    WiredDisconnected,        // 有线断开
-    WirelessDisconnected,     // 无线断开
-    WiredUnableConnect,       // 有线无法连接
-    WirelessUnableConnect,    //  无线无法连接
-    WiredConnectionFailed,    // 有线连接失败
-    WirelessConnectionFailed, // 无线连接失败
-    NoSecrets,                // 密码错误
-    SsidNotFound,             // 没找到ssid
-    Wireless8021X             // 企业版认证
-};
+    WiredConnecting,          // 有线连接中    WirelessConnecting,       // 无线连接中    WiredConnected,           // 有线已连接    WirelessConnected,        // 无线已连接    WiredDisconnected,        // 有线断开    WirelessDisconnected,     // 无线断开    WiredUnableConnect,       // 有线无法连接    WirelessUnableConnect,    //  无线无法连接    WiredConnectionFailed,    // 有线连接失败    WirelessConnectionFailed, // 无线连接失败    NoSecrets,                // 密码错误    SsidNotFound,             // 没找到ssid    Wireless8021X             // 企业版认证};
 const QString notifyIconNetworkOffline = "notification-network-offline";
 const QString notifyIconWiredConnected = "notification-network-wired-connected";
 const QString notifyIconWiredDisconnected = "notification-network-wired-disconnected";
@@ -427,8 +414,7 @@ void NetManagerThreadPrivate::doInit()
     }
 
     onDeviceAdded(networkController->devices());
-    if (m_autoScanInterval == 0) { // 没有设置则以配置中值设置下
-        m_autoScanInterval = ConfigSetting::instance()->wirelessScanInterval();
+    if (m_autoScanInterval == 0) { // 没有设置则以配置中值设置下        m_autoScanInterval = ConfigSetting::instance()->wirelessScanInterval();
         connect(ConfigSetting::instance(), &ConfigSetting::wirelessScanIntervalChanged, this, &NetManagerThreadPrivate::setAutoScanInterval);
     }
     updateAutoScan();
@@ -791,8 +777,7 @@ void NetManagerThreadPrivate::doConnectWireless(const QString &id, const QVarian
             sendRequest(NetManager::CloseInput, id);
         else
             sendRequest(NetManager::InputError, id, err);
-    } else if (wConnect.needInputIdentify()) { // 未配置，需要输入Identify
-        if (handle8021xAccessPoint(ap, false))
+    } else if (wConnect.needInputIdentify()) { // 未配置，需要输入Identify        if (handle8021xAccessPoint(ap, false))
             sendRequest(NetManager::CloseInput, id);
     } else if (wConnect.needInputPassword()) {
         sendRequest(NetManager::RequestPassword, id, { { "secrets", { secret } } });
@@ -1055,8 +1040,7 @@ void NetManagerThreadPrivate::doConnectOrInfo(const QString &id, NetType::NetIte
 void NetManagerThreadPrivate::doGetConnectInfo(const QString &id, NetType::NetItemType type, const QVariantMap &param)
 {
     switch (type) {
-    case NetType::WiredDeviceItem: // 新建有线网络
-        for (NetworkDeviceBase *device : NetworkController::instance()->devices()) {
+    case NetType::WiredDeviceItem: // 新建有线网络        for (NetworkDeviceBase *device : NetworkController::instance()->devices()) {
             if (device->path() == id) {
                 NetworkManager::ConnectionSettings::Ptr settings = NetworkManager::ConnectionSettings::Ptr(new ConnectionSettings(ConnectionSettings::Wired));
                 QString connName = connectionSuffixNum(tr("Wired Connection %1"));
@@ -1274,8 +1258,7 @@ void NetManagerThreadPrivate::doGetConnectInfo(const QString &id, NetType::NetIt
             Q_EMIT request(NetManager::ConnectInfo, id, retParam);
             break;
         }
-        if (settings.isNull()) { // 新项
-            AccessPoint::Ptr nmAp = netDevice->findAccessPoint(ap->path());
+        if (settings.isNull()) { // 新项            AccessPoint::Ptr nmAp = netDevice->findAccessPoint(ap->path());
             if (nmAp.isNull()) {
                 qCWarning(DNC) << "not find NetworkManager AccessPoint";
                 return;
@@ -1322,8 +1305,7 @@ void NetManagerThreadPrivate::doGetConnectInfo(const QString &id, NetType::NetIt
             Q_EMIT request(NetManager::ConnectInfo, id, retParam);
         }
     } break;
-    case NetType::WirelessHiddenItem: { // 新建无线网络/隐藏网络
-        QStringList ids = id.split(":");
+    case NetType::WirelessHiddenItem: { // 新建无线网络/隐藏网络        QStringList ids = id.split(":");
         if (ids.size() != 2) {
             return;
         }
@@ -1353,8 +1335,7 @@ void NetManagerThreadPrivate::doGetConnectInfo(const QString &id, NetType::NetIt
         retParam[settingsMap["connection"]["type"].toString()] = typeMap;
         Q_EMIT request(NetManager::ConnectInfo, id, retParam);
     } break;
-    case NetType::VPNControlItem: { // 新建VPN
-        NetworkManager::ConnectionSettings::Ptr settings = NetworkManager::ConnectionSettings::Ptr(new ConnectionSettings(ConnectionSettings::Vpn));
+    case NetType::VPNControlItem: { // 新建VPN        NetworkManager::ConnectionSettings::Ptr settings = NetworkManager::ConnectionSettings::Ptr(new ConnectionSettings(ConnectionSettings::Vpn));
         VpnSetting::Ptr const vpnSetting = settings->setting(Setting::SettingType::Vpn).staticCast<VpnSetting>();
         vpnSetting->setServiceType("org.freedesktop.NetworkManager.l2tp");
         vpnSetting->setInitialized(true);
@@ -1384,8 +1365,7 @@ void NetManagerThreadPrivate::doGetConnectInfo(const QString &id, NetType::NetIt
 
         Q_EMIT request(NetManager::ConnectInfo, id, retParam);
     } break;
-    case NetType::DSLControlItem: { // 新建DSL
-        QString deviceKey("802-3-ethernet");
+    case NetType::DSLControlItem: { // 新建DSL        QString deviceKey("802-3-ethernet");
         QStringList optionalDevice;
         QVariantMap retParam;
         QString parent;
@@ -1586,8 +1566,7 @@ void NetManagerThreadPrivate::doSetConnectInfo(const QString &id, NetType::NetIt
                         if (!ipv6DnsAddresses.isEmpty()) {
                             ipv6Setting->setDns(ipv6DnsAddresses);
                             ipv6Setting->setIgnoreAutoDns(true);
-                            ipv6Setting->setInitialized(true); // 关键！确保设置被初始化
-                        }
+                            ipv6Setting->setInitialized(true); // 关键！确保设置被初始化                        }
                     }
                 }
             }
@@ -2106,8 +2085,7 @@ void NetManagerThreadPrivate::onConnectionRemoved(const QList<WiredConnection *>
 void NetManagerThreadPrivate::addConnection(const NetworkDeviceBase *device, const QList<WiredConnection *> &conns)
 {
     for (auto &conn : conns) {
-        NetWiredItemPrivate *item = NetItemNew(WiredItem, device->path() + ":" + conn->connection()->path()); // new NetWiredItem(device->path() + ":" + conn->connection()->path());
-        connect(conn, &WiredConnection::connectionChanged, this, &NetManagerThreadPrivate::onConnectionChanged);
+        NetWiredItemPrivate *item = NetItemNew(WiredItem, device->path() + ":" + conn->connection()->path()); // new NetWiredItem(device->path() + ":" + conn->connection()->path());        connect(conn, &WiredConnection::connectionChanged, this, &NetManagerThreadPrivate::onConnectionChanged);
         item->updatename(conn->connection()->id());
         item->updatestatus(toNetConnectionStatus(conn->status()));
         item->item()->moveToThread(m_parentThread);
@@ -2164,8 +2142,7 @@ void NetManagerThreadPrivate::addNetwork(const NetworkDeviceBase *device, QList<
     NetworkManager::Connection::List connections = dev->availableConnections();
 
     for (auto &ap : aps) {
-        NetWirelessItemPrivate *item = NetItemNew(WirelessItem, apID(ap)); // ap->path());
-        item->updatename(ap->ssid());
+        NetWirelessItemPrivate *item = NetItemNew(WirelessItem, apID(ap)); // ap->path());        item->updatename(ap->ssid());
         item->updateflags(static_cast<uint>(ap->type()));
         item->updatestrength(ap->strength());
         item->updatesecure(ap->secured());
@@ -2510,8 +2487,7 @@ void NetManagerThreadPrivate::updateDetails()
     // 使用对象指针作为键，而不是 name()
     QSet<NetworkDetails *> currentDetails;
     for (auto &&details : NetworkController::instance()->networkDetails()) {
-        if (!details) // 空指针检查
-            continue;
+        if (!details) // 空指针检查            continue;
         currentDetails.insert(details);
     }
 
@@ -2533,8 +2509,7 @@ void NetManagerThreadPrivate::updateDetails()
     // 添加新项或更新现有项
     int index = 0;
     for (auto &&details : NetworkController::instance()->networkDetails()) {
-        if (!details) // 空指针检查
-            continue;
+        if (!details) // 空指针检查            continue;
 
         // 生成唯一ID：使用对象指针地址
         QString uniqueId = QString("detail_%1").arg(reinterpret_cast<quintptr>(details));
@@ -2628,8 +2603,7 @@ void NetManagerThreadPrivate::onNotifyDeviceStatusChanged(NetworkManager::Device
         return;
     }
     switch (newState) {
-    case Device::State::Preparing: { // 正在连接
-        if (oldState == Device::State::Disconnected) {
+    case Device::State::Preparing: { // 正在连接        if (oldState == Device::State::Disconnected) {
             switch (device->type()) {
             case Device::Type::Ethernet:
                 sendNetworkNotify(NetworkNotifyType::WiredConnecting, m_lastConnection);
@@ -2642,8 +2616,7 @@ void NetManagerThreadPrivate::onNotifyDeviceStatusChanged(NetworkManager::Device
             }
         }
     } break;
-    case Device::State::Activated: { // 连接成功
-        switch (device->type()) {
+    case Device::State::Activated: { // 连接成功        switch (device->type()) {
         case Device::Type::Ethernet:
             sendNetworkNotify(NetworkNotifyType::WiredConnected, m_lastConnection);
             break;
@@ -2691,8 +2664,7 @@ void NetManagerThreadPrivate::onNotifyDeviceStatusChanged(NetworkManager::Device
             }
             break;
         case Device::StateChangeReason::ConfigUnavailableReason:
-        case Device::StateChangeReason::AuthSupplicantTimeoutReason: // 超时
-            switch (device->type()) {
+        case Device::StateChangeReason::AuthSupplicantTimeoutReason: // 超时            switch (device->type()) {
             case Device::Type::Ethernet:
                 sendNetworkNotify(NetworkNotifyType::WiredUnableConnect, m_lastConnection);
                 break;
@@ -3315,5 +3287,4 @@ void NetManagerThreadPrivate::checkPoratal()
     onPortalDetected(dbusInter.property("PortalUrl").toString());
 }
 
-} // namespace network
-} // namespace dde
+} // namespace network} // namespace dde

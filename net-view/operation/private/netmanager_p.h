@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -40,9 +40,7 @@ public:
     void init(NetType::NetManagerFlags flags);
     NetType::NetManagerFlags flags() const;
     bool netCheckAvailable();
-    QString wpaEapAuthen() const;     // 企业网EAP认证方式
-    QString wpaEapAuthmethod() const; // 企业网内部认证方式
-
+    QString wpaEapAuthen() const;     // 企业网EAP认证方式    QString wpaEapAuthmethod() const; // 企业网内部认证方式
 Q_SIGNALS:
     void request(NetManager::CmdType cmd, const QString &id, const QVariantMap &param);
     void vpnStatusChanged();
@@ -82,8 +80,7 @@ protected:
 
 private:
     NetControlItemPrivate *m_root;
-    NetItemPrivate *m_deleteItem; // 关联无父对象item，用于删除
-    bool m_isDeleting;
+    NetItemPrivate *m_deleteItem; // 关联无父对象item，用于删除    bool m_isDeleting;
     bool m_airplaneMode;
     NetManager::ConnectionType m_primaryConnectionType;
     bool m_monitorNetworkNotify;
@@ -104,7 +101,5 @@ private:
     friend class NetManager;
 };
 
-} // namespace network
-} // namespace dde
-
+} // namespace network} // namespace dde
 #endif //  NETMANAGERPRIVATE_H

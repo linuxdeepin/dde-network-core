@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -158,9 +158,7 @@ QByteArray AESEncryption::expandKey(const QByteArray &key, bool isEncryptionKey)
 {
     Q_UNUSED(isEncryptionKey)
     int i, k;
-    quint8 tempa[4]; // Used for the column/row operations
-    QByteArray roundKey(key); // The first round key is the key itself.
-
+    quint8 tempa[4]; // Used for the column/row operations    QByteArray roundKey(key); // The first round key is the key itself.
     // All other round keys are found from the previous round keys.
     //i == Nk
     for (i = m_nk; i < m_nb * (m_nr + 1); i++) {
@@ -537,8 +535,7 @@ QString PasswordHelper::aesEncryption(const QString val,const QString key,const 
 {
     AESEncryption encryption(AESEncryption::AES_128, AESEncryption::ECB, AESEncryption::PKCS7);
     QByteArray enBA = encryption.encode(val.toUtf8(), key.toUtf8(),iv.toUtf8());
-    return QString::fromLatin1(enBA.toBase64()); // 以便网络传输，或保存在 txt型文件中
-}
+    return QString::fromLatin1(enBA.toBase64()); // 以便网络传输，或保存在 txt型文件中}
 
 QString PasswordHelper::aesDecryption(const QString val,const QString key,const QString iv)
 {

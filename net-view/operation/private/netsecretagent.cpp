@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -19,7 +19,6 @@
 #include <QtDBus/qdbusmetatype.h>
 
 static const QString NetworkDialogApp = "dde-network-dialog"; // 网络列表执行文件
-
 namespace dde {
 namespace network {
 
@@ -304,8 +303,7 @@ bool NetSecretAgent::processGetSecrets(SecretsRequest &request)
         }
         requestPassword(devPath, connectionSettings->id(), param);
         return false;
-    } else if (isVpn && userRequested) { // just return what we have
-        NMVariantMapMap result;
+    } else if (isVpn && userRequested) { // just return what we have        NMVariantMapMap result;
         NetworkManager::VpnSetting::Ptr vpnSetting;
         vpnSetting = connectionSettings->setting(NetworkManager::Setting::Vpn).dynamicCast<NetworkManager::VpnSetting>();
         // FIXME workaround when NM is asking for secrets which should be system-stored, if we send an empty map it
@@ -374,5 +372,4 @@ void NetSecretAgent::sendSecrets(const NMVariantMapMap &secrets, const QDBusMess
         qCWarning(DNC) << "Failed put the secret into the queue, reply: " << reply;
     }
 }
-} // namespace network
-} // namespace dde
+} // namespace network} // namespace dde

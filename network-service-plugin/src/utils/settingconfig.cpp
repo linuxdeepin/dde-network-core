@@ -12,8 +12,7 @@ static Dtk::Core::DConfig *dConfig = nullptr;
 
 // 当没有进行配置的时候, 则访问我们官网
 static const QStringList CheckUrls{
-    "https://www.uniontech.com",
-};
+    "https://www.uniontech.com",};
 
 SettingConfig *SettingConfig::instance()
 {
@@ -177,15 +176,15 @@ void SettingConfig::onValueChanged(const QString &key)
     }
 
     if (emitEnableConnectivity)
-        emit enableConnectivityChanged(enableConnectivityValue);
+        Q_EMIT enableConnectivityChanged(enableConnectivityValue);
     if (emitCheckInterval)
-        emit connectivityCheckIntervalChanged(checkIntervalValue);
+        Q_EMIT connectivityCheckIntervalChanged(checkIntervalValue);
     if (emitCheckUrls)
-        emit checkUrlsChanged(checkUrlsValue);
+        Q_EMIT checkUrlsChanged(checkUrlsValue);
     if (emitFailureNotify)
-        emit disableFailureNotifyChanged(failureNotifyValue);
+        Q_EMIT disableFailureNotifyChanged(failureNotifyValue);
     if (emitOsdTimeout)
-        emit resetWifiOSDEnableTimeoutChanged(osdTimeoutValue);
+        Q_EMIT resetWifiOSDEnableTimeoutChanged(osdTimeoutValue);
 }
 
 SettingConfig::SettingConfig(QObject *parent)

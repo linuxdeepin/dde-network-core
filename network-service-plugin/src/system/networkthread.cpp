@@ -511,5 +511,4 @@ void NetworkThread::onAirplaneWifiEnabledResolved(bool enabled, const QString &i
     NetworkManagerProxy::instance()->setWirelessEnabled(true);
 }
 
-} // namespace systemservice
-} // namespace network
+} // namespace systemservice} // namespace network

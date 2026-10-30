@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -24,7 +24,7 @@ public:
     QStringList primaryAccount() const;
     bool accountExist(const QString &accountname) const;
 
-signals:
+Q_SIGNALS:
     void accountChanged(const QString &accountname);
     void accountAdded(const QString &accountname, bool isIam);
     void accountRemoved(const QString &accountname);
@@ -34,7 +34,7 @@ private:
     QString parseAccount(const QString &accountInfo);
     QStringList iamUserList() const;
 
-private slots:
+private Q_SLOTS:
     void onAccountChanged(const QString &username);
     void onUserAdded(const QString &path);
     void onUserDeleted(const QString &path);

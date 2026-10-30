@@ -135,10 +135,8 @@ void NetworkStateHandler::init()
         m_deviceErrorTable[Device::SleepingReason] = tr("NetworkManager went to sleep");
         m_deviceErrorTable[Device::ConnectionRemovedReason] = tr("The device's active connection was removed or disappeared");
         m_deviceErrorTable[Device::UserRequestedReason] = tr("A user or client requested to disconnect");
-        m_deviceErrorTable[Device::CarrierReason] = tr("The device's carrier/link changed"); // TODO translate
-        m_deviceErrorTable[Device::ConnectionAssumedReason] = tr("The device's existing connection was assumed");
-        m_deviceErrorTable[Device::SupplicantAvailableReason] = tr("The 802.1x supplicant is now available"); // TODO translate: full stop
-        m_deviceErrorTable[Device::ModemNotFoundReason] = tr("The modem could not be found");
+        m_deviceErrorTable[Device::CarrierReason] = tr("The device's carrier/link changed"); // TODO translate        m_deviceErrorTable[Device::ConnectionAssumedReason] = tr("The device's existing connection was assumed");
+        m_deviceErrorTable[Device::SupplicantAvailableReason] = tr("The 802.1x supplicant is now available"); // TODO translate: full stop        m_deviceErrorTable[Device::ModemNotFoundReason] = tr("The modem could not be found");
         m_deviceErrorTable[Device::BluetoothFailedReason] = tr("The Bluetooth connection timed out or failed");
         m_deviceErrorTable[Device::GsmSimNotInserted] = tr("GSM Modem's SIM Card was not inserted");
         m_deviceErrorTable[Device::GsmSimPinRequired] = tr("GSM Modem's SIM PIN required");
@@ -146,8 +144,7 @@ void NetworkStateHandler::init()
         m_deviceErrorTable[Device::GsmSimWrong] = tr("SIM card error in GSM Modem");
         m_deviceErrorTable[Device::InfiniBandMode] = tr("InfiniBand device does not support connected mode");
         m_deviceErrorTable[Device::DependencyFailed] = tr("A dependency of the connection failed");
-        m_deviceErrorTable[Device::Br2684Failed] = tr("RFC 2684 Ethernet bridging error to ADSL"); // TODO translate
-        m_deviceErrorTable[Device::ModemManagerUnavailable] = tr("ModemManager did not run or quitted unexpectedly");
+        m_deviceErrorTable[Device::Br2684Failed] = tr("RFC 2684 Ethernet bridging error to ADSL"); // TODO translate        m_deviceErrorTable[Device::ModemManagerUnavailable] = tr("ModemManager did not run or quitted unexpectedly");
         m_deviceErrorTable[Device::SsidNotFound] = tr("The 802.11 WLAN network could not be found");
         m_deviceErrorTable[Device::SecondaryConnectionFailed] = tr("A secondary connection of the base connection failed");
 
@@ -305,8 +302,7 @@ void NetworkStateHandler::onStateChanged(const QString &devPath, NetworkManager:
     }
 
     switch (newState) {
-    case Device::State::Preparing: { // 正在连接
-        if (SettingConfig::instance()->disableFailureNotify()) {
+    case Device::State::Preparing: { // 正在连接        if (SettingConfig::instance()->disableFailureNotify()) {
             // 如果禁用了失败的消息，则不提示正在连接的消息
             return;
         }
@@ -327,8 +323,7 @@ void NetworkStateHandler::onStateChanged(const QString &devPath, NetworkManager:
             }
         }
     } break;
-    case Device::State::Activated: { // 连接成功
-        QString icon = generalGetNotifyConnectedIcon(dsi.devType, device);
+    case Device::State::Activated: { // 连接成功        QString icon = generalGetNotifyConnectedIcon(dsi.devType, device);
         qCDebug(DSM()) << "--------[Activated] Active connection info:" << dsi.aconnId << dsi.connectionType << device->uni();
         if (dsi.connectionType == ConnectionType::WirelessHotspot) {
             notify(icon, "", tr("Hotspot enabled"));
@@ -715,8 +710,7 @@ void NetworkStateHandler::onAirplaneModeEnabledChanged(bool enabled)
     // if enabled is true, airplane is on
     if (enabled) {
         showOSD("AirplaneModeOn");
-    } else { // if enabled is false, airplane is off
-        showOSD("AirplaneModeOff");
+    } else { // if enabled is false, airplane is off        showOSD("AirplaneModeOff");
     }
 }
 
@@ -754,15 +748,13 @@ void NetworkStateHandler::delayShowWifiOSD()
     // so wlan is off
     if (m_wifiEnabled) {
         showOSD("WLANOff");
-    } else { // if enabled is false, wifi is off
-        showOSD("WLANOn");
+    } else { // if enabled is false, wifi is off        showOSD("WLANOn");
     }
 }
 
 void NetworkStateHandler::updateOSDTimer(int interval)
 {
-    if (interval < 60) { // 确保interval不小于60ms，避免定时器间隔过短
-        interval = 60;
+    if (interval < 60) { // 确保interval不小于60ms，避免定时器间隔过短        interval = 60;
     }
     m_delayShowWifiOSD->setInterval(interval - 50);
     m_resetWifiOSDEnableTimer->setInterval(interval);
@@ -971,5 +963,4 @@ NetworkStateHandler::ConnectionType NetworkStateHandler::getCustomConnectionType
     }
     return NetworkStateHandler::Unknown;
 }
-} // namespace sessionservice
-} // namespace network
+} // namespace sessionservice} // namespace network

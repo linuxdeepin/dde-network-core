@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2019-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #include "netstatus.h"
@@ -133,16 +133,14 @@ bool NetStatus::needShowControlCenter() const
     // 如果没有网络设备，则直接唤起控制中心
     if (!(m_deviceFlag & HAS_DEVICE_MASK))
         return true;
-    if ((m_deviceFlag & HAS_DEVICE_MASK) == HAS_WIRED_DEVICE && getDeviceConnections(NET_WIRED, static_cast<unsigned>(NetType::CS_AllConnectionStatus)).isEmpty()) // 只有有线,且无配置
-        return true;
+    if ((m_deviceFlag & HAS_DEVICE_MASK) == HAS_WIRED_DEVICE && getDeviceConnections(NET_WIRED, static_cast<unsigned>(NetType::CS_AllConnectionStatus)).isEmpty()) // 只有有线,且无配置        return true;
     return false;
 }
 
 const QString NetStatus::contextMenu(bool hasSetting) const
 {
     QList<QVariant> items;
-    if ((m_deviceFlag & HAS_DEVICE_MASK) == HAS_DEVICE_MASK) { // 无线有线都有
-        QMap<QString, QVariant> wireEnable;
+    if ((m_deviceFlag & HAS_DEVICE_MASK) == HAS_DEVICE_MASK) { // 无线有线都有        QMap<QString, QVariant> wireEnable;
         if (m_deviceFlag & ENABLED_WIRED_DEVICE) {
             wireEnable["itemId"] = QString::number(MenuWiredDisabled);
             wireEnable["itemText"] = tr("Disable wired connection");
@@ -164,7 +162,6 @@ const QString NetStatus::contextMenu(bool hasSetting) const
         wirelessEnable["isActive"] = bool(m_deviceFlag & ENABLEDABLE_WIRELESS_DEVICE);
         items.push_back(wirelessEnable);
     } else if (m_deviceFlag & HAS_DEVICE_MASK) { // 只有一种设备
-
         QMap<QString, QVariant> enable;
         if (m_deviceFlag & ENABLED_DEVICE_MASK) {
             enable["itemId"] = QString::number(MenuDisabled);
@@ -535,8 +532,7 @@ void NetStatus::doUpdateStatus()
         switch (it->itemType()) {
         case NetType::WiredDeviceItem:
             index = WIRED_DEVICE_INDEX;
-            [[clang::fallthrough]]; // 去无break警告
-        case NetType::WirelessDeviceItem: {
+            [[clang::fallthrough]]; // 去无break警告        case NetType::WirelessDeviceItem: {
             NetDeviceItem *devItem = qobject_cast<NetDeviceItem *>(it);
             bool needShowIp = false;
             if (devItem && devItem->isEnabled() && !devItem->ips().isEmpty()) {
@@ -1137,8 +1133,7 @@ void NetStatus::nextQuickAnimation()
 
 QVector<NetItem *> NetStatus::getDeviceConnections(unsigned type, unsigned connectType) const
 {
-    QVector<NetItem *> activeItems[5]; // 与NetConnectionStatus对应,取最大,activeItems[0]未用到,只是方便后续处理
-    QVector<NetItem *> items;
+    QVector<NetItem *> activeItems[5]; // 与NetConnectionStatus对应,取最大,activeItems[0]未用到,只是方便后续处理    QVector<NetItem *> items;
     items.append(m_manager->root());
     while (!items.isEmpty()) {
         NetItem *item = items.takeFirst();
@@ -1191,5 +1186,4 @@ bool NetStatus::event(QEvent *event)
     return QObject::event(event);
 }
 
-} // namespace network
-} // namespace dde
+} // namespace network} // namespace dde

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2027 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #ifndef NETWORKINTER_H
@@ -51,7 +51,6 @@ public:
     QString wirelessAccessPoints();
 
 public Q_SLOTS: // METHODS
-
     inline QDBusPendingReply<QDBusObjectPath> ActivateAccessPoint(const QString &in0, const QDBusObjectPath &in1, const QDBusObjectPath &in2)
     {
         QList<QVariant> argumentList;
@@ -413,8 +412,7 @@ public Q_SLOTS: // METHODS
         CallQueued(QStringLiteral("SetProxyMethod"), argumentList);
     }
 
-Q_SIGNALS: // SIGNALS
-    void AccessPointAdded(const QString &in0, const QString &in1);
+Q_SIGNALS: // SIGNALS    void AccessPointAdded(const QString &in0, const QString &in1);
     void AccessPointPropertiesChanged(const QString &in0, const QString &in1);
     void AccessPointRemoved(const QString &in0, const QString &in1);
     void ActiveConnectionInfoChanged();

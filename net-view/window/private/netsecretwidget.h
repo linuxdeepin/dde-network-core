@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2019-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #ifndef NETSECRETWIDGET_H
@@ -40,7 +40,5 @@ private:
     QPointer<QWidget> m_passwordWidget;
 };
 
-} // namespace network
-} // namespace dde
-
+} // namespace network} // namespace dde
 #endif // NETSECRETWIDGET_H

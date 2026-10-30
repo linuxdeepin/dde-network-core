@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2025 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2025-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #ifndef SECRETSERVICE_H
@@ -18,10 +18,7 @@ public:
 
 public Q_SLOTS:
     void secretInit();
-    void getDefaultCollection();                          // 获取默认密钥环，并且尝试解锁它。
-    void getDefaultCollectionAux();                       // 获取默认密钥环
-    void tryUnlockCollection(QDBusInterface *collection); // 解锁密钥环
-    QMap<QString, QString> getAll(const QString &uuid, const QString &settingName);
+    void getDefaultCollection();                          // 获取默认密钥环，并且尝试解锁它。    void getDefaultCollectionAux();                       // 获取默认密钥环    void tryUnlockCollection(QDBusInterface *collection); // 解锁密钥环    QMap<QString, QString> getAll(const QString &uuid, const QString &settingName);
     QString deleteAll(const QString &uuid);
     QString deleteData(const QString &uuid, const QString &settingName, const QString &settingKey);
     QString setData(const QString &label, const QString &uuid, const QString &settingName, const QString &settingKey, const QString &value);
@@ -34,6 +31,4 @@ private:
     QDBusInterface *m_secretService;
     QDBusInterface *m_defaultCollection;
 };
-} // namespace sessionservice
-} // namespace network
-#endif // SECRETSERVICE_H
+} // namespace sessionservice} // namespace network#endif // SECRETSERVICE_H

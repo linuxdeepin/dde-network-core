@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -17,9 +17,7 @@ namespace dde {
         class AccessPoints;
         class WiredConnection;
         enum class DeviceType;
-    } // namespace network
-} // namespace dde
-
+    } // namespace network} // namespace dde
 class WirelessConnect : public QObject
 {
     Q_OBJECT

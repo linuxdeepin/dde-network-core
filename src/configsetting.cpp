@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2022 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2022-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -29,8 +29,7 @@ ConfigSetting::ConfigSetting(QObject *parent)
     , m_enableEapInput(false)
     , m_dontSetIpIfConflict(false)
     , m_showBrowserLink(false)
-    , m_browserUrl("https://www.uniontech.com")
-    , m_nobindEthernetMacDefault(false)
+    , m_browserUrl("https://www.uniontech.com")    , m_nobindEthernetMacDefault(false)
     , m_portalProcessMode("promp")
     , m_disableConnectingAnimation(false)
     , m_disableAllNotify(false)
@@ -67,39 +66,39 @@ void ConfigSetting::onValueChanged(const QString &key)
 {
     if (key == QString("NetworkCheckerUrls")) {
         m_networkUrls = dConfig->value("NetworkCheckerUrls").toStringList();
-        emit checkUrlsChanged(m_networkUrls);
+        Q_EMIT checkUrlsChanged(m_networkUrls);
     } else if (key == QString("enableConnectivity")) {
         m_enableConnectivity = dConfig->value("enableConnectivity").toBool();
-        emit enableConnectivityChanged(m_enableConnectivity);
+        Q_EMIT enableConnectivityChanged(m_enableConnectivity);
     } else if (key == QString("ConnectivityCheckInterval")) {
         m_connectivityCheckInterval = dConfig->value("ConnectivityCheckInterval").toInt() * 1000;
-        emit connectivityCheckIntervalChanged(m_connectivityCheckInterval);
+        Q_EMIT connectivityCheckIntervalChanged(m_connectivityCheckInterval);
     } else if (key == QString("wirelessScanInterval")) {
         m_wirelessScanInterval = dConfig->value(key, 10).toInt() * 1000;
-        emit wirelessScanIntervalChanged(m_wirelessScanInterval);
+        Q_EMIT wirelessScanIntervalChanged(m_wirelessScanInterval);
     } else if (key == QString("wpaEapAuthen")) {
         m_wpaEapAuthen = dConfig->value(key).toString();
-        emit wpaEapAuthenChanged(m_wpaEapAuthen);
+        Q_EMIT wpaEapAuthenChanged(m_wpaEapAuthen);
     } else if (key == QString("wpaEapAuthmethod")) {
         m_wpaEapAuthmethod = dConfig->value(key).toString();
-        emit wpaEapAuthmethodChanged(m_wpaEapAuthmethod);
+        Q_EMIT wpaEapAuthmethodChanged(m_wpaEapAuthmethod);
     } else if (key == "networkAirplaneMode") {
         m_networkAirplaneMode = dConfig->value("networkAirplaneMode").toBool();
-        emit enableAirplaneModeChanged(m_networkAirplaneMode);
+        Q_EMIT enableAirplaneModeChanged(m_networkAirplaneMode);
     } else if (key == "supportCertifiedEscape") {
         m_supportCertifiedEscape = dConfig->value("supportCertifiedEscape").toBool();
-        emit supportCertifiedEscapeChanged(m_supportCertifiedEscape);
+        Q_EMIT supportCertifiedEscapeChanged(m_supportCertifiedEscape);
     } else if (key == "showUnauthorizedSwitch") {
         m_showUnAuthorizeSwitch = dConfig->value("showUnauthorizedSwitch").toBool();
-        emit showUnAuthorizeSwitchChanged(m_showUnAuthorizeSwitch);
+        Q_EMIT showUnAuthorizeSwitchChanged(m_showUnAuthorizeSwitch);
     } else if (key == "enableEapInput") {
         m_enableEapInput = dConfig->value("enableEapInput").toBool();
     } else if (key == "showBrowserLink") {
         m_showBrowserLink = dConfig->value("showBrowserLink").toBool();
-        emit showBrowserLinkChanged(m_showBrowserLink);
+        Q_EMIT showBrowserLinkChanged(m_showBrowserLink);
     } else if (key == QString("browserUrl")) {
         m_browserUrl = dConfig->value(key).toString();
-        emit browserUrlChanged(m_browserUrl);
+        Q_EMIT browserUrlChanged(m_browserUrl);
     } else if (key == "NobindEthernetMacDefault") {
         m_nobindEthernetMacDefault = dConfig->value("NobindEthernetMacDefault").toBool();
     } else if (key == "disableConnectingAnimation") {

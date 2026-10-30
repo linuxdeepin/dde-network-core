@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -60,7 +60,5 @@ private:
     NetworkManager::ConnectionSettings::Ptr m_connectionSettings;
 };
 
-} // namespace network
-} // namespace dde
-
+} // namespace network} // namespace dde
 #endif //  NETWIRELESSCONNECT_H

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -451,7 +451,7 @@ void WiredDeviceInterRealize::setDeviceEnabledStatus(const bool &enabled)
 
     DeviceInterRealize::setDeviceEnabledStatus(enabled);
 
-    emit ipV4Changed();
+    Q_EMIT ipV4Changed();
 }
 
 void WiredDeviceInterRealize::updateActiveStatus(const QSharedPointer<NetworkManager::Connection> &connection, ConnectionStatus state)
@@ -460,8 +460,8 @@ void WiredDeviceInterRealize::updateActiveStatus(const QSharedPointer<NetworkMan
         conn->setConnectionStatus(conn->connection()->uuid() == connection->uuid() ? state : ConnectionStatus::Deactivated);
     }
 
-    emit activeConnectionChanged();
-    emit ipV4Changed();
+    Q_EMIT activeConnectionChanged();
+    Q_EMIT ipV4Changed();
 }
 
 void WiredDeviceInterRealize::updateDeviceData(const QJsonObject &data)
@@ -581,7 +581,7 @@ void WiredDeviceInterRealize::updateActiveInfo(const QList<QJsonObject> &info)
     if (changeStatus)
         Q_EMIT activeConnectionChanged();
 
-    emit ipV4Changed();
+    Q_EMIT ipV4Changed();
 }
 
 QString WiredDeviceInterRealize::deviceKey()
@@ -904,7 +904,7 @@ void WirelessDeviceInterRealize::updateDeviceData(const QJsonObject &data)
         return;
 
     m_available = available;
-    emit availableChanged(m_available);
+    Q_EMIT availableChanged(m_available);
 }
 
 void WirelessDeviceInterRealize::updateActiveStatus(const QSharedPointer<NetworkManager::Connection> &connection, ConnectionStatus state)
@@ -917,7 +917,7 @@ void WirelessDeviceInterRealize::updateActiveStatus(const QSharedPointer<Network
     for (AccessPointInfo *accessPoint : m_accessPointInfos) {
         accessPoint->proxy()->updateConnectionStatus(accessPoint->ssid() == ssid ? state : ConnectionStatus::Deactivated);
     }
-    emit activeConnectionChanged();
+    Q_EMIT activeConnectionChanged();
 }
 
 void WirelessDeviceInterRealize::updateAccesspoint(const QJsonArray &json)

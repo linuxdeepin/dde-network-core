@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2027 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -8,5 +8,4 @@
 
 namespace NetworkManager {
 QDBusPendingReply<QDBusObjectPath> activateConnection2(const QString &connectionUni, const QString &interfaceUni, const QString &connectionParameter, const QVariantMap &options);
-} // namespace NetworkManager
-#endif // NETWORKMANAGER_H
+} // namespace NetworkManager#endif // NETWORKMANAGER_H

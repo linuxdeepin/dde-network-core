@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2022 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2022-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -87,7 +87,6 @@ QStringList decodeCandidates(const QLocale &l)
 }
 
 } // namespace
-
 /**
  * 将 SSID 原始字节解码为显示用 UTF-8 字符串。
  *

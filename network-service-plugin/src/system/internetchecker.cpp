@@ -87,7 +87,7 @@ void InternetChecker::switchInternetAccess(bool checkPrimaryConnection, bool swi
     checkedDevices << wiredDevice << wirelessDevice;
     // 如果没有需要切换的网络，则无需继续切换
     if (checkedDevices.isEmpty()) {
-        emit switchFailed();
+        Q_EMIT switchFailed();
         return;
     }
 
@@ -95,7 +95,7 @@ void InternetChecker::switchInternetAccess(bool checkPrimaryConnection, bool swi
         // 如果需要检查主链接，且此时主链接可以上网，则无需切换，直接告诉外面当前网络状况正常
         if (checkInterfaceOnline(primaryDevice) == ProbeResult::Online) {
             qCInfo(DSM) << "primary device " << primaryDevice.interfaceName << " is online";
-            emit switchSuccess();
+            Q_EMIT switchSuccess();
             return;
         }
     }
@@ -106,7 +106,7 @@ void InternetChecker::switchInternetAccess(bool checkPrimaryConnection, bool swi
         if (ret == ProbeResult::Online) {
             qCInfo(DSM) << device.interfaceName << " is online, set it primary device";
             proxy->applyPrimaryDeviceMetrics(device.uni);
-            emit switchSuccess();
+            Q_EMIT switchSuccess();
             return;
         }
         if (switchPortal && ret == ProbeResult::Portal) {
@@ -123,7 +123,7 @@ void InternetChecker::switchInternetAccess(bool checkPrimaryConnection, bool swi
         return;
     }
     qCWarning(DSM) << "switch primary device failure";
-    emit switchFailed();
+    Q_EMIT switchFailed();
 }
 
 // 检测指定网卡的联网状态：
@@ -154,8 +154,7 @@ ProbeResult InternetChecker::checkInterfaceOnline(const DeviceSnapshot &device) 
         int curTimeout = qMin(perUrlTimeout, remainTimeout);
         QString host = url;
         quint16 port = 80;
-        static QStringList schemePrefixes = {"https://", "http://"};
-        for (const QString &prefix : schemePrefixes) {
+        static QStringList schemePrefixes = {"https://", "http://"};        for (const QString &prefix : schemePrefixes) {
             if (host.startsWith(prefix)) {
                 host = host.remove(0, prefix.length());
                 if (prefix.startsWith("https"))
@@ -351,8 +350,7 @@ ProbeResult InternetChecker::checkReachability(const QString &ifName, const sock
         if (n <= 0) {
             if (n < 0 && (errno == EAGAIN || errno == EWOULDBLOCK))
                 continue;
-            break; // n == 0 表示对端关闭连接
-        }
+            break; // n == 0 表示对端关闭连接        }
         response.append(buf, static_cast<int>(n));
     }
     close(sockFd);
@@ -518,25 +516,21 @@ int InternetChecker::buildDnsQueryPacket(const QString &domain, unsigned char *p
 {
     memset(pkt, 0, pktSize);
     int needed = 12; // DNS 头部固定 12 字节
-
     // 计算问段域名编码后所需的长度：每个标签为 1 字节长度 + 标签内容
     QStringList seg = domain.split(".");
     for (const auto &s : seg) {
         QByteArray buf = s.toUtf8();
-        if (buf.size() > 63) // RFC 1035: 单个标签不超过 63 字节
-            return -1;
+        if (buf.size() > 63) // RFC 1035: 单个标签不超过 63 字节            return -1;
         needed += 1 + buf.size();
     }
     needed += 1 + 4; // 域名结尾 null 字节 + QTYPE(2) + QCLASS(2)
-
     if (needed > pktSize)
         return -1;
 
     // 填充 DNS 头部：ID、标准查询标志、QDCOUNT=1
     unsigned short id = htons(txId);
     memcpy(pkt, &id, 2);
-    pkt[2] = 0x01; pkt[3] = 0x00; // Flags: RD=1, 其余为 0（标准查询）
-    unsigned short qd = htons(1);
+    pkt[2] = 0x01; pkt[3] = 0x00; // Flags: RD=1, 其余为 0（标准查询）    unsigned short qd = htons(1);
     memcpy(pkt + 4, &qd, 2);
 
     // 填充问段：将域名按 "." 分割，每段前加长度字节，以 null 字节结尾
@@ -547,8 +541,7 @@ int InternetChecker::buildDnsQueryPacket(const QString &domain, unsigned char *p
         memcpy(pkt + ptr, buf.data(), buf.size());
         ptr += buf.size();
     }
-    pkt[ptr++] = 0; // 域名结束标记
-    // QTYPE=A(1), QCLASS=IN(1)
+    pkt[ptr++] = 0; // 域名结束标记    // QTYPE=A(1), QCLASS=IN(1)
     unsigned short typeA = htons(1), cls = htons(1);
     memcpy(pkt + ptr, &typeA, 2); ptr += 2;
     memcpy(pkt + ptr, &cls, 2); ptr += 2;
@@ -571,8 +564,7 @@ bool InternetChecker::parseDnsResponse(const unsigned char *buf, int len, unsign
     if (respId != txId || !(buf[2] & 0x80))
         return false;
 
-    int p = 12; // 跳过 12 字节 DNS 头部
-    unsigned short qnum;
+    int p = 12; // 跳过 12 字节 DNS 头部    unsigned short qnum;
     memcpy(&qnum, buf + 4, 2);
     qnum = ntohs(qnum);
 
@@ -599,8 +591,7 @@ bool InternetChecker::parseDnsResponse(const unsigned char *buf, int len, unsign
             p++;
         if (p + 4 > len)
             break;
-        p += 4; // 跳过 QTYPE(2) + QCLASS(2)
-    }
+        p += 4; // 跳过 QTYPE(2) + QCLASS(2)    }
 
     // 遍历 Answer Section，查找 A 记录
     for (int i = 0; i < anNum && p + 12 <= len; i++) {
@@ -626,12 +617,10 @@ bool InternetChecker::parseDnsResponse(const unsigned char *buf, int len, unsign
         memcpy(&rtype, buf + p, 2);
         rtype = ntohs(rtype);
         p += 8; // 跳过 TYPE(2) + CLASS(2) + TTL(4)
-
         unsigned short rdLen;
         memcpy(&rdLen, buf + p, 2);
         rdLen = ntohs(rdLen);
         p += 2; // 跳过 RDLENGTH(2)
-
         // 找到 A 记录：TYPE=1，RDATA 长度固定 4 字节（IPv4 地址）
         if (rtype == 1 && rdLen == 4 && p + 4 <= len) {
             memcpy(&outIp, buf + p, 4);

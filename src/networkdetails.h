@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -25,7 +25,7 @@ public:
     QString name();
     QList<QPair<QString, QString>> items();
 
-signals:
+Q_SIGNALS:
     void infoChanged();
 
 protected:

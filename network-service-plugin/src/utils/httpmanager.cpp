@@ -88,7 +88,6 @@ static int getaddrinfo_with_timeout(const std::string &node, const std::string &
 }
 
 } // anonymous namespace
-
 namespace network {
 namespace service {
 

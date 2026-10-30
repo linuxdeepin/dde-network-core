@@ -44,7 +44,7 @@ private:
     // uni -> 上次看到的 IPv4 地址列表，用于在快照刷新时识别地址变化
     QHash<QString, QStringList> m_lastIpv4;
 
-private slots:
+private Q_SLOTS:
     void onReceiveIPConflict(const QString &ip, const QString &localMac, const QString &remoteMac);
     void onReceiveIPConflictReslove(const QString &ip, const QString &localMac, const QString &remoteMac);
 };

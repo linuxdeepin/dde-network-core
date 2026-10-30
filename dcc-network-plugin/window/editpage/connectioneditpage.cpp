@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -477,8 +477,7 @@ bool ConnectionEditPage::eventFilter(QObject *obj, QEvent *event)
 {
     if (event->type() == QEvent::Show && obj == m_removeBtn) {
         QWidget *widget = static_cast<QWidget *>(obj);
-        bool visible = true; // "Hidden" != GSettingWatcher::instance()->getStatus("removeConnection");
-        if (m_isNewConnection)
+        bool visible = true; // "Hidden" != GSettingWatcher::instance()->getStatus("removeConnection");        if (m_isNewConnection)
             widget->setVisible(false);
         else if (visible != widget->isVisible())
             widget->setVisible(visible);

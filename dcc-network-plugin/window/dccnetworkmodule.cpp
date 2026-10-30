@@ -1,5 +1,4 @@
-﻿// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
-//
+﻿// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.//
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
 #include "dccnetworkmodule.h"
@@ -43,15 +42,9 @@ void NetworkModule::init()
         connect(NetworkController::instance()->hotspotController(), &HotspotController::deviceAdded, this, &NetworkModule::updateVisiable);
         connect(NetworkController::instance()->hotspotController(), &HotspotController::deviceRemove, this, &NetworkModule::updateVisiable);
 
-        m_modules.append(new DSLModule(this));         // DSL
-        m_modules.append(new VPNModule(this));         // VPN
-        m_modules.append(new SysProxyModule(this));    // 代理
-#ifdef DCC_ENABLE_APP_PROXY
-        m_modules.append(new AppProxyModule(this));    // 应用代理
-#endif
-        m_modules.append(new HotspotModule(this));     // 热点
-        m_modules.append(new NetworkInfoModule(this)); // 网络详情
-    }
+        m_modules.append(new DSLModule(this));         // DSL        m_modules.append(new VPNModule(this));         // VPN        m_modules.append(new SysProxyModule(this));    // 代理#ifdef DCC_ENABLE_APP_PROXY
+        m_modules.append(new AppProxyModule(this));    // 应用代理#endif
+        m_modules.append(new HotspotModule(this));     // 热点        m_modules.append(new NetworkInfoModule(this)); // 网络详情    }
     updateModel();
 }
 
@@ -83,8 +76,7 @@ void NetworkModule::updateVisiable()
     }
 
     for (ModuleObject *&module : m_modules) {
-        if (!supportHotspot && module->name() == QStringLiteral("personalHotspot")) { // 热点根据设备显示
-            removeChild(module);
+        if (!supportHotspot && module->name() == QStringLiteral("personalHotspot")) { // 热点根据设备显示            removeChild(module);
         } else {
             insertChild(row++, module);
         }
@@ -137,8 +129,7 @@ void NetworkModule::updateModel()
 
 bool NetworkModule::event(QEvent *ev)
 {
-    if (ev->type() == QEvent::ThreadChange) { // 网络中有用到单例，信号槽会受线程影响，需在主线程中初始化
-        QTimer *timer = new QTimer(this);
+    if (ev->type() == QEvent::ThreadChange) { // 网络中有用到单例，信号槽会受线程影响，需在主线程中初始化        QTimer *timer = new QTimer(this);
         connect(timer, &QTimer::timeout, this, [this]() {
             init();
         });

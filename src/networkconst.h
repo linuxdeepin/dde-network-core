@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2022-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -21,49 +21,25 @@ namespace network {
  * 系统代理类型
  */
 enum class SysProxyType {
-    Http = 0,    // http类型
-    Https,       // https类型
-    Ftp,         // ftp类型
-    Socks        // socks类型
-};
+    Http = 0,    // http类型    Https,       // https类型    Ftp,         // ftp类型    Socks        // socks类型};
 
 /*
  * 应用代理类型
  */
 enum class AppProxyType {
-    Http = 0,      // http类型
-    Socks4,        // sock4类型
-    Socks5         // sock5类型
-};
+    Http = 0,      // http类型    Socks4,        // sock4类型    Socks5         // sock5类型};
 
 /*
  * 设备类型
  */
 enum class DeviceType {
-    Unknown = 0,      // 未知设备
-    Wired,           // 有线网卡
-    Wireless         // 无线网卡
-};
+    Unknown = 0,      // 未知设备    Wired,           // 有线网卡    Wireless         // 无线网卡};
 
 /*
  * @brief 设备状态
  */
 enum class DeviceStatus {
-    Unknown         = 0,          // 未知状态
-    Unmanaged       = 10,         // 未管理
-    Unavailable     = 20,         // 不可用
-    Disconnected    = 30,         // 断开连接
-    Prepare         = 40,         // 正在准备状态
-    Config          = 50,         // 正在配置连接信息
-    Needauth        = 60,         // 需要认证
-    IpConfig        = 70,         // 正在配置IP
-    IpCheck         = 80,         // 正在进行IP检验
-    Secondaries     = 90,         // 设备正在等待第二个在当前设备连接成功之前必须激活的连接(例如VPN)
-    Activated       = 100,        // 激活状态，也就是连接成功
-    Deactivation    = 110,        // 断开连接
-    Failed          = 120,        // 连接失败
-    IpConflict      = 121         // ip冲突
-};
+    Unknown         = 0,          // 未知状态    Unmanaged       = 10,         // 未管理    Unavailable     = 20,         // 不可用    Disconnected    = 30,         // 断开连接    Prepare         = 40,         // 正在准备状态    Config          = 50,         // 正在配置连接信息    Needauth        = 60,         // 需要认证    IpConfig        = 70,         // 正在配置IP    IpCheck         = 80,         // 正在进行IP检验    Secondaries     = 90,         // 设备正在等待第二个在当前设备连接成功之前必须激活的连接(例如VPN)    Activated       = 100,        // 激活状态，也就是连接成功    Deactivation    = 110,        // 断开连接    Failed          = 120,        // 连接失败    IpConflict      = 121         // ip冲突};
 
 /*
  * 连接状态
@@ -79,22 +55,14 @@ enum class Connectivity {
         （因为捕获的门户通常会尝试对https连接进行中间人攻击），以便对网关进行身份验证，
         并在浏览器窗口关闭时使用CheckConnectivity()重新触发连接检查。*/
     Portal,
-    Limited,    // 主机已连接到网络，似乎无法访问完整的Internet，但尚未检测到捕获的门户
-    Full        // 主机已连接到网络，并且似乎能够访问完整的Internet。
-};
+    Limited,    // 主机已连接到网络，似乎无法访问完整的Internet，但尚未检测到捕获的门户    Full        // 主机已连接到网络，并且似乎能够访问完整的Internet。};
 
 class Connection
 {
     friend class ControllItems;
 
 public:
-    QString path();                        // 对应connections数据中的path
-    QString uuid();                        // 对应connections数据中的uuid
-    QString id();                          // 对应connections数据中的id
-    QString hwAddress();                   // 对应connections数据中的hwAddress
-    QString clonedAddress();               // 对应connections数据中的clonedAddress
-    QString ssid();                        // 对应connections数据中的Ssid
-
+    QString path();                        // 对应connections数据中的path    QString uuid();                        // 对应connections数据中的uuid    QString id();                          // 对应connections数据中的id    QString hwAddress();                   // 对应connections数据中的hwAddress    QString clonedAddress();               // 对应connections数据中的clonedAddress    QString ssid();                        // 对应connections数据中的Ssid
 protected:
     Connection();
     ~Connection();
@@ -133,41 +101,21 @@ private:
  * @brief 系统代理配置
  */
 struct SysProxyConfig {
-    SysProxyType type;      // 系统代理类型，是一个枚举变量(http,https,ftp,socks)
-    QString url;            // 代理的URL，一般用于自动代理的URL，手动代理的代理值
-    uint port;              // 代理的端口，一般是手动代理
-    bool  enableAuth;       // 是否需要验证，一般是手动代理
-    QString userName;       // 验证用户名，一般是手动代理
-    QString password;       // 验证密码，一般是手动代理
-};
+    SysProxyType type;      // 系统代理类型，是一个枚举变量(http,https,ftp,socks)    QString url;            // 代理的URL，一般用于自动代理的URL，手动代理的代理值    uint port;              // 代理的端口，一般是手动代理    bool  enableAuth;       // 是否需要验证，一般是手动代理    QString userName;       // 验证用户名，一般是手动代理    QString password;       // 验证密码，一般是手动代理};
 /**
  * @brief 应用代理配置
  */
 struct AppProxyConfig {
-    AppProxyType type;      // 应用代理类型，枚举变量(http,socks4,socks5)
-    QString ip;             // IP地址
-    uint port;              // 端口
-    QString username;       // 用户名
-    QString password;       // 密码
-};
+    AppProxyType type;      // 应用代理类型，枚举变量(http,socks4,socks5)    QString ip;             // IP地址    uint port;              // 端口    QString username;       // 用户名    QString password;       // 密码};
 
 enum class ProxyMethod {
-    Init = -1,               // 初始化状态，用来对数据进行初始化
-    None = 0,                // 没有设置，对应字符串”none”，如果设置成这个，此时是关闭代理
-    Auto,                    // 自动模式,对应字符串”auto”
-    Manual                   // 手动模式,对应字符串”manual”
-};
+    Init = -1,               // 初始化状态，用来对数据进行初始化    None = 0,                // 没有设置，对应字符串”none”，如果设置成这个，此时是关闭代理    Auto,                    // 自动模式,对应字符串”auto”    Manual                   // 手动模式,对应字符串”manual”};
 
 /**
  * @brief 当前网络连接状态
  */
 enum class ConnectionStatus {
-    Unknown = 0,             // 普通状态
-    Activating = 1,         // 连接中
-    Activated = 2,          // 连接成功
-    Deactivating = 3,       // 断开连接中
-    Deactivated = 4         // 连接已断开
-};
+    Unknown = 0,             // 普通状态    Activating = 1,         // 连接中    Activated = 2,          // 连接成功    Deactivating = 3,       // 断开连接中    Deactivated = 4         // 连接已断开};
 
 QDebug operator<<(QDebug deg, ConnectionStatus status);
 

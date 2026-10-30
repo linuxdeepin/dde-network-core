@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2025 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2025-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #ifndef NETWORKPROXY_H
@@ -200,11 +200,9 @@ public Q_SLOTS:
     QString GetProxyIgnoreHosts();
     void SetProxyIgnoreHosts(const QString &ignoreHosts);
     // GetProxy get the host and port for target proxy type.
-    void GetProxy(const QString &proxyType); // host, port string
-    // SetProxy set host and port for target proxy type.
+    void GetProxy(const QString &proxyType); // host, port string    // SetProxy set host and port for target proxy type.
     void SetProxy(const QString &proxyType, const QString &host, const QString &port);
-    void GetProxyAuthentication(const QString &proxyType); // user, password string, enable bool
-    void SetProxyAuthentication(const QString &proxyType, const QString &user, const QString &password, bool enable);
+    void GetProxyAuthentication(const QString &proxyType); // user, password string, enable bool    void SetProxyAuthentication(const QString &proxyType, const QString &user, const QString &password, bool enable);
     // 空实现
     QDBusObjectPath ActivateAccessPoint(const QString &uuid, const QDBusObjectPath &apPath, const QDBusObjectPath &devPath);
     QDBusObjectPath ActivateConnection(const QString &uuid, const QDBusObjectPath &devPath);
@@ -246,6 +244,4 @@ private:
     QGSettings *m_proxyChildSettingsFtp;
     QGSettings *m_proxyChildSettingsSocks;
 };
-} // namespace sessionservice
-} // namespace network
-#endif // NETWORKPROXY_H
+} // namespace sessionservice} // namespace network#endif // NETWORKPROXY_H

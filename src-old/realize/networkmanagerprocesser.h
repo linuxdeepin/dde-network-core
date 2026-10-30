@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -30,18 +30,14 @@ protected:
     QList<NetworkDeviceBase *> devices() override;
     dde::network::Connectivity connectivity() override;
     QList<NetworkDetails *> networkDetails() override;
-    ProxyController *proxyController() override;                                          // 返回代理控制管理器
-    VPNController *vpnController() override;                                              // 返回VPN控制器
-    DSLController *dslController() override;                                              // DSL控制器
-    HotspotController *hotspotController() override;                                      // 个人热点控制器
-
+    ProxyController *proxyController() override;                                          // 返回代理控制管理器    VPNController *vpnController() override;                                              // 返回VPN控制器    DSLController *dslController() override;                                              // DSL控制器    HotspotController *hotspotController() override;                                      // 个人热点控制器
 private:
     void initConnections();
     NetworkDeviceBase *findDevice(const QString devicePath);
     NetworkDBusProxy *networkInter();
     void sortDevice();
 
-private slots:
+private Q_SLOTS:
     void onDeviceAdded(const QString &uni);
     void onDeviceRemove(const QString &uni);
     void onConnectivityChanged(NetworkManager::Connectivity conntity);

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #ifndef DCCNETWORK_H
@@ -32,10 +32,8 @@ public:
     NetManager *manager() const { return m_manager; }
 
 public Q_SLOTS:
-    void exec(NetManager::CmdType cmd, const QString &id, const QVariantMap &param = QVariantMap()); // 执行操作
-    void setClipboard(const QString &text);
+    void exec(NetManager::CmdType cmd, const QString &id, const QVariantMap &param = QVariantMap()); // 执行操作    void setClipboard(const QString &text);
     bool netCheckAvailable(); // 检查网络检测功能是否可用
-
     QVariantMap toMap(QMap<QString, QString> map);
     QMap<QString, QString> toStringMap(QVariantMap map);
 
@@ -52,7 +50,5 @@ protected Q_SLOTS:
 protected:
     NetManager *m_manager;
 };
-} // namespace network
-} // namespace dde
-
+} // namespace network} // namespace dde
 #endif // DCCNETWORK_H

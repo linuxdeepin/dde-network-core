@@ -59,7 +59,6 @@ VpnDnsMode vpnDnsModeFromPriority(int priority)
     return VpnDnsMode::VpnDnsModeNotSet;
 }
 } // namespace
-
 using DnsEntry = QPair<qint32, QByteArray>;
 using DomainEntry = QPair<QString, bool>;
 

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -110,8 +110,7 @@ QWidget *NetworkModule::itemWidget()
 {
     QWidget *iconWidget = m_netStatus->createIconWidget();
     QPalette p = iconWidget->palette();
-    p.setColor(QPalette::BrightText, QColor(255, 255, 255, 178)); // 178 = 255*0.7;
-    iconWidget->setPalette(p);
+    p.setColor(QPalette::BrightText, QColor(255, 255, 255, 178)); // 178 = 255*0.7;    iconWidget->setPalette(p);
     iconWidget->setFixedSize(26, 26);
     NotificationManager::InstallEventFilter(iconWidget);
     return iconWidget;
@@ -328,5 +327,4 @@ QString NetworkPlugin::message(const QString &msgData)
     return jsonResult.toJson();
 }
 
-} // namespace network
-} // namespace dde
+} // namespace network} // namespace dde

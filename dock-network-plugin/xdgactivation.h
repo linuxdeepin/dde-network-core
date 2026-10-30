@@ -31,5 +31,4 @@ private:
     QPointer<XdgActivationTokenV1> m_provider;
 };
 
-} // namespace network
-} // namespace dde
+} // namespace network} // namespace dde

@@ -1,5 +1,5 @@
 // Copyright (C) 2022 ~ 2022 Deepin Technology Co., Ltd.
-// SPDX-FileCopyrightText: 2018 - 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -50,6 +50,4 @@ private:
     Dtk::Widget::DIconButton *m_expandLabel;
     QPoint m_clickPoint;
 };
-} // namespace network
-} // namespace dde
-#endif // QUICKPANELWIDGET_H
+} // namespace network} // namespace dde#endif // QUICKPANELWIDGET_H

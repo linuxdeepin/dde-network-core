@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -76,8 +76,7 @@ private Q_SLOTS:
     void onRefreshClicked(const QModelIndex &index);
 
     void onClickListView(const QModelIndex &index);
-    void updateView(); // 更新网络列表内容大小
-    void refreshItems();
+    void updateView(); // 更新网络列表内容大小    void refreshItems();
 
 private:
     QTimer *m_wirelessScanTimer;

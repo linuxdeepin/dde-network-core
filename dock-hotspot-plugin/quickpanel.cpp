@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -51,7 +51,7 @@ void QuickPanel::setIcon(const QIcon& icon){
 void QuickPanel::mouseReleaseEvent(QMouseEvent *event)
 {
     if (!m_icon->rect().contains(event->pos()) && rect().contains(event->pos())) {
-        emit iconClicked();
+        Q_EMIT iconClicked();
     }
 }
 

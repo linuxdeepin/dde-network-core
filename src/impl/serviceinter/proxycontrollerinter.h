@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2011 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2011-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #ifndef PROXYCONTROLLER_INTER_H
@@ -17,8 +17,7 @@ class ProxyController_Inter : public ProxyController
 
 public:
     explicit ProxyController_Inter(QObject *parent);
-    void setAppProxy(const AppProxyConfig &config);  // 设置应用代理数据
-    void setAppProxyEnabled(bool enabled);
+    void setAppProxy(const AppProxyConfig &config);  // 设置应用代理数据    void setAppProxyEnabled(bool enabled);
     bool appProxyEnabled() const;
 
 private:

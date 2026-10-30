@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -55,8 +55,7 @@ public:
 
     static void ShowPage(const QString &url);
 
-Q_SIGNALS: // SIGNALS
-    // networkInter
+Q_SIGNALS: // SIGNALS    // networkInter
     void AccessPointAdded(const QString &in0, const QString &in1);
     void AccessPointPropertiesChanged(const QString &in0, const QString &in1);
     void AccessPointRemoved(const QString &in0, const QString &in1);
@@ -98,8 +97,7 @@ public Q_SLOTS:
     QString GetAutoProxy();
     void SetAutoProxy(const QString &proxyAuto);
     void SetAutoProxy(const QString &proxyAuto, QObject *receiver, const char *member);
-    QStringList GetProxy(const QString &proxyType); // 返回值待处理
-    void SetProxy(const QString &proxyType, const QString &host, const QString &port);
+    QStringList GetProxy(const QString &proxyType); // 返回值待处理    void SetProxy(const QString &proxyType, const QString &host, const QString &port);
     void SetProxy(const QString &proxyType, const QString &host, const QString &port, QObject *receiver, const char *member);
     QString GetActiveConnectionInfo();
     QDBusObjectPath ActivateConnection(const QString &uuid, const QDBusObjectPath &devicePath);
