@@ -90,7 +90,7 @@ void InternetChecker::switchInternetAccess(bool checkPrimaryConnection, bool swi
     checkedDevices << wiredDevice << wirelessDevice;
     // 如果没有需要切换的网络，则无需继续切换
     if (checkedDevices.isEmpty()) {
-        emit switchFailed();
+        Q_EMIT switchFailed();
         return;
     }
 
@@ -98,7 +98,7 @@ void InternetChecker::switchInternetAccess(bool checkPrimaryConnection, bool swi
         // 如果需要检查主链接，且此时主链接可以上网，则无需切换，直接告诉外面当前网络状况正常
         if (checkInterfaceOnline(primaryDevice) == ProbeResult::Online) {
             qCInfo(DSM) << "primary device " << primaryDevice->interfaceName() << " is online";
-            emit switchSuccess();
+            Q_EMIT switchSuccess();
             return;
         }
     }
@@ -108,7 +108,7 @@ void InternetChecker::switchInternetAccess(bool checkPrimaryConnection, bool swi
         ProbeResult ret = checkInterfaceOnline(device);
         if (ret == ProbeResult::Online && setPrimaryDevice(device, devices)) {
             qCInfo(DSM) << device->interfaceName() << " is online, set it primary device";
-            emit switchSuccess();
+            Q_EMIT switchSuccess();
             return;
         }
         if (switchPortal && ret == ProbeResult::Portal) {
@@ -126,7 +126,7 @@ void InternetChecker::switchInternetAccess(bool checkPrimaryConnection, bool swi
         }
     }
     qCWarning(DSM) << "switch primary device failure";
-    emit switchFailed();
+    Q_EMIT switchFailed();
 }
 
 // 获取网卡当前活跃连接的 IPv4 DNS 服务器列表

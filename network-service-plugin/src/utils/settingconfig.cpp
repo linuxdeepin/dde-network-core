@@ -110,20 +110,20 @@ void SettingConfig::onValueChanged(const QString &key)
         m_connectivityIntervalWhenLimit = dConfig->value("ConnectivityIntervalWhenLimit").toInt();
     } else if (key == QString("ConnectivityCheckInterval")) {
         m_connectivityCheckInterval = dConfig->value("ConnectivityCheckInterval").toInt() * 1000;
-        emit connectivityCheckIntervalChanged(m_connectivityCheckInterval);
+        Q_EMIT connectivityCheckIntervalChanged(m_connectivityCheckInterval);
     } else if (key == QString("NetworkCheckerUrls")) {
         m_networkUrls = dConfig->value("NetworkCheckerUrls").toStringList();
         if (m_networkUrls.isEmpty())
             m_networkUrls = CheckUrls;
-        emit checkUrlsChanged(m_networkUrls);
+        Q_EMIT checkUrlsChanged(m_networkUrls);
     } else if (key == QString("disableFailureNotify")) {
         m_disableFailureNotify = dConfig->value("disableFailureNotify").toBool();
-        emit disableFailureNotifyChanged(m_disableFailureNotify);
+        Q_EMIT disableFailureNotifyChanged(m_disableFailureNotify);
     } else if (key == QString("disableAllNotify")) {
         m_disableAllNotify = dConfig->value("disableAllNotify", false).toBool();
     } else if (key == QString("resetWifiOSDEnableTimeout")) {
         m_resetWifiOSDEnableTimeout = dConfig->value("resetWifiOSDEnableTimeout").toInt();
-        emit resetWifiOSDEnableTimeoutChanged(m_resetWifiOSDEnableTimeout);
+        Q_EMIT resetWifiOSDEnableTimeoutChanged(m_resetWifiOSDEnableTimeout);
     } else if (key == QString("httpRequestTimeout")) {
         m_httpRequestTimeout = dConfig->value("httpRequestTimeout").toInt();
     } else if (key == QString("httpConnectTimeout")) {

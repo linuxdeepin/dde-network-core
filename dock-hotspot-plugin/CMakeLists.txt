@@ -1,7 +1,13 @@
+# SPDX-FileCopyrightText: 2026 UnionTech Software Technology Co., Ltd.
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 
 set(PLUGIN_NAME "dock-hotspot-plugin")
 
 project(${PLUGIN_NAME})
+
+add_compile_definitions(QT_NO_KEYWORDS)
 include(GNUInstallDirs)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)

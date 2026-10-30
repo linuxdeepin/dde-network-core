@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -25,14 +25,14 @@ public:
     void init();
     Connectivity connectivity() const;
 
-signals:
+Q_SIGNALS:
     void connectivityChanged(const Connectivity &);
 
 private:
     void initConnection();
     int getConnectivity();
 
-private slots:
+private Q_SLOTS:
     void onConnectivityChanged(int connectivity);
 
 private:

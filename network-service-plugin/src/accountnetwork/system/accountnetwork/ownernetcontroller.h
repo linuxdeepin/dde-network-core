@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -25,10 +25,10 @@ public:
     QVariantMap authenInfo() const;
     QMap<QString, QString> accountNetwork() const;
 
-signals:
+Q_SIGNALS:
     void requestAuthen(const QVariantMap &);
 
-private slots:
+private Q_SLOTS:
     void onAccountChanged(const QString &accountname);
     void onAccountAdded(const QString &accountname, bool isIam);
     void onAccountRemoved(const QString &accountname);

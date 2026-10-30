@@ -1,7 +1,13 @@
+# SPDX-FileCopyrightText: 2026 UnionTech Software Technology Co., Ltd.
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 
 set(PLUGIN_NAME "dss-network-plugin")
 
 project(${PLUGIN_NAME})
+
+add_compile_definitions(QT_NO_KEYWORDS)
 
 include(GNUInstallDirs)
 # 启用 qt moc 的支持

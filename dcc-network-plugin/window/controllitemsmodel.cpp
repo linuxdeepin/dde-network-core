@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -226,7 +226,7 @@ void ControllItemsModel::removeConnection(QList<ControllItems *> conns)
 void ControllItemsModel::onDetailTriggered()
 {
     DViewItemAction *action = qobject_cast<DViewItemAction *>(sender());
-    emit detailClick(action->data().value<ControllItems *>(), m_parentWidget);
+    Q_EMIT detailClick(action->data().value<ControllItems *>(), m_parentWidget);
 }
 
 void ControllItemsModel::updateStatus()
@@ -236,7 +236,7 @@ void ControllItemsModel::updateStatus()
         DStyleHelper helper(m_parentWidget ? m_parentWidget->style() : nullptr);
         (*it)->iconAction->setIcon(helper.standardIcon(DStyle::SP_ArrowEnter, nullptr));
         (*it)->setLoading((*it)->conn->status() == ConnectionStatus::Activating, m_parentWidget);
-        emit dataChanged(index(row, 0), index(row, 0));
+        Q_EMIT dataChanged(index(row, 0), index(row, 0));
     }
 }
 

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -53,7 +53,7 @@ private:
     void onActiveConnectionChanged(WirelessDevice *device, NetworkManager::ActiveConnection::Ptr activeConnection);
     void sortItem();
 
-private slots:
+private Q_SLOTS:
     void onConnectionAdded(const QString &connectionUni);
     void onConnectionRemoved(const QString &connectionUni);
 

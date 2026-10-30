@@ -1,4 +1,4 @@
-﻿// SPDX-FileCopyrightText: 2022 UnionTech Software Technology Co., Ltd.
+﻿// SPDX-FileCopyrightText: 2022-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -219,7 +219,7 @@ DeviceIPChecker::DeviceIPChecker(NetworkDeviceBase *device, NetworkDBusProxy *ne
             m_changeIpv4s << m_ipV4;
             QTimer::singleShot(800, this, [ this ] {
                 if (m_changeIpv4s.size() > 0) {
-                    emit ipConflictCheck(m_changeIpv4s[m_changeIpv4s.size() - 1]);
+                    Q_EMIT ipConflictCheck(m_changeIpv4s[m_changeIpv4s.size() - 1]);
                     m_changeIpv4s.clear();
                 }
             });
@@ -233,11 +233,11 @@ DeviceIPChecker::DeviceIPChecker(NetworkDeviceBase *device, NetworkDBusProxy *ne
     connect(timer, &QTimer::timeout, this, [this] () {
         if (m_ipConflicted) {
             // 如果确定是有冲突，则冷却至少5秒检测一次，直到冲突解除。
-            emit ipConflictCheck(m_ipV4);
+            Q_EMIT ipConflictCheck(m_ipV4);
         } else {
             // 如果无冲突, 则冷却至少180秒检测一次。
             if ((m_count++ % 36) == 0) {
-                emit ipConflictCheck(m_ipV4);
+                Q_EMIT ipConflictCheck(m_ipV4);
             }
         }
     });
@@ -265,7 +265,7 @@ void DeviceIPChecker::handlerIpConflict()
         m_conflictCount = 0;
         // 如果MAC地址为空，则表示IP冲突已经解决，则让每个网卡恢复之前的状态
         if (m_clearCount < 3 && m_ipConflicted) {
-            emit ipConflictCheck(m_ipV4);
+            Q_EMIT ipConflictCheck(m_ipV4);
         } else {
             // 拿到最后一次设备冲突的状态
             bool lastConfilctStatus = m_ipConflicted;
@@ -281,7 +281,7 @@ void DeviceIPChecker::handlerIpConflict()
 
         // 如果少于两次，则继续确认
         if (m_conflictCount < 1 && !m_ipConflicted) {
-            emit ipConflictCheck(m_ipV4);
+            Q_EMIT ipConflictCheck(m_ipV4);
         } else {
             // 如果大于3次，则认为当前IP冲突了
             // 拿到最后一次设备冲突的状态

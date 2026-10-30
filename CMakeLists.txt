@@ -1,7 +1,13 @@
+# SPDX-FileCopyrightText: 2026 UnionTech Software Technology Co., Ltd.
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 cmake_minimum_required(VERSION 3.23)
 
 set(VERSION "2.0.18" CACHE STRING "define project version")
 project(dde-network-core
+
+add_compile_definitions(QT_NO_KEYWORDS)
   VERSION ${VERSION}
   DESCRIPTION "DDE Network Core"
   HOMEPAGE_URL "https://github.com/linuxdeepin/dde-network-core"

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2019-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #ifndef NETICONBUTTON_H
@@ -24,7 +24,7 @@ public Q_SLOTS:
     void setRotatable(bool rotatable);
     void setTextType(bool textType);
 
-signals:
+Q_SIGNALS:
     void clicked();
 
 protected:

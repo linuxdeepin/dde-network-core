@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -48,7 +48,7 @@ private:
     void updateConnectionLanguage();
     bool isServerSystem() const;
 
-private slots:
+private Q_SLOTS:
     void onUserChanged(const QString &json);
     void onUserAdded(const QString &json);
     void onInitDeviceConnection();

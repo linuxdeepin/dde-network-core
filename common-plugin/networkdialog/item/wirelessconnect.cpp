@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -204,7 +204,7 @@ void WirelessConnect::connectNetwork()
     // 隐藏网络先尝试无密码连接
     if (m_accessPoint) {
         if ((hasPassword())) {
-            emit passwordError(QString());
+            Q_EMIT passwordError(QString());
             return;
         }
     }
@@ -272,5 +272,5 @@ void WirelessConnect::activateConnection()
 void WirelessConnect::getoldPassword()
 {
     // 旧密码不展示
-    emit passwordError(QString());
+    Q_EMIT passwordError(QString());
 }

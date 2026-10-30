@@ -1,4 +1,4 @@
-﻿// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+﻿// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -1170,5 +1170,5 @@ void WirelessDeviceManagerRealize::onInterfaceFlagsChanged()
 
     m_available = available;
     setDeviceStatus(deviceStatus());
-    emit availableChanged(m_available);
+    Q_EMIT availableChanged(m_available);
 }

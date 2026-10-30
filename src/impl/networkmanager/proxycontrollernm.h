@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2011 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2011-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #ifndef PROXYCONTROLLERNM_H
@@ -23,7 +23,7 @@ private:
     void initMember();
     void initConnection();
 
-private slots:
+private Q_SLOTS:
     void onPropertiesChanged(const QString &interface, const QVariantMap &values);
 };
 

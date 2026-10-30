@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -67,7 +67,7 @@ private:
 protected:
     void updateWiredConnections();
 
-private slots:
+private Q_SLOTS:
     void onDeviceEnabledChanged(QDBusObjectPath path, bool enabled);
     void onConnectionAdded(const QString &connectionUni);
     void onDeviceStateChanged();

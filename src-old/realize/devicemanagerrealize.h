@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -91,7 +91,7 @@ private:
     bool getHotspotIsEnabled();
     bool hotspotEnabled() override;
 
-private slots:
+private Q_SLOTS:
     void onWiredConnectionChanged();
     void onWirelessConnectionChanged();
     void onStatusChanged(NetworkManager::Device::State newstate, NetworkManager::Device::State oldstate, NetworkManager::Device::StateChangeReason reason);

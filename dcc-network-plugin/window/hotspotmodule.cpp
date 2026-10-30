@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -221,5 +221,5 @@ void HotspotModule::updateVisiable()
             insertChild(row++, modules.at(2));
         }
     }
-    emit updateItemOnlyOne(onlyOne);
+    Q_EMIT updateItemOnlyOne(onlyOne);
 }

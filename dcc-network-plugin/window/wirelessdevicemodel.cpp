@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -225,7 +225,7 @@ void WirelessDeviceModel::removeAccessPoints(QList<dde::network::AccessPoints *>
 void WirelessDeviceModel::onDetailTriggered()
 {
     DViewItemAction *action = qobject_cast<DViewItemAction *>(sender());
-    emit detailClick(action->data().value<AccessPoints *>(), m_parent);
+    Q_EMIT detailClick(action->data().value<AccessPoints *>(), m_parent);
 }
 
 void WirelessDeviceModel::updateApStatus()
@@ -239,7 +239,7 @@ void WirelessDeviceModel::updateApStatus()
             (*it)->secureAction->setIcon(helper.standardIcon(DStyle::SP_LockElement, nullptr, nullptr));
         }
         (*it)->setLoading((*it)->ap->status() == ConnectionStatus::Activating, m_parent);
-        emit dataChanged(index(row, 0), index(row, 0));
+        Q_EMIT dataChanged(index(row, 0), index(row, 0));
     }
 }
 

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -514,7 +514,7 @@ void WirelessItem::expandWidget(ExpandWidget type, bool autoDisconnect)
         QTimer::singleShot(50, m_passwdEdit->lineEdit(), SLOT(setFocus()));
         break;
     }
-    emit sizeChanged();
+    Q_EMIT sizeChanged();
 }
 
 void WirelessItem::onApConnectionStatusChanged(ConnectionStatus status)

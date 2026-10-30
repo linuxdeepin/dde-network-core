@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -43,7 +43,7 @@ public:
     virtual HotspotController *hotspotController();                                      // 个人热点控制器
     virtual void retranslate();                                                          // 更新翻译
 
-public slots:
+public Q_SLOTS:
     void onIpConflictChanged(const QString &devicePath, const QString &ip, bool conflicted);
 
 protected:
@@ -159,7 +159,7 @@ public:
     virtual QString name() = 0;
     virtual QList<QPair<QString, QString>> items() = 0;
 
-signals:
+Q_SIGNALS:
     void infoChanged();
 
 protected:

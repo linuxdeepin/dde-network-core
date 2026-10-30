@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -71,7 +71,7 @@ protected:
     void setDeviceStatus(const DeviceStatus &status) override;
     int mode() const;
 
-private slots:
+private Q_SLOTS:
     void onActiveConnectionChanged();
 
 protected:

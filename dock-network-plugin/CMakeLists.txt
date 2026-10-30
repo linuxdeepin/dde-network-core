@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2025 - 2026 UnionTech Software Technology Co., Ltd.
+# SPDX-FileCopyrightText: 2025-2026 UnionTech Software Technology Co., Ltd.
 #
 # SPDX-License-Identifier: CC0-1.0
 
@@ -8,6 +8,8 @@ set(QT_NS Qt6)
 set(DTK_NS Dtk6)
 
 project(${PLUGIN_NAME})
+
+add_compile_definitions(QT_NO_KEYWORDS)
 include(GNUInstallDirs)
 # 启用 qt moc 的支持
 set(CMAKE_AUTOMOC ON)

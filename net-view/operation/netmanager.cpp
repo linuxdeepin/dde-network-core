@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -584,7 +584,7 @@ void NetManagerPrivate::onDataChanged(int dataType, const QString &id, const QVa
             const bool showTips = (state != NetType::NetDeviceStatus::DS_Connected) && (state != NetType::NetDeviceStatus::DS_Connecting);
             item->updateexpanded(showTips && item->isEnabled() && item->enabledable());
             item->updatestatus(state);
-            emit vpnStatusChanged();
+            Q_EMIT vpnStatusChanged();
         }
     } break;
     case NetManagerThreadPrivate::NameChanged: {

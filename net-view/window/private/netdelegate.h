@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2019-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #ifndef NETDELEGATE_H
@@ -171,7 +171,7 @@ protected:
 
     bool eventFilter(QObject *watched, QEvent *event) override;
 
-protected slots:
+protected Q_SLOTS:
     void onPortalUrlChanged(const QString &url);
 
 private:

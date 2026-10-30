@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -68,7 +68,7 @@ private:
     void initNetworkStatus();
     void checkIpConflicted(const QList<NetworkDeviceBase *> &devices);
 
-private slots:
+private Q_SLOTS:
     void onDeviceAdded(QList<NetworkDeviceBase*> device);
 
 private:
