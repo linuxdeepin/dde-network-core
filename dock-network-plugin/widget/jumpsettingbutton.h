@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 - 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2019-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -25,7 +25,7 @@ public:
     void setIcon(const QIcon &icon);
     void setDescription(const QString& description);
 
-signals:
+Q_SIGNALS:
     void clicked();
     void showPageRequestWasSended();
 

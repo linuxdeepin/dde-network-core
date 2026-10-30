@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -126,8 +126,7 @@ private Q_SLOTS:
     void updateGeometry();
 
 private:
-    void initConnections();                 //初始化信号槽连接
-    /*!
+    void initConnections();                 //初始化信号槽连接    /*!
      * \~chinese \name calcReplaceId
      * \~chinese \brief 计算ReplaceId,并查找当前通知中是否有相同的ReplaceId,如果有相同的
      * \~chinese ReplaceId,将该ReplaceId标记的通知中的内容替换掉
@@ -137,18 +136,11 @@ private:
 
     bool checkControlCenterExistence();
 
-    Bubble *createBubble(EntityPtr notify, int index = 0);  //创建一个通知气泡
-    void pushBubble(EntityPtr notify);                      //推入一个气泡
-    void popBubble(Bubble *);                               //推出一个气泡
-    void refreshBubble();
+    Bubble *createBubble(EntityPtr notify, int index = 0);  //创建一个通知气泡    void pushBubble(EntityPtr notify);                      //推入一个气泡    void popBubble(Bubble *);                               //推出一个气泡    void refreshBubble();
 
-    void pushAnimation(Bubble *bubble);                     //推入一个气泡的动画
-    void popAnimation(Bubble *bubble);                      //推出一个气泡的动画
-
-    QRect getBubbleGeometry(int index);                     //根据索引获取气泡的矩形大小
-    // Get the last unanimated bubble rect
-    QRect getLastStableRect(int index);                     //得到最后一个没有动画的矩形气泡
-    /**
+    void pushAnimation(Bubble *bubble);                     //推入一个气泡的动画    void popAnimation(Bubble *bubble);                      //推出一个气泡的动画
+    QRect getBubbleGeometry(int index);                     //根据索引获取气泡的矩形大小    // Get the last unanimated bubble rect
+    QRect getLastStableRect(int index);                     //得到最后一个没有动画的矩形气泡    /**
      * @brief getBubbleHeightBefore 获取序号小于index的气泡的高度之和
      * @param index 当前的气泡序号
      * @return 气泡高度之和
@@ -169,8 +161,6 @@ private:
 
     // 手指划入距离，任务栏在右侧时，需大于任务栏最大宽度100，其它情况没有设限大于0即可
     int m_slideWidth;
-    QTimer* m_trickTimer; // 防止300ms内重复按键
-    QPointer<QWidget> m_parentWidget; // 父窗口，取图标按钮的父窗口
-};
+    QTimer* m_trickTimer; // 防止300ms内重复按键    QPointer<QWidget> m_parentWidget; // 父窗口，取图标按钮的父窗口};
 
 #endif // BUBBLEMANAGER_H

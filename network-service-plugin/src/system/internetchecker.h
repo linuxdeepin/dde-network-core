@@ -25,7 +25,7 @@ public:
     ~InternetChecker() override = default;
     void switchInternetAccess(bool checkPrimaryConnection, bool switchPortal = true);
 
-signals:
+Q_SIGNALS:
     void switchSuccess();
     void switchFailed();
 

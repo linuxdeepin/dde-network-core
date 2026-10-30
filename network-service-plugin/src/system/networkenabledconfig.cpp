@@ -155,5 +155,4 @@ QString NetworkEnabledConfig::connectionUuid(const QString &dev) const
 
     return QString();
 }
-} // namespace systemservice
-} // namespace network
+} // namespace systemservice} // namespace network

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2019-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #include "netsecretwidget.h"
@@ -62,8 +62,7 @@ void NetSecretWidget::initUI(const QVariantMap &param)
         mainLayout->setContentsMargins(0, 0, 0, 10);
     }
     QMap<QString, QString> prop = param.value("prop").value<QMap<QString, QString>>();
-    QWidget *focusWidget = nullptr; // 焦点窗口为第一个未填充的窗口
-    for (auto key : param.value("secrets").toStringList()) {
+    QWidget *focusWidget = nullptr; // 焦点窗口为第一个未填充的窗口    for (auto key : param.value("secrets").toStringList()) {
         DLineEdit *lineEdit = nullptr;
         if (m_propMap.contains(key)) {
             lineEdit = new DLineEdit(this);
@@ -88,9 +87,7 @@ void NetSecretWidget::initUI(const QVariantMap &param)
         connect(lineEdit, &DLineEdit::textChanged, this, &NetSecretWidget::onTextChanged);
         connect(lineEdit, &DLineEdit::returnPressed, this, &NetSecretWidget::onReturnPressed);
     }
-    DPushButton *cancelButtion = new DPushButton(tr("Cancel", "button"), this);     // 取消
-    DPushButton *connectButton = new DSuggestButton(tr("Connect", "button"), this); // 连接
-    cancelButtion->setObjectName("SecretCancelBtn");
+    DPushButton *cancelButtion = new DPushButton(tr("Cancel", "button"), this);     // 取消    DPushButton *connectButton = new DSuggestButton(tr("Connect", "button"), this); // 连接    cancelButtion->setObjectName("SecretCancelBtn");
     connectButton->setObjectName("SecretConnectBtn");
     QHBoxLayout *butLayout = new QHBoxLayout;
     cancelButtion->setAutoDefault(true);
@@ -215,5 +212,4 @@ void NetSecretWidget::onReturnPressed()
     onConnect();
 }
 
-} // namespace network
-} // namespace dde
+} // namespace network} // namespace dde

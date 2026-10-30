@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -570,8 +570,7 @@ bool IPV4InputSection::isIpv4SubnetMask(const QString &ip)
 
     for (; mask != 0; mask <<= 1) {
         if ((mask & (static_cast<uint>(1) << 31)) == 0)
-            return false; // Highest bit is now zero, but mask is non-zero.
-    }
+            return false; // Highest bit is now zero, but mask is non-zero.    }
 
     QRegExp regExpIP("^((128|192)|2(24|4[08]|5[245]))(\\.(0|(128|192)|2((24)|(4[08])|(5[245])))){3}$");
     return regExpIP.exactMatch(ip);

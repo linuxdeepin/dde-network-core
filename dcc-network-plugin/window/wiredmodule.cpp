@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -31,8 +31,7 @@ WiredModule::WiredModule(WiredDevice *dev, QObject *parent)
     onNameChanged(m_device->deviceName());
     connect(m_device, &WiredDevice::nameChanged, this, &WiredModule::onNameChanged);
     appendChild(new WidgetModule<SwitchWidget>("wired_adapter", tr("Wired Network Adapter"), [this](SwitchWidget *devEnabled) {
-        QLabel *lblTitle = new QLabel(tr("Wired Network Adapter")); // 无线网卡
-        DFontSizeManager::instance()->bind(lblTitle, DFontSizeManager::T5, QFont::DemiBold);
+        QLabel *lblTitle = new QLabel(tr("Wired Network Adapter")); // 无线网卡        DFontSizeManager::instance()->bind(lblTitle, DFontSizeManager::T5, QFont::DemiBold);
         devEnabled->setLeftWidget(lblTitle);
         devEnabled->setChecked(m_device->isEnabled());
         connect(devEnabled, &SwitchWidget::checkedChanged, m_device, &WiredDevice::setEnabled);

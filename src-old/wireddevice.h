@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -26,17 +26,9 @@ private:
     ~WiredDevice() override;
 
 Q_SIGNALS:
-    void connectionAdded(const QList<WiredConnection *>);                       // 新增连接
-    void connectionRemoved(const QList<WiredConnection *>);                     // 删除连接
-    void connectionPropertyChanged(const QList<WiredConnection *> &);           // 连接属性发生变化
-
+    void connectionAdded(const QList<WiredConnection *>);                       // 新增连接    void connectionRemoved(const QList<WiredConnection *>);                     // 删除连接    void connectionPropertyChanged(const QList<WiredConnection *> &);           // 连接属性发生变化
 public:
-    bool connectNetwork(WiredConnection *connection);                           // 连接网络，连接成功抛出deviceStatusChanged信号
-    bool connectNetwork(const QString &path);                                   // 连接网络重载函数，参数为配置路径
-    bool isConnected() const override;                                          // 是否连接网络，重写基类的虚函数
-    DeviceType deviceType() const override;                                     // 返回设备类型，适应基类统一的接口
-    QList<WiredConnection *> items() const;                                     // 有线网络连接列表
-};
+    bool connectNetwork(WiredConnection *connection);                           // 连接网络，连接成功抛出deviceStatusChanged信号    bool connectNetwork(const QString &path);                                   // 连接网络重载函数，参数为配置路径    bool isConnected() const override;                                          // 是否连接网络，重写基类的虚函数    DeviceType deviceType() const override;                                     // 返回设备类型，适应基类统一的接口    QList<WiredConnection *> items() const;                                     // 有线网络连接列表};
 
 class WiredConnection : public ControllItems
 {

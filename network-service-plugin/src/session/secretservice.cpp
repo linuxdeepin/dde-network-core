@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2025 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2025-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #include "secretservice.h"
@@ -290,5 +290,4 @@ void SecretService::onCompleted(bool dismissed, QDBusVariant result)
     // 这里的情况不太可能发生
     qCWarning(DSM()) << "not found collection path in paths";
 }
-} // namespace sessionservice
-} // namespace network
+} // namespace sessionservice} // namespace network

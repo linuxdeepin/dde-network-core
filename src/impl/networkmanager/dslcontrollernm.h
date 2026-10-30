@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -20,11 +20,7 @@ class DSLController_NM : public DSLController
     friend class NetworkManagerProcesser;
 
 public:
-    void connectItem(DSLItem *item) override;                                      // 连接到当前的DSL
-    void connectItem(const QString &uuid) override;                                // 根据UUID连接当前DSL
-    void disconnectItem(WiredDevice *device) override;                             // 断开连接
-    QList<DSLItem *> items() const override;                                       // 返回所有的DSL列表
-
+    void connectItem(DSLItem *item) override;                                      // 连接到当前的DSL    void connectItem(const QString &uuid) override;                                // 根据UUID连接当前DSL    void disconnectItem(WiredDevice *device) override;                             // 断开连接    QList<DSLItem *> items() const override;                                       // 返回所有的DSL列表
 protected:
     explicit DSLController_NM(QObject *parent);
     ~DSLController_NM() override;

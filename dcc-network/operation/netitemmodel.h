@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2027 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #ifndef NETITEMMODEL_H
@@ -29,7 +29,5 @@ Q_SIGNALS:
 protected:
     bool lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const override;
 };
-} // namespace network
-} // namespace dde
-
+} // namespace network} // namespace dde
 #endif // NETITEMMODEL_H

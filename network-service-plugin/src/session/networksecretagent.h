@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2025 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2025-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #ifndef NETWORKSECRETAGENT_H
@@ -61,11 +61,7 @@ public:
     QDBusMessage message;
     QString ssid;
     qint64 createTime;
-    NMVariantMapMap result; // 返回结果
-    QByteArray inputCache;  // 输入缓存
-    QByteArray outputCache; // 输出缓存
-    QProcess *process;      // 密码输入框进程
-};
+    NMVariantMapMap result; // 返回结果    QByteArray inputCache;  // 输入缓存    QByteArray outputCache; // 输出缓存    QProcess *process;      // 密码输入框进程};
 
 // 注册网络密码代理
 // 解锁密钥环，在密钥环读写密码
@@ -150,6 +146,4 @@ private:
     SecretService *m_secretService;
     QTimer *m_waitClientTimer;
 };
-} // namespace sessionservice
-} // namespace network
-#endif // NETWORKSECRETAGENT_H
+} // namespace sessionservice} // namespace network#endif // NETWORKSECRETAGENT_H

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2019-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #ifndef NETDELEGATE_H
@@ -19,9 +19,7 @@ namespace Dtk {
 namespace Widget {
 class DSpinner;
 class DSwitchButton;
-} // namespace Widget
-} // namespace Dtk
-
+} // namespace Widget} // namespace Dtk
 namespace dde {
 namespace network {
 
@@ -72,9 +70,7 @@ public Q_SLOTS:
     void onRequest(NetManager::CmdType cmd, const QString &id, const QVariantMap &param);
 
 Q_SIGNALS:
-    void requestExec(NetManager::CmdType cmd, const QString &id, const QVariantMap &param); // 向NetView发请求
-    void request(NetManager::CmdType cmd, const QString &id, const QVariantMap &param);     // 向NetWidget发请求
-    void requestUpdateLayout();
+    void requestExec(NetManager::CmdType cmd, const QString &id, const QVariantMap &param); // 向NetView发请求    void request(NetManager::CmdType cmd, const QString &id, const QVariantMap &param);     // 向NetWidget发请求    void requestUpdateLayout();
     void requestShow(const QString &id);
 
 private:
@@ -171,7 +167,7 @@ protected:
 
     bool eventFilter(QObject *watched, QEvent *event) override;
 
-protected slots:
+protected Q_SLOTS:
     void onPortalUrlChanged(const QString &url);
 
 private:
@@ -274,7 +270,5 @@ private:
     dde::network::NetType::NetConnectionStatus m_status;
 };
 
-} // namespace network
-} // namespace dde
-
+} // namespace network} // namespace dde
 #endif // NETDELEGATE_H

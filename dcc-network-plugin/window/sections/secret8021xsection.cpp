@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -675,9 +675,7 @@ static QByteArray formatFileUriForNMPath(const QString &localFilePath)
 
     QByteArray uri;
 
-    if (!localFilePath.startsWith("file://"))
-        uri.append("file://");
-
+    if (!localFilePath.startsWith("file://"))        uri.append("file://");
     uri.append(QFile::encodeName(localFilePath));
 
     return uri.append('\0');

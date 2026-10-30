@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -33,30 +33,9 @@ typedef std::shared_ptr<NotificationEntity> EntityPtr;
 static const int MenuPadding = 4;
 static const int MenuWidth = 14;
 static const int MenuHeight = 7;
-static const int ScreenPadding = 20;            //最上方通知距屏幕上方间隔
-static const int BubbleMargin = 12;             //桌面消息通知间隔
-static const int BubblePadding = 10;            //消息通知内部Padding
-static const int BubbleSpacing = 10;            //消息通知内部Space
-static const int BubbleTimeout = 5000;          //通知默认超时时间(毫秒)
-static const int BubbleEntities = 3;
-static const int BubbleOverLap = 2;             //层叠的气泡数量
-static const int BubbleOverLapHeight = 12;      //通知中心层叠层高度
-static const QString NoReplaceId = "0";         //为0 返回一个计数值给程序
-static const int AnimationTime = 300;           //动画时间，单位：毫秒
-static const int ExpandAnimationTime = 100;
-static const int BubbleWindowHeight = 60;       // 窗口模式下气泡的高度
-static const int MaxBubbleButtonWidth = 180;    // 窗口模式下气泡按钮的最大宽度
-static const int BubbleStartPos = -(BubbleWindowHeight + ScreenPadding);  // 窗口模式下气泡起始Y位置
-static const int BubbleItemHeight = 90;         // 通知中心气泡默认高度
-static const int BubbleItemTitleHeight = 37;    // 通知中心气泡的标题高度
-static const int BubbleItemBodyHeight = BubbleItemHeight - BubbleItemTitleHeight;     // 通知中心气泡的内容默认高度
-static const int BubbleItemWidth = 380;         // 通知中心气泡默认宽度
-static const int BubbleAppBodyPaddingTop = 10;         // 通知气泡app body顶部间隔
-static const int BubbleAppBodyPaddingBottom = 10;     // 通知气泡app body低部间隔
-static const int BubbleAppBodyVerticalPadding = BubbleAppBodyPaddingTop + BubbleAppBodyPaddingBottom;     // 通知气泡app body上下间隔之和
-static const int BubbleTitleHeight = 50;        // 通知中心App名称默认高度
-static const int BubbleTitleWidth = 380;        // 通知中心App名称默认宽度
-
+static const int ScreenPadding = 20;            //最上方通知距屏幕上方间隔static const int BubbleMargin = 12;             //桌面消息通知间隔static const int BubblePadding = 10;            //消息通知内部Paddingstatic const int BubbleSpacing = 10;            //消息通知内部Spacestatic const int BubbleTimeout = 5000;          //通知默认超时时间(毫秒)static const int BubbleEntities = 3;
+static const int BubbleOverLap = 2;             //层叠的气泡数量static const int BubbleOverLapHeight = 12;      //通知中心层叠层高度static const QString NoReplaceId = "0";         //为0 返回一个计数值给程序static const int AnimationTime = 300;           //动画时间，单位：毫秒static const int ExpandAnimationTime = 100;
+static const int BubbleWindowHeight = 60;       // 窗口模式下气泡的高度static const int MaxBubbleButtonWidth = 180;    // 窗口模式下气泡按钮的最大宽度static const int BubbleStartPos = -(BubbleWindowHeight + ScreenPadding);  // 窗口模式下气泡起始Y位置static const int BubbleItemHeight = 90;         // 通知中心气泡默认高度static const int BubbleItemTitleHeight = 37;    // 通知中心气泡的标题高度static const int BubbleItemBodyHeight = BubbleItemHeight - BubbleItemTitleHeight;     // 通知中心气泡的内容默认高度static const int BubbleItemWidth = 380;         // 通知中心气泡默认宽度static const int BubbleAppBodyPaddingTop = 10;         // 通知气泡app body顶部间隔static const int BubbleAppBodyPaddingBottom = 10;     // 通知气泡app body低部间隔static const int BubbleAppBodyVerticalPadding = BubbleAppBodyPaddingTop + BubbleAppBodyPaddingBottom;     // 通知气泡app body上下间隔之和static const int BubbleTitleHeight = 50;        // 通知中心App名称默认高度static const int BubbleTitleWidth = 380;        // 通知中心App名称默认宽度
 static const QStringList Directory = QStandardPaths::standardLocations(QStandardPaths::HomeLocation);
 static const QString CachePath = Directory.first() + "/.cache/deepin/deepin-notifications/";
 
@@ -96,9 +75,7 @@ namespace Notify {
     static const int BubbleCloseButtonSize = 24;
     static const int GroupButtonSize = 28;
     static const int GroupMargin = 30;
-    static const int BubbleDefaultAlpha = 20;       //bubble控件透明度
-    static const qreal BubbleOpacity = 0.6;         //bubble内容的透明度
-}
+    static const int BubbleDefaultAlpha = 20;       //bubble控件透明度    static const qreal BubbleOpacity = 0.6;         //bubble内容的透明度}
 
 class OSD
 {

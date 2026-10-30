@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2027 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -51,8 +51,7 @@ public:
     Q_PROPERTY(QString User READ user NOTIFY UserChanged)
     QString user();
 
-public Q_SLOTS: // METHODS
-    inline QDBusPendingReply<> Set(const QString &in0, const QString &in1, uint in2, const QString &in3, const QString &in4)
+public Q_SLOTS: // METHODS    inline QDBusPendingReply<> Set(const QString &in0, const QString &in1, uint in2, const QString &in3, const QString &in4)
     {
         QList<QVariant> argumentList;
         argumentList << QVariant::fromValue(in0) << QVariant::fromValue(in1) << QVariant::fromValue(in2) << QVariant::fromValue(in3) << QVariant::fromValue(in4);
@@ -83,8 +82,7 @@ public Q_SLOTS: // METHODS
         CallQueued(QStringLiteral("SetEnable"), argumentList);
     }
 
-Q_SIGNALS: // SIGNALS
-    // begin property changed signals
+Q_SIGNALS: // SIGNALS    // begin property changed signals
     void EnableChanged(bool  value);
     void IPChanged(const QString & value);
     void PasswordChanged(const QString & value);

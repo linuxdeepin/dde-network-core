@@ -67,6 +67,4 @@ private:
     QMap<QString, VpnDnsModeApplyState> m_applyStates;
 };
 
-} // namespace sessionservice
-} // namespace network
-#endif // VPNDNSMODEHANDLER_H
+} // namespace sessionservice} // namespace network#endif // VPNDNSMODEHANDLER_H

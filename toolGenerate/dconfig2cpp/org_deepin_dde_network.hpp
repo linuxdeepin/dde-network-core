@@ -868,12 +868,10 @@ private:
     QAtomicPointer<DTK_CORE_NAMESPACE::DConfig> m_config = nullptr;
     double p_ConnectivityCheckInterval { 30 };
     bool p_LoadServiceFromNM { true };
-    QList<QVariant> p_NetworkCheckerUrls { QList<QVariant>{QVariant(QStringLiteral("http://detect.uniontech.com")), QVariant(QStringLiteral("http://detectportal.deepin.com"))} };
-    bool p_NobindEthernetMacDefault { false };
+    QList<QVariant> p_NetworkCheckerUrls { QList<QVariant>{QVariant(QStringLiteral("http://detect.uniontech.com")), QVariant(QStringLiteral("http://detectportal.deepin.com"))} };    bool p_NobindEthernetMacDefault { false };
     QList<QVariant> p_WLANScanInterval { QList<QVariant>{QVariant(10), QVariant(10), QVariant(10), QVariant(30), QVariant(30), QVariant(30), QVariant(60)} };
     bool p_WPA3-Enterprise-Visible { false };
-    QString p_browserUrl { QStringLiteral("https://www.uniontech.com") };
-    bool p_checkPortal { true };
+    QString p_browserUrl { QStringLiteral("https://www.uniontech.com") };    bool p_checkPortal { true };
     bool p_disabledNetwork { false };
     bool p_dontSetIpIfConflict { false };
     bool p_enableAccountNetwork { false };

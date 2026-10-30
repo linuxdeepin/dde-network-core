@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -19,8 +19,7 @@ bool NetItem::compare(NetItem *item1, NetItem *item2)
     case NetType::WirelessItem: {
         NetWirelessItem *lItem = qobject_cast<NetWirelessItem *>(item1);
         NetWirelessItem *rItem = qobject_cast<NetWirelessItem *>(item2);
-        if ((lItem->status() | rItem->status()) & NetType::CS_Connected) { // 存在已连接的
-            return lItem->status() & NetType::CS_Connected;
+        if ((lItem->status() | rItem->status()) & NetType::CS_Connected) { // 存在已连接的            return lItem->status() & NetType::CS_Connected;
         }
         if (lItem->strengthLevel() != rItem->strengthLevel())
             return lItem->strengthLevel() > rItem->strengthLevel();
@@ -178,5 +177,4 @@ QString NetAirplaneModeTipsItem::name() const
     // return tr("Disable Airplane Mode first if you want to connect to a wireless network");
 }
 
-} // namespace network
-} // namespace dde
+} // namespace network} // namespace dde

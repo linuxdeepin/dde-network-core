@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2025 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2025-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #include "networkproxychains.h"
@@ -350,5 +350,4 @@ void NetworkProxyChains::notifyAppProxyEnableFailed()
     m_networkStateHandler->notify(notifyIconProxyDisabled, tr("Network"), tr("Failed to set the application proxy"));
 }
 
-} // namespace sessionservice
-} // namespace network
+} // namespace sessionservice} // namespace network

@@ -60,8 +60,7 @@ void QTDBusSpyHook(const QDBusMessage &msg)
 
     ServiceBase *serviceObj = nullptr;
     bool isSubPath;
-    QString realPath; // 子PATH可能没有配置，使用父PATH的配置
-    bool findRet = QTDbusHook::instance()->getServiceObject("",
+    QString realPath; // 子PATH可能没有配置，使用父PATH的配置    bool findRet = QTDbusHook::instance()->getServiceObject("",
                                                             msg.path(),
                                                             &serviceObj,
                                                             isSubPath,
@@ -141,8 +140,7 @@ int QTDBusHook(const QString &baseService, const QDBusMessage &msg)
 
     ServiceBase *serviceObj = nullptr;
     bool isSubPath;
-    QString realPath; // 子PATH可能没有配置，使用父PATH的配置
-    bool findRet = QTDbusHook::instance()->getServiceObject("",
+    QString realPath; // 子PATH可能没有配置，使用父PATH的配置    bool findRet = QTDbusHook::instance()->getServiceObject("",
                                                             msg.path(),
                                                             &serviceObj,
                                                             isSubPath,
@@ -242,8 +240,7 @@ QTDbusHook *QTDbusHook::instance()
 bool QTDbusHook::getServiceObject(
         QString name, QString path, ServiceBase **service, bool &isSubPath, QString &realPath)
 {
-    Q_UNUSED(name) // TODO:QtDBus Hook 无法获取到name
-    ServiceObjectMap::iterator iterService = m_serviceMap.find(path);
+    Q_UNUSED(name) // TODO:QtDBus Hook 无法获取到name    ServiceObjectMap::iterator iterService = m_serviceMap.find(path);
     if (iterService != m_serviceMap.end()) {
         *service = iterService.value();
         isSubPath = true;

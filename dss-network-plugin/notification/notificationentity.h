@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -84,9 +84,7 @@ private:
     QString m_ctime;
     QString m_replacesId;
     QString m_timeout;
-    bool m_isTitle;     //是否是标题
-    int m_hideCount;    //此条消息下面被层叠的消息数量
-    bool m_showPreview;
+    bool m_isTitle;     //是否是标题    int m_hideCount;    //此条消息下面被层叠的消息数量    bool m_showPreview;
     int m_index;
     bool m_showInNotifyCenter;
 };

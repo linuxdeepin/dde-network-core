@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2011 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2011-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -106,7 +106,7 @@ bool PopupWindow::eventFilter(QObject *o, QEvent *e)
     }
         break;
     case QEvent::ParentChange: {
-        emit contentDetach();
+        Q_EMIT contentDetach();
     }
         break;
     default:

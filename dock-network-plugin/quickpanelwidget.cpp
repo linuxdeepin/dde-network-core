@@ -1,5 +1,5 @@
 // Copyright (C) 2022 ~ 2022 Deepin Technology Co., Ltd.
-// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -19,7 +19,6 @@ DGUI_USE_NAMESPACE
 DWIDGET_USE_NAMESPACE
 
 const QSize IconSize(22, 22); // 图标大小
-
 namespace dde {
 namespace network {
 class QuickButton : public DFloatingButton
@@ -38,20 +37,15 @@ protected:
         QColor textColor = option->dpalette.color(foregroundRole());
         if (backgroundRole() == QPalette::Highlight) {
             textColor = Qt::white;
-            if (!option->state.testFlag(QStyle::State_Raised)) { // press
-                bgColor.setHslF(bgColor.hslHueF(), bgColor.hslSaturationF(), bgColor.lightnessF() * 0.9);
+            if (!option->state.testFlag(QStyle::State_Raised)) { // press                bgColor.setHslF(bgColor.hslHueF(), bgColor.hslSaturationF(), bgColor.lightnessF() * 0.9);
                 textColor.setAlphaF(0.8);
-            } else if (option->state.testFlag(QStyle::State_MouseOver)) { // hover
-                bgColor.setHslF(bgColor.hslHueF(), bgColor.hslSaturationF(), bgColor.lightnessF() * 1.1);
+            } else if (option->state.testFlag(QStyle::State_MouseOver)) { // hover                bgColor.setHslF(bgColor.hslHueF(), bgColor.hslSaturationF(), bgColor.lightnessF() * 1.1);
             }
         } else {
             textColor.setAlphaF(1);
-            if (!option->state.testFlag(QStyle::State_Raised)) { // press
-                bgColor.setAlphaF(0.2);
-            } else if (option->state.testFlag(QStyle::State_MouseOver)) { // hover
-                bgColor.setAlphaF(0.15);
-            } else { // normal
-                bgColor.setAlphaF(0.1);
+            if (!option->state.testFlag(QStyle::State_Raised)) { // press                bgColor.setAlphaF(0.2);
+            } else if (option->state.testFlag(QStyle::State_MouseOver)) { // hover                bgColor.setAlphaF(0.15);
+            } else { // normal                bgColor.setAlphaF(0.1);
             }
         }
         option->palette.setBrush(QPalette::Button, bgColor);
@@ -181,5 +175,4 @@ void QuickPanelWidget::initConnection()
     connect(m_iconWidget, &DFloatingButton::clicked, this, &QuickPanelWidget::iconClicked);
 }
 
-} // namespace network
-} // namespace dde
+} // namespace network} // namespace dde

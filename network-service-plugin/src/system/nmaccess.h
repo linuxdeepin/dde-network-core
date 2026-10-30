@@ -75,7 +75,6 @@ struct DeviceSnapshot
     QString activeConnectionUni;
     QStringList ipV4Addresses;
     QStringList dnsServers;      // 来自活跃连接的 IPv4 配置
-
     bool isValid() const { return !uni.isEmpty(); }
     bool operator==(const DeviceSnapshot &other) const;
     bool operator!=(const DeviceSnapshot &other) const { return !(*this == other); }
@@ -160,9 +159,7 @@ private:
     bool m_primed = false;
 };
 
-} // namespace systemservice
-} // namespace network
-
+} // namespace systemservice} // namespace network
 Q_DECLARE_METATYPE(network::systemservice::DeviceSnapshot)
 
 /**

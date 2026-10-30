@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -43,7 +43,7 @@ void ThemeManager::setThemeType(ThemeType type)
 {
     if (type != m_themeType) {
         m_themeType = type;
-        emit themeChanged(m_themeType);
+        Q_EMIT themeChanged(m_themeType);
     }
 }
 

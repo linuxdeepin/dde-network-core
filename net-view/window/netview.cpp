@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2019-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #include "netview.h"
@@ -337,8 +337,7 @@ void NetView::updateItemExpand(NetItem *item)
         NetWiredDeviceItem *dev = NetItem::toItem<NetWiredDeviceItem>(item);
         expandItem = dev->isEnabled();
     } break;
-    case NetType::WirelessDeviceItem: { // 无线禁用或热点模式时折叠
-        NetWirelessDeviceItem *dev = NetItem::toItem<NetWirelessDeviceItem>(item);
+    case NetType::WirelessDeviceItem: { // 无线禁用或热点模式时折叠        NetWirelessDeviceItem *dev = NetItem::toItem<NetWirelessDeviceItem>(item);
         expandItem = dev->isEnabled() && !dev->apMode();
     } break;
     case NetType::WirelessMineItem: {
@@ -537,8 +536,7 @@ void NetView::keyPressEvent(QKeyEvent *event)
 
         while (!indexes.isEmpty()) {
             QModelIndex index = indexes.takeFirst();
-            if (index.isValid() && rowHeight(index) > 80) { // 输入框展开状态跳过键盘事件
-                return;
+            if (index.isValid() && rowHeight(index) > 80) { // 输入框展开状态跳过键盘事件                return;
             }
             if (!index.isValid() || isExpanded(index)) {
                 int row = m->rowCount(index);
@@ -560,5 +558,4 @@ void NetView::resizeEvent(QResizeEvent *event)
     viewport()->setFixedWidth(320);
 }
 
-} // namespace network
-} // namespace dde
+} // namespace network} // namespace dde

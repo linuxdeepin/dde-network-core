@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -334,8 +334,7 @@ void NetManagerPrivate::exec(NetManager::CmdType cmd, const QString &id, const Q
             case NetType::NetItemType::WirelessDeviceItem:
             case NetType::NetItemType::WiredDeviceItem: {
                 m_managerThread->disconnectDevice(item->id());
-                item = nullptr; // break while
-            } break;
+                item = nullptr; // break while            } break;
             case NetType::NetItemType::HotspotControlItem: {
                 m_managerThread->connectHotspot(id, param, false);
                 item = nullptr;
@@ -377,8 +376,7 @@ void NetManagerPrivate::exec(NetManager::CmdType cmd, const QString &id, const Q
             } break;
             case NetType::NetItemType::WirelessItem: {
                 NetWirelessItem *wirelessItem = NetItem::toItem<NetWirelessItem>(item->item());
-                if (wirelessItem->status() == NetType::NetConnectionStatus::CS_UnConnected || !param.isEmpty()) { // 连接中有可能请求密码
-                    m_managerThread->connectWireless(id, param);
+                if (wirelessItem->status() == NetType::NetConnectionStatus::CS_UnConnected || !param.isEmpty()) { // 连接中有可能请求密码                    m_managerThread->connectWireless(id, param);
                 }
             } break;
             case NetType::NetItemType::HotspotControlItem: {
@@ -403,8 +401,7 @@ void NetManagerPrivate::exec(NetManager::CmdType cmd, const QString &id, const Q
         m_managerThread->gotoSecurityTools(id);
         break;
     case NetManager::ToggleExpand: {
-        if (id.isEmpty()) { // 初始化状态
-            QVector<NetItem *> items = m_root->getChildren();
+        if (id.isEmpty()) { // 初始化状态            QVector<NetItem *> items = m_root->getChildren();
             NetItemPrivate *inputParent = nullptr;
             if (!m_showInputId.isEmpty()) {
                 NetItemPrivate *inputItem = findItem(m_showInputId);
@@ -505,8 +502,7 @@ void NetManagerPrivate::onItemAdded(const QString &parentID, NetItemPrivate *ite
     }
     addItem(item, parentItem);
     switch (item->itemType()) {
-    case NetType::NetItemType::WirelessDeviceItem: { // 无线设备添加隐藏网络
-        addItem(NetItemNew(WirelessMineItem, item->id() + ":Mine"), nullptr);
+    case NetType::NetItemType::WirelessDeviceItem: { // 无线设备添加隐藏网络        addItem(NetItemNew(WirelessMineItem, item->id() + ":Mine"), nullptr);
         NetWirelessOtherItemPrivate *otherItem = NetItemNew(WirelessOtherItem, item->id() + ":Other");
         otherItem->updateexpanded(true);
         addItem(otherItem, item);
@@ -538,8 +534,7 @@ void NetManagerPrivate::onItemRemoved(const QString &id)
 
     NetItemPrivate *mine = nullptr;
     switch (item->itemType()) {
-    case NetType::NetItemType::WirelessDeviceItem: { // 无线设备添加隐藏网络
-        --m_deviceCount[WirelessDeviceIndex];
+    case NetType::NetItemType::WirelessDeviceItem: { // 无线设备添加隐藏网络        --m_deviceCount[WirelessDeviceIndex];
         // 我的网络和其他网络要单独删除,可能在m_dataMap中但不在列表中
         removeAndDeleteItem(findItem(item->id() + ":Mine"));
         removeAndDeleteItem(findItem(item->id() + ":Other"));
@@ -552,15 +547,13 @@ void NetManagerPrivate::onItemRemoved(const QString &id)
     case NetType::NetItemType::WirelessItem: {
         NetWirelessItemPrivate *wirelessItem = NetItemPrivate::toItem<NetWirelessItemPrivate>(item);
         if (wirelessItem->hasConnection()) {
-            mine = findItem(item->getParentPrivate()->id()); // Mine
-        }
+            mine = findItem(item->getParentPrivate()->id()); // Mine        }
     } break;
     default:
         break;
     }
     removeAndDeleteItem(item);
-    if (mine && mine->getChildrenNumber() == 0) // Mine的最后一个将被删除
-        removeItem(mine);
+    if (mine && mine->getChildrenNumber() == 0) // Mine的最后一个将被删除        removeItem(mine);
 }
 
 void NetManagerPrivate::onDataChanged(int dataType, const QString &id, const QVariant &value)
@@ -585,7 +578,7 @@ void NetManagerPrivate::onDataChanged(int dataType, const QString &id, const QVa
             const bool showTips = (state != NetType::NetDeviceStatus::DS_Connected) && (state != NetType::NetDeviceStatus::DS_Connecting);
             item->updateexpanded(showTips && item->isEnabled() && item->enabledable());
             item->updatestatus(state);
-            emit vpnStatusChanged();
+            Q_EMIT vpnStatusChanged();
         }
     } break;
     case NetManagerThreadPrivate::NameChanged: {
@@ -793,8 +786,7 @@ void NetManagerPrivate::onRequestPassword(const QString &dev, const QString &id,
         m_passwordRequestData = nullptr;
     }
 
-    if (param.isEmpty()) { // 取消请求
-        if (!m_showInputId.isEmpty()) {
+    if (param.isEmpty()) { // 取消请求        if (!m_showInputId.isEmpty()) {
             NetItemPrivate *item = findItem(m_showInputId);
             if (item && item->name() == id) {
                 sendRequest(NetManager::CloseInput, m_showInputId);
@@ -1112,5 +1104,4 @@ void NetManagerPrivate::removeAndDeleteItem(NetItemPrivate *item)
     delete item;
 }
 
-} // namespace network
-} // namespace dde
+} // namespace network} // namespace dde

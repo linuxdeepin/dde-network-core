@@ -62,7 +62,7 @@ void SystemIPConflict::onIPConflicted(const QString &ip, const QString &localMac
         return;
 
     if (conflicted)
-        emit ipConflictChanged(uni, ip, true);
+        Q_EMIT ipConflictChanged(uni, ip, true);
 
     if (needReconnect) {
         const DeviceSnapshot snapshot = NetworkManagerProxy::instance()->device(uni);
@@ -81,7 +81,7 @@ void SystemIPConflict::onIPConflictReslove(const QString &ip, const QString &loc
         return;
 
     if (m_ipConfilctData.doConflictReslove(ip, localMac, remoteMac))
-        emit ipConflictChanged(uni, ip, false);
+        Q_EMIT ipConflictChanged(uni, ip, false);
 }
 
 bool SystemIPConflict::ipConflicted(const QString &devicePath, const QString &ip) const
@@ -98,6 +98,6 @@ void SystemIPConflict::ipv4Changed(const QString &deviceUni)
     QStringList resloveIps;
     m_ipConfilctData.updateIpv4(deviceUni, snapshot.ipV4Addresses, resloveIps);
     for (const QString &resloveIp : resloveIps) {
-        emit ipConflictChanged(snapshot.uni, resloveIp, false);
+        Q_EMIT ipConflictChanged(snapshot.uni, resloveIp, false);
     }
 }

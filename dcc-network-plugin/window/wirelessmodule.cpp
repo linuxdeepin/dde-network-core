@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -37,8 +37,7 @@ WirelessModule::WirelessModule(WirelessDevice *dev, QObject *parent)
     onNameChanged(m_device->deviceName());
     connect(m_device, &WirelessDevice::nameChanged, this, &WirelessModule::onNameChanged);
     appendChild(new WidgetModule<SwitchWidget>("wireless_adapter", tr("Wireless Network Adapter"), [this](SwitchWidget *devEnabled) {
-        QLabel *lblTitle = new QLabel(tr("Wireless Network Adapter")); // 无线网卡
-        DFontSizeManager::instance()->bind(lblTitle, DFontSizeManager::T5, QFont::DemiBold);
+        QLabel *lblTitle = new QLabel(tr("Wireless Network Adapter")); // 无线网卡        DFontSizeManager::instance()->bind(lblTitle, DFontSizeManager::T5, QFont::DemiBold);
         devEnabled->setLeftWidget(lblTitle);
         devEnabled->setChecked(m_device->isEnabled());
         connect(devEnabled, &SwitchWidget::checkedChanged, this, &WirelessModule::onNetworkAdapterChanged);
@@ -104,8 +103,7 @@ void WirelessModule::initWirelessList(DListView *lvAP)
 
     connect(lvAP, &DListView::clicked, this, [this](const QModelIndex &index) {
         AccessPoints *ap = static_cast<AccessPoints *>(index.internalPointer());
-        if (!ap) { // nullptr 为隐藏网络
-            onApWidgetEditRequested(nullptr, qobject_cast<QWidget *>(sender()));
+        if (!ap) { // nullptr 为隐藏网络            onApWidgetEditRequested(nullptr, qobject_cast<QWidget *>(sender()));
             return;
         }
         if (ap->connected())

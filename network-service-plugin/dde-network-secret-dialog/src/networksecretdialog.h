@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2011 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2011-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -22,7 +22,7 @@ public:
 protected:
     void keyPressEvent(QKeyEvent *event) override;
 
-private slots:
+private Q_SLOTS:
     void parseJsonData(const QJsonDocument &jsonDoc);
     void initUI();
     void onButtonsClicked(int index, const QString &text);

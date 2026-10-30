@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -16,8 +16,7 @@
 
 NETWORKPLUGIN_USE_NAMESPACE
 
-static const QString NetworkDialogApp = "dde-network-dialog"; //网络列表执行文件
-static QMap<QString, void (NetworkDialog::*)(QLocalSocket *, const QByteArray &)> s_FunMap = {
+static const QString NetworkDialogApp = "dde-network-dialog"; //网络列表执行文件static QMap<QString, void (NetworkDialog::*)(QLocalSocket *, const QByteArray &)> s_FunMap = {
     { "password", &NetworkDialog::sendPassword },
     { "connect", &NetworkDialog::connectNetwork },
 };

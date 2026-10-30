@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2019-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #include "netmodel.h"
@@ -180,7 +180,7 @@ void NetModel::updateObject()
     NetItem *obj = qobject_cast<NetItem *>(sender());
     if (obj) {
         QModelIndex i = index(obj);
-        emit dataChanged(i, i, { NetItemRole });
+        Q_EMIT dataChanged(i, i, { NetItemRole });
     }
 }
 
@@ -234,5 +234,4 @@ void NetModel::moveObject(const NetItem *child)
     m_moving = false;
 }
 
-} // namespace network
-} // namespace dde
+} // namespace network} // namespace dde

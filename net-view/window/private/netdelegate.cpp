@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2019-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #include "netdelegate.h"
@@ -59,7 +59,6 @@ ItemSpacing NetDelegate::getItemSpacing(const QModelIndex &index) const
     spacing.bottom = 0;
     spacing.height = -1;
     spacing.viewItemPosition = QStyleOptionViewItem::OnlyOne; // 显示样式
-
     switch (index.data(NetModel::NetItemTypeRole).value<NetType::NetItemType>()) {
     case NetType::WirelessDeviceItem:
     case NetType::WiredDeviceItem:
@@ -1013,5 +1012,4 @@ QString NetItemWidget::getDisplayText(bool isHover)
     return QString("<a style=\"text-decoration: none\" href=\"%1\">%1</p></a>").arg(openText);
 }
 
-} // namespace network
-} // namespace dde
+} // namespace network} // namespace dde

@@ -31,6 +31,4 @@ private:
     mutable QMutex m_mutex;
     QMap<QString, QVariant> m_map;
 };
-} // namespace systemservice
-} // namespace network
-#endif // NetworkEnabledConfig_H
+} // namespace systemservice} // namespace network#endif // NetworkEnabledConfig_H

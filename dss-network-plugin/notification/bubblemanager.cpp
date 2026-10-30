@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #include "bubblemanager.h"
@@ -153,8 +153,7 @@ void BubbleManager::pushAnimation(Bubble *bubble)
         QRect startRect = getLastStableRect(index - 1);
         QRect endRect = getBubbleGeometry(index);
         QPointer<Bubble> item = m_bubbleList.at(index);
-        if (item->geometry() != endRect) { //动画中
-            startRect = item->geometry();
+        if (item->geometry() != endRect) { //动画中            startRect = item->geometry();
         }
         if (bubble != nullptr) {
             item->setBubbleIndex(index);
@@ -174,7 +173,6 @@ void BubbleManager::popAnimation(Bubble *bubble)
 
     if (bubble)
         bubble->startMove(startRect, endRect, true); // delete itself
-
     while (index < m_bubbleList.size() - 1) {
         index ++;
         startRect = getBubbleGeometry(index);
@@ -183,8 +181,7 @@ void BubbleManager::popAnimation(Bubble *bubble)
         if (index == BubbleEntities + BubbleOverLap) {
             item->show();
         }
-        if (item->geometry() != endRect) { //动画中
-            startRect = item->geometry();
+        if (item->geometry() != endRect) { //动画中            startRect = item->geometry();
         }
         if (bubble != nullptr) {
             item->setBubbleIndex(index);
@@ -207,8 +204,7 @@ QRect BubbleManager::getBubbleGeometry(int index)
 
     QRect rect;
     if (index >= 0 && index <= BubbleEntities - 1) {
-        int y = (m_dockPos == OSD::Top ? m_currentDockRect.bottom() : m_currentDisplayRect.y()); // 多屏时屏幕设置为上下错位，主屏的top可能不是0
-        rect.setX(m_currentDisplayRect.x() + (m_currentDisplayRect.width() - OSD::BubbleWidth(OSD::BUBBLEWINDOW)) / 2);
+        int y = (m_dockPos == OSD::Top ? m_currentDockRect.bottom() : m_currentDisplayRect.y()); // 多屏时屏幕设置为上下错位，主屏的top可能不是0        rect.setX(m_currentDisplayRect.x() + (m_currentDisplayRect.width() - OSD::BubbleWidth(OSD::BUBBLEWINDOW)) / 2);
         rect.setY(y + ScreenPadding + index * BubbleMargin + getBubbleHeightBefore(index));
         rect.setWidth(OSD::BubbleWidth(OSD::BUBBLEWINDOW));
         rect.setHeight(OSD::BubbleHeight(OSD::BUBBLEWINDOW));

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -41,8 +41,7 @@ private:
     void initUI();
     void initDnsList(const int &num);
     void onDnsDateListChanged();
-    QList<QHostAddress> getIPvxDate(); // 获取IPvx dns 数据
-    void deleteCurrentDnsEdit(dcc::network::ButtonEditWidget *item);
+    QList<QHostAddress> getIPvxDate(); // 获取IPvx dns 数据    void deleteCurrentDnsEdit(dcc::network::ButtonEditWidget *item);
     void addNewDnsEdit(const int &index);
     void onAddBtnStatusChange(const bool &flag);
     void onReduceBtnStatusChange(const bool &flag);

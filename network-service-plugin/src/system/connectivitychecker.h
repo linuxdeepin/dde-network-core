@@ -18,7 +18,6 @@ namespace NetworkManager {
 class Device;
 class ActiveConnection;
 } // namespace NetworkManager
-
 namespace network {
 namespace systemservice {
 
@@ -43,7 +42,7 @@ public:
 
     virtual void checkConnectivity() {}
 
-signals:
+Q_SIGNALS:
     void connectivityChanged(const network::service::Connectivity &);
 };
 
@@ -59,10 +58,10 @@ public:
     QString portalUrl() const override;
     void checkConnectivity() override;
 
-signals:
+Q_SIGNALS:
     void portalDetected(const QString &);
 
-private slots:
+private Q_SLOTS:
     void onPortalDetected(const QString &portalUrl);
     void onConnectivityChanged(network::service::Connectivity connectivity);
     void onProbeFinished(const ConnectivityProbeResult &result);
@@ -104,7 +103,7 @@ public:
     // 探测结果回填（由 LocalConnectionvityChecker 排队至 NM 线程调用）
     void onProbeResult(const ConnectivityProbeResult &result);
 
-signals:
+Q_SIGNALS:
     void portalDetected(const QString &);
     void connectivityChanged(const network::service::Connectivity &);
     void probeRequested(const ConnectivityProbeRequest &request);
@@ -114,7 +113,7 @@ private:
     void setPortalUrl(const QString &portalUrl);
     void initDefaultConnectivity();
 
-private slots:
+private Q_SLOTS:
     void onUpdateUrls(const QStringList &urls);
     void startCheck();
     void startProbeCheck();
@@ -133,9 +132,7 @@ private:
     QString m_portalUrl;
     QStringList m_checkUrls;
     bool m_isStop;
-    QString m_primaryId;                 // 仅 NM 线程访问
-    std::atomic<bool> m_primaryConnectionChanged; // 插件线程读取
-    quint64 m_probeGeneration;
+    QString m_primaryId;                 // 仅 NM 线程访问    std::atomic<bool> m_primaryConnectionChanged; // 插件线程读取    quint64 m_probeGeneration;
 };
 
 class NMConnectionvityChecker : public ConnectivityChecker
@@ -147,7 +144,7 @@ public:
     ~NMConnectionvityChecker() override = default;
     network::service::Connectivity connectivity() const override;
 
-public slots:
+public Q_SLOTS:
     void initMember();
     void initConnection();
 
@@ -156,7 +153,5 @@ private:
 };
 
 } // namespace systemservice
-
 } // namespace network
-
 #endif // CONNECTIVITYCHECKER_H

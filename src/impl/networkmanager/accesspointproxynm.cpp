@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -120,8 +120,7 @@ bool AccessPointProxyNM::hidden() const
 bool AccessPointProxyNM::isWlan6() const
 {
     NetworkManager::AccessPoint::Capabilities capability = m_network->referenceAccessPoint()->capabilities();
-    if (capability.testFlag(NetworkManager::AccessPoint::Capability(0x10))) // NetworkManager::AccessPoint::Capability::He
-        return true;
+    if (capability.testFlag(NetworkManager::AccessPoint::Capability(0x10))) // NetworkManager::AccessPoint::Capability::He        return true;
 
     return false;
 }
@@ -212,8 +211,8 @@ void AccessPointProxyNM::onUpdateNetwork()
     bool secured = m_secured;
     updateInfo();
     if (strength != m_strength)
-        emit strengthChanged(m_strength);
+        Q_EMIT strengthChanged(m_strength);
 
     if (secured != m_secured)
-        emit securedChanged(m_secured);
+        Q_EMIT securedChanged(m_secured);
 }

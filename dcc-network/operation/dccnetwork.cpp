@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #include "dccnetwork.h"
@@ -156,8 +156,7 @@ void DccNetwork::exec(NetManager::CmdType cmd, const QString &id, const QVariant
 
                 // 确保IPv6设置存在，即使没有DNS也要设置，以便被正确处理
                 if (ipv6Data.isEmpty()) {
-                    ipv6Data["method"] = "auto"; // 至少设置一个值确保IPv6部分存在
-                }
+                    ipv6Data["method"] = "auto"; // 至少设置一个值确保IPv6部分存在                }
             }
 
             tmpParam["ipv6"] = QVariant::fromValue(ipv6Data);
@@ -216,7 +215,5 @@ void DccNetwork::init()
     Q_EMIT rootChanged();
 }
 DCC_FACTORY_CLASS(DccNetwork)
-} // namespace network
-} // namespace dde
-
+} // namespace network} // namespace dde
 #include "dccnetwork.moc"
