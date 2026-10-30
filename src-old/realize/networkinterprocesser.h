@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -39,21 +39,11 @@ protected:
     void initDeviceService();
     void initConnection();
     void initNetData(NetworkDBusProxy *networkInt);                                // 填充基本数据
-
     void updateSync(const bool sync);
 
-    NetworkDeviceBase *findDevices(const QString &path) const;                     // 根据设备path查找设备
-    void updateConnectionsInfo(const QList<NetworkDeviceBase *> &devices);         // 更新设备连接信息
-    void activeInfoChanged(const QString &conns);                                  // 更新活动连接信息
-    void updateDeviceConnectiveInfo();                                             // 更新设备信号连接强度信息
-    void activeConnInfoChanged(const QString &conns);                              // 活动连接信息发生变化
-    void updateDeviceHotpot();                                                     // 更新热点设备数据
-
+    NetworkDeviceBase *findDevices(const QString &path) const;                     // 根据设备path查找设备    void updateConnectionsInfo(const QList<NetworkDeviceBase *> &devices);         // 更新设备连接信息    void activeInfoChanged(const QString &conns);                                  // 更新活动连接信息    void updateDeviceConnectiveInfo();                                             // 更新设备信号连接强度信息    void activeConnInfoChanged(const QString &conns);                              // 活动连接信息发生变化    void updateDeviceHotpot();                                                     // 更新热点设备数据
     void updateNetworkDetails();                                                   // 更新网络连接信息
-
-    void updateDSLData();                                                          // 更新DSL的数据
-    void updateVPNActiveConnection();                                              // 更新VPN的活动连接信息
-
+    void updateDSLData();                                                          // 更新DSL的数据    void updateVPNActiveConnection();                                              // 更新VPN的活动连接信息
     void doChangeConnectionList(const QString &connections);
     void doChangeActiveConnections(const QString &activeConnections);
     void doChangeAccesspoint(const QString &accessPoints);
@@ -61,18 +51,10 @@ protected:
     void doChangedData(changedFunction func, const char *infoName);
 
 protected:
-    ProxyController *proxyController() override;                                            // 返回代理控制管理器
-    VPNController *vpnController() override;                                                // 返回VPN控制器
-    DSLController *dslController() override;                                                // DSL控制器
-    HotspotController *hotspotController() override;                                        // 个人热点控制器
-    Connectivity connectivity() override;                                                   // 获取当前的信号
-    QList<NetworkDeviceBase *> devices() override;                                          // 获取当前的所有的设备
-    QList<NetworkDetails *> networkDetails() override;                                      // 获取设备的网络详情
-
+    ProxyController *proxyController() override;                                            // 返回代理控制管理器    VPNController *vpnController() override;                                                // 返回VPN控制器    DSLController *dslController() override;                                                // DSL控制器    HotspotController *hotspotController() override;                                        // 个人热点控制器    Connectivity connectivity() override;                                                   // 获取当前的信号    QList<NetworkDeviceBase *> devices() override;                                          // 获取当前的所有的设备    QList<NetworkDetails *> networkDetails() override;                                      // 获取设备的网络详情
 protected Q_SLOTS:
     void onDevicesChanged(const QString &value);
-    void onConnectionInfoChanged();                                                         // 变化的网络连接的状态
-    void onDeviceEnableChanged(const QString &devicePath, bool enabled);
+    void onConnectionInfoChanged();                                                         // 变化的网络连接的状态    void onDeviceEnableChanged(const QString &devicePath, bool enabled);
     void onConnectivityChanged(uint conectivity);
 
 private:

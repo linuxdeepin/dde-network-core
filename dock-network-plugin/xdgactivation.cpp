@@ -116,7 +116,6 @@ XdgActivationV1 *activationV1()
 }
 
 } // anonymous namespace
-
 // ---------------------------------------------------------------------------
 // XdgActivation
 // ---------------------------------------------------------------------------
@@ -174,7 +173,5 @@ void XdgActivation::requestToken(QWindow *window, const QString &appId)
     }, Qt::SingleShotConnection);
 }
 
-} // namespace network
-} // namespace dde
-
+} // namespace network} // namespace dde
 #include "xdgactivation.moc"

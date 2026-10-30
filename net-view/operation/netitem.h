@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -406,7 +406,5 @@ Q_SIGNALS:
 protected:
     using NetItem::NetItem;
 };
-} // namespace network
-} // namespace dde
-
+} // namespace network} // namespace dde
 #endif //  NETWORKAPPLETMODEL_H

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2025 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2025-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #ifndef NETSORTPROXYMODEL_H
@@ -23,7 +23,5 @@ protected Q_SLOTS:
     void onRowsInserted(const QModelIndex &parent, int first, int last);
     void updateSort();
 };
-} // namespace network
-} // namespace dde
-
+} // namespace network} // namespace dde
 #endif // NETSORTPROXYMODEL_H

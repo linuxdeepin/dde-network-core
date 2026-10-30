@@ -102,5 +102,4 @@ bool NetworkDBus::ToggleWirelessEnabled()
     return true;
 }
 
-} // namespace systemservice
-} // namespace network
+} // namespace systemservice} // namespace network

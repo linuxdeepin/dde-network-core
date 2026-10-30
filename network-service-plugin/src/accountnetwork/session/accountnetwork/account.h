@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -27,7 +27,7 @@ private:
     void loadActiveAccount();
     QString parseAccount(const QString &accountInfo);
 
-private slots:
+private Q_SLOTS:
     void onAccountChanged(const QString &username);
 
 private:

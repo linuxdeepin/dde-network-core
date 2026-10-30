@@ -24,9 +24,7 @@ struct ConnectivityProbeRequest
 struct ConnectivityProbeResult
 {
     quint64 generation = 0;
-    bool networkIsOk = false;   // 拿到过任一非 0 HTTP 码
-    bool timedOut = false;      // 首个 URL 读超时
-    int httpCode = 0;
+    bool networkIsOk = false;   // 拿到过任一非 0 HTTP 码    bool timedOut = false;      // 首个 URL 读超时    int httpCode = 0;
     QString portalUrl;
 };
 
@@ -50,9 +48,7 @@ Q_SIGNALS:
     void finished(const ConnectivityProbeResult &result);
 };
 
-} // namespace systemservice
-} // namespace network
-
+} // namespace systemservice} // namespace network
 Q_DECLARE_METATYPE(network::systemservice::ConnectivityProbeRequest)
 Q_DECLARE_METATYPE(network::systemservice::ConnectivityProbeResult)
 

@@ -21,7 +21,5 @@ protected:
     void paintEvent(QPaintEvent *event) override;
 };
 
-} // namespace network
-} // namespace dde
-
+} // namespace network} // namespace dde
 #endif //NETCOMMONBUTTON_H

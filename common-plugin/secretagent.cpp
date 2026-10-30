@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -257,8 +257,7 @@ bool SecretAgent::processGetSecrets(SecretsRequest &request)
         DEBUG_PRINT << "requestPassword" << devPath << connectionSettings->id();
         Q_EMIT requestPassword(devPath, connectionSettings->id(), true);
         return false;
-    } else if (isVpn && userRequested) { // just return what we have
-        NMVariantMapMap result;
+    } else if (isVpn && userRequested) { // just return what we have        NMVariantMapMap result;
         NetworkManager::VpnSetting::Ptr vpnSetting;
         vpnSetting = connectionSettings->setting(NetworkManager::Setting::Vpn).dynamicCast<NetworkManager::VpnSetting>();
         // FIXME workaround when NM is asking for secrets which should be system-stored, if we send an empty map it

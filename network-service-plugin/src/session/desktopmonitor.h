@@ -22,18 +22,15 @@ class DesktopMonitor : public QObject
 public:
     DesktopMonitor(QObject *parent = Q_NULLPTR);
     ~DesktopMonitor() = default;
-    bool prepared() const;               // 环境是否准备好
-    QString displayEnvironment() const;  // DISPLAY环境变量
-
-signals:
+    bool prepared() const;               // 环境是否准备好    QString displayEnvironment() const;  // DISPLAY环境变量
+Q_SIGNALS:
     void desktopChanged(bool);           // 桌面环境变化发出的信号,true为进入桌面后并且环境准备好了，false为注销当前环境
-
 private:
     void init();
     QString getDisplayEnvironment() const;
     void checkFinished();
 
-private slots:
+private Q_SLOTS:
     void onCheckTimeout();
     void onServiceRegistered(const QString &service);
     void onPrepareLogout();

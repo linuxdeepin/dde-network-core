@@ -20,8 +20,7 @@ ServiceBase::ServiceBase(QObject *parent)
     , m_timer(new QTimer(this))
 {
     m_timer->setSingleShot(true);
-    m_timer->setInterval(10 * 60 * 1000); // 设置超时时间, 默认10分钟
-    connect(m_timer, &QTimer::timeout, this, &ServiceBase::idleSignal);
+    m_timer->setInterval(10 * 60 * 1000); // 设置超时时间, 默认10分钟    connect(m_timer, &QTimer::timeout, this, &ServiceBase::idleSignal);
 }
 
 ServiceBase::~ServiceBase() { }
@@ -33,8 +32,7 @@ void ServiceBase::init(const QDBusConnection::BusType &busType, Policy *p)
     p->setParent(this);
     // p->Print();
 
-    m_timer->setInterval(policy->idleTime * 60 * 1000); // 设置超时时间
-    connect(this, &ServiceBase::idleSignal, this, &ServiceBase::unregisterService);
+    m_timer->setInterval(policy->idleTime * 60 * 1000); // 设置超时时间    connect(this, &ServiceBase::idleSignal, this, &ServiceBase::unregisterService);
     initService();
 }
 

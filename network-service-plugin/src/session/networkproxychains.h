@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2025 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2025-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #ifndef NETWORKPROXYCHAINS_H
@@ -72,6 +72,4 @@ private:
     QString m_jsonFile;
     QString m_confFile;
 };
-} // namespace sessionservice
-} // namespace network
-#endif // NETWORKPROXYCHAINS_H
+} // namespace sessionservice} // namespace network#endif // NETWORKPROXYCHAINS_H

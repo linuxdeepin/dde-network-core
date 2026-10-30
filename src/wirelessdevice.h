@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -26,28 +26,10 @@ class WirelessDevice : public NetworkDeviceBase
     friend class NetworkManagerProcesser;
 
 public:
-    bool isConnected() const override;                              // 是否连接网络，重写基类的虚函数
-    DeviceType deviceType() const override;                         // 返回设备类型，适应基类统一的接口
-    QList<AccessPoints *> accessPointItems() const;                 // 当前网卡上所有的网络列表
-    void scanNetwork();                                             // 重新加载所有的无线网络列表
-    void connectNetwork(const AccessPoints *item);                  // 连接网络，连接成功抛出deviceStatusChanged信号
-    void connectNetwork(const QString &ssid);                       // 连接网络，重载函数
-    QList<WirelessConnection *> items() const;                      // 无线网络连接列表
-    AccessPoints *activeAccessPoints() const;                       // 当前活动的无线连接
-    bool hotspotEnabled() const;                                    // 是否开启热点
-    void disconnectNetwork();
+    bool isConnected() const override;                              // 是否连接网络，重写基类的虚函数    DeviceType deviceType() const override;                         // 返回设备类型，适应基类统一的接口    QList<AccessPoints *> accessPointItems() const;                 // 当前网卡上所有的网络列表    void scanNetwork();                                             // 重新加载所有的无线网络列表    void connectNetwork(const AccessPoints *item);                  // 连接网络，连接成功抛出deviceStatusChanged信号    void connectNetwork(const QString &ssid);                       // 连接网络，重载函数    QList<WirelessConnection *> items() const;                      // 无线网络连接列表    AccessPoints *activeAccessPoints() const;                       // 当前活动的无线连接    bool hotspotEnabled() const;                                    // 是否开启热点    void disconnectNetwork();
 
 Q_SIGNALS:
-    void networkAdded(const QList<AccessPoints *> &);               // wlan新增网络
-    void networkRemoved(const QList<AccessPoints *> &);             // wlan列表减少网络
-    void connectionFailed(const AccessPoints *);                    // 连接无线wlan失败，第一个参数为失败的热点，第二个参数为对应的connection的Uuid
-    void connectionSuccess(const AccessPoints *);                   // 连接无线网络wlan成功，参数为对应的wlan
-    void hotspotEnableChanged(const bool &);                        // 热点是否可用发生变化
-    void accessPointInfoChanged(const QList<AccessPoints *> &);     // wlan信号强度发生变化的网络
-    void wirelessConnectionAdded(const QList<WirelessConnection *> &); // 新增连接
-    void wirelessConnectionRemoved(const QList<WirelessConnection *> &); // 删除连接
-    void wirelessConnectionPropertyChanged(const QList<WirelessConnection *> &); // 连接属性发生变化
-
+    void networkAdded(const QList<AccessPoints *> &);               // wlan新增网络    void networkRemoved(const QList<AccessPoints *> &);             // wlan列表减少网络    void connectionFailed(const AccessPoints *);                    // 连接无线wlan失败，第一个参数为失败的热点，第二个参数为对应的connection的Uuid    void connectionSuccess(const AccessPoints *);                   // 连接无线网络wlan成功，参数为对应的wlan    void hotspotEnableChanged(const bool &);                        // 热点是否可用发生变化    void accessPointInfoChanged(const QList<AccessPoints *> &);     // wlan信号强度发生变化的网络    void wirelessConnectionAdded(const QList<WirelessConnection *> &); // 新增连接    void wirelessConnectionRemoved(const QList<WirelessConnection *> &); // 删除连接    void wirelessConnectionPropertyChanged(const QList<WirelessConnection *> &); // 连接属性发生变化
 protected:
     WirelessDevice(NetworkDeviceRealize *networkInter, QObject *parent);
     ~WirelessDevice() override;
@@ -80,22 +62,10 @@ public:
     ~AccessPoints();
 
 public:
-    QString ssid() const;                                           // 网络SSID，对应于返回接口中的Ssid
-    int strength() const;                                           // 信号强度，对应于返回接口中的Strength
-    bool secured() const;                                           // 是否加密，对应于返回接口中的Secured
-    bool securedInEap() const;                                      // 对应于返回接口中的SecuredInEap
-    int frequency() const;                                          // 频率，对应于返回接口中的Frequency
-    QString path() const;                                           // 路径，对应于返回接口中的Path
-    QString devicePath() const;                                     // 对应的设备的路径，为返回接口中的key值
-    bool connected() const;                                         // 网络是否连接成功
-    ConnectionStatus status() const;                                // 当前网络的连接状态
-    bool hidden() const;                                            // 是否为隐藏网络
-    QByteArray rawSsid() const;                                     // 网络SSID原始字节，用于与NM连接字节精确匹配/保存
-    WlanType type() const;
+    QString ssid() const;                                           // 网络SSID，对应于返回接口中的Ssid    int strength() const;                                           // 信号强度，对应于返回接口中的Strength    bool secured() const;                                           // 是否加密，对应于返回接口中的Secured    bool securedInEap() const;                                      // 对应于返回接口中的SecuredInEap    int frequency() const;                                          // 频率，对应于返回接口中的Frequency    QString path() const;                                           // 路径，对应于返回接口中的Path    QString devicePath() const;                                     // 对应的设备的路径，为返回接口中的key值    bool connected() const;                                         // 网络是否连接成功    ConnectionStatus status() const;                                // 当前网络的连接状态    bool hidden() const;                                            // 是否为隐藏网络    QByteArray rawSsid() const;                                     // 网络SSID原始字节，用于与NM连接字节精确匹配/保存    WlanType type() const;
 
 Q_SIGNALS:
-    void strengthChanged(const int);                                // 当前信号强度变化
-    void connectionStatusChanged(ConnectionStatus);
+    void strengthChanged(const int);                                // 当前信号强度变化    void connectionStatusChanged(ConnectionStatus);
     void securedChanged(bool);
 
 private:
@@ -117,10 +87,8 @@ class WirelessConnection : public ControllItems
 
 public:
     WirelessConnection();
-    AccessPoints *accessPoints() const;  // 返回当前对应的wlan的指针
-    ~WirelessConnection() override;
+    AccessPoints *accessPoints() const;  // 返回当前对应的wlan的指针    ~WirelessConnection() override;
     bool connected();  // 网络是否连接成功
-
 protected:
     static WirelessConnection *createConnection(AccessPoints *ap);
 

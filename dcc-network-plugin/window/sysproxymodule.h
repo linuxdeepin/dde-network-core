@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -68,8 +68,7 @@ private:
     QPointer<DTK_WIDGET_NAMESPACE::DTextEdit> m_ignoreList;
     QPointer<DCC_NAMESPACE::ButtonTuple> m_buttonTuple;
 
-    dde::network::ProxyMethod m_uiMethod; // ui修改的ProxyMethod
-    int m_lastCombIndex = 0;
+    dde::network::ProxyMethod m_uiMethod; // ui修改的ProxyMethod    int m_lastCombIndex = 0;
 };
 
 #endif // SYSPROXYMODULE_H

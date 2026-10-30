@@ -135,7 +135,6 @@ bool findDnsModeApplyTarget(const NetworkManager::ActiveConnection::Ptr &vpnAc, 
     return false;
 }
 } // namespace
-
 VpnDnsModeHandler::VpnDnsModeHandler(QObject *parent)
     : QObject(parent)
 {

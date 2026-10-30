@@ -152,6 +152,4 @@ private:
     bool m_sessionActive;
     bool m_sessionRemote;
 };
-} // namespace sessionservice
-} // namespace network
-#endif // NETWORKSTATEHANDLER_H
+} // namespace sessionservice} // namespace network#endif // NETWORKSTATEHANDLER_H

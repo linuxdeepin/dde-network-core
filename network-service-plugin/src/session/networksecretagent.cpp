@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2025 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2025-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #include "networksecretagent.h"
@@ -143,8 +143,7 @@ void NetworkSecretAgent::CancelGetSecrets(const QDBusObjectPath &connectionPath,
             break;
         }
     }
-    dbusConnection().send(message().createReply()); //  非异步，
-    processNext();
+    dbusConnection().send(message().createReply()); //  非异步，    processNext();
 }
 
 void NetworkSecretAgent::onGetSecretsTimeout()
@@ -444,8 +443,7 @@ void NetworkSecretAgent::doSecretsResult(QString callId, const QByteArray &data,
     if (isEnd) {
         request->process = nullptr;
     }
-    if (!rootObj.contains("secrets")) { // 没有"secrets"时为用户取消
-        if (isEnd) {
+    if (!rootObj.contains("secrets")) { // 没有"secrets"时为用户取消        if (isEnd) {
             sendError(Error::UserCanceled, "user canceled", request->message);
             request->status = SecretsRequest::End;
             m_calls.removeAll(*request);
@@ -475,8 +473,7 @@ void NetworkSecretAgent::doSecretsResult(QString callId, const QByteArray &data,
         QMap<QString, QString> resultSaved = m_secretService->getAll(connUUID, request->settingName);
         qCDebug(DSM()) << "getAll resultSaved:" << resultSaved;
         for (auto it = resultSaved.begin(); it != resultSaved.end(); ++it) {
-            if (result.contains(it.key())) { // TODO: 待验证，不应该走到这
-                result.insert(it.key(), it.value());
+            if (result.contains(it.key())) { // TODO: 待验证，不应该走到这                result.insert(it.key(), it.value());
             } else {
                 qCDebug(DSM()) << "not override key" << it.key();
             }
@@ -604,8 +601,7 @@ void NetworkSecretAgent::processNext()
 bool NetworkSecretAgent::processGetSecrets(SecretsRequest &request)
 {
     qCDebug(DSM()) << "call getSecrets";
-    bool allowInteraction = false; // 允许交互
-    bool requestNew = false;
+    bool allowInteraction = false; // 允许交互    bool requestNew = false;
     if (request.flags & SecretAgent::AllowInteraction) {
         qCDebug(DSM()) << "allow interaction";
         allowInteraction = true;
@@ -1044,5 +1040,4 @@ QString NetworkSecretAgent::getVpnAuthDialogBin(const NMVariantMapMap &connectio
     return authdialog;
 }
 
-} // namespace sessionservice
-} // namespace network
+} // namespace sessionservice} // namespace network

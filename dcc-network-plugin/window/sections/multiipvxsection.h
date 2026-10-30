@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -53,7 +53,7 @@ private:
     QList<IPInputSection *> createIpInputSections();
     void setIpInputSection(IPInputSection *ipSection, IPInputSection *itemBefore = nullptr);
 
-protected slots:
+protected Q_SLOTS:
     void onDeleteItem(IPInputSection *item);
     void onAddItem(IPInputSection *item);
     void onIPV4OptionChanged();

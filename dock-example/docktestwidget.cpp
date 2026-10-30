@@ -135,7 +135,7 @@ void DockTestWidget::showPopupWindow(QWidget *content, bool model)
     m_popupShown = true;
     m_lastPopupWidget = content;
     if (model)
-        emit requestWindowAutoHide(false);
+        Q_EMIT requestWindowAutoHide(false);
     DockPopupWindow *popup = PopupWindow.data();
     QWidget *lastContent = popup->getContent();
     if (lastContent)
@@ -210,8 +210,8 @@ void DockTestWidget::hidePopup()
 {
     m_popupShown = false;
     PopupWindow->hide();
-    emit PopupWindow->accept();
-    emit requestWindowAutoHide(true);
+    Q_EMIT PopupWindow->accept();
+    Q_EMIT requestWindowAutoHide(true);
 }
 
 QWidget *DockTestWidget::trayTipsWidget()

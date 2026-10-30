@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -24,13 +24,7 @@ class VPNController_Inter : public VPNController
     friend class NetworkInterProcesser;
 
 public:
-    void setEnabled(const bool enabled) override;                                                         // 开启或者关闭VPN
-    inline bool enabled() const override { return m_enabled; }                                            // VPN开启还是关闭
-    void connectItem(VPNItem *item) override;                                                             // 连接VPN
-    void connectItem(const QString &uuid) override;                                                       // 连接VPN(重载函数)
-    void disconnectItem() override;                                                                       // 断开当前活动VPN连接
-    QList<VPNItem *> items() const override { return m_vpnItems; }                                        // 获取所有的VPN列表
-
+    void setEnabled(const bool enabled) override;                                                         // 开启或者关闭VPN    inline bool enabled() const override { return m_enabled; }                                            // VPN开启还是关闭    void connectItem(VPNItem *item) override;                                                             // 连接VPN    void connectItem(const QString &uuid) override;                                                       // 连接VPN(重载函数)    void disconnectItem() override;                                                                       // 断开当前活动VPN连接    QList<VPNItem *> items() const override { return m_vpnItems; }                                        // 获取所有的VPN列表
 protected:
     explicit VPNController_Inter(NetworkInter *networkInter, QObject *parent = Q_NULLPTR);
     ~VPNController_Inter() override;

@@ -70,7 +70,5 @@ private:
     bool m_rolledBack = false;
 };
 
-} // namespace sessionservice
-} // namespace network
-
+} // namespace sessionservice} // namespace network
 #endif // VPNDNSMODEAPPLYSTATE_H

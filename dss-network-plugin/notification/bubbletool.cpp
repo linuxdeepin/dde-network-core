@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -197,11 +197,9 @@ void BubbleTool::actionInvoke(const QString &actionId, EntityPtr entity)
     while (i != hints.constEnd()) {
         QStringList args = i.value().toString().split(",");
         if (!args.isEmpty()) {
-            QString cmd = args.first(); //命令
-            args.removeFirst();
+            QString cmd = args.first(); //命令            args.removeFirst();
             if (i.key() == "x-deepin-action-" + actionId) {
-                QProcess::startDetached(cmd, args); //执行相关命令
-            }
+                QProcess::startDetached(cmd, args); //执行相关命令            }
         }
         ++i;
     }

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -92,20 +92,14 @@ void NetworkInterProcesser::initConnection()
     };
 
     connect(m_changedTimer, &QTimer::timeout, this, &NetworkInterProcesser::onConnectionInfoChanged);
-    connect(m_networkInter, &NetworkDBusProxy::DevicesChanged, this, &NetworkInterProcesser::onDevicesChanged);                            // 设备状态发生变化
-    connect(m_networkInter, &NetworkDBusProxy::ConnectionsChanged, this, [ onDataChanged ](const QString &connections) {                            // 连接发生变化
-        onDataChanged(CHANGE_CONNECTIONS, connections);
+    connect(m_networkInter, &NetworkDBusProxy::DevicesChanged, this, &NetworkInterProcesser::onDevicesChanged);                            // 设备状态发生变化    connect(m_networkInter, &NetworkDBusProxy::ConnectionsChanged, this, [ onDataChanged ](const QString &connections) {                            // 连接发生变化        onDataChanged(CHANGE_CONNECTIONS, connections);
     });
-    connect(m_networkInter, &NetworkDBusProxy::ActiveConnectionsChanged, this, [ onDataChanged ](const QString &activeConnections) {                // 当前活动连接发生变化
-        onDataChanged(CHANGE_ACTIVECONNECTIONS, activeConnections);
+    connect(m_networkInter, &NetworkDBusProxy::ActiveConnectionsChanged, this, [ onDataChanged ](const QString &activeConnections) {                // 当前活动连接发生变化        onDataChanged(CHANGE_ACTIVECONNECTIONS, activeConnections);
     });
-    connect(m_networkInter, &NetworkDBusProxy::WirelessAccessPointsChanged, this, [ onDataChanged ](const QString &accessPoints) {                  // 热点发生变化
-        onDataChanged(CHANGE_WIRELESSACCESSPOINTS, accessPoints);
+    connect(m_networkInter, &NetworkDBusProxy::WirelessAccessPointsChanged, this, [ onDataChanged ](const QString &accessPoints) {                  // 热点发生变化        onDataChanged(CHANGE_WIRELESSACCESSPOINTS, accessPoints);
     });
     connect(m_networkInter, &NetworkDBusProxy::DeviceEnabled, this, &NetworkInterProcesser::onDeviceEnableChanged);                        // 关闭设备或启用设备
-
     connect(m_networkInter, &NetworkDBusProxy::ConnectivityChanged, this, &NetworkInterProcesser::onConnectivityChanged);                  // 网络状态发生变化
-
     connect(m_networkInter, &NetworkDBusProxy::ActiveConnectionInfoChanged, this, [this] {
         QString activeConnectionInfo = m_networkInter->GetActiveConnectionInfo();
         activeConnInfoChanged(activeConnectionInfo);       

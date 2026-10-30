@@ -123,7 +123,7 @@ void LocalConnectionvityChecker::onPortalDetected(const QString &portalUrl)
         return;
 
     m_portalUrl = portalUrl;
-    emit portalDetected(m_portalUrl);
+    Q_EMIT portalDetected(m_portalUrl);
 }
 
 void LocalConnectionvityChecker::onConnectivityChanged(network::service::Connectivity connectivity)
@@ -141,7 +141,7 @@ void LocalConnectionvityChecker::onConnectivityChanged(network::service::Connect
         return;
 
     m_connectivity = connectivity;
-    emit connectivityChanged(connectivity);
+    Q_EMIT connectivityChanged(connectivity);
 }
 
 void LocalConnectionvityChecker::startProbe(const ConnectivityProbeRequest &request)
@@ -181,8 +181,7 @@ StatusChecker::StatusChecker(QObject *parent)
 
     // 避免短时间内频繁请求网址，1s内的多次请求都是无意义的
     m_pendingCheckTimer->setSingleShot(true);
-    m_pendingCheckTimer->setInterval(1000);  // 1秒防抖
-    connect(m_pendingCheckTimer, &QTimer::timeout, this, [this] {
+    m_pendingCheckTimer->setInterval(1000);  // 1秒防抖    connect(m_pendingCheckTimer, &QTimer::timeout, this, [this] {
         if (m_pendingCheck)
             startProbeCheck();
         m_pendingCheck = false;
@@ -394,7 +393,7 @@ void StatusChecker::setConnectivity(const network::service::Connectivity &connec
     qCDebug(DSM) << "connectivity changed" << static_cast<int>(connectivity);
     m_connectivity = connectivity;
     // 更新每个设备的联通性
-    emit connectivityChanged(m_connectivity);
+    Q_EMIT connectivityChanged(m_connectivity);
 
     // 根据实际情况，如果网络不通，就30秒刷新一次，网络通了，300秒刷新一次
     int interval = (connectivity == network::service::Connectivity::Full ?
@@ -418,7 +417,7 @@ void StatusChecker::setPortalUrl(const QString &portalUrl)
 
     // 每次检测时返回的认证连接可能不同，连接时会多次打开认证网站
     m_portalUrl = portalUrl;
-    emit portalDetected(m_portalUrl);
+    Q_EMIT portalDetected(m_portalUrl);
 }
 
 void StatusChecker::initDefaultConnectivity()
@@ -504,6 +503,6 @@ void NMConnectionvityChecker::initConnection()
     connect(NetworkManagerProxy::instance(), &NetworkManagerProxy::connectivityChanged, this, [this](NetworkManager::Connectivity connectivity) {
         const auto converted = convertConnectivity(connectivity);
         m_connectivity.store(static_cast<int>(converted));
-        emit connectivityChanged(converted);
+        Q_EMIT connectivityChanged(converted);
     });
 }

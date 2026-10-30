@@ -195,7 +195,6 @@ bool macMatches(const DeviceSnapshot &snapshot, const QString &mac)
 }
 
 } // namespace
-
 bool IPConflictStore::doConfilcted(const QString &ip, const QString &localMac, const QString &remoteMac, bool &needReconnect)
 {
     needReconnect = false;

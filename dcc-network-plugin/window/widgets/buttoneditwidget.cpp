@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -128,5 +128,4 @@ void ButtonEditWidget::setText(const QString &text)
     m_edit->setText(text);
 }
 
-} // namespace ButtonEditWidget
-} // namespase dcc
+} // namespace ButtonEditWidget} // namespase dcc

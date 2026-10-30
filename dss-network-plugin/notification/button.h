@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -147,7 +147,6 @@ protected:
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void enterEvent(QEnterEvent *event) override;
     virtual void leaveEvent(QEvent *event) override;
-    virtual void focusInEvent(QFocusEvent *event) override;          //当焦点移入或移出时背景发生变化
-    virtual void focusOutEvent(QFocusEvent *event) override;
+    virtual void focusInEvent(QFocusEvent *event) override;          //当焦点移入或移出时背景发生变化    virtual void focusOutEvent(QFocusEvent *event) override;
 };
 #endif // BUTTON_H

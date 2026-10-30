@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2027 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #include "netitemmodel.h"
@@ -205,8 +205,7 @@ bool NetItemModel::lessThan(const QModelIndex &source_left, const QModelIndex &s
     case NetType::WirelessItem: {
         NetWirelessItem *lItem = qobject_cast<NetWirelessItem *>(leftItem);
         NetWirelessItem *rItem = qobject_cast<NetWirelessItem *>(rightItem);
-        if ((lItem->status() | rItem->status()) & NetType::CS_Connected) { // 存在已连接的
-            return lItem->status() & NetType::CS_Connected;
+        if ((lItem->status() | rItem->status()) & NetType::CS_Connected) { // 存在已连接的            return lItem->status() & NetType::CS_Connected;
         }
         // if (lItem->status() != rItem->status())
         //     return lItem->status() > rItem->status();
@@ -226,5 +225,4 @@ bool NetItemModel::lessThan(const QModelIndex &source_left, const QModelIndex &s
     return leftItem->name().toLower() < rightItem->name().toLower();
 }
 
-} // namespace network
-} // namespace dde
+} // namespace network} // namespace dde

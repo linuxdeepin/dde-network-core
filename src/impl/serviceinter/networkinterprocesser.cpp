@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -108,20 +108,14 @@ void NetworkInterProcesser::initConnection()
     };
 
     connect(m_changedTimer, &QTimer::timeout, this, &NetworkInterProcesser::onConnectionInfoChanged);
-    connect(m_networkInter, &NetworkInter::DevicesChanged, this, &NetworkInterProcesser::onDevicesChanged);                                     // 设备状态发生变化
-    connect(m_networkInter, &NetworkInter::ConnectionsChanged, this, [ onDataChanged ](const QString &connections) {                            // 连接发生变化
-        onDataChanged(CHANGE_CONNECTIONS, connections);
+    connect(m_networkInter, &NetworkInter::DevicesChanged, this, &NetworkInterProcesser::onDevicesChanged);                                     // 设备状态发生变化    connect(m_networkInter, &NetworkInter::ConnectionsChanged, this, [ onDataChanged ](const QString &connections) {                            // 连接发生变化        onDataChanged(CHANGE_CONNECTIONS, connections);
     });
-    connect(m_networkInter, &NetworkInter::ActiveConnectionsChanged, this, [ onDataChanged ](const QString &activeConnections) {                // 当前活动连接发生变化
-        onDataChanged(CHANGE_ACTIVECONNECTIONS, activeConnections);
+    connect(m_networkInter, &NetworkInter::ActiveConnectionsChanged, this, [ onDataChanged ](const QString &activeConnections) {                // 当前活动连接发生变化        onDataChanged(CHANGE_ACTIVECONNECTIONS, activeConnections);
     });
-    connect(m_networkInter, &NetworkInter::WirelessAccessPointsChanged, this, [ onDataChanged ](const QString &accessPoints) {                  // 热点发生变化
-        onDataChanged(CHANGE_WIRELESSACCESSPOINTS, accessPoints);
+    connect(m_networkInter, &NetworkInter::WirelessAccessPointsChanged, this, [ onDataChanged ](const QString &accessPoints) {                  // 热点发生变化        onDataChanged(CHANGE_WIRELESSACCESSPOINTS, accessPoints);
     });
     connect(m_networkInter, &NetworkInter::DeviceEnabled, this, &NetworkInterProcesser::onDeviceEnableChanged);                                 // 关闭设备或启用设备
-
     connect(m_networkInter, &NetworkInter::ConnectivityChanged, this, &NetworkInterProcesser::onConnectivityChanged);                           // 网络状态发生变化
-
     connect(m_networkInter, &NetworkInter::ActiveConnectionInfoChanged, this, [this] {
         // 同步IP地址等信息
         QDBusPendingCallWatcher *w = new QDBusPendingCallWatcher(m_networkInter->GetActiveConnectionInfo(), this);

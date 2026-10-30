@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -51,12 +51,9 @@ protected:
     dde::network::NetView *m_netView;
     dde::network::NetStatus *m_netStatus;
 
-    bool m_isLockModel;  // 锁屏 or greeter
-    bool m_isLockScreen; // 锁屏显示
-    uint m_replacesId;
+    bool m_isLockModel;  // 锁屏 or greeter    bool m_isLockScreen; // 锁屏显示    uint m_replacesId;
 
-    QSet<QString> m_devicePaths; // 记录无线设备Path,防止信号重复连接
-    QString m_lastActiveWirelessDevicePath;
+    QSet<QString> m_devicePaths; // 记录无线设备Path,防止信号重复连接    QString m_lastActiveWirelessDevicePath;
     QString m_lastConnection;
     QString m_lastConnectionUuid;
 };
@@ -109,6 +106,4 @@ private:
     dss::module::AppDataPtr m_appData;
 };
 
-} // namespace network
-} // namespace dde
-#endif // NETWORKMODULE_H
+} // namespace network} // namespace dde#endif // NETWORKMODULE_H
