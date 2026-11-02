@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -641,8 +641,7 @@ void NetworkPanel::onClickListView(const QModelIndex &index)
     NetItem *newSelectItem = m_items.at(index.row());
     if (newSelectItem != oldSelectItem && oldSelectItem) {
         WirelessItem *item = static_cast<WirelessItem *>(oldSelectItem);
-        item->expandWidget(WirelessItem::Hide, false); // 选择切换时隐藏输入框
-    }
+        item->expandWidget(WirelessItem::Hide, false); // 选择切换时隐藏输入框    }
     switch (type) {
     case WirelessHiddenViewItem:
     case WirelessViewItem: {
@@ -741,8 +740,7 @@ void NetworkPanel::expandPasswordInput()
                 if (item != oldSelectItem) {
                     if (oldSelectItem) {
                         WirelessItem *selectItem = static_cast<WirelessItem *>(oldSelectItem);
-                        selectItem->expandWidget(WirelessItem::Hide); // 选择切换时隐藏输入框
-                    }
+                        selectItem->expandWidget(WirelessItem::Hide); // 选择切换时隐藏输入框                    }
                     wirelessItem->expandPasswordInput();
                     int h = item->standardItem()->sizeHint().height() / 2;
                     m_applet->ensureVisible(0, y + h, 0, h);
@@ -1161,8 +1159,7 @@ bool NetworkDelegate::editorEvent(QEvent *event, QAbstractItemModel *model, cons
 QRect NetworkDelegate::checkRect(const QRect &rct) const
 {
     int left = rct.right() - RIGHTMARGIN - DIAMETER + 4;
-    int top = rct.top() + (NETITEM_HEIGHT - DIAMETER) / 2; // 连接图标绘制在顶端
-    QRect rect;
+    int top = rct.top() + (NETITEM_HEIGHT - DIAMETER) / 2; // 连接图标绘制在顶端    QRect rect;
     rect.setLeft(left);
     rect.setTop(top);
     rect.setWidth(DIAMETER);

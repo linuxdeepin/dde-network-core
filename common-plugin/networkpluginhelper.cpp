@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -329,7 +329,7 @@ void NetworkPluginHelper::refreshIcon()
 {
     int colorType = m_isDarkIcon ?  DGuiApplicationHelper::ColorType::DarkType : DGuiApplicationHelper::ColorType::LightType;
     (*m_trayIcon) = icon(colorType);
-    emit iconChanged();
+    Q_EMIT iconChanged();
 }
 
 void NetworkPluginHelper::setIconDark(bool isDark)
@@ -356,7 +356,7 @@ void NetworkPluginHelper::onDeviceAdded(QList<NetworkDeviceBase *> devices)
         // 当网卡连接状态发生变化的时候重新绘制任务栏的图标
         connect(device, &NetworkDeviceBase::deviceStatusChanged, this, &NetworkPluginHelper::onUpdatePlugView);
 
-        emit addDevice(device->path());
+        Q_EMIT addDevice(device->path());
         switch (device->deviceType()) {
         case DeviceType::Wired: {
             WiredDevice *wiredDevice = static_cast<WiredDevice *>(device);
@@ -597,7 +597,7 @@ void NetworkPluginHelper::onUpdatePlugView()
     updatePluginState();
     updateTooltips();
     refreshIcon();
-    emit viewUpdate();
+    Q_EMIT viewUpdate();
 }
 
 void NetworkPluginHelper::onActiveConnectionChanged()

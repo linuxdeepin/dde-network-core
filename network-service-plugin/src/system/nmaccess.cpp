@@ -145,7 +145,6 @@ DeviceSnapshot makeSnapshot(const NetworkManager::Device::Ptr &dev)
 }
 
 } // namespace
-
 bool DeviceSnapshot::operator==(const DeviceSnapshot &other) const
 {
     return uni == other.uni
@@ -575,5 +574,4 @@ void NetworkManagerProxy::applyPrimaryDeviceMetrics(const QString &primaryUni)
     });
 }
 
-} // namespace systemservice
-} // namespace network
+} // namespace systemservice} // namespace network

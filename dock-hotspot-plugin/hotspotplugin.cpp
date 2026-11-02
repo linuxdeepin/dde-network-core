@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -77,8 +77,7 @@ void HotspotPlugin::initConnection() {
                   if (m_latestHotSpot) {
                     auto reply = NetworkManager::activateConnection(
                         m_latestHotSpot->path(), m_latestDevice->uni(), "/");
-                    reply.waitForFinished();  // force sync
-                    if (reply.isError())
+                    reply.waitForFinished();  // force sync                    if (reply.isError())
                       qWarning() << "activate failed:" << reply.error();
                   } else {
                     onStateChanged(State::Off);
@@ -132,8 +131,7 @@ void HotspotPlugin::initDevConnection(const NetworkManager::Device::Ptr &dev) {
 
             if (curCon->connection()->path() == m_latestHotSpot->path()) {
               auto reply = NetworkManager::deactivateConnection(curCon->path());
-              reply.waitForFinished();  // force sync
-              if (reply.isError())
+              reply.waitForFinished();  // force sync              if (reply.isError())
                 qWarning() << reply.error() << curCon->path();
             }
       },Qt::QueuedConnection);
@@ -218,8 +216,7 @@ const QString HotspotPlugin::itemCommand(const QString &itemKey) {
   if (hotspotEnabled) {
     auto curCon = m_latestDevice->activeConnection();
     auto reply = NetworkManager::deactivateConnection(curCon->path());
-    reply.waitForFinished(); // force sync
-    if(reply.isError())
+    reply.waitForFinished(); // force sync    if(reply.isError())
       qWarning() << reply.error() << m_latestHotSpot->path();
     return {};
   } else {
@@ -227,8 +224,7 @@ const QString HotspotPlugin::itemCommand(const QString &itemKey) {
       if (!checkDeviceAvailability(m_latestDevice))
         return {};
       auto reply = NetworkManager::activateConnection(m_latestHotSpot->path(),m_latestDevice->uni(),"/");
-      reply.waitForFinished(); // force sync
-      if(reply.isError())
+      reply.waitForFinished(); // force sync      if(reply.isError())
         qWarning() << "activate failed:" << reply.error();
       return {};
     }
@@ -358,8 +354,7 @@ void HotspotPlugin::onQuickPanelClicked(){
     if (hotspotEnabled) {
         auto curCon = m_latestDevice->activeConnection();
         auto reply = NetworkManager::deactivateConnection(curCon->path());
-        reply.waitForFinished(); // force sync
-        if(reply.isError())
+        reply.waitForFinished(); // force sync        if(reply.isError())
             qWarning() << reply.error() << m_latestHotSpot->path();
     } else {
         if(m_wirelessDev.isEmpty()){
@@ -370,8 +365,7 @@ void HotspotPlugin::onQuickPanelClicked(){
             if(!checkDeviceAvailability(m_latestDevice))
               return;
             auto reply = NetworkManager::activateConnection(m_latestHotSpot->path(),m_latestDevice->uni(),"/");
-            reply.waitForFinished(); // force sync
-            if(reply.isError())
+            reply.waitForFinished(); // force sync            if(reply.isError())
                 qWarning() << "activate failed:" << reply.error();
             return;
         }

@@ -77,9 +77,7 @@ private:
     bool m_activeRequestInvalidated = false;
     bool m_stopping = false;
 };
-} // namespace sessionservice
-} // namespace network
-
+} // namespace sessionservice} // namespace network
 Q_DECLARE_METATYPE(network::sessionservice::VpnDnsApplyResult)
 
 #endif // VPNDNSMODEWORKER_H

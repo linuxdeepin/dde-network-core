@@ -1,5 +1,4 @@
-﻿// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
-//
+﻿// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.//
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "hotspotcontrollernm.h"
@@ -226,7 +225,7 @@ void HotspotController_NM::onConnectionAdded(const QString &connectionUni)
     if (hotspotItem) {
         QMap<WirelessDevice *, QList<HotspotItem *>> hotspotItems;
         hotspotItems[device] << hotspotItem;
-        emit itemAdded(hotspotItems);
+        Q_EMIT itemAdded(hotspotItems);
     }
 }
 
@@ -266,7 +265,7 @@ void HotspotController_NM::onConnectionRemoved(const QString &connectionUni)
     // 用信号告诉外面已经消失的热点项
     QMap<WirelessDevice *, QList<HotspotItem *>> rmHotspotItems;
     rmHotspotItems[device] = rmItems;
-    emit itemRemoved(rmHotspotItems);
+    Q_EMIT itemRemoved(rmHotspotItems);
 
     // 删除合适的热点项
     for (HotspotItem *item : rmItems)
@@ -453,7 +452,7 @@ void HotspotController_NM::updateDevices(const QList<NetworkDeviceBase *> &devic
 
     // 通知外部新增了热点
     if (newHotspotItems.size() > 0)
-        emit itemAdded(newHotspotItems);
+        Q_EMIT itemAdded(newHotspotItems);
 
     if (rmDevices.size() > 0) {
         // 通知外部移除了热点

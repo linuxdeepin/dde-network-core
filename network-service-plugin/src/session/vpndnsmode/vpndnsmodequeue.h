@@ -89,7 +89,5 @@ private:
     QMap<QString, quint64> m_latestGenerations;
 };
 
-} // namespace sessionservice
-} // namespace network
-
+} // namespace sessionservice} // namespace network
 #endif // VPNDNSMODEQUEUE_H

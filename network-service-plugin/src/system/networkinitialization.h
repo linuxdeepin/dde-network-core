@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -32,7 +32,7 @@ public:
     ~NetworkInitialization() = default;
     void updateLanguage(const QString &locale);
 
-public slots:
+public Q_SLOTS:
     // NM 访问入口：构造点排在 NM 线程上执行
     void initDeviceInfo();
     void initConnection();
@@ -55,7 +55,7 @@ private:
     void updateConnectionLanguage();
     bool isServerSystem() const;
 
-private slots:
+private Q_SLOTS:
     void onSetDeviceManagedFinished(const QDBusMessage &reply);
     void onSetDeviceManagedError(const QDBusError &error, const QDBusMessage &message);
     void onUserChanged(const QString &json);

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -114,8 +114,7 @@ SysProxyModule::SysProxyModule(QObject *parent)
         resetData(ProxyMethod::Auto);
     }));
     m_modules.append(new WidgetModule<QWidget>("system_proxy_manual_group", QString(), this, &SysProxyModule::initManualView));
-    m_modules.append(new WidgetModule<QWidget>); // 加个空的保证下面有弹簧
-    ModuleObject *extra = new WidgetModule<ButtonTuple>("save", tr("Save", "button"), [this](ButtonTuple *buttonTuple) {
+    m_modules.append(new WidgetModule<QWidget>); // 加个空的保证下面有弹簧    ModuleObject *extra = new WidgetModule<ButtonTuple>("save", tr("Save", "button"), [this](ButtonTuple *buttonTuple) {
         m_buttonTuple = buttonTuple;
         m_buttonTuple->setButtonType(ButtonTuple::Save);
         m_buttonTuple->leftButton()->setText(tr("Cancel", "button"));

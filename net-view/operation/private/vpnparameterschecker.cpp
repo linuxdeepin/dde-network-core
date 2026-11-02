@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2025 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2025-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #include "vpnparameterschecker.h"
@@ -342,5 +342,4 @@ bool DefaultChecker::isValid() const
     return m_defaultValue;
 }
 
-} // namespace network
-} // namespace dde
+} // namespace network} // namespace dde

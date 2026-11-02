@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -353,5 +353,4 @@ UPDATEFUN(NetTipsItem, bool, tipsLinkEnabled)
 //
 GETFUN(NetType::NetItemType, NetAirplaneModeTipsItem, itemType, NetType::NetItemType::AirplaneModeTipsItem)
 GETFUN(NetType::NetItemType, NetVPNTipsItem, itemType, NetType::NetItemType::VPNTipsItem)
-} // namespace network
-} // namespace dde
+} // namespace network} // namespace dde

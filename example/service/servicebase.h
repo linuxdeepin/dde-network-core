@@ -47,8 +47,7 @@ protected:
     bool m_isLockTimer;
 
     QDBusConnection::BusType m_sessionType;
-    SDKType m_SDKType; // qdbus、sdbus
-    QTimer *m_timer;
+    SDKType m_SDKType; // qdbus、sdbus    QTimer *m_timer;
 };
 
 #endif // SERVICEBASE_H

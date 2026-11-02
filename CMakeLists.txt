@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 UnionTech Software Technology Co., Ltd.
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 cmake_minimum_required(VERSION 3.23)
 
 set(VERSION "2.0.18" CACHE STRING "define project version")
@@ -8,6 +12,8 @@ project(dde-network-core
   LANGUAGES CXX C
 )
 
+
+add_compile_definitions(QT_NO_KEYWORDS)
 option(BUILD_TESTS "Build unit tests" OFF)
 option(BUILD_EXAMPLE "Build example programs" OFF)
 

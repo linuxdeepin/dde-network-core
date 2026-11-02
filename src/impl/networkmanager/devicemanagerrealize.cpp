@@ -1,5 +1,4 @@
-﻿// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
-//
+﻿// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.//
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "devicemanagerrealize.h"
@@ -429,8 +428,7 @@ bool WiredDeviceManagerRealize::connectNetwork(WiredConnection *connection)
     // 拔掉网线后，通过后端接口连接，弹通知
     if (deviceStatus() == DeviceStatus::Unavailable) {
         NetworkInter inter(networkService, networkPath, QDBusConnection::sessionBus(), this);
-        inter.ActivateConnection(connection->connection()->uuid(), QDBusObjectPath(path())); // TODO: 后端接口，有逻辑处理
-        return false;
+        inter.ActivateConnection(connection->connection()->uuid(), QDBusObjectPath(path())); // TODO: 后端接口，有逻辑处理        return false;
     }
     QVariantMap options;
     options["flags"] = MANUAL;
@@ -1208,5 +1206,5 @@ void WirelessDeviceManagerRealize::onInterfaceFlagsChanged()
 
     m_available = available;
     setDeviceStatus(deviceStatus());
-    emit availableChanged(m_available);
+    Q_EMIT availableChanged(m_available);
 }

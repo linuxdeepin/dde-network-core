@@ -74,7 +74,5 @@ private:
     QMap<QString, int> m_deviceStates;
     int m_count;
 };
-} // namespace systemservice
-} // namespace network
-
+} // namespace systemservice} // namespace network
 #endif // NETWORKTHREAD_H

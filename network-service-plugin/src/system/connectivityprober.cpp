@@ -21,7 +21,6 @@ void ensureCurlInitialized()
     std::call_once(once, [] { network::service::HttpManager::init(); });
 }
 } // namespace
-
 ConnectivityProber::ConnectivityProber(QObject *parent)
     : QObject(parent)
 {
@@ -61,5 +60,4 @@ void ConnectivityProber::probe(const ConnectivityProbeRequest &request)
     Q_EMIT finished(result);
 }
 
-} // namespace systemservice
-} // namespace network
+} // namespace systemservice} // namespace network

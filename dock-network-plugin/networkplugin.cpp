@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -191,8 +191,7 @@ QWidget *NetworkPlugin::itemWidget(const QString &itemKey)
         }
         return m_trayIcon.data();
     }
-    if (itemKey == "quick_item_key") { // QUICK_ITEM_KEY
-        if (m_quickPanel.isNull()) {
+    if (itemKey == "quick_item_key") { // QUICK_ITEM_KEY        if (m_quickPanel.isNull()) {
             m_quickPanel = new QuickPanelWidget();
             m_netStatus->initQuickData();
             m_quickPanel->setActive(m_netStatus->networkActive());
@@ -411,6 +410,4 @@ QString NetworkPlugin::message(const QString &msg)
 }
 
 #endif //USE_NEW_DOCK_API
-
-} // namespace network
-} // namespace dde
+} // namespace network} // namespace dde

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -99,7 +99,7 @@ void NetworkController::checkIpConflicted(const QList<NetworkDeviceBase *> &devi
 void NetworkController::onDeviceAdded(QList<NetworkDeviceBase *> device)
 {
     checkIpConflicted(device);
-    emit deviceAdded(device);
+    Q_EMIT deviceAdded(device);
 }
 
 NetworkController::~NetworkController() = default;

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -19,9 +19,7 @@ namespace network {
 enum class DeviceType;
 class NetworkDeviceBase;
 class AccessPoints;
-} // namespace network
-} // namespace dde
-
+} // namespace network} // namespace dde
 class QTimer;
 class NetItem;
 
@@ -64,7 +62,6 @@ public:
     PluginState getPluginState();
     void updatePluginState();
     void updateTooltips(); // 更新提示的内容
-
     QIcon *trayIcon() const;
     QIcon icon(int colorType) const;
     QString iconPath(int colorType) const;
@@ -101,13 +98,11 @@ private:
     bool m_switchWire;
     QPixmap m_iconPixmap;
 
-    QSet<QString> m_devicePaths; // 记录无线设备Path,防止信号重复连接
-    QString m_lastActiveWirelessDevicePath;
+    QSet<QString> m_devicePaths; // 记录无线设备Path,防止信号重复连接    QString m_lastActiveWirelessDevicePath;
     NetworkDialog *m_networkDialog;
     QIcon *m_trayIcon;
     QTimer *m_refreshIconTimer;
-    bool m_isDarkIcon; // 是深色主题
-};
+    bool m_isDarkIcon; // 是深色主题};
 }
 }
 

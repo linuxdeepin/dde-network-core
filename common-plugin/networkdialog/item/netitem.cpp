@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -514,7 +514,7 @@ void WirelessItem::expandWidget(ExpandWidget type, bool autoDisconnect)
         QTimer::singleShot(50, m_passwdEdit->lineEdit(), SLOT(setFocus()));
         break;
     }
-    emit sizeChanged();
+    Q_EMIT sizeChanged();
 }
 
 void WirelessItem::onApConnectionStatusChanged(ConnectionStatus status)
@@ -536,9 +536,7 @@ void WirelessItem::createPasswordEdit()
     m_passwdEdit->setFixedHeight(36);
     m_passwdEdit->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
-    DPushButton *cancelButtion = new DPushButton(tr("Cancel", "button"), passwdWidget); // 取消
-    m_connectButton = new DSuggestButton(tr("Connect", "button"), passwdWidget);        // 连接
-    m_connectButton->setObjectName("ConnectButton");
+    DPushButton *cancelButtion = new DPushButton(tr("Cancel", "button"), passwdWidget); // 取消    m_connectButton = new DSuggestButton(tr("Connect", "button"), passwdWidget);        // 连接    m_connectButton->setObjectName("ConnectButton");
     cancelButtion->setFixedHeight(36);
     cancelButtion->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     m_connectButton->setFixedHeight(36);
@@ -580,9 +578,7 @@ void WirelessItem::createSsidEdit()
     m_ssidEdit->setFixedHeight(36);
     m_ssidEdit->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
-    DPushButton *cancelButtion = new DPushButton(tr("Cancel", "button"), ssidWidget);     // 取消
-    DPushButton *connectButton = new DSuggestButton(tr("Connect", "button"), ssidWidget); // 连接
-    cancelButtion->setObjectName("SsidCancelBtn");
+    DPushButton *cancelButtion = new DPushButton(tr("Cancel", "button"), ssidWidget);     // 取消    DPushButton *connectButton = new DSuggestButton(tr("Connect", "button"), ssidWidget); // 连接    cancelButtion->setObjectName("SsidCancelBtn");
     connectButton->setObjectName("SsidConnectBtn");
     cancelButtion->setFixedHeight(36);
     cancelButtion->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);

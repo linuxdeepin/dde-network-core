@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -20,13 +20,13 @@ public:
     ~IpManager() = default;
     NetworkManager::IpAddresses ipAddresses() const;
 
-signals:
+Q_SIGNALS:
     void ipChanged();
 
 private:
     bool changeIpv4Config(const QString &uni);
 
-private slots:
+private Q_SLOTS:
     void onPropertiesChanged(const QString &interfaceName, const QVariantMap &changedProperties, const QStringList &invalidatedProperties);
     void onDevicePropertiesChanged(const QString &interfaceName, const QVariantMap &changedProperties, const QStringList &invalidatedProperties);
 

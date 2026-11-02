@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2019-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #ifndef NETMANAGERTHREADPRIVATE_H
@@ -19,7 +19,6 @@ namespace NetworkManager {
 class WiredDevice;
 class AccessPoint;
 } // namespace NetworkManager
-
 namespace dde {
 namespace network {
 class NetManager;
@@ -63,9 +62,7 @@ public:
     void init(NetType::NetManagerFlags flags);
     NetType::NetManagerFlags flags() const;
 
-    QString wpaEapAuthen() const;     // 企业网EAP认证方式
-    QString wpaEapAuthmethod() const; // 企业网内部认证方式
-
+    QString wpaEapAuthen() const;     // 企业网EAP认证方式    QString wpaEapAuthmethod() const; // 企业网内部认证方式
     enum DataChanged {
         NameChanged,
         EnabledChanged,
@@ -123,8 +120,7 @@ public Q_SLOTS:
     void gotoControlCenter(const QString &page, const QString &token = QString());
     void gotoSecurityTools(const QString &page);
     void userCancelRequest(const QString &id);
-    void retranslate(const QString &locale); // 更新翻译
-    void sendNotify(const QString &appIcon, const QString &body, const QString &summary = QString(), const QString &inAppName = "dde-control-center", int replacesId = -1, const QStringList &actions = {}, const QVariantMap &hints = {}, int expireTimeout = 5000);
+    void retranslate(const QString &locale); // 更新翻译    void sendNotify(const QString &appIcon, const QString &body, const QString &summary = QString(), const QString &inAppName = "dde-control-center", int replacesId = -1, const QStringList &actions = {}, const QVariantMap &hints = {}, int expireTimeout = 5000);
     void onNetCheckPropertiesChanged(QString, QVariantMap properties, QStringList);
     void onAirplaneModeEnabledPropertiesChanged(const QString &, const QVariantMap &properties, const QStringList &);
     void onAirplaneModePropertiesChanged(const QVariantMap &properties);
@@ -296,15 +292,12 @@ private:
     bool m_airplaneModeEnabled;
     bool m_isSleeping;
     QString m_serverKey;
-    QMap<NetworkDetails *, QString> m_detailsItemsMap; // 存储 NetworkDetails 指针到唯一ID的映射
-    QString m_showPageCmd;
+    QMap<NetworkDetails *, QString> m_detailsItemsMap; // 存储 NetworkDetails 指针到唯一ID的映射    QString m_showPageCmd;
     QTimer *m_showPageTimer;
     QTimer *m_vpnStateUpdateTimer;
     QString m_newVPNuuid;
     bool m_supportWireless;
 };
 
-} // namespace network
-} // namespace dde
-
+} // namespace network} // namespace dde
 #endif // NETMANAGERTHREADPRIVATE_H

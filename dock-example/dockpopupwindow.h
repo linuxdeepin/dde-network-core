@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -23,11 +23,11 @@ public:
     ~DockPopupWindow() override;
     bool model() const;
     void setContent(QWidget *content);
-public slots:
+public Q_SLOTS:
     void show(const QPoint &pos, bool model = false);
     void show(int x, int y) override;
     void hide();
-signals:
+Q_SIGNALS:
     void accept();
     // 在把专业版的仓库降级到debian的stable时, dock出现了一个奇怪的问题:
     // 在plugins/tray/system-trays/systemtrayitem.cpp中的showPopupWindow函数中
@@ -39,7 +39,7 @@ protected:
     void enterEvent(QEnterEvent *e) override;
     bool eventFilter(QObject *o, QEvent *e) override;
     void blockButtonRelease();
-private slots:
+private Q_SLOTS:
     void onGlobMouseRelease(const QPoint &mousePos, int flag);
     void compositeChanged();
     void ensureRaised();

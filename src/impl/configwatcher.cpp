@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2022-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -75,16 +75,16 @@ void ConfigWatcher::onValueChanged(const QString &key)
 {
     if (key == "networkAirplaneMode") {
         m_networkAirplaneMode = dConfig->value("networkAirplaneMode").toBool();
-        emit enableAirplaneModeChanged(m_networkAirplaneMode);
+        Q_EMIT enableAirplaneModeChanged(m_networkAirplaneMode);
     } else if (key == "lastProxyMethod") {
         m_lastProxyMethod = dConfig->value("lastProxyMethod").toString();
-        emit lastProxyMethodChanged(proxyMethod());
+        Q_EMIT lastProxyMethodChanged(proxyMethod());
     } else if (key == "WPA3-Enterprise-Visible") {
         m_wpa3EnterpriseVisible = dConfig->value("WPA3-Enterprise-Visible").toBool();
-        emit wpa3EnterpriseVisibleChanged(m_wpa3EnterpriseVisible);
+        Q_EMIT wpa3EnterpriseVisibleChanged(m_wpa3EnterpriseVisible);
     } else if (key == "wirelessScanInterval") {
         m_wirelessScanInterval = dConfig->value("wirelessScanInterval", 10).toInt() * 1000;
-        emit wirelessScanIntervalChanged(m_wirelessScanInterval);
+        Q_EMIT wirelessScanIntervalChanged(m_wirelessScanInterval);
     }
 }
 
@@ -107,7 +107,7 @@ void ConfigWatcher::onAirplaneModeChanged(const QString &key)
         //     return;
 
         // m_airplaneModeEnabled = enabled;
-        emit airplaneModeEnabledChanged(m_airplaneModeEnabled);
+        Q_EMIT airplaneModeEnabledChanged(m_airplaneModeEnabled);
     }
 }
 

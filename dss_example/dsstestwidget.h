@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -14,9 +14,7 @@ class PopupWindow;
 namespace dde {
 namespace network {
 class NetworkPlugin;
-} // namespace network
-} // namespace dde
-
+} // namespace network} // namespace dde
 class QPushButton;
 using namespace Dtk::Widget;
 
@@ -33,7 +31,7 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
 
-protected slots:
+protected Q_SLOTS:
     void onClickButton();
 
 private:

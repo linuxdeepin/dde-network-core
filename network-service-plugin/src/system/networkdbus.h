@@ -46,7 +46,5 @@ private:
     // NetworkThread 运行在 NM 线程上，析构必须回到它的线程执行
     QPointer<NetworkThread> m_networkThread;
 };
-} // namespace systemservice
-} // namespace network
-
+} // namespace systemservice} // namespace network
 #endif // NETWORKDBUS_H

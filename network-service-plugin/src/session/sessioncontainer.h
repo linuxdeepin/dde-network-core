@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -30,7 +30,7 @@ private:
     void leaveDesktop();
     void openPortalUrl(const QString &url);
 
-private slots:
+private Q_SLOTS:
     void onIPConflictChanged(const QString &devicePath, const QString &ip, bool conflicted);
     void onPortalDetected(const QString &url);
     void onProxyMethodChanged(const QString &method);

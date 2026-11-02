@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #include "constants.h"
@@ -26,5 +26,4 @@ void dbusDebug(const QString &service, const QString &funName, const QDBusConnec
         qCWarning(DSM) << "API" << funName << "is called by" << service << "(" << cmd.split('\0').join(" ") << ")";
     }
 }
-} // namespace service
-} // namespace network
+} // namespace service} // namespace network

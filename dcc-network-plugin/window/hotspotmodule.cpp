@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -31,8 +31,7 @@ HotspotDeviceItem::HotspotDeviceItem(WirelessDevice *dev, QObject *parent)
     , m_device(dev)
 {
     m_modules.append(new WidgetModule<SwitchWidget>("hotspotSwitch", tr("Hotspot"), [this](SwitchWidget *hotspotSwitch) {
-        QLabel *lblTitle = new QLabel(tr("Hotspot")); // 个人热点
-        DFontSizeManager::instance()->bind(lblTitle, DFontSizeManager::T5, QFont::DemiBold);
+        QLabel *lblTitle = new QLabel(tr("Hotspot")); // 个人热点        DFontSizeManager::instance()->bind(lblTitle, DFontSizeManager::T5, QFont::DemiBold);
         hotspotSwitch->setLeftWidget(lblTitle);
         hotspotSwitch->setChecked(NetworkController::instance()->hotspotController()->enabled(m_device));
 
@@ -221,5 +220,5 @@ void HotspotModule::updateVisiable()
             insertChild(row++, modules.at(2));
         }
     }
-    emit updateItemOnlyOne(onlyOne);
+    Q_EMIT updateItemOnlyOne(onlyOne);
 }

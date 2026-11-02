@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -32,9 +32,7 @@ namespace dde {
         class WiredConnection;
         class WirelessConnection;
         enum class DeviceType;
-    } // namespace network
-} // namespace dde
-
+    } // namespace network} // namespace dde
 using namespace dde::network;
 namespace Dtk {
     namespace Widget {
@@ -45,9 +43,7 @@ namespace Dtk {
         class DPasswordEdit;
         class DLineEdit;
         class DStandardItem;
-    } // namespace Widget
-} // namespace Dtk
-
+    } // namespace Widget} // namespace Dtk
 DWIDGET_USE_NAMESPACE
 
 enum NetItemRole {
@@ -63,19 +59,10 @@ enum NetItemRole {
 #define PANELWIDTH 300
 
 enum NetItemType {
-    DeviceControllViewItem = 0, // 总控开关
-    WirelessControllViewItem,   // 无线网卡开关
-    WirelessViewItem,           // 无线列表
-    WirelessHiddenViewItem,     // 无线隐藏列表
-    WiredControllViewItem,      // 有线网卡开关
-    WiredViewItem               // 有线列表
-};
+    DeviceControllViewItem = 0, // 总控开关    WirelessControllViewItem,   // 无线网卡开关    WirelessViewItem,           // 无线列表    WirelessHiddenViewItem,     // 无线隐藏列表    WiredControllViewItem,      // 有线网卡开关    WiredViewItem               // 有线列表};
 
 enum NetConnectionType {
-    UnConnected = 0, // 未连接
-    Connecting,      // 正在连接
-    Connected        // 已连接
-};
+    UnConnected = 0, // 未连接    Connecting,      // 正在连接    Connected        // 已连接};
 
 class NetItem : public QObject
 {
@@ -238,7 +225,6 @@ private:
     DStackedWidget *m_stackWidget;
     DViewItemAction *m_expandItem;
     DViewItemAction *m_topItem; // 占空间
-
     DPasswordEdit *m_passwdEdit;
     DLineEdit *m_ssidEdit;
 

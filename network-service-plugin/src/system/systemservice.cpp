@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -18,7 +18,7 @@ SystemService::SystemService(SystemContainer *network, QObject *parent)
 {
     connect(m_network->ipConfilctedChecker(), &SystemIPConflict::ipConflictChanged, this, &SystemService::IpConflictChanged);
     connect(m_network->connectivityProcesser(), &ConnectivityProcesser::connectivityChanged, this, [ this ](const network::service::Connectivity &connectivity) {
-        emit ConnectivityChanged(static_cast<int>(connectivity));
+        Q_EMIT ConnectivityChanged(static_cast<int>(connectivity));
     });
     connect(m_network->connectivityProcesser(), &ConnectivityProcesser::portalDetected, this, &SystemService::PortalDetected);
 }

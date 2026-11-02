@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2019-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #include "neticonbutton.h"
@@ -135,5 +135,4 @@ void NetIconButton::mouseReleaseEvent(QMouseEvent *event)
     }
     return QWidget::mouseReleaseEvent(event);
 }
-} // namespace network
-} // namespace dde
+} // namespace network} // namespace dde

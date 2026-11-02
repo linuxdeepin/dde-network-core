@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2019-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #ifndef NETMODEL_H
@@ -54,6 +54,4 @@ private:
     bool m_moving;
 };
 
-} // namespace network
-} // namespace dde
-#endif // NETMODEL_H
+} // namespace network} // namespace dde#endif // NETMODEL_H

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -28,35 +28,11 @@ public:
     ~DeviceManagerRealize() override;
 
 protected:
-    bool isEnabled() const override;                                                      // 当前的网卡是否启用
-    QString interface() const override;                                                   // 返回设备上的Interface
-    QString driver() const override;                                                      // 驱动，对应于备上返回值的Driver
-    bool managed() const override;                                                        // 对应于设备上返回值的Managed
-    QString vendor() const override;                                                      // 对应于设备上返回值的Vendor
-    QString uniqueUuid() const override;                                                  // 网络设备的唯一的UUID，对应于设备上返回值的UniqueUuid
-    bool usbDevice() const override;                                                      // 是否是USB设备，对应于设备上返回值的UsbDevice
-    QString path() const override;                                                        // 设备路径，对应于设备上返回值的Path
-    QString activeAp() const override;                                                    // 对应于设备上返回值的ActiveAp
-    bool supportHotspot() const override;                                                 // 是否支持热点,对应于设备上返回值的SupportHotspot
-    QString realHwAdr() const override;                                                   // mac地址
-    QString usingHwAdr() const override;                                                  // 正在使用的mac地址
-    const QStringList ipv4() override;                                                    // IPV4地址
-    const QStringList ipv6() override;                                                    // IPV6地址
-    QJsonObject activeConnectionInfo() const override;                                    // 获取当前活动连接的信息
-    void setEnabled(bool enabled) override;                                               // 开启或禁用网卡
-    void disconnectNetwork() override;                                                    // 断开网络连接，该方法是一个虚方法，具体在子类
-
+    bool isEnabled() const override;                                                      // 当前的网卡是否启用    QString interface() const override;                                                   // 返回设备上的Interface    QString driver() const override;                                                      // 驱动，对应于备上返回值的Driver    bool managed() const override;                                                        // 对应于设备上返回值的Managed    QString vendor() const override;                                                      // 对应于设备上返回值的Vendor    QString uniqueUuid() const override;                                                  // 网络设备的唯一的UUID，对应于设备上返回值的UniqueUuid    bool usbDevice() const override;                                                      // 是否是USB设备，对应于设备上返回值的UsbDevice    QString path() const override;                                                        // 设备路径，对应于设备上返回值的Path    QString activeAp() const override;                                                    // 对应于设备上返回值的ActiveAp    bool supportHotspot() const override;                                                 // 是否支持热点,对应于设备上返回值的SupportHotspot    QString realHwAdr() const override;                                                   // mac地址    QString usingHwAdr() const override;                                                  // 正在使用的mac地址    const QStringList ipv4() override;                                                    // IPV4地址    const QStringList ipv6() override;                                                    // IPV6地址    QJsonObject activeConnectionInfo() const override;                                    // 获取当前活动连接的信息    void setEnabled(bool enabled) override;                                               // 开启或禁用网卡    void disconnectNetwork() override;                                                    // 断开网络连接，该方法是一个虚方法，具体在子类
     // 无线网络接口
-    QList<AccessPoints *> accessPointItems() const override;                              // 当前网卡上所有的网络列表
-    void scanNetwork() override;                                                        // 重新加载所有的无线网络列表
-    void connectNetwork(const AccessPoints *item) override;                               // 连接网络，连接成功抛出deviceStatusChanged信号
-    QList<WirelessConnection *> wirelessItems() const override;                           // 无线网络连接列表
-    AccessPoints *activeAccessPoints() const override;                                    // 当前活动的无线连接
-
+    QList<AccessPoints *> accessPointItems() const override;                              // 当前网卡上所有的网络列表    void scanNetwork() override;                                                        // 重新加载所有的无线网络列表    void connectNetwork(const AccessPoints *item) override;                               // 连接网络，连接成功抛出deviceStatusChanged信号    QList<WirelessConnection *> wirelessItems() const override;                           // 无线网络连接列表    AccessPoints *activeAccessPoints() const override;                                    // 当前活动的无线连接
     // 有线网络接口
-    bool connectNetwork(WiredConnection *connection) override;                            // 连接网络，连接成功抛出deviceStatusChanged信号
-    QList<WiredConnection *> wiredItems() const override;                                 // 有线网络连接列表
-
+    bool connectNetwork(WiredConnection *connection) override;                            // 连接网络，连接成功抛出deviceStatusChanged信号    QList<WiredConnection *> wiredItems() const override;                                 // 有线网络连接列表
 private:
     template<class T>
     void clearListData(QList<T *> &dataList) {
@@ -91,7 +67,7 @@ private:
     bool getHotspotIsEnabled();
     bool hotspotEnabled() override;
 
-private slots:
+private Q_SLOTS:
     void onWiredConnectionChanged();
     void onWirelessConnectionChanged();
     void onStatusChanged(NetworkManager::Device::State newstate, NetworkManager::Device::State oldstate, NetworkManager::Device::StateChangeReason reason);

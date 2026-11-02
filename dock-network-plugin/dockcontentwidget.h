@@ -140,6 +140,4 @@ private:
     QTimer *m_updateTimer;
 };
 
-} // namespace network
-} // namespace dde
-#endif // DOCKCONTENTWIDGET_H
+} // namespace network} // namespace dde#endif // DOCKCONTENTWIDGET_H

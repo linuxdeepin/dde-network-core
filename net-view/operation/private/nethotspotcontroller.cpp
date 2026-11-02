@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #include "nethotspotcontroller.h"
@@ -244,5 +244,4 @@ void NetHotspotController::onItemChanged()
     }
 }
 
-} // namespace network
-} // namespace dde
+} // namespace network} // namespace dde

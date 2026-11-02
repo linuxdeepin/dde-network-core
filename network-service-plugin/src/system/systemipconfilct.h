@@ -21,7 +21,7 @@ public:
     ~SystemIPConflict() override;
     bool ipConflicted(const QString &devicePath) const;
 
-signals:
+Q_SIGNALS:
     void ipConflictChanged(const QString &devicePath, const QString &ip, bool conflicted);
 
 protected:

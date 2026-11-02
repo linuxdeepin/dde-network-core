@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2011 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2011-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #include "networkdetailnmrealize.h"
@@ -33,7 +33,7 @@ void NetworkDetailNMRealize::initConnection()
     connect(m_activeConnection.get(), &NetworkManager::ActiveConnection::ipV6ConfigChanged, this, &NetworkDetailNMRealize::onUpdateInfo);
     connect(m_ipConfig, &IpManager::ipChanged, this, [ this ] {
         onUpdateInfo();
-        emit infoChanged();
+        Q_EMIT infoChanged();
     });
 }
 
