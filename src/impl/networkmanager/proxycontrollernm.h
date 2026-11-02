@@ -23,7 +23,7 @@ private:
     void initMember();
     void initConnection();
 
-private slots:
+private Q_SLOTS:
     void onPropertiesChanged(const QString &interface, const QVariantMap &values);
 };
 

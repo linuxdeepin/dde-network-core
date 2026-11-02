@@ -55,5 +55,5 @@ void ConnectivityHandler::onConnectivityChanged(int connectivity)
 {
     qCWarning(DNC) << "connecviticy changed" << connectivity;
     m_connectivity = static_cast<Connectivity>(connectivity);
-    emit connectivityChanged(m_connectivity);
+    Q_EMIT connectivityChanged(m_connectivity);
 }

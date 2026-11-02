@@ -91,7 +91,7 @@ private:
     bool getHotspotIsEnabled();
     bool hotspotEnabled() override;
 
-private slots:
+private Q_SLOTS:
     void onWiredConnectionChanged();
     void onWirelessConnectionChanged();
     void onStatusChanged(NetworkManager::Device::State newstate, NetworkManager::Device::State oldstate, NetworkManager::Device::StateChangeReason reason);

@@ -37,7 +37,7 @@ class SystemService : public QObject
 public:
     explicit SystemService(SystemContainer *network, QObject *parent = nullptr);
 
-signals:
+Q_SIGNALS:
     void IpConflictChanged(const QString &devicePath, const QString &ip, bool conflicted);
     void PortalDetected(const QString &url);
     void ConnectivityChanged(int);
@@ -46,7 +46,7 @@ private:
     int Connectivity();
     QString PortalUrl();
 
-public slots:
+public Q_SLOTS:
     bool IpConflicted(const QString &devicePath);
     void CheckConnectivity();
 

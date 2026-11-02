@@ -125,7 +125,7 @@ QStringList AccountManager::iamUserList() const
 void AccountManager::onAccountChanged(const QString &username)
 {
     m_account = parseAccount(username);
-    emit accountChanged(m_account);
+    Q_EMIT accountChanged(m_account);
 }
 
 void AccountManager::onUserAdded(const QString &path)
@@ -134,7 +134,7 @@ void AccountManager::onUserAdded(const QString &path)
     QDBusInterface interface(ACCOUNT_SERVICE, path, "org.deepin.dde.Accounts1.User", QDBusConnection::systemBus());
     QString userName = interface.property("UserName").toString();
     m_userMap[path] = userName;
-    emit accountAdded(userName, iamUserList().contains(QString::number(interface.property("Uid").toUInt())));
+    Q_EMIT accountAdded(userName, iamUserList().contains(QString::number(interface.property("Uid").toUInt())));
 }
 
 void AccountManager::onUserDeleted(const QString &path)
@@ -144,5 +144,5 @@ void AccountManager::onUserDeleted(const QString &path)
 
     QString username = m_userMap.value(path);
     m_userMap.remove(path);
-    emit accountRemoved(username);
+    Q_EMIT accountRemoved(username);
 }

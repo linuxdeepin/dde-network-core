@@ -71,7 +71,7 @@ protected:
     void setDeviceStatus(const DeviceStatus &status) override;
     int mode() const;
 
-private slots:
+private Q_SLOTS:
     void onActiveConnectionChanged();
 
 protected:

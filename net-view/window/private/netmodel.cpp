@@ -180,7 +180,7 @@ void NetModel::updateObject()
     NetItem *obj = qobject_cast<NetItem *>(sender());
     if (obj) {
         QModelIndex i = index(obj);
-        emit dataChanged(i, i, { NetItemRole });
+        Q_EMIT dataChanged(i, i, { NetItemRole });
     }
 }
 

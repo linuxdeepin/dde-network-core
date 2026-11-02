@@ -23,11 +23,11 @@ class AccountNetworkSystemService : public network::systemservice::SystemService
 public:
     explicit AccountNetworkSystemService(AccountNetworkSystemContainer *network, QObject *parent = nullptr);
 
-public slots:
+public Q_SLOTS:
     QVariantMap getAuthenInfo() const;
     QMap<QString, QString> accountNetwork() const;
 
-signals:
+Q_SIGNALS:
     void requestAuthen(QVariantMap identity);
 
 private:

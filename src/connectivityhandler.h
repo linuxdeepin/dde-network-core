@@ -25,14 +25,14 @@ public:
     void init();
     Connectivity connectivity() const;
 
-signals:
+Q_SIGNALS:
     void connectivityChanged(const Connectivity &);
 
 private:
     void initConnection();
     int getConnectivity();
 
-private slots:
+private Q_SLOTS:
     void onConnectivityChanged(int connectivity);
 
 private:

@@ -106,7 +106,7 @@ bool PopupWindow::eventFilter(QObject *o, QEvent *e)
     }
         break;
     case QEvent::ParentChange: {
-        emit contentDetach();
+        Q_EMIT contentDetach();
     }
         break;
     default:

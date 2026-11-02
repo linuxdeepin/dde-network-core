@@ -45,7 +45,7 @@ private:
     void activeNetwork(const QMap<QString, QString> &network, const QVariantMap &authenInfo);
     bool secretIsPrepare() const;
 
-private slots:
+private Q_SLOTS:
     void onAuthen(const QVariantMap &identity);
     void onCollectionCreated(const QDBusObjectPath &path);
     void onActiveConnectionChanged();

@@ -53,7 +53,7 @@ private:
     SessionStateTracker(const SessionStateTracker &) = delete;
     SessionStateTracker &operator=(const SessionStateTracker &) = delete;
 
-private slots:
+private Q_SLOTS:
     void onDisplayReady(const QDBusVariant &display) {
         const QDBusArgument arg = display.variant().value<QDBusArgument>();
         QString id;
@@ -125,7 +125,7 @@ private slots:
         }
     }
 
-signals:
+Q_SIGNALS:
     void sessionResumed();
 
 private:

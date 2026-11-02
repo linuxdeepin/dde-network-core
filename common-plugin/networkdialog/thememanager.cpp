@@ -43,7 +43,7 @@ void ThemeManager::setThemeType(ThemeType type)
 {
     if (type != m_themeType) {
         m_themeType = type;
-        emit themeChanged(m_themeType);
+        Q_EMIT themeChanged(m_themeType);
     }
 }
 

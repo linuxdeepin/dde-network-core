@@ -221,5 +221,5 @@ void HotspotModule::updateVisiable()
             insertChild(row++, modules.at(2));
         }
     }
-    emit updateItemOnlyOne(onlyOne);
+    Q_EMIT updateItemOnlyOne(onlyOne);
 }

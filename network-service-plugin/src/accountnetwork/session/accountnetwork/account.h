@@ -27,7 +27,7 @@ private:
     void loadActiveAccount();
     QString parseAccount(const QString &accountInfo);
 
-private slots:
+private Q_SLOTS:
     void onAccountChanged(const QString &username);
 
 private:

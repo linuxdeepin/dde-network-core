@@ -38,7 +38,7 @@ public:
     bool disableConnectingAnimation() const; // 是否禁用连接动画
     bool disableAllNotify() const;           // 是否禁用所有网络通知
 
-signals:
+Q_SIGNALS:
     void checkUrlsChanged(const QStringList &);
     void enableConnectivityChanged(bool);
     void checkPortalChanged(bool);
@@ -56,7 +56,7 @@ private:
     explicit ConfigSetting(QObject *parent = nullptr);
     ~ConfigSetting();
 
-private slots:
+private Q_SLOTS:
     void onValueChanged(const QString &key);
 
 private:

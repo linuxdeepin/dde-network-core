@@ -36,7 +36,7 @@ private:
     void initDevice();
     void initDeviceConnection(const NetworkManager::Device::Ptr &device);
 
-private slots:
+private Q_SLOTS:
     void onReceiveIPConflict(const QString &ip, const QString &localMac, const QString &remoteMac);
     void onReceiveIPConflictReslove(const QString &ip, const QString &localMac, const QString &remoteMac);
 };

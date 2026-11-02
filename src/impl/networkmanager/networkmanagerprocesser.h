@@ -55,7 +55,7 @@ private:
     bool deviceExist(const QString &path) const;
     NetworkDeviceBase *createDevice(const NetworkManager::Device::Ptr &device);
 
-private slots:
+private Q_SLOTS:
     void onDeviceAdded(const QString &uni);
     void onDeviceRemove(const QString &uni);
     void onConnectivityChanged(NetworkManager::Connectivity conntity);

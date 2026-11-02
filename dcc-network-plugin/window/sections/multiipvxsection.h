@@ -53,7 +53,7 @@ private:
     QList<IPInputSection *> createIpInputSections();
     void setIpInputSection(IPInputSection *ipSection, IPInputSection *itemBefore = nullptr);
 
-protected slots:
+protected Q_SLOTS:
     void onDeleteItem(IPInputSection *item);
     void onAddItem(IPInputSection *item);
     void onIPV4OptionChanged();

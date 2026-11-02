@@ -90,7 +90,7 @@ void DesktopMonitor::checkFinished()
     m_timer = nullptr;
     if (prepared()) {
         qCDebug(DSM) << "display environment check finished";
-        emit desktopChanged(true);
+        Q_EMIT desktopChanged(true);
     }
 }
 
@@ -129,7 +129,7 @@ void DesktopMonitor::onServiceRegistered(const QString &service)
     qCInfo(DSM) << SESSION_MANAG_SERVICE << "start success, display envionment:" << m_displayEnvironment;
     if (prepared()) {
         qCDebug(DSM) << "desktop prepared";
-        emit desktopChanged(true);
+        Q_EMIT desktopChanged(true);
     }
 }
 
@@ -138,5 +138,5 @@ void DesktopMonitor::onPrepareLogout()
     // 注销当前账户
     m_prepare = false;
     qCDebug(DSM) << "current user is logout";
-    emit desktopChanged(false);
+    Q_EMIT desktopChanged(false);
 }

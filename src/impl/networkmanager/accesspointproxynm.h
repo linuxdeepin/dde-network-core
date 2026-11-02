@@ -48,7 +48,7 @@ private:
     void updateConnection();
     void updateHiddenInfo();
 
-private slots:
+private Q_SLOTS:
     void onUpdateNetwork();
 
 private:

@@ -2,6 +2,8 @@
 set(PLUGIN_NAME "dock-hotspot-plugin")
 
 project(${PLUGIN_NAME})
+
+add_compile_definitions(QT_NO_KEYWORDS)
 include(GNUInstallDirs)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)

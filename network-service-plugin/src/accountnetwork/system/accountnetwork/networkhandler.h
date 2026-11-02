@@ -34,7 +34,7 @@ private:
     QSharedPointer<NetworkManager::Device> getDeviceByInterfaceName(const QString &interfaceName) const;
     void deviceActiveHandler(const QSharedPointer<NetworkManager::Device> &device);
 
-private slots:
+private Q_SLOTS:
     void onDeviceAdded(const QString &uni);
 
 private:

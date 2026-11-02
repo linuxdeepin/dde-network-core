@@ -20,13 +20,13 @@ public:
     ~IpManager() = default;
     NetworkManager::IpAddresses ipAddresses() const;
 
-signals:
+Q_SIGNALS:
     void ipChanged();
 
 private:
     bool changeIpv4Config(const QString &uni);
 
-private slots:
+private Q_SLOTS:
     void onPropertiesChanged(const QString &interfaceName, const QVariantMap &changedProperties, const QStringList &invalidatedProperties);
     void onDevicePropertiesChanged(const QString &interfaceName, const QVariantMap &changedProperties, const QStringList &invalidatedProperties);
 

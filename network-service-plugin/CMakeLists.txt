@@ -6,6 +6,8 @@ set(BIN_NAME "network-service")
 
 project(${BIN_NAME})
 
+add_compile_definitions(QT_NO_KEYWORDS)
+
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 

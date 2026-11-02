@@ -22,7 +22,7 @@ public:
 protected:
     void keyPressEvent(QKeyEvent *event) override;
 
-private slots:
+private Q_SLOTS:
     void parseJsonData(const QJsonDocument &jsonDoc);
     void initUI();
     void onButtonsClicked(int index, const QString &text);

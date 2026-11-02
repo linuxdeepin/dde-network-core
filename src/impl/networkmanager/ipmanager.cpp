@@ -64,7 +64,7 @@ void IpManager::onPropertiesChanged(const QString &interfaceName, const QVariant
         }
         if (addresses.size() != m_ipAddresses.size()) {
             m_ipAddresses = addresses;
-            emit ipChanged();
+            Q_EMIT ipChanged();
         } else {
             bool changed = false;
             for (const NetworkManager::IpAddress &address : addresses) {
@@ -78,7 +78,7 @@ void IpManager::onPropertiesChanged(const QString &interfaceName, const QVariant
             if (changed) {
                 // 如果有IP不一致，则认为IP发生了变化，发送IP变化的信号
                 m_ipAddresses = addresses;
-                emit ipChanged();
+                Q_EMIT ipChanged();
             }
         }
     }
@@ -94,6 +94,6 @@ void IpManager::onDevicePropertiesChanged(const QString &interfaceName, const QV
     if (changedProperties.contains("Ip4Config")) {
         QDBusObjectPath ipv4ConfigPath = changedProperties.value("Ip4Config").value<QDBusObjectPath>();
         if (changeIpv4Config(ipv4ConfigPath.path()))
-            emit ipChanged();
+            Q_EMIT ipChanged();
     }
 }

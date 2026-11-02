@@ -33,7 +33,7 @@ void NetworkDetailNMRealize::initConnection()
     connect(m_activeConnection.get(), &NetworkManager::ActiveConnection::ipV6ConfigChanged, this, &NetworkDetailNMRealize::onUpdateInfo);
     connect(m_ipConfig, &IpManager::ipChanged, this, [ this ] {
         onUpdateInfo();
-        emit infoChanged();
+        Q_EMIT infoChanged();
     });
 }
 

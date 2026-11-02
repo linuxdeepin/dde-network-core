@@ -68,7 +68,7 @@ private:
     void initNetworkStatus();
     void checkIpConflicted(const QList<NetworkDeviceBase *> &devices);
 
-private slots:
+private Q_SLOTS:
     void onDeviceAdded(QList<NetworkDeviceBase*> device);
 
 private:

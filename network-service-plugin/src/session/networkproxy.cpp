@@ -240,7 +240,7 @@ void NetworkProxy::onConfigChanged(const QString &key)
     }
 
     if (isHost) {
-        emit proxyChanged(settings->property("type").toString(), settings->get(key).toString());
+        Q_EMIT proxyChanged(settings->property("type").toString(), settings->get(key).toString());
     }
 }
 

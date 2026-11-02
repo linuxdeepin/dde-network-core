@@ -30,10 +30,10 @@ public:
     QVariantMap authenInfo(const QString &accountname) const;
     void updateIamAuthen(const QString &accountname);
 
-signals:
+Q_SIGNALS:
     void requestAuthen(const QVariantMap &);
 
-private slots:
+private Q_SLOTS:
     void newConnectionHandler();
     void readyReadHandler();
     void disconnectedHandler();

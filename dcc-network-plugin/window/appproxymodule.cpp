@@ -137,7 +137,7 @@ AppProxyModule::AppProxyModule(QObject *parent)
         m_btns->setEnabled(false);
         connect(m_btns->leftButton(), &QPushButton::clicked, m_btns, [this]() {
             m_btns->setEnabled(false);
-            emit resetData();
+            Q_EMIT resetData();
         });
         connect(m_btns->rightButton(), &QPushButton::clicked, this, &AppProxyModule::onCheckValue);
     });

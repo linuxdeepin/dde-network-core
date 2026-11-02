@@ -201,8 +201,8 @@ void AccessPointProxyNM::onUpdateNetwork()
     bool secured = m_secured;
     updateInfo();
     if (strength != m_strength)
-        emit strengthChanged(m_strength);
+        Q_EMIT strengthChanged(m_strength);
 
     if (secured != m_secured)
-        emit securedChanged(m_secured);
+        Q_EMIT securedChanged(m_secured);
 }

@@ -2,6 +2,8 @@
 set(VERSION "3.0.0" CACHE STRING "define project version")
 project(dde-network-core6)
 
+add_compile_definitions(QT_NO_KEYWORDS)
+
 set(CMAKE_THREAD_LIBS_INIT "-lpthread")
 set(CMAKE_HAVE_THREADS_LIBRARY 1)
 set(CMAKE_USE_PTHREADS_INIT 1)

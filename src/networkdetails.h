@@ -25,7 +25,7 @@ public:
     QString name();
     QList<QPair<QString, QString>> items();
 
-signals:
+Q_SIGNALS:
     void infoChanged();
 
 protected:

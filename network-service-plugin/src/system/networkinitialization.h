@@ -48,7 +48,7 @@ private:
     void updateConnectionLanguage();
     bool isServerSystem() const;
 
-private slots:
+private Q_SLOTS:
     void onUserChanged(const QString &json);
     void onUserAdded(const QString &json);
     void onInitDeviceConnection();

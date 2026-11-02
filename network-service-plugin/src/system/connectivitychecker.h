@@ -37,7 +37,7 @@ public:
 
     virtual void checkConnectivity() {}
 
-signals:
+Q_SIGNALS:
     void connectivityChanged(const network::service::Connectivity &);
 };
 
@@ -53,10 +53,10 @@ public:
     QString portalUrl() const override;
     void checkConnectivity() override;
 
-signals:
+Q_SIGNALS:
     void portalDetected(const QString &);
 
-private slots:
+private Q_SLOTS:
     void onPortalDetected(const QString &portalUrl);
     void onConnectivityChanged(network::service::Connectivity connectivity);
 
@@ -85,7 +85,7 @@ public:
     QString detectionConnectionId() const;
     bool primaryConnectionChanged() const;
 
-signals:
+Q_SIGNALS:
     void portalDetected(const QString &);
     void connectivityChanged(const network::service::Connectivity &);
 
@@ -95,7 +95,7 @@ private:
     void setPortalUrl(const QString &portalUrl);
     void initDefaultConnectivity();
 
-private slots:
+private Q_SLOTS:
     void onUpdataActiveState(const QSharedPointer<NetworkManager::ActiveConnection> &networks);
     void onUpdateUrls(const QStringList &urls);
     void startCheck();

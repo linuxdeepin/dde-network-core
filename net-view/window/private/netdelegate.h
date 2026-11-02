@@ -171,7 +171,7 @@ protected:
 
     bool eventFilter(QObject *watched, QEvent *event) override;
 
-protected slots:
+protected Q_SLOTS:
     void onPortalUrlChanged(const QString &url);
 
 private:

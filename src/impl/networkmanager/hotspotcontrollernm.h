@@ -53,7 +53,7 @@ private:
     void onActiveConnectionChanged(WirelessDevice *device, NetworkManager::ActiveConnection::Ptr activeConnection);
     void sortItem();
 
-private slots:
+private Q_SLOTS:
     void onConnectionAdded(const QString &connectionUni);
     void onConnectionRemoved(const QString &connectionUni);
 

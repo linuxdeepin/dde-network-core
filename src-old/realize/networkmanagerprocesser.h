@@ -41,7 +41,7 @@ private:
     NetworkDBusProxy *networkInter();
     void sortDevice();
 
-private slots:
+private Q_SLOTS:
     void onDeviceAdded(const QString &uni);
     void onDeviceRemove(const QString &uni);
     void onConnectivityChanged(NetworkManager::Connectivity conntity);

@@ -24,7 +24,7 @@ public Q_SLOTS:
     void setRotatable(bool rotatable);
     void setTextType(bool textType);
 
-signals:
+Q_SIGNALS:
     void clicked();
 
 protected:
