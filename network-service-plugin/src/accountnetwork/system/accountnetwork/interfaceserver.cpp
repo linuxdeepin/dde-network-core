@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -64,7 +64,7 @@ void InterfaceServer::updateIamAuthen(const QString &accountname)
     // 开始请求认证
     qCDebug(DSM) << "iam account start authen...";
     m_authenInfo[accountname] = m_authen;
-    emit requestAuthen(m_authen);
+    Q_EMIT requestAuthen(m_authen);
     m_authen.clear();
 }
 
@@ -122,7 +122,7 @@ void InterfaceServer::readyReadHandler()
             if (m_accountManager->accountExist(account)) {
                 qCInfo(DSM) << "account exist, start authen, current acocunt:" << account;
                 m_authenInfo[m_accountManager->account()] = authenInfo;
-                emit requestAuthen(authenInfo);
+                Q_EMIT requestAuthen(authenInfo);
             } else {
                 // 如果当前账户信息为空，则先记录下认证信息，等待账户返回后，再请求连接
                 qCWarning(DSM) << "account can't exist, wait for it added, account name:" << account;

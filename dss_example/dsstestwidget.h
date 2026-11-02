@@ -33,7 +33,7 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
 
-protected slots:
+protected Q_SLOTS:
     void onClickButton();
 
 private:

@@ -1,6 +1,8 @@
 
 project(example-dock)
 
+add_compile_definitions(QT_NO_KEYWORDS)
+
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_PREFIX_PATH $ENV{Qt6_DIR})
 set(CMAKE_AUTOMOC ON)

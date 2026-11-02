@@ -28,14 +28,14 @@ public:
     network::service::Connectivity connectivity() const;
     QString portalUrl() const;
 
-signals:
+Q_SIGNALS:
     void connectivityChanged(const network::service::Connectivity &);
     void portalDetected(const QString &);
 
 private:
     ConnectivityChecker *createConnectivityChecker(bool enableConnectivity);
 
-private slots:
+private Q_SLOTS:
     void onEnableConnectivityChanged(bool enableConnectivity);
 
 private:

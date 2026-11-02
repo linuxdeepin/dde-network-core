@@ -30,7 +30,7 @@ private:
     void leaveDesktop();
     void openPortalUrl(const QString &url);
 
-private slots:
+private Q_SLOTS:
     void onIPConflictChanged(const QString &devicePath, const QString &ip, bool conflicted);
     void onPortalDetected(const QString &url);
     void onProxyMethodChanged(const QString &method);

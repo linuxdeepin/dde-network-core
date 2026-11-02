@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2025 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2025-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #include "networkproxy.h"
@@ -240,7 +240,7 @@ void NetworkProxy::onConfigChanged(const QString &key)
     }
 
     if (isHost) {
-        emit proxyChanged(settings->property("type").toString(), settings->get(key).toString());
+        Q_EMIT proxyChanged(settings->property("type").toString(), settings->get(key).toString());
     }
 }
 

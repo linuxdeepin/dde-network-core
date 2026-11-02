@@ -51,7 +51,7 @@ void QuickPanel::setIcon(const QIcon& icon){
 void QuickPanel::mouseReleaseEvent(QMouseEvent *event)
 {
     if (!m_icon->rect().contains(event->pos()) && rect().contains(event->pos())) {
-        emit iconClicked();
+        Q_EMIT iconClicked();
     }
 }
 

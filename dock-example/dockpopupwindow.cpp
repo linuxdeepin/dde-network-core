@@ -130,7 +130,7 @@ void DockPopupWindow::onGlobMouseRelease(const QPoint &mousePos, const int flag)
     const QRect rect = QRect(pos(), size());
     if (rect.contains(mousePos))
         return;
-    emit accept();
+    Q_EMIT accept();
     m_regionInter->unregisterRegion();
 }
 

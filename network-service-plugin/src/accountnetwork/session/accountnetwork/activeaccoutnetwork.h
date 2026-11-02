@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -45,7 +45,7 @@ private:
     void activeNetwork(const QMap<QString, QString> &network, const QVariantMap &authenInfo);
     bool secretIsPrepare() const;
 
-private slots:
+private Q_SLOTS:
     void onAuthen(const QVariantMap &identity);
     void onCollectionCreated(const QDBusObjectPath &path);
     void onActiveConnectionChanged();

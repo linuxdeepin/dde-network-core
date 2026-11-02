@@ -1170,5 +1170,5 @@ void WirelessDeviceManagerRealize::onInterfaceFlagsChanged()
 
     m_available = available;
     setDeviceStatus(deviceStatus());
-    emit availableChanged(m_available);
+    Q_EMIT availableChanged(m_available);
 }

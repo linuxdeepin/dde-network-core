@@ -32,14 +32,14 @@ public:
     bool needCheckNetwork() const;                     // 是否需要检测网络
     int reapplyFlags() const;
 
-signals:
+Q_SIGNALS:
     void enableConnectivityChanged(bool);
     void connectivityCheckIntervalChanged(int);
     void checkUrlsChanged(QStringList);
     void disableFailureNotifyChanged(bool);
     void resetWifiOSDEnableTimeoutChanged(int);
 
-private slots:
+private Q_SLOTS:
     void onValueChanged(const QString &key);
 
 private:

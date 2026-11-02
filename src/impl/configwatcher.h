@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2022-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -32,7 +32,7 @@ public:
     int wirelessScanInterval() const;
     bool enableAccountNetwork() const;
 
-signals:
+Q_SIGNALS:
     void enableAirplaneModeChanged(bool);
     void wpa3EnterpriseVisibleChanged(bool);
     void lastProxyMethodChanged(dde::network::ProxyMethod);
@@ -44,7 +44,7 @@ private:
     explicit ConfigWatcher(QObject *parent = nullptr);
     ~ConfigWatcher();
 
-private slots:
+private Q_SLOTS:
     void onValueChanged(const QString &key);
     void onDccConfigChanged(const QString &key);
     void onAirplaneModeChanged(const QString &key);

@@ -3,6 +3,8 @@ set(PLUGIN_NAME "dss-network-plugin")
 
 project(${PLUGIN_NAME})
 
+add_compile_definitions(QT_NO_KEYWORDS)
+
 include(GNUInstallDirs)
 # 启用 qt moc 的支持
 set(CMAKE_AUTOMOC ON)

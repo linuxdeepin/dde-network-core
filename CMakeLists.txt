@@ -8,6 +8,8 @@ project(dde-network-core
   LANGUAGES CXX C
 )
 
+add_compile_definitions(QT_NO_KEYWORDS)
+
 option(BUILD_TESTS "Build unit tests" OFF)
 option(BUILD_EXAMPLE "Build example programs" OFF)
 

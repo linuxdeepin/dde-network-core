@@ -67,7 +67,7 @@ private:
 protected:
     void updateWiredConnections();
 
-private slots:
+private Q_SLOTS:
     void onDeviceEnabledChanged(QDBusObjectPath path, bool enabled);
     void onConnectionAdded(const QString &connectionUni);
     void onDeviceStateChanged();

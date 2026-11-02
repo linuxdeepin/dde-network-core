@@ -86,7 +86,7 @@ void LocalConnectionvityChecker::onPortalDetected(const QString &portalUrl)
         return;
 
     m_portalUrl = portalUrl;
-    emit portalDetected(m_portalUrl);
+    Q_EMIT portalDetected(m_portalUrl);
 }
 
 void LocalConnectionvityChecker::onConnectivityChanged(network::service::Connectivity connectivity)
@@ -103,7 +103,7 @@ void LocalConnectionvityChecker::onConnectivityChanged(network::service::Connect
         return;
 
     m_connectivity = connectivity;
-    emit connectivityChanged(connectivity);
+    Q_EMIT connectivityChanged(connectivity);
 }
 
 // 通过本地检测网络连通性
@@ -380,7 +380,7 @@ void StatusChecker::setConnectivity(const network::service::Connectivity &connec
     qCDebug(DSM) << "connectivity changed" << static_cast<int>(connectivity);
     m_connectivity = connectivity;
     // 更新每个设备的联通性
-    emit connectivityChanged(m_connectivity);
+    Q_EMIT connectivityChanged(m_connectivity);
 
     // 根据实际情况，如果网络不通，就30秒刷新一次，网络通了，300秒刷新一次
     int interval = (connectivity == network::service::Connectivity::Full ?
@@ -404,7 +404,7 @@ void StatusChecker::setPortalUrl(const QString &portalUrl)
 
     // 每次检测时返回的认证连接可能不同，连接时会多次打开认证网站
     m_portalUrl = portalUrl;
-    emit portalDetected(m_portalUrl);
+    Q_EMIT portalDetected(m_portalUrl);
 }
 
 void StatusChecker::initDefaultConnectivity()
@@ -478,6 +478,6 @@ void NMConnectionvityChecker::initConnection()
 {
     connect(NetworkManager::notifier(), &NetworkManager::Notifier::connectivityChanged, this, [this](NetworkManager::Connectivity connectivity) {
         m_connectivity = convertConnectivity(connectivity);
-        emit connectivityChanged(m_connectivity);
+        Q_EMIT connectivityChanged(m_connectivity);
     });
 }

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -23,11 +23,11 @@ class AccountNetworkSystemService : public network::systemservice::SystemService
 public:
     explicit AccountNetworkSystemService(AccountNetworkSystemContainer *network, QObject *parent = nullptr);
 
-public slots:
+public Q_SLOTS:
     QVariantMap getAuthenInfo() const;
     QMap<QString, QString> accountNetwork() const;
 
-signals:
+Q_SIGNALS:
     void requestAuthen(QVariantMap identity);
 
 private:

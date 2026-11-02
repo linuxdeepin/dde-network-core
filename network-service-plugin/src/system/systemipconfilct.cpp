@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -54,7 +54,7 @@ void SystemIPConflict::onIPConflicted(const QString &ip, const QString &localMac
 
     bool needReconnect = false;
     if (m_ipConfilctData.doConfilcted(ip, localMac, remoteMac, needReconnect))
-        emit ipConflictChanged(device->uni(), ip, true);
+        Q_EMIT ipConflictChanged(device->uni(), ip, true);
 
     if (needReconnect)
         requestReConnect(device);
@@ -64,7 +64,7 @@ void SystemIPConflict::onIPConflictReslove(const QString &ip, const QString &loc
 {
     QSharedPointer<NetworkManager::Device> device = m_ipConfilctData.getDevicePathByMac(localMac);
     if (device && m_ipConfilctData.doConflictReslove(ip, localMac, remoteMac))
-        emit ipConflictChanged(device->uni(), ip, false);
+        Q_EMIT ipConflictChanged(device->uni(), ip, false);
 }
 
 bool SystemIPConflict::ipConflicted(const QString &devicePath, const QString &ip) const
@@ -82,6 +82,6 @@ void SystemIPConflict::ipv4Changed(const NetworkManager::Device::Ptr &device)
     QStringList resloveIps;
     m_ipConfilctData.updateIpv4(device, ipV4s, resloveIps);
     for (const QString &resloveIp : resloveIps) {
-        emit ipConflictChanged(device->uni(), resloveIp, false);
+        Q_EMIT ipConflictChanged(device->uni(), resloveIp, false);
     }
 }

@@ -30,11 +30,11 @@ protected:
     void enterEvent(QEnterEvent *e) override;
     bool eventFilter(QObject *o, QEvent *e) override;
 
-signals:
+Q_SIGNALS:
     void visibleChanged(bool visible);
     void contentDetach();
 
-private slots:
+private Q_SLOTS:
     void ensureRaised();
 
 private:
