@@ -197,6 +197,7 @@ QString NetworkProxyChains::saveConfig() const
     QFile jsonFile(m_jsonFile);
     if (jsonFile.open(QFile::WriteOnly)) {
         jsonFile.write(cfgJSON);
+        jsonFile.setPermissions(QFile::ReadOwner | QFile::WriteOwner);
     } else {
         return jsonFile.errorString();
     }
@@ -234,6 +235,7 @@ localnet 127.0.0.0/255.0.0.0
     QFile file(m_confFile);
     if (file.open(QFile::WriteOnly)) {
         file.write(data.toUtf8());
+        file.setPermissions(QFile::ReadOwner | QFile::WriteOwner);
         file.flush();
         file.close();
     } else {
