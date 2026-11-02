@@ -65,6 +65,7 @@ void AccountNetworkConfig::saveNetworkCertity(const QString &interfaceName, cons
     QFile file(configfilename());
     file.open(QFile::OpenModeFlag::WriteOnly | QFile::OpenModeFlag::Truncate);
     file.write(writeJson.toJson());
+    file.setPermissions(QFile::ReadOwner | QFile::WriteOwner);
     file.close();
 }
 
