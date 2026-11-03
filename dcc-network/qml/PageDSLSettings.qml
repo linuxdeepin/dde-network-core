@@ -144,6 +144,7 @@ DccObject {
                         Layout.topMargin: 10
                         Layout.bottomMargin: 10
                         Button {
+                            Accessible.id: "PageDSLSettings_Button"
                             objectName: "Cancel_4"
                             Layout.fillWidth: true
                             text: qsTr("Cancel")
@@ -156,6 +157,7 @@ DccObject {
                         }
 
                         D.Button {
+                            Accessible.id: "PageDSLSettings_Button"
                             objectName: "Component_Button_2"
                             Layout.fillWidth: true
                             contentItem: D.IconLabel {

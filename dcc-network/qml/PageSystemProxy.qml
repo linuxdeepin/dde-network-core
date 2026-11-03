@@ -43,6 +43,7 @@ DccObject {
     Component {
         id: devCheck
         D.Switch {
+            Accessible.id: "PageSystemProxy_Switch"
             objectName: "Component_Switch_2"
             checked: netItem.isEnabled
             visible: netItem.enabledable
@@ -71,6 +72,7 @@ DccObject {
                 pageType: DccObject.Editor
                 page: D.Switch {
                     objectName: "PageSystemProxy_Switch"
+                    Accessible.id: "PageSystemProxy_Switch"
                     checked: root.method !== NetType.None
                     onClicked: {
                         if (checked) {
@@ -102,6 +104,7 @@ DccObject {
                 pageType: DccObject.Editor
                 page: ComboBox {
                     objectName: "PageSystemProxy_ComboBox"
+                    Accessible.id: "PageSystemProxy_ComboBox"
                     flat: true
                     textRole: "text"
                     valueRole: "value"
@@ -138,6 +141,7 @@ DccObject {
                 pageType: DccObject.Editor
                 visible: method === NetType.Auto
                 page: D.LineEdit {
+                    Accessible.id: "PageSystemProxy_LineEdit"
                     topInset: 4
                     bottomInset: 4
                     placeholderText: qsTr("Required")
@@ -238,6 +242,7 @@ DccObject {
                 pageType: DccObject.Item
                 page: TextArea {
                     objectName: "DccObjConfig"
+                    Accessible.id: "PageSystemProxy_TextArea"
                     wrapMode: TextEdit.WordWrap
                     text: dccObj.config
                     onTextChanged: {
@@ -291,6 +296,7 @@ DccObject {
                     rightPadding: 0
                     spacing: 0
                     text: dccObj.displayName
+                        Accessible.id: "PageSystemProxy_Button"
                     Layout.alignment: Qt.AlignRight
                     onClicked: root.resetData()
                 }
@@ -304,6 +310,7 @@ DccObject {
                 pageType: DccObject.Item
                 page: Button {
                     objectName: "DccObjDisplayName_2"
+                    Accessible.id: "PageSystemProxy_Button_Save"
                     implicitHeight: implicitContentHeight + 10
                     implicitWidth: implicitContentWidth + 10
                     topPadding: 0

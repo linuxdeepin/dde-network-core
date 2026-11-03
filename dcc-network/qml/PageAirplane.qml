@@ -28,6 +28,7 @@ DccObject {
             implicitHeight: switchControl.implicitHeight
             implicitWidth: switchControl.implicitWidth
             D.Switch {
+                Accessible.id: "PageAirplane_Switch"
                 objectName: "SwitchControl"
                 id: switchControl
                 anchors.fill: parent

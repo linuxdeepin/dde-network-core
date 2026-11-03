@@ -31,6 +31,7 @@ RowLayout {
     }
     D.LineEdit {
         id: edit
+        Accessible.id: "NetFileChooseEdit_LineEdit"
         objectName: "FileChooseEdit"
         Layout.preferredWidth: edit.implicitWidth - browseBtn.width - root.spacing
         onTextChanged: {
