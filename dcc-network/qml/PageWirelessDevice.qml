@@ -59,6 +59,7 @@ DccObject {
                     DelegateChoice {
                         roleValue: NetType.WirelessItem
                         delegate: ItemDelegate {
+                            Accessible.id: "PageWirelessDevice_ItemDelegate"
                             objectName: "ItemDelegate_3"
                             id: itemDelegate
                             height: 36
@@ -125,6 +126,7 @@ DccObject {
 
                                     // 箭头悬浮效果 - 右侧圆角（包含分割线）
                                     Item {
+                                        Accessible.id: "PageWirelessDevice_Item"
                                         width: 30 // 20px悬浮区域 + 10px扩展到边缘
                                         height: 40 // 填满ItemDelegate高度
 
@@ -224,10 +226,12 @@ DccObject {
                                                     hoverCanvas.bgColor = "transparent"
                                                 }
                                             }
+                                                Accessible.id: "PageWirelessDevice_Label"
                                         }
                                     }
                                 }
                                 D.Label{
+                                    Accessible.id: "PageWirelessDevice_Label"
                                     id: portalLinkLabel
                                     Layout.leftMargin: 25
                                     textFormat: Text.RichText
@@ -262,6 +266,7 @@ DccObject {
                             objectName: "Repeater_ItemDelegate_" + index
                             visible: addHiddenNetwork.visibleToApp
                             enabled: addHiddenNetwork.enabledToApp
+                            Accessible.id: "PageWirelessDevice_ItemDelegate_Hidden"
                             implicitHeight: 36
                             checked: true
                             backgroundVisible: false
@@ -396,6 +401,7 @@ DccObject {
             backgroundType: DccObject.Normal
             page: networkList
         }
+            Accessible.id: "PageWirelessDevice_Label"
         DccObject {
             name: "airplaneTips"
             parentName: root.name + "/page"
@@ -408,6 +414,7 @@ DccObject {
                 text: qsTr("Disable <a style='text-decoration: none;' href='network/airplaneMode'>Airplane Mode</a> first if you want to connect to a wireless network")
                 wrapMode: Text.WordWrap
                 onLinkActivated: link => DccApp.showPage(link)
+                    Accessible.id: "PageWirelessDevice_Label"
             }
         }
         DccObject {
@@ -418,6 +425,7 @@ DccObject {
             weight: 70
             pageType: DccObject.Item
             page: D.Label {
+                Accessible.id: "PageWirelessDevice_Label_AirplaneTips"
                 textFormat: Text.RichText
                 text: qsTr("<a style='text-decoration: none;' href='NetHotspotControlItem'>Disable hotspot</a> first if you want to connect to a wireless network")
                 wrapMode: Text.WordWrap

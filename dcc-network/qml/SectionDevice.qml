@@ -107,6 +107,7 @@ DccTitleObject {
             canSearch: false
             pageType: DccObject.Editor
             page: D.ComboBox {
+                Accessible.id: "SectionDevice_ComboBox"
                 objectName: "SectionDevice_ComboBox"
                 flat: true
                 textRole: "text"
@@ -137,6 +138,7 @@ DccTitleObject {
             visible: type === NetType.WiredItem
             pageType: DccObject.Editor
             page: D.LineEdit {
+                Accessible.id: "SectionDevice_LineEdit"
                 text: root.config.hasOwnProperty("cloned-mac-address") ? root.config["cloned-mac-address"] : ""
                 onTextChanged: {
                     if (showAlert) {
@@ -169,6 +171,7 @@ DccTitleObject {
             pageType: DccObject.Editor
             page: D.Switch {
                 objectName: "SectionDevice_Switch"
+                Accessible.id: "SectionDevice_Switch"
                 checked: hasMTU
                 onClicked: {
                     hasMTU = checked
@@ -186,6 +189,7 @@ DccTitleObject {
             pageType: DccObject.Editor
             page: D.SpinBox {
                 objectName: "SectionDevice_SpinBox"
+                Accessible.id: "SectionDevice_SpinBox"
                 editable: true
                 from: 1280
                 to: 9000

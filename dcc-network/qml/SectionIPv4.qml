@@ -171,6 +171,7 @@ DccObject {
             Layout.fillWidth: true
         }
         Label {
+            Accessible.id: "SectionIPv4_Label"
             visible: root.method === "manual"
             bottomPadding: 0
             font.pixelSize: D.DTK.fontManager.t8.pixelSize
@@ -225,6 +226,7 @@ DccObject {
         canSearch: false
         pageType: DccObject.Editor
         page: ComboBox {
+            Accessible.id: "SectionIPv4_ComboBox"
             objectName: "SectionIpv4_ComboBox"
             flat: true
             textRole: "text"
@@ -260,6 +262,7 @@ DccObject {
         backgroundType: DccObject.Normal
         pageType: DccObject.Editor
         page: D.Switch {
+            Accessible.id: "SectionIPv4_Switch"
             objectName: "SectionIpv4_Switch"
             checked: root.neverDefault
             onClicked: {
@@ -291,6 +294,7 @@ DccObject {
         backgroundType: DccObject.Normal
         pageType: DccObject.Editor
         page: ComboBox {
+            Accessible.id: "SectionIPv4_ComboBox"
             objectName: "SectionIpv4_ComboBox_2"
             flat: true
             textRole: "text"
@@ -402,6 +406,7 @@ DccObject {
                     canSearch: false
                     pageType: DccObject.Editor
                     page: D.LineEdit {
+                        Accessible.id: "SectionIPv4_LineEdit"
                         text: addressData.length > index ? addressData[index][0] : "0.0.0.0"
                         validator: RegularExpressionValidator {
                             regularExpression: NetUtils.ipEditRegExp
@@ -434,6 +439,7 @@ DccObject {
                     canSearch: false
                     pageType: DccObject.Editor
                     page: D.LineEdit {
+                        Accessible.id: "SectionIPv4_LineEdit"
                         text: addressData.length > index ? addressData[index][1] : "255.255.255.0"
                         validator: RegularExpressionValidator {
                             regularExpression: NetUtils.maskEditRegExp
@@ -466,6 +472,7 @@ DccObject {
                     canSearch: false
                     pageType: DccObject.Editor
                     page: D.LineEdit {
+                        Accessible.id: "SectionIPv4_LineEdit"
                         enabled: index === 0
                         text: index === 0 && addressData.length > index ? addressData[index][2] : ""
                         validator: RegularExpressionValidator {

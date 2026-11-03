@@ -73,6 +73,7 @@ DccObject {
             backgroundType: DccObject.Normal
             pageType: DccObject.Editor
             page: D.ComboBox {
+                Accessible.id: "PageVPNSettings_ComboBox"
                 objectName: "PageVpnsettings_ComboBox"
                 flat: true
                 textRole: "text"
@@ -215,6 +216,7 @@ DccObject {
                         Layout.topMargin: 10
                         Layout.bottomMargin: 10
                         Button {
+                            Accessible.id: "PageVPNSettings_Button"
                             objectName: "Cancel"
                             Layout.fillWidth: true
                             text: qsTr("Cancel")
@@ -223,11 +225,13 @@ DccObject {
                         Rectangle {
                             implicitWidth: 2
                             Layout.fillHeight: true
+                                Accessible.id: "PageVPNSettings_Button"
                             color: this.palette.button
                         }
 
                         D.Button {
                             objectName: "Component_Button"
+                            Accessible.id: "PageVPNSettings_Button_Delete"
                             Layout.fillWidth: true
                             contentItem: D.IconLabel {
                                 text: qsTr("Delete")

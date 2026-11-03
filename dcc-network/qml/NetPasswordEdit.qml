@@ -7,6 +7,7 @@ import org.deepin.dtk 1.0 as D
 import org.deepin.dcc 1.0
 
 D.PasswordEdit {
+    Accessible.id: "NetPasswordEdit_PasswordEdit"
     property var dataItem
     objectName: "PasswordEdit"
     property bool newInput: false
