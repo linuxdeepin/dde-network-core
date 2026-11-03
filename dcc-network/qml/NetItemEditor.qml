@@ -9,6 +9,7 @@ import org.deepin.dtk 1.0 as D
 import org.deepin.dcc 1.0
 
 D.ItemDelegate {
+    Accessible.id: "NetItemEditor_ItemDelegate"
     objectName: "NetItemEditor_ItemDelegate"
     Layout.fillWidth: true
     backgroundVisible: false

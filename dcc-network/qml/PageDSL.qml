@@ -41,6 +41,7 @@ DccObject {
                     }
 
                     delegate: ItemDelegate {
+                        Accessible.id: "PageDSL_ItemDelegate"
                         objectName: "ItemDelegate_2_" + index
                         id: itemDelegate
                         implicitHeight: 36
@@ -77,12 +78,13 @@ DccObject {
                                     name: "arrow_ordinary_right"
                                     palette: D.DTK.makeIconPalette(palette)
                                 }
-                                MouseArea {
-                                    anchors.fill: parent
-                                    acceptedButtons: Qt.LeftButton
-                                    onClicked: {
-                                        dccData.exec(NetManager.ConnectInfo, model.item.id, {})
-                                    }
+                               MouseArea {
+                                   Accessible.id: "PageDSL_MouseArea_Details"
+                                   anchors.fill: parent
+                                   acceptedButtons: Qt.LeftButton
+                                   onClicked: {
+                                       dccData.exec(NetManager.ConnectInfo, model.item.id, {})
+                                   }
                                 }
                             }
                         }

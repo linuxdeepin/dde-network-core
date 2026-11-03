@@ -39,6 +39,7 @@ DccTitleObject {
     Component {
         id: switchItem
         D.Switch {
+            Accessible.id: "SectionPPP_Switch"
             objectName: "Component_Switch_3"
             checked: root.config.hasOwnProperty(dccObj.name) && root.config[dccObj.name]
             onClicked: {
@@ -63,6 +64,7 @@ DccTitleObject {
             pageType: DccObject.Editor
             page: D.Switch {
                 objectName: "SectionPpp_Switch"
+                Accessible.id: "SectionPPP_Switch"
                 checked: mppe
                 onClicked: {
                     mppe = checked
@@ -187,6 +189,7 @@ DccTitleObject {
             pageType: DccObject.Editor
             page: D.Switch {
                 objectName: "SectionPpp_Switch_2"
+                Accessible.id: "SectionPPP_Switch"
                 checked: root.config["lcp-echo-failure"] === 5 && root.config["lcp-echo-interval"] === 30
                 onClicked: {
                     if (checked) {

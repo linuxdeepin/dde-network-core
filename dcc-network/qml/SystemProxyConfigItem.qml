@@ -50,6 +50,7 @@ DccObject {
         weight: 10
         pageType: DccObject.Editor
         page: D.LineEdit {
+            Accessible.id: "SystemProxyConfigItem_LineEdit"
             topInset: 4
             bottomInset: 4
             text: root.config.url
@@ -69,6 +70,7 @@ DccObject {
         weight: 20
         pageType: DccObject.Editor
         page: D.LineEdit {
+            Accessible.id: "SystemProxyConfigItem_LineEdit_Port"
             topInset: 4
             bottomInset: 4
             validator: IntValidator {
@@ -92,6 +94,7 @@ DccObject {
         pageType: DccObject.Editor
         page: Switch {
             objectName: "SystemProxyConfigItem_Switch"
+            Accessible.id: "SystemProxyConfigItem_Switch"
             checked: root.config.auth
             onClicked: {
                 if (root.config.auth !== checked) {
@@ -110,6 +113,7 @@ DccObject {
         weight: 40
         pageType: DccObject.Editor
         page: D.LineEdit {
+            Accessible.id: "SystemProxyConfigItem_LineEdit_User"
             topInset: 4
             bottomInset: 4
             text: root.config.user

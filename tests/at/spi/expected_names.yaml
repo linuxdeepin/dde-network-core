@@ -218,7 +218,12 @@ cpp:
   accessible_id: ''
   object_name: SecretConnectBtn
   type: DSuggestButton *
-
+- file: dock-example/docktestwidget.cpp
+  variable: settingsButton
+  class: DockTestWidget
+  accessible_id: ''
+  object_name: 网络设置
+  type: QPushButton *
 qml:
 - file: dcc-network/qml/DeviceStatusItem.qml
   element_type: Switch
@@ -231,63 +236,23 @@ qml:
   accessible_role: ''
   line: 6
 - file: dcc-network/qml/NetFileChooseEdit.qml
-  element_type: NetButton
-  accessible_id: BrowseBtn
-  accessible_role: Accessible.Button
-  line: 56
+  element_type: LineEdit
+  accessible_id: NetFileChooseEdit_LineEdit
+  accessible_role: ''
+  line: 32
 - file: dcc-network/qml/NetItemEditor.qml
   element_type: ItemDelegate
   accessible_id: NetItemEditor_ItemDelegate
   accessible_role: ''
   line: 11
-- file: dcc-network/qml/NetworkMain.qml
-  element_type: PageAirplane
-  accessible_id: airplaneMode
+- file: dcc-network/qml/NetPasswordEdit.qml
+  element_type: PasswordEdit
+  accessible_id: NetPasswordEdit_PasswordEdit
   accessible_role: ''
-  line: 44
-- file: dcc-network/qml/NetworkMain.qml
-  element_type: PageWiredDevice
-  accessible_id: wired<pathIndex>
-  accessible_role: ''
-  line: 60
-- file: dcc-network/qml/NetworkMain.qml
-  element_type: PageWirelessDevice
-  accessible_id: wireless<pathIndex>
-  accessible_role: ''
-  line: 68
-- file: dcc-network/qml/NetworkMain.qml
-  element_type: PageVPN
-  accessible_id: networkVpn
-  accessible_role: ''
-  line: 76
-- file: dcc-network/qml/NetworkMain.qml
-  element_type: PageDSL
-  accessible_id: dsl
-  accessible_role: ''
-  line: 87
-- file: dcc-network/qml/NetworkMain.qml
-  element_type: PageHotspot
-  accessible_id: personalHotspot
-  accessible_role: ''
-  line: 98
-- file: dcc-network/qml/NetworkMain.qml
-  element_type: PageSystemProxy
-  accessible_id: systemProxy
-  accessible_role: ''
-  line: 110
-- file: dcc-network/qml/NetworkMain.qml
-  element_type: PageAppProxy
-  accessible_id: applicationProxy
-  accessible_role: ''
-  line: 121
-- file: dcc-network/qml/NetworkMain.qml
-  element_type: PageDetails
-  accessible_id: networkDetails
-  accessible_role: ''
-  line: 132
+  line: 9
 - file: dcc-network/qml/PageAirplane.qml
   element_type: Switch
-  accessible_id: SwitchControl
+  accessible_id: PageAirplane_Switch
   accessible_role: ''
   line: 30
 - file: dcc-network/qml/PageAppProxy.qml
@@ -299,512 +264,377 @@ qml:
   element_type: ComboBox
   accessible_id: PageAppProxy_ComboBox
   accessible_role: ''
-  line: 95
+  line: 96
+- file: dcc-network/qml/PageAppProxy.qml
+  element_type: LineEdit
+  accessible_id: PageAppProxy_LineEdit
+  accessible_role: ''
+  line: 131
+- file: dcc-network/qml/PageAppProxy.qml
+  element_type: LineEdit
+  accessible_id: PageAppProxy_LineEdit_Port
+  accessible_role: ''
+  line: 162
+- file: dcc-network/qml/PageAppProxy.qml
+  element_type: LineEdit
+  accessible_id: PageAppProxy_LineEdit_User
+  accessible_role: ''
+  line: 194
+- file: dcc-network/qml/PageAppProxy.qml
+  element_type: PasswordEdit
+  accessible_id: PageAppProxy_PasswordEdit
+  accessible_role: ''
+  line: 213
 - file: dcc-network/qml/PageAppProxy.qml
   element_type: Button
-  accessible_id: Cancel_3
+  accessible_id: ''
   accessible_role: ''
-  line: 254
+  line: 260
 - file: dcc-network/qml/PageAppProxy.qml
   element_type: Button
-  accessible_id: Save_2
+  accessible_id: PageAppProxy_SaveButton
   accessible_role: ''
-  line: 277
+  line: 284
 - file: dcc-network/qml/PageDSL.qml
   element_type: ItemDelegate
-  accessible_id: ItemDelegate_2_<index>
+  accessible_id: PageDSL_ItemDelegate
   accessible_role: ''
   line: 43
-- file: dcc-network/qml/PageDSL.qml
-  element_type: NetButton
-  accessible_id: Disconnect_2_<index>
-  accessible_role: Accessible.Button
-  line: 62
-- file: dcc-network/qml/PageDSL.qml
-  element_type: PageDSLSettings
-  accessible_id: dslSettings
-  accessible_role: ''
-  line: 101
-- file: dcc-network/qml/PageDSL.qml
-  element_type: NetButton
-  accessible_id: AddPppoEConnection
-  accessible_role: Accessible.Button
-  line: 149
-- file: dcc-network/qml/PageDSLSettings.qml
-  element_type: SectionGeneric
-  accessible_id: SectionGeneric_2
-  accessible_role: ''
-  line: 39
-- file: dcc-network/qml/PageDSLSettings.qml
-  element_type: SectionPPPOE
-  accessible_id: SectionPppoe
-  accessible_role: ''
-  line: 47
-- file: dcc-network/qml/PageDSLSettings.qml
-  element_type: SectionIPv4
-  accessible_id: SectionIpv4_2
-  accessible_role: ''
-  line: 55
-- file: dcc-network/qml/PageDSLSettings.qml
-  element_type: SectionDNS
-  accessible_id: SectionDns_2
-  accessible_role: ''
-  line: 63
-- file: dcc-network/qml/PageDSLSettings.qml
-  element_type: SectionDevice
-  accessible_id: SectionDevice
-  accessible_role: ''
-  line: 71
-- file: dcc-network/qml/PageDSLSettings.qml
-  element_type: SectionPPP
-  accessible_id: SectionPpp
-  accessible_role: ''
-  line: 80
-- file: dcc-network/qml/PageDSLSettings.qml
-  element_type: NetButton
-  accessible_id: PageDslsettings_NetButton
-  accessible_role: Accessible.Button
-  line: 119
 - file: dcc-network/qml/PageDSLSettings.qml
   element_type: Button
-  accessible_id: Cancel_4
-  accessible_role: ''
-  line: 152
-- file: dcc-network/qml/PageDSLSettings.qml
-  element_type: Button
-  accessible_id: Component_Button_2
-  accessible_role: ''
-  line: 164
-- file: dcc-network/qml/PageDSLSettings.qml
-  element_type: NetButton
-  accessible_id: Cancel_5
-  accessible_role: Accessible.Button
-  line: 198
-- file: dcc-network/qml/PageDSLSettings.qml
-  element_type: NetButton
-  accessible_id: Save_3
-  accessible_role: Accessible.Button
-  line: 213
-- file: dcc-network/qml/PageDetails.qml
-  element_type: ItemDelegate
-  accessible_id: ModelData_<index>
-  accessible_role: ''
-  line: 121
-- file: dcc-network/qml/PageDetails.qml
-  element_type: TextInput
-  accessible_id: TextInput_<index>
-  accessible_role: ''
-  line: 133
-- file: dcc-network/qml/PageDetails.qml
-  element_type: Menu
-  accessible_id: Loader_Menu_<index>
+  accessible_id: PageDSLSettings_Button
   accessible_role: ''
   line: 146
-- file: dcc-network/qml/PageDetails.qml
-  element_type: MenuItem
-  accessible_id: Copy_<index>
+- file: dcc-network/qml/PageDSLSettings.qml
+  element_type: Button
+  accessible_id: PageDSLSettings_Button
   accessible_role: ''
-  line: 148
-- file: dcc-network/qml/PageDetails.qml
-  element_type: MenuItem
-  accessible_id: SelectAll_<index>
-  accessible_role: ''
-  line: 156
-- file: dcc-network/qml/PageDetails.qml
-  element_type: NetButton
-  accessible_id: NetworkDetection
-  accessible_role: Accessible.Button
-  line: 196
+  line: 159
 - file: dcc-network/qml/PageHotspot.qml
   element_type: Switch
-  accessible_id: SwitchControl_2
+  accessible_id: PageHotspot_Switch
   accessible_role: ''
   line: 102
 - file: dcc-network/qml/PageHotspot.qml
-  element_type: NetItemEditor
-  accessible_id: NameSsid
-  accessible_role: Accessible.Button
-  line: 269
-- file: dcc-network/qml/PageHotspot.qml
-  element_type: NetItemEditor
-  accessible_id: Security
-  accessible_role: Accessible.Button
-  line: 285
-- file: dcc-network/qml/PageHotspot.qml
-  element_type: ComboBox
-  accessible_id: NetItemEditor_ComboBox
+  element_type: Label
+  accessible_id: PageHotspot_Label
   accessible_role: ''
-  line: 290
+  line: 161
 - file: dcc-network/qml/PageHotspot.qml
-  element_type: NetItemEditor
-  accessible_id: Password_2
-  accessible_role: Accessible.Button
-  line: 317
-- file: dcc-network/qml/PageHotspot.qml
-  element_type: NetItemEditor
-  accessible_id: Band
-  accessible_role: Accessible.Button
-  line: 343
-- file: dcc-network/qml/PageHotspot.qml
-  element_type: ComboBox
-  accessible_id: NetItemEditor_ComboBox_2
+  element_type: Label
+  accessible_id: PageHotspot_Label
   accessible_role: ''
-  line: 348
+  line: 176
 - file: dcc-network/qml/PageHotspot.qml
-  element_type: Button
-  accessible_id: Cancel_8
+  element_type: LineEdit
+  accessible_id: PageHotspot_LineEdit
   accessible_role: ''
-  line: 377
-- file: dcc-network/qml/PageHotspot.qml
-  element_type: TextInput
-  accessible_id: 80211WirelessSecurity
-  accessible_role: ''
-  line: 481
+  line: 280
 - file: dcc-network/qml/PageHotspot.qml
   element_type: ComboBox
   accessible_id: PageHotspot_ComboBox
   accessible_role: ''
-  line: 548
-- file: dcc-network/qml/PageSettings.qml
-  element_type: SectionGeneric
-  accessible_id: SectionGeneric_3
+  line: 297
+- file: dcc-network/qml/PageHotspot.qml
+  element_type: PasswordEdit
+  accessible_id: PageHotspot_PasswordEdit
   accessible_role: ''
-  line: 39
-- file: dcc-network/qml/PageSettings.qml
-  element_type: SectionSecret
-  accessible_id: SectionSecret
+  line: 331
+- file: dcc-network/qml/PageHotspot.qml
+  element_type: ComboBox
+  accessible_id: PageHotspot_ComboBox
   accessible_role: ''
-  line: 48
-- file: dcc-network/qml/PageSettings.qml
-  element_type: SectionIPv4
-  accessible_id: SectionIpv4_3
+  line: 357
+- file: dcc-network/qml/PageHotspot.qml
+  element_type: Button
+  accessible_id: PageHotspot_Button
   accessible_role: ''
-  line: 56
-- file: dcc-network/qml/PageSettings.qml
-  element_type: SectionIPv6
-  accessible_id: SectionIpv6_2
+  line: 387
+- file: dcc-network/qml/PageHotspot.qml
+  element_type: RecommandButton
+  accessible_id: PageHotspot_RecommandButton
   accessible_role: ''
-  line: 64
-- file: dcc-network/qml/PageSettings.qml
-  element_type: SectionDNS
-  accessible_id: SectionDns_3
+  line: 400
+- file: dcc-network/qml/PageHotspot.qml
+  element_type: ActionButton
+  accessible_id: PageHotspot_ActionButton
   accessible_role: ''
-  line: 72
-- file: dcc-network/qml/PageSettings.qml
-  element_type: SectionDevice
-  accessible_id: SectionDevice_2
+  line: 209
+- file: dcc-network/qml/PageHotspot.qml
+  element_type: TextInput
+  accessible_id: PageHotspot_TextInput
   accessible_role: ''
-  line: 80
-- file: dcc-network/qml/PageSettings.qml
-  element_type: NetButton
-  accessible_id: PageSettings_NetButton
-  accessible_role: Accessible.Button
-  line: 123
+  line: 493
+- file: dcc-network/qml/PageHotspot.qml
+  element_type: ActionButton
+  accessible_id: PageHotspot_ActionButton
+  accessible_role: ''
+  line: 503
+- file: dcc-network/qml/PageHotspot.qml
+  element_type: ComboBox
+  accessible_id: PageHotspot_ComboBox
+  accessible_role: ''
+  line: 564
 - file: dcc-network/qml/PageSettings.qml
   element_type: Button
-  accessible_id: Cancel_6
+  accessible_id: PageSettings_Button
   accessible_role: ''
-  line: 156
+  line: 150
 - file: dcc-network/qml/PageSettings.qml
   element_type: Button
-  accessible_id: Component_Button_3
+  accessible_id: PageSettings_Button
   accessible_role: ''
-  line: 168
-- file: dcc-network/qml/PageSettings.qml
-  element_type: NetButton
-  accessible_id: Cancel_7
-  accessible_role: Accessible.Button
-  line: 202
-- file: dcc-network/qml/PageSettings.qml
-  element_type: NetButton
-  accessible_id: Save_4
-  accessible_role: Accessible.Button
-  line: 217
+  line: 163
 - file: dcc-network/qml/PageSystemProxy.qml
   element_type: Switch
-  accessible_id: Component_Switch_2
+  accessible_id: PageSystemProxy_Switch
   accessible_role: ''
   line: 45
 - file: dcc-network/qml/PageSystemProxy.qml
   element_type: Switch
   accessible_id: PageSystemProxy_Switch
   accessible_role: ''
-  line: 72
+  line: 73
 - file: dcc-network/qml/PageSystemProxy.qml
   element_type: ComboBox
   accessible_id: PageSystemProxy_ComboBox
   accessible_role: ''
-  line: 104
+  line: 105
 - file: dcc-network/qml/PageSystemProxy.qml
-  element_type: SystemProxyConfigItem
-  accessible_id: http
+  element_type: LineEdit
+  accessible_id: PageSystemProxy_LineEdit
   accessible_role: ''
-  line: 167
-- file: dcc-network/qml/PageSystemProxy.qml
-  element_type: SystemProxyConfigItem
-  accessible_id: https
-  accessible_role: ''
-  line: 185
-- file: dcc-network/qml/PageSystemProxy.qml
-  element_type: SystemProxyConfigItem
-  accessible_id: ftp
-  accessible_role: ''
-  line: 203
-- file: dcc-network/qml/PageSystemProxy.qml
-  element_type: SystemProxyConfigItem
-  accessible_id: socks
-  accessible_role: ''
-  line: 221
+  line: 143
 - file: dcc-network/qml/PageSystemProxy.qml
   element_type: TextArea
-  accessible_id: DccObjConfig
+  accessible_id: PageSystemProxy_TextArea
   accessible_role: ''
-  line: 248
+  line: 243
 - file: dcc-network/qml/PageSystemProxy.qml
   element_type: Button
-  accessible_id: DccObjDisplayName
+  accessible_id: ''
   accessible_role: ''
-  line: 293
+  line: 289
 - file: dcc-network/qml/PageSystemProxy.qml
   element_type: Button
-  accessible_id: DccObjDisplayName_2
+  accessible_id: PageSystemProxy_Button_Save
   accessible_role: ''
-  line: 314
+  line: 311
 - file: dcc-network/qml/PageVPN.qml
   element_type: Switch
-  accessible_id: Component_Switch
+  accessible_id: PageVPN_Switch
   accessible_role: ''
   line: 26
 - file: dcc-network/qml/PageVPN.qml
   element_type: ItemDelegate
-  accessible_id: ItemDelegate_<index>
+  accessible_id: PageVPN_ItemDelegate
   accessible_role: ''
-  line: 68
-- file: dcc-network/qml/PageVPN.qml
-  element_type: NetButton
-  accessible_id: Disconnect_<index>
-  accessible_role: Accessible.Button
-  line: 87
-- file: dcc-network/qml/PageVPN.qml
-  element_type: PageVPNSettings
-  accessible_id: vpnSettings
-  accessible_role: ''
-  line: 125
-- file: dcc-network/qml/PageVPN.qml
-  element_type: NetButton
-  accessible_id: ImportVpn
-  accessible_role: Accessible.Button
-  line: 181
+  line: 69
 - file: dcc-network/qml/PageVPN.qml
   element_type: Button
-  accessible_id: Ok
+  accessible_id: PageVPN_Button
   accessible_role: ''
-  line: 239
-- file: dcc-network/qml/PageVPN.qml
-  element_type: NetButton
-  accessible_id: AddVpn
-  accessible_role: Accessible.Button
-  line: 255
+  line: 240
 - file: dcc-network/qml/PageVPNSettings.qml
   element_type: ComboBox
-  accessible_id: PageVpnsettings_ComboBox
+  accessible_id: PageVPNSettings_ComboBox
   accessible_role: ''
   line: 75
 - file: dcc-network/qml/PageVPNSettings.qml
-  element_type: SectionGeneric
-  accessible_id: SectionGeneric
+  element_type: Button
+  accessible_id: PageVPNSettings_Button
   accessible_role: ''
-  line: 118
-- file: dcc-network/qml/PageVPNSettings.qml
-  element_type: SectionVPN
-  accessible_id: SectionVpn
-  accessible_role: ''
-  line: 126
-- file: dcc-network/qml/PageVPNSettings.qml
-  element_type: SectionIPv4
-  accessible_id: SectionIpv4
-  accessible_role: ''
-  line: 135
-- file: dcc-network/qml/PageVPNSettings.qml
-  element_type: SectionIPv6
-  accessible_id: SectionIpv6
-  accessible_role: ''
-  line: 145
-- file: dcc-network/qml/PageVPNSettings.qml
-  element_type: SectionDNS
-  accessible_id: SectionDns
-  accessible_role: ''
-  line: 168
-- file: dcc-network/qml/PageVPNSettings.qml
-  element_type: NetButton
-  accessible_id: PageVpnsettings_NetButton
-  accessible_role: Accessible.Button
-  line: 189
+  line: 218
 - file: dcc-network/qml/PageVPNSettings.qml
   element_type: Button
-  accessible_id: Cancel
+  accessible_id: PageVPNSettings_Button_Delete
   accessible_role: ''
-  line: 222
-- file: dcc-network/qml/PageVPNSettings.qml
-  element_type: Button
-  accessible_id: Component_Button
-  accessible_role: ''
-  line: 234
-- file: dcc-network/qml/PageVPNSettings.qml
-  element_type: NetButton
-  accessible_id: Export
-  accessible_role: Accessible.Button
-  line: 259
-- file: dcc-network/qml/PageVPNSettings.qml
-  element_type: NetButton
-  accessible_id: Cancel_2
-  accessible_role: Accessible.Button
-  line: 298
-- file: dcc-network/qml/PageVPNSettings.qml
-  element_type: NetButton
-  accessible_id: Save
-  accessible_role: Accessible.Button
-  line: 313
-- file: dcc-network/qml/PageWiredDevice.qml
-  element_type: DeviceStatusItem
-  accessible_id: PageWiredDevice_DeviceStatusItem
-  accessible_role: Accessible.Grouping
-  line: 28
-- file: dcc-network/qml/PageWiredDevice.qml
-  element_type: DeviceStatusItem
-  accessible_id: PageWiredDevice_DeviceStatusItem_2
-  accessible_role: Accessible.Grouping
-  line: 52
+  line: 232
 - file: dcc-network/qml/PageWiredDevice.qml
   element_type: ItemDelegate
-  accessible_id: ItemDelegate_4
+  accessible_id: PageWiredDevice_ItemDelegate
   accessible_role: ''
   line: 91
 - file: dcc-network/qml/PageWiredDevice.qml
-  element_type: NetButton
-  accessible_id: ModelItemStatus_2
-  accessible_role: Accessible.Button
-  line: 138
-- file: dcc-network/qml/PageWiredDevice.qml
-  element_type: PageSettings
-  accessible_id: wiredSettings
+  element_type: Item
+  accessible_id: PageWiredDevice_Item
   accessible_role: ''
-  line: 289
+  line: 158
 - file: dcc-network/qml/PageWiredDevice.qml
-  element_type: NetButton
-  accessible_id: DccObjDisplayName_3
-  accessible_role: Accessible.Button
-  line: 341
-- file: dcc-network/qml/PageWirelessDevice.qml
-  element_type: DeviceStatusItem
-  accessible_id: PageWirelessDevice_DeviceStatusItem
-  accessible_role: Accessible.Grouping
-  line: 30
+  element_type: Label
+  accessible_id: PageWiredDevice_Label
+  accessible_role: ''
+  line: 263
 - file: dcc-network/qml/PageWirelessDevice.qml
   element_type: ItemDelegate
-  accessible_id: ItemDelegate_3
+  accessible_id: PageWirelessDevice_ItemDelegate
   accessible_role: ''
   line: 53
 - file: dcc-network/qml/PageWirelessDevice.qml
-  element_type: NetButton
-  accessible_id: ModelItemStatus
-  accessible_role: Accessible.Button
-  line: 100
+  element_type: Item
+  accessible_id: PageWirelessDevice_Item
+  accessible_role: ''
+  line: 120
+- file: dcc-network/qml/PageWirelessDevice.qml
+  element_type: Label
+  accessible_id: PageWirelessDevice_Label
+  accessible_role: ''
+  line: 225
 - file: dcc-network/qml/PageWirelessDevice.qml
   element_type: ItemDelegate
-  accessible_id: Repeater_ItemDelegate_<index>
+  accessible_id: PageWirelessDevice_ItemDelegate_Hidden
   accessible_role: ''
-  line: 253
+  line: 257
 - file: dcc-network/qml/PageWirelessDevice.qml
-  element_type: DeviceStatusItem
-  accessible_id: PageWirelessDevice_DeviceStatusItem_2
-  accessible_role: Accessible.Grouping
-  line: 290
+  element_type: Label
+  accessible_id: ''
+  accessible_role: ''
+  line: 402
 - file: dcc-network/qml/PageWirelessDevice.qml
-  element_type: PageSettings
-  accessible_id: wirelessSettings
+  element_type: Label
+  accessible_id: PageWirelessDevice_Label_AirplaneTips
   accessible_role: ''
   line: 417
+- file: dcc-network/qml/SectionDNS.qml
+  element_type: LineEdit
+  accessible_id: SectionDNS_LineEdit
+  accessible_role: ''
+  line: 178
+- file: dcc-network/qml/SectionDNS.qml
+  element_type: Label
+  accessible_id: SectionDNS_Label
+  accessible_role: ''
+  line: 139
 - file: dcc-network/qml/SectionDevice.qml
   element_type: ComboBox
   accessible_id: SectionDevice_ComboBox
   accessible_role: ''
   line: 109
 - file: dcc-network/qml/SectionDevice.qml
+  element_type: LineEdit
+  accessible_id: SectionDevice_LineEdit
+  accessible_role: ''
+  line: 140
+- file: dcc-network/qml/SectionDevice.qml
   element_type: Switch
   accessible_id: SectionDevice_Switch
   accessible_role: ''
-  line: 170
+  line: 172
 - file: dcc-network/qml/SectionDevice.qml
   element_type: SpinBox
   accessible_id: SectionDevice_SpinBox
   accessible_role: ''
-  line: 187
+  line: 190
+- file: dcc-network/qml/SectionGeneric.qml
+  element_type: LineEdit
+  accessible_id: SectionGeneric_LineEdit
+  accessible_role: ''
+  line: 58
 - file: dcc-network/qml/SectionGeneric.qml
   element_type: Switch
   accessible_id: SectionGeneric_Switch
   accessible_role: ''
-  line: 87
+  line: 88
 - file: dcc-network/qml/SectionGeneric.qml
   element_type: ComboBox
   accessible_id: SectionGeneric_ComboBox
   accessible_role: ''
-  line: 104
+  line: 106
 - file: dcc-network/qml/SectionIPv4.qml
   element_type: ComboBox
-  accessible_id: SectionIpv4_ComboBox
+  accessible_id: SectionIPv4_ComboBox
   accessible_role: ''
-  line: 227
+  line: 228
 - file: dcc-network/qml/SectionIPv4.qml
   element_type: Switch
-  accessible_id: SectionIpv4_Switch
+  accessible_id: SectionIPv4_Switch
   accessible_role: ''
-  line: 262
+  line: 264
 - file: dcc-network/qml/SectionIPv4.qml
   element_type: ComboBox
-  accessible_id: SectionIpv4_ComboBox_2
+  accessible_id: SectionIPv4_ComboBox
   accessible_role: ''
-  line: 293
+  line: 296
+- file: dcc-network/qml/SectionIPv4.qml
+  element_type: LineEdit
+  accessible_id: SectionIPv4_LineEdit
+  accessible_role: ''
+  line: 408
+- file: dcc-network/qml/SectionIPv4.qml
+  element_type: LineEdit
+  accessible_id: SectionIPv4_LineEdit
+  accessible_role: ''
+  line: 441
+- file: dcc-network/qml/SectionIPv4.qml
+  element_type: LineEdit
+  accessible_id: SectionIPv4_LineEdit
+  accessible_role: ''
+  line: 474
+- file: dcc-network/qml/SectionIPv4.qml
+  element_type: Label
+  accessible_id: SectionIPv4_Label
+  accessible_role: ''
+  line: 173
 - file: dcc-network/qml/SectionIPv6.qml
   element_type: ComboBox
-  accessible_id: SectionIpv6_ComboBox
+  accessible_id: SectionIPv6_ComboBox
   accessible_role: ''
-  line: 230
+  line: 231
 - file: dcc-network/qml/SectionIPv6.qml
   element_type: Switch
-  accessible_id: SectionIpv6_Switch
+  accessible_id: SectionIPv6_Switch
   accessible_role: ''
-  line: 265
+  line: 267
 - file: dcc-network/qml/SectionIPv6.qml
   element_type: ComboBox
-  accessible_id: SectionIpv6_ComboBox_2
+  accessible_id: SectionIPv6_ComboBox
   accessible_role: ''
-  line: 295
+  line: 298
+- file: dcc-network/qml/SectionIPv6.qml
+  element_type: LineEdit
+  accessible_id: SectionIPv6_LineEdit
+  accessible_role: ''
+  line: 413
 - file: dcc-network/qml/SectionIPv6.qml
   element_type: SpinBox
-  accessible_id: SectionIpv6_SpinBox
+  accessible_id: SectionIPv6_SpinBox
   accessible_role: ''
-  line: 443
+  line: 448
+- file: dcc-network/qml/SectionIPv6.qml
+  element_type: LineEdit
+  accessible_id: SectionIPv6_LineEdit
+  accessible_role: ''
+  line: 484
+- file: dcc-network/qml/SectionIPv6.qml
+  element_type: Label
+  accessible_id: SectionIPv6_Label
+  accessible_role: ''
+  line: 201
 - file: dcc-network/qml/SectionPPP.qml
   element_type: Switch
-  accessible_id: Component_Switch_3
+  accessible_id: SectionPPP_Switch
   accessible_role: ''
   line: 41
 - file: dcc-network/qml/SectionPPP.qml
   element_type: Switch
-  accessible_id: SectionPpp_Switch
+  accessible_id: SectionPPP_Switch
   accessible_role: ''
-  line: 64
+  line: 65
 - file: dcc-network/qml/SectionPPP.qml
   element_type: Switch
-  accessible_id: SectionPpp_Switch_2
+  accessible_id: SectionPPP_Switch
   accessible_role: ''
-  line: 188
+  line: 190
 - file: dcc-network/qml/SectionPPPOE.qml
-  element_type: NetPasswordEdit
-  accessible_id: Password
-  accessible_role: Accessible.EditableText
-  line: 99
+  element_type: LineEdit
+  accessible_id: SectionPPPOE_LineEdit
+  accessible_role: ''
+  line: 53
+- file: dcc-network/qml/SectionPPPOE.qml
+  element_type: LineEdit
+  accessible_id: SectionPPPOE_LineEdit
+  accessible_role: ''
+  line: 83
 - file: dcc-network/qml/SectionSecret.qml
   element_type: ComboBox
   accessible_id: SectionSecret_ComboBox
@@ -814,425 +644,284 @@ qml:
   element_type: Switch
   accessible_id: SectionSecret_Switch
   accessible_role: ''
-  line: 378
+  line: 379
 - file: dcc-network/qml/SectionSecret.qml
   element_type: ComboBox
-  accessible_id: SectionSecret_ComboBox_2
+  accessible_id: SectionSecret_ComboBox
   accessible_role: ''
-  line: 397
+  line: 399
+- file: dcc-network/qml/SectionSecret.qml
+  element_type: LineEdit
+  accessible_id: SectionSecret_LineEdit
+  accessible_role: ''
+  line: 424
 - file: dcc-network/qml/SectionSecret.qml
   element_type: ComboBox
-  accessible_id: SectionSecret_ComboBox_3
+  accessible_id: SectionSecret_ComboBox
   accessible_role: ''
-  line: 451
-- file: dcc-network/qml/SectionSecret.qml
-  element_type: NetPasswordEdit
-  accessible_id: RootPwdStr
-  accessible_role: Accessible.EditableText
-  line: 484
+  line: 455
 - file: dcc-network/qml/SectionSecret.qml
   element_type: ComboBox
-  accessible_id: SectionSecret_ComboBox_4
+  accessible_id: SectionSecret_ComboBox
   accessible_role: ''
-  line: 500
+  line: 505
 - file: dcc-network/qml/SectionSecret.qml
-  element_type: NetFileChooseEdit
-  accessible_id: PrivateKey
-  accessible_role: Accessible.EditableText
-  line: 530
+  element_type: LineEdit
+  accessible_id: SectionSecret_LineEdit
+  accessible_role: ''
+  line: 553
 - file: dcc-network/qml/SectionSecret.qml
   element_type: ComboBox
-  accessible_id: SectionSecret_ComboBox_5
+  accessible_id: SectionSecret_ComboBox
   accessible_role: ''
-  line: 565
-- file: dcc-network/qml/SectionSecret.qml
-  element_type: NetFileChooseEdit
-  accessible_id: SectionSecret_NetFileChooseEdit
-  accessible_role: Accessible.EditableText
-  line: 604
-- file: dcc-network/qml/SectionSecret.qml
-  element_type: NetFileChooseEdit
-  accessible_id: SectionSecret_NetFileChooseEdit_2
-  accessible_role: Accessible.EditableText
-  line: 620
-- file: dcc-network/qml/SectionSecret.qml
-  element_type: NetFileChooseEdit
-  accessible_id: Required
-  accessible_role: Accessible.EditableText
-  line: 636
+  line: 572
 - file: dcc-network/qml/SectionSecret.qml
   element_type: ComboBox
-  accessible_id: SectionSecret_ComboBox_6
+  accessible_id: SectionSecret_ComboBox
   accessible_role: ''
-  line: 653
+  line: 661
 - file: dcc-network/qml/SectionSecret.qml
   element_type: ComboBox
-  accessible_id: SectionSecret_ComboBox_7
+  accessible_id: SectionSecret_ComboBox
   accessible_role: ''
-  line: 689
+  line: 698
 - file: dcc-network/qml/SectionVPN.qml
-  element_type: NetButton
-  accessible_id: Component_NetButton
-  accessible_role: Accessible.Button
-  line: 377
+  element_type: LineEdit
+  accessible_id: SectionVPN_LineEdit
+  accessible_role: ''
+  line: 356
 - file: dcc-network/qml/SectionVPN.qml
-  element_type: NetButton
-  accessible_id: Component_NetButton_2
-  accessible_role: Accessible.Button
-  line: 414
+  element_type: LineEdit
+  accessible_id: SectionVPN_LineEdit
+  accessible_role: ''
+  line: 394
+- file: dcc-network/qml/SectionVPN.qml
+  element_type: LineEdit
+  accessible_id: SectionVPN_LineEdit
+  accessible_role: ''
+  line: 432
+- file: dcc-network/qml/SectionVPN.qml
+  element_type: LineEdit
+  accessible_id: SectionVPN_LineEdit
+  accessible_role: ''
+  line: 459
+- file: dcc-network/qml/SectionVPN.qml
+  element_type: LineEdit
+  accessible_id: SectionVPN_LineEdit
+  accessible_role: ''
+  line: 485
 - file: dcc-network/qml/SectionVPN.qml
   element_type: Switch
-  accessible_id: Component_Switch_4
+  accessible_id: SectionVPN_Switch
   accessible_role: ''
-  line: 500
+  line: 510
 - file: dcc-network/qml/SectionVPN.qml
   element_type: ComboBox
-  accessible_id: SectionVpn_ComboBox
+  accessible_id: SectionVPN_ComboBox
   accessible_role: ''
-  line: 601
+  line: 612
 - file: dcc-network/qml/SectionVPN.qml
-  element_type: NetButton
-  accessible_id: SectionVpn_NetButton
-  accessible_role: Accessible.Button
-  line: 662
+  element_type: LineEdit
+  accessible_id: SectionVPN_LineEdit
+  accessible_role: ''
+  line: 652
 - file: dcc-network/qml/SectionVPN.qml
-  element_type: NetButton
-  accessible_id: SectionVpn_NetButton_2
-  accessible_role: Accessible.Button
-  line: 705
+  element_type: LineEdit
+  accessible_id: SectionVPN_LineEdit
+  accessible_role: ''
+  line: 697
 - file: dcc-network/qml/SectionVPN.qml
   element_type: ComboBox
-  accessible_id: SectionVpn_ComboBox_2
+  accessible_id: SectionVPN_ComboBox
   accessible_role: ''
-  line: 755
+  line: 771
 - file: dcc-network/qml/SectionVPN.qml
   element_type: ComboBox
-  accessible_id: SectionVpn_ComboBox_3
+  accessible_id: SectionVPN_ComboBox
   accessible_role: ''
-  line: 809
-- file: dcc-network/qml/SectionVPN.qml
-  element_type: NetPasswordEdit
-  accessible_id: RootSecretMapHasOwnPropertydccObjNamerootSecretMap
-  accessible_role: Accessible.EditableText
-  line: 848
+  line: 826
 - file: dcc-network/qml/SectionVPN.qml
   element_type: ComboBox
-  accessible_id: SectionVpn_ComboBox_4
+  accessible_id: SectionVPN_ComboBox
   accessible_role: ''
-  line: 884
-- file: dcc-network/qml/SectionVPN.qml
-  element_type: NetPasswordEdit
-  accessible_id: RootSecretMapHasOwnPropertydccObjNamerootSecretMap_2
-  accessible_role: Accessible.EditableText
-  line: 915
+  line: 902
 - file: dcc-network/qml/SectionVPN.qml
   element_type: Switch
-  accessible_id: SectionVpn_Switch
+  accessible_id: SectionVPN_Switch
   accessible_role: ''
-  line: 941
+  line: 960
 - file: dcc-network/qml/SectionVPN.qml
   element_type: ComboBox
-  accessible_id: SectionVpn_ComboBox_5
+  accessible_id: SectionVPN_ComboBox
   accessible_role: ''
-  line: 962
+  line: 982
 - file: dcc-network/qml/SectionVPN.qml
   element_type: Switch
-  accessible_id: SectionVpn_Switch_2
+  accessible_id: SectionVPN_Switch
   accessible_role: ''
-  line: 1054
+  line: 1075
 - file: dcc-network/qml/SectionVPN.qml
   element_type: ComboBox
-  accessible_id: SectionVpn_ComboBox_6
+  accessible_id: SectionVPN_ComboBox
   accessible_role: ''
-  line: 1112
-- file: dcc-network/qml/SectionVPN.qml
-  element_type: NetPasswordEdit
-  accessible_id: RootSecretMapHasOwnPropertydccObjNamerootSecretMap_3
-  accessible_role: Accessible.EditableText
-  line: 1144
+  line: 1134
 - file: dcc-network/qml/SectionVPN.qml
   element_type: ComboBox
-  accessible_id: SectionVpn_ComboBox_7
+  accessible_id: SectionVPN_ComboBox
   accessible_role: ''
-  line: 1170
-- file: dcc-network/qml/SectionVPN.qml
-  element_type: NetPasswordEdit
-  accessible_id: RootSecretMapHasOwnPropertydccObjNamerootSecretMap_4
-  accessible_role: Accessible.EditableText
-  line: 1202
+  line: 1193
 - file: dcc-network/qml/SectionVPN.qml
   element_type: Switch
-  accessible_id: SectionVpn_Switch_3
+  accessible_id: SectionVPN_Switch
   accessible_role: ''
-  line: 1218
+  line: 1242
 - file: dcc-network/qml/SectionVPN.qml
   element_type: Switch
-  accessible_id: SectionVpn_Switch_4
+  accessible_id: SectionVPN_Switch
   accessible_role: ''
-  line: 1268
+  line: 1293
 - file: dcc-network/qml/SectionVPN.qml
   element_type: ComboBox
-  accessible_id: SectionVpn_ComboBox_8
+  accessible_id: SectionVPN_ComboBox
   accessible_role: ''
-  line: 1285
+  line: 1311
 - file: dcc-network/qml/SectionVPN.qml
   element_type: Switch
-  accessible_id: SectionVpn_Switch_5
+  accessible_id: SectionVPN_Switch
   accessible_role: ''
-  line: 1426
+  line: 1453
 - file: dcc-network/qml/SectionVPN.qml
   element_type: Switch
-  accessible_id: SectionVpn_Switch_6
+  accessible_id: SectionVPN_Switch
   accessible_role: ''
-  line: 1543
+  line: 1571
 - file: dcc-network/qml/SectionVPN.qml
   element_type: SpinBox
-  accessible_id: SectionVpn_SpinBox
+  accessible_id: SectionVPN_SpinBox
   accessible_role: ''
-  line: 1565
+  line: 1594
 - file: dcc-network/qml/SectionVPN.qml
   element_type: Switch
-  accessible_id: SectionVpn_Switch_7
+  accessible_id: SectionVPN_Switch
   accessible_role: ''
-  line: 1589
+  line: 1619
 - file: dcc-network/qml/SectionVPN.qml
   element_type: SpinBox
-  accessible_id: SectionVpn_SpinBox_2
+  accessible_id: SectionVPN_SpinBox
   accessible_role: ''
-  line: 1611
+  line: 1642
 - file: dcc-network/qml/SectionVPN.qml
   element_type: Switch
-  accessible_id: SectionVpn_Switch_8
+  accessible_id: SectionVPN_Switch
   accessible_role: ''
-  line: 1635
+  line: 1667
 - file: dcc-network/qml/SectionVPN.qml
   element_type: Switch
-  accessible_id: SectionVpn_Switch_9
+  accessible_id: SectionVPN_Switch
   accessible_role: ''
-  line: 1674
+  line: 1707
 - file: dcc-network/qml/SectionVPN.qml
   element_type: SpinBox
-  accessible_id: SectionVpn_SpinBox_3
+  accessible_id: SectionVPN_SpinBox
   accessible_role: ''
-  line: 1696
+  line: 1730
 - file: dcc-network/qml/SectionVPN.qml
   element_type: Switch
-  accessible_id: SectionVpn_Switch_10
+  accessible_id: SectionVPN_Switch
   accessible_role: ''
-  line: 1720
+  line: 1755
 - file: dcc-network/qml/SectionVPN.qml
   element_type: SpinBox
-  accessible_id: SectionVpn_SpinBox_4
+  accessible_id: SectionVPN_SpinBox
   accessible_role: ''
-  line: 1742
+  line: 1778
 - file: dcc-network/qml/SectionVPN.qml
   element_type: ComboBox
-  accessible_id: SectionVpn_ComboBox_9
+  accessible_id: SectionVPN_ComboBox
   accessible_role: ''
-  line: 1811
+  line: 1848
 - file: dcc-network/qml/SectionVPN.qml
   element_type: ComboBox
-  accessible_id: SectionVpn_ComboBox_10
+  accessible_id: SectionVPN_ComboBox
   accessible_role: ''
-  line: 1847
+  line: 1885
 - file: dcc-network/qml/SectionVPN.qml
   element_type: ComboBox
-  accessible_id: SectionVpn_ComboBox_11
+  accessible_id: SectionVPN_ComboBox
   accessible_role: ''
-  line: 1877
+  line: 1916
 - file: dcc-network/qml/SectionVPN.qml
   element_type: ComboBox
-  accessible_id: SectionVpn_ComboBox_12
+  accessible_id: SectionVPN_ComboBox
   accessible_role: ''
-  line: 1910
+  line: 1950
 - file: dcc-network/qml/SectionVPN.qml
   element_type: ComboBox
-  accessible_id: SectionVpn_ComboBox_13
+  accessible_id: SectionVPN_ComboBox
   accessible_role: ''
-  line: 1940
+  line: 1981
 - file: dcc-network/qml/SectionVPN.qml
   element_type: SpinBox
-  accessible_id: SectionVpn_SpinBox_5
+  accessible_id: SectionVPN_SpinBox
   accessible_role: ''
-  line: 1976
+  line: 2018
 - file: dcc-network/qml/SectionVPN.qml
   element_type: Switch
-  accessible_id: SectionVpn_Switch_11
+  accessible_id: SectionVPN_Switch
   accessible_role: ''
-  line: 2000
+  line: 2043
 - file: dcc-network/qml/SectionVPN.qml
   element_type: ComboBox
-  accessible_id: SectionVpn_ComboBox_14
+  accessible_id: SectionVPN_ComboBox
   accessible_role: ''
-  line: 2038
+  line: 2082
 - file: dcc-network/qml/SectionVPN.qml
   element_type: ComboBox
-  accessible_id: SectionVpn_ComboBox_15
+  accessible_id: SectionVPN_ComboBox
   accessible_role: ''
-  line: 2113
+  line: 2158
 - file: dcc-network/qml/SectionVPN.qml
   element_type: ComboBox
-  accessible_id: SectionVpn_ComboBox_16
+  accessible_id: SectionVPN_ComboBox
   accessible_role: ''
-  line: 2182
+  line: 2228
 - file: dcc-network/qml/SectionVPN.qml
   element_type: SpinBox
-  accessible_id: SectionVpn_SpinBox_6
+  accessible_id: SectionVPN_SpinBox
   accessible_role: ''
-  line: 2224
-- file: dcc-network/qml/SectionVPN.qml
-  element_type: NetPasswordEdit
-  accessible_id: RootSecretMapHasOwnPropertydccObjNamerootSecretMap_5
-  accessible_role: Accessible.EditableText
-  line: 2272
+  line: 2271
 - file: dcc-network/qml/SectionVPN.qml
   element_type: ComboBox
-  accessible_id: SectionVpn_ComboBox_17
+  accessible_id: SectionVPN_ComboBox
   accessible_role: ''
-  line: 2314
+  line: 2362
 - file: dcc-network/qml/SectionVPN.qml
   element_type: Switch
-  accessible_id: SectionVpn_Switch_12
+  accessible_id: SectionVPN_Switch
   accessible_role: ''
-  line: 2357
+  line: 2406
 - file: dcc-network/qml/SectionVPN.qml
   element_type: ComboBox
-  accessible_id: SectionVpn_ComboBox_18
+  accessible_id: SectionVPN_ComboBox
   accessible_role: ''
-  line: 2379
+  line: 2429
+- file: dcc-network/qml/SystemProxyConfigItem.qml
+  element_type: LineEdit
+  accessible_id: SystemProxyConfigItem_LineEdit
+  accessible_role: ''
+  line: 52
+- file: dcc-network/qml/SystemProxyConfigItem.qml
+  element_type: LineEdit
+  accessible_id: SystemProxyConfigItem_LineEdit_Port
+  accessible_role: ''
+  line: 72
 - file: dcc-network/qml/SystemProxyConfigItem.qml
   element_type: Switch
   accessible_id: SystemProxyConfigItem_Switch
   accessible_role: ''
-  line: 93
+  line: 95
 - file: dcc-network/qml/SystemProxyConfigItem.qml
-  element_type: NetPasswordEdit
-  accessible_id: RootConfigPassword
-  accessible_role: Accessible.EditableText
-  line: 141
-
-dynamic_elements:
-# SecretLineEdit_<key> — dynamically created in NetSecretWidget::initUI()
-# key values come from m_secretKeyStrMap and m_propMap
-- file: net-view/window/private/netsecretwidget.cpp
-  pattern: 'SecretLineEdit_{key}'
-  expected_name: 'SecretLineEdit_psk'
-- file: net-view/window/private/netsecretwidget.cpp
-  pattern: 'SecretLineEdit_{key}'
-  expected_name: 'SecretLineEdit_wep-key0'
-- file: net-view/window/private/netsecretwidget.cpp
-  pattern: 'SecretLineEdit_{key}'
-  expected_name: 'SecretLineEdit_wep-key1'
-- file: net-view/window/private/netsecretwidget.cpp
-  pattern: 'SecretLineEdit_{key}'
-  expected_name: 'SecretLineEdit_wep-key2'
-- file: net-view/window/private/netsecretwidget.cpp
-  pattern: 'SecretLineEdit_{key}'
-  expected_name: 'SecretLineEdit_wep-key3'
-- file: net-view/window/private/netsecretwidget.cpp
-  pattern: 'SecretLineEdit_{key}'
-  expected_name: 'SecretLineEdit_leap-password'
-- file: net-view/window/private/netsecretwidget.cpp
-  pattern: 'SecretLineEdit_{key}'
-  expected_name: 'SecretLineEdit_password'
-- file: net-view/window/private/netsecretwidget.cpp
-  pattern: 'SecretLineEdit_{key}'
-  expected_name: 'SecretLineEdit_password-raw'
-- file: net-view/window/private/netsecretwidget.cpp
-  pattern: 'SecretLineEdit_{key}'
-  expected_name: 'SecretLineEdit_ca-cert-password'
-- file: net-view/window/private/netsecretwidget.cpp
-  pattern: 'SecretLineEdit_{key}'
-  expected_name: 'SecretLineEdit_client-cert-password'
-- file: net-view/window/private/netsecretwidget.cpp
-  pattern: 'SecretLineEdit_{key}'
-  expected_name: 'SecretLineEdit_phase2-ca-cert-password'
-- file: net-view/window/private/netsecretwidget.cpp
-  pattern: 'SecretLineEdit_{key}'
-  expected_name: 'SecretLineEdit_phase2-client-cert-password'
-- file: net-view/window/private/netsecretwidget.cpp
-  pattern: 'SecretLineEdit_{key}'
-  expected_name: 'SecretLineEdit_private-key-password'
-- file: net-view/window/private/netsecretwidget.cpp
-  pattern: 'SecretLineEdit_{key}'
-  expected_name: 'SecretLineEdit_phase2-private-key-password'
-- file: net-view/window/private/netsecretwidget.cpp
-  pattern: 'SecretLineEdit_{key}'
-  expected_name: 'SecretLineEdit_pin'
-- file: net-view/window/private/netsecretwidget.cpp
-  pattern: 'SecretLineEdit_{key}'
-  expected_name: 'SecretLineEdit_proxy-password'
-- file: net-view/window/private/netsecretwidget.cpp
-  pattern: 'SecretLineEdit_{key}'
-  expected_name: 'SecretLineEdit_IPSec secret'
-- file: net-view/window/private/netsecretwidget.cpp
-  pattern: 'SecretLineEdit_{key}'
-  expected_name: 'SecretLineEdit_Xauth password'
-- file: net-view/window/private/netsecretwidget.cpp
-  pattern: 'SecretLineEdit_{key}'
-  expected_name: 'SecretLineEdit_identity'
-- file: net-view/window/private/netsecretwidget.cpp
-  pattern: 'SecretLineEdit_{key}'
-  expected_name: 'SecretLineEdit_ssid'
-# SecretDialogLineEdit_<secret> — dynamically created in NetworkSecretDialog::initUI()
-# secret values come from m_secretKeyStrMap and m_propMap
-- file: network-service-plugin/dde-network-secret-dialog/src/networksecretdialog.cpp
-  pattern: 'SecretDialogLineEdit_{secret}'
-  expected_name: 'SecretDialogLineEdit_psk'
-- file: network-service-plugin/dde-network-secret-dialog/src/networksecretdialog.cpp
-  pattern: 'SecretDialogLineEdit_{secret}'
-  expected_name: 'SecretDialogLineEdit_wep-key0'
-- file: network-service-plugin/dde-network-secret-dialog/src/networksecretdialog.cpp
-  pattern: 'SecretDialogLineEdit_{secret}'
-  expected_name: 'SecretDialogLineEdit_wep-key1'
-- file: network-service-plugin/dde-network-secret-dialog/src/networksecretdialog.cpp
-  pattern: 'SecretDialogLineEdit_{secret}'
-  expected_name: 'SecretDialogLineEdit_wep-key2'
-- file: network-service-plugin/dde-network-secret-dialog/src/networksecretdialog.cpp
-  pattern: 'SecretDialogLineEdit_{secret}'
-  expected_name: 'SecretDialogLineEdit_wep-key3'
-- file: network-service-plugin/dde-network-secret-dialog/src/networksecretdialog.cpp
-  pattern: 'SecretDialogLineEdit_{secret}'
-  expected_name: 'SecretDialogLineEdit_leap-password'
-- file: network-service-plugin/dde-network-secret-dialog/src/networksecretdialog.cpp
-  pattern: 'SecretDialogLineEdit_{secret}'
-  expected_name: 'SecretDialogLineEdit_password'
-- file: network-service-plugin/dde-network-secret-dialog/src/networksecretdialog.cpp
-  pattern: 'SecretDialogLineEdit_{secret}'
-  expected_name: 'SecretDialogLineEdit_password-raw'
-- file: network-service-plugin/dde-network-secret-dialog/src/networksecretdialog.cpp
-  pattern: 'SecretDialogLineEdit_{secret}'
-  expected_name: 'SecretDialogLineEdit_ca-cert-password'
-- file: network-service-plugin/dde-network-secret-dialog/src/networksecretdialog.cpp
-  pattern: 'SecretDialogLineEdit_{secret}'
-  expected_name: 'SecretDialogLineEdit_client-cert-password'
-- file: network-service-plugin/dde-network-secret-dialog/src/networksecretdialog.cpp
-  pattern: 'SecretDialogLineEdit_{secret}'
-  expected_name: 'SecretDialogLineEdit_phase2-ca-cert-password'
-- file: network-service-plugin/dde-network-secret-dialog/src/networksecretdialog.cpp
-  pattern: 'SecretDialogLineEdit_{secret}'
-  expected_name: 'SecretDialogLineEdit_phase2-client-cert-password'
-- file: network-service-plugin/dde-network-secret-dialog/src/networksecretdialog.cpp
-  pattern: 'SecretDialogLineEdit_{secret}'
-  expected_name: 'SecretDialogLineEdit_private-key-password'
-- file: network-service-plugin/dde-network-secret-dialog/src/networksecretdialog.cpp
-  pattern: 'SecretDialogLineEdit_{secret}'
-  expected_name: 'SecretDialogLineEdit_phase2-private-key-password'
-- file: network-service-plugin/dde-network-secret-dialog/src/networksecretdialog.cpp
-  pattern: 'SecretDialogLineEdit_{secret}'
-  expected_name: 'SecretDialogLineEdit_pin'
-- file: network-service-plugin/dde-network-secret-dialog/src/networksecretdialog.cpp
-  pattern: 'SecretDialogLineEdit_{secret}'
-  expected_name: 'SecretDialogLineEdit_proxy-password'
-- file: network-service-plugin/dde-network-secret-dialog/src/networksecretdialog.cpp
-  pattern: 'SecretDialogLineEdit_{secret}'
-  expected_name: 'SecretDialogLineEdit_IPSec secret'
-- file: network-service-plugin/dde-network-secret-dialog/src/networksecretdialog.cpp
-  pattern: 'SecretDialogLineEdit_{secret}'
-  expected_name: 'SecretDialogLineEdit_Xauth password'
-- file: network-service-plugin/dde-network-secret-dialog/src/networksecretdialog.cpp
-  pattern: 'SecretDialogLineEdit_{secret}'
-  expected_name: 'SecretDialogLineEdit_cert-pass'
-- file: network-service-plugin/dde-network-secret-dialog/src/networksecretdialog.cpp
-  pattern: 'SecretDialogLineEdit_{secret}'
-  expected_name: 'SecretDialogLineEdit_identity'
+  element_type: LineEdit
+  accessible_id: SystemProxyConfigItem_LineEdit_User
+  accessible_role: ''
+  line: 115
