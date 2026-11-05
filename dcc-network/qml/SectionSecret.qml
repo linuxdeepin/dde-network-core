@@ -337,6 +337,7 @@ DccTitleObject {
             visible: root.type === NetType.WirelessItem || root.type === NetType.WirelessHiddenItem
             pageType: DccObject.Editor
             page: D.ComboBox {
+                Accessible.id: "SectionSecret_ComboBox"
                 objectName: "SectionSecret_ComboBox"
                 flat: true
                 textRole: "text"
@@ -376,6 +377,7 @@ DccTitleObject {
             visible: root.type === NetType.WiredItem
             pageType: DccObject.Editor
             page: D.Switch {
+                Accessible.id: "SectionSecret_Switch"
                 objectName: "SectionSecret_Switch"
                 checked: root.keyMgmt === "wpa-eap"
                 onClicked: {
@@ -395,6 +397,7 @@ DccTitleObject {
             visible: root.keyMgmt === "wpa-eap"
             pageType: DccObject.Editor
             page: D.ComboBox {
+                Accessible.id: "SectionSecret_ComboBox"
                 objectName: "SectionSecret_ComboBox_2"
                 flat: true
                 textRole: "text"
@@ -419,6 +422,7 @@ DccTitleObject {
             visible: root.keyMgmt === "wpa-eap"
             pageType: DccObject.Editor
             page: D.LineEdit {
+                Accessible.id: "SectionSecret_LineEdit"
                 placeholderText: qsTr("Required")
                 text: root.config802_1x && root.config802_1x.hasOwnProperty("identity") ? root.config802_1x.identity : ""
                 onTextChanged: {
@@ -449,6 +453,7 @@ DccTitleObject {
             visible: root.keyMgmt !== ""
             pageType: DccObject.Editor
             page: D.ComboBox {
+                Accessible.id: "SectionSecret_ComboBox"
                 objectName: "SectionSecret_ComboBox_3"
                 flat: true
                 textRole: "text"
@@ -498,6 +503,7 @@ DccTitleObject {
             visible: root.keyMgmt === "none"
             pageType: DccObject.Editor
             page: D.ComboBox {
+                Accessible.id: "SectionSecret_ComboBox"
                 objectName: "SectionSecret_ComboBox_4"
                 flat: true
                 textRole: "text"
@@ -545,6 +551,7 @@ DccTitleObject {
             visible: root.keyMgmt === "wpa-eap" && (root.eapType === "fast" || root.eapType === "ttls" || root.eapType === "peap")
             pageType: DccObject.Editor
             page: D.LineEdit {
+                Accessible.id: "SectionSecret_LineEdit"
                 text: root.config802_1x && root.config802_1x.hasOwnProperty("anonymous-identity") ? root.config802_1x["anonymous-identity"] : ""
                 onTextChanged: {
                     if (root.config802_1x["anonymous-identity"] !== text) {
@@ -563,6 +570,7 @@ DccTitleObject {
             visible: root.keyMgmt === "wpa-eap" && root.eapType === "fast"
             pageType: DccObject.Editor
             page: D.ComboBox {
+                Accessible.id: "SectionSecret_ComboBox"
                 objectName: "SectionSecret_ComboBox_5"
                 flat: true
                 textRole: "text"
@@ -651,6 +659,7 @@ DccTitleObject {
             visible: root.keyMgmt === "wpa-eap" && root.eapType === "peap"
             pageType: DccObject.Editor
             page: D.ComboBox {
+                Accessible.id: "SectionSecret_ComboBox"
                 objectName: "SectionSecret_ComboBox_6"
                 flat: true
                 textRole: "text"
@@ -687,6 +696,7 @@ DccTitleObject {
             visible: root.keyMgmt === "wpa-eap" && (root.eapType === "fast" || root.eapType === "ttls" || root.eapType === "peap")
             pageType: DccObject.Editor
             page: D.ComboBox {
+                Accessible.id: "SectionSecret_ComboBox"
                 objectName: "SectionSecret_ComboBox_7"
                 flat: true
                 textRole: "text"

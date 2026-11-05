@@ -138,6 +138,7 @@ DccObject {
         }
         Label {
             // visible: root.config.method === "manual"
+            Accessible.id: "SectionDNS_Label"
             bottomPadding: 0
             font.pixelSize: D.DTK.fontManager.t8.pixelSize
             text: isEdit ? qsTr("Done") : qsTr("Edit")
@@ -175,6 +176,7 @@ DccObject {
                 pageType: DccObject.Editor
                 page: RowLayout {
                     D.LineEdit {
+                        Accessible.id: "SectionDNS_LineEdit"
                         text: root.config[index]
                         objectName: "DnsEdit_" + index
                         // 移除正则验证器，改用手动验证以支持IPv6
@@ -211,11 +213,12 @@ DccObject {
                             width: 16
                             height: 16
                         }
-                        MouseArea {
-                            anchors.fill: parent
-                            acceptedButtons: Qt.LeftButton
-                            onClicked: {
-                                root.addAddressData("")
+                       MouseArea {
+                           Accessible.id: "SectionDNS_MouseArea_Add"
+                           anchors.fill: parent
+                           acceptedButtons: Qt.LeftButton
+                           onClicked: {
+                               root.addAddressData("")
                             }
                         }
                     }
@@ -229,11 +232,12 @@ DccObject {
                             width: 16
                             height: 16
                         }
-                        MouseArea {
-                            anchors.fill: parent
-                            acceptedButtons: Qt.LeftButton
-                            onClicked: {
-                                root.removeAddressData(index)
+                       MouseArea {
+                           Accessible.id: "SectionDNS_MouseArea_Delete"
+                           anchors.fill: parent
+                           acceptedButtons: Qt.LeftButton
+                           onClicked: {
+                               root.removeAddressData(index)
                             }
                         }
                     }

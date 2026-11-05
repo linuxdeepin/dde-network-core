@@ -100,6 +100,7 @@ DccObject {
             implicitHeight: switchControl.implicitHeight
             implicitWidth: switchControl.implicitWidth
             D.Switch {
+                Accessible.id: "PageHotspot_Switch"
                 objectName: "SwitchControl_2"
                 id: switchControl
                 anchors.fill: parent
@@ -158,6 +159,7 @@ DccObject {
             weight: 20
             pageType: DccObject.Item
             page: D.Label {
+                Accessible.id: "PageHotspot_Label"
                 textFormat: Text.RichText
                 text: qsTr("If you want to use the personal hotspot, disable <a style='text-decoration: none;' href='network/airplaneMode'>Airplane Mode</a> first and then enable the wireless network adapter.")
                 wrapMode: Text.WordWrap
@@ -172,6 +174,7 @@ DccObject {
             weight: 30
             pageType: DccObject.Item
             page: D.Label {
+                Accessible.id: "PageHotspot_Label"
                 textFormat: Text.RichText
                 text: dccObj.displayName
                 wrapMode: Text.WordWrap
@@ -204,6 +207,7 @@ DccObject {
                     color: D.ColorSelector.textColor
                 }
                 D.ActionButton {
+                    Accessible.id: "PageHotspot_ActionButton"
                     Layout.alignment: Qt.AlignRight
                     objectName: "EditBtn"
                     Accessible.role: Accessible.Button
@@ -274,6 +278,7 @@ DccObject {
                                     text: qsTr("Name (SSID)")
                                     corners: getCornersForBackground(0, colLayout.children.length)
                                     content: D.LineEdit {
+                                        Accessible.id: "PageHotspot_LineEdit"
                                         showAlert: ssidAlert
                                         alertDuration: 2000
                                         placeholderText: qsTr("Required")
@@ -290,6 +295,7 @@ DccObject {
                                     text: qsTr("Security")
                                     corners: getCornersForBackground(1, colLayout.children.length)
                                     content: D.ComboBox {
+                                        Accessible.id: "PageHotspot_ComboBox"
                                         objectName: "NetItemEditor_ComboBox"
                                         flat: true
                                         textRole: "text"
@@ -323,6 +329,7 @@ DccObject {
                                     corners: getCornersForBackground(2, colLayout.children.length)
                                     visible: keyMgmt.length !== 0
                                     content: D.PasswordEdit {
+                                        Accessible.id: "PageHotspot_PasswordEdit"
                                         showAlert: passwordAlert
                                         alertDuration: 2000
                                         placeholderText: qsTr("Required")
@@ -348,6 +355,7 @@ DccObject {
                                     text: qsTr("Band")
                                     corners: getCornersForBackground(3, colLayout.children.length)
                                     content: D.ComboBox {
+                                        Accessible.id: "PageHotspot_ComboBox"
                                         objectName: "NetItemEditor_ComboBox_2"
                                         flat: true
                                         textRole: "text"
@@ -377,6 +385,7 @@ DccObject {
                             Layout.topMargin: 10
                             Layout.bottomMargin: 10
                             Button {
+                                Accessible.id: "PageHotspot_Button"
                                 objectName: "Cancel_8"
                                 Layout.fillWidth: true
                                 text: qsTr("Cancel")
@@ -389,6 +398,7 @@ DccObject {
                             }
 
                             D.RecommandButton {
+                                Accessible.id: "PageHotspot_RecommandButton"
                                 Layout.fillWidth: true
                                 // contentItem: D.IconLabel {
                                 text: qsTr("Save")
@@ -481,6 +491,7 @@ DccObject {
                     RowLayout {
                         id: layoutView
                         TextInput {
+                            Accessible.id: "PageHotspot_TextInput"
                             objectName: "80211WirelessSecurity"
                             text: root.config.hasOwnProperty("802-11-wireless-security") ? root.config["802-11-wireless-security"].psk : ""
                             color: this.palette.text
@@ -490,6 +501,7 @@ DccObject {
                             echoMode: isEchoMode ? TextInput.Normal : TextInput.Password
                         }
                         D.ActionButton {
+                            Accessible.id: "PageHotspot_ActionButton"
                             focusPolicy: Qt.NoFocus
                             objectName: "PasswordToggleBtn"
                             Accessible.role: Accessible.Button
@@ -550,6 +562,7 @@ DccObject {
                 backgroundType: DccObject.Normal
                 pageType: DccObject.Editor
                 page: D.ComboBox {
+                    Accessible.id: "PageHotspot_ComboBox"
                     objectName: "PageHotspot_ComboBox"
                     function updateCurrentIndex() {
                         if (root.config["802-11-wireless"].hasOwnProperty("mac-address")) {

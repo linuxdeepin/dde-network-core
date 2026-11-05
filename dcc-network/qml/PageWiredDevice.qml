@@ -89,6 +89,7 @@ DccObject {
                         }
 
                         delegate: ItemDelegate {
+                            Accessible.id: "PageWiredDevice_ItemDelegate"
                             objectName: "ItemDelegate_4"
                             id: itemDelegate
                             height: 36
@@ -155,6 +156,7 @@ DccObject {
 
                                     // 箭头悬浮效果 - 右侧圆角（包含分割线）
                                     Item {
+                                        Accessible.id: "PageWiredDevice_Item"
                                         width: 30 // 20px悬浮区域 + 10px扩展到边缘
                                         height: 40 // 填满ItemDelegate高度
 
@@ -254,10 +256,12 @@ DccObject {
                                                     hoverCanvas.bgColor = "transparent"
                                                 }
                                             }
+                                                Accessible.id: "PageWiredDevice_Label"
                                         }
                                     }
                                 }
                                 D.Label {
+                                    Accessible.id: "PageWiredDevice_Label"
                                     Layout.leftMargin: 25
                                     textFormat: Text.RichText
                                     visible: model.item.portalUrl.length > 0

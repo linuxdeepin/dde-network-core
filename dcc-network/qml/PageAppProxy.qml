@@ -62,6 +62,7 @@ DccObject {
             backgroundType: DccObject.Normal
             pageType: DccObject.Editor
             page: D.Switch {
+                Accessible.id: "PageAppProxy_Switch"
                 objectName: "PageAppProxy_Switch"
                 checked: proxyEnable
                 enabled: netItem.enabledable
@@ -93,6 +94,7 @@ DccObject {
                 weight: 10
                 pageType: DccObject.Editor
                 page: ComboBox {
+                    Accessible.id: "PageAppProxy_ComboBox"
                     objectName: "PageAppProxy_ComboBox"
                     flat: true
                     textRole: "text"
@@ -127,6 +129,7 @@ DccObject {
                 weight: 20
                 pageType: DccObject.Editor
                 page: D.LineEdit {
+                    Accessible.id: "PageAppProxy_LineEdit"
                     topInset: 4
                     bottomInset: 4
                     validator: RegularExpressionValidator {
@@ -157,6 +160,7 @@ DccObject {
                 weight: 30
                 pageType: DccObject.Editor
                 page: D.LineEdit {
+                    Accessible.id: "PageAppProxy_LineEdit_Port"
                     topInset: 4
                     bottomInset: 4
                     validator: IntValidator {
@@ -190,6 +194,7 @@ DccObject {
                 page: D.LineEdit {
                     topInset: 4
                     bottomInset: 4
+                    Accessible.id: "PageAppProxy_LineEdit_User"
                     text: root.config.user
                     placeholderText: qsTr("Optional")
                     onTextChanged: {
@@ -206,6 +211,7 @@ DccObject {
                 weight: 50
                 pageType: DccObject.Editor
                 page: D.PasswordEdit {
+                    Accessible.id: "PageAppProxy_PasswordEdit"
                     topInset: 4
                     bottomInset: 4
                     text: root.config.password
@@ -260,6 +266,7 @@ DccObject {
                 leftPadding: 0
                 rightPadding: 0
                 spacing: 0
+                    Accessible.id: "PageAppProxy_CancelButton"
                 text: qsTr("Cancel")
                 Layout.alignment: Qt.AlignRight
                 onClicked: {
@@ -275,6 +282,7 @@ DccObject {
             weight: 40
             pageType: DccObject.Item
             page: Button {
+                Accessible.id: "PageAppProxy_SaveButton"
                 objectName: "Save_2"
                 implicitHeight: implicitContentHeight + 10
                 implicitWidth: implicitContentWidth + 10

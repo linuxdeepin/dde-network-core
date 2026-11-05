@@ -66,6 +66,7 @@ RowLayout {
         }
     }
     D.Switch {
+        Accessible.id: "DeviceStatusItem_Switch"
         objectName: "DeviceStatusItem_Switch"
         checked: root.netItem.isEnabled
         enabled: root.netItem.enabledable

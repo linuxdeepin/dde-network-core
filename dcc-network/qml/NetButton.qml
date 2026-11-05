@@ -4,6 +4,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 
 Button {
+    Accessible.id: "NetButton_Button"
     objectName: "NetButton_Button"
     implicitHeight: implicitContentHeight + 6
     implicitWidth: implicitContentWidth + 10

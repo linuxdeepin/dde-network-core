@@ -24,6 +24,7 @@ DccObject {
     Component {
         id: devCheck
         D.Switch {
+            Accessible.id: "PageVPN_Switch"
             objectName: "Component_Switch"
             checked: netItem.isEnabled
             enabled: netItem.enabledable
@@ -67,6 +68,7 @@ DccObject {
 
                         delegate: ItemDelegate {
                             objectName: "ItemDelegate_" + index
+                            Accessible.id: "PageVPN_ItemDelegate"
                             id: itemDelegate
                             implicitHeight: 36
                             text: model.item.name
@@ -102,11 +104,12 @@ DccObject {
                                         name: "arrow_ordinary_right"
                                         palette: D.DTK.makeIconPalette(palette)
                                     }
-                                    MouseArea {
-                                        anchors.fill: parent
-                                        acceptedButtons: Qt.LeftButton
-                                        onClicked: {
-                                            dccData.exec(NetManager.ConnectInfo, model.item.id, {})
+                                   MouseArea {
+                                       Accessible.id: "PageVPN_MouseArea_Details"
+                                       anchors.fill: parent
+                                       acceptedButtons: Qt.LeftButton
+                                       onClicked: {
+                                           dccData.exec(NetManager.ConnectInfo, model.item.id, {})
                                         }
                                     }
                                 }
@@ -236,6 +239,7 @@ DccObject {
                             }
                             Button {
                                 objectName: "Ok"
+                                Accessible.id: "PageVPN_Button"
                                 Layout.fillWidth: true
                                 Layout.margins: 10
                                 text: qsTr("OK")

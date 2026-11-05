@@ -306,6 +306,7 @@ QWidget *DockTestWidget::createNetworkPopupApplet()
     
     // 控制按钮
     QPushButton *settingsButton = new QPushButton("网络设置");
+    settingsButton->setObjectName("网络设置");
     settingsButton->setStyleSheet("QPushButton { background-color: #2ca7f8; color: white; border: none; padding: 5px; border-radius: 3px; }");
     
     layout->addWidget(titleLabel);

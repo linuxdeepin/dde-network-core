@@ -199,6 +199,7 @@ DccObject {
             Layout.fillWidth: true
         }
         Label {
+            Accessible.id: "SectionIPv6_Label"
             visible: root.method === "manual"
             bottomPadding: 0
             font.pixelSize: D.DTK.fontManager.t8.pixelSize
@@ -228,6 +229,7 @@ DccObject {
         canSearch: false
         pageType: DccObject.Editor
         page: ComboBox {
+            Accessible.id: "SectionIPv6_ComboBox"
             objectName: "SectionIpv6_ComboBox"
             flat: true
             textRole: "text"
@@ -263,6 +265,7 @@ DccObject {
         backgroundType: DccObject.Normal
         pageType: DccObject.Editor
         page: D.Switch {
+            Accessible.id: "SectionIPv6_Switch"
             objectName: "SectionIpv6_Switch"
             checked: root.neverDefault
             onClicked: {
@@ -293,6 +296,7 @@ DccObject {
         backgroundType: DccObject.Normal
         pageType: DccObject.Editor
         page: ComboBox {
+            Accessible.id: "SectionIPv6_ComboBox"
             objectName: "SectionIpv6_ComboBox_2"
             flat: true
             textRole: "text"
@@ -407,6 +411,7 @@ DccObject {
                     canSearch: false
                     pageType: DccObject.Editor
                     page: D.LineEdit {
+                        Accessible.id: "SectionIPv6_LineEdit"
                         text: root.addressData.length > index ? root.addressData[index].address : ""
                         validator: RegularExpressionValidator {
                             regularExpression: NetUtils.ipv6RegExp
@@ -441,6 +446,7 @@ DccObject {
                     canSearch: false
                     pageType: DccObject.Editor
                     page: D.SpinBox {
+                        Accessible.id: "SectionIPv6_SpinBox"
                         objectName: "SectionIpv6_SpinBox"
                         editable: true
                         value: root.addressData.length > index ? root.addressData[index].prefix : 64
@@ -476,6 +482,7 @@ DccObject {
                     canSearch: false
                     pageType: DccObject.Editor
                     page: D.LineEdit {
+                        Accessible.id: "SectionIPv6_LineEdit"
                         enabled: index === 0
                         text: index === 0 ? gateway[index] : ""
                         validator: RegularExpressionValidator {
