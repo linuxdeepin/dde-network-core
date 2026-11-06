@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 - 2022 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2018 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #include "bubblemanager.h"
@@ -44,14 +44,14 @@ BubbleManager::~BubbleManager()
 void BubbleManager::CloseNotification(uint id)
 {
     QString str_id = QString::number(id);
-    foreach (auto bubble, m_bubbleList) {
+    Q_FOREACH (auto bubble, m_bubbleList) {
         if (bubble->entity()->replacesId() == str_id) {
             bubble->close();
             m_bubbleList.removeOne(bubble);
         }
     }
 
-    foreach (auto notify, m_oldEntities) {
+    Q_FOREACH (auto notify, m_oldEntities) {
         if (notify->replacesId() == str_id) {
             m_oldEntities.removeOne(notify);
         }
@@ -325,7 +325,7 @@ void BubbleManager::bubbleActionInvoked(Bubble *bubble, QString actionId)
 
 void BubbleManager::updateGeometry()
 {
-    foreach (auto item, m_bubbleList) {
+    Q_FOREACH (auto item, m_bubbleList) {
         if (item.isNull())
             continue;
 
