@@ -72,6 +72,10 @@ target_link_libraries(${DccNetwork_Name} PRIVATE
 
 dcc_install_plugin(NAME ${DccNetwork_Name} TARGET ${DccNetwork_Name})
 
+# Also install with older control-center SDKs that do not handle plugin metadata.
+install(FILES "misc/configs/network/org.deepin.dde.control-center.modulepaths.json"
+    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/dsg/configs/org.deepin.dde.control-center/network)
+
 # security loader permission interfaces config
 install(FILES "misc/permission-interfaces/org.deepin.dcc-network.json"
     DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/dde-control-center/permission-interfaces)

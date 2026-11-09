@@ -17,6 +17,14 @@ DccObject {
     id: root
     property var netItem: null
     property var airplaneItem: null
+    // The hidden-network entry is a plain delegate inside the access-point list.
+    DccObject {
+        id: addHiddenNetwork
+        name: "addNetwork"
+        parentName: root.name + "/page/otherNetwork"
+        pageType: DccObject.UserType
+        canSearch: false
+    }
     readonly property var c_levelString: ["-signal-no", "-signal-low", "-signal-medium", "-signal-high", "-signal-full"]
 
     name: "wireless" + netItem.pathIndex
@@ -252,6 +260,8 @@ DccObject {
                         roleValue: NetType.WirelessHiddenItem
                         delegate: ItemDelegate {
                             objectName: "Repeater_ItemDelegate_" + index
+                            visible: addHiddenNetwork.visibleToApp
+                            enabled: addHiddenNetwork.enabledToApp
                             implicitHeight: 36
                             checked: true
                             backgroundVisible: false
