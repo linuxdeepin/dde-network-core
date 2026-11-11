@@ -231,6 +231,9 @@ void StatusChecker::initConnectivityChecker()
     NetworkManagerProxy *proxy = NetworkManagerProxy::instance();
 
     connect(SettingConfig::instance(), &SettingConfig::checkUrlsChanged, this, &StatusChecker::onUpdateUrls);
+    // 间隔变更后立即重算定时器，否则要等下一轮探测结果才会生效
+    m_checkerConnection << connect(SettingConfig::instance(), &SettingConfig::connectivityCheckIntervalChanged, this, &StatusChecker::onCheckIntervalChanged);
+    m_checkerConnection << connect(SettingConfig::instance(), &SettingConfig::connectivityIntervalWhenLimitChanged, this, &StatusChecker::onCheckIntervalChanged);
     onUpdateUrls(SettingConfig::instance()->networkCheckerUrls());
     // 定期检查网络的状态
     m_checkerConnection << connect(m_checkTimer, &QTimer::timeout, this, &StatusChecker::startCheck, Qt::UniqueConnection);
@@ -397,17 +400,30 @@ void StatusChecker::setConnectivity(const network::service::Connectivity &connec
     emit connectivityChanged(m_connectivity);
 
     // 根据实际情况，如果网络不通，就30秒刷新一次，网络通了，300秒刷新一次
-    int interval = (connectivity == network::service::Connectivity::Full ?
-                        SettingConfig::instance()->connectivityCheckInterval() * 1000 :
-                        SettingConfig::instance()->connectivityIntervalWhenLimit() * 1000);
-    qCDebug(DSM) << "check interval" << m_checkTimer->interval() << ",set interval" << interval;
-    if (m_checkTimer->interval() != interval) {
-        if (m_checkTimer->isActive())
-            m_checkTimer->stop();
+    applyCheckInterval(connectivity);
+}
 
-        m_checkTimer->setInterval(interval);
-        m_checkTimer->start();
-    }
+// 按当前连通性取对应的检测间隔，仅在变化时重启定时器
+void StatusChecker::applyCheckInterval(network::service::Connectivity connectivity)
+{
+    NMQT_ASSERT_THREAD();
+    const int interval = (connectivity == network::service::Connectivity::Full ? SettingConfig::instance()->connectivityCheckInterval() * 1000 : SettingConfig::instance()->connectivityIntervalWhenLimit() * 1000);
+    qCDebug(DSM) << "check interval" << m_checkTimer->interval() << ",set interval" << interval;
+    if (m_checkTimer->interval() == interval)
+        return;
+
+    if (m_checkTimer->isActive())
+        m_checkTimer->stop();
+
+    m_checkTimer->setInterval(interval);
+    m_checkTimer->start();
+}
+
+// 配置里的间隔变更后立即生效，不必等下一轮探测结果
+void StatusChecker::onCheckIntervalChanged()
+{
+    NMQT_ASSERT_THREAD();
+    applyCheckInterval(m_connectivity);
 }
 
 void StatusChecker::setPortalUrl(const QString &portalUrl)

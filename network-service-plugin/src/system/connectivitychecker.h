@@ -113,6 +113,7 @@ private:
     void setConnectivity(const network::service::Connectivity &connectivity);
     void setPortalUrl(const QString &portalUrl);
     void initDefaultConnectivity();
+    void applyCheckInterval(network::service::Connectivity connectivity);
 
 private slots:
     void onUpdateUrls(const QStringList &urls);
@@ -121,6 +122,7 @@ private slots:
     void onDevicesChanged();
     void onPrimaryConnectionChanged(const QString &uni);
     void onActiveConnectionsChanged();
+    void onCheckIntervalChanged();
 
 private:
     QTimer *m_checkTimer;

@@ -36,6 +36,7 @@ public:
 signals:
     void enableConnectivityChanged(bool);
     void connectivityCheckIntervalChanged(int);
+    void connectivityIntervalWhenLimitChanged(int);
     void checkUrlsChanged(QStringList);
     void disableFailureNotifyChanged(bool);
     void resetWifiOSDEnableTimeoutChanged(int);

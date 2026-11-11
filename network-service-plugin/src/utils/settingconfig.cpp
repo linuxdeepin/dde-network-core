@@ -7,6 +7,7 @@
 #include <DConfig>
 
 #include <QMutexLocker>
+#include <QVariant>
 
 static Dtk::Core::DConfig *dConfig = nullptr;
 
@@ -14,6 +15,24 @@ static Dtk::Core::DConfig *dConfig = nullptr;
 static const QStringList CheckUrls{
     "https://www.uniontech.com",
 };
+
+// dconfig 里两个检测间隔、两个超时的单位都是秒。
+// 读取失败、低于下限或超出上限时一律回落到默认值：这些值最终会变成 QTimer 间隔
+// 或 curl 超时，0 会退化成忙循环，过大的值在乘 1000 转毫秒时会溢出。
+static constexpr int MinTimeSettingSec = 5;
+static constexpr int MaxTimeSettingSec = 20 * 24 * 3600; // 20 天，乘 1000 后仍在 int 范围内, 取一个在范围内相对合理的值
+static constexpr int DefaultConnectivityCheckIntervalSec = 150;
+static constexpr int DefaultConnectivityIntervalWhenLimitSec = 30;
+static constexpr int DefaultHttpRequestTimeoutSec = 10;
+static constexpr int DefaultHttpConnectTimeoutSec = 8;
+
+static int sanitizedSeconds(const QVariant &value, int fallbackSec)
+{
+    bool ok = false;
+    const int seconds = value.toInt(&ok);
+    const bool inRange = (seconds >= MinTimeSettingSec && seconds <= MaxTimeSettingSec);
+    return (ok && inRange) ? seconds : fallbackSec;
+}
 
 SettingConfig *SettingConfig::instance()
 {
@@ -125,6 +144,8 @@ void SettingConfig::onValueChanged(const QString &key)
     bool enableConnectivityValue = false;
     bool emitCheckInterval = false;
     int checkIntervalValue = 0;
+    bool emitLimitInterval = false;
+    int limitIntervalValue = 0;
     bool emitCheckUrls = false;
     QStringList checkUrlsValue;
     bool emitFailureNotify = false;
@@ -141,9 +162,12 @@ void SettingConfig::onValueChanged(const QString &key)
             emitEnableConnectivity = true;
             enableConnectivityValue = m_enableConnectivity;
         } else if (key == QString("ConnectivityIntervalWhenLimit")) {
-            m_connectivityIntervalWhenLimit = dConfig->value("ConnectivityIntervalWhenLimit").toInt();
+            m_connectivityIntervalWhenLimit = sanitizedSeconds(dConfig->value("ConnectivityIntervalWhenLimit"), DefaultConnectivityIntervalWhenLimitSec);
+            emitLimitInterval = true;
+            limitIntervalValue = m_connectivityIntervalWhenLimit;
         } else if (key == QString("ConnectivityCheckInterval")) {
-            m_connectivityCheckInterval = dConfig->value("ConnectivityCheckInterval").toInt() * 1000;
+            // 与构造初始化保持一致：成员统一存“秒”，*1000 只在消费点做一次
+            m_connectivityCheckInterval = sanitizedSeconds(dConfig->value("ConnectivityCheckInterval"), DefaultConnectivityCheckIntervalSec);
             emitCheckInterval = true;
             checkIntervalValue = m_connectivityCheckInterval;
         } else if (key == QString("NetworkCheckerUrls")) {
@@ -163,9 +187,9 @@ void SettingConfig::onValueChanged(const QString &key)
             emitOsdTimeout = true;
             osdTimeoutValue = m_resetWifiOSDEnableTimeout;
         } else if (key == QString("httpRequestTimeout")) {
-            m_httpRequestTimeout = dConfig->value("httpRequestTimeout").toInt();
+            m_httpRequestTimeout = sanitizedSeconds(dConfig->value("httpRequestTimeout"), DefaultHttpRequestTimeoutSec);
         } else if (key == QString("httpConnectTimeout")) {
-            m_httpConnectTimeout = dConfig->value("httpConnectTimeout").toInt();
+            m_httpConnectTimeout = sanitizedSeconds(dConfig->value("httpConnectTimeout"), DefaultHttpConnectTimeoutSec);
         } else if (key == QString("portalProcessMode")) {
             m_protalProcessMode = dConfig->value("portalProcessMode").toString();
         } else if (key == QString("needCheckNetwork")) {
@@ -180,6 +204,8 @@ void SettingConfig::onValueChanged(const QString &key)
         emit enableConnectivityChanged(enableConnectivityValue);
     if (emitCheckInterval)
         emit connectivityCheckIntervalChanged(checkIntervalValue);
+    if (emitLimitInterval)
+        emit connectivityIntervalWhenLimitChanged(limitIntervalValue);
     if (emitCheckUrls)
         emit checkUrlsChanged(checkUrlsValue);
     if (emitFailureNotify)
@@ -192,22 +218,27 @@ SettingConfig::SettingConfig(QObject *parent)
     : QObject(parent)
     , m_reconnectIfIpConflicted(false)
     , m_enableConnectivity(true)
-    , m_connectivityCheckInterval(30000)
+    , m_connectivityIntervalWhenLimit(DefaultConnectivityIntervalWhenLimitSec)
+    , m_connectivityCheckInterval(DefaultConnectivityCheckIntervalSec)
     , m_protalProcessMode("promp")
     , m_disabledNetwork(false)
     , m_enableAccountNetwork(false)
     , m_disableFailureNotify(false)
     , m_disableAllNotify(false)
     , m_resetWifiOSDEnableTimeout(300)
+    , m_httpRequestTimeout(DefaultHttpRequestTimeoutSec)
+    , m_httpConnectTimeout(DefaultHttpConnectTimeoutSec)
     , m_needCheckNetwork(true)
     , m_reapplyFlags(2)
 {
     if (!dConfig)
         dConfig = Dtk::Core::DConfig::create("org.deepin.dde.network", "org.deepin.dde.network");
 
-    if (dConfig && dConfig->isValid()) {
+    // 连接不依赖 isValid()：dconfig 晚于插件就绪时，单例不应永久停留在默认值
+    if (dConfig)
         connect(dConfig, &Dtk::Core::DConfig::valueChanged, this, &SettingConfig::onValueChanged);
 
+    if (dConfig && dConfig->isValid()) {
         QStringList keys = dConfig->keyList();
         if (keys.contains("reconnectIfIpConflicted"))
             m_reconnectIfIpConflicted = dConfig->value("reconnectIfIpConflicted").toBool();
@@ -216,10 +247,10 @@ SettingConfig::SettingConfig(QObject *parent)
             m_enableConnectivity = dConfig->value("enableConnectivity").toBool();
 
         if (keys.contains("ConnectivityIntervalWhenLimit"))
-            m_connectivityIntervalWhenLimit = dConfig->value("ConnectivityIntervalWhenLimit").toInt();
+            m_connectivityIntervalWhenLimit = sanitizedSeconds(dConfig->value("ConnectivityIntervalWhenLimit"), DefaultConnectivityIntervalWhenLimitSec);
 
         if (keys.contains("ConnectivityCheckInterval"))
-            m_connectivityCheckInterval = dConfig->value("ConnectivityCheckInterval").toInt();
+            m_connectivityCheckInterval = sanitizedSeconds(dConfig->value("ConnectivityCheckInterval"), DefaultConnectivityCheckIntervalSec);
 
         if (keys.contains("NetworkCheckerUrls"))
             m_networkUrls = dConfig->value("NetworkCheckerUrls").toStringList();
@@ -237,10 +268,10 @@ SettingConfig::SettingConfig(QObject *parent)
             m_resetWifiOSDEnableTimeout = dConfig->value("resetWifiOSDEnableTimeout").toInt();
 
         if (keys.contains("httpRequestTimeout"))
-            m_httpRequestTimeout = dConfig->value("httpRequestTimeout").toInt();
+            m_httpRequestTimeout = sanitizedSeconds(dConfig->value("httpRequestTimeout"), DefaultHttpRequestTimeoutSec);
 
         if (keys.contains("httpConnectTimeout"))
-            m_httpConnectTimeout = dConfig->value("httpConnectTimeout").toInt();
+            m_httpConnectTimeout = sanitizedSeconds(dConfig->value("httpConnectTimeout"), DefaultHttpConnectTimeoutSec);
 
         if (keys.contains("needCheckNetwork"))
             m_needCheckNetwork = dConfig->value("needCheckNetwork").toBool();
