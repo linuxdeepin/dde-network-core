@@ -15,7 +15,7 @@ D.PasswordEdit {
     signal textUpdated
 
     placeholderText: qsTr("Required")
-    echoButtonVisible: newInput
+    echoButtonVisible: newInput && dccData.manager.showPasswordRevealButton()
     showAlert: dataItem.errorKey === dccObj.name
     MouseArea {
         anchors.fill: parent

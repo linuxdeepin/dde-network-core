@@ -24,6 +24,7 @@
 
 
 #include <NetworkManagerQt/AccessPoint>
+#include <NetworkManagerQt/Ipv4Setting>
 #include <NetworkManagerQt/Ipv6Setting>
 #include <NetworkManagerQt/Manager>
 #include <NetworkManagerQt/PppSetting>
@@ -256,6 +257,43 @@ QString NetManagerThreadPrivate::wpaEapAuthen() const
 QString NetManagerThreadPrivate::wpaEapAuthmethod() const
 {
     return ConfigSetting::instance()->wpaEapAuthmethod().toLower();
+}
+
+void NetManagerThreadPrivate::applyDadTimeout(const NetworkManager::ConnectionSettings::Ptr &settings) const
+{
+    // NetworkManager 仅实现 IPv4 的 dad-timeout（NM 1.44 文档：currently implemented only for IPv4），
+    // 写入 ipv6.dad-timeout 会被 NM 拒绝，导致保存连接失败。
+    // 小于等于 0 时保持 NetworkManager 默认值。
+    const int dadTimeout = ConfigSetting::instance()->dadTimeout();
+    if (dadTimeout <= 0 || settings.isNull())
+        return;
+
+    NetworkManager::Ipv4Setting::Ptr ipv4Setting = settings->setting(Setting::SettingType::Ipv4).staticCast<NetworkManager::Ipv4Setting>();
+    if (ipv4Setting) {
+        // NM 允许范围为 [1, 30000] 毫秒，0 表示不写入并沿用默认值
+        ipv4Setting->setDadTimeout(qBound(1, dadTimeout, 30000));
+        ipv4Setting->setInitialized(true);
+    }
+}
+
+bool NetManagerThreadPrivate::enablePasswordFlag() const
+{
+    return ConfigSetting::instance()->enablePasswordFlag();
+}
+
+bool NetManagerThreadPrivate::showPasswordRevealButton() const
+{
+    return ConfigSetting::instance()->showPasswordRevealButton();
+}
+
+bool NetManagerThreadPrivate::showWepOptions() const
+{
+    return ConfigSetting::instance()->showWepOptions();
+}
+
+int NetManagerThreadPrivate::maxDnsCount() const
+{
+    return ConfigSetting::instance()->maxDnsCount();
 }
 
 void NetManagerThreadPrivate::setDeviceEnabled(const QString &id, bool enabled)
@@ -1010,6 +1048,7 @@ void NetManagerThreadPrivate::doConnectOrInfo(const QString &id, NetType::NetIte
                 QVariantMap options;
                 options.insert("persist", "memory");
                 options.insert("flags", MANULCONNECTION);
+                applyDadTimeout(settings);
                 QDBusPendingReply<QDBusObjectPath, QDBusObjectPath> reply = NetworkManager::addAndActivateConnection2(settings->toMap(), devPath, ap->path(), options);
                 if (reply.isError()) {
                     qCWarning(DNC) << "activateConnection fiald:" << reply.error().message();
@@ -1593,6 +1632,8 @@ void NetManagerThreadPrivate::doSetConnectInfo(const QString &id, NetType::NetIt
             }
         }
     }
+    // DAD 超时（V20 dadTimeout 迁移，NM 仅实现 IPv4）
+    applyDadTimeout(settings);
     NetworkManager::Connection::Ptr connection;
     if (settings->uuid() == "{00000000-0000-0000-0000-000000000000}") {
         // 新增

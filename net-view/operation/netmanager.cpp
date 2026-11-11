@@ -188,6 +188,30 @@ QString NetManager::wpaEapAuthmethod() const
     return d->wpaEapAuthmethod();
 }
 
+bool NetManager::enablePasswordFlag() const
+{
+    Q_D(const NetManager);
+    return d->enablePasswordFlag();
+}
+
+bool NetManager::showPasswordRevealButton() const
+{
+    Q_D(const NetManager);
+    return d->showPasswordRevealButton();
+}
+
+bool NetManager::showWepOptions() const
+{
+    Q_D(const NetManager);
+    return d->showWepOptions();
+}
+
+int NetManager::maxDnsCount() const
+{
+    Q_D(const NetManager);
+    return d->maxDnsCount();
+}
+
 bool NetManager::netCheckAvailable()
 {
     Q_D(NetManager);
@@ -302,6 +326,26 @@ QString NetManagerPrivate::wpaEapAuthen() const
 QString NetManagerPrivate::wpaEapAuthmethod() const
 {
     return m_managerThread->wpaEapAuthmethod();
+}
+
+bool NetManagerPrivate::enablePasswordFlag() const
+{
+    return m_managerThread->enablePasswordFlag();
+}
+
+bool NetManagerPrivate::showPasswordRevealButton() const
+{
+    return m_managerThread->showPasswordRevealButton();
+}
+
+bool NetManagerPrivate::showWepOptions() const
+{
+    return m_managerThread->showWepOptions();
+}
+
+int NetManagerPrivate::maxDnsCount() const
+{
+    return m_managerThread->maxDnsCount();
 }
 
 void NetManagerPrivate::exec(NetManager::CmdType cmd, const QString &id, const QVariantMap &param)

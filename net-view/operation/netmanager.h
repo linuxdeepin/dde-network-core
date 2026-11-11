@@ -83,6 +83,10 @@ public:
 
     Q_INVOKABLE QString wpaEapAuthen() const;     // 企业网EAP认证方式
     Q_INVOKABLE QString wpaEapAuthmethod() const; // 企业网内部认证方式
+    Q_INVOKABLE bool enablePasswordFlag() const;    // 是否启用密码选项下拉框
+    Q_INVOKABLE bool showPasswordRevealButton() const; // 是否显示密码明文查看按钮
+    Q_INVOKABLE bool showWepOptions() const;        // 是否显示WEP安全选项
+    Q_INVOKABLE int maxDnsCount() const;            // DNS 输入框的最大数量
 
 public Q_SLOTS:
     void gotoControlCenter(const QString &token = QString());

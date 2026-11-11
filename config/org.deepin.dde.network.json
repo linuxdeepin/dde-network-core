@@ -382,6 +382,63 @@
              "description":"When set to true, disable all network connection notifications, including connected, failed, disconnected, etc.",
              "permissions":"readwrite",
              "visibility":"private"
-          }
+          },
+        "dadTimeout": {
+            "value": 5000,
+            "serial": 0,
+            "flags": [
+                "global"
+            ],
+            "name": "dadTimeout",
+            "name[zh_CN]": "IPv4 DAD 超时时间",
+            "description": "IPv4 duplicate address detection timeout written to ipv4.dad-timeout (unit:ms, range 1~30000; NetworkManager implements this property only for IPv4; <=0 keeps the NetworkManager default).",
+            "description[zh_CN]": "写入 ipv4.dad-timeout 的 IPv4 重复地址检测超时时间（单位：毫秒，取值 1~30000；NetworkManager 仅在 IPv4 上实现该属性；小于等于 0 时使用 NetworkManager 默认值）。",
+            "permissions": "readwrite",
+            "visibility": "private"
+        },
+        "enablePasswordFlag": {
+            "value": true,
+            "serial": 0,
+            "flags": [],
+            "name": "enablePasswordFlag",
+            "name[zh_CN]": "是否启用密码选项下拉框",
+            "description": "true: the password flag option is enabled, false: the password flag option is disabled",
+            "description[zh_CN]": "true:密码选项下拉框正常使用，false:禁用密码选项下拉框",
+            "permissions": "readwrite",
+            "visibility": "private"
+        },
+        "maxDnsCount": {
+            "value": 4,
+            "serial": 0,
+            "flags": [],
+            "name": "maxDnsCount",
+            "name[zh_CN]": "最大DNS数",
+            "description": "Maximum number of DNS servers that can be entered",
+            "description[zh_CN]": "DNS 服务器输入框的最大数量",
+            "permissions": "readwrite",
+            "visibility": "private"
+        },
+        "showPasswordRevealButton": {
+            "value": false,
+            "serial": 0,
+            "flags": [],
+            "name": "showPasswordRevealButton",
+            "name[zh_CN]": "是否显示密码明文查看按钮",
+            "description": "true: show password reveal button, false: keep original style",
+            "description[zh_CN]": "true:显示密码框明文查看按钮，false:维持原有样式",
+            "permissions": "readwrite",
+            "visibility": "private"
+        },
+        "showWepOptions": {
+            "value": true,
+            "serial": 0,
+            "flags": [],
+            "name": "showWepOptions",
+            "name[zh_CN]": "是否显示WEP安全选项",
+            "description": "true: show wep options, false: do not show wep options",
+            "description[zh_CN]": "true:显示WEP安全选项，false:不显示WEP安全选项",
+            "permissions": "readwrite",
+            "visibility": "private"
+        }
     }
 }

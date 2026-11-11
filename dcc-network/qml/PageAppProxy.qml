@@ -214,6 +214,7 @@ DccObject {
                     Accessible.id: "PageAppProxy_PasswordEdit"
                     topInset: 4
                     bottomInset: 4
+                    echoButtonVisible: dccData.manager.showPasswordRevealButton()
                     text: root.config.password
                     placeholderText: qsTr("Optional")
                     onTextChanged: {

@@ -206,8 +206,7 @@ DccObject {
                     D.IconLabel {
                         Layout.margins: 0
                         Layout.maximumHeight: 16
-                        visible: isEdit && root.config.length < 3
-                        // enabled: root.config.length < 3
+                        visible: isEdit && root.config.length < Math.max(2, dccData.manager.maxDnsCount())
                         icon {
                             name: "list_add"
                             width: 16
@@ -226,7 +225,6 @@ DccObject {
                         Layout.margins: 0
                         Layout.maximumHeight: 16
                         visible: isEdit && root.config.length > 2
-                        // enabled: root.config.length > 2
                         icon {
                             name: "list_delete"
                             width: 16
