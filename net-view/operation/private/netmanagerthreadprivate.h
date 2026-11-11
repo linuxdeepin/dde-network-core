@@ -18,6 +18,7 @@ class QTimer;
 namespace NetworkManager {
 class WiredDevice;
 class AccessPoint;
+class ConnectionSettings;
 } // namespace NetworkManager
 
 namespace dde {
@@ -65,6 +66,10 @@ public:
 
     QString wpaEapAuthen() const;     // 企业网EAP认证方式
     QString wpaEapAuthmethod() const; // 企业网内部认证方式
+    bool enablePasswordFlag() const;  // 是否启用密码选项下拉框
+    bool showPasswordRevealButton() const; // 是否显示密码明文查看按钮
+    bool showWepOptions() const;      // 是否显示WEP安全选项
+    int maxDnsCount() const;          // DNS 输入框的最大数量
 
     enum DataChanged {
         NameChanged,
@@ -252,6 +257,9 @@ protected Q_SLOTS:
 
 private:
     void addDevice(NetDeviceItemPrivate *deviceItem, NetworkDeviceBase *dev);
+
+    // 应用 V20 dadTimeout 迁移的 IPv4 DAD 超时（NM 仅实现 IPv4）
+    void applyDadTimeout(const NetworkManager::ConnectionSettings::Ptr &settings) const;
 
     void getNetCheckAvailableFromDBus();
 

@@ -34,6 +34,11 @@ ConfigSetting::ConfigSetting(QObject *parent)
     , m_portalProcessMode("promp")
     , m_disableConnectingAnimation(false)
     , m_disableAllNotify(false)
+    , m_enablePasswordFlag(true)
+    , m_showPasswordRevealButton(false)
+    , m_showWepOptions(true)
+    , m_maxDnsCount(4)
+    , m_dadTimeout(5000)
 {
     QStringList keys;
     if (!dConfig)
@@ -106,6 +111,16 @@ void ConfigSetting::onValueChanged(const QString &key)
         m_disableConnectingAnimation = dConfig->value("disableConnectingAnimation", false).toBool();
     } else if (key == "disableAllNotify") {
         m_disableAllNotify = dConfig->value("disableAllNotify", false).toBool();
+    } else if (key == "enablePasswordFlag") {
+        m_enablePasswordFlag = dConfig->value("enablePasswordFlag", true).toBool();
+    } else if (key == "showPasswordRevealButton") {
+        m_showPasswordRevealButton = dConfig->value("showPasswordRevealButton", false).toBool();
+    } else if (key == "showWepOptions") {
+        m_showWepOptions = dConfig->value("showWepOptions", true).toBool();
+    } else if (key == "maxDnsCount") {
+        m_maxDnsCount = dConfig->value("maxDnsCount", 4).toInt();
+    } else if (key == "dadTimeout") {
+        m_dadTimeout = dConfig->value("dadTimeout", 5000).toInt();
     }
 }
 
@@ -218,4 +233,29 @@ bool ConfigSetting::disableConnectingAnimation() const
 bool ConfigSetting::disableAllNotify() const
 {
     return m_disableAllNotify;
+}
+
+bool ConfigSetting::enablePasswordFlag() const
+{
+    return m_enablePasswordFlag;
+}
+
+bool ConfigSetting::showPasswordRevealButton() const
+{
+    return m_showPasswordRevealButton;
+}
+
+bool ConfigSetting::showWepOptions() const
+{
+    return m_showWepOptions;
+}
+
+int ConfigSetting::maxDnsCount() const
+{
+    return m_maxDnsCount;
+}
+
+int ConfigSetting::dadTimeout() const
+{
+    return m_dadTimeout;
 }

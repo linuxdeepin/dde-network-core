@@ -37,6 +37,11 @@ public:
     bool supportPortalPromp() const;        // 是否在任务栏给出
     bool disableConnectingAnimation() const; // 是否禁用连接动画
     bool disableAllNotify() const;           // 是否禁用所有网络通知
+    bool enablePasswordFlag() const;         // 是否启用密码选项下拉框
+    bool showPasswordRevealButton() const;   // 是否显示密码明文查看按钮
+    bool showWepOptions() const;             // 是否显示WEP安全选项
+    int maxDnsCount() const;                 // DNS 输入框的最大数量
+    int dadTimeout() const;                  // IPv4 DAD 超时时间(ms)，NM 仅实现 IPv4
 
 signals:
     void checkUrlsChanged(const QStringList &);
@@ -80,6 +85,11 @@ private:
     QString m_portalProcessMode;
     bool m_disableConnectingAnimation;
     bool m_disableAllNotify;
+    bool m_enablePasswordFlag;
+    bool m_showPasswordRevealButton;
+    bool m_showWepOptions;
+    int m_maxDnsCount;
+    int m_dadTimeout;
 };
 
 } // namespace network

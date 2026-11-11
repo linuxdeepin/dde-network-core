@@ -342,13 +342,19 @@ DccTitleObject {
                 flat: true
                 textRole: "text"
                 valueRole: "value"
-                model: [{
-                        "text": qsTr("None"),
-                        "value": ""
-                    }, {
-                        "text": qsTr("WEP"),
-                        "value": "none"
-                    }, {
+                model: {
+                    let items = [{
+                            "text": qsTr("None"),
+                            "value": ""
+                        }]
+                    // 当前连接已是 WEP 时仍需展示该选项，避免下拉框显示为空
+                    if (dccData.manager.showWepOptions() || root.keyMgmt === "none") {
+                        items.push({
+                            "text": qsTr("WEP"),
+                            "value": "none"
+                        })
+                    }
+                    items.push({
                         "text": qsTr("WPA/WPA2 Personal"),
                         "value": "wpa-psk"
                     }, {
@@ -357,7 +363,9 @@ DccTitleObject {
                     }, {
                         "text": qsTr("WPA3 Personal"),
                         "value": "sae"
-                    }]
+                    })
+                    return items
+                }
                 currentIndex: indexOfValue(root.keyMgmt)
                 onActivated: {
                     root.keyMgmt = currentValue
@@ -456,6 +464,7 @@ DccTitleObject {
                 Accessible.id: "SectionSecret_ComboBox"
                 objectName: "SectionSecret_ComboBox_3"
                 flat: true
+                enabled: dccData.manager.enablePasswordFlag()
                 textRole: "text"
                 valueRole: "value"
                 model: [{

@@ -17,6 +17,7 @@
 #include <networkmanagerqt/manager.h>
 #include <networkmanagerqt/wiredsetting.h>
 #include <NetworkManagerQt/Security8021xSetting>
+#include <NetworkManagerQt/Ipv4Setting>
 #include <NetworkManagerQt/WirelessSecuritySetting>
 #include <NetworkManagerQt/WirelessSetting>
 #include <NetworkManagerQt/Settings>
@@ -822,6 +823,15 @@ void WirelessDeviceManagerRealize::connectNetwork(const AccessPoints *accessPoin
         macAddress.remove(":");
         wirelessSetting->setMacAddress(QByteArray::fromHex(macAddress.toUtf8()));
         wirelessSetting->setInitialized(true);
+        // DAD 超时（V20 dadTimeout 迁移，NM 仅实现 IPv4）：小于等于 0 时沿用 NetworkManager 默认值
+        const int dadTimeout = ConfigSetting::instance()->dadTimeout();
+        if (dadTimeout > 0) {
+            NetworkManager::Ipv4Setting::Ptr ipv4Setting = settings->setting(NetworkManager::Setting::Ipv4).staticCast<NetworkManager::Ipv4Setting>();
+            if (ipv4Setting) {
+                ipv4Setting->setDadTimeout(qBound(1, dadTimeout, 30000));
+                ipv4Setting->setInitialized(true);
+            }
+        }
         QVariantMap options;
         options.insert("persist", "memory");
         options.insert("flags", MANUAL);

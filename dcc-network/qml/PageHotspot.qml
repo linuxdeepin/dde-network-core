@@ -332,6 +332,7 @@ DccObject {
                                         Accessible.id: "PageHotspot_PasswordEdit"
                                         showAlert: passwordAlert
                                         alertDuration: 2000
+                                        echoButtonVisible: dccData.manager.showPasswordRevealButton()
                                         placeholderText: qsTr("Required")
                                         text: editDlg.config.hasOwnProperty("802-11-wireless-security") ? editDlg.config["802-11-wireless-security"].psk : ""
                                         onTextChanged: {
@@ -505,6 +506,7 @@ DccObject {
                             focusPolicy: Qt.NoFocus
                             objectName: "PasswordToggleBtn"
                             Accessible.role: Accessible.Button
+                            visible: dccData.manager.showPasswordRevealButton()
                             onClicked: isEchoMode = !isEchoMode
                             icon.name: isEchoMode ? "entry_password_shown" : "entry_password_hide"
                         }
