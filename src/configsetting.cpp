@@ -34,6 +34,7 @@ ConfigSetting::ConfigSetting(QObject *parent)
     , m_portalProcessMode("promp")
     , m_disableConnectingAnimation(false)
     , m_disableAllNotify(false)
+    , m_inputPasswordByPopoutDialog(false)
     , m_enablePasswordFlag(true)
     , m_showPasswordRevealButton(false)
     , m_showWepOptions(true)
@@ -111,6 +112,8 @@ void ConfigSetting::onValueChanged(const QString &key)
         m_disableConnectingAnimation = dConfig->value("disableConnectingAnimation", false).toBool();
     } else if (key == "disableAllNotify") {
         m_disableAllNotify = dConfig->value("disableAllNotify", false).toBool();
+    } else if (key == "inputPasswordByPopoutDialog") {
+        m_inputPasswordByPopoutDialog = dConfig->value("inputPasswordByPopoutDialog", false).toBool();
     } else if (key == "enablePasswordFlag") {
         m_enablePasswordFlag = dConfig->value("enablePasswordFlag", true).toBool();
     } else if (key == "showPasswordRevealButton") {
@@ -233,6 +236,11 @@ bool ConfigSetting::disableConnectingAnimation() const
 bool ConfigSetting::disableAllNotify() const
 {
     return m_disableAllNotify;
+}
+
+bool ConfigSetting::inputPasswordByPopoutDialog() const
+{
+    return m_inputPasswordByPopoutDialog;
 }
 
 bool ConfigSetting::enablePasswordFlag() const

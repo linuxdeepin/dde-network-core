@@ -439,6 +439,17 @@
             "description[zh_CN]": "true:显示WEP安全选项，false:不显示WEP安全选项",
             "permissions": "readwrite",
             "visibility": "private"
+        },
+        "inputPasswordByPopoutDialog": {
+            "value": false,
+            "serial": 0,
+            "flags": [],
+            "name": "inputPasswordByPopoutDialog",
+            "name[zh_CN]": "是否通过弹窗方式输入密码",
+            "description": "true: always ask network passwords in the popout dialog, false: wireless passwords are asked in the dock or lock screen network panel",
+            "description[zh_CN]": "true:始终使用弹窗输入网络密码，false:无线密码在任务栏或锁屏网络面板内输入",
+            "permissions": "readwrite",
+            "visibility": "private"
         }
     }
 }
