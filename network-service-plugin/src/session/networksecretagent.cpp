@@ -1,10 +1,11 @@
-// SPDX-FileCopyrightText: 2025 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2025-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #include "networksecretagent.h"
 
 #include "constants.h"
 #include "secretservice.h"
+#include "settingconfig.h"
 
 #include <NetworkManagerQt/ConnectionSettings>
 #include <NetworkManagerQt/Manager>
@@ -207,7 +208,10 @@ void NetworkSecretAgent::askPasswords(SecretsRequest &request, const QStringList
     QString reqJSON = QJsonDocument(req).toJson(QJsonDocument::Compact);
     qCDebug(DSM()) << "reqJSON:" << reqJSON;
     request.inputCache = reqJSON.toUtf8();
-    if (connType == "802-11-wireless" && m_clients.isEmpty()) {
+    // 无线密码优先交给在线面板内联输入；开启弹窗配置时不等待面板，直接弹窗。
+    const bool waitForPanel = connType == "802-11-wireless" && m_clients.isEmpty()
+            && !SettingConfig::instance()->inputPasswordByPopoutDialog();
+    if (waitForPanel) {
         // 启动定时器，等待
         request.status = SecretsRequest::WaitClient;
         m_waitClientTimer->start();
@@ -531,12 +535,20 @@ void NetworkSecretAgent::doSecretsResult(QString callId, const QByteArray &data,
     m_calls.removeAll(*request);
 }
 
+// 无线连接在面板客户端在线且未开启弹窗配置时，由面板内联输入密码；
+// 其他连接类型（有线 802.1x、VPN、PPPoE 等）面板不支持，始终使用弹窗。
+bool NetworkSecretAgent::isPanelInputAllowed(const QString &connType) const
+{
+    return connType == "802-11-wireless"
+            && !m_clients.isEmpty()
+            && !SettingConfig::instance()->inputPasswordByPopoutDialog();
+}
+
 void NetworkSecretAgent::runAuthDialog(SecretsRequest &request)
 {
     const QString &connType = request.connection.value("connection").value("type").toString();
     request.status = SecretsRequest::WaitDialog;
-    // 无线网密码拉起任务栏网络面板，其他使用密码输入弹窗
-    if (connType == "802-11-wireless" && !m_clients.isEmpty()) {
+    if (isPanelInputAllowed(connType)) {
         for (auto &&client : m_clients) {
             client->write("\nrequestSecrets:" + request.inputCache + "\n");
         }

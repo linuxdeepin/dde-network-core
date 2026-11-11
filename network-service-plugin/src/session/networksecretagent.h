@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2025 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2025-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 #ifndef NETWORKSECRETAGENT_H
@@ -136,6 +136,7 @@ private:
     bool hasSecrets(const NMVariantMapMap &connection) const;
     QString getSecretFlagsKeyName(const QString &key) const;
     bool isMustAsk(const NMVariantMapMap &connection, const QString &settingName, const QString &secretKey) const;
+    bool isPanelInputAllowed(const QString &connType) const;
     QStringList askProps(const NMVariantMapMap &connection, const QString &settingName) const;
 
     bool createPendingKey(SecretsRequest &request);

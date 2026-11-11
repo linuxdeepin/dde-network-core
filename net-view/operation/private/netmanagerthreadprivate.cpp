@@ -823,6 +823,15 @@ void NetManagerThreadPrivate::doConnectWireless(const QString &id, const QVarian
     wConnect.initConnection();
     QString secret = wConnect.needSecrets();
 
+    // 开启弹窗输入密码时，面板不再内联询问，直接激活连接，由后端密码代理弹出对话框
+    if (ConfigSetting::instance()->inputPasswordByPopoutDialog()
+            && !param.contains(secret)
+            && (wConnect.needInputIdentify() || wConnect.needInputPassword())) {
+        wConnect.connectNetwork();
+        sendRequest(NetManager::CloseInput, id);
+        return;
+    }
+
     if (param.contains(secret)) {
         QVariantMap err = wConnect.connectNetworkParam(param);
         if (err.isEmpty())
@@ -2987,7 +2996,8 @@ void NetManagerThreadPrivate::handleAccessPointSecure(AccessPoints *accessPoint)
             NetworkManager::AccessPoint::WpaFlags const wpaFlags = nmAp.wpaFlags();
             NetworkManager::AccessPoint::WpaFlags const rsnFlags = nmAp.rsnFlags();
             bool const needIdentify = (wpaFlags.testFlag(NetworkManager::AccessPoint::WpaFlag::KeyMgmt8021x) || rsnFlags.testFlag(NetworkManager::AccessPoint::WpaFlag::KeyMgmt8021x));
-            if (needIdentify) {
+            // 开启弹窗输入密码时，企业网凭据也交由后端密码代理弹窗收集
+            if (needIdentify && !ConfigSetting::instance()->inputPasswordByPopoutDialog()) {
                 handle8021xAccessPoint(accessPoint, true);
                 return;
             }
@@ -3003,6 +3013,11 @@ void NetManagerThreadPrivate::handleAccessPointSecure(AccessPoints *accessPoint)
         NetWirelessConnect wConnect(dynamic_cast<WirelessDevice *>(*it), accessPoint, this);
         wConnect.setRawSsid(accessPoint->rawSsid());
         wConnect.initConnection();
+        if (ConfigSetting::instance()->inputPasswordByPopoutDialog()) {
+            // 直接激活连接，由后端密码代理弹出对话框收集密码
+            wConnect.connectNetwork();
+            return;
+        }
         QVariantMap param;
         param.insert("secrets", { wConnect.needSecrets() });
         param.insert("hidden", true);

@@ -87,6 +87,12 @@ bool SettingConfig::disableAllNotify() const
     return m_disableAllNotify;
 }
 
+bool SettingConfig::inputPasswordByPopoutDialog() const
+{
+    QMutexLocker locker(&m_mutex);
+    return m_inputPasswordByPopoutDialog;
+}
+
 int SettingConfig::resetWifiOSDEnableTimeout() const
 {
     QMutexLocker locker(&m_mutex);
@@ -158,6 +164,8 @@ void SettingConfig::onValueChanged(const QString &key)
             failureNotifyValue = m_disableFailureNotify;
         } else if (key == QString("disableAllNotify")) {
             m_disableAllNotify = dConfig->value("disableAllNotify", false).toBool();
+        } else if (key == QString("inputPasswordByPopoutDialog")) {
+            m_inputPasswordByPopoutDialog = dConfig->value("inputPasswordByPopoutDialog", false).toBool();
         } else if (key == QString("resetWifiOSDEnableTimeout")) {
             m_resetWifiOSDEnableTimeout = dConfig->value("resetWifiOSDEnableTimeout").toInt();
             emitOsdTimeout = true;
@@ -198,6 +206,7 @@ SettingConfig::SettingConfig(QObject *parent)
     , m_enableAccountNetwork(false)
     , m_disableFailureNotify(false)
     , m_disableAllNotify(false)
+    , m_inputPasswordByPopoutDialog(false)
     , m_resetWifiOSDEnableTimeout(300)
     , m_needCheckNetwork(true)
     , m_reapplyFlags(2)
@@ -247,6 +256,9 @@ SettingConfig::SettingConfig(QObject *parent)
 
         if (keys.contains("disableAllNotify"))
             m_disableAllNotify = dConfig->value("disableAllNotify", false).toBool();
+
+        if (keys.contains("inputPasswordByPopoutDialog"))
+            m_inputPasswordByPopoutDialog = dConfig->value("inputPasswordByPopoutDialog", false).toBool();
 
         m_disableFailureNotify = dConfig->value("disableFailureNotify", false).toBool();
 
