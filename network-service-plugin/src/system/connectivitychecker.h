@@ -94,6 +94,8 @@ private:
     void setConnectivity(const network::service::Connectivity &connectivity);
     void setPortalUrl(const QString &portalUrl);
     void initDefaultConnectivity();
+    // 从设备DHCP4配置中解析Captive-Portal URL (NM导出的RFC 8910码点114与RFC 7710遗留码点160)
+    QString dhcpCaptivePortalUrl() const;
 
 private slots:
     void onUpdataActiveState(const QSharedPointer<NetworkManager::ActiveConnection> &networks);

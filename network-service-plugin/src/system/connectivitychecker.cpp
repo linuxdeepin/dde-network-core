@@ -11,6 +11,8 @@
 #include <NetworkManagerQt/Manager>
 #include <NetworkManagerQt/WirelessDevice>
 #include <NetworkManagerQt/ActiveConnection>
+#include <NetworkManagerQt/Device>
+#include <NetworkManagerQt/Dhcp4Config>
 
 #include <QTimer>
 #include <QThread>
@@ -301,8 +303,15 @@ void StatusChecker::realStartCheck()
         networkIsOk = true;
         qCDebug(DSM) << "Http reply code:" << httpCode << ", portal url:" << portalUrl;
         if (portalUrl.isEmpty()) {
-            // if the portal is empty, I think it ok
-            setConnectivity(network::service::Connectivity::Full);
+            // HTTP探测未见劫持时，若DHCP下发了Captive-Portal选项（RFC 8910），
+            // 说明该网络仍需认证（如探测域名被网关白名单放行导致假阴性）
+            portalUrl = dhcpCaptivePortalUrl();
+            if (portalUrl.isEmpty()) {
+                // if the portal is empty, I think it ok
+                setConnectivity(network::service::Connectivity::Full);
+            } else {
+                setConnectivity(network::service::Connectivity::Portal);
+            }
         } else {
             setConnectivity(network::service::Connectivity::Portal);
         }
@@ -325,11 +334,21 @@ void StatusChecker::realStartCheck()
             }
         }
         qCDebug(DSM) << "Network is unreachabel, disconnect count:" << disconnectCount;
-        setPortalUrl(QString());
         if (disconnectCount == devices.size()) {
+            // 如果所有的网络设备都断开了，就默认让其变为断开的状态
+            setPortalUrl(QString());
             setConnectivity(network::service::Connectivity::Noconnectivity);
         } else {
-            setConnectivity(network::service::Connectivity::Limited);
+            // 探测失败但设备未断开时，若DHCP下发了Captive-Portal选项，
+            // 说明是需认证的portal网络（如DNS/HTTP被网关拦截导致探测超时的场景）
+            const QString dhcpUrl = dhcpCaptivePortalUrl();
+            if (!dhcpUrl.isEmpty()) {
+                setPortalUrl(dhcpUrl);
+                setConnectivity(network::service::Connectivity::Portal);
+            } else {
+                setPortalUrl(QString());
+                setConnectivity(network::service::Connectivity::Limited);
+            }
         }
     }
 }
@@ -405,6 +424,60 @@ void StatusChecker::setPortalUrl(const QString &portalUrl)
     // 每次检测时返回的认证连接可能不同，连接时会多次打开认证网站
     m_portalUrl = portalUrl;
     emit portalDetected(m_portalUrl);
+}
+
+// DHCP选项的值来自不可信的服务端，只放行http/https且不含空白与控制字符的URL，
+// 避免恶意热点诱导上层打开任意scheme或注入非法字符
+static bool isSafePortalUrl(const QString &rawUrl)
+{
+    const QString url = rawUrl.trimmed();
+    if (url.size() < 8 || url.size() > 2048)
+        return false;
+
+    for (const QChar &ch : url) {
+        const uint code = ch.unicode();
+        if (code <= 0x20 || code == 0x7f)
+            return false;
+    }
+
+    return url.startsWith(QLatin1String("http://"), Qt::CaseInsensitive)
+           || url.startsWith(QLatin1String("https://"), Qt::CaseInsensitive);
+}
+
+// 从活动设备的DHCP4配置中解析Captive-Portal URL：
+// 优先取default_url（RFC 8910，DHCP option 114），兜底取v4_captive_portal（RFC 7710遗留，option 160）。
+// 两个key由NM的uniontech036补丁通过DHCP4Config的Options属性导出，
+// 用于HTTP探测无法识别的portal网络（如探测域名被网关白名单放行、探测超时等场景）
+QString StatusChecker::dhcpCaptivePortalUrl() const
+{
+    NetworkManager::ActiveConnection::Ptr primary = NetworkManager::primaryConnection();
+    const QString primaryPath = !primary.isNull() ? primary->path() : QString();
+
+    for (const NetworkManager::Device::Ptr &device : NetworkManager::networkInterfaces()) {
+        if (device.isNull())
+            continue;
+
+        NetworkManager::ActiveConnection::Ptr active = device->activeConnection();
+        if (active.isNull() || active->path() != primaryPath)
+            continue;
+
+        NetworkManager::Dhcp4Config::Ptr dhcp4 = device->dhcp4Config();
+        if (dhcp4.isNull())
+            continue;
+
+        const QVariantMap options = dhcp4->options();
+        for (const char *key : { "default_url", "v4_captive_portal" }) {
+            const QString url = options.value(QLatin1String(key)).toString().trimmed();
+            if (url.isEmpty() || !isSafePortalUrl(url)) {
+                if (!url.isEmpty())
+                    qCWarning(DSM) << "Ignore invalid captive portal url from dhcp option:" << key;
+                continue;
+            }
+            qCInfo(DSM) << "Found captive portal url from dhcp option:" << key;
+            return url;
+        }
+    }
+    return QString();
 }
 
 void StatusChecker::initDefaultConnectivity()
