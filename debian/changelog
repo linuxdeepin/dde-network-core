@@ -1,3 +1,14 @@
+dde-network-core (2.0.109) unstable; urgency=medium
+
+  * feat: add DConfig policies for network module paths
+  * fix: avoid duplicate network DConfig packaging
+  * fix: add AT-SPI accessible properties for QML and C++ controls
+  * feat: add five migrated V20 network DConfig items
+  * feat: support inputPasswordByPopoutDialog config
+  * fix(network-service): sanitize time settings
+
+ -- caixiangrong <caixiangrong@uniontech.com>  Thu, 12 Nov 2026 16:21:11 +0800
+
 dde-network-core (2.0.108) unstable; urgency=medium
 
   * fix: serialize NetworkManagerQt access on one thread
