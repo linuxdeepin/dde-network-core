@@ -37,6 +37,12 @@ set(CMAKE_USE_PTHREADS_INIT 1)
 set(CMAKE_PREFER_PTHREAD_FLAG ON)
 
 find_package(${QT_NS} COMPONENTS Core Widgets DBus Network WaylandClient LinguistTools REQUIRED)
+# Qt 6.10 起，私有模块目标(如 Qt6::WaylandClientPrivate)拆分为独立的 CMake 包，
+# 不再随主模块的 find_package 自动创建，需要显式查找，否则 CMake 配置阶段报
+# "Target ... links to: Qt6::WaylandClientPrivate but the target was not found"。
+if(Qt6WaylandClient_VERSION VERSION_GREATER_EQUAL 6.10)
+    find_package(Qt6 REQUIRED COMPONENTS WaylandClientPrivate)
+endif()
 find_package(PkgConfig REQUIRED)
 find_package(${DTK_NS} REQUIRED COMPONENTS Widget)
 find_package(KF6NetworkManagerQt REQUIRED)
