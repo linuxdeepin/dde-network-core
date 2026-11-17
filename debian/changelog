@@ -1,3 +1,12 @@
+dde-network-core (6.2.0) unstable; urgency=medium
+
+  * chore: Sync by
+    https://github.com/linuxdeepin/.github/commit/88d36aea6c90c8d1de4d42
+    c68aebbf72bcb80b1c
+  * fix: find Qt6 WaylandClientPrivate package for Qt 6.10 and later
+
+ -- zhangkun <zhangkun2@uniontech.com>  Tue, 17 Nov 2026 22:06:46 +0800
+
 dde-network-core (2.0.109) unstable; urgency=medium
 
   * feat: add DConfig policies for network module paths
