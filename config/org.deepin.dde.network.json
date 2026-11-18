@@ -19,7 +19,7 @@
             "description": "deprecated",
             "description[zh_CN]": "已废弃",
             "permissions": "readwrite",
-            "visibility": "public"
+            "visibility": "private"
         },
         "wirelessScanInterval": {
             "value": 10,
