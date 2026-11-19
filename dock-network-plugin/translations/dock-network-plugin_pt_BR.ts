@@ -14,7 +14,7 @@
     <name>dde::network::NetAirplaneModeTipsItem</name>
     <message>
         <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation>Primeiro, desative o &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Modo Avião&lt;/a&gt; para conectar-se a uma rede Wi-Fi</translation>
+        <translation>Primeiro, desative o &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Modo Avião&lt;/a&gt; para conectar-se a uma rede sem fio</translation>
     </message>
 </context>
 <context>
@@ -87,7 +87,7 @@
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
-        <translation>Impossível conectar-se a %1, aproxime-se do roteador Wi-Fi</translation>
+        <translation>Impossível conectar-se a %1, aproxime-se do roteador sem fio</translation>
     </message>
     <message>
         <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
@@ -99,7 +99,7 @@
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation>Impossível encontrar a rede Wi-Fi &quot;%1&quot;</translation>
+        <translation>Impossível encontrar a rede sem fio &quot;%1&quot;</translation>
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
@@ -159,11 +159,11 @@
     </message>
     <message>
         <source>Disable wireless connection</source>
-        <translation>Desativar conexão Wi-Fi</translation>
+        <translation>Desativar conexão sem fio</translation>
     </message>
     <message>
         <source>Enable wireless connection</source>
-        <translation>Ativar conexão Wi-Fi</translation>
+        <translation>Ativar conexão sem fio</translation>
     </message>
     <message>
         <source>Disable network</source>
@@ -239,7 +239,7 @@
     </message>
     <message>
         <source>Wireless Network</source>
-        <translation>Rede Wi-Fi</translation>
+        <translation>Rede sem fio</translation>
     </message>
     <message>
         <source>Connected %1</source>
@@ -290,7 +290,7 @@
     <name>dde::network::NetWirelessControlItem</name>
     <message>
         <source>Wireless Network</source>
-        <translation>Rede Wi-Fi</translation>
+        <translation>Rede sem fio</translation>
     </message>
 </context>
 <context>
