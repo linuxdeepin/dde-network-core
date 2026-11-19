@@ -74,7 +74,7 @@
     </message>
     <message>
         <source>Enabling the airplane mode turns off wireless network, personal hotspot and Bluetooth</source>
-        <translation>Ativar o Modo Avião desliga a placa Wi-Fi, o ponto de acesso pessoal e o Bluetooth</translation>
+        <translation>Ativar o Modo Avião desliga a placa de rede sem fio, o ponto de acesso pessoal e o Bluetooth</translation>
     </message>
 </context>
 <context>
@@ -305,15 +305,15 @@
     </message>
     <message>
         <source>If you want to use the personal hotspot, disable Airplane Mode first and then enable the wireless network adapter.</source>
-        <translation>Se você quiser usar o ponto de acesso pessoal, desative o Modo Avião e, em seguida, ative a placa Wi-Fi.</translation>
+        <translation>Se você quiser usar o ponto de acesso pessoal, desative o Modo Avião e, em seguida, ative a placa de rede sem fio.</translation>
     </message>
     <message>
         <source>If you want to use the personal hotspot, disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first and then enable the wireless network adapter.</source>
-        <translation>Se você quiser usar o ponto de acesso pessoal, desative o &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Modo Avião&lt;/a&gt; e, em seguida, ative a placa Wi-Fi.</translation>
+        <translation>Se você quiser usar o ponto de acesso pessoal, desative o &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Modo Avião&lt;/a&gt; e, em seguida, ative a placa de rede sem fio.</translation>
     </message>
     <message>
         <source>Enable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;Wireless Network Adapter&lt;/a&gt; first if you want to use the personal hotspot.</source>
-        <translation>Ativar &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;Placa de rede Wi-Fi&lt;/a&gt; se quiser usar o hotspot pessoal.</translation>
+        <translation>Ativar &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network&apos;&gt;Placa de rede sem fio&lt;/a&gt; se quiser usar o hotspot pessoal.</translation>
     </message>
 </context>
 <context>
@@ -523,19 +523,19 @@
     </message>
     <message>
         <source>Disable Airplane Mode first if you want to connect to a wireless network</source>
-        <translation>Desative o Modo Avião se você quiser se conectar a uma rede Wi-Fi</translation>
+        <translation>Desative o Modo Avião se você quiser se conectar a uma rede sem fio</translation>
     </message>
     <message>
         <source>Disable &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation>Desative o &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Modo Avião&lt;/a&gt; se você quiser se conectar a uma rede Wi-Fi</translation>
+        <translation>Desative o &lt;a style=&apos;text-decoration: none;&apos; href=&apos;network/airplaneMode&apos;&gt;Modo Avião&lt;/a&gt; se você quiser se conectar a uma rede sem fio</translation>
     </message>
     <message>
         <source>Disable hotspot first if you want to connect to a wireless network</source>
-        <translation>Desative o hotspot se você quiser se conectar a uma rede Wi-Fi</translation>
+        <translation>Desative o hotspot se você quiser se conectar a uma rede sem fio</translation>
     </message>
     <message>
         <source>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Disable hotspot&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Desative o hotspot&lt;/a&gt; se você quiser se conectar a uma rede Wi-Fi</translation>
+        <translation>&lt;a style=&apos;text-decoration: none;&apos; href=&apos;NetHotspotControlItem&apos;&gt;Desative o hotspot&lt;/a&gt; se você quiser se conectar a uma rede sem fio</translation>
     </message>
     <message>
         <source>My Networks</source>
@@ -1604,7 +1604,7 @@
     <name>dde::network::NetAirplaneModeTipsItem</name>
     <message>
         <source>Disable &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Airplane Mode&lt;/a&gt; first if you want to connect to a wireless network</source>
-        <translation>Primeiro, desative o &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Modo Avião&lt;/a&gt; para conectar-se a uma rede Wi-Fi</translation>
+        <translation>Primeiro, desative o &lt;a style=&quot;text-decoration: none;&quot; href=&quot;Airplane Mode&quot;&gt;Modo Avião&lt;/a&gt; para conectar-se a uma rede sem fio</translation>
     </message>
 </context>
 <context>
@@ -1670,7 +1670,7 @@
     </message>
     <message>
         <source>Unable to connect &quot;%1&quot;, please keep closer to the wireless router</source>
-        <translation>Impossível conectar-se a %1, aproxime-se do roteador Wi-Fi</translation>
+        <translation>Impossível conectar-se a %1, aproxime-se do roteador sem fio</translation>
     </message>
     <message>
         <source>Connection failed, unable to connect &quot;%1&quot;, wrong password</source>
@@ -1682,7 +1682,7 @@
     </message>
     <message>
         <source>The &quot;%1&quot; 802.11 WLAN network could not be found</source>
-        <translation>Impossível encontrar a rede Wi-Fi &quot;%1&quot;</translation>
+        <translation>Impossível encontrar a rede sem fio &quot;%1&quot;</translation>
     </message>
     <message>
         <source>To connect &quot;%1&quot;, please set up your authentication info after logging in</source>
@@ -1714,7 +1714,7 @@
     <name>dde::network::NetWirelessControlItem</name>
     <message>
         <source>Wireless Network</source>
-        <translation>Rede Wi-Fi</translation>
+        <translation>Rede sem fio</translation>
     </message>
 </context>
 <context>
