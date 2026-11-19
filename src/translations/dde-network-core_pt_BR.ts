@@ -231,11 +231,11 @@
     </message>
     <message>
         <source>Wireless Network</source>
-        <translation>Rede Wi-Fi</translation>
+        <translation>Rede sem fio</translation>
     </message>
     <message>
         <source>Wireless Network %1</source>
-        <translation>Rede Wi-Fi %1</translation>
+        <translation>Rede sem fio %1</translation>
     </message>
 </context>
 </TS>
