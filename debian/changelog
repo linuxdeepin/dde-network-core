@@ -1,3 +1,10 @@
+dde-network-core (2.0.108.1) unstable; urgency=medium
+
+  * fix: replace Wi-Fi labels with generic wireless terms in pt_BR.
+    PMS: BUG-383655
+
+ -- Robertkill <lvpeilong@uniontech.com>  Fri, 20 Nov 2026 11:41:54 +0800
+
 dde-network-core (2.0.108) unstable; urgency=medium
 
   * fix: serialize NetworkManagerQt access on one thread
